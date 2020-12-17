@@ -1,8 +1,8 @@
-import functionWithLength from './function-with-length.js'
+import { functionWithLength } from './function-with-length.js'
 
 const curriedFunctions = new WeakSet()
 
-const curry = fn => {
+export const curry = fn => {
   if (fn.length <= 0) {
     return fn
   }
@@ -20,5 +20,3 @@ const curry = fn => {
 
   return curried
 }
-
-export default curry

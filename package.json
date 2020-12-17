@@ -19,5 +19,6 @@
   "repository": "TomerAberbach/fn",
   "bugs": {
     "url": "https://github.com/TomerAberbach/fn/issues"
-  }
+  },
+  "license": "Apache 2.0"
 }

@@ -21,5 +21,69 @@
   "bugs": {
     "url": "https://github.com/TomerAberbach/fn/issues"
   },
-  "license": "Apache 2.0"
+  "license": "Apache 2.0",
+  "scripts": {
+    "lint:prettier:base": "prettier --loglevel silent",
+    "lint:prettier": "pnpm run lint:prettier:base -- --write .",
+    "lint:eslint:base": "eslint --cache --ext js --ignore-path .gitignore",
+    "lint:eslint": "pnpm run lint:eslint:base -- --fix .",
+    "lint": "run-s lint:*",
+    "test": "ava"
+  },
+  "prettier": "@tomer/prettier-config",
+  "eslintConfig": {
+    "extends": "@tomer"
+  },
+  "browserslist": [
+    "current node"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/env"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "pnpm run lint:prettier:base -- --write",
+      "pnpm run lint:eslint:base -- --fix"
+    ],
+    "!(pnpm-lock).{json,yaml,md}": "pnpm run lint:prettier:base -- --write"
+  },
+  "commitlint": {
+    "extends": "@commitlint/config-conventional"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "ava": {
+    "babel": true,
+    "require": [
+      "@babel/register"
+    ],
+    "files": [
+      "**/{*.,}test.js"
+    ]
+  },
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@tomer/eslint-config": "^0.0.8",
+    "@tomer/prettier-config": "^0.0.2",
+    "ava": "^3.14.0",
+    "ava-fast-check": "^4.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.15.0",
+    "fast-check": "^2.10.0",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.2.1"
+  }
 }

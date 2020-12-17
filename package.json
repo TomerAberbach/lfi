@@ -61,7 +61,8 @@
   "ava": {
     "babel": true,
     "require": [
-      "@babel/register"
+      "@babel/register",
+      "./config/fast-check.js"
     ],
     "files": [
       "**/{*.,}test.js"

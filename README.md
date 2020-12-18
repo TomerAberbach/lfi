@@ -12,7 +12,27 @@ $ npm i @tomer/fn
 
 ## Usage
 
-TODO
+This package is still under active development. Until I have better documentation take a look at the following example:
+
+```js
+import { filter, join, map, pipe, repeat, take } from '@tomer/fn'
+
+const string = 'rainbows! And unicorns!!!'
+
+//=> RAINBOWS AND UNICORNS!!! RAINBOWS AND UNICORNS!!! RAINBOWS AND UNICORNS!!
+console.log(
+  pipe(
+    string,
+    filter(c => c !== '!'),
+    map(c => c.toUpperCase()),
+    join(''),
+    repeat,
+    map(s => `${s}!!!`),
+    take(3),
+    join(' ')
+  )
+)
+```
 
 ## Contributing
 

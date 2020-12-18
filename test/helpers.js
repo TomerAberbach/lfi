@@ -10,12 +10,10 @@ export const iterableArb = ({
 
   return fc.oneof(
     arrayArb,
-    fc
-      .tuple(fc.object(), arrayArb)
-      .map(([object, array]) => ({
-        ...object,
-        [Symbol.iterator]: array[Symbol.iterator]
-      }))
+    fc.tuple(fc.object(), arrayArb).map(([object, array]) => ({
+      ...object,
+      [Symbol.iterator]: array[Symbol.iterator]
+    }))
   )
 }
 

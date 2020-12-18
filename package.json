@@ -39,7 +39,7 @@
     "extends": "@tomer"
   },
   "browserslist": [
-    "current node"
+    "node >= 12"
   ],
   "babel": {
     "presets": [

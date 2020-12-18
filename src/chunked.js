@@ -1,8 +1,8 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const chunked = curry(function* (n, iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   while (iterator.hasNext()) {
     const chunk = [iterator.getNext()]

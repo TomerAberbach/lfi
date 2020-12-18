@@ -1,5 +1,5 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const fold = curry((fn, acc, iterable) => {
   for (const value of iterable) {
@@ -10,7 +10,7 @@ export const fold = curry((fn, acc, iterable) => {
 })
 
 export const reduce = curry(function* (fn, iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   if (!iterator.hasNext()) {
     return

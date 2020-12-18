@@ -1,6 +1,6 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
 import { empty } from './shared/empty.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const or = curry((fn, iterable) => {
   const iterator = iterable[Symbol.iterator]()
@@ -27,7 +27,7 @@ export const get = curry(function* (index, iterable) {
     return
   }
 
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   for (let i = 0; i < index && iterator.hasNext(); i++) {
     iterator.getNext()

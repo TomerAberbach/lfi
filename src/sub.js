@@ -1,8 +1,8 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const dropWhile = curry(function* (fn, iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   while (iterator.hasNext()) {
     const value = iterator.getNext()
@@ -41,7 +41,7 @@ export const take = curry((n, iterable) => {
 export const first = take(1)
 
 export const last = curry(function* (iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   if (!iterator.hasNext()) {
     return

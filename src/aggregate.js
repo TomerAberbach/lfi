@@ -1,5 +1,5 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const count = curry(iterable => {
   let n = 0
@@ -35,7 +35,7 @@ export const mean = curry(iterable => {
 })
 
 export const maxBy = curry(function* (fn, iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
 
   if (!iterable.hasNext()) {
     return

@@ -1,8 +1,8 @@
+import { Iterator } from './shared/iterator.js'
 import { curry } from './shared/curry.js'
-import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const windowed = curry(function* (size, iterable) {
-  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
+  const iterator = Iterator.fromIterable(iterable)
   const window = []
 
   for (let i = 0; i < size - 1; i++) {

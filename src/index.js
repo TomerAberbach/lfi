@@ -1,4 +1,6 @@
 export * from './shared/curry.js'
+export * from './shared/iterator.js'
+
 export * from './aggregate.js'
 export * from './associate.js'
 export * from './chunked.js'

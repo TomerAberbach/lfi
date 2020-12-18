@@ -1,6 +1,7 @@
 import { curry } from './curry.js'
 import { fc, testProp } from 'ava-fast-check'
 import { functionWithLength } from './function-with-length.js'
+import { partitions } from './partitions.js'
 import test from 'ava'
 
 const functionWithLengthArb = length =>
@@ -27,21 +28,6 @@ testProp(
     t.deepEqual(resultAfterCurry, resultBeforeCurry)
   }
 )
-
-function* partitions(array) {
-  if (array.length > 0) {
-    for (let i = 0; i < array.length; i++) {
-      const start = array.slice(0, i + 1)
-      const end = array.slice(i + 1)
-
-      for (const partition of partitions(end)) {
-        yield [start].concat(partition)
-      }
-    }
-  } else {
-    yield []
-  }
-}
 
 testProp(
   `curry curries the given function if its length is greater than zero`,

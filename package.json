@@ -16,6 +16,10 @@
     "iter",
     "functional"
   ],
+  "files": [
+    "./src"
+  ],
+  "main": "./src/index.js",
   "homepage": "https://github.com/TomerAberbach/fn",
   "repository": "TomerAberbach/fn",
   "bugs": {

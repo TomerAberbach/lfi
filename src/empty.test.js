@@ -1,5 +1,5 @@
-import test from 'ava'
 import { empty } from './empty.js'
+import test from 'ava'
 
 test(`the empty iterable is empty`, t => {
   let count = 0

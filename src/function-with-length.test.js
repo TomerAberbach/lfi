@@ -1,6 +1,6 @@
-import test from 'ava'
-import { testProp, fc } from 'ava-fast-check'
+import { fc, testProp } from 'ava-fast-check'
 import { functionWithLength } from './function-with-length.js'
+import test from 'ava'
 
 testProp(
   `functionWithLength mutates the given function`,

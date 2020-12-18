@@ -1,6 +1,6 @@
-import test from 'ava'
-import { fc, testProp } from 'ava-fast-check'
 import { each, forEach } from './each.js'
+import { fc, testProp } from 'ava-fast-check'
+import test from 'ava'
 
 testProp(
   `each returns an equivalent iterable`,

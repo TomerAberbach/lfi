@@ -1,6 +1,6 @@
-import test from 'ava'
 import { fc, testProp } from 'ava-fast-check'
 import { map } from './map.js'
+import test from 'ava'
 
 testProp(
   `map maps`,

@@ -1,6 +1,6 @@
-import test from 'ava'
 import { fc, testProp } from 'ava-fast-check'
 import { filter } from './filter.js'
+import test from 'ava'
 
 testProp(
   `filter filters`,

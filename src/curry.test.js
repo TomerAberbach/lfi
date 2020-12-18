@@ -1,7 +1,7 @@
-import test from 'ava'
-import { testProp, fc } from 'ava-fast-check'
-import { functionWithLength } from './function-with-length.js'
 import { curry } from './curry.js'
+import { fc, testProp } from 'ava-fast-check'
+import { functionWithLength } from './function-with-length.js'
+import test from 'ava'
 
 const functionWithLengthArb = length =>
   fc.func(fc.anything()).map(fn => functionWithLength(fn, length))

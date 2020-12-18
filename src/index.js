@@ -1,4 +1,5 @@
 export * from './associate.js'
+export * from './chunked.js'
 export * from './curry.js'
 export * from './each.js'
 export * from './empty.js'

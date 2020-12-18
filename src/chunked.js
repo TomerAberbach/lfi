@@ -1,18 +1,16 @@
 import { curry } from './curry.js'
+import { toExtendedIterator } from './to-extended-iterator.js'
 
 export const chunked = curry(function* (n, iterable) {
-  let chunk = []
+  const iterator = toExtendedIterator(iterable[Symbol.iterator]())
 
-  for (const value of iterable) {
-    chunk.push(value)
+  while (iterator.hasNext()) {
+    const chunk = [iterator.getNext()]
 
-    if (chunk.length === n) {
-      yield chunk
-      chunk = []
+    while (chunk.length < n && iterator.hasNext()) {
+      chunk.push(iterator.getNext())
     }
-  }
 
-  if (chunk.length > 0) {
     yield chunk
   }
 })

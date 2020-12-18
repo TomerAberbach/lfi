@@ -1,4 +1,4 @@
-import { curry } from './curry.js'
+import { curry } from './shared/curry.js'
 
 export const partitions = curry(function* (array) {
   if (array.length === 0) {

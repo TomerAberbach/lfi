@@ -1,4 +1,4 @@
-import { curry } from './curry.js'
+import { curry } from './shared/curry.js'
 
 export const associateTo = curry((fn, map, iterable) => {
   for (const value of iterable) {

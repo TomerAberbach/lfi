@@ -1,4 +1,4 @@
-import { curry } from './curry.js'
+import { curry } from './shared/curry.js'
 
 export const uniqueByWith = curry(function* (fn, set, iterable) {
   for (const value of iterable) {

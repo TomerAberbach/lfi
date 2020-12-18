@@ -1,4 +1,4 @@
-import { toExtendedIterator } from './to-extended-iterator.js'
+import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export function* zip(...iterables) {
   const iterators = iterables.map(iterable =>

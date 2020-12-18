@@ -1,4 +1,4 @@
-import { curry } from './curry.js'
+import { curry } from './shared/curry.js'
 
 export const filterFlatMap = curry(function* (fn, iterable) {
   for (const value of iterable) {

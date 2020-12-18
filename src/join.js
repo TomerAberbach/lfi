@@ -1,5 +1,5 @@
-import { curry } from './curry.js'
-import { toExtendedIterator } from './to-extended-iterator.js'
+import { curry } from './shared/curry.js'
+import { toExtendedIterator } from './shared/to-extended-iterator.js'
 
 export const join = curry((separator, iterable) => {
   const iterator = toExtendedIterator(iterable[Symbol.iterator]())

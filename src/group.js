@@ -1,4 +1,4 @@
-import { curry } from './curry.js'
+import { curry } from './shared/curry.js'
 
 export const groupTo = curry((fn, map, iterable) => {
   for (const value of iterable) {

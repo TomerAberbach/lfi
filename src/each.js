@@ -1,12 +1,11 @@
-import { curry } from './curry.js'
-import { map } from './map.js'
+import { curry } from './shared/curry.js'
 
-export const each = curry((fn, iterable) =>
-  map(value => {
+export const each = curry(function* (fn, iterable) {
+  for (const value of iterable) {
     fn(value)
-    return value
-  }, iterable)
-)
+    yield value
+  }
+})
 
 export const forEach = curry((fn, iterable) => {
   for (const value of iterable) {

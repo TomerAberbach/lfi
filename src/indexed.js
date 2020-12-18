@@ -1,7 +1,8 @@
-import { curry } from './curry.js'
-import { map } from './map.js'
+import { curry } from './shared/curry.js'
 
-export const indexed = curry(iterable => {
+export const indexed = curry(function* (iterable) {
   let index = 0
-  return map(value => [index++, value], iterable)
+  for (const value of iterable) {
+    yield [index++, value]
+  }
 })

@@ -1,7 +1,7 @@
 import { curry } from './curry.js'
 import { fc, testProp } from 'ava-fast-check'
 import { functionWithLength } from './function-with-length.js'
-import { partitions } from './partitions.js'
+import { partitions } from '../partitions.js'
 import test from 'ava'
 
 const functionWithLengthArb = length =>

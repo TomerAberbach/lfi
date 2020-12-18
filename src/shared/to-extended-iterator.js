@@ -7,9 +7,8 @@ export const toExtendedIterator = iterator => {
       const { value } = result
       result = null
       return value
-    } 
-      return null
-    
+    }
+    return null
   }
 
   return { hasNext, getNext }

@@ -34,6 +34,8 @@ console.log(
 )
 ```
 
+Everything is lazy!
+
 ## Contributing
 
 Stars are always welcome!

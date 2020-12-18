@@ -1,5 +1,6 @@
 import { fc, testProp } from 'ava-fast-check'
-import { rangeTo, rangeUntil } from './range.js'
+import { rangeTo, rangeUntil } from '../src/index.js'
+import { testReturnsIterable } from './helpers.js'
 import test from 'ava'
 
 const reasonableIntegerArb = () => fc.integer().filter(n => Math.abs(n) < 100)
@@ -8,6 +9,11 @@ const stepIntegerArb = () =>
   reasonableIntegerArb()
     .filter(n => n !== 0)
     .map(Math.abs)
+
+testReturnsIterable(rangeUntil, [
+  reasonableIntegerArb(),
+  reasonableIntegerArb()
+])
 
 testProp(
   `rangeUntil iterates from the given start (inclusive) to the given end (exclusive)`,
@@ -46,6 +52,8 @@ testProp(
 test(`rangeUntil step concrete example`, t => {
   t.deepEqual([...rangeUntil(0, 10).step(2)], [0, 2, 4, 6, 8])
 })
+
+testReturnsIterable(rangeTo, [reasonableIntegerArb(), reasonableIntegerArb()])
 
 testProp(
   `rangeTo iterates from the given start (inclusive) to the given end (inclusive)`,

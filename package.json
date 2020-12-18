@@ -69,7 +69,8 @@
       "./config/fast-check.js"
     ],
     "files": [
-      "**/{*.,}test.js"
+      "./test/**/*.js",
+      "!**/helpers.js"
     ]
   },
   "devDependencies": {

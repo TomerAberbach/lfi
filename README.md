@@ -4,7 +4,7 @@
 
 ## Install
 
-Supports Node.js versions 10 and above.
+Supports Node.js versions 12 and above.
 
 ```sh
 $ npm i @tomer/fn

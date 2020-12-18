@@ -11,7 +11,7 @@ export const join = curry((separator, iterable) => {
   let acc = iterator.getNext()
 
   while (iterator.hasNext()) {
-    acc += iterator.getNext()
+    acc += `${separator}${iterator.getNext()}`
   }
 
   return acc

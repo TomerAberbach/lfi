@@ -27,6 +27,7 @@
   },
   "license": "Apache 2.0",
   "scripts": {
+    "license": "addlicense $(git diff --name-only HEAD)",
     "lint:prettier:base": "prettier --loglevel silent",
     "lint:prettier": "pnpm run lint:prettier:base -- --write .",
     "lint:eslint:base": "eslint --cache --ext js --ignore-path .gitignore",
@@ -48,6 +49,7 @@
   },
   "lint-staged": {
     "*.js": [
+      "addlicense",
       "pnpm run lint:prettier:base -- --write",
       "pnpm run lint:eslint:base -- --fix"
     ],

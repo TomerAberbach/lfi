@@ -38,3 +38,30 @@ export class Iterator {
     return new Iterator(iterable[Symbol.iterator]())
   }
 }
+
+export class AsyncIterator {
+  constructor(iterator) {
+    this.iterator = iterator
+    this.result = null
+  }
+
+  async hasNext() {
+    return (
+      (this.result ?? (this.result = await this.iterator.next())).done !== true
+    )
+  }
+
+  async getNext() {
+    if (!(await this.hasNext())) {
+      throw new Error(`AsyncIterator doesn't have next`)
+    }
+
+    const { value } = this.result
+    this.result = null
+    return value
+  }
+
+  static fromIterable(iterable) {
+    return new AsyncIterator(iterable[Symbol.asyncIterator]())
+  }
+}

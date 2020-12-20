@@ -16,6 +16,7 @@
 
 export * from './shared/curry.js'
 export * from './shared/iterator.js'
+export * from './shared/map.js'
 
 export * from './aggregate.js'
 export * from './associate.js'
@@ -32,7 +33,6 @@ export * from './generate.js'
 export * from './group.js'
 export * from './indexed.js'
 export * from './join.js'
-export * from './map.js'
 export * from './optional.js'
 export * from './partitions.js'
 export * from './pipe.js'

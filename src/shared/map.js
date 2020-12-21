@@ -14,10 +14,22 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const map = curry(function* (fn, iterable) {
   for (const value of iterable) {
     yield fn(value)
+  }
+})
+
+export const mapAsync = curry(async function* (fn, iterable) {
+  for await (const value of iterable) {
+    yield fn(value)
+  }
+})
+
+export const mapConcur = curry(function* (fn, iterable) {
+  for (const promise of iterable) {
+    yield promise.then(values => iterable.aggregate(map(fn, values)))
   }
 })

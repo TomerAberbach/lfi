@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
+import { map } from './map.js'
 
 export const flatMap = curry(function* (fn, iterable) {
   for (const value of iterable) {
@@ -23,3 +24,21 @@ export const flatMap = curry(function* (fn, iterable) {
 })
 
 export const flatten = flatMap(value => value)
+
+export const flatMapAsync = curry(async function* (fn, iterable) {
+  for await (const value of iterable) {
+    yield* fn(value)
+  }
+})
+
+export const flattenAsync = flatMapAsync(value => value)
+
+export const flatMapConcur = curry(function* (fn, iterable) {
+  for (const value of iterable) {
+    yield Promise.resolve(value)
+      .then(values => Promise.all(map(fn, values)))
+      .then(flatten)
+  }
+})
+
+export const flattenConcur = flatMapConcur(value => value)

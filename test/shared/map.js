@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { fnArb, iterableArb, testReturnsIterable } from './helpers.js'
-import { map } from '../src/index.js'
+import { fnArb, iterableArb, testReturnsIterable } from '../helpers.js'
+import { map } from '../../src/index.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
 

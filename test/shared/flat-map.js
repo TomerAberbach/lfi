@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { flatMap } from '../src/index.js'
-import { fnArb, iterableArb, testReturnsIterable } from './helpers.js'
+import { flatMap } from '../../src/index.js'
+import { fnArb, iterableArb, testReturnsIterable } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
 
 testReturnsIterable(flatMap, [

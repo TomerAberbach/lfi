@@ -20,12 +20,12 @@ import { map } from './shared/map.js'
 
 export const concur = curry((aggregate, iterable) => ({
   aggregate,
-  values: map(
+  promises: map(
     value => Promise.resolve(value).then(resolved => [resolved]),
     iterable
   )
 }))
 
 export const seq = curry(iterable =>
-  iterable.aggregate(iterable.values).then(flatten)
+  iterable.aggregate(iterable.promises).then(flatten)
 )

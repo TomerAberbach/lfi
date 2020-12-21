@@ -33,11 +33,9 @@ export const flatMapAsync = curry(async function* (fn, iterable) {
 
 export const flattenAsync = flatMapAsync(value => value)
 
-export const flatMapConcur = curry(function* (fn, iterable) {
-  for (const value of iterable) {
-    yield Promise.resolve(value)
-      .then(values => Promise.all(map(fn, values)))
-      .then(flatten)
+export const flatMapConcur = curry(function* (fn, { aggregate, promises }) {
+  for (const promise of promises) {
+    yield promise.then(values => aggregate(map(fn, values))).then(flatten)
   }
 })
 

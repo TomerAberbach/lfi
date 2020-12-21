@@ -28,8 +28,8 @@ export const mapAsync = curry(async function* (fn, iterable) {
   }
 })
 
-export const mapConcur = curry(function* (fn, iterable) {
-  for (const promise of iterable) {
-    yield promise.then(values => iterable.aggregate(map(fn, values)))
+export const mapConcur = curry(function* (fn, { aggregate, promises }) {
+  for (const promise of promises) {
+    yield promise.then(values => aggregate(map(fn, values)))
   }
 })

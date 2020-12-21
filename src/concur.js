@@ -26,6 +26,6 @@ export const concur = curry((aggregate, iterable) => ({
   )
 }))
 
-export const seq = curry(iterable =>
-  iterable.aggregate(iterable.promises).then(flatten)
+export const seq = curry(({ aggregate, promises }) =>
+  aggregate(promises).then(flatten)
 )

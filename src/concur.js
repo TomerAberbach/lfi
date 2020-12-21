@@ -15,7 +15,7 @@
  */
 
 import { curry } from './shared/curry.js'
-import { flatten } from './flat-map.js'
+import { flatten } from './shared/flat-map.js'
 import { map } from './shared/map.js'
 
 export const concur = curry((aggregate, iterable) => ({

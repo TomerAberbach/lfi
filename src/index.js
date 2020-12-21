@@ -15,6 +15,7 @@
  */
 
 export * from './shared/curry.js'
+export * from './shared/flat-map.js'
 export * from './shared/iterator.js'
 export * from './shared/map.js'
 
@@ -27,7 +28,6 @@ export * from './filter.js'
 export * from './filter-flat-map.js'
 export * from './filter-map.js'
 export * from './find.js'
-export * from './flat-map.js'
 export * from './fold.js'
 export * from './generate.js'
 export * from './group.js'

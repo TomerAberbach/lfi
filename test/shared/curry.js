@@ -22,8 +22,7 @@ import test from 'ava'
 
 const functionAndInputArb = () =>
   fc
-    .array(fc.anything())
-    .filter(array => array.length > 0)
+    .array(fc.anything(), { minLength: 1 })
     .chain(array =>
       fc.tuple(fnArb({ length: array.length }), fc.clonedConstant(array))
     )

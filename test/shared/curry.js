@@ -16,20 +16,21 @@
 
 import { curry, partitions } from '../../src/index.js'
 import { fc, testProp } from 'ava-fast-check'
-import { fnArb } from '../helpers.js'
-import { functionWithLength } from '../../src/shared/function-with-length.js'
+import { getFnArb } from '../helpers.js'
 import test from 'ava'
 
-const functionAndInputArb = () =>
-  fc
-    .array(fc.anything(), { minLength: 1 })
-    .chain(array =>
-      fc.tuple(fnArb({ length: array.length }), fc.clonedConstant(array))
+const functionAndInputArb = fc
+  .array(fc.anything(), { minLength: 1 })
+  .chain(array =>
+    fc.tuple(
+      getFnArb({ lengthArb: fc.constant(array.length) }),
+      fc.clonedConstant(array)
     )
+  )
 
 testProp(
   `curry does not modify the given function`,
-  [functionAndInputArb()],
+  [functionAndInputArb],
   (t, [fn, inputs]) => {
     const resultBeforeCurry = fn(...inputs)
 
@@ -45,7 +46,7 @@ testProp(
 
 testProp(
   `curry curries the given function if its length is greater than zero`,
-  [functionAndInputArb()],
+  [functionAndInputArb],
   (t, [fn, inputs]) => {
     t.plan(2 ** (inputs.length - 1))
 
@@ -64,20 +65,29 @@ testProp(
 
 testProp(
   `curry does not curry the given function if its length is less than or equal to zero`,
-  [fnArb(), fc.nat().map(n => -n)],
-  (t, fn, length) => {
-    fn = functionWithLength(fn, length)
-
+  [getFnArb({ lengthArb: fc.nat().map(n => -n) })],
+  (t, fn) => {
     t.is(curry(fn), fn)
   }
 )
 
-testProp(`curry is idempotent`, [functionAndInputArb()], (t, [fn, inputs]) => {
+testProp(`curry is idempotent`, [functionAndInputArb], (t, [fn, inputs]) => {
   const curried = curry(fn)
   const doubleCurried = curry(curried)
 
   t.deepEqual(curried(...inputs), doubleCurried(...inputs))
 })
+
+testProp(
+  `curry returns a function with the same name and length as the given function`,
+  [getFnArb()],
+  (t, fn) => {
+    const curried = curry(fn)
+
+    t.is(curried.name, fn.name)
+    t.is(curried.length, fn.length)
+  }
+)
 
 test(`curry concrete example`, t => {
   const fn = (a, b, c) => a + b + c

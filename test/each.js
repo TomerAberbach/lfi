@@ -15,15 +15,15 @@
  */
 
 import { each, forEach } from '../src/index.js'
-import { fnArb, iterableArb, testReturnsIterable } from './helpers.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
 
-testReturnsIterable(each, [fnArb(), iterableArb()])
+testReturnsIterable(each, [getFnArb(), getIterableArb()])
 
 testProp(
   `each returns an equivalent iterable`,
-  [fnArb(), iterableArb()],
+  [getFnArb(), getIterableArb()],
   (t, fn, iterable) => {
     const returned = each(fn, iterable)
 
@@ -33,7 +33,7 @@ testProp(
 
 testProp(
   `each calls the given function for each value in the iterable in their iteration order`,
-  [iterableArb()],
+  [getIterableArb()],
   (t, iterable) => {
     const parameters = []
 
@@ -44,7 +44,7 @@ testProp(
   }
 )
 
-testProp(`each is lazy`, [iterableArb()], (t, iterable) => {
+testProp(`each is lazy`, [getIterableArb()], (t, iterable) => {
   const array = [...iterable]
   t.plan(array.length + 1)
 
@@ -69,7 +69,7 @@ test(`each concrete example`, t => {
 
 testProp(
   `forEach returns undefined`,
-  [fnArb(), iterableArb()],
+  [getFnArb(), getIterableArb()],
   (t, fn, iterable) => {
     const returned = forEach(fn, iterable)
 
@@ -79,7 +79,7 @@ testProp(
 
 testProp(
   `forEach is eager and calls the given function for each value in the iterable in their iteration order`,
-  [iterableArb()],
+  [getIterableArb()],
   (t, iterable) => {
     const parameters = []
     forEach(value => parameters.push(value), iterable)

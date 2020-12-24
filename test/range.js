@@ -19,21 +19,15 @@ import { rangeTo, rangeUntil } from '../src/index.js'
 import { testReturnsIterable } from './helpers.js'
 import test from 'ava'
 
-const reasonableIntegerArb = () => fc.integer().filter(n => Math.abs(n) < 100)
+const reasonableIntegerArb = fc.integer().filter(n => Math.abs(n) < 100)
 
-const stepIntegerArb = () =>
-  reasonableIntegerArb()
-    .filter(n => n !== 0)
-    .map(Math.abs)
+const stepIntegerArb = reasonableIntegerArb.filter(n => n !== 0).map(Math.abs)
 
-testReturnsIterable(rangeUntil, [
-  reasonableIntegerArb(),
-  reasonableIntegerArb()
-])
+testReturnsIterable(rangeUntil, [reasonableIntegerArb, reasonableIntegerArb])
 
 testProp(
   `rangeUntil iterates from the given start (inclusive) to the given end (exclusive)`,
-  [reasonableIntegerArb(), reasonableIntegerArb()],
+  [reasonableIntegerArb, reasonableIntegerArb],
   (t, start, end) => {
     const step = start < end ? 1 : -1
 
@@ -52,7 +46,7 @@ test(`rangeUntil concrete example`, t => {
 
 testProp(
   `rangeUntil's step function returns a new rangeUntil iterable that iterates with the given step`,
-  [reasonableIntegerArb(), reasonableIntegerArb(), stepIntegerArb()],
+  [reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb],
   (t, start, end, step) => {
     const actualStep = step * (start < end ? 1 : -1)
 
@@ -69,11 +63,11 @@ test(`rangeUntil step concrete example`, t => {
   t.deepEqual([...rangeUntil(0, 10).step(2)], [0, 2, 4, 6, 8])
 })
 
-testReturnsIterable(rangeTo, [reasonableIntegerArb(), reasonableIntegerArb()])
+testReturnsIterable(rangeTo, [reasonableIntegerArb, reasonableIntegerArb])
 
 testProp(
   `rangeTo iterates from the given start (inclusive) to the given end (inclusive)`,
-  [reasonableIntegerArb(), reasonableIntegerArb()],
+  [reasonableIntegerArb, reasonableIntegerArb],
   (t, start, end) => {
     const step = start < end ? 1 : -1
 
@@ -92,7 +86,7 @@ test(`rangeTo concrete example`, t => {
 
 testProp(
   `rangeTo's step function returns a new rangeTo iterable that iterates with the given step`,
-  [reasonableIntegerArb(), reasonableIntegerArb(), stepIntegerArb()],
+  [reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb],
   (t, start, end, step) => {
     const actualStep = step * (start < end ? 1 : -1)
 

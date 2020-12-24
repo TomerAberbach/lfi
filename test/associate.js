@@ -16,11 +16,14 @@
 
 import { associateTo } from '../src/index.js'
 import { fc, testProp } from 'ava-fast-check'
-import { fnArb, iterableArb } from './helpers.js'
+import { getFnArb, getIterableArb } from './helpers.js'
 
 testProp(
   `associateTo returns the given map`,
-  [fnArb({ valueArb: fc.tuple(fc.string(), fc.anything()) }), iterableArb()],
+  [
+    getFnArb({ valueArb: fc.tuple(fc.string(), fc.anything()) }),
+    getIterableArb()
+  ],
   (t, fn, iterable) => {
     const map = new Map()
 

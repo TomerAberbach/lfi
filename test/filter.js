@@ -16,14 +16,17 @@
 
 import { fc, testProp } from 'ava-fast-check'
 import { filter } from '../src/index.js'
-import { fnArb, iterableArb, testReturnsIterable } from './helpers.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
 import test from 'ava'
 
-testReturnsIterable(filter, [fnArb(), iterableArb()])
+testReturnsIterable(filter, [getFnArb(), getIterableArb()])
 
 testProp(
   `filter filters`,
-  [fnArb({ valueArb: fc.oneof(fc.anything(), fc.boolean()) }), iterableArb()],
+  [
+    getFnArb({ valueArb: fc.oneof(fc.anything(), fc.boolean()) }),
+    getIterableArb()
+  ],
   (t, fn, iterable) => {
     t.deepEqual(
       [...filter(fn, iterable)],
@@ -32,7 +35,7 @@ testProp(
   }
 )
 
-testProp(`filter is lazy`, [iterableArb()], (t, iterable) => {
+testProp(`filter is lazy`, [getIterableArb()], (t, iterable) => {
   const array = [...iterable]
   t.plan(array.length + 1)
 

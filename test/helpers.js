@@ -15,9 +15,9 @@
  */
 
 import { fc, testProp } from 'ava-fast-check'
-import { functionWithLength } from '../src/shared/function-with-length.js'
+import objectHash from 'object-hash'
 
-export const iterableArb = ({
+export const getIterableArb = ({
   valueArb = fc.anything(),
   minLength,
   maxLength
@@ -33,19 +33,53 @@ export const iterableArb = ({
   )
 }
 
-export const fnArb = ({ valueArb = fc.anything(), length } = {}) => {
-  let arb = fc.func(valueArb)
+export const getFnArb = ({
+  valueArb = fc.anything(),
+  nameArb = fc.string(),
+  lengthArb = fc.nat()
+} = {}) =>
+  fc.tuple(fc.func(valueArb), nameArb, lengthArb).map(([fn, name, length]) => {
+    Object.defineProperties(fn, {
+      length: {
+        enumerable: false,
+        writable: false,
+        value: length
+      },
+      name: {
+        enumerable: false,
+        writable: false,
+        value: name
+      }
+    })
 
-  if (length != null) {
-    arb = arb.map(fn => functionWithLength(fn, length))
-  }
+    return fn
+  })
 
-  return arb
-}
+const getFnName = fn =>
+  fn.name.length === 0 ? `Unknown function (${objectHash(fn)})` : fn.name
 
 export const testReturnsIterable = (fn, inputArbs) =>
-  testProp(`${fn.name} returns an iterable`, inputArbs, (t, ...inputs) => {
-    const returned = fn(...inputs)
+  testProp(
+    `${getFnName(fn)} returns an iterable`,
+    inputArbs,
+    (t, ...inputs) => {
+      const returned = fn(...inputs)
 
-    t.true(returned != null && typeof returned[Symbol.iterator] === `function`)
-  })
+      t.true(
+        returned != null && typeof returned[Symbol.iterator] === `function`
+      )
+    }
+  )
+
+export const testReturnsAsyncIterable = (fn, inputArbs) =>
+  testProp(
+    `${getFnName(fn)} returns an async iterable`,
+    inputArbs,
+    (t, ...inputs) => {
+      const returned = fn(...inputs)
+
+      t.true(
+        returned != null && typeof returned[Symbol.asyncIterator] === `function`
+      )
+    }
+  )

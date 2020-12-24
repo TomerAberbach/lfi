@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-import { fnArb, iterableArb, testReturnsIterable } from '../helpers.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
 import { map } from '../../src/index.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
 
-testReturnsIterable(map, [fnArb(), iterableArb()])
+testReturnsIterable(map, [getFnArb(), getIterableArb()])
 
-testProp(`map maps`, [fnArb(), iterableArb()], (t, fn, iterable) => {
+testProp(`map maps`, [getFnArb(), getIterableArb()], (t, fn, iterable) => {
   t.deepEqual(
     [...map(fn, iterable)],
     [...iterable].map(value => fn(value))
   )
 })
 
-testProp(`map is lazy`, [iterableArb()], (t, iterable) => {
+testProp(`map is lazy`, [getIterableArb()], (t, iterable) => {
   const array = [...iterable]
   t.plan(array.length + 1)
 

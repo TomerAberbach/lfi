@@ -14,12 +14,19 @@
  * limitations under the License.
  */
 
-export const functionWithLength = (fn, length) => {
-  Object.defineProperty(fn, `length`, {
-    enumerable: false,
-    writable: false,
-    value: length
+export const wrapFunction = (oldFn, newFn) => {
+  Object.defineProperties(newFn, {
+    length: {
+      enumerable: false,
+      writable: false,
+      value: oldFn.length
+    },
+    name: {
+      enumerable: false,
+      writable: false,
+      value: oldFn.name
+    }
   })
 
-  return fn
+  return newFn
 }

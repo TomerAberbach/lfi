@@ -15,17 +15,17 @@
  */
 
 import { flatMap } from '../../src/index.js'
-import { fnArb, iterableArb, testReturnsIterable } from '../helpers.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
 
 testReturnsIterable(flatMap, [
-  fnArb({ valueArb: iterableArb() }),
-  iterableArb()
+  getFnArb({ valueArb: getIterableArb() }),
+  getIterableArb()
 ])
 
 testProp(
   `flatMap flat maps`,
-  [fnArb({ valueArb: iterableArb() }), iterableArb()],
+  [getFnArb({ valueArb: getIterableArb() }), getIterableArb()],
   (t, fn, iterable) => {
     t.deepEqual(
       [...flatMap(fn, iterable)],

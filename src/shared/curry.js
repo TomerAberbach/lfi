@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { functionWithLength } from './function-with-length.js'
+import { wrapFunction } from './wrap-function.js'
 
 const curriedFunctions = new WeakSet()
 
@@ -27,10 +27,8 @@ export const curry = fn => {
     return fn
   }
 
-  const curried = functionWithLength(
-    (...args) =>
-      args.length < fn.length ? curry(fn.bind(null, ...args)) : fn(...args),
-    fn.length
+  const curried = wrapFunction(fn, (...args) =>
+    args.length < fn.length ? curry(fn.bind(null, ...args)) : fn(...args)
   )
   curriedFunctions.add(curried)
 

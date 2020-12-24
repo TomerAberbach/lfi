@@ -14,22 +14,49 @@
  * limitations under the License.
  */
 
-import { flatMap } from '../../src/index.js'
+import { Iterator, flatMap, map } from '../../src/index.js'
 import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
+import test from 'ava'
 
-testReturnsIterable(flatMap, [
-  getFnArb({ valueArb: getIterableArb() }),
-  getIterableArb()
-])
+const iterableArb = getIterableArb()
+const arbs = [getFnArb({ valueArb: iterableArb }), iterableArb]
 
-testProp(
-  `flatMap flat maps`,
-  [getFnArb({ valueArb: getIterableArb() }), getIterableArb()],
-  (t, fn, iterable) => {
-    t.deepEqual(
-      [...flatMap(fn, iterable)],
-      [...iterable].flatMap(value => [...fn(value)])
+testReturnsIterable(flatMap, arbs)
+
+testProp(`flatMap flat maps`, arbs, (t, fn, iterable) => {
+  t.deepEqual(
+    [...flatMap(fn, iterable)],
+    [...iterable].flatMap(value => [...fn(value)])
+  )
+})
+
+testProp(`flatMap is lazy`, arbs, (t, fn, iterable) => {
+  let count = 0
+  const iterator = Iterator.fromIterable(
+    flatMap(
+      value =>
+        map(innerValue => {
+          count++
+          return innerValue
+        }, fn(value)),
+      iterable
     )
+  )
+  t.is(count, 0)
+
+  let i = 0
+  while (iterator.hasNext()) {
+    iterator.getNext()
+    t.is(count, i + 1)
+    i++
   }
-)
+})
+
+test(`flatMap concrete example`, t => {
+  const values = [1, 2, 3, 4, 5]
+
+  const mapped = [...flatMap(value => [value / 2, value, value * 2], values)]
+
+  t.deepEqual(mapped, [0.5, 1, 2, 1, 2, 4, 1.5, 3, 6, 2, 4, 8, 2.5, 5, 10])
+})

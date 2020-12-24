@@ -19,9 +19,11 @@ import { testProp } from 'ava-fast-check'
 import { wrapFunction } from '../../src/shared/wrap-function.js'
 import test from 'ava'
 
+const arbs = [getFnArb(), getFnArb()]
+
 testProp(
   `wrapFunction returns the function given for its second parameter`,
-  [getFnArb(), getFnArb()],
+  arbs,
   (t, fn1, fn2) => {
     const returned = wrapFunction(fn1, fn2)
 
@@ -31,7 +33,7 @@ testProp(
 
 testProp(
   `wrapFunction copies the name and length of the function given for its first parameter to the one given for its second`,
-  [getFnArb(), getFnArb()],
+  arbs,
   (t, fn1, fn2) => {
     wrapFunction(fn1, fn2)
 

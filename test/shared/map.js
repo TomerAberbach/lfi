@@ -19,21 +19,26 @@ import { map } from '../../src/index.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
 
-testReturnsIterable(map, [getFnArb(), getIterableArb()])
+const arbs = [getFnArb(), getIterableArb()]
 
-testProp(`map maps`, [getFnArb(), getIterableArb()], (t, fn, iterable) => {
+testReturnsIterable(map, arbs)
+
+testProp(`map maps`, arbs, (t, fn, iterable) => {
   t.deepEqual(
     [...map(fn, iterable)],
     [...iterable].map(value => fn(value))
   )
 })
 
-testProp(`map is lazy`, [getIterableArb()], (t, iterable) => {
+testProp(`map is lazy`, arbs, (t, fn, iterable) => {
   const array = [...iterable]
   t.plan(array.length + 1)
 
   let count = 0
-  const iterator = map(() => count++, iterable)[Symbol.iterator]()
+  const iterator = map(value => {
+    count++
+    return fn(value)
+  }, iterable)[Symbol.iterator]()
   t.is(count, 0)
 
   for (let i = 0; i < array.length; i++) {

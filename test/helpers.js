@@ -28,10 +28,37 @@ export const getIterableArb = ({
     arrayArb,
     fc.tuple(fc.object(), arrayArb).map(([object, array]) => ({
       ...object,
-      [Symbol.iterator]: array[Symbol.iterator]
+      [Symbol.iterator]: () => array[Symbol.iterator]()
     }))
   )
 }
+
+export const getIteratorArb = ({ valueArb, minLength, maxLength }) =>
+  getIterableArb({ valueArb, minLength, maxLength }).map(iterable =>
+    iterable[Symbol.iterator]()
+  )
+
+export const getAsyncIterableArb = ({
+  valueArb = fc.anything(),
+  minLength,
+  maxLength
+} = {}) =>
+  getIterableArb({ valueArb, minLength, maxLength }).map(iterable => {
+    const { [Symbol.iterator]: getIterator, ...rest } = iterable
+    return {
+      ...rest,
+      async *[Symbol.asyncIterator]() {
+        for await (const value of iterable) {
+          yield value
+        }
+      }
+    }
+  })
+
+export const getAsyncIteratorArb = ({ valueArb, minLength, maxLength }) =>
+  getAsyncIterableArb({ valueArb, minLength, maxLength }).map(iterable =>
+    iterable[Symbol.asyncIterator]()
+  )
 
 export const getFnArb = ({
   valueArb = fc.anything(),
@@ -56,7 +83,9 @@ export const getFnArb = ({
   })
 
 const getFnName = fn =>
-  fn.name.length === 0 ? `Unknown function (${objectHash(fn)})` : fn.name
+  fn.name.length === 0
+    ? `Unknown function (${objectHash(fn)}${Math.floor(Math.random() * 1000)})`
+    : fn.name
 
 export const testReturnsIterable = (fn, inputArbs) =>
   testProp(

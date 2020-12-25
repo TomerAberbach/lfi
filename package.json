@@ -33,7 +33,7 @@
     "lint:eslint:base": "eslint --cache --ext js --ignore-path .gitignore",
     "lint:eslint": "pnpm run lint:eslint:base -- --fix .",
     "lint": "run-s lint:*",
-    "test": "c8 ava"
+    "test": "c8 ava -T 20s"
   },
   "prettier": "@tomer/prettier-config",
   "eslintConfig": {

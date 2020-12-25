@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { Iterator, flatMap, flatten, map } from '../../src/index.js'
-import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
+import { Iterator, flatMap, flatten, map } from '../../src/index.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
 
 const iterableArb = getIterableArb()
 const flatMapArbs = [getFnArb({ valueArb: iterableArb }), iterableArb]

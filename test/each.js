@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { each, forEach } from '../src/index.js'
-import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
+import { each, forEach } from '../src/index.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
 
 testReturnsIterable(each, [getFnArb(), getIterableArb()])
 

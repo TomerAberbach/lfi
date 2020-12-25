@@ -15,9 +15,9 @@
  */
 
 import { fc, testProp } from 'ava-fast-check'
+import test from 'ava'
 import { filter } from '../src/index.js'
 import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
-import test from 'ava'
 
 testReturnsIterable(filter, [getFnArb(), getIterableArb()])
 

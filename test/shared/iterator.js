@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { AsyncIterator, Iterator } from '../../src/index.js'
-import { getAsyncIterableArb, getIterableArb } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
+import { AsyncIterator, Iterator } from '../../src/index.js'
+import { getAsyncIterableArb, getIterableArb } from '../helpers.js'
 
 testProp(
   `Iterator iterates like a native iterator`,

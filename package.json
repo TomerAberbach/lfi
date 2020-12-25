@@ -28,7 +28,7 @@
   "license": "Apache 2.0",
   "scripts": {
     "license": "addlicense $(git diff --name-only HEAD)",
-    "lint:prettier:base": "prettier --loglevel silent",
+    "lint:prettier:base": "prettier --loglevel silent --ignore-path .gitignore",
     "lint:prettier": "pnpm run lint:prettier:base -- --write .",
     "lint:eslint:base": "eslint --cache --ext js --ignore-path .gitignore",
     "lint:eslint": "pnpm run lint:eslint:base -- --fix .",
@@ -82,7 +82,7 @@
     "@babel/preset-env": "7.12.11",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@tomer/eslint-config": "0.0.13",
+    "@tomer/eslint-config": "0.0.14",
     "@tomer/prettier-config": "0.0.2",
     "ava": "3.14.0",
     "ava-fast-check": "4.0.0",

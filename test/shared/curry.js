@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { curry, partitions } from '../../src/index.js'
 import { fc, testProp } from 'ava-fast-check'
-import { getFnArb } from '../helpers.js'
 import test from 'ava'
+import { curry, partitions } from '../../src/index.js'
+import { getFnArb } from '../helpers.js'
 
 const functionAndInputArb = fc
   .array(fc.anything(), { minLength: 1 })

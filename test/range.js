@@ -15,9 +15,9 @@
  */
 
 import { fc, testProp } from 'ava-fast-check'
+import test from 'ava'
 import { rangeTo, rangeUntil } from '../src/index.js'
 import { testReturnsIterable } from './helpers.js'
-import test from 'ava'
 
 const reasonableIntegerArb = fc.integer().filter(n => Math.abs(n) < 100)
 

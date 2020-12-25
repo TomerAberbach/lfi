@@ -5,7 +5,7 @@ devDependencies:
   '@babel/preset-env': 7.12.11_@babel+core@7.12.10
   '@commitlint/cli': 11.0.0
   '@commitlint/config-conventional': 11.0.0
-  '@tomer/eslint-config': 0.0.13_277d5512e71bb1599b825f4ba4e8f6ec
+  '@tomer/eslint-config': 0.0.14_277d5512e71bb1599b825f4ba4e8f6ec
   '@tomer/prettier-config': 0.0.2_prettier@2.2.1
   ava: 3.14.0
   ava-fast-check: 4.0.0_ava@3.14.0+fast-check@2.10.0
@@ -354,8 +354,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-GoLDUi6U9ZLzlSda2Df++VSqDJg3CG+dR0+iWsv6XRw1rEq+zwt4DirM9yrxW6XWaTpmai1cWJLMfM8qQJf+yw==
-  /@babel/plugin-proposal-logical-assignment-operators/7.12.1_@babel+core@7.12.10:
-    dependencies:
+  ? /@babel/plugin-proposal-logical-assignment-operators/7.12.1_@babel+core@7.12.10
+  : dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4_@babel+core@7.12.10
@@ -364,8 +364,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-k8ZmVv0JU+4gcUGeCDZOGd0lCIamU/sMtIiX3UWnUc5yzgq6YUGyEolNYD+MLYKfSzgECPcqetVcJP9Afe/aCA==
-  /@babel/plugin-proposal-nullish-coalescing-operator/7.12.1_@babel+core@7.12.10:
-    dependencies:
+  ? /@babel/plugin-proposal-nullish-coalescing-operator/7.12.1_@babel+core@7.12.10
+  : dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3_@babel+core@7.12.10
@@ -675,8 +675,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-+PxVGA+2Ag6uGgL0A5f+9rklOnnMccwEBzwYFL3EUaKuiyVnUipyXncFcfjSkbimLrODoqki1U9XxZzTvfN7IQ==
-  /@babel/plugin-transform-member-expression-literals/7.12.1_@babel+core@7.12.10:
-    dependencies:
+  ? /@babel/plugin-transform-member-expression-literals/7.12.1_@babel+core@7.12.10
+  : dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
     dev: true
@@ -730,8 +730,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-aEIubCS0KHKM0zUos5fIoQm+AZUMt1ZvMpqz0/H5qAQ7vWylr9+PLYurT+Ic7ID/bKLd4q8hDovaG3Zch2uz5Q==
-  /@babel/plugin-transform-named-capturing-groups-regex/7.12.1_@babel+core@7.12.10:
-    dependencies:
+  ? /@babel/plugin-transform-named-capturing-groups-regex/7.12.1_@babel+core@7.12.10
+  : dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-create-regexp-features-plugin': 7.12.7_@babel+core@7.12.10
     dev: true
@@ -1236,7 +1236,7 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==
-  /@tomer/eslint-config/0.0.13_277d5512e71bb1599b825f4ba4e8f6ec:
+  /@tomer/eslint-config/0.0.14_277d5512e71bb1599b825f4ba4e8f6ec:
     dependencies:
       babel-eslint: 10.1.0_eslint@7.16.0
       eslint: 7.16.0
@@ -1250,7 +1250,7 @@ packages:
       babel-eslint: ^10.0.0
       eslint: ^7.0.0
     resolution:
-      integrity: sha512-YIO1UIwnOoK05+3UVZKnIn5fYZTZJsS0qMufpnfK/Df/yy+tEz8WqMopbLehp/BE75AJ1QWj56RG3dCu51l2jA==
+      integrity: sha512-bIak2cO7H6Ymvm66yQz8hqvESQvBBnZxzdJG5dRdlrlC6PagDXLi65w96/yGsYUav7z0dS/DOHQLnFw3JF8Agg==
   /@tomer/prettier-config/0.0.2_prettier@2.2.1:
     dependencies:
       prettier: 2.2.1
@@ -5756,7 +5756,7 @@ specifiers:
   '@babel/preset-env': 7.12.11
   '@commitlint/cli': 11.0.0
   '@commitlint/config-conventional': 11.0.0
-  '@tomer/eslint-config': 0.0.13
+  '@tomer/eslint-config': 0.0.14
   '@tomer/prettier-config': 0.0.2
   ava: 3.14.0
   ava-fast-check: 4.0.0

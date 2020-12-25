@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { chunked } from '../src/index.js'
 import { fc, testProp } from 'ava-fast-check'
-import { getIterableArb, testReturnsIterable } from './helpers.js'
 import test from 'ava'
+import { chunked } from '../src/index.js'
+import { getIterableArb, testReturnsIterable } from './helpers.js'
 
 const positiveNatArb = fc.nat().filter(n => n > 0)
 

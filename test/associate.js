@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { associateTo } from '../src/index.js'
 import { fc, testProp } from 'ava-fast-check'
+import { associateTo } from '../src/index.js'
 import { getFnArb, getIterableArb } from './helpers.js'
 
 testProp(

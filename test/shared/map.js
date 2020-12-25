@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
-import { map } from '../../src/index.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
+import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
+import { map } from '../../src/index.js'
 
 const arbs = [getFnArb(), getIterableArb()]
 

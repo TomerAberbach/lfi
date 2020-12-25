@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import { getFnArb } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
-import { wrapFunction } from '../../src/shared/wrap-function.js'
 import test from 'ava'
+import { getFnArb } from '../helpers.js'
+import { wrapFunction } from '../../src/shared/wrap-function.js'
 
 const arbs = [getFnArb(), getFnArb()]
 

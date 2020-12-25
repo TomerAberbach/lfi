@@ -10,6 +10,7 @@ devDependencies:
   ava: 3.14.0
   ava-fast-check: 4.0.0_ava@3.14.0+fast-check@2.10.0
   babel-eslint: 10.1.0_eslint@7.16.0
+  c8: 7.3.5
   eslint: 7.16.0
   fast-check: 2.10.0
   husky: 4.3.6
@@ -1001,6 +1002,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lnIX7piTxOH22xE7fDXDbSHg9MM1/6ORnafpJmov5rs0kX5g4BZxeXNJLXsMRiO0U5Rb8/FvMS6xlTnTHvxonQ==
+  /@bcoe/v8-coverage/0.2.3:
+    dev: true
+    resolution:
+      integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
   /@commitlint/cli/11.0.0:
     dependencies:
       '@babel/runtime': 7.12.5
@@ -1179,6 +1184,12 @@ packages:
       node: ^10.12.0 || >=12.0.0
     resolution:
       integrity: sha512-EfB5OHNYp1F4px/LI/FEnGylop7nOqkQ1LRzCM0KccA2U8tvV8w01KBv37LbO7nW4H+YhKyo2LcJhRwjjV17QQ==
+  /@istanbuljs/schema/0.1.2:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
   /@mdn/browser-compat-data/2.0.7:
     dependencies:
       extend: 3.0.2
@@ -1248,6 +1259,14 @@ packages:
       prettier: ^2.0.0
     resolution:
       integrity: sha512-iTnQCgnsgcJi5+wvv6dF+Drxame9YlRpUCKsGHncuq/Qx5UEBYybfxW/8NF1+YoaJMDMHKHJbHSzgxyWFSV8Ig==
+  /@types/is-windows/1.0.0:
+    dev: true
+    resolution:
+      integrity: sha512-tJ1rq04tGKuIJoWIH0Gyuwv4RQ3+tIu7wQrC0MV47raQ44kIzXSSFKfrxFUOWVRvesoF7mrTqigXmqoZJsXwTg==
+  /@types/istanbul-lib-coverage/2.0.3:
+    dev: true
+    resolution:
+      integrity: sha512-sz7iLqvVUg1gIedBOvlkxPlc8/uVzyS5OwGz1cKjXzkl3FpL3al0crU8YGU1WoHkxn0Wxbw5tyi6hvzJKNzFsw==
   /@types/minimist/1.2.1:
     dev: true
     resolution:
@@ -1666,6 +1685,27 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
+  /c8/7.3.5:
+    dependencies:
+      '@bcoe/v8-coverage': 0.2.3
+      '@istanbuljs/schema': 0.1.2
+      find-up: 5.0.0
+      foreground-child: 2.0.0
+      furi: 2.0.0
+      istanbul-lib-coverage: 3.0.0
+      istanbul-lib-report: 3.0.0
+      istanbul-reports: 3.0.2
+      rimraf: 3.0.2
+      test-exclude: 6.0.0
+      v8-to-istanbul: 7.1.0
+      yargs: 16.2.0
+      yargs-parser: 20.2.4
+    dev: true
+    engines:
+      node: '>=10.12.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-VNiZoxnInBJLW8uUuyLkiqMKWh1OAsYS+DjWsMhvcrfGPrVx3vwqD9627/7ZhFSF86MCBINDi+PD6Midw0KHRg==
   /cacheable-request/6.1.0:
     dependencies:
       clone-response: 1.0.2
@@ -2884,6 +2924,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
+  /foreground-child/2.0.0:
+    dependencies:
+      cross-spawn: 7.0.3
+      signal-exit: 3.0.3
+    dev: true
+    engines:
+      node: '>=8.0.0'
+    resolution:
+      integrity: sha512-dCIq9FpEcyQyXKCkyzmlPTFNgrCzPudOe+mhvJU5zAtlBnGVy2yKxtfsxK2tQBThwq225jcvBjpw1Gr40uzZCA==
   /fs-extra/9.0.1:
     dependencies:
       at-least-node: 1.0.0
@@ -2917,6 +2966,13 @@ packages:
     dev: true
     resolution:
       integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
+  /furi/2.0.0:
+    dependencies:
+      '@types/is-windows': 1.0.0
+      is-windows: 1.0.2
+    dev: true
+    resolution:
+      integrity: sha512-uKuNsaU0WVaK/vmvj23wW1bicOFfyqSsAIH71bRZx8kA4Xj+YCHin7CJKJJjkIsmxYaPFLk9ljmjEyB7xF7WvQ==
   /gensync/1.0.0-beta.2:
     dev: true
     engines:
@@ -3127,6 +3183,10 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-fWqc0IcuXs+BmE9orLDyVykAG9GJtGLGuZAAqgcckPgv5xad4AcXGIv8galtQvlwutxSlaMcdw7BUtq2EIvqCQ==
+  /html-escaper/2.0.2:
+    dev: true
+    resolution:
+      integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
   /http-cache-semantics/4.1.0:
     dev: true
     resolution:
@@ -3494,6 +3554,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
+  /is-windows/1.0.2:
+    dev: true
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
   /is-yarn-global/0.3.0:
     dev: true
     resolution:
@@ -3506,6 +3572,31 @@ packages:
     dev: true
     resolution:
       integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+  /istanbul-lib-coverage/3.0.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-UiUIqxMgRDET6eR+o5HbfRYP1l0hqkWOs7vNxC/mggutCMUIhWMm8gAHb8tHlyfD3/l6rlgNA5cKdDzEAf6hEg==
+  /istanbul-lib-report/3.0.0:
+    dependencies:
+      istanbul-lib-coverage: 3.0.0
+      make-dir: 3.1.0
+      supports-color: 7.2.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-wcdi+uAKzfiGT2abPpKZ0hSU1rGQjUQnLvtY5MpQ7QCTahD3VODhcu4wcfY1YtkGaDD5yuydOLINXsfbus9ROw==
+  /istanbul-reports/3.0.2:
+    dependencies:
+      html-escaper: 2.0.2
+      istanbul-lib-report: 3.0.0
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-9tZvz7AiR3PEDNGiV9vIouQ/EAcqMXFmkcA1CDFTwOB98OZVDL0PH9glHotf5Ugp6GCOTypfzGWI/OqjWNCRUw==
   /js-string-escape/1.0.1:
     dev: true
     engines:
@@ -5033,6 +5124,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+  /source-map/0.7.3:
+    dev: true
+    engines:
+      node: '>= 8'
+    resolution:
+      integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
   /spdx-correct/3.1.1:
     dependencies:
       spdx-expression-parse: 3.0.1
@@ -5283,6 +5380,16 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==
+  /test-exclude/6.0.0:
+    dependencies:
+      '@istanbuljs/schema': 0.1.2
+      glob: 7.1.6
+      minimatch: 3.0.4
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==
   /text-extensions/1.9.0:
     dev: true
     engines:
@@ -5502,6 +5609,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
+  /v8-to-istanbul/7.1.0:
+    dependencies:
+      '@types/istanbul-lib-coverage': 2.0.3
+      convert-source-map: 1.7.0
+      source-map: 0.7.3
+    dev: true
+    engines:
+      node: '>=10.10.0'
+    resolution:
+      integrity: sha512-uXUVqNUCLa0AH1vuVxzi+MI4RfxEOKt9pBgKwHbgH7st8Kv2P1m+jvWNnektzBh5QShF3ODgKmUFCf38LnVz1g==
   /v8flags/3.2.0:
     dependencies:
       homedir-polyfill: 1.0.3
@@ -5705,6 +5822,7 @@ specifiers:
   ava: ^3.14.0
   ava-fast-check: ^4.0.0
   babel-eslint: ^10.1.0
+  c8: ^7.3.5
   eslint: ^7.16.0
   fast-check: ^2.10.0
   husky: ^4.3.6

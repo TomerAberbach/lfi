@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AsyncIterator, Iterator } from '../../src/shared/iterator.js'
+import { AsyncIterator, Iterator } from '../../src/index.js'
 import { getAsyncIterableArb, getIterableArb } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
 import test from 'ava'

@@ -19,11 +19,7 @@ import { wrapFunction } from './wrap-function.js'
 const curriedFunctions = new WeakSet()
 
 export const curry = fn => {
-  if (fn.length <= 0) {
-    return fn
-  }
-
-  if (curriedFunctions.has(fn)) {
+  if (fn.length <= 0 || curriedFunctions.has(fn)) {
     return fn
   }
 

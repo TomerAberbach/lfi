@@ -17,6 +17,7 @@
 import { AsyncIterator, Iterator } from '../../src/shared/iterator.js'
 import { getAsyncIterableArb, getIterableArb } from '../helpers.js'
 import { testProp } from 'ava-fast-check'
+import test from 'ava'
 
 testProp(
   `Iterator iterates like a native iterator`,
@@ -39,6 +40,46 @@ testProp(
 )
 
 testProp(
+  `Iterator#getNext throws an error when the iterator has been exhausted`,
+  [getIterableArb()],
+  (t, iterable) => {
+    const iterator = Iterator.fromIterable(iterable)
+
+    while (iterator.hasNext()) {
+      iterator.getNext()
+    }
+
+    t.throws(() => iterator.getNext(), {
+      instanceOf: Error,
+      message: `Iterator doesn't have next`
+    })
+  }
+)
+
+test(`Iterator concrete example`, t => {
+  const values = [1, 2, 3, 4]
+
+  const iterator = Iterator.fromIterable(values)
+
+  t.true(iterator.hasNext())
+  t.is(iterator.getNext(), 1)
+
+  t.true(iterator.hasNext())
+  t.is(iterator.getNext(), 2)
+
+  t.true(iterator.hasNext())
+  t.is(iterator.getNext(), 3)
+
+  t.true(iterator.hasNext())
+  t.is(iterator.getNext(), 4)
+
+  t.throws(() => iterator.getNext(), {
+    instanceOf: Error,
+    message: `Iterator doesn't have next`
+  })
+})
+
+testProp(
   `AsyncIterator iterates like a native async iterator`,
   [getAsyncIterableArb()],
   async (t, iterable) => {
@@ -57,3 +98,49 @@ testProp(
     t.true((await nativeAsyncIterator.next()).done)
   }
 )
+
+testProp(
+  `AsyncIterator#getNext throws an error when the async iterator has been exhausted`,
+  [getAsyncIterableArb()],
+  async (t, iterable) => {
+    const iterator = AsyncIterator.fromIterable(iterable)
+
+    while (await iterator.hasNext()) {
+      await iterator.getNext()
+    }
+
+    await t.throwsAsync(() => iterator.getNext(), {
+      instanceOf: Error,
+      message: `AsyncIterator doesn't have next`
+    })
+  }
+)
+
+test(`AsyncIterator concrete example`, async t => {
+  const values = [1, 2, 3, 4]
+
+  const asyncIterator = AsyncIterator.fromIterable(
+    (async function* () {
+      for (const value of values) {
+        yield value
+      }
+    })()
+  )
+
+  t.true(await asyncIterator.hasNext())
+  t.is(await asyncIterator.getNext(), 1)
+
+  t.true(await asyncIterator.hasNext())
+  t.is(await asyncIterator.getNext(), 2)
+
+  t.true(await asyncIterator.hasNext())
+  t.is(await asyncIterator.getNext(), 3)
+
+  t.true(await asyncIterator.hasNext())
+  t.is(await asyncIterator.getNext(), 4)
+
+  await t.throwsAsync(() => asyncIterator.getNext(), {
+    instanceOf: Error,
+    message: `AsyncIterator doesn't have next`
+  })
+})

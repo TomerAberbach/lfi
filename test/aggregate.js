@@ -56,6 +56,14 @@ testProp(
   }
 )
 
+testProp(
+  `sum returns the number of items in the iterable for iterables containing only 1`,
+  [getIterableArb({ valueArb: fc.constant(1) })],
+  (t, iterable) => {
+    t.is(sum(iterable), [...iterable].length)
+  }
+)
+
 test(`sum concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 

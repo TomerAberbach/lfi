@@ -15,7 +15,15 @@
  */
 
 import { fc, testProp } from 'ava-fast-check'
-import { associateTo } from '../src/index.js'
+import test from 'ava'
+import {
+  associate,
+  associateBy,
+  associateByTo,
+  associateTo,
+  associateWith,
+  associateWithTo
+} from '../src/index.js'
 import { getFnArb, getIterableArb } from './helpers.js'
 
 testProp(
@@ -32,3 +40,113 @@ testProp(
     t.is(returned, map)
   }
 )
+
+test(`associateTo concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associateTo(
+    value => [String(value), String(value).length],
+    new Map(),
+    values
+  )
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`wow`, 3],
+      [`1`, 1],
+      [`55`, 2],
+      [`sdfsd`, 5],
+      [`-4`, 2]
+    ])
+  )
+})
+
+test(`associate concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associate(value => [String(value), String(value).length], values)
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`wow`, 3],
+      [`1`, 1],
+      [`55`, 2],
+      [`sdfsd`, 5],
+      [`-4`, 2]
+    ])
+  )
+})
+
+test(`associateByTo concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associateByTo(
+    value => String(value).toUpperCase(),
+    new Map(),
+    values
+  )
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`WOW`, `wow`],
+      [`1`, 1],
+      [`55`, `55`],
+      [`SDFSD`, `sdfsd`],
+      [`-4`, -4]
+    ])
+  )
+})
+
+test(`associateBy concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associateBy(value => String(value).toUpperCase(), values)
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`WOW`, `wow`],
+      [`1`, 1],
+      [`55`, `55`],
+      [`SDFSD`, `sdfsd`],
+      [`-4`, -4]
+    ])
+  )
+})
+
+test(`associateWithTo concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associateWithTo(value => String(value).length, new Map(), values)
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`wow`, 3],
+      [1, 1],
+      [`55`, 2],
+      [`sdfsd`, 5],
+      [-4, 2]
+    ])
+  )
+})
+
+test(`associateWith concrete example`, t => {
+  const values = [`wow`, 1, `55`, `sdfsd`, -4]
+
+  const map = associateWith(value => String(value).length, values)
+
+  t.deepEqual(
+    map,
+    new Map([
+      [`wow`, 3],
+      [1, 1],
+      [`55`, 2],
+      [`sdfsd`, 5],
+      [-4, 2]
+    ])
+  )
+})

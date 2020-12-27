@@ -53,7 +53,7 @@ export const mean = curry(iterable => {
 export const maxBy = curry(function* (fn, iterable) {
   const iterator = Iterator.fromIterable(iterable)
 
-  if (!iterable.hasNext()) {
+  if (!iterator.hasNext()) {
     return
   }
 

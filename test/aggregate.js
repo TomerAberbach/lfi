@@ -16,7 +16,18 @@
 
 import { fc, testProp } from 'ava-fast-check'
 import test from 'ava'
-import { count, sum } from '../src/index.js'
+import floatEqual from 'float-equal'
+import {
+  count,
+  max,
+  maxBy,
+  maxWith,
+  mean,
+  min,
+  minBy,
+  minWith,
+  sum
+} from '../src/index.js'
 import { getIterableArb } from './helpers.js'
 
 const iterableArb = getIterableArb()
@@ -31,9 +42,11 @@ test(`count concrete example`, t => {
   t.is(count(values), 4)
 })
 
+const emptyIterableArb = getIterableArb({ minLength: 0, maxLength: 0 })
+
 testProp(
   `sum returns 0 for an empty iterable`,
-  [getIterableArb({ minLength: 0, maxLength: 0 })],
+  [emptyIterableArb],
   (t, iterable) => {
     t.is(sum(iterable), 0)
   }
@@ -68,4 +81,66 @@ test(`sum concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
   t.is(sum(values), 9.8)
+})
+
+test(`mean concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  t.true(floatEqual(mean(values), 1.96))
+})
+
+testProp(
+  `maxBy returns an empty iterable for an empty iterable`,
+  [fc.compareFunc(), emptyIterableArb],
+  (t, fn, iterable) => {
+    t.is([...maxBy(fn, iterable)].length, 0)
+  }
+)
+
+test(`maxBy concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = maxBy((a, b) => a - b, values).next()
+
+  t.is(value, 5)
+})
+
+test(`maxWith concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = maxWith(a => -a, values).next()
+
+  t.is(value, -2)
+})
+
+test(`max concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = max(values).next()
+
+  t.is(value, 5)
+})
+
+test(`minBy concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = minBy((a, b) => a - b, values).next()
+
+  t.is(value, -2)
+})
+
+test(`minWith concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = minWith(Math.abs, values).next()
+
+  t.is(value, 1)
+})
+
+test(`min concrete example`, t => {
+  const values = [1, 1.3, 4.5, -2, 5]
+
+  const { value } = min(values).next()
+
+  t.is(value, -2)
 })

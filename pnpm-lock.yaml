@@ -13,6 +13,7 @@ devDependencies:
   c8: 7.3.5
   eslint: 7.16.0
   fast-check: 2.10.0
+  float-equal: 2.0.0
   husky: 4.3.6
   lint-staged: 10.5.3
   npm-run-all: 4.1.5
@@ -354,8 +355,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-GoLDUi6U9ZLzlSda2Df++VSqDJg3CG+dR0+iWsv6XRw1rEq+zwt4DirM9yrxW6XWaTpmai1cWJLMfM8qQJf+yw==
-  ? /@babel/plugin-proposal-logical-assignment-operators/7.12.1_@babel+core@7.12.10
-  : dependencies:
+  /@babel/plugin-proposal-logical-assignment-operators/7.12.1_@babel+core@7.12.10:
+    dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-logical-assignment-operators': 7.10.4_@babel+core@7.12.10
@@ -364,8 +365,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-k8ZmVv0JU+4gcUGeCDZOGd0lCIamU/sMtIiX3UWnUc5yzgq6YUGyEolNYD+MLYKfSzgECPcqetVcJP9Afe/aCA==
-  ? /@babel/plugin-proposal-nullish-coalescing-operator/7.12.1_@babel+core@7.12.10
-  : dependencies:
+  /@babel/plugin-proposal-nullish-coalescing-operator/7.12.1_@babel+core@7.12.10:
+    dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
       '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3_@babel+core@7.12.10
@@ -675,8 +676,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-+PxVGA+2Ag6uGgL0A5f+9rklOnnMccwEBzwYFL3EUaKuiyVnUipyXncFcfjSkbimLrODoqki1U9XxZzTvfN7IQ==
-  ? /@babel/plugin-transform-member-expression-literals/7.12.1_@babel+core@7.12.10
-  : dependencies:
+  /@babel/plugin-transform-member-expression-literals/7.12.1_@babel+core@7.12.10:
+    dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-plugin-utils': 7.10.4
     dev: true
@@ -730,8 +731,8 @@ packages:
       '@babel/core': ^7.0.0-0
     resolution:
       integrity: sha512-aEIubCS0KHKM0zUos5fIoQm+AZUMt1ZvMpqz0/H5qAQ7vWylr9+PLYurT+Ic7ID/bKLd4q8hDovaG3Zch2uz5Q==
-  ? /@babel/plugin-transform-named-capturing-groups-regex/7.12.1_@babel+core@7.12.10
-  : dependencies:
+  /@babel/plugin-transform-named-capturing-groups-regex/7.12.1_@babel+core@7.12.10:
+    dependencies:
       '@babel/core': 7.12.10
       '@babel/helper-create-regexp-features-plugin': 7.12.7_@babel+core@7.12.10
     dev: true
@@ -2889,6 +2890,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
+  /float-equal/2.0.0:
+    dev: true
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-bvk+utmmBALVvuqvomV16UnfQkouFfCuMInVOykvttQB+uQyca/s5lghm94aqimUiwuTfAqyRAsT0a0iQY2gww==
   /foreground-child/2.0.0:
     dependencies:
       cross-spawn: 7.0.3
@@ -5764,6 +5771,7 @@ specifiers:
   c8: 7.3.5
   eslint: 7.16.0
   fast-check: 2.10.0
+  float-equal: 2.0.0
   husky: 4.3.6
   lint-staged: 10.5.3
   npm-run-all: 4.1.5

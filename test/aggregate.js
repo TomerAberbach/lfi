@@ -83,6 +83,14 @@ test(`sum concrete example`, t => {
   t.is(sum(values), 9.8)
 })
 
+testProp(
+  `mean of the empty iterable is zero`,
+  [emptyIterableArb],
+  (t, iterable) => {
+    t.is(mean(iterable), 0)
+  }
+)
+
 test(`mean concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 

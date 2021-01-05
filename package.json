@@ -19,7 +19,12 @@
   "files": [
     "./src"
   ],
-  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "main": "./cjs/index.js",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./cjs/index.js"
+  },
   "homepage": "https://github.com/TomerAberbach/fn",
   "repository": "TomerAberbach/fn",
   "bugs": {
@@ -34,18 +39,34 @@
     "lint:eslint": "pnpm run lint:eslint:base -- --fix .",
     "lint": "run-s lint:*",
     "test": "ava -T 20s",
-    "coverage": "c8 pnpm run test"
+    "coverage": "c8 pnpm run test",
+    "build": "babel src --out-dir cjs"
   },
   "prettier": "@tomer/prettier-config",
   "eslintConfig": {
     "extends": "@tomer"
   },
   "browserslist": [
-    "node >= 12"
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
   ],
   "babel": {
-    "presets": [
-      "@babel/env"
+    "plugins": [
+      [
+        "@babel/transform-modules-commonjs",
+        {
+          "loose": true,
+          "strict": true,
+          "noInterop": true
+        }
+      ],
+      [
+        "add-module-exports",
+        {
+          "addDefaultProperty": true
+        }
+      ]
     ]
   },
   "lint-staged": {
@@ -66,9 +87,7 @@
     }
   },
   "ava": {
-    "babel": true,
     "require": [
-      "@babel/register",
       "./config/fast-check.js"
     ],
     "files": [
@@ -77,10 +96,9 @@
     ]
   },
   "devDependencies": {
-    "@ava/babel": "1.0.1",
+    "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",
-    "@babel/node": "7.12.10",
-    "@babel/preset-env": "7.12.11",
+    "@babel/plugin-transform-modules-commonjs": "7.12.1",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@tomer/eslint-config": "0.0.14",
@@ -88,6 +106,7 @@
     "ava": "3.14.0",
     "ava-fast-check": "4.0.0",
     "babel-eslint": "10.1.0",
+    "babel-plugin-add-module-exports": "1.0.4",
     "c8": "7.3.5",
     "eslint": "7.16.0",
     "fast-check": "2.10.0",

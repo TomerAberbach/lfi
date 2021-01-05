@@ -108,47 +108,47 @@ testProp(
 test(`maxBy concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = maxBy((a, b) => a - b, values).next()
+  const results = [...maxBy((a, b) => a - b, values)]
 
-  t.is(value, 5)
+  t.deepEqual(results, [5])
 })
 
 test(`maxWith concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = maxWith(a => -a, values).next()
+  const results = [...maxWith(a => -a, values)]
 
-  t.is(value, -2)
+  t.deepEqual(results, [-2])
 })
 
 test(`max concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = max(values).next()
+  const results = [...max(values)]
 
-  t.is(value, 5)
+  t.deepEqual(results, [5])
 })
 
 test(`minBy concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = minBy((a, b) => a - b, values).next()
+  const results = [...minBy((a, b) => a - b, values)]
 
-  t.is(value, -2)
+  t.deepEqual(results, [-2])
 })
 
 test(`minWith concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = minWith(Math.abs, values).next()
+  const results = [...minWith(Math.abs, values)]
 
-  t.is(value, 1)
+  t.deepEqual(results, [1])
 })
 
 test(`min concrete example`, t => {
   const values = [1, 1.3, 4.5, -2, 5]
 
-  const { value } = min(values).next()
+  const results = [...min(values)]
 
-  t.is(value, -2)
+  t.deepEqual(results, [-2])
 })

@@ -14,10 +14,13 @@
     "iterable",
     "iterator",
     "iter",
-    "functional"
+    "functional",
+    "concurrency",
+    "async"
   ],
   "files": [
-    "./src"
+    "./src",
+    "./cjs"
   ],
   "module": "./src/index.js",
   "main": "./cjs/index.js",

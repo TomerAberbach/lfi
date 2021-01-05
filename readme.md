@@ -1,12 +1,8 @@
 # fn
 
-> A tree-shakeable functional programming library.
+> A tree-shakeable functional programming library with lazy sync, async, and concurrent iteration.
 
 ## Install
-
-Supports Node.js versions 12 and above.
-
-**Not yet published, but will be soon!**
 
 ```sh
 $ npm i @tomer/fn

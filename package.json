@@ -7,7 +7,7 @@
     "email": "tomeraberbach@gmail.com",
     "url": "https://tomeraberba.ch"
   },
-  "description": "A tree-shakeable functional programming library.",
+  "description": "A tree-shakeable functional programming library with lazy sync, async, and concurrent iteration.",
   "keywords": [
     "generator",
     "lazy",

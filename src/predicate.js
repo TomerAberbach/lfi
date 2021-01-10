@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const all = curry((fn, iterable) => {
   for (const value of iterable) {
     if (fn(value) !== true) {
+      return false
+    }
+  }
+
+  return true
+})
+
+export const allAsync = curry(async (fn, iterable) => {
+  for await (const value of iterable) {
+    if ((await fn(value)) !== true) {
       return false
     }
   }
@@ -36,8 +46,24 @@ export const any = curry((fn, iterable) => {
   return false
 })
 
+export const anyAsync = curry(async (fn, iterable) => {
+  for await (const value of iterable) {
+    if ((await fn(value)) === true) {
+      return true
+    }
+  }
+
+  return false
+})
+
 export const none = curry((fn, iterable) => !any(fn, iterable))
+
+export const noneAsync = curry((fn, iterable) => !anyAsync(fn, iterable))
 
 export const contains = curry((searchValue, iterable) =>
   any(value => Object.is(value, searchValue), iterable)
+)
+
+export const containsAsync = curry((searchValue, iterable) =>
+  anyAsync(value => Object.is(value, searchValue), iterable)
 )

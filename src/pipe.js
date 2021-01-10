@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export const pipe = (value, ...fns) => fns.reduce((acc, fn) => fn(acc), value)
+export const pipe = (...fns) => value => fns.reduce((acc, fn) => fn(acc), value)

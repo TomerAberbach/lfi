@@ -16,8 +16,8 @@
 
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
-import { getFnArb } from '../helpers.js'
-import { wrapFunction } from '../../src/shared/wrap-function.js'
+import { wrapFunction } from '../src/wrap-function.js'
+import { getFnArb } from './helpers.js'
 
 const arbs = [getFnArb(), getFnArb()]
 

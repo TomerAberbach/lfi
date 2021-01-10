@@ -19,3 +19,11 @@ export function* concat(...iterables) {
     yield* iterable
   }
 }
+
+export async function* concatAsync(...iterables) {
+  for await (const iterable of iterables) {
+    yield* iterable
+  }
+}
+
+export const concatConcur = concat

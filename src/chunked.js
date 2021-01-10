@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
-import { curry } from './shared/curry.js'
+import { AsyncIterator, Iterator } from './iterator.js'
+import { curry } from './curry.js'
 
 export const chunked = curry(function* (n, iterable) {
   const iterator = Iterator.fromIterable(iterable)
@@ -25,6 +25,20 @@ export const chunked = curry(function* (n, iterable) {
 
     while (chunk.length < n && iterator.hasNext()) {
       chunk.push(iterator.getNext())
+    }
+
+    yield chunk
+  }
+})
+
+export const chunkedAsync = curry(async function* (n, iterable) {
+  const asyncIterator = AsyncIterator.fromAsyncIterable(iterable)
+
+  while (await asyncIterator.hasNext()) {
+    const chunk = [await asyncIterator.getNext()]
+
+    while (chunk.length < n && (await asyncIterator.hasNext())) {
+      chunk.push(await asyncIterator.getNext())
     }
 
     yield chunk

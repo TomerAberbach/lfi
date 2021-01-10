@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
-import { curry } from './shared/curry.js'
+import { AsyncIterator, Iterator } from './iterator.js'
+import { curry } from './curry.js'
 
 export const join = curry((separator, iterable) => {
   const iterator = Iterator.fromIterable(iterable)
@@ -28,6 +28,22 @@ export const join = curry((separator, iterable) => {
 
   while (iterator.hasNext()) {
     acc += `${separator}${iterator.getNext()}`
+  }
+
+  return acc
+})
+
+export const joinAsync = curry(async (separator, iterable) => {
+  const iterator = AsyncIterator.fromAsyncIterable(iterable)
+
+  if (!(await iterator.hasNext())) {
+    return ``
+  }
+
+  let acc = await iterator.getNext()
+
+  while (await iterator.hasNext()) {
+    acc += `${separator}${await iterator.getNext()}`
   }
 
   return acc

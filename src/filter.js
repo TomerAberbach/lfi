@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
+import { flatMap } from './flat-map.js'
 
 export const filter = curry(function* (fn, iterable) {
   for (const value of iterable) {
@@ -23,3 +24,15 @@ export const filter = curry(function* (fn, iterable) {
     }
   }
 })
+
+export const filterAsync = curry(async function* (fn, iterable) {
+  for await (const value of iterable) {
+    if ((await fn(value)) === true) {
+      yield value
+    }
+  }
+})
+
+export const filterConcur = curry((fn, iterable) =>
+  flatMap(async value => ((await fn(value)) === true ? [value] : []), iterable)
+)

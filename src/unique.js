@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const uniqueByWith = curry(function* (fn, set, iterable) {
   for (const value of iterable) {

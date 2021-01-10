@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
+import { mapConcur } from './map.js'
 
 export const each = curry(function* (fn, iterable) {
   for (const value of iterable) {
@@ -23,8 +24,32 @@ export const each = curry(function* (fn, iterable) {
   }
 })
 
+export const eachAsync = curry(async function* (fn, asyncIterable) {
+  for await (const value of asyncIterable) {
+    fn(value)
+    yield value
+  }
+})
+
+export const eachConcur = curry((fn, concurIterable) =>
+  mapConcur(value => {
+    fn(value)
+    return value
+  }, concurIterable)
+)
+
 export const forEach = curry((fn, iterable) => {
   for (const value of iterable) {
     fn(value)
   }
+})
+
+export const forEachAsync = curry(async (fn, asyncIterable) => {
+  for await (const value of asyncIterable) {
+    await fn(value)
+  }
+})
+
+export const forEachConcur = curry(async (fn, concurIterable) => {
+  await Promise.all(mapConcur(fn, concurIterable))
 })

@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const indexed = curry(function* (iterable) {
   let index = 0
   for (const value of iterable) {
+    yield [index++, value]
+  }
+})
+
+export const indexedAsync = curry(async function* (iterable) {
+  let index = 0
+  for await (const value of iterable) {
     yield [index++, value]
   }
 })

@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
+import { filterConcur } from './filter.js'
+import { map } from './map.js'
 
 export const find = curry(function* (fn, iterable) {
   for (const value of iterable) {
@@ -25,11 +27,46 @@ export const find = curry(function* (fn, iterable) {
   }
 })
 
+export const findAsync = curry(async function* (fn, iterable) {
+  for await (const value of iterable) {
+    if ((await fn(value)) === true) {
+      yield value
+      return
+    }
+  }
+})
+
+export const findConcur = curry(async (fn, iterable) => {
+  try {
+    return [
+      await Promise.any(
+        map(value => Promise.any(value), filterConcur(fn, iterable))
+      )
+    ]
+  } catch {
+    return []
+  }
+})
+
 export const findLast = curry(function* (fn, iterable) {
   let last
 
   for (const value of iterable) {
     if (fn(value) === true) {
+      last = { value }
+    }
+  }
+
+  if (last != null) {
+    yield last.value
+  }
+})
+
+export const findLastAsync = curry(async function* (fn, iterable) {
+  let last
+
+  for await (const value of iterable) {
+    if ((await fn(value)) === true) {
       last = { value }
     }
   }

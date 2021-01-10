@@ -16,8 +16,8 @@
 
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
-import { AsyncIterator, Iterator } from '../../src/index.js'
-import { getAsyncIterableArb, getIterableArb } from '../helpers.js'
+import { AsyncIterator, Iterator } from '../src/index.js'
+import { getAsyncIterableArb, getIterableArb } from './helpers.js'
 
 testProp(
   `Iterator iterates like a native iterator`,
@@ -83,7 +83,7 @@ testProp(
   `AsyncIterator iterates like a native async iterator`,
   [getAsyncIterableArb()],
   async (t, iterable) => {
-    const asyncIterator = AsyncIterator.fromIterable(iterable)
+    const asyncIterator = AsyncIterator.fromAsyncIterable(iterable)
     const nativeAsyncIterator = iterable[Symbol.asyncIterator]()
 
     while (await asyncIterator.hasNext()) {
@@ -103,7 +103,7 @@ testProp(
   `AsyncIterator#getNext throws an error when the async iterator has been exhausted`,
   [getAsyncIterableArb()],
   async (t, iterable) => {
-    const iterator = AsyncIterator.fromIterable(iterable)
+    const iterator = AsyncIterator.fromAsyncIterable(iterable)
 
     while (await iterator.hasNext()) {
       await iterator.getNext()
@@ -119,7 +119,7 @@ testProp(
 test(`AsyncIterator concrete example`, async t => {
   const values = [1, 2, 3, 4]
 
-  const asyncIterator = AsyncIterator.fromIterable(
+  const asyncIterator = AsyncIterator.fromAsyncIterable(
     (async function* () {
       for (const value of values) {
         yield value

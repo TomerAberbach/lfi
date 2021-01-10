@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
-import { flatten } from './shared/flat-map.js'
-import { map } from './shared/map.js'
+const result = Object.freeze({ done: true })
 
-export const concur = curry((aggregate, iterable) => ({
-  aggregate,
-  promises: map(
-    value => Promise.resolve(value).then(resolved => [resolved]),
-    iterable
-  )
-}))
+const iterator = Object.freeze({
+  next: () => result
+})
 
-export const seq = curry(({ aggregate, promises }) =>
-  aggregate(promises).then(flatten)
-)
+export const empty = Object.freeze({ [Symbol.iterator]: () => iterator })
+
+const asyncIterator = Object.freeze({
+  next: () => Promise.resolve(result)
+})
+
+export const emptyAsync = Object.freeze({
+  [Symbol.asyncIterator]: () => asyncIterator
+})

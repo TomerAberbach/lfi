@@ -40,14 +40,15 @@ export class Iterator {
 }
 
 export class AsyncIterator {
-  constructor(iterator) {
-    this.iterator = iterator
+  constructor(asyncIterator) {
+    this.asyncIterator = asyncIterator
     this.result = null
   }
 
   async hasNext() {
     return (
-      (this.result ?? (this.result = await this.iterator.next())).done !== true
+      (this.result ?? (this.result = await this.asyncIterator.next())).done !==
+      true
     )
   }
 
@@ -61,7 +62,7 @@ export class AsyncIterator {
     return value
   }
 
-  static fromIterable(iterable) {
+  static fromAsyncIterable(iterable) {
     return new AsyncIterator(iterable[Symbol.asyncIterator]())
   }
 }

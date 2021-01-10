@@ -16,8 +16,14 @@
 
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
-import { each, forEach } from '../src/index.js'
-import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
+import { each, eachAsync, forEach } from '../src/index.js'
+import {
+  getAsyncIterableArb,
+  getFnArb,
+  getIterableArb,
+  testReturnsAsyncIterable,
+  testReturnsIterable
+} from './helpers.js'
 
 testReturnsIterable(each, [getFnArb(), getIterableArb()])
 
@@ -66,6 +72,27 @@ test(`each concrete example`, t => {
 
   t.is(count, 3)
 })
+
+testReturnsAsyncIterable(eachAsync, [getFnArb(), getAsyncIterableArb()])
+
+testProp(
+  `eachAsync returns an equivalent iterable`,
+  [getFnArb(), getAsyncIterableArb()],
+  async (t, fn, iterable) => {
+    const expected = []
+    for await (const value of iterable) {
+      expected.push(value)
+    }
+
+    const returned = eachAsync(fn, iterable)
+    const actual = []
+    for await (const value of returned) {
+      actual.push(value)
+    }
+
+    t.deepEqual(actual, expected)
+  }
+)
 
 testProp(
   `forEach returns undefined`,

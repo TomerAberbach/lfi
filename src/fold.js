@@ -14,13 +14,33 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
-import { curry } from './shared/curry.js'
+import { AsyncIterator, Iterator } from './iterator.js'
+import { curry } from './curry.js'
+import { forEachConcur } from './each.js'
 
 export const fold = curry((fn, acc, iterable) => {
   for (const value of iterable) {
     acc = fn(acc, value)
   }
+
+  return acc
+})
+
+export const foldAsync = curry(async (fn, acc, iterable) => {
+  for await (const value of iterable) {
+    acc = await fn(acc, value)
+  }
+
+  return acc
+})
+
+export const foldConcur = curry(async (fn, acc, iterable) => {
+  acc = Promise.resolve(acc)
+
+  await forEachConcur(
+    value => (acc = acc.then(inner => fn(inner, value))),
+    iterable
+  )
 
   return acc
 })
@@ -39,4 +59,34 @@ export const reduce = curry(function* (fn, iterable) {
   }
 
   yield acc
+})
+
+export const reduceAsync = curry(async function* (fn, iterable) {
+  const iterator = AsyncIterator.fromAsyncIterable(iterable)
+
+  if (!(await iterator.hasNext())) {
+    return
+  }
+
+  let acc = await iterator.getNext()
+
+  while (await iterator.hasNext()) {
+    acc = await fn(acc, await iterator.getNext())
+  }
+
+  yield acc
+})
+
+export const reduceConcur = curry(async (fn, iterable) => {
+  const acc = []
+
+  await forEachConcur(value => {
+    if (acc.length === 0) {
+      acc.push(Promise.resolve(value))
+    } else {
+      acc[0] = acc[0].then(inner => fn(inner, value))
+    }
+  }, iterable)
+
+  return acc
 })

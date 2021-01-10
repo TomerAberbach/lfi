@@ -15,19 +15,28 @@
  */
 
 import { curry } from './curry.js'
+import { map } from './map.js'
 
-export const partitions = curry(function* (array) {
-  if (array.length === 0) {
-    yield []
-    return
-  }
-
-  for (let i = 0; i < array.length; i++) {
-    const start = array.slice(0, i + 1)
-    const end = array.slice(i + 1)
-
-    for (const partition of partitions(end)) {
-      yield [start].concat(partition)
-    }
+export const flatMap = curry(function* (fn, iterable) {
+  for (const value of iterable) {
+    yield* fn(value)
   }
 })
+
+export const flatMapAsync = curry(async function* (fn, asyncIterable) {
+  for await (const value of asyncIterable) {
+    yield* fn(value)
+  }
+})
+
+export const flatMapConcur = curry(function* (fn, concurIterable) {
+  for (const promise of concurIterable) {
+    yield (async () => flatten(await Promise.all(map(fn, await promise))))()
+  }
+})
+
+export const flatten = flatMap(value => value)
+
+export const flattenAsync = flatMapAsync(value => value)
+
+export const flattenConcur = flatMapConcur(value => value)

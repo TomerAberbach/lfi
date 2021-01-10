@@ -16,8 +16,8 @@
 
 import { testProp } from 'ava-fast-check'
 import test from 'ava'
-import { getFnArb, getIterableArb, testReturnsIterable } from '../helpers.js'
-import { map } from '../../src/index.js'
+import { map } from '../src/index.js'
+import { getFnArb, getIterableArb, testReturnsIterable } from './helpers.js'
 
 const arbs = [getFnArb(), getIterableArb()]
 

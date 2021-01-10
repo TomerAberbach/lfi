@@ -14,12 +14,38 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
+import { AsyncIterator, Iterator } from './iterator.js'
 
 export function* zip(...iterables) {
   const iterators = iterables.map(Iterator.fromIterable)
 
   while (iterators.every(iterator => iterator.hasNext())) {
     yield iterators.map(iterator => iterator.getNext())
+  }
+}
+
+export async function* zipAsync(...iterables) {
+  const iterators = iterables.map(AsyncIterator.fromAsyncIterable)
+
+  while (true) {
+    let resolve
+    const promise = new Promise(r => (resolve = r))
+
+    const cont = await Promise.race([
+      promise,
+      Promise.all(
+        iterators.map(async iterator => {
+          if (!(await iterator.hasNext())) {
+            resolve(false)
+          }
+        })
+      ).then(() => false)
+    ])
+
+    if (!cont) {
+      return
+    }
+
+    yield Promise.all(iterators.map(iterator => iterator.getNext()))
   }
 }

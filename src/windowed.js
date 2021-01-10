@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
-import { curry } from './shared/curry.js'
+import { Iterator } from './iterator.js'
+import { curry } from './curry.js'
 
 export const windowed = curry(function* (size, iterable) {
   const iterator = Iterator.fromIterable(iterable)

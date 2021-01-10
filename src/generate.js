@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const generate = curry(fn => generateWithSeed(fn, fn()))
+
+export const generateAsync = curry(async fn => generateWithSeed(fn, await fn()))
 
 export const generateWithSeed = curry(function* (fn, seed) {
   let value = seed
@@ -27,13 +29,34 @@ export const generateWithSeed = curry(function* (fn, seed) {
   }
 })
 
+export const generateWithSeedAsync = curry(async function* (fn, seed) {
+  let value = seed
+
+  while (value != null) {
+    yield value
+    value = await fn(value)
+  }
+})
+
 export const cycle = curry(function* (iterable) {
   while (true) {
     yield* iterable
   }
 })
 
+export const cycleAsync = curry(async function* (iterable) {
+  while (true) {
+    yield* iterable
+  }
+})
+
 export const repeat = curry(function* (value) {
+  while (true) {
+    yield value
+  }
+})
+
+export const repeatAsync = curry(async function* (value) {
   while (true) {
     yield value
   }

@@ -14,13 +14,20 @@
  * limitations under the License.
  */
 
-import { Iterator } from './shared/iterator.js'
-import { curry } from './shared/curry.js'
-import { empty } from './shared/empty.js'
+import { AsyncIterator, Iterator } from './iterator.js'
+import { curry } from './curry.js'
+import { empty, emptyAsync } from './empty.js'
 
 export const or = curry((fn, iterable) => {
   const iterator = iterable[Symbol.iterator]()
   const { done, value } = iterator.next()
+
+  return done === true || iterator.next().done !== true ? fn() : value
+})
+
+export const orAsync = curry(async (fn, iterable) => {
+  const iterator = iterable[Symbol.asyncIterator]()
+  const { done, value } = await iterator.next()
 
   return done === true || iterator.next().done !== true ? fn() : value
 })
@@ -32,6 +39,15 @@ export const next = curry(iterable => {
   return done === true
     ? [empty, empty]
     : [[value], { [Symbol.iterator]: () => iterator }]
+})
+
+export const nextAsync = curry(async iterable => {
+  const iterator = iterable[Symbol.asyncIterator]()
+  const { done, value } = await iterator.next()
+
+  return done === true
+    ? [emptyAsync, emptyAsync]
+    : [[value], { [Symbol.asyncIterator]: () => iterator }]
 })
 
 export const get = curry(function* (index, iterable) {
@@ -47,6 +63,16 @@ export const get = curry(function* (index, iterable) {
 
   for (let i = 0; i < index && iterator.hasNext(); i++) {
     iterator.getNext()
+  }
+
+  yield iterator.getNext()
+})
+
+export const getAsync = curry(async function* (index, iterable) {
+  const iterator = AsyncIterator.fromAsyncIterable(iterable)
+
+  for (let i = 0; i < index && (await iterator.hasNext()); i++) {
+    await iterator.getNext()
   }
 
   yield iterator.getNext()

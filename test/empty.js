@@ -15,7 +15,7 @@
  */
 
 import test from 'ava'
-import { empty } from '../../src/shared/empty.js'
+import { empty } from '../src/empty.js'
 
 test(`the empty iterable is empty`, t => {
   const count = [...empty].length

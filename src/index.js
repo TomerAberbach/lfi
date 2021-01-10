@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-export * from './shared/curry.js'
-export * from './shared/flat-map.js'
-export * from './shared/iterator.js'
-export * from './shared/map.js'
+export * from './curry.js'
+export * from './each.js'
+export * from './flat-map.js'
+export * from './iterator.js'
+export * from './map.js'
 
 export * from './aggregate.js'
 export * from './associate.js'
 export * from './chunked.js'
 export * from './concat.js'
-export * from './concur.js'
-export * from './each.js'
+export * from './paradigm.js'
 export * from './filter.js'
 export * from './filter-flat-map.js'
 export * from './filter-map.js'

@@ -15,21 +15,32 @@
  */
 
 import { curry } from './curry.js'
+import { flatten } from './flat-map.js'
+import { map } from './map.js'
+import { pipe } from './pipe.js'
 
-export const map = curry(function* (fn, iterable) {
+export const syncToAsync = curry(async function* (iterable) {
   for (const value of iterable) {
-    yield fn(value)
+    yield value
   }
 })
 
-export const mapAsync = curry(async function* (fn, iterable) {
+export const syncToConcur = map(async value => [await value])
+
+export const asyncToSync = curry(async iterable => {
+  const promises = []
+
   for await (const value of iterable) {
-    yield fn(value)
+    promises.push(value)
   }
+
+  return Promise.all(promises)
 })
 
-export const mapConcur = curry(function* (fn, { aggregate, promises }) {
-  for (const promise of promises) {
-    yield promise.then(values => aggregate(map(fn, values)))
-  }
-})
+export const asyncToConcur = pipe(asyncToSync, syncToConcur)
+
+export const concurToSync = curry(async iterable =>
+  flatten(await Promise.all(iterable))
+)
+
+export const concurToAsync = pipe(concurToSync, syncToAsync)

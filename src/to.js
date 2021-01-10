@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { curry } from './shared/curry.js'
+import { curry } from './curry.js'
 
 export const toObject = curry(iterable => Object.fromEntries(iterable))
 

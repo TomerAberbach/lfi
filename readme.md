@@ -20,7 +20,6 @@ const string = 'rainbows! And unicorns!!!'
 //=> RAINBOWS AND UNICORNS!!! RAINBOWS AND UNICORNS!!! RAINBOWS AND UNICORNS!!
 console.log(
   pipe(
-    string,
     filter(c => c !== '!'),
     map(c => c.toUpperCase()),
     join(''),
@@ -28,7 +27,7 @@ console.log(
     map(s => `${s}!!!`),
     take(3),
     join(' ')
-  )
+  )(string)
 )
 ```
 

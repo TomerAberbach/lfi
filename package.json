@@ -19,8 +19,8 @@
     "async"
   ],
   "files": [
-    "./src",
-    "./cjs"
+    "src",
+    "cjs"
   ],
   "module": "./src/index.js",
   "main": "./cjs/index.js",

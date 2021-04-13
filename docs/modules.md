@@ -207,7 +207,7 @@ A return value that awaits to:
 **Returns:** _MaybePromiseLike_<number\>
 
 Defined in:
-[min-max.d.ts:38](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L38)
+[min-max.d.ts:38](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L38)
 
 ---
 
@@ -221,7 +221,7 @@ An object that specifies how to collect values of an iterable to some
 collection.
 
 Defined in:
-[collect.d.ts:295](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L295)
+[collect.d.ts:295](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L295)
 
 ---
 
@@ -257,7 +257,7 @@ A return value:
 **Returns:** _number_
 
 Defined in:
-[min-max.d.ts:28](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L28)
+[min-max.d.ts:28](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L28)
 
 ---
 
@@ -309,7 +309,7 @@ const slothNamesConcurIterable: ConcurIterable<string> = pipe(
 **Returns:** _Promise_<void\>
 
 Defined in:
-[types.d.ts:42](https://github.com/TomerAberbach/fn/blob/5786004/src/types.d.ts#L42)
+[types.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/types.d.ts#L42)
 
 ---
 
@@ -323,7 +323,7 @@ An object that specifies how to collect an iterable of entries to some
 (typically keyed) collection.
 
 Defined in:
-[collect.d.ts:323](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L323)
+[collect.d.ts:323](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L323)
 
 ---
 
@@ -347,7 +347,7 @@ An object containing a minimum and maximum value.
 | `min` | Value |
 
 Defined in:
-[min-max.d.ts:44](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L44)
+[min-max.d.ts:44](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L44)
 
 ---
 
@@ -360,7 +360,7 @@ An iterable that yields integers in a range. Has a method for obtaining a new
 iterable that skips numbers in steps.
 
 Defined in:
-[range.d.ts:21](https://github.com/TomerAberbach/fn/blob/5786004/src/range.d.ts#L21)
+[range.d.ts:21](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L21)
 
 ## Variables
 
@@ -382,7 +382,7 @@ console.log(count(empty))
 ```
 
 Defined in:
-[empty.d.ts:32](https://github.com/TomerAberbach/fn/blob/5786004/src/empty.d.ts#L32)
+[empty.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L32)
 
 ---
 
@@ -404,7 +404,7 @@ console.log(await countAsync(emptyAsync))
 ```
 
 Defined in:
-[empty.d.ts:47](https://github.com/TomerAberbach/fn/blob/5786004/src/empty.d.ts#L47)
+[empty.d.ts:47](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L47)
 
 ---
 
@@ -429,7 +429,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:34](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L34)
+[collect.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L34)
 
 ---
 
@@ -465,7 +465,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:129](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L129)
+[collect.d.ts:129](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L129)
 
 ---
 
@@ -501,7 +501,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:100](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L100)
+[collect.d.ts:100](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L100)
 
 ---
 
@@ -526,7 +526,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:51](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L51)
+[collect.d.ts:51](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L51)
 
 ---
 
@@ -557,7 +557,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:153](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L153)
+[collect.d.ts:153](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L153)
 
 ---
 
@@ -585,7 +585,7 @@ console.log(slothMemoirs)
 ```
 
 Defined in:
-[collect.d.ts:71](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L71)
+[collect.d.ts:71](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L71)
 
 ## Functions
 
@@ -622,7 +622,7 @@ console.log(all(number => number > 1, numbers))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
 
 Defined in:
-[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L67)
+[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L67)
 
 ▸ `Const`**all**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _boolean_
@@ -657,7 +657,7 @@ console.log(all(number => number > 1, numbers))
 **Returns:** _boolean_
 
 Defined in:
-[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L67)
+[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L67)
 
 ---
 
@@ -695,7 +695,7 @@ console.log(await allAsync(number => number > 1, numbers))
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L84)
+[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L84)
 
 ▸ `Const`**allAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
@@ -731,7 +731,7 @@ console.log(await allAsync(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L84)
+[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L84)
 
 ---
 
@@ -770,7 +770,7 @@ console.log(await allConcur(number => number > 1, numbers))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L101)
+[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L101)
 
 ▸ `Const`**allConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -807,7 +807,7 @@ console.log(await allConcur(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L101)
+[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L101)
 
 ---
 
@@ -844,7 +844,7 @@ console.log(any(number => number > 1, numbers))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
 
 Defined in:
-[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L117)
+[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L117)
 
 ▸ `Const`**any**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _boolean_
@@ -879,7 +879,7 @@ console.log(any(number => number > 1, numbers))
 **Returns:** _boolean_
 
 Defined in:
-[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L117)
+[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L117)
 
 ---
 
@@ -917,7 +917,7 @@ console.log(await anyAsync(number => number > 1, numbers))
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L134)
+[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L134)
 
 ▸ `Const`**anyAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
@@ -953,7 +953,7 @@ console.log(await anyAsync(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L134)
+[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L134)
 
 ---
 
@@ -992,7 +992,7 @@ console.log(await anyConcur(number => number > 1, numbers))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L151)
+[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L151)
 
 ▸ `Const`**anyConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -1029,7 +1029,7 @@ console.log(await anyConcur(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L151)
+[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L151)
 
 ---
 
@@ -1067,7 +1067,7 @@ console.log(await collectAsync(toArray, asyncIterable))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[as.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/as.d.ts#L33)
+[as.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/as.d.ts#L33)
 
 ---
 
@@ -1104,7 +1104,7 @@ console.log(await collectConcur(toArray, concurIterable))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[as.d.ts:48](https://github.com/TomerAberbach/fn/blob/5786004/src/as.d.ts#L48)
+[as.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/as.d.ts#L48)
 
 ---
 
@@ -1148,7 +1148,7 @@ console.log([...cachedIterable])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[cached.d.ts:40](https://github.com/TomerAberbach/fn/blob/5786004/src/cached.d.ts#L40)
+[cached.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L40)
 
 ---
 
@@ -1193,7 +1193,7 @@ console.log(await collectAsync(toArray, cachedAsyncIterable))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[cached.d.ts:63](https://github.com/TomerAberbach/fn/blob/5786004/src/cached.d.ts#L63)
+[cached.d.ts:63](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L63)
 
 ---
 
@@ -1239,7 +1239,7 @@ console.log(await collectConcur(toArray, cachedConcurIterable))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[cached.d.ts:88](https://github.com/TomerAberbach/fn/blob/5786004/src/cached.d.ts#L88)
+[cached.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L88)
 
 ---
 
@@ -1279,7 +1279,7 @@ console.log([...chunked(2, letters)])
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value[]\>
 
 Defined in:
-[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L42)
+[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L42)
 
 ▸ `Const`**chunked**<Value\>(`size`: _number_, `iterable`: _Iterable_<Value\>):
 _Iterable_<Value[]\>
@@ -1323,7 +1323,7 @@ console.log([...chunked(2, letters)])
 **Returns:** _Iterable_<Value[]\>
 
 Defined in:
-[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L42)
+[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L42)
 
 ---
 
@@ -1364,7 +1364,7 @@ console.log(await collectAsync(toArray, chunked(2, letters)))
 _AsyncIterable_<Value[]\>
 
 Defined in:
-[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L70)
+[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L70)
 
 ▸ `Const`**chunkedAsync**<Value\>(`size`: _number_, `asyncIterable`:
 _AsyncIterable_<Value\>): _AsyncIterable_<Value[]\>
@@ -1408,7 +1408,7 @@ console.log(await collectAsync(toArray, chunked(2, letters)))
 **Returns:** _AsyncIterable_<Value[]\>
 
 Defined in:
-[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L70)
+[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L70)
 
 ---
 
@@ -1450,7 +1450,7 @@ console.log(await collectConcur(toArray, chunkedConcur(2, letters)))
 [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
 
 Defined in:
-[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L102)
+[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L102)
 
 ▸ `Const`**chunkedConcur**<Value\>(`size`: _number_, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -1495,7 +1495,7 @@ console.log(await collectConcur(toArray, chunkedConcur(2, letters)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
 
 Defined in:
-[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/5786004/src/chunked.d.ts#L102)
+[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L102)
 
 ---
 
@@ -1535,7 +1535,7 @@ console.log(collect(toSet, getSloths(4)))
 _CollectorToCollection_<C, Value\>
 
 Defined in:
-[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L364)
+[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L364)
 
 ▸ `Const`**collect**<C, Value\>(`collector`: C, `iterable`: _Iterable_<Value\>):
 _CollectorToCollection_<C, Value\>
@@ -1573,7 +1573,7 @@ console.log(collect(toSet, getSloths(4)))
 **Returns:** _CollectorToCollection_<C, Value\>
 
 Defined in:
-[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L364)
+[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L364)
 
 ---
 
@@ -1615,7 +1615,7 @@ console.log(await collectAsync(toArray, getSlothFilenames()))
 _Promise_<CollectorToCollection<C, Value\>\>
 
 Defined in:
-[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L392)
+[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L392)
 
 ▸ `Const`**collectAsync**<C, Value\>(`collector`: C, `asyncIterable`:
 _AsyncIterable_<Value\>): _Promise_<CollectorToCollection<C, Value\>\>
@@ -1655,7 +1655,7 @@ console.log(await collectAsync(toArray, getSlothFilenames()))
 **Returns:** _Promise_<CollectorToCollection<C, Value\>\>
 
 Defined in:
-[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L392)
+[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L392)
 
 ---
 
@@ -1697,7 +1697,7 @@ console.log(slothFileContents)
 _Promise_<CollectorToCollection<C, Value\>\>
 
 Defined in:
-[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L419)
+[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L419)
 
 ▸ `Const`**collectConcur**<C, Value\>(`collector`: C, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -1737,7 +1737,7 @@ console.log(slothFileContents)
 **Returns:** _Promise_<CollectorToCollection<C, Value\>\>
 
 Defined in:
-[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L419)
+[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L419)
 
 ---
 
@@ -1764,7 +1764,7 @@ console.log(screamify(`sloth`))
 **Returns:** <Value\>(`value`: Value) => Value
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B\>(`fn`: (`a`: A) => B): _function_
 
@@ -1800,7 +1800,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => B
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C):
 _function_
@@ -1839,7 +1839,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => C
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C,
 `fn3`: (`c`: C) => D): _function_
@@ -1880,7 +1880,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => D
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C,
 `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E): _function_
@@ -1923,7 +1923,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => E
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E, F\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) =>
 C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) => F): _function_
@@ -1968,7 +1968,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => F
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E, F, G\>(`value`: A, `fn1`: (`a`: A) => B,
 `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
@@ -2017,7 +2017,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => G
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E, F, G, H\>(`value`: A, `fn1`: (`a`: A) => B,
 `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
@@ -2068,7 +2068,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => H
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E, F, G, H, I\>(`value`: A, `fn1`: (`a`: A) =>
 B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
@@ -2122,7 +2122,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => I
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ▸ `Const`**compose**<A, B, C, D, E, F, G, H, I, J\>(`value`: A, `fn1`: (`a`: A)
 => B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
@@ -2178,7 +2178,7 @@ console.log(screamify(`sloth`))
 **Returns:** (`value`: A) => J
 
 Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L118)
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
 
 ---
 
@@ -2216,7 +2216,7 @@ console.log([...iterable])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[concat.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/concat.d.ts#L33)
+[concat.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L33)
 
 ---
 
@@ -2258,7 +2258,7 @@ console.log(await collectAsync(toArray, asyncIterable))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[concat.d.ts:55](https://github.com/TomerAberbach/fn/blob/5786004/src/concat.d.ts#L55)
+[concat.d.ts:55](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L55)
 
 ---
 
@@ -2305,7 +2305,7 @@ console.log(await collectConcur(toArray, concurIterable))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[concat.d.ts:80](https://github.com/TomerAberbach/fn/blob/5786004/src/concat.d.ts#L80)
+[concat.d.ts:80](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L80)
 
 ---
 
@@ -2341,7 +2341,7 @@ console.log(count(iterable))
 **Returns:** _number_
 
 Defined in:
-[count.d.ts:32](https://github.com/TomerAberbach/fn/blob/5786004/src/count.d.ts#L32)
+[count.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L32)
 
 ---
 
@@ -2378,7 +2378,7 @@ console.log(await countAsync(asyncIterable))
 **Returns:** _Promise_<number\>
 
 Defined in:
-[count.d.ts:47](https://github.com/TomerAberbach/fn/blob/5786004/src/count.d.ts#L47)
+[count.d.ts:47](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L47)
 
 ---
 
@@ -2415,7 +2415,7 @@ console.log(await countConcur(concurIterable))
 **Returns:** _Promise_<number\>
 
 Defined in:
-[count.d.ts:64](https://github.com/TomerAberbach/fn/blob/5786004/src/count.d.ts#L64)
+[count.d.ts:64](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L64)
 
 ---
 
@@ -2465,7 +2465,7 @@ console.log(slothDiaryEntryCounts)
 **Returns:** _Folding_<number, C\>
 
 Defined in:
-[collect.d.ts:244](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L244)
+[collect.d.ts:244](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L244)
 
 ---
 
@@ -2514,7 +2514,7 @@ curriedSlothLog(`Hello`)(`World`)(`!`)
 **Returns:** _Curried_<Parameters, Return\>
 
 Defined in:
-[curry.d.ts:63](https://github.com/TomerAberbach/fn/blob/5786004/src/curry.d.ts#L63)
+[curry.d.ts:63](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/curry.d.ts#L63)
 
 ---
 
@@ -2546,7 +2546,7 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[generate.d.ts:100](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L100)
+[generate.d.ts:100](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L100)
 
 ---
 
@@ -2586,7 +2586,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[generate.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L118)
+[generate.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L118)
 
 ---
 
@@ -2620,7 +2620,7 @@ console.log([...drop(3, iterable)])
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L195)
+[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L195)
 
 ▸ `Const`**drop**<Value\>(`count`: _number_, `iterable`: _Iterable_<Value\>):
 _Iterable_<Value\>
@@ -2658,7 +2658,7 @@ console.log([...drop(3, iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L195)
+[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L195)
 
 ---
 
@@ -2693,7 +2693,7 @@ console.log(await collectAsync(dropAsync(3, asyncIterable)))
 _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L214)
+[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L214)
 
 ▸ `Const`**dropAsync**<Value\>(`count`: _number_, `asyncIterable`:
 _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -2731,7 +2731,7 @@ console.log(await collectAsync(dropAsync(3, asyncIterable)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L214)
+[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L214)
 
 ---
 
@@ -2767,7 +2767,7 @@ console.log(await collectConcur(dropConcur(3, concurIterable)))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L233)
+[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L233)
 
 ▸ `Const`**dropConcur**<Value\>(`count`: _number_, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -2806,7 +2806,7 @@ console.log(await collectConcur(dropConcur(3, concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L233)
+[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L233)
 
 ---
 
@@ -2841,7 +2841,7 @@ console.log([...dropWhile(value => value < 5, iterable)])
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L65)
+[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L65)
 
 ▸ `Const`**dropWhile**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -2874,7 +2874,7 @@ console.log([...dropWhile(value => value < 5, iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L65)
+[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L65)
 
 ---
 
@@ -2914,7 +2914,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L82)
+[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L82)
 
 ▸ `Const`**dropWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -2950,7 +2950,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L82)
+[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L82)
 
 ---
 
@@ -2991,7 +2991,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L99)
+[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L99)
 
 ▸ `Const`**dropWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -3028,7 +3028,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L99)
+[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L99)
 
 ---
 
@@ -3068,7 +3068,7 @@ console.log(eachedSloths)
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L37)
+[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L37)
 
 ▸ `Const`**each**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -3106,7 +3106,7 @@ console.log(eachedSloths)
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L37)
+[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L37)
 
 ---
 
@@ -3152,7 +3152,7 @@ console.log(eachedSloths)
 _AsyncIterable_<Value\>
 
 Defined in:
-[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L69)
+[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L69)
 
 ▸ `Const`**eachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -3195,7 +3195,7 @@ console.log(eachedSloths)
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L69)
+[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L69)
 
 ---
 
@@ -3242,7 +3242,7 @@ console.log(eachedSloths)
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L101)
+[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L101)
 
 ▸ `Const`**eachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -3286,7 +3286,7 @@ console.log(eachedSloths)
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L101)
+[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L101)
 
 ---
 
@@ -3317,7 +3317,7 @@ console.log(await countConcur(emptyConcur))
 **Returns:** _Promise_<void\>
 
 Defined in:
-[empty.d.ts:62](https://github.com/TomerAberbach/fn/blob/5786004/src/empty.d.ts#L62)
+[empty.d.ts:62](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L62)
 
 ---
 
@@ -3354,7 +3354,7 @@ console.log([...filter(string => string.includes(`sloth`), things)])
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L34)
+[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L34)
 
 ▸ `Const`**filter**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -3389,7 +3389,7 @@ console.log([...filter(string => string.includes(`sloth`), things)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L34)
+[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L34)
 
 ---
 
@@ -3433,7 +3433,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L65)
+[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L65)
 
 ▸ `Const`**filterAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -3473,7 +3473,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L65)
+[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L65)
 
 ---
 
@@ -3518,7 +3518,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L96)
+[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L96)
 
 ▸ `Const`**filterConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -3559,7 +3559,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L96)
+[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L96)
 
 ---
 
@@ -3599,7 +3599,7 @@ console.log(count(find(value => Array.isArray(value), iterable)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L70)
+[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L70)
 
 ▸ `Const`**find**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -3637,7 +3637,7 @@ console.log(count(find(value => Array.isArray(value), iterable)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L70)
+[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L70)
 
 ---
 
@@ -3683,7 +3683,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L96)
+[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L96)
 
 ▸ `Const`**findAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -3726,7 +3726,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L96)
+[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L96)
 
 ---
 
@@ -3775,7 +3775,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L124)
+[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L124)
 
 ▸ `Const`**findConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -3821,7 +3821,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L124)
+[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L124)
 
 ---
 
@@ -3859,7 +3859,7 @@ console.log(count(findLast(value => Array.isArray(value), iterable)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L141)
+[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L141)
 
 ▸ `Const`**findLast**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -3895,7 +3895,7 @@ console.log(count(findLast(value => Array.isArray(value), iterable)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L141)
+[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L141)
 
 ---
 
@@ -3942,7 +3942,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L167)
+[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L167)
 
 ▸ `Const`**findLastAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -3985,7 +3985,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L167)
+[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L167)
 
 ---
 
@@ -4035,7 +4035,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L193)
+[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L193)
 
 ▸ `Const`**findLastConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -4081,7 +4081,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/5786004/src/find.d.ts#L193)
+[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L193)
 
 ---
 
@@ -4116,7 +4116,7 @@ console.log([...first(iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:304](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L304)
+[sub.d.ts:304](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L304)
 
 ---
 
@@ -4152,7 +4152,7 @@ console.log(await collectAsync(firstAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:318](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L318)
+[sub.d.ts:318](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L318)
 
 ---
 
@@ -4189,7 +4189,7 @@ console.log(await collectConcur(firstConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:334](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L334)
+[sub.d.ts:334](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L334)
 
 ---
 
@@ -4228,7 +4228,7 @@ console.log([...iterable])
 **Returns:** (`iterable`: _Iterable_<From\>) => _Iterable_<To\>
 
 Defined in:
-[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L37)
+[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L37)
 
 ▸ `Const`**flatMap**<From, To\>(`fn`: (`value`: From) => _Iterable_<To\>,
 `iterable`: _Iterable_<From\>): _Iterable_<To\>
@@ -4264,7 +4264,7 @@ console.log([...iterable])
 **Returns:** _Iterable_<To\>
 
 Defined in:
-[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L37)
+[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L37)
 
 ---
 
@@ -4312,7 +4312,7 @@ console.log(await collectAsync(toArray, asyncIterable))
 **Returns:** (`asyncIterable`: _AsyncIterable_<From\>) => _AsyncIterable_<To\>
 
 Defined in:
-[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L70)
+[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L70)
 
 ▸ `Const`**flatMapAsync**<From, To\>(`fn`: (`value`: From) =>
 _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\>\>, `asyncIterable`:
@@ -4358,7 +4358,7 @@ console.log(await collectAsync(toArray, asyncIterable))
 **Returns:** _AsyncIterable_<To\>
 
 Defined in:
-[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L70)
+[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L70)
 
 ---
 
@@ -4411,7 +4411,7 @@ console.log(await collectConcur(toArray, concurIterable))
 [_ConcurIterable_](modules.md#concuriterable)<To\>
 
 Defined in:
-[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L105)
+[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L105)
 
 ▸ `Const`**flatMapConcur**<From, To\>(`fn`: (`value`: From) =>
 _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\> \|
@@ -4461,7 +4461,7 @@ console.log(await collectConcur(toArray, concurIterable))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<To\>
 
 Defined in:
-[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L105)
+[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L105)
 
 ---
 
@@ -4503,7 +4503,7 @@ console.log([...iterable])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[flat-map.d.ts:135](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L135)
+[flat-map.d.ts:135](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L135)
 
 ---
 
@@ -4546,7 +4546,7 @@ console.log(await collectAsync(toArray, asyncIterable))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[flat-map.d.ts:157](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L157)
+[flat-map.d.ts:157](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L157)
 
 ---
 
@@ -4594,7 +4594,7 @@ console.log(await collectConcur(toArray, concurIterable))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[flat-map.d.ts:182](https://github.com/TomerAberbach/fn/blob/5786004/src/flat-map.d.ts#L182)
+[flat-map.d.ts:182](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L182)
 
 ---
 
@@ -4642,7 +4642,7 @@ console.log(message)
 Acc(`initial`: Acc, `iterable`: _Iterable_<Value\>) => Acc
 
 Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L40)
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
 
 ▸ `Const`**fold**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
 `initial`: Acc): _function_
@@ -4686,7 +4686,7 @@ console.log(message)
 **Returns:** (`iterable`: _Iterable_<Value\>) => Acc
 
 Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L40)
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
 
 ▸ `Const`**fold**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
 `initial`: Acc, `iterable`: _Iterable_<Value\>): Acc
@@ -4731,7 +4731,7 @@ console.log(message)
 **Returns:** Acc
 
 Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L40)
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
 
 ---
 
@@ -4782,7 +4782,7 @@ _Promise_<Acc\>(`initial`: Acc, `asyncIterable`: _AsyncIterable_<Value\>) =>
 _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L79)
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
 
 ▸ `Const`**foldAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
 _MaybePromiseLike_<Acc\>, `initial`: Acc): _function_
@@ -4828,7 +4828,7 @@ console.log(message)
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L79)
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
 
 ▸ `Const`**foldAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
 _MaybePromiseLike_<Acc\>, `initial`: Acc, `asyncIterable`:
@@ -4876,7 +4876,7 @@ console.log(message)
 **Returns:** _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L79)
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
 
 ---
 
@@ -4939,7 +4939,7 @@ _Promise_<Acc\>(`initial`: Acc, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L130)
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
 
 ▸ `Const`**foldConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`: Value)
 => _MaybePromiseLike_<Acc\>, `initial`: Acc): _function_
@@ -4997,7 +4997,7 @@ console.log(message)
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L130)
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
 
 ▸ `Const`**foldConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`: Value)
 => _MaybePromiseLike_<Acc\>, `initial`: Acc, `concurIterable`:
@@ -5056,7 +5056,7 @@ console.log(message)
 **Returns:** _Promise_<Acc\>
 
 Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L130)
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
 
 ---
 
@@ -5120,7 +5120,7 @@ console.log(foldedSlothFoodInventory)
 Value) => Acc, `mapCollector`: C) => _Folding_<Acc, C\>
 
 Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L196)
+[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
 
 ▸ `Const`**folding**<Acc, Value\>(`lift`: (`value`: Value) => Acc, `merge`:
 (`acc`: Acc, `value`: Value) => Acc): _function_
@@ -5180,7 +5180,7 @@ console.log(foldedSlothFoodInventory)
 **Returns:** <C\>(`mapCollector`: C) => _Folding_<Acc, C\>
 
 Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L196)
+[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
 
 ▸ `Const`**folding**<Acc, Value, C\>(`lift`: (`value`: Value) => Acc, `merge`:
 (`acc`: Acc, `value`: Value) => Acc, `mapCollector`: C): _Folding_<Acc, C\>
@@ -5242,7 +5242,7 @@ console.log(foldedSlothFoodInventory)
 **Returns:** _Folding_<Acc, C\>
 
 Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L196)
+[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
 
 ---
 
@@ -5280,7 +5280,7 @@ forEach(console.log, sloths)
 **Returns:** (`iterable`: _Iterable_<Value\>) => _void_
 
 Defined in:
-[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L126)
+[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L126)
 
 ▸ `Const`**forEach**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _void_
@@ -5316,7 +5316,7 @@ forEach(console.log, sloths)
 **Returns:** _void_
 
 Defined in:
-[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L126)
+[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L126)
 
 ---
 
@@ -5359,7 +5359,7 @@ await forEachAsync(console.log, sloths)
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<void\>
 
 Defined in:
-[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L150)
+[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L150)
 
 ▸ `Const`**forEachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _Promise_<void\>
@@ -5399,7 +5399,7 @@ await forEachAsync(console.log, sloths)
 **Returns:** _Promise_<void\>
 
 Defined in:
-[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L150)
+[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L150)
 
 ---
 
@@ -5441,7 +5441,7 @@ await forEachConcur(console.log, sloths)
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<void\>
 
 Defined in:
-[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L177)
+[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L177)
 
 ▸ `Const`**forEachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -5480,7 +5480,7 @@ await forEachConcur(console.log, sloths)
 **Returns:** _Promise_<void\>
 
 Defined in:
-[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/5786004/src/each.d.ts#L177)
+[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L177)
 
 ---
 
@@ -5521,7 +5521,7 @@ console.log(
 **Returns:** (`seed`: Value) => _Iterable_<Value\>
 
 Defined in:
-[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L36)
+[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L36)
 
 ▸ `Const`**generate**<Value\>(`fn`: (`previousValue`: Value) => Value, `seed`:
 Value): _Iterable_<Value\>
@@ -5559,7 +5559,7 @@ console.log(
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L36)
+[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L36)
 
 ---
 
@@ -5600,7 +5600,7 @@ console.log(
 **Returns:** (`seed`: Value) => _AsyncIterable_<Value\>
 
 Defined in:
-[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L58)
+[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L58)
 
 ▸ `Const`**generateAsync**<Value\>(`fn`: (`previousValue`: Value) =>
 _MaybePromiseLike_<Value\>, `seed`: Value): _AsyncIterable_<Value\>
@@ -5638,7 +5638,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L58)
+[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L58)
 
 ---
 
@@ -5685,7 +5685,7 @@ try {
 **Returns:** Value
 
 Defined in:
-[optional.d.ts:123](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L123)
+[optional.d.ts:123](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L123)
 
 ---
 
@@ -5733,7 +5733,7 @@ try {
 **Returns:** _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:149](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L149)
+[optional.d.ts:149](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L149)
 
 ---
 
@@ -5781,7 +5781,7 @@ try {
 **Returns:** _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:177](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L177)
+[optional.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L177)
 
 ---
 
@@ -5836,7 +5836,7 @@ console.log(slothDiaryEntryGroups)
 **Returns:** <C\>(`mapCollector`: C) => _Folding_<GroupCollector, C\>
 
 Defined in:
-[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L279)
+[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L279)
 
 ▸ `Const`**grouping**<GroupCollector, C\>(`groupCollector`: GroupCollector,
 `mapCollector`: C): _Folding_<GroupCollector, C\>
@@ -5889,7 +5889,7 @@ console.log(slothDiaryEntryGroups)
 **Returns:** _Folding_<GroupCollector, C\>
 
 Defined in:
-[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/5786004/src/collect.d.ts#L279)
+[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L279)
 
 ---
 
@@ -5920,7 +5920,7 @@ console.log(includes(3, numbers))
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _boolean_
 
 Defined in:
-[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L211)
+[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L211)
 
 ▸ `Const`**includes**<Value\>(`searchElement`: _unknown_, `iterable`:
 _Iterable_<Value\>): _boolean_
@@ -5955,7 +5955,7 @@ console.log(includes(3, numbers))
 **Returns:** _boolean_
 
 Defined in:
-[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L211)
+[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L211)
 
 ---
 
@@ -5988,7 +5988,7 @@ console.log(await includesAsync(3, numbers))
 _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L231)
+[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L231)
 
 ▸ `Const`**includesAsync**<Value\>(`searchElement`: _unknown_, `asyncIterable`:
 _AsyncIterable_<Value\>): _Promise_<boolean\>
@@ -6024,7 +6024,7 @@ console.log(await includesAsync(3, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L231)
+[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L231)
 
 ---
 
@@ -6057,7 +6057,7 @@ console.log(await includesConcur(3, numbers))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L256)
+[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L256)
 
 ▸ `Const`**includesConcur**<Value\>(`searchElement`: _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -6094,7 +6094,7 @@ console.log(await includesConcur(3, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L256)
+[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L256)
 
 ---
 
@@ -6131,7 +6131,7 @@ console.log([...indexed(iterable)])
 **Returns:** _Iterable_<[*number*, Value]\>
 
 Defined in:
-[indexed.d.ts:32](https://github.com/TomerAberbach/fn/blob/5786004/src/indexed.d.ts#L32)
+[indexed.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L32)
 
 ---
 
@@ -6168,7 +6168,7 @@ console.log(await collectAsync(toArray, indexedAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<[*number*, Value]\>
 
 Defined in:
-[indexed.d.ts:49](https://github.com/TomerAberbach/fn/blob/5786004/src/indexed.d.ts#L49)
+[indexed.d.ts:49](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L49)
 
 ---
 
@@ -6207,7 +6207,7 @@ console.log(await collectConcur(toArray, indexedConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<[*number*, Value]\>
 
 Defined in:
-[indexed.d.ts:67](https://github.com/TomerAberbach/fn/blob/5786004/src/indexed.d.ts#L67)
+[indexed.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L67)
 
 ---
 
@@ -6238,7 +6238,7 @@ console.log(join(`, `, iterable))
 **Returns:** (`iterable`: _Iterable_<unknown\>) => _string_
 
 Defined in:
-[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L33)
+[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L33)
 
 ▸ `Const`**join**(`separator`: _string_, `iterable`: _Iterable_<unknown\>):
 _string_
@@ -6267,7 +6267,7 @@ console.log(join(`, `, iterable))
 **Returns:** _string_
 
 Defined in:
-[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L33)
+[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L33)
 
 ---
 
@@ -6298,7 +6298,7 @@ console.log(await joinAsync(`, `, asyncIterable))
 **Returns:** (`asyncIterable`: _AsyncIterable_<unknown\>) => _Promise_<string\>
 
 Defined in:
-[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L52)
+[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L52)
 
 ▸ `Const`**joinAsync**(`separator`: _string_, `asyncIterable`:
 _AsyncIterable_<unknown\>): _Promise_<string\>
@@ -6327,7 +6327,7 @@ console.log(await joinAsync(`, `, asyncIterable))
 **Returns:** _Promise_<string\>
 
 Defined in:
-[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L52)
+[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L52)
 
 ---
 
@@ -6360,7 +6360,7 @@ console.log(await joinConcur(`, `, concurIterable))
 [_ConcurIterable_](modules.md#concuriterable)<unknown\>) => _Promise_<string\>
 
 Defined in:
-[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L74)
+[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L74)
 
 ▸ `Const`**joinConcur**(`separator`: _string_, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<unknown\>): _Promise_<string\>
@@ -6390,7 +6390,7 @@ console.log(await joinConcur(`, `, concurIterable))
 **Returns:** _Promise_<string\>
 
 Defined in:
-[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/5786004/src/join.d.ts#L74)
+[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L74)
 
 ---
 
@@ -6425,7 +6425,7 @@ console.log([...last(iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:350](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L350)
+[sub.d.ts:350](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L350)
 
 ---
 
@@ -6461,7 +6461,7 @@ console.log(await collectAsync(lastAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:364](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L364)
+[sub.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L364)
 
 ---
 
@@ -6498,7 +6498,7 @@ console.log(await collectConcur(lastConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:380](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L380)
+[sub.d.ts:380](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L380)
 
 ---
 
@@ -6536,7 +6536,7 @@ console.log([...map(value => value * 2, iterable)])
 **Returns:** (`iterable`: _Iterable_<From\>) => _Iterable_<To\>
 
 Defined in:
-[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L34)
+[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L34)
 
 ▸ `Const`**map**<From, To\>(`fn`: (`value`: From) => To, `iterable`:
 _Iterable_<From\>): _Iterable_<To\>
@@ -6572,7 +6572,7 @@ console.log([...map(value => value * 2, iterable)])
 **Returns:** _Iterable_<To\>
 
 Defined in:
-[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L34)
+[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L34)
 
 ---
 
@@ -6616,7 +6616,7 @@ console.log(
 **Returns:** (`asyncIterable`: _AsyncIterable_<From\>) => _AsyncIterable_<To\>
 
 Defined in:
-[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L57)
+[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L57)
 
 ▸ `Const`**mapAsync**<From, To\>(`fn`: (`value`: From) =>
 _MaybePromiseLike_<To\>, `asyncIterable`: _AsyncIterable_<From\>):
@@ -6658,7 +6658,7 @@ console.log(
 **Returns:** _AsyncIterable_<To\>
 
 Defined in:
-[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L57)
+[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L57)
 
 ---
 
@@ -6704,7 +6704,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<To\>
 
 Defined in:
-[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L83)
+[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L83)
 
 ▸ `Const`**mapConcur**<From, To\>(`fn`: (`value`: From) =>
 _MaybePromiseLike_<To\>, `concurIterable`:
@@ -6747,7 +6747,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<To\>
 
 Defined in:
-[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/5786004/src/map.d.ts#L83)
+[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L83)
 
 ---
 
@@ -6776,7 +6776,7 @@ console.log(get(max(iterable)))
 **Returns:** _Iterable_<number\>
 
 Defined in:
-[min-max.d.ts:529](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L529)
+[min-max.d.ts:529](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L529)
 
 ---
 
@@ -6807,7 +6807,7 @@ console.log(await getAsync(maxAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<number\>
 
 Defined in:
-[min-max.d.ts:544](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L544)
+[min-max.d.ts:544](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L544)
 
 ---
 
@@ -6845,7 +6845,7 @@ console.log(get(maxBy((a, b) => a.length - b.length, slothActivities)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L143)
+[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L143)
 
 ▸ `Const`**maxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_):
 _function_
@@ -6878,7 +6878,7 @@ console.log(get(maxBy((a, b) => a.length - b.length, slothActivities)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L143)
+[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L143)
 
 ---
 
@@ -6919,7 +6919,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L160)
+[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L160)
 
 ▸ `Const`**maxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -6955,7 +6955,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L160)
+[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L160)
 
 ---
 
@@ -6997,7 +6997,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L179)
+[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L179)
 
 ▸ `Const`**maxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7034,7 +7034,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L179)
+[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L179)
 
 ---
 
@@ -7066,7 +7066,7 @@ console.log(await getConcur(maxConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<number\>
 
 Defined in:
-[min-max.d.ts:561](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L561)
+[min-max.d.ts:561](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L561)
 
 ---
 
@@ -7104,7 +7104,7 @@ console.log(get(maxWith(value => value.length, slothActivities)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L357)
+[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L357)
 
 ▸ `Const`**maxWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
 
@@ -7136,7 +7136,7 @@ console.log(get(maxWith(value => value.length, slothActivities)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L357)
+[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L357)
 
 ---
 
@@ -7178,7 +7178,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L375)
+[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L375)
 
 ▸ `Const`**maxWithAsync**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7215,7 +7215,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L375)
+[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L375)
 
 ---
 
@@ -7258,7 +7258,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L393)
+[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L393)
 
 ▸ `Const`**maxWithConcur**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7296,7 +7296,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L393)
+[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L393)
 
 ---
 
@@ -7325,7 +7325,7 @@ console.log(get(min(iterable)))
 **Returns:** _Iterable_<number\>
 
 Defined in:
-[min-max.d.ts:481](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L481)
+[min-max.d.ts:481](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L481)
 
 ---
 
@@ -7356,7 +7356,7 @@ console.log(await getAsync(minAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<number\>
 
 Defined in:
-[min-max.d.ts:496](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L496)
+[min-max.d.ts:496](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L496)
 
 ---
 
@@ -7394,7 +7394,7 @@ console.log(get(minBy((a, b) => a.length - b.length, slothActivities)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L92)
+[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L92)
 
 ▸ `Const`**minBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_):
 _function_
@@ -7427,7 +7427,7 @@ console.log(get(minBy((a, b) => a.length - b.length, slothActivities)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L92)
+[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L92)
 
 ---
 
@@ -7468,7 +7468,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L109)
+[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L109)
 
 ▸ `Const`**minByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7504,7 +7504,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L109)
+[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L109)
 
 ---
 
@@ -7546,7 +7546,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L128)
+[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L128)
 
 ▸ `Const`**minByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7583,7 +7583,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L128)
+[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L128)
 
 ---
 
@@ -7615,7 +7615,7 @@ console.log(await getConcur(minConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<number\>
 
 Defined in:
-[min-max.d.ts:513](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L513)
+[min-max.d.ts:513](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L513)
 
 ---
 
@@ -7645,7 +7645,7 @@ console.log(get(minMax(iterable)))
 **Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<number\>\>
 
 Defined in:
-[min-max.d.ts:577](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L577)
+[min-max.d.ts:577](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L577)
 
 ---
 
@@ -7676,7 +7676,7 @@ console.log(await getAsync(minMaxAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<number\>\>
 
 Defined in:
-[min-max.d.ts:592](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L592)
+[min-max.d.ts:592](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L592)
 
 ---
 
@@ -7715,7 +7715,7 @@ console.log(get(minMaxBy((a, b) => a.length - b.length, slothActivities)))
 **Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L194)
+[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L194)
 
 ▸ `Const`**minMaxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _number_): _function_
@@ -7749,7 +7749,7 @@ console.log(get(minMaxBy((a, b) => a.length - b.length, slothActivities)))
 _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L194)
+[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L194)
 
 ---
 
@@ -7791,7 +7791,7 @@ console.log(
 **Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L222)
+[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L222)
 
 ▸ `Const`**minMaxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7828,7 +7828,7 @@ console.log(
 _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L222)
+[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L222)
 
 ---
 
@@ -7874,7 +7874,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L250)
+[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L250)
 
 ▸ `Const`**minMaxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -7914,7 +7914,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L250)
+[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L250)
 
 ---
 
@@ -7947,7 +7947,7 @@ console.log(await getConcur(minMaxConcur(concurIterable)))
 [_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<number\>\>
 
 Defined in:
-[min-max.d.ts:609](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L609)
+[min-max.d.ts:609](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L609)
 
 ---
 
@@ -7985,7 +7985,7 @@ console.log(get(minMaxWith(value => value.length, slothActivities)))
 **Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L408)
+[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L408)
 
 ▸ `Const`**minMaxWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
 
@@ -8018,7 +8018,7 @@ console.log(get(minMaxWith(value => value.length, slothActivities)))
 _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L408)
+[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L408)
 
 ---
 
@@ -8060,7 +8060,7 @@ console.log(
 **Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L433)
+[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L433)
 
 ▸ `Const`**minMaxWithAsync**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -8097,7 +8097,7 @@ console.log(
 _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L433)
+[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L433)
 
 ---
 
@@ -8141,7 +8141,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L459)
+[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L459)
 
 ▸ `Const`**minMaxWithConcur**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -8179,7 +8179,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
 
 Defined in:
-[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L459)
+[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L459)
 
 ---
 
@@ -8217,7 +8217,7 @@ console.log(get(minWith(value => value.length, slothActivities)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L306)
+[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L306)
 
 ▸ `Const`**minWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
 
@@ -8249,7 +8249,7 @@ console.log(get(minWith(value => value.length, slothActivities)))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L306)
+[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L306)
 
 ---
 
@@ -8291,7 +8291,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L324)
+[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L324)
 
 ▸ `Const`**minWithAsync**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -8328,7 +8328,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L324)
+[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L324)
 
 ---
 
@@ -8371,7 +8371,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L342)
+[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L342)
 
 ▸ `Const`**minWithConcur**<Value\>(`fn`: (`value`: Value) =>
 _MaybePromiseLike_<number\>): _function_
@@ -8409,7 +8409,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/5786004/src/min-max.d.ts#L342)
+[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L342)
 
 ---
 
@@ -8460,7 +8460,7 @@ console.log(count(rest))
 **Returns:** [*Iterable*<Value\>, *Iterable*<Value\>]
 
 Defined in:
-[optional.d.ts:208](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L208)
+[optional.d.ts:208](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L208)
 
 ---
 
@@ -8512,7 +8512,7 @@ console.log(await countAsync(rest))
 **Returns:** _Promise_<[*AsyncIterable*<Value\>, *AsyncIterable*<Value\>]\>
 
 Defined in:
-[optional.d.ts:240](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L240)
+[optional.d.ts:240](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L240)
 
 ---
 
@@ -8547,7 +8547,7 @@ console.log(none(number => number > 1, numbers))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
 
 Defined in:
-[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L165)
+[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L165)
 
 ▸ `Const`**none**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _boolean_
@@ -8580,7 +8580,7 @@ console.log(none(number => number > 1, numbers))
 **Returns:** _boolean_
 
 Defined in:
-[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L165)
+[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L165)
 
 ---
 
@@ -8616,7 +8616,7 @@ console.log(await noneAsync(number => number > 1, numbers))
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L180)
+[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L180)
 
 ▸ `Const`**noneAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
@@ -8650,7 +8650,7 @@ console.log(await noneAsync(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L180)
+[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L180)
 
 ---
 
@@ -8687,7 +8687,7 @@ console.log(await noneConcur(number => number > 1, numbers))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L195)
+[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L195)
 
 ▸ `Const`**noneConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -8722,7 +8722,7 @@ console.log(await noneConcur(number => number > 1, numbers))
 **Returns:** _Promise_<boolean\>
 
 Defined in:
-[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/5786004/src/predicate.d.ts#L195)
+[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L195)
 
 ---
 
@@ -8761,7 +8761,7 @@ console.log(or(() => `I also get called!`, [1, `sloth`, 3]))
 **Returns:** (`iterable`: _Iterable_<Value\>) => Value
 
 Defined in:
-[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L36)
+[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L36)
 
 ▸ `Const`**or**<Value\>(`fn`: () => Value, `iterable`: _Iterable_<Value\>):
 Value
@@ -8798,7 +8798,7 @@ console.log(or(() => `I also get called!`, [1, `sloth`, 3]))
 **Returns:** Value
 
 Defined in:
-[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L36)
+[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L36)
 
 ---
 
@@ -8838,7 +8838,7 @@ console.log(await orAsync(() => `I also get called!`, asAsync([1, `sloth`, 3])))
 **Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L60)
+[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L60)
 
 ▸ `Const`**orAsync**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>,
 `asyncIterable`: _AsyncIterable_<Value\>): _Promise_<Value\>
@@ -8876,7 +8876,7 @@ console.log(await orAsync(() => `I also get called!`, asAsync([1, `sloth`, 3])))
 **Returns:** _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L60)
+[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L60)
 
 ---
 
@@ -8920,7 +8920,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L89)
+[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L89)
 
 ▸ `Const`**orConcur**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -8961,7 +8961,7 @@ console.log(
 **Returns:** _Promise_<Value\>
 
 Defined in:
-[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/5786004/src/optional.d.ts#L89)
+[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L89)
 
 ---
 
@@ -9000,7 +9000,7 @@ console.log(
 **Returns:** Value
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B\>(`value`: A, `fn`: (`a`: A) => B): B
 
@@ -9037,7 +9037,7 @@ console.log(
 **Returns:** B
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`: B) =>
 C): C
@@ -9077,7 +9077,7 @@ console.log(
 **Returns:** C
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`: B)
 => C, `fn3`: (`c`: C) => D): D
@@ -9119,7 +9119,7 @@ console.log(
 **Returns:** D
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`:
 B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E): E
@@ -9163,7 +9163,7 @@ console.log(
 **Returns:** E
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E, F\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`:
 (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) =>
@@ -9210,7 +9210,7 @@ console.log(
 **Returns:** F
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E, F, G\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`:
 (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) => F,
@@ -9259,7 +9259,7 @@ console.log(
 **Returns:** G
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E, F, G, H\>(`value`: A, `fn1`: (`a`: A) => B,
 `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
@@ -9310,7 +9310,7 @@ console.log(
 **Returns:** H
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E, F, G, H, I\>(`value`: A, `fn1`: (`a`: A) => B,
 `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
@@ -9363,7 +9363,7 @@ console.log(
 **Returns:** I
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ▸ `Const`**pipe**<A, B, C, D, E, F, G, H, I, J\>(`value`: A, `fn1`: (`a`: A) =>
 B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
@@ -9419,7 +9419,7 @@ console.log(
 **Returns:** J
 
 Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/5786004/src/pipe.d.ts#L33)
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
 
 ---
 
@@ -9451,7 +9451,7 @@ console.log([...rangeTo(0, 6).step(2)])
 **Returns:** (`end`: _number_) => [_RangeIterable_](modules.md#rangeiterable)
 
 Defined in:
-[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/5786004/src/range.d.ts#L53)
+[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L53)
 
 ▸ `Const`**rangeTo**(`start`: _number_, `end`: _number_):
 [_RangeIterable_](modules.md#rangeiterable)
@@ -9481,7 +9481,7 @@ console.log([...rangeTo(0, 6).step(2)])
 **Returns:** [_RangeIterable_](modules.md#rangeiterable)
 
 Defined in:
-[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/5786004/src/range.d.ts#L53)
+[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L53)
 
 ---
 
@@ -9513,7 +9513,7 @@ console.log([...rangeUntil(0, 6).step(2)])
 **Returns:** (`end`: _number_) => [_RangeIterable_](modules.md#rangeiterable)
 
 Defined in:
-[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/range.d.ts#L70)
+[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L70)
 
 ▸ `Const`**rangeUntil**(`start`: _number_, `end`: _number_):
 [_RangeIterable_](modules.md#rangeiterable)
@@ -9543,7 +9543,7 @@ console.log([...rangeUntil(0, 6).step(2)])
 **Returns:** [_RangeIterable_](modules.md#rangeiterable)
 
 Defined in:
-[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/5786004/src/range.d.ts#L70)
+[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L70)
 
 ---
 
@@ -9594,7 +9594,7 @@ get(reduce(() => {}, []))
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L168)
+[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L168)
 
 ▸ `Const`**reduce**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
 `iterable`: _Iterable_<Value\>): _Iterable_<Acc\>
@@ -9642,7 +9642,7 @@ get(reduce(() => {}, []))
 **Returns:** _Iterable_<Acc\>
 
 Defined in:
-[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L168)
+[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L168)
 
 ---
 
@@ -9691,7 +9691,7 @@ getAsync(reduceAsync(() => {}, []))
 _AsyncIterable_<Value\>
 
 Defined in:
-[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L204)
+[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L204)
 
 ▸ `Const`**reduceAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
 _MaybePromiseLike_<Acc\>, `asyncIterable`: _AsyncIterable_<Value\>):
@@ -9737,7 +9737,7 @@ getAsync(reduceAsync(() => {}, []))
 **Returns:** _AsyncIterable_<Acc\>
 
 Defined in:
-[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L204)
+[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L204)
 
 ---
 
@@ -9788,7 +9788,7 @@ getConcur(reduceConcur(() => {}, []))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L241)
+[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L241)
 
 ▸ `Const`**reduceConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`:
 Value) => _MaybePromiseLike_<Acc\>, `concurIterable`:
@@ -9836,7 +9836,7 @@ getConcur(reduceConcur(() => {}, []))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Acc\>
 
 Defined in:
-[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/5786004/src/fold.d.ts#L241)
+[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L241)
 
 ---
 
@@ -9868,7 +9868,7 @@ console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[generate.d.ts:83](https://github.com/TomerAberbach/fn/blob/5786004/src/generate.d.ts#L83)
+[generate.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L83)
 
 ---
 
@@ -9902,7 +9902,7 @@ console.log([...take(3, iterable)])
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L252)
+[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L252)
 
 ▸ `Const`**take**<Value\>(`count`: _number_, `iterable`: _Iterable_<Value\>):
 _Iterable_<Value\>
@@ -9940,7 +9940,7 @@ console.log([...take(3, iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L252)
+[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L252)
 
 ---
 
@@ -9975,7 +9975,7 @@ console.log(await collectAsync(takeAsync(3, asyncIterable)))
 _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L271)
+[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L271)
 
 ▸ `Const`**takeAsync**<Value\>(`count`: _number_, `asyncIterable`:
 _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -10013,7 +10013,7 @@ console.log(await collectAsync(takeAsync(3, asyncIterable)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L271)
+[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L271)
 
 ---
 
@@ -10049,7 +10049,7 @@ console.log(await collectConcur(takeConcur(3, concurIterable)))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L290)
+[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L290)
 
 ▸ `Const`**takeConcur**<Value\>(`count`: _number_, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -10088,7 +10088,7 @@ console.log(await collectConcur(takeConcur(3, concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L290)
+[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L290)
 
 ---
 
@@ -10123,7 +10123,7 @@ console.log([...takeWhile(value => value < 5, iterable)])
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L114)
+[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L114)
 
 ▸ `Const`**takeWhile**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -10156,7 +10156,7 @@ console.log([...takeWhile(value => value < 5, iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L114)
+[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L114)
 
 ---
 
@@ -10196,7 +10196,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L131)
+[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L131)
 
 ▸ `Const`**takeWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -10232,7 +10232,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L131)
+[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L131)
 
 ---
 
@@ -10273,7 +10273,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L148)
+[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L148)
 
 ▸ `Const`**takeWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -10310,7 +10310,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/5786004/src/sub.d.ts#L148)
+[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L148)
 
 ---
 
@@ -10345,7 +10345,7 @@ console.log([...unique(iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[unique.d.ts:110](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L110)
+[unique.d.ts:110](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L110)
 
 ---
 
@@ -10381,7 +10381,7 @@ console.log(await collectAsync(toArray, uniqueAsync(asyncIterable)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[unique.d.ts:124](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L124)
+[unique.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L124)
 
 ---
 
@@ -10416,7 +10416,7 @@ console.log([...uniqueBy(value => Math.abs(value), iterable)])
 **Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L32)
+[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L32)
 
 ▸ `Const`**uniqueBy**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -10449,7 +10449,7 @@ console.log([...uniqueBy(value => Math.abs(value), iterable)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L32)
+[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L32)
 
 ---
 
@@ -10492,7 +10492,7 @@ console.log(
 _AsyncIterable_<Value\>
 
 Defined in:
-[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L60)
+[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L60)
 
 ▸ `Const`**uniqueByAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -10531,7 +10531,7 @@ console.log(
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L60)
+[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L60)
 
 ---
 
@@ -10575,7 +10575,7 @@ console.log(
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L88)
+[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L88)
 
 ▸ `Const`**uniqueByConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -10615,7 +10615,7 @@ console.log(
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L88)
+[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L88)
 
 ---
 
@@ -10652,7 +10652,7 @@ console.log(await collectConcur(toArray, uniqueConcur(concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[unique.d.ts:140](https://github.com/TomerAberbach/fn/blob/5786004/src/unique.d.ts#L140)
+[unique.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L140)
 
 ---
 
@@ -10681,7 +10681,7 @@ console.log([...windowed(3, iterable)])
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value[]\>
 
 Defined in:
-[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L31)
+[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L31)
 
 ▸ `Const`**windowed**<Value\>(`size`: _number_, `iterable`: _Iterable_<Value\>):
 _Iterable_<Value[]\>
@@ -10714,7 +10714,7 @@ console.log([...windowed(3, iterable)])
 **Returns:** _Iterable_<Value[]\>
 
 Defined in:
-[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L31)
+[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L31)
 
 ---
 
@@ -10744,7 +10744,7 @@ console.log(await collectAsync(toArray, windowedAsync(3, asyncIterable)))
 _AsyncIterable_<Value[]\>
 
 Defined in:
-[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L48)
+[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L48)
 
 ▸ `Const`**windowedAsync**<Value\>(`size`: _number_, `asyncIterable`:
 _AsyncIterable_<Value\>): _AsyncIterable_<Value[]\>
@@ -10777,7 +10777,7 @@ console.log(await collectAsync(toArray, windowedAsync(3, asyncIterable)))
 **Returns:** _AsyncIterable_<Value[]\>
 
 Defined in:
-[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L48)
+[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L48)
 
 ---
 
@@ -10808,7 +10808,7 @@ console.log(await collectConcur(toArray, windowedConcur(3, concurIterable)))
 [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
 
 Defined in:
-[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L69)
+[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L69)
 
 ▸ `Const`**windowedConcur**<Value\>(`size`: _number_, `concurIterable`:
 [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -10842,7 +10842,7 @@ console.log(await collectConcur(toArray, windowedConcur(3, concurIterable)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
 
 Defined in:
-[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/5786004/src/windowed.d.ts#L69)
+[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L69)
 
 ---
 
@@ -10871,7 +10871,7 @@ console.log([...without([3, 5], numbers)])
 **Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
 
 Defined in:
-[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L118)
+[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L118)
 
 ▸ `Const`**without**<Value\>(`excluded`: _Iterable_<unknown\>, `iterable`:
 _Iterable_<Value\>): _Iterable_<Value\>
@@ -10904,7 +10904,7 @@ console.log([...without([3, 5], numbers)])
 **Returns:** _Iterable_<Value\>
 
 Defined in:
-[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L118)
+[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L118)
 
 ---
 
@@ -10934,7 +10934,7 @@ console.log(await collectAsync(toArray, withoutAsync([3, 5], numbers)))
 _AsyncIterable_<Value\>
 
 Defined in:
-[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L140)
+[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L140)
 
 ▸ `Const`**withoutAsync**<Value\>(`excluded`: _Iterable_<unknown\>,
 `asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
@@ -10967,7 +10967,7 @@ console.log(await collectAsync(toArray, withoutAsync([3, 5], numbers)))
 **Returns:** _AsyncIterable_<Value\>
 
 Defined in:
-[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L140)
+[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L140)
 
 ---
 
@@ -10998,7 +10998,7 @@ console.log(await collectConcur(toArray, withoutConcur([3, 5], numbers)))
 [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L162)
+[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L162)
 
 ▸ `Const`**withoutConcur**<Value\>(`excluded`: _Iterable_<unknown\>,
 `concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
@@ -11032,4 +11032,4 @@ console.log(await collectConcur(toArray, withoutConcur([3, 5], numbers)))
 **Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
 
 Defined in:
-[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/5786004/src/filter.d.ts#L162)
+[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L162)

@@ -81,7 +81,7 @@ const messySlothDiaryEntries = [
 
 const cleanSlothDiaryEntries = pipe(
   messySlothDiaryEntries,
-  map(([sloth, activity]) => activity.trim()),
+  map(([sloth, activity]) => [sloth, activity.trim()]),
   filter(([, activity]) => activity.length > 0),
   map(entry => entry.map(string => string.toLowerCase())),
   collect(toArray)

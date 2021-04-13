@@ -1,0 +1,10 @@
+{
+  "typedocOptions": {
+    "entryPoints": "./src/index.d.ts",
+    "entryDocument": "readme.md",
+    "excludeInternal": true
+  },
+  "compilerOptions": {
+    "lib": ["ESNext"]
+  }
+}

@@ -42,6 +42,7 @@
   "module": "./src/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
+    "prepare": "pnpx --no-install simple-git-hooks",
     "license": "addlicense $(git diff --name-only HEAD)",
     "lint:prettier:base": "prettier --loglevel silent --ignore-path .gitignore",
     "lint:prettier": "run-s \"lint:prettier:base -- --write .\"",
@@ -84,11 +85,9 @@
   "commitlint": {
     "extends": "@commitlint/config-conventional"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "pnpx --no-install lint-staged",
+    "commit-msg": "pnpx --no-install commitlint -e"
   },
   "dependencies": {
     "betterator": "0.0.2"
@@ -105,12 +104,12 @@
     "c8": "7.6.0",
     "eslint": "7.22.0",
     "fast-check": "2.14.0",
-    "husky": "4.3.8",
     "lint-staged": "10.5.4",
     "npm-run-all": "4.1.5",
     "object-hash": "2.1.1",
     "p-state": "0.2.0",
     "prettier": "2.2.1",
+    "simple-git-hooks": "2.4.1",
     "tsd": "0.14.0",
     "typedoc": "0.20.34",
     "typedoc-plugin-markdown": "3.6.0",

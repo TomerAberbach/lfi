@@ -99,14 +99,10 @@ test(`concatAsync concrete example`, async t => {
 
   const concatenatedAsyncIterable = concatAsync(asyncIterable1, asyncIterable2)
 
-  t.deepEqual(await collectAsync(toArray, concatenatedAsyncIterable), [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, concatenatedAsyncIterable),
+    [1, 2, 3, 4, 5, 6]
+  )
 })
 
 testProp(

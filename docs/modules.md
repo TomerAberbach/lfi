@@ -4285,9 +4285,7 @@ Like `Array.prototype.flatMap`, but for async iterables.
 const asyncIterable = flatMapAsync(
   value => {
     await new Promise(resolve => setTimeout(resolve, 1000))
-    return value > 1
-      ? asAsync([value, value * 2])
-      : [value, value * 3]
+    return value > 1 ? asAsync([value, value * 2]) : [value, value * 3]
   },
   [1, 2, 3]
 )
@@ -4330,9 +4328,7 @@ Like `Array.prototype.flatMap`, but for async iterables.
 const asyncIterable = flatMapAsync(
   value => {
     await new Promise(resolve => setTimeout(resolve, 1000))
-    return value > 1
-      ? asAsync([value, value * 2])
-      : [value, value * 3]
+    return value > 1 ? asAsync([value, value * 2]) : [value, value * 3]
   },
   [1, 2, 3]
 )
@@ -9562,14 +9558,10 @@ iterables.
 **`example`**
 
 ```js
-const maybeMessage = reduce((acc, string) => `${acc} ${string}`, [
-  `Hello`,
-  `World!`,
-  `What`,
-  `an`,
-  `interesting`,
-  `program!`
-])
+const maybeMessage = reduce(
+  (acc, string) => `${acc} ${string}`,
+  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]
+)
 
 console.log(get(maybeMessage))
 //=> Hello World! What an interesting program!
@@ -9609,14 +9601,10 @@ iterables.
 **`example`**
 
 ```js
-const maybeMessage = reduce((acc, string) => `${acc} ${string}`, [
-  `Hello`,
-  `World!`,
-  `What`,
-  `an`,
-  `interesting`,
-  `program!`
-])
+const maybeMessage = reduce(
+  (acc, string) => `${acc} ${string}`,
+  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]
+)
 
 console.log(get(maybeMessage))
 //=> Hello World! What an interesting program!

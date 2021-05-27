@@ -177,23 +177,10 @@ test(`flatMapAsync concrete example`, async t => {
     asyncIterable
   )
 
-  t.deepEqual(await collectAsync(toArray, flatMappedAsyncIterable), [
-    0.5,
-    1,
-    2,
-    1,
-    2,
-    4,
-    1.5,
-    3,
-    6,
-    2,
-    4,
-    8,
-    2.5,
-    5,
-    10
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, flatMappedAsyncIterable),
+    [0.5, 1, 2, 1, 2, 4, 1.5, 3, 6, 2, 4, 8, 2.5, 5, 10]
+  )
 })
 
 testProp(
@@ -269,23 +256,10 @@ test(`flatMapConcur concrete example`, async t => {
     concurIterable
   )
 
-  t.unorderedDeepEqual(await collectConcur(toArray, flatMappedConcurIterable), [
-    0.5,
-    1,
-    2,
-    1,
-    2,
-    4,
-    1.5,
-    3,
-    6,
-    2,
-    4,
-    8,
-    2.5,
-    5,
-    10
-  ])
+  t.unorderedDeepEqual(
+    await collectConcur(toArray, flatMappedConcurIterable),
+    [0.5, 1, 2, 1, 2, 4, 1.5, 3, 6, 2, 4, 8, 2.5, 5, 10]
+  )
 })
 
 testProp(
@@ -343,16 +317,10 @@ test(`flattenAsync concrete example`, async t => {
 
   const flattenedAsyncIterable = flattenAsync(asyncIterable)
 
-  t.deepEqual(await collectAsync(toArray, flattenedAsyncIterable), [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, flattenedAsyncIterable),
+    [1, 2, 3, 4, 5, 6, 7, 8]
+  )
 })
 
 testProp(
@@ -427,14 +395,8 @@ test(`flattenConcur concrete example`, async t => {
 
   const flattenedConcurIterable = flattenConcur(concurIterable)
 
-  t.deepEqual(await collectConcur(toArray, flattenedConcurIterable), [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8
-  ])
+  t.deepEqual(
+    await collectConcur(toArray, flattenedConcurIterable),
+    [1, 2, 3, 4, 5, 6, 7, 8]
+  )
 })

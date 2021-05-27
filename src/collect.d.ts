@@ -299,22 +299,20 @@ export type Collector =
   | MapCollector
 
 /** @internal */
-type CollectorToCollection<
-  C extends Collector,
-  Value
-> = C extends typeof toArray
-  ? Array<Value>
-  : C extends typeof toSet
-  ? Set<Value>
-  : C extends typeof toWeakSet
-  ? Value extends object
-    ? WeakSet<Value>
+type CollectorToCollection<C extends Collector, Value> =
+  C extends typeof toArray
+    ? Array<Value>
+    : C extends typeof toSet
+    ? Set<Value>
+    : C extends typeof toWeakSet
+    ? Value extends object
+      ? WeakSet<Value>
+      : never
+    : C extends MapCollector
+    ? Value extends [infer EntryKey, infer EntryValue]
+      ? MapCollectorToCollection<C, EntryKey, EntryValue>
+      : never
     : never
-  : C extends MapCollector
-  ? Value extends [infer EntryKey, infer EntryValue]
-    ? MapCollectorToCollection<C, EntryKey, EntryValue>
-    : never
-  : never
 
 /**
  * An object that specifies how to collect an iterable of entries to some
@@ -327,23 +325,20 @@ export type MapCollector =
   | Folding<any, any>
 
 /** @internal */
-type MapCollectorToCollection<
-  C extends MapCollector,
-  Key,
-  Value
-> = C extends typeof toObject
-  ? Key extends keyof any
-    ? Record<Key, Value>
+type MapCollectorToCollection<C extends MapCollector, Key, Value> =
+  C extends typeof toObject
+    ? Key extends keyof any
+      ? Record<Key, Value>
+      : never
+    : C extends typeof toMap
+    ? Map<Key, Value>
+    : C extends typeof toWeakMap
+    ? Key extends object
+      ? WeakMap<Key, Value>
+      : never
+    : C extends Folding<infer Acc, infer InnerC>
+    ? MapCollectorToCollection<InnerC, Key, Acc>
     : never
-  : C extends typeof toMap
-  ? Map<Key, Value>
-  : C extends typeof toWeakMap
-  ? Key extends object
-    ? WeakMap<Key, Value>
-    : never
-  : C extends Folding<infer Acc, infer InnerC>
-  ? MapCollectorToCollection<InnerC, Key, Acc>
-  : never
 
 /**
  * Returns a collection (collected by `collector`) containing the values of

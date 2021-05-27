@@ -113,13 +113,10 @@ test(`mapAsync concrete example`, async t => {
 
   const mappedAsyncIterable = mapAsync(value => value * 2, asyncIterable)
 
-  t.deepEqual(await collectAsync(toArray, mappedAsyncIterable), [
-    2,
-    4,
-    6,
-    8,
-    10
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, mappedAsyncIterable),
+    [2, 4, 6, 8, 10]
+  )
 })
 
 testProp(
@@ -167,11 +164,8 @@ test(`mapConcur concrete example`, async t => {
 
   const mappedConcurIterable = mapConcur(value => value * 2, concurIterable)
 
-  t.deepEqual(await collectConcur(toArray, mappedConcurIterable), [
-    2,
-    4,
-    6,
-    8,
-    10
-  ])
+  t.deepEqual(
+    await collectConcur(toArray, mappedConcurIterable),
+    [2, 4, 6, 8, 10]
+  )
 })

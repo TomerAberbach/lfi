@@ -187,13 +187,10 @@ export const maybeAsyncCompareFnArb = fc.oneof(
   asyncCompareFnArb
 )
 
-export const [
-  emptyIterableArb,
-  emptyAsyncIterableArb,
-  emptyConcurIterableArb
-] = [getIterableArb, getAsyncIterableArb, getConcurIterableArb].map(getArb =>
-  getArb(fc.anything(), { minLength: 0, maxLength: 0 })
-)
+export const [emptyIterableArb, emptyAsyncIterableArb, emptyConcurIterableArb] =
+  [getIterableArb, getAsyncIterableArb, getConcurIterableArb].map(getArb =>
+    getArb(fc.anything(), { minLength: 0, maxLength: 0 })
+  )
 
 export const [
   nonEmptyIterableArb,

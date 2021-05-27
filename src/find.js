@@ -38,17 +38,18 @@ export const findAsync = curry((fn, asyncIterable) => ({
   }
 }))
 
-export const findConcur = curry((fn, concurIterable) => apply =>
-  new Promise(resolve => {
-    let found = false
-    concurIterable(async value => {
-      if (!found && (await fn(value)) === true && !found) {
-        found = true
-        resolve()
-        await apply(value)
-      }
-    }).then(() => resolve())
-  })
+export const findConcur = curry(
+  (fn, concurIterable) => apply =>
+    new Promise(resolve => {
+      let found = false
+      concurIterable(async value => {
+        if (!found && (await fn(value)) === true && !found) {
+          found = true
+          resolve()
+          await apply(value)
+        }
+      }).then(() => resolve())
+    })
 )
 
 export const findLast = curry((fn, iterable) => ({

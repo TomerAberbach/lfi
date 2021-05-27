@@ -32,6 +32,8 @@ export const concatAsync = (...iterables) => ({
   }
 })
 
-export const concatConcur = (...iterables) => async apply => {
-  await Promise.all(map(iterable => asConcur(iterable)(apply), iterables))
-}
+export const concatConcur =
+  (...iterables) =>
+  async apply => {
+    await Promise.all(map(iterable => asConcur(iterable)(apply), iterables))
+  }

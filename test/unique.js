@@ -128,13 +128,10 @@ test(`uniqueByAsync concrete example`, async t => {
 
   const uniqueAsyncIterable = uniqueByAsync(Math.abs, asyncIterable)
 
-  t.deepEqual(await collectAsync(toArray, uniqueAsyncIterable), [
-    1,
-    -2,
-    3,
-    10,
-    -4
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, uniqueAsyncIterable),
+    [1, -2, 3, 10, -4]
+  )
 })
 
 testProp(
@@ -203,11 +200,8 @@ test(`uniqueByConcur concrete example`, async t => {
 
   const uniqueConcurIterable = uniqueByConcur(Math.abs, concurIterable)
 
-  t.deepEqual(await collectConcur(toArray, uniqueConcurIterable), [
-    1,
-    -2,
-    3,
-    10,
-    -4
-  ])
+  t.deepEqual(
+    await collectConcur(toArray, uniqueConcurIterable),
+    [1, -2, 3, 10, -4]
+  )
 })

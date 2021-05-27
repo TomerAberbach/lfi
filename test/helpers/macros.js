@@ -115,10 +115,12 @@ const enhanceTestContext = t => {
   return t
 }
 
-const enhanceImplementation = implementation => async (t, ...inputs) => {
-  implementation(enhanceTestContext(t), ...inputs)
-  await clock.runAllAsync()
-}
+const enhanceImplementation =
+  implementation =>
+  async (t, ...inputs) => {
+    implementation(enhanceTestContext(t), ...inputs)
+    await clock.runAllAsync()
+  }
 
 export const test = (title, implementation) =>
   normalTest(title, enhanceImplementation(implementation))

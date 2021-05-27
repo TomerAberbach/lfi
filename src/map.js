@@ -32,6 +32,7 @@ export const mapAsync = curry((fn, asyncIterable) => ({
   }
 }))
 
-export const mapConcur = curry((fn, concurIterable) => apply =>
-  concurIterable(async value => apply(await fn(value)))
+export const mapConcur = curry(
+  (fn, concurIterable) => apply =>
+    concurIterable(async value => apply(await fn(value)))
 )

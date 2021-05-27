@@ -85,16 +85,10 @@ expectType<AsyncIterable<string>>(
 )
 
 expectType<ConcurIterable<number>>(
-  flatMapConcur(
-    value => [value, value * 2],
-    asConcur<number>([1, 2, 4])
-  )
+  flatMapConcur(value => [value, value * 2], asConcur<number>([1, 2, 4]))
 )
 expectType<ConcurIterable<number>>(
-  flatMapConcur(
-    async value => [value, value * 2],
-    asConcur<number>([1, 2, 4])
-  )
+  flatMapConcur(async value => [value, value * 2], asConcur<number>([1, 2, 4]))
 )
 expectType<ConcurIterable<number>>(
   flatMapConcur(

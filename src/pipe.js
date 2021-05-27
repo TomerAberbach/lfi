@@ -16,4 +16,7 @@
 
 export const pipe = (value, ...fns) => fns.reduce((acc, fn) => fn(acc), value)
 
-export const compose = (...fns) => value => pipe(value, ...fns)
+export const compose =
+  (...fns) =>
+  value =>
+    pipe(value, ...fns)

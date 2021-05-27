@@ -63,18 +63,10 @@ testProp(
 test(`generateAsync concrete example`, async t => {
   const asyncIterable = generateAsync(value => value + 1, 0)
 
-  t.deepEqual(await collectAsync(toArray, takeAsync(10, asyncIterable)), [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, takeAsync(10, asyncIterable)),
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  )
 })
 
 testProp(`repeat returns an iterable`, [fc.anything()], (t, value) => {
@@ -160,15 +152,8 @@ test(`cycleAsync concrete example`, async t => {
 
   const cyclingAsyncIterable = cycle(asyncIterable)
 
-  t.deepEqual(await collectAsync(toArray, takeAsync(9, cyclingAsyncIterable)), [
-    1,
-    2,
-    3,
-    1,
-    2,
-    3,
-    1,
-    2,
-    3
-  ])
+  t.deepEqual(
+    await collectAsync(toArray, takeAsync(9, cyclingAsyncIterable)),
+    [1, 2, 3, 1, 2, 3, 1, 2, 3]
+  )
 })

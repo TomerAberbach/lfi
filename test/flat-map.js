@@ -221,9 +221,7 @@ testProp(
 testProp(
   `flatMapConcur is concurrent`,
   [
-    getMaybeAsyncFnArb(
-      fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)
-    ),
+    getMaybeAsyncFnArb(fc.oneof(iterableArb, concurIterableArb)),
     nonEmptyConcurIterableArb
   ],
   async (t, fn, concurIterable) => {

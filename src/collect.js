@@ -28,18 +28,23 @@ const setAdd = (acc, value) => acc.add(value)
 export const toSet = { create: () => new Set(), add: setAdd }
 export const toWeakSet = { create: () => new WeakSet(), add: setAdd }
 
-export const toObject = {
+const createToObject = ({ writable }) => ({
   create: () => ({}),
   add: (acc, [key, value]) =>
     Object.defineProperty(acc, key, {
       configurable: true,
       enumerable: true,
-      writable: true,
+      writable,
       value
     }),
   has: (acc, key) => Object.prototype.hasOwnProperty.call(acc, key),
   get: (acc, key) => acc[key]
-}
+})
+
+export const toObject = Object.assign(
+  ({ writable }) => createToObject(writable),
+  createToObject({ writable: true })
+)
 
 const mapAddHasGet = {
   add: (acc, [key, value]) => acc.set(key, value),

@@ -64,6 +64,7 @@ expectType<Promise<WeakSet<{}>>>(
 const entries1: Array<[string, object]> = [['a', {}]]
 const entries2: Array<[object, object]> = [[{}, {}]]
 
+expectAssignable<Collector>(toObject({ writable: true }))
 expectAssignable<Collector>(toObject)
 expectAssignable<MapCollector>(toObject)
 expectType<never>(collect(toObject, ['a', 'b']))

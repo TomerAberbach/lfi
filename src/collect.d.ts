@@ -70,6 +70,8 @@ export const toSet: unique symbol
  */
 export const toWeakSet: unique symbol
 
+declare const ToObject: unique symbol
+
 /**
  * A {@link MapCollector} that collects the key-value pairs of an iterable of
  * entries to an object.
@@ -97,7 +99,8 @@ export const toWeakSet: unique symbol
  * // }
  * ```
  */
-export const toObject: unique symbol
+export const toObject: typeof ToObject &
+  (({ writable }: { writable: boolean }) => typeof ToObject)
 
 /**
  * A {@link MapCollector} that collects the key-value pairs of an iterable of
@@ -319,14 +322,14 @@ type CollectorToCollection<C extends Collector, Value> =
  * (typically keyed) collection.
  */
 export type MapCollector =
-  | typeof toObject
+  | typeof ToObject
   | typeof toMap
   | typeof toWeakMap
   | Folding<any, any>
 
 /** @internal */
 type MapCollectorToCollection<C extends MapCollector, Key, Value> =
-  C extends typeof toObject
+  C extends typeof ToObject
     ? Key extends keyof any
       ? Record<Key, Value>
       : never

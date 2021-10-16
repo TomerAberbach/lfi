@@ -136,7 +136,6 @@ export const compose: {
     fn5: (e: E) => F
   ): (value: A) => F
   <A, B, C, D, E, F, G>(
-    value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
@@ -145,7 +144,6 @@ export const compose: {
     fn6: (f: F) => G
   ): (value: A) => G
   <A, B, C, D, E, F, G, H>(
-    value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
@@ -155,7 +153,6 @@ export const compose: {
     fn7: (g: G) => H
   ): (value: A) => H
   <A, B, C, D, E, F, G, H, I>(
-    value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
@@ -166,7 +163,6 @@ export const compose: {
     fn8: (h: H) => I
   ): (value: A) => I
   <A, B, C, D, E, F, G, H, I, J>(
-    value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,

@@ -26,8 +26,8 @@ const createJoin = (map, reduce, or) =>
       iterable,
       map(String),
       reduce((acc, value) => `${acc}${separator}${value}`),
-      or(() => ``)
-    )
+      or(() => ``),
+    ),
   )
 
 export const join = createJoin(map, reduce, or)

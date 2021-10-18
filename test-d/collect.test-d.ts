@@ -29,7 +29,7 @@ import {
   toObject,
   toSet,
   toWeakMap,
-  toWeakSet
+  toWeakSet,
 } from '../src'
 
 expectAssignable<Collector>(toArray)
@@ -37,10 +37,10 @@ expectNotAssignable<MapCollector>(toArray)
 expectType<Array<number>>(collect(toArray, [1, 2, 3]))
 expectType<Array<string>>(collect(toArray, ['a', 'b', 'c']))
 expectType<Promise<Array<string>>>(
-  collectAsync(toArray, asAsync(['a', 'b', 'c']))
+  collectAsync(toArray, asAsync(['a', 'b', 'c'])),
 )
 expectType<Promise<Array<string>>>(
-  collectConcur(toArray, asConcur(['a', 'b', 'c']))
+  collectConcur(toArray, asConcur(['a', 'b', 'c'])),
 )
 
 expectAssignable<Collector>(toSet)
@@ -49,7 +49,7 @@ expectType<Set<number>>(collect(toSet, [1, 2, 3]))
 expectType<Set<string>>(collect(toSet, ['a', 'b', 'c']))
 expectType<Promise<Set<string>>>(collectAsync(toSet, asAsync(['a', 'b', 'c'])))
 expectType<Promise<Set<string>>>(
-  collectConcur(toSet, asConcur(['a', 'b', 'c']))
+  collectConcur(toSet, asConcur(['a', 'b', 'c'])),
 )
 
 expectAssignable<Collector>(toWeakSet)
@@ -58,7 +58,7 @@ expectType<WeakSet<{}>>(collect(toWeakSet, [{}, {}, {}]))
 expectType<WeakSet<() => number>>(collect(toWeakSet, [() => 3]))
 expectType<Promise<WeakSet<{}>>>(collectAsync(toWeakSet, asAsync([{}, {}, {}])))
 expectType<Promise<WeakSet<{}>>>(
-  collectConcur(toWeakSet, asConcur([{}, {}, {}]))
+  collectConcur(toWeakSet, asConcur([{}, {}, {}])),
 )
 
 const entries1: Array<[string, object]> = [['a', {}]]
@@ -70,10 +70,10 @@ expectAssignable<MapCollector>(toObject)
 expectType<never>(collect(toObject, ['a', 'b']))
 expectType<Record<string, object>>(collect(toObject, entries1))
 expectType<Promise<Record<string, object>>>(
-  collectAsync(toObject, asAsync(entries1))
+  collectAsync(toObject, asAsync(entries1)),
 )
 expectType<Promise<Record<string, object>>>(
-  collectConcur(toObject, asConcur(entries1))
+  collectConcur(toObject, asConcur(entries1)),
 )
 
 expectAssignable<Collector>(toMap)
@@ -82,7 +82,7 @@ expectType<never>(collect(toMap, ['a', 'b']))
 expectType<Map<string, object>>(collect(toMap, entries1))
 expectType<Promise<Map<string, object>>>(collectAsync(toMap, asAsync(entries1)))
 expectType<Promise<Map<string, object>>>(
-  collectConcur(toMap, asConcur(entries1))
+  collectConcur(toMap, asConcur(entries1)),
 )
 
 expectAssignable<Collector>(toWeakMap)
@@ -90,23 +90,23 @@ expectAssignable<MapCollector>(toWeakMap)
 expectType<never>(collect(toWeakMap, ['a', 'b']))
 expectType<WeakMap<object, object>>(collect(toWeakMap, entries2))
 expectType<Promise<WeakMap<object, object>>>(
-  collectAsync(toWeakMap, asAsync(entries2))
+  collectAsync(toWeakMap, asAsync(entries2)),
 )
 expectType<Promise<WeakMap<object, object>>>(
-  collectConcur(toWeakMap, asConcur(entries2))
+  collectConcur(toWeakMap, asConcur(entries2)),
 )
 
 const foldingCollector = folding(
   value => [value],
   (acc: object[], value: object) => acc.concat(value),
-  toMap
+  toMap,
 )
 expectAssignable<Collector>(foldingCollector)
 expectAssignable<MapCollector>(foldingCollector)
 expectType<Map<string, object[]>>(collect(foldingCollector, entries1))
 expectType<Promise<Map<string, object[]>>>(
-  collectAsync(foldingCollector, asAsync(entries1))
+  collectAsync(foldingCollector, asAsync(entries1)),
 )
 expectType<Promise<Map<string, object[]>>>(
-  collectConcur(foldingCollector, asConcur(entries1))
+  collectConcur(foldingCollector, asConcur(entries1)),
 )

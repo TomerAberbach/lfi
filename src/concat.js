@@ -21,7 +21,7 @@ export const concat = (...iterables) => ({
     for (const iterable of iterables) {
       yield* iterable
     }
-  }
+  },
 })
 
 export const concatAsync = (...iterables) => ({
@@ -29,7 +29,7 @@ export const concatAsync = (...iterables) => ({
     for await (const asyncIterable of iterables) {
       yield* asyncIterable
     }
-  }
+  },
 })
 
 export const concatConcur =

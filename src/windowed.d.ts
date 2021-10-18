@@ -47,7 +47,7 @@ export const windowed: {
  */
 export const windowedAsync: {
   (size: number): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value[]>
   <Value>(size: number, asyncIterable: AsyncIterable<Value>): AsyncIterable<
     Value[]
@@ -68,7 +68,7 @@ export const windowedAsync: {
  */
 export const windowedConcur: {
   (size: number): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value[]>
   <Value>(size: number, concurIterable: ConcurIterable<Value>): ConcurIterable<
     Value[]

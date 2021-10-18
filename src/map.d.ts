@@ -33,7 +33,7 @@ import { MaybePromiseLike } from './internal/types'
  */
 export const map: {
   <From, To>(fn: (value: From) => To): (
-    iterable: Iterable<From>
+    iterable: Iterable<From>,
   ) => Iterable<To>
   <From, To>(fn: (value: From) => To, iterable: Iterable<From>): Iterable<To>
 }
@@ -56,11 +56,11 @@ export const map: {
  */
 export const mapAsync: {
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): (
-    asyncIterable: AsyncIterable<From>
+    asyncIterable: AsyncIterable<From>,
   ) => AsyncIterable<To>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
-    asyncIterable: AsyncIterable<From>
+    asyncIterable: AsyncIterable<From>,
   ): AsyncIterable<To>
 }
 
@@ -82,10 +82,10 @@ export const mapAsync: {
  */
 export const mapConcur: {
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): (
-    concurIterable: ConcurIterable<From>
+    concurIterable: ConcurIterable<From>,
   ) => ConcurIterable<To>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
-    concurIterable: ConcurIterable<From>
+    concurIterable: ConcurIterable<From>,
   ): ConcurIterable<To>
 }

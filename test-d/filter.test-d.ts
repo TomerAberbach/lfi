@@ -24,36 +24,36 @@ import {
   filterConcur,
   without,
   withoutAsync,
-  withoutConcur
+  withoutConcur,
 } from '../src'
 
 expectType<Iterable<number>>(filter(value => String(value), [1, 2, 3]))
 expectType<Iterable<number>>(filter((value: number) => value > 2)([1, 2, 3]))
 
 expectType<AsyncIterable<number>>(
-  filterAsync(value => value > 2, asAsync([1, 2, 3]))
+  filterAsync(value => value > 2, asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  filterAsync(async value => String(value), asAsync([1, 2, 3]))
+  filterAsync(async value => String(value), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  filterAsync((value: number) => String(value))(asAsync([1, 2, 3]))
+  filterAsync((value: number) => String(value))(asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  filterAsync(async (value: number) => String(value))(asAsync([1, 2, 3]))
+  filterAsync(async (value: number) => String(value))(asAsync([1, 2, 3])),
 )
 
 expectType<ConcurIterable<number>>(
-  filterConcur(value => String(value), asConcur([1, 2, 3]))
+  filterConcur(value => String(value), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  filterConcur(async value => value > 2, asConcur([1, 2, 3]))
+  filterConcur(async value => value > 2, asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  filterConcur((value: number) => String(value))(asConcur([1, 2, 3]))
+  filterConcur((value: number) => String(value))(asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  filterConcur(async (value: number) => String(value))(asConcur([1, 2, 3]))
+  filterConcur(async (value: number) => String(value))(asConcur([1, 2, 3])),
 )
 
 expectType<Iterable<number>>(without(['a', 1], [1, 2, 3]))

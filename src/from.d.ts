@@ -29,7 +29,7 @@ export const keys: <Key>(map: Map<Key, unknown>) => Iterable<Key>
  * the iterable returned by this function can be iterated multiple times.
  */
 export const values: <Value>(
-  object: Map<unknown, Value> | Set<Value>
+  object: Map<unknown, Value> | Set<Value>,
 ) => Iterable<Value>
 
 /**
@@ -39,5 +39,5 @@ export const values: <Value>(
  * this function can be iterated multiple times.
  */
 export const entries: <Key, Value>(
-  map: Map<Key, Value>
+  map: Map<Key, Value>,
 ) => Iterable<[Key, Value]>

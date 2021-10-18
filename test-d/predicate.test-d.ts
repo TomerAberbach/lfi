@@ -29,25 +29,25 @@ import {
   noneConcur,
   includes,
   includesAsync,
-  includesConcur
+  includesConcur,
 } from '../src'
 
 expectType<boolean>(all(x => x > 2, [1, 2, 3]))
 expectType<Promise<boolean>>(allAsync(y => y > 2, asAsync([1, 2, 3])))
 expectType<Promise<boolean>>(
-  allConcur(async (x: number) => x > 2, asConcur([1, 2, 3]))
+  allConcur(async (x: number) => x > 2, asConcur([1, 2, 3])),
 )
 
 expectType<boolean>(any(x => x > 2, [1, 2, 3]))
 expectType<Promise<boolean>>(anyAsync(y => y > 2, asAsync([1, 2, 3])))
 expectType<Promise<boolean>>(
-  anyConcur(async (x: number) => x > 2, asConcur([1, 2, 3]))
+  anyConcur(async (x: number) => x > 2, asConcur([1, 2, 3])),
 )
 
 expectType<boolean>(none(x => x > 2, [1, 2, 3]))
 expectType<Promise<boolean>>(noneAsync(y => y > 2, asAsync([1, 2, 3])))
 expectType<Promise<boolean>>(
-  noneConcur(async (x: number) => x > 2, asConcur([1, 2, 3]))
+  noneConcur(async (x: number) => x > 2, asConcur([1, 2, 3])),
 )
 
 expectType<boolean>(includes(5, [1, 2, 3]))

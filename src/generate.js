@@ -25,7 +25,7 @@ export const generate = curry((fn, seed) => ({
       yield value
       value = fn(value)
     }
-  }
+  },
 }))
 
 export const generateAsync = curry((fn, seed) => ({
@@ -36,7 +36,7 @@ export const generateAsync = curry((fn, seed) => ({
       yield value
       value = await fn(value)
     }
-  }
+  },
 }))
 
 export const repeat = value => ({
@@ -44,7 +44,7 @@ export const repeat = value => ({
     while (true) {
       yield value
     }
-  }
+  },
 })
 
 export const cycle = iterable => ({
@@ -65,7 +65,7 @@ export const cycle = iterable => ({
     while (true) {
       yield* values
     }
-  }
+  },
 })
 
 export const cycleAsync = asyncIterable => ({
@@ -86,5 +86,5 @@ export const cycleAsync = asyncIterable => ({
     while (true) {
       yield* values
     }
-  }
+  },
 })

@@ -18,12 +18,12 @@ import { expectType } from 'tsd'
 import {
   asAsync,
   asConcur,
-  cached,
-  cachedAsync,
-  cachedConcur,
-  ConcurIterable
+  chunked,
+  chunkedAsync,
+  chunkedConcur,
+  ConcurIterable,
 } from '../src'
 
-expectType<Iterable<number>>(cached([1, 2, 3]))
-expectType<AsyncIterable<number>>(cachedAsync(asAsync([1, 2, 3])))
-expectType<ConcurIterable<number>>(cachedConcur(asConcur([1, 2, 3])))
+expectType<Iterable<number[]>>(chunked(4, [1, 2, 3]))
+expectType<AsyncIterable<number[]>>(chunkedAsync(2, asAsync([1, 2, 3])))
+expectType<ConcurIterable<number[]>>(chunkedConcur(1, asConcur([1, 2, 3])))

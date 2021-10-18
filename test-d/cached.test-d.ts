@@ -15,38 +15,15 @@
  */
 
 import { expectType } from 'tsd'
-import { keys, values, entries } from '../src'
+import {
+  asAsync,
+  asConcur,
+  cached,
+  cachedAsync,
+  cachedConcur,
+  ConcurIterable,
+} from '../src'
 
-expectType<Iterable<number>>(
-  keys(
-    new Map<number, any>([
-      [1, 2],
-      [1, `sdfsd`]
-    ])
-  )
-)
-expectType<Iterable<number>>(
-  keys(
-    new Map<number, string>([
-      [1, `sdf`],
-      [1, `sdfsd`]
-    ])
-  )
-)
-expectType<Iterable<string>>(
-  values(
-    new Map<number, string>([
-      [1, `sdf`],
-      [1, `sdfsd`]
-    ])
-  )
-)
-expectType<Iterable<string>>(values(new Set([`dsfsd`, `sdfs`])))
-expectType<Iterable<[number, string]>>(
-  entries(
-    new Map<number, string>([
-      [1, `sdf`],
-      [1, `sdfsd`]
-    ])
-  )
-)
+expectType<Iterable<number>>(cached([1, 2, 3]))
+expectType<AsyncIterable<number>>(cachedAsync(asAsync([1, 2, 3])))
+expectType<ConcurIterable<number>>(cachedConcur(asConcur([1, 2, 3])))

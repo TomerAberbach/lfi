@@ -25,7 +25,7 @@ import {
   lastConcur,
   take,
   takeAsync,
-  takeConcur
+  takeConcur,
 } from '../src/sub.js'
 import { get, getAsync, getConcur } from '../src/optional.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
@@ -42,7 +42,7 @@ import {
   nonEmptyIterableArb,
   nonPositiveIntegerArb,
   nonSafeIntegerDoubleArb,
-  positiveIntegerArb
+  positiveIntegerArb,
 } from './helpers/arbs.js'
 
 testProp(
@@ -52,7 +52,7 @@ testProp(
     const chunkedIterable = chunked(size, iterable)
 
     t.iterable(chunkedIterable)
-  }
+  },
 )
 
 testProp(
@@ -61,9 +61,9 @@ testProp(
   (t, size, iterable) => {
     t.throws(() => chunked(size, iterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -72,9 +72,9 @@ testProp(
   (t, size, iterable) => {
     t.throws(() => chunked(size, iterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -84,7 +84,7 @@ testProp(
     const chunkedIterable = chunked(size, iterable)
 
     t.deepEqual([...flatten(chunkedIterable)], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -94,7 +94,7 @@ testProp(
     const chunkedIterable = chunked(size, iterable)
 
     t.is(count(chunkedIterable), 0)
-  }
+  },
 )
 
 testProp(
@@ -102,7 +102,7 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyIterableArb)
-      .filter(([size, iterable]) => iterable.values.length % size === 0)
+      .filter(([size, iterable]) => iterable.values.length % size === 0),
   ],
   (t, [size, iterable]) => {
     const chunkedIterable = chunked(size, iterable)
@@ -110,7 +110,7 @@ testProp(
     for (const chunk of chunkedIterable) {
       t.is(chunk.length, size)
     }
-  }
+  },
 )
 
 testProp(
@@ -118,20 +118,20 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyIterableArb)
-      .filter(([size, iterable]) => iterable.values.length % size !== 0)
+      .filter(([size, iterable]) => iterable.values.length % size !== 0),
   ],
   (t, [size, iterable]) => {
     const chunkedIterable = chunked(size, iterable)
 
     for (const chunk of take(
       Math.floor(iterable.values.length / size),
-      chunkedIterable
+      chunkedIterable,
     )) {
       t.is(chunk.length, size)
     }
 
     t.is(get(last(chunkedIterable)).length, iterable.values.length % size)
-  }
+  },
 )
 
 test(`chunked concrete example`, t => {
@@ -149,7 +149,7 @@ testProp(
     const chunkedAsyncIterable = chunkedAsync(n, asyncIterable)
 
     await t.asyncIterable(chunkedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -158,9 +158,9 @@ testProp(
   (t, size, asyncIterable) => {
     t.throws(() => chunkedAsync(size, asyncIterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -169,9 +169,9 @@ testProp(
   (t, size, asyncIterable) => {
     t.throws(() => chunkedAsync(size, asyncIterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -182,9 +182,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, flattenAsync(chunkedAsyncIterable)),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -194,7 +194,7 @@ testProp(
     const chunkedAsyncIterable = chunkedAsync(n, asyncIterable)
 
     t.is(await countAsync(chunkedAsyncIterable), 0)
-  }
+  },
 )
 
 testProp(
@@ -202,7 +202,7 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyAsyncIterableArb)
-      .filter(([n, asyncIterable]) => asyncIterable.values.length % n === 0)
+      .filter(([n, asyncIterable]) => asyncIterable.values.length % n === 0),
   ],
   async (t, [n, asyncIterable]) => {
     const chunkedAsyncIterable = chunkedAsync(n, asyncIterable)
@@ -210,7 +210,7 @@ testProp(
     for await (const chunk of chunkedAsyncIterable) {
       t.is(chunk.length, n)
     }
-  }
+  },
 )
 
 testProp(
@@ -218,23 +218,23 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyAsyncIterableArb)
-      .filter(([n, asyncIterable]) => asyncIterable.values.length % n !== 0)
+      .filter(([n, asyncIterable]) => asyncIterable.values.length % n !== 0),
   ],
   async (t, [n, asyncIterable]) => {
     const chunkedAsyncIterable = chunkedAsync(n, asyncIterable)
 
     for await (const chunk of takeAsync(
       Math.floor(asyncIterable.values.length / n),
-      chunkedAsyncIterable
+      chunkedAsyncIterable,
     )) {
       t.is(chunk.length, n)
     }
 
     t.is(
       (await getAsync(lastAsync(chunkedAsyncIterable))).length,
-      asyncIterable.values.length % n
+      asyncIterable.values.length % n,
     )
-  }
+  },
 )
 
 test(`chunkedAsync concrete example`, async t => {
@@ -245,7 +245,7 @@ test(`chunkedAsync concrete example`, async t => {
   t.deepEqual(await collectAsync(toArray, chunkedAsyncIterable), [
     [`a`, `b`, `c`],
     [`d`, `e`, `f`],
-    [`g`]
+    [`g`],
   ])
 })
 
@@ -256,7 +256,7 @@ testProp(
     const chunkedConcurIterable = chunkedConcur(n, concurIterable)
 
     await t.concurIterable(chunkedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -265,9 +265,9 @@ testProp(
   (t, size, concurIterable) => {
     t.throws(() => chunkedConcur(size, concurIterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -276,9 +276,9 @@ testProp(
   (t, size, concurIterable) => {
     t.throws(() => chunkedConcur(size, concurIterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -290,11 +290,11 @@ testProp(
     t.deepEqual(
       await collectConcur(
         toArray,
-        flatMapConcur(asConcur, chunkedConcurIterable)
+        flatMapConcur(asConcur, chunkedConcurIterable),
       ),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -304,7 +304,7 @@ testProp(
     const chunkedConcurIterable = chunkedConcur(n, concurIterable)
 
     t.is(await countConcur(chunkedConcurIterable), 0)
-  }
+  },
 )
 
 testProp(
@@ -312,7 +312,7 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyConcurIterableArb)
-      .filter(([n, concurIterable]) => concurIterable.values.length % n === 0)
+      .filter(([n, concurIterable]) => concurIterable.values.length % n === 0),
   ],
   async (t, [n, concurIterable]) => {
     const chunkedConcurIterable = chunkedConcur(n, concurIterable)
@@ -320,7 +320,7 @@ testProp(
     await chunkedConcurIterable(chunk => {
       t.is(chunk.length, n)
     })
-  }
+  },
 )
 
 testProp(
@@ -328,21 +328,21 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, nonEmptyConcurIterableArb)
-      .filter(([n, concurIterable]) => concurIterable.values.length % n !== 0)
+      .filter(([n, concurIterable]) => concurIterable.values.length % n !== 0),
   ],
   async (t, [n, concurIterable]) => {
     const chunkedConcurIterable = chunkedConcur(n, concurIterable)
 
     await takeConcur(
       Math.floor(concurIterable.values.length / n),
-      chunkedConcurIterable
+      chunkedConcurIterable,
     )(chunk => t.is(chunk.length, n))
 
     t.is(
       (await getConcur(lastConcur(chunkedConcurIterable))).length,
-      concurIterable.values.length % n
+      concurIterable.values.length % n,
     )
-  }
+  },
 )
 
 testProp(
@@ -359,7 +359,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`chunkedConcur concrete example`, async t => {
@@ -370,6 +370,6 @@ test(`chunkedConcur concrete example`, async t => {
   t.deepEqual(await collectConcur(toArray, chunkedConcurIterable), [
     [`a`, `b`, `c`],
     [`d`, `e`, `f`],
-    [`g`]
+    [`g`],
   ])
 })

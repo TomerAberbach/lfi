@@ -43,12 +43,12 @@ export const fold: {
     (initial: Acc, iterable: Iterable<Value>): Acc
   }
   <Acc, Value>(fn: (acc: Acc, value: Value) => Acc, initial: Acc): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Acc
   <Acc, Value>(
     fn: (acc: Acc, value: Value) => Acc,
     initial: Acc,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Acc
 }
 
@@ -83,12 +83,12 @@ export const foldAsync: {
   }
   <Acc, Value>(
     fn: (acc: Acc, value: Value) => MaybePromiseLike<Acc>,
-    initial: Acc
+    initial: Acc,
   ): (asyncIterable: AsyncIterable<Value>) => Promise<Acc>
   <Acc, Value>(
     fn: (acc: Acc, value: Value) => MaybePromiseLike<Acc>,
     initial: Acc,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<Acc>
 }
 
@@ -134,12 +134,12 @@ export const foldConcur: {
   }
   <Acc, Value>(
     fn: (acc: Acc | Value, value: Value) => MaybePromiseLike<Acc>,
-    initial: Acc
+    initial: Acc,
   ): (concurIterable: ConcurIterable<Value>) => Promise<Acc>
   <Acc, Value>(
     fn: (acc: Acc | Value, value: Value) => MaybePromiseLike<Acc>,
     initial: Acc,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<Acc>
 }
 
@@ -167,11 +167,11 @@ export const foldConcur: {
  */
 export const reduce: {
   <Acc, Value>(fn: (acc: Acc, value: Value) => Acc): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Acc, Value>(
     fn: (acc: Acc, value: Value) => Acc,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Acc>
 }
 
@@ -203,11 +203,11 @@ export const reduce: {
  */
 export const reduceAsync: {
   <Acc, Value>(fn: (acc: Acc, value: Value) => MaybePromiseLike<Acc>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Acc, Value>(
     fn: (acc: Acc, value: Value) => MaybePromiseLike<Acc>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Acc>
 }
 
@@ -240,10 +240,10 @@ export const reduceAsync: {
  */
 export const reduceConcur: {
   <Acc, Value>(fn: (acc: Acc | Value, value: Value) => MaybePromiseLike<Acc>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Acc, Value>(
     fn: (acc: Acc | Value, value: Value) => MaybePromiseLike<Acc>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Acc>
 }

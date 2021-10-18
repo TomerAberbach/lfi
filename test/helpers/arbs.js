@@ -35,8 +35,8 @@ export const getThunkArb = arb =>
       value,
       timeout,
       toString: () =>
-        `() => delay(${timeout}).then(() => ${fc.stringify(value)})`
-    })
+        `() => delay(${timeout}).then(() => ${fc.stringify(value)})`,
+    }),
   )
 
 export const getIterableArb = (arb, constraints) => {
@@ -44,15 +44,15 @@ export const getIterableArb = (arb, constraints) => {
 
   return fc.oneof(
     arrayArb.map(array =>
-      Object.assign(array, { values: [...array], iterationOrder: [...array] })
+      Object.assign(array, { values: [...array], iterationOrder: [...array] }),
     ),
     fc.tuple(fc.object(), arrayArb).map(([object, array]) => ({
       ...object,
       values: [...array],
       iterationOrder: [...array],
       [Symbol.iterator]: () => array[Symbol.iterator](),
-      toString: () => `iterable { ${fc.stringify(array)} }`
-    }))
+      toString: () => `iterable { ${fc.stringify(array)} }`,
+    })),
   )
 }
 
@@ -60,7 +60,7 @@ const aggregateTimeouts = timeouts =>
   timeouts.length > 0
     ? {
         minTimeout: Math.min(...timeouts),
-        maxTimeout: Math.max(...timeouts)
+        maxTimeout: Math.max(...timeouts),
       }
     : { minTimeout: 0, maxTimeout: 0 }
 
@@ -82,7 +82,7 @@ export const getAsyncIterableArb = (arb, constraints) =>
           yield thunk()
         }
       },
-      toString: () => `asyncIterable { ${fc.stringify(iterable.values)} }`
+      toString: () => `asyncIterable { ${fc.stringify(iterable.values)} }`,
     }
   })
 
@@ -102,8 +102,8 @@ export const getConcurIterableArb = (arb, constraints) =>
         iterationOrder,
         timeouts,
         ...aggregateTimeouts(timeouts),
-        toString: () => `concurIterable { ${fc.stringify(iterationOrder)} }`
-      }
+        toString: () => `concurIterable { ${fc.stringify(iterationOrder)} }`,
+      },
     )
   })
 
@@ -112,7 +112,7 @@ const coerceToArb = value =>
 
 export const getFnArb = (
   arb,
-  { getFuncArb = fc.func, name = fc.string(), length = fc.nat() } = {}
+  { getFuncArb = fc.func, name = fc.string(), length = fc.nat() } = {},
 ) =>
   fc
     .tuple(getFuncArb(arb), coerceToArb(name), coerceToArb(length))
@@ -121,14 +121,14 @@ export const getFnArb = (
         length: {
           enumerable: false,
           writable: false,
-          value: length
+          value: length,
         },
         name: {
           enumerable: false,
           writable: false,
-          value: name
-        }
-      })
+          value: name,
+        },
+      }),
     )
 
 export const getAsyncFnArb = (arb, constraints) =>
@@ -141,18 +141,18 @@ export const getAsyncFnArb = (arb, constraints) =>
           timeout,
           toString: () =>
             `(...args) => delay(${timeout}).then(() => (${fc.stringify(
-              fn
-            )})(...args))`
-        })
-      )
+              fn,
+            )})(...args))`,
+        }),
+      ),
   })
 
 export const getMaybeAsyncFnArb = (arb, constraints) =>
   fc.oneof(
     getFnArb(arb, constraints).map(fn =>
-      Object.assign(fn, { sync: fn, timeout: 0 })
+      Object.assign(fn, { sync: fn, timeout: 0 }),
     ),
-    getAsyncFnArb(arb, constraints)
+    getAsyncFnArb(arb, constraints),
   )
 
 export const [
@@ -160,13 +160,13 @@ export const [
   asyncIterableArb,
   concurIterableArb,
   fnArb,
-  maybeAsyncFnArb
+  maybeAsyncFnArb,
 ] = [
   getIterableArb,
   getAsyncIterableArb,
   getConcurIterableArb,
   getFnArb,
-  getMaybeAsyncFnArb
+  getMaybeAsyncFnArb,
 ].map(getArb => getArb(fc.anything()))
 
 export const asyncCompareFnArb = fc
@@ -177,31 +177,31 @@ export const asyncCompareFnArb = fc
       timeout,
       toString: () =>
         `(...args) => delay(${timeout}).then(() => (${fc.stringify(
-          fn
-        )})(...args))`
-    })
+          fn,
+        )})(...args))`,
+    }),
   )
 
 export const maybeAsyncCompareFnArb = fc.oneof(
   fc.compareFunc().map(fn => Object.assign(fn, { sync: fn, timeout: 0 })),
-  asyncCompareFnArb
+  asyncCompareFnArb,
 )
 
 export const [emptyIterableArb, emptyAsyncIterableArb, emptyConcurIterableArb] =
   [getIterableArb, getAsyncIterableArb, getConcurIterableArb].map(getArb =>
-    getArb(fc.anything(), { minLength: 0, maxLength: 0 })
+    getArb(fc.anything(), { minLength: 0, maxLength: 0 }),
   )
 
 export const [
   nonEmptyIterableArb,
   nonEmptyAsyncIterableArb,
-  nonEmptyConcurIterableArb
+  nonEmptyConcurIterableArb,
 ] = [getIterableArb, getAsyncIterableArb, getConcurIterableArb].map(getArb =>
-  getArb(fc.anything(), { minLength: 1 })
+  getArb(fc.anything(), { minLength: 1 }),
 )
 
 export const [predicateArb, asyncPredicateArb, maybeAsyncPredicateArb] = [
   getFnArb,
   getAsyncFnArb,
-  getMaybeAsyncFnArb
+  getMaybeAsyncFnArb,
 ].map(getArb => getArb(fc.oneof(fc.boolean(), fc.anything())))

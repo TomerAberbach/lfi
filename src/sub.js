@@ -39,7 +39,7 @@ export const dropWhile = curry((fn, iterable) => ({
     while (iterator.hasNext()) {
       yield iterator.getNext()
     }
-  }
+  },
 }))
 
 export const dropWhileAsync = curry((fn, asyncIterable) => ({
@@ -58,7 +58,7 @@ export const dropWhileAsync = curry((fn, asyncIterable) => ({
     while (await asyncIterator.hasNext()) {
       yield await asyncIterator.getNext()
     }
-  }
+  },
 }))
 
 export const dropWhileConcur = curry((fn, concurIterable) => apply => {
@@ -85,7 +85,7 @@ export const takeWhile = curry((fn, iterable) => ({
 
       yield value
     }
-  }
+  },
 }))
 
 export const takeWhileAsync = curry((fn, asyncIterable) => ({
@@ -97,7 +97,7 @@ export const takeWhileAsync = curry((fn, asyncIterable) => ({
 
       yield value
     }
-  }
+  },
 }))
 
 export const takeWhileConcur = curry((fn, concurIterable) => apply => {
@@ -124,7 +124,7 @@ export const takeWhileConcur = curry((fn, concurIterable) => apply => {
 
       await apply(value)
     }),
-    promise
+    promise,
   ])
 })
 
@@ -135,7 +135,7 @@ const createTakeOrDrop = (dropOrTakeWhile, map, indexed) =>
     return pipe(
       indexed(iterable),
       dropOrTakeWhile(([index]) => index < count),
-      map(([, value]) => value)
+      map(([, value]) => value),
     )
   })
 
@@ -143,23 +143,23 @@ export const drop = createTakeOrDrop(dropWhile, map, indexed)
 export const dropAsync = createTakeOrDrop(
   dropWhileAsync,
   mapAsync,
-  indexedAsync
+  indexedAsync,
 )
 export const dropConcur = createTakeOrDrop(
   dropWhileConcur,
   mapConcur,
-  indexedConcur
+  indexedConcur,
 )
 export const take = createTakeOrDrop(takeWhile, map, indexed)
 export const takeAsync = createTakeOrDrop(
   takeWhileAsync,
   mapAsync,
-  indexedAsync
+  indexedAsync,
 )
 export const takeConcur = createTakeOrDrop(
   takeWhileConcur,
   mapConcur,
-  indexedConcur
+  indexedConcur,
 )
 
 export const first = take(1)

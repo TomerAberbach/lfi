@@ -23,7 +23,7 @@ import {
   collectConcur,
   toArray,
   toMap,
-  counting
+  counting,
 } from '../src/collect.js'
 import { each, eachAsync, eachConcur } from '../src/each.js'
 import { pipe } from '../src/pipe.js'
@@ -37,7 +37,7 @@ import {
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 import { delay } from './helpers/index.js'
 
@@ -54,7 +54,7 @@ testProp(
     const cachedIterable = cached(iterable)
 
     t.deepEqual([...cachedIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -66,9 +66,9 @@ testProp(
         fc.tuple(
           fc.constant(iterable),
           fc.constant(iteratorCount),
-          fc.infiniteStream(fc.integer({ min: 0, max: iteratorCount - 1 }))
-        )
-      )
+          fc.infiniteStream(fc.integer({ min: 0, max: iteratorCount - 1 })),
+        ),
+      ),
   ],
   (t, [iterable, iteratorCount, iteratorIndices]) => {
     const iterated = iterable.values.map(() => false)
@@ -78,20 +78,20 @@ testProp(
       each(([index]) => {
         t.false(iterated[index])
         iterated[index] = true
-      })
+      }),
     )
 
     iterable = cached(iterable)
 
     const iterators = Array.from({ length: iteratorCount }, () =>
-      iterable[Symbol.iterator]()
+      iterable[Symbol.iterator](),
     )
     for (const index of iteratorIndices) {
       if (iterators[index].next().done) {
         break
       }
     }
-  }
+  },
 )
 
 test(`cached concrete example`, t => {
@@ -123,7 +123,7 @@ testProp(
     const cachedAsyncIterable = cachedAsync(asyncIterable)
 
     await t.asyncIterable(cachedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -134,9 +134,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, cachedAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -151,15 +151,15 @@ testProp(
           fc.infiniteStream(
             fc.tuple(
               fc.integer({ min: 0, max: asyncIteratorCount - 1 }),
-              fc.boolean()
-            )
-          )
-        )
-      )
+              fc.boolean(),
+            ),
+          ),
+        ),
+      ),
   ],
   async (
     t,
-    [asyncIterable, asyncIteratorCount, asyncIteratorIndicesAndWait]
+    [asyncIterable, asyncIteratorCount, asyncIteratorIndicesAndWait],
   ) => {
     const iterated = asyncIterable.values.map(() => false)
     asyncIterable = pipe(
@@ -168,13 +168,13 @@ testProp(
       eachAsync(([index]) => {
         t.false(iterated[index])
         iterated[index] = true
-      })
+      }),
     )
 
     asyncIterable = cachedAsync(asyncIterable)
 
     const asyncIterators = Array.from({ length: asyncIteratorCount }, () =>
-      asyncIterable[Symbol.asyncIterator]()
+      asyncIterable[Symbol.asyncIterator](),
     )
     for (const [index, wait] of asyncIteratorIndicesAndWait) {
       const promise = asyncIterators[index].next()
@@ -183,7 +183,7 @@ testProp(
         break
       }
     }
-  }
+  },
 )
 
 test(`cachedAsync concrete example`, async t => {
@@ -215,7 +215,7 @@ testProp(
     const cachedConcurIterable = cachedConcur(concurIterable)
 
     await t.concurIterable(cachedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -226,21 +226,21 @@ testProp(
 
     t.unorderedDeepEqual(
       await collectConcur(toArray, cachedConcurIterable),
-      concurIterable.values
+      concurIterable.values,
     )
-  }
+  },
 )
 
 testProp(
   `cachedConcur ensures the underlying concur iterable is iterated at most once`,
   [
     nonEmptyConcurIterableArb,
-    fc.array(fc.integer({ min: 1, max: 100 }), { minLength: 1 })
+    fc.array(fc.integer({ min: 1, max: 100 }), { minLength: 1 }),
   ],
   async (t, concurIterable, timeouts) => {
     const iterated = collect(
       counting(toMap),
-      map(value => [value, value], concurIterable.values)
+      map(value => [value, value], concurIterable.values),
     )
     concurIterable = eachConcur(value => {
       t.true(iterated.get(value) > 0)
@@ -253,11 +253,11 @@ testProp(
       timeouts.map(timeout =>
         delay(timeout).then(() =>
           // eslint-disable-next-line no-empty-function
-          concurIterable(() => {})
-        )
-      )
+          concurIterable(() => {}),
+        ),
+      ),
     )
-  }
+  },
 )
 
 test(`cachedConcur concrete example`, async t => {
@@ -271,8 +271,8 @@ test(`cachedConcur concrete example`, async t => {
     delay(5).then(() => cachedConcurIterable(() => delay(8))),
     delay(1).then(() =>
       // eslint-disable-next-line no-empty-function
-      cachedConcurIterable(() => {})
-    )
+      cachedConcurIterable(() => {}),
+    ),
   ])
 
   t.is(count, 3)

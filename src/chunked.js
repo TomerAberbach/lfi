@@ -34,7 +34,7 @@ export const chunked = curry((size, iterable) => {
 
         yield chunk
       }
-    }
+    },
   }
 })
 
@@ -54,7 +54,7 @@ export const chunkedAsync = curry((size, asyncIterable) => {
 
         yield chunk
       }
-    }
+    },
   }
 })
 

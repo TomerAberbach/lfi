@@ -20,33 +20,33 @@ import { MaybePromiseLike } from './internal/types'
 /** @internal */
 type SubWhile = {
   <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     fn: (value: Value) => boolean | unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
 /** @internal */
 type SubWhileAsync = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
 /** @internal */
 type SubWhileConcur = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 
@@ -156,22 +156,22 @@ type Sub = {
 /** @internal */
 type SubAsync = {
   (count: number): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     count: number,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
 /** @internal */
 type SubConcur = {
   (count: number): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     count: number,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 
@@ -316,7 +316,7 @@ export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  */
 export const firstAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**
@@ -332,7 +332,7 @@ export const firstAsync: <Value>(
  * ```
  */
 export const firstConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => ConcurIterable<Value>
 
 /**
@@ -362,7 +362,7 @@ export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  */
 export const lastAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**
@@ -378,5 +378,5 @@ export const lastAsync: <Value>(
  * ```
  */
 export const lastConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => ConcurIterable<Value>

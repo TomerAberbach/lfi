@@ -16,7 +16,7 @@
 
 /** @internal */
 type Curried<Parameters extends ReadonlyArray<any>, Return> = <
-  PartialParameters extends Partial<Parameters>
+  PartialParameters extends Partial<Parameters>,
 >(
   ...args: PartialParameters
 ) => PartialParameters extends Parameters
@@ -61,5 +61,5 @@ type TupleOfSameLength<Tuple extends ReadonlyArray<any>> = Extract<
  * ```
  */
 export const curry: <Parameters extends ReadonlyArray<any>, Return>(
-  fn: (...args: Parameters) => Return
+  fn: (...args: Parameters) => Return,
 ) => Curried<Parameters, Return>

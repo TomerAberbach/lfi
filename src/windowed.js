@@ -28,7 +28,10 @@ const createWindow = size => {
       window[(start + size - 1) % size] = value
     },
     get: () =>
-      Array.from({ length: size }, (_, index) => window[(start + index) % size])
+      Array.from(
+        { length: size },
+        (_, index) => window[(start + index) % size],
+      ),
   }
 }
 
@@ -52,7 +55,7 @@ export const windowed = curry((size, iterable) => {
         window.push(iterator.getNext())
         yield window.get()
       }
-    }
+    },
   }
 })
 
@@ -76,7 +79,7 @@ export const windowedAsync = curry((size, asyncIterable) => {
         window.push(await asyncIterator.getNext())
         yield window.get()
       }
-    }
+    },
   }
 })
 

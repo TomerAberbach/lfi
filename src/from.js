@@ -15,7 +15,7 @@
  */
 
 const iterable = name => object => ({
-  [Symbol.iterator]: () => object[name]()[Symbol.iterator]()
+  [Symbol.iterator]: () => object[name]()[Symbol.iterator](),
 })
 
 export const keys = iterable(`keys`)

@@ -65,21 +65,21 @@ const runPool = async (values, fn, concurIterable) => {
 
 export const foldConcur = curry(
   async (fn, initial, concurIterable) =>
-    (await runPool([initial], fn, concurIterable))[0]
+    (await runPool([initial], fn, concurIterable))[0],
 )
 
 export const reduce = curry((fn, iterable) => ({
   *[Symbol.iterator]() {
     const [first, rest] = next(iterable)
     yield* map(initial => fold(fn, initial, rest), first)
-  }
+  },
 }))
 
 export const reduceAsync = curry((fn, asyncIterable) => ({
   async *[Symbol.asyncIterator]() {
     const [first, rest] = await nextAsync(asyncIterable)
     yield* mapAsync(initial => foldAsync(fn, initial, rest), first)
-  }
+  },
 }))
 
 export const reduceConcur = curry((fn, concurIterable) => async apply => {

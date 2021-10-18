@@ -23,7 +23,7 @@ import {
   nextAsync,
   or,
   orAsync,
-  orConcur
+  orConcur,
 } from '../src/optional.js'
 import { asAsync, asConcur } from '../src/as.js'
 import { count, countAsync } from '../src/count.js'
@@ -41,20 +41,20 @@ import {
   iterableArb,
   maybeAsyncFnArb,
   nonEmptyAsyncIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 
 testProp(
   `or calls the given function and returns its output for an iterable not containing exactly one value`,
   [
     fnArb,
-    fc.oneof(emptyIterableArb, getIterableArb(fc.anything(), { minLength: 2 }))
+    fc.oneof(emptyIterableArb, getIterableArb(fc.anything(), { minLength: 2 })),
   ],
   (t, fn, iterable) => {
     const value = or(fn, iterable)
 
     t.is(value, fn())
-  }
+  },
 )
 
 testProp(
@@ -64,7 +64,7 @@ testProp(
     const value = or(fn, iterable)
 
     t.is(value, iterable.values[0])
-  }
+  },
 )
 
 test(`or concrete example`, t => {
@@ -81,27 +81,27 @@ testProp(
     maybeAsyncFnArb,
     fc.oneof(
       emptyAsyncIterableArb,
-      getAsyncIterableArb(fc.anything(), { minLength: 2 })
-    )
+      getAsyncIterableArb(fc.anything(), { minLength: 2 }),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const value = await orAsync(fn, asyncIterable)
 
     t.is(value, fn.sync())
-  }
+  },
 )
 
 testProp(
   `orAsync returns the async iterable's only value for an async iterable containing one value`,
   [
     maybeAsyncFnArb,
-    getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })
+    getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
   ],
   async (t, fn, asyncIterable) => {
     const value = await orAsync(fn, asyncIterable)
 
     t.is(value, asyncIterable.values[0])
-  }
+  },
 )
 
 test(`orAsync concrete example`, async t => {
@@ -118,27 +118,27 @@ testProp(
     maybeAsyncFnArb,
     fc.oneof(
       emptyConcurIterableArb,
-      getConcurIterableArb(fc.anything(), { minLength: 2 })
-    )
+      getConcurIterableArb(fc.anything(), { minLength: 2 }),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const value = await orConcur(fn, concurIterable)
 
     t.is(value, fn.sync())
-  }
+  },
 )
 
 testProp(
   `orConcur returns the concur iterable's only value for a concur iterable containing one value`,
   [
     maybeAsyncFnArb,
-    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })
+    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
   ],
   async (t, fn, concurIterable) => {
     const value = await orConcur(fn, concurIterable)
 
     t.is(value, concurIterable.values[0])
-  }
+  },
 )
 
 testProp(
@@ -152,14 +152,14 @@ testProp(
     await t.tick(fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 testProp(
   `orConcur takes only as much time as the concur iterable for a concur iterable containing one value`,
   [
     maybeAsyncFnArb,
-    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })
+    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
   ],
   async (t, fn, concurIterable) => {
     const promise = orConcur(fn, concurIterable)
@@ -169,7 +169,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 testProp(
@@ -181,12 +181,12 @@ testProp(
     t.pending(promise)
 
     const [minTimeout, secondMinTimeout] = [...concurIterable.timeouts].sort(
-      (a, b) => a - b
+      (a, b) => a - b,
     )
     await t.tick(minTimeout + secondMinTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`orConcur concrete example`, async t => {
@@ -207,10 +207,10 @@ testProp(
       },
       {
         message: `Did not contain exactly one value`,
-        instanceOf: Error
-      }
+        instanceOf: Error,
+      },
     )
-  }
+  },
 )
 
 testProp(
@@ -220,7 +220,7 @@ testProp(
     const value = get(iterable)
 
     t.is(value, iterable.values[0])
-  }
+  },
 )
 
 test(`get concrete example`, t => {
@@ -236,8 +236,8 @@ testProp(
   [
     fc.oneof(
       emptyAsyncIterableArb,
-      getAsyncIterableArb(fc.anything(), { minLength: 2 })
-    )
+      getAsyncIterableArb(fc.anything(), { minLength: 2 }),
+    ),
   ],
   async (t, asyncIterable) => {
     await t.throwsAsync(
@@ -246,10 +246,10 @@ testProp(
       },
       {
         message: `Did not contain exactly one value`,
-        instanceOf: Error
-      }
+        instanceOf: Error,
+      },
     )
-  }
+  },
 )
 
 testProp(
@@ -259,7 +259,7 @@ testProp(
     const value = await getAsync(asyncIterable)
 
     t.is(value, asyncIterable.values[0])
-  }
+  },
 )
 
 test(`getAsync concrete example`, async t => {
@@ -275,15 +275,15 @@ testProp(
   [
     fc.oneof(
       emptyConcurIterableArb,
-      getConcurIterableArb(fc.anything(), { minLength: 2 })
-    )
+      getConcurIterableArb(fc.anything(), { minLength: 2 }),
+    ),
   ],
   async (t, concurIterable) => {
     await t.throwsAsync(() => getConcur(concurIterable), {
       message: `Did not contain exactly one value`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -293,7 +293,7 @@ testProp(
     const value = await getConcur(concurIterable)
 
     t.is(value, concurIterable.values[0])
-  }
+  },
 )
 
 test(`getConcur concrete example`, async t => {
@@ -317,7 +317,7 @@ testProp(
 
     t.iterable(iterable1)
     t.iterable(iterable2, { pure: false })
-  }
+  },
 )
 
 testProp(
@@ -328,7 +328,7 @@ testProp(
 
     t.is(count(iterable1), 0)
     t.is(count(iterable2), 0)
-  }
+  },
 )
 
 testProp(
@@ -339,7 +339,7 @@ testProp(
 
     t.is(get(iterable1), iterable.values[0])
     t.deepEqual([...iterable2], iterable.values.slice(1))
-  }
+  },
 )
 
 test(`next concrete example`, t => {
@@ -364,7 +364,7 @@ testProp(
 
     await t.asyncIterable(asyncIterable1)
     await t.asyncIterable(asyncIterable2, { pure: false })
-  }
+  },
 )
 
 testProp(
@@ -375,7 +375,7 @@ testProp(
 
     t.is(await countAsync(asyncIterable1), 0)
     t.is(await countAsync(asyncIterable2), 0)
-  }
+  },
 )
 
 testProp(
@@ -387,9 +387,9 @@ testProp(
     t.is(await getAsync(asyncIterable1), asyncIterable.values[0])
     t.deepEqual(
       await collectAsync(toArray, asyncIterable2),
-      asyncIterable.values.slice(1)
+      asyncIterable.values.slice(1),
     )
-  }
+  },
 )
 
 test(`nextAsync concrete example`, async t => {

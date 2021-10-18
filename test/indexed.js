@@ -21,7 +21,7 @@ import { test, testProp } from './helpers/macros.js'
 import {
   asyncIterableArb,
   concurIterableArb,
-  iterableArb
+  iterableArb,
 } from './helpers/arbs.js'
 
 testProp(`indexed returns an iterable`, [iterableArb], (t, iterable) => {
@@ -38,9 +38,9 @@ testProp(
 
     t.deepEqual(
       [...indexedIterable],
-      iterable.values.map((value, index) => [index, value])
+      iterable.values.map((value, index) => [index, value]),
     )
-  }
+  },
 )
 
 test(`indexed concrete example`, t => {
@@ -53,8 +53,8 @@ test(`indexed concrete example`, t => {
     [
       [0, 1],
       [1, 2],
-      [2, 3]
-    ]
+      [2, 3],
+    ],
   )
 })
 
@@ -65,7 +65,7 @@ testProp(
     const indexedAsyncIterable = indexedAsync(asyncIterable)
 
     await t.asyncIterable(indexedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -76,9 +76,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, indexedAsyncIterable),
-      asyncIterable.values.map((value, index) => [index, value])
+      asyncIterable.values.map((value, index) => [index, value]),
     )
-  }
+  },
 )
 
 test(`indexedAsync concrete example`, async t => {
@@ -89,7 +89,7 @@ test(`indexedAsync concrete example`, async t => {
   t.deepEqual(await collectAsync(toArray, indexedAsyncIterable), [
     [0, 1],
     [1, 2],
-    [2, 3]
+    [2, 3],
   ])
 })
 
@@ -100,7 +100,7 @@ testProp(
     const indexedConcurIterable = indexedConcur(concurIterable)
 
     await t.concurIterable(indexedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -111,9 +111,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, indexedConcurIterable),
-      concurIterable.iterationOrder.map((value, index) => [index, value])
+      concurIterable.iterationOrder.map((value, index) => [index, value]),
     )
-  }
+  },
 )
 
 testProp(
@@ -130,7 +130,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`indexedConcur concrete example`, async t => {
@@ -141,6 +141,6 @@ test(`indexedConcur concrete example`, async t => {
   t.deepEqual(await collectConcur(toArray, indexedConcurIterable), [
     [0, 1],
     [1, 2],
-    [2, 3]
+    [2, 3],
   ])
 })

@@ -40,5 +40,5 @@
  * ```
  */
 export type ConcurIterable<Value> = (
-  apply: (value: Value) => void | Promise<void>
+  apply: (value: Value) => void | Promise<void>,
 ) => Promise<void>

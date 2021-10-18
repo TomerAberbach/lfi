@@ -21,7 +21,7 @@ import {
   filterConcur,
   without,
   withoutAsync,
-  withoutConcur
+  withoutConcur,
 } from '../src/filter.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
 import { asAsync, asConcur } from '../src/as.js'
@@ -31,7 +31,7 @@ import {
   getConcurIterableArb,
   iterableArb,
   maybeAsyncPredicateArb,
-  predicateArb
+  predicateArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -42,7 +42,7 @@ testProp(
     const filtered = filter(fn, iterable)
 
     t.iterable(filtered)
-  }
+  },
 )
 
 testProp(`filter filters`, [predicateArb, iterableArb], (t, fn, iterable) => {
@@ -50,7 +50,7 @@ testProp(`filter filters`, [predicateArb, iterableArb], (t, fn, iterable) => {
 
   t.deepEqual(
     [...filtered],
-    iterable.values.filter(value => fn(value) === true)
+    iterable.values.filter(value => fn(value) === true),
   )
 })
 
@@ -85,7 +85,7 @@ testProp(
     const filtered = filterAsync(fn, asyncIterable)
 
     await t.asyncIterable(filtered)
-  }
+  },
 )
 
 testProp(
@@ -96,9 +96,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, filtered),
-      asyncIterable.values.filter(value => fn.sync(value) === true)
+      asyncIterable.values.filter(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 testProp(
@@ -118,7 +118,7 @@ testProp(
       await asyncIterator.next()
       t.is(count, i + 1)
     }
-  }
+  },
 )
 
 test(`filterAsync concrete example`, async t => {
@@ -136,7 +136,7 @@ testProp(
     const filtered = filterConcur(fn, concurIterable)
 
     await t.concurIterable(filtered)
-  }
+  },
 )
 
 testProp(
@@ -147,9 +147,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, filtered),
-      concurIterable.iterationOrder.filter(value => fn.sync(value) === true)
+      concurIterable.iterationOrder.filter(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 testProp(`filterConcur is lazy`, [concurIterableArb], (t, concurIterable) => {
@@ -178,9 +178,9 @@ testProp(
 
     t.deepEqual(
       [...filtered],
-      iterable.values.filter(value => !excluded.values.includes(value))
+      iterable.values.filter(value => !excluded.values.includes(value)),
     )
-  }
+  },
 )
 
 test(`without concrete example`, t => {
@@ -199,9 +199,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, filtered),
-      asyncIterable.values.filter(value => !excluded.values.includes(value))
+      asyncIterable.values.filter(value => !excluded.values.includes(value)),
     )
-  }
+  },
 )
 
 test(`withoutAsync concrete example`, async t => {
@@ -221,10 +221,10 @@ testProp(
     t.deepEqual(
       await collectConcur(toArray, filtered),
       concurIterable.iterationOrder.filter(
-        value => !excluded.values.includes(value)
-      )
+        value => !excluded.values.includes(value),
+      ),
     )
-  }
+  },
 )
 
 test(`withoutConcur concrete example`, async t => {

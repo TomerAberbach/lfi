@@ -65,7 +65,7 @@ export const orConcur = curry(
           reject(e)
         }
       })()
-    })
+    }),
 )
 
 const error = () => {
@@ -86,9 +86,9 @@ export const next = curry(iterable => {
         {
           *[Symbol.iterator]() {
             yield value
-          }
+          },
         },
-        { [Symbol.iterator]: () => iterator }
+        { [Symbol.iterator]: () => iterator },
       ]
 })
 

@@ -25,7 +25,7 @@ import {
   getAsync,
   getConcur,
   next,
-  nextAsync
+  nextAsync,
 } from '../src'
 
 expectType<number>(or(() => 2, [1, 2, 3]))
@@ -38,11 +38,11 @@ expectType<Promise<number>>(orAsync<number>(async () => 2)(asAsync([1, 2, 3])))
 
 expectType<Promise<number>>(orConcur(() => 2, asConcur([1, 2, 3])))
 expectType<Promise<number>>(
-  orConcur<number>(async () => 2, asConcur([1, 2, 3]))
+  orConcur<number>(async () => 2, asConcur([1, 2, 3])),
 )
 expectType<Promise<number>>(orConcur(() => 2)(asConcur([1, 2, 3])))
 expectType<Promise<number>>(
-  orConcur<number>(async () => 2)(asConcur([1, 2, 3]))
+  orConcur<number>(async () => 2)(asConcur([1, 2, 3])),
 )
 
 expectType<number>(get([1, 2, 3]))
@@ -51,5 +51,5 @@ expectType<Promise<number>>(getConcur(asConcur([1, 2, 3])))
 
 expectType<[Iterable<number>, Iterable<number>]>(next([1, 2, 3]))
 expectType<Promise<[AsyncIterable<number>, AsyncIterable<number>]>>(
-  nextAsync(asAsync([1, 2, 3]))
+  nextAsync(asAsync([1, 2, 3])),
 )

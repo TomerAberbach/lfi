@@ -20,7 +20,7 @@ import {
   findConcur,
   findLast,
   findLastAsync,
-  findLastConcur
+  findLastConcur,
 } from '../src/find.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
 import { asAsync, asConcur } from '../src/as.js'
@@ -29,7 +29,7 @@ import {
   concurIterableArb,
   iterableArb,
   maybeAsyncPredicateArb,
-  predicateArb
+  predicateArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -40,7 +40,7 @@ testProp(
     const found = find(fn, iterable)
 
     t.iterable(found)
-  }
+  },
 )
 
 testProp(`find finds`, [predicateArb, iterableArb], (t, fn, iterable) => {
@@ -75,7 +75,7 @@ testProp(
     const found = findAsync(fn, asyncIterable)
 
     await t.asyncIterable(found)
-  }
+  },
 )
 
 testProp(
@@ -83,14 +83,14 @@ testProp(
   [maybeAsyncPredicateArb, asyncIterableArb],
   async (t, fn, asyncIterable) => {
     const index = asyncIterable.values.findIndex(
-      value => fn.sync(value) === true
+      value => fn.sync(value) === true,
     )
     const expected = index === -1 ? [] : [asyncIterable.values[index]]
 
     const found = findAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, found), expected)
-  }
+  },
 )
 
 test(`findAsync concrete example 1`, async t => {
@@ -116,7 +116,7 @@ testProp(
     const found = findConcur(fn, concurIterable)
 
     await t.concurIterable(found)
-  }
+  },
 )
 
 testProp(
@@ -124,14 +124,14 @@ testProp(
   [maybeAsyncPredicateArb, concurIterableArb],
   async (t, fn, concurIterable) => {
     const index = concurIterable.iterationOrder.findIndex(
-      value => fn.sync(value) === true
+      value => fn.sync(value) === true,
     )
     const expected = index === -1 ? [] : [concurIterable.iterationOrder[index]]
 
     const found = findConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, found), expected)
-  }
+  },
 )
 
 test(`findConcur concrete example 1`, async t => {
@@ -157,7 +157,7 @@ testProp(
     const found = findLast(fn, iterable)
 
     t.iterable(found)
-  }
+  },
 )
 
 testProp(
@@ -172,7 +172,7 @@ testProp(
     const found = findLast(fn, iterable)
 
     t.deepEqual([...found], expected)
-  }
+  },
 )
 
 test(`findLast concrete example 1`, t => {
@@ -198,7 +198,7 @@ testProp(
     const found = findLastAsync(fn, asyncIterable)
 
     await t.asyncIterable(found)
-  }
+  },
 )
 
 testProp(
@@ -213,7 +213,7 @@ testProp(
     const found = findLastAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, found), expected)
-  }
+  },
 )
 
 test(`findLastAsync concrete example 1`, async t => {
@@ -229,7 +229,7 @@ test(`findLastAsync concrete example 2`, async t => {
 
   const found = findLastAsync(
     value => typeof value === `function`,
-    asyncIterable
+    asyncIterable,
   )
 
   t.deepEqual(await collectAsync(toArray, found), [])
@@ -242,7 +242,7 @@ testProp(
     const found = findLastConcur(fn, concurIterable)
 
     await t.concurIterable(found)
-  }
+  },
 )
 
 testProp(
@@ -257,7 +257,7 @@ testProp(
     const found = findLastConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, found), expected)
-  }
+  },
 )
 
 test(`findLastConcur concrete example 1`, async t => {
@@ -265,7 +265,7 @@ test(`findLastConcur concrete example 1`, async t => {
 
   const found = findLastConcur(
     value => typeof value === `string`,
-    concurIterable
+    concurIterable,
   )
 
   t.deepEqual(await collectConcur(toArray, found), [`howdy`])
@@ -276,7 +276,7 @@ test(`findLastConcur concrete example 2`, async t => {
 
   const found = findLastConcur(
     value => typeof value === `function`,
-    concurIterable
+    concurIterable,
   )
 
   t.deepEqual(await collectConcur(toArray, found), [])

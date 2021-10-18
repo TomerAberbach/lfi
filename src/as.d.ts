@@ -31,7 +31,7 @@ import { ConcurIterable } from './types'
  * ```
  */
 export const asAsync: <Value>(
-  iterable: Iterable<Value> | AsyncIterable<Value>
+  iterable: Iterable<Value> | AsyncIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**
@@ -46,5 +46,5 @@ export const asAsync: <Value>(
  * ```
  */
 export const asConcur: <Value>(
-  iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>
+  iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
 ) => ConcurIterable<Value>

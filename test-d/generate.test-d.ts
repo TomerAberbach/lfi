@@ -21,15 +21,15 @@ import {
   generate,
   generateAsync,
   repeat,
-  asAsync
+  asAsync,
 } from '../src'
 
 expectType<Iterable<number>>(generate(previousValue => previousValue + 1, 1))
 expectType<AsyncIterable<number>>(
-  generateAsync(previousValue => previousValue + 1, 1)
+  generateAsync(previousValue => previousValue + 1, 1),
 )
 expectType<AsyncIterable<number>>(
-  generateAsync(async previousValue => previousValue + 1, 1)
+  generateAsync(async previousValue => previousValue + 1, 1),
 )
 
 expectType<Iterable<number>>(repeat(2))

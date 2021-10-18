@@ -69,7 +69,7 @@ export const chunked: {
  */
 export const chunkedAsync: {
   (size: number): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value[]>
   <Value>(size: number, asyncIterable: AsyncIterable<Value>): AsyncIterable<
     Value[]
@@ -101,7 +101,7 @@ export const chunkedAsync: {
  */
 export const chunkedConcur: {
   (size: number): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value[]>
   <Value>(size: number, concurIterable: ConcurIterable<Value>): ConcurIterable<
     Value[]

@@ -57,11 +57,11 @@ export const generate: {
  */
 export const generateAsync: {
   <Value>(fn: (previousValue: Value) => MaybePromiseLike<Value>): (
-    seed: Value
+    seed: Value,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (previousValue: Value) => MaybePromiseLike<Value>,
-    seed: Value
+    seed: Value,
   ): AsyncIterable<Value>
 }
 
@@ -116,5 +116,5 @@ export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  */
 export const cycleAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => AsyncIterable<Value>

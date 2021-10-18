@@ -23,7 +23,7 @@ import {
   concurIterableArb,
   fnArb,
   iterableArb,
-  maybeAsyncFnArb
+  maybeAsyncFnArb,
 } from './helpers/arbs.js'
 
 testProp(`map returns an iterable`, [fnArb, iterableArb], (t, fn, iterable) => {
@@ -37,7 +37,7 @@ testProp(`map maps`, [fnArb, iterableArb], (t, fn, iterable) => {
 
   t.deepEqual(
     [...mappedIterable],
-    iterable.values.map(value => fn(value))
+    iterable.values.map(value => fn(value)),
   )
 })
 
@@ -72,7 +72,7 @@ testProp(
     const mappedAsyncIterable = mapAsync(fn, asyncIterable)
 
     await t.asyncIterable(mappedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -83,9 +83,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, mappedAsyncIterable),
-      asyncIterable.values.map(value => fn.sync(value))
+      asyncIterable.values.map(value => fn.sync(value)),
     )
-  }
+  },
 )
 
 testProp(
@@ -105,7 +105,7 @@ testProp(
       await asyncIterator.next()
       t.is(count, i + 1)
     }
-  }
+  },
 )
 
 test(`mapAsync concrete example`, async t => {
@@ -115,7 +115,7 @@ test(`mapAsync concrete example`, async t => {
 
   t.deepEqual(
     await collectAsync(toArray, mappedAsyncIterable),
-    [2, 4, 6, 8, 10]
+    [2, 4, 6, 8, 10],
   )
 })
 
@@ -126,7 +126,7 @@ testProp(
     const mappedConcurIterable = mapConcur(fn, concurIterable)
 
     await t.concurIterable(mappedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -137,9 +137,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, mappedConcurIterable),
-      concurIterable.iterationOrder.map(value => fn.sync(value))
+      concurIterable.iterationOrder.map(value => fn.sync(value)),
     )
-  }
+  },
 )
 
 testProp(
@@ -156,7 +156,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`mapConcur concrete example`, async t => {
@@ -166,6 +166,6 @@ test(`mapConcur concrete example`, async t => {
 
   t.deepEqual(
     await collectConcur(toArray, mappedConcurIterable),
-    [2, 4, 6, 8, 10]
+    [2, 4, 6, 8, 10],
   )
 })

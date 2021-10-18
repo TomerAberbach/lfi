@@ -45,7 +45,7 @@ export const count: <Value>(iterable: Iterable<Value>) => number
  * ```
  */
 export const countAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => Promise<number>
 
 /**
@@ -62,5 +62,5 @@ export const countAsync: <Value>(
  * ```
  */
 export const countConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => Promise<number>

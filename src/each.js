@@ -21,7 +21,7 @@ export const each = curry((fn, iterable) =>
   map(value => {
     fn(value)
     return value
-  }, iterable)
+  }, iterable),
 )
 
 const createAsyncEach = map =>
@@ -29,7 +29,7 @@ const createAsyncEach = map =>
     map(async value => {
       await fn(value)
       return value
-    }, iterable)
+    }, iterable),
   )
 
 export const eachAsync = createAsyncEach(mapAsync)

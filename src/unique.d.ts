@@ -31,11 +31,11 @@ import { MaybePromiseLike } from './internal/types'
  */
 export const uniqueBy: {
   <Value>(fn: (value: Value) => unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     fn: (value: Value) => unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
@@ -59,11 +59,11 @@ export const uniqueBy: {
  */
 export const uniqueByAsync: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
@@ -87,11 +87,11 @@ export const uniqueByAsync: {
  */
 export const uniqueByConcur: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 
@@ -122,7 +122,7 @@ export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  */
 export const uniqueAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**
@@ -138,5 +138,5 @@ export const uniqueAsync: <Value>(
  * ```
  */
 export const uniqueConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => ConcurIterable<Value>

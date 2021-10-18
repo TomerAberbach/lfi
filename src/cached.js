@@ -37,7 +37,7 @@ export const cached = iterable => {
           break
         }
       }
-    }
+    },
   }
 }
 
@@ -61,7 +61,7 @@ export const cachedAsync = asyncIterable => {
           break
         }
       }
-    }
+    },
   }
 }
 

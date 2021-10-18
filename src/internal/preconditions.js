@@ -24,17 +24,17 @@ const assert = predicate => (name, value) => {
 
 export const assertInteger = assert(
   (name, value) =>
-    !Number.isSafeInteger(value) && `\`${name}\` must be an integer: ${value}`
+    !Number.isSafeInteger(value) && `\`${name}\` must be an integer: ${value}`,
 )
 
 export const assertNonNegativeInteger = assert(
   (name, value) =>
     assertInteger(name, value) ||
-    (value < 0 && `\`${name}\` must be a non-negative integer: ${value}`)
+    (value < 0 && `\`${name}\` must be a non-negative integer: ${value}`),
 )
 
 export const assertPositiveInteger = assert(
   (name, value) =>
     assertInteger(name, value) ||
-    (value <= 0 && `\`${name}\` must be a positive integer: ${value}`)
+    (value <= 0 && `\`${name}\` must be a positive integer: ${value}`),
 )

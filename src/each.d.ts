@@ -36,11 +36,11 @@ import { MaybePromiseLike } from './internal/types'
  */
 export const each: {
   <Value>(fn: (value: Value) => unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     fn: (value: Value) => unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
@@ -68,11 +68,11 @@ export const each: {
  */
 export const eachAsync: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
@@ -100,11 +100,11 @@ export const eachAsync: {
  */
 export const eachConcur: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 
@@ -149,11 +149,11 @@ export const forEach: {
  */
 export const forEachAsync: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => Promise<void>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<void>
 }
 
@@ -176,10 +176,10 @@ export const forEachAsync: {
  */
 export const forEachConcur: {
   <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => Promise<void>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<void>
 }

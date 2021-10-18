@@ -25,7 +25,7 @@ testProp(
     const returned = wrapFunction(fn1, fn2)
 
     t.is(returned, fn2)
-  }
+  },
 )
 
 testProp(
@@ -36,7 +36,7 @@ testProp(
 
     t.is(fn2.name, fn1.name)
     t.is(fn2.length, fn1.length)
-  }
+  },
 )
 
 test(`wrapFunction concrete example`, t => {

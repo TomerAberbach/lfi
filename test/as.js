@@ -21,7 +21,7 @@ import { test, testProp } from './helpers/macros.js'
 import {
   asyncIterableArb,
   concurIterableArb,
-  iterableArb
+  iterableArb,
 } from './helpers/arbs.js'
 
 testProp(
@@ -31,7 +31,7 @@ testProp(
     const asyncIterable = asAsync(iterable)
 
     await t.asyncIterable(asyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -41,7 +41,7 @@ testProp(
     const asyncIterable = asAsync(iterable)
 
     t.deepEqual(await collectAsync(toArray, asyncIterable), iterable.values)
-  }
+  },
 )
 
 test(`asAsync concrete example`, async t => {
@@ -59,7 +59,7 @@ testProp(
     const concurIterable = asConcur(iterable)
 
     await t.concurIterable(concurIterable)
-  }
+  },
 )
 
 testProp(
@@ -70,9 +70,9 @@ testProp(
 
     t.unorderedDeepEqual(
       await collectConcur(toArray, concurIterable),
-      iterable.values
+      iterable.values,
     )
-  }
+  },
 )
 
 test(`asConcur concrete example`, async t => {

@@ -18,33 +18,25 @@ import { expectType } from 'tsd'
 import {
   asAsync,
   asConcur,
-  find,
-  findAsync,
-  findConcur,
   ConcurIterable,
-  findLast,
-  findLastAsync,
-  findLastConcur
+  uniqueBy,
+  uniqueByAsync,
+  uniqueByConcur,
 } from '../src'
 
-expectType<Iterable<number>>(find(value => value > 2, [1, 2, 3]))
+expectType<Iterable<number>>(uniqueBy(value => value * 2, [1, 2, 3]))
+expectType<Iterable<number>>(uniqueBy((value: number) => value * 2)([1, 2, 3]))
+
 expectType<AsyncIterable<number>>(
-  findAsync(value => value * 2, asAsync([1, 2, 3]))
+  uniqueByAsync(value => value * 2, asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  findAsync(async value => value > 10, asAsync([1, 2, 3]))
-)
-expectType<ConcurIterable<number>>(
-  findConcur(value => value > 2, asConcur([1, 2, 3]))
+  uniqueByAsync((value: number) => value * 2)(asAsync([1, 2, 3])),
 )
 
-expectType<Iterable<number>>(findLast(value => value > 2, [1, 2, 3]))
-expectType<AsyncIterable<number>>(
-  findLastAsync(value => value * 2, asAsync([1, 2, 3]))
-)
-expectType<AsyncIterable<number>>(
-  findLastAsync(async value => value > 10, asAsync([1, 2, 3]))
+expectType<ConcurIterable<number>>(
+  uniqueByConcur(value => value * 2, asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  findLastConcur(value => value > 2, asConcur([1, 2, 3]))
+  uniqueByConcur((value: number) => value * 2)(asConcur([1, 2, 3])),
 )

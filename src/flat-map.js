@@ -23,7 +23,7 @@ export const flatMap = curry((fn, iterable) => ({
     for (const value of iterable) {
       yield* fn(value)
     }
-  }
+  },
 }))
 
 export const flatMapAsync = curry((fn, asyncIterable) => ({
@@ -31,12 +31,12 @@ export const flatMapAsync = curry((fn, asyncIterable) => ({
     for await (const value of asyncIterable) {
       yield* await fn(value)
     }
-  }
+  },
 }))
 
 export const flatMapConcur = curry(
   (fn, concurIterable) => apply =>
-    concurIterable(async value => asConcur(await fn(value))(apply))
+    concurIterable(async value => asConcur(await fn(value))(apply)),
 )
 
 export const flatten = flatMap(identity)

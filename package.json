@@ -26,7 +26,8 @@
   },
   "license": "Apache-2.0",
   "files": [
-    "src"
+    "dist",
+    "src/index.d.ts"
   ],
   "type": "module",
   "engines": {
@@ -38,81 +39,42 @@
     "not op_mini all",
     "not ios_saf >= 3.2"
   ],
-  "exports": "./src/index.js",
-  "module": "./src/index.js",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
-    "prepare": "pnpx --no-install simple-git-hooks",
-    "license": "addlicense $(git diff --name-only HEAD)",
-    "lint:prettier:base": "prettier --loglevel silent --ignore-path .gitignore",
-    "lint:prettier": "run-s \"lint:prettier:base -- --write .\"",
-    "lint:eslint:base": "eslint --cache --ext js --ignore-path .gitignore",
-    "lint:eslint": "run-s \"lint:eslint:base -- --fix .\"",
-    "lint": "run-s lint:*",
-    "test:js": "ava",
-    "test:ts": "tsd",
-    "test": "run-s test:*",
-    "coverage": "c8 run-s test:js",
-    "docs": "typedoc --plugin typedoc-plugin-markdown"
-  },
-  "prettier": "@tomer/prettier-config",
-  "eslintConfig": {
-    "extends": "@tomer",
-    "rules": {
-      "import/no-unresolved": "off"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "addlicense",
-      "run-s \"lint:prettier:base -- --write {@}\" --",
-      "run-s \"lint:eslint:base -- --fix {@}\" --"
-    ],
-    "*.ts": [
-      "addlicense",
-      "run-s \"lint:prettier:base -- --write {@}\" --"
-    ],
-    "*.{json,yml,md}": "run-s \"lint:prettier:base -- --write {@}\" --"
+    "prepare": "tomer install",
+    "lint": "tomer lint -g",
+    "test": "tomer test",
+    "coverage": "tomer test -- -c",
+    "build": "tomer build -f \"esm,cjs\" src/index.js",
+    "docs": "typedoc --plugin typedoc-plugin-markdown",
+    "prepublishOnly": "pnpm run build"
   },
   "ava": {
     "require": [
       "./test/helpers/fast-check.js"
     ]
   },
-  "tsd": {
-    "directory": "./test"
-  },
-  "commitlint": {
-    "extends": "@commitlint/config-conventional"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpx --no-install lint-staged",
-    "commit-msg": "pnpx --no-install commitlint -e"
-  },
   "dependencies": {
     "betterator": "0.0.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "12.1.4",
-    "@commitlint/config-conventional": "12.1.4",
-    "@sinonjs/fake-timers": "7.1.0",
-    "@tomer/eslint-config": "0.1.1",
-    "@tomer/prettier-config": "0.1.0",
-    "@types/node": "15.6.1",
+    "@sinonjs/fake-timers": "8.0.1",
+    "@types/node": "16.11.1",
     "ava": "3.15.0",
     "ava-fast-check": "4.0.2",
-    "c8": "7.7.2",
-    "eslint": "7.27.0",
     "fast-check": "2.14.0",
-    "lint-staged": "11.0.0",
-    "npm-run-all": "4.1.5",
     "object-hash": "2.2.0",
-    "p-state": "0.2.0",
-    "prettier": "2.3.0",
-    "simple-git-hooks": "2.4.1",
-    "tsd": "0.15.1",
-    "typedoc": "0.20.36",
-    "typedoc-plugin-markdown": "3.8.2",
-    "typescript": "4.3.2"
+    "p-state": "1.0.0",
+    "tomer": "0.0.17",
+    "tsd": "0.18.0",
+    "typedoc": "0.22.6",
+    "typedoc-plugin-markdown": "3.11.3",
+    "typescript": "4.4.4"
   }
 }

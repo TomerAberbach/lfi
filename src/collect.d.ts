@@ -199,21 +199,21 @@ type Folding<Acc, C extends MapCollector> = {
 export const folding: {
   <Acc, Value>(lift: (value: Value) => Acc): {
     (merge: (acc: Acc, value: Value) => Acc): <C extends MapCollector>(
-      mapCollector: C
+      mapCollector: C,
     ) => Folding<Acc, C>
     <C extends MapCollector>(
       merge: (acc: Acc, value: Value) => Acc,
-      mapCollector: C
+      mapCollector: C,
     ): Folding<Acc, C>
   }
   <Acc, Value>(
     lift: (value: Value) => Acc,
-    merge: (acc: Acc, value: Value) => Acc
+    merge: (acc: Acc, value: Value) => Acc,
   ): <C extends MapCollector>(mapCollector: C) => Folding<Acc, C>
   <Acc, Value, C extends MapCollector>(
     lift: (value: Value) => Acc,
     merge: (acc: Acc, value: Value) => Acc,
-    mapCollector: C
+    mapCollector: C,
   ): Folding<Acc, C>
 }
 
@@ -245,7 +245,7 @@ export const folding: {
  * ```
  */
 export const counting: <C extends MapCollector>(
-  mapCollector: C
+  mapCollector: C,
 ) => Folding<number, C>
 
 /**
@@ -281,13 +281,13 @@ export const counting: <C extends MapCollector>(
  */
 export const grouping: {
   <GroupCollector extends Collector>(groupCollector: GroupCollector): <
-    C extends MapCollector
+    C extends MapCollector,
   >(
-    mapCollector: C
+    mapCollector: C,
   ) => Folding<GroupCollector, C>
   <GroupCollector extends Collector, C extends MapCollector>(
     groupCollector: GroupCollector,
-    mapCollector: C
+    mapCollector: C,
   ): Folding<GroupCollector, C>
 }
 
@@ -302,20 +302,22 @@ export type Collector =
   | MapCollector
 
 /** @internal */
-type CollectorToCollection<C extends Collector, Value> =
-  C extends typeof toArray
-    ? Array<Value>
-    : C extends typeof toSet
-    ? Set<Value>
-    : C extends typeof toWeakSet
-    ? Value extends object
-      ? WeakSet<Value>
-      : never
-    : C extends MapCollector
-    ? Value extends [infer EntryKey, infer EntryValue]
-      ? MapCollectorToCollection<C, EntryKey, EntryValue>
-      : never
+type CollectorToCollection<
+  C extends Collector,
+  Value,
+> = C extends typeof toArray
+  ? Array<Value>
+  : C extends typeof toSet
+  ? Set<Value>
+  : C extends typeof toWeakSet
+  ? Value extends object
+    ? WeakSet<Value>
     : never
+  : C extends MapCollector
+  ? Value extends [infer EntryKey, infer EntryValue]
+    ? MapCollectorToCollection<C, EntryKey, EntryValue>
+    : never
+  : never
 
 /**
  * An object that specifies how to collect an iterable of entries to some
@@ -328,20 +330,23 @@ export type MapCollector =
   | Folding<any, any>
 
 /** @internal */
-type MapCollectorToCollection<C extends MapCollector, Key, Value> =
-  C extends typeof ToObject
-    ? Key extends keyof any
-      ? Record<Key, Value>
-      : never
-    : C extends typeof toMap
-    ? Map<Key, Value>
-    : C extends typeof toWeakMap
-    ? Key extends object
-      ? WeakMap<Key, Value>
-      : never
-    : C extends Folding<infer Acc, infer InnerC>
-    ? MapCollectorToCollection<InnerC, Key, Acc>
+type MapCollectorToCollection<
+  C extends MapCollector,
+  Key,
+  Value,
+> = C extends typeof ToObject
+  ? Key extends keyof any
+    ? Record<Key, Value>
     : never
+  : C extends typeof toMap
+  ? Map<Key, Value>
+  : C extends typeof toWeakMap
+  ? Key extends object
+    ? WeakMap<Key, Value>
+    : never
+  : C extends Folding<infer Acc, infer InnerC>
+  ? MapCollectorToCollection<InnerC, Key, Acc>
+  : never
 
 /**
  * Returns a collection (collected by `collector`) containing the values of
@@ -361,11 +366,11 @@ type MapCollectorToCollection<C extends MapCollector, Key, Value> =
  */
 export const collect: {
   <C extends Collector>(collector: C): <Value>(
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => CollectorToCollection<C, Value>
   <C extends Collector, Value>(
     collector: C,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): CollectorToCollection<C, Value>
 }
 
@@ -389,11 +394,11 @@ export const collect: {
  */
 export const collectAsync: {
   <C extends Collector>(collector: C): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => Promise<CollectorToCollection<C, Value>>
   <C extends Collector, Value>(
     collector: C,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<CollectorToCollection<C, Value>>
 }
 
@@ -416,10 +421,10 @@ export const collectAsync: {
  */
 export const collectConcur: {
   <C extends Collector>(collector: C): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => Promise<CollectorToCollection<C, Value>>
   <C extends Collector, Value>(
     collector: C,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<CollectorToCollection<C, Value>>
 }

@@ -286,7 +286,7 @@ returns a promise that resolves when all events have been emitted and handled.
 const slothNamesConcurIterable: ConcurIterable<string> = pipe(
   asConcur(['sloth-names1.txt', 'sloth-names2.txt']),
   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
-  flatMapConcur(content => content.split(`\n`))
+  flatMapConcur(content => content.split(`\n`)),
 )
 ```
 
@@ -421,7 +421,7 @@ an array.
 const slothMemoirs = await pipe(
   asConcur([`my-sloth-story.txt`, `lazy-sloth.txt`, `tree-life.txt`]),
   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
-  collectConcur(toArray)
+  collectConcur(toArray),
 )
 
 console.log(slothMemoirs)
@@ -452,7 +452,7 @@ const slothMemoirs = await pipe(
     const content = await fs.promises.readFile(filename, `utf8`)
     return [filename, content]
   }),
-  collectConcur(toMap)
+  collectConcur(toMap),
 )
 
 console.log(slothMemoirs)
@@ -488,7 +488,7 @@ const slothMemoirs = await pipe(
     const content = await fs.promises.readFile(filename, `utf8`)
     return [filename, content]
   }),
-  collectConcur(toObject)
+  collectConcur(toObject),
 )
 
 console.log(slothMemoirs)
@@ -518,7 +518,7 @@ set.
 const slothMemoirs = await pipe(
   asConcur([`my-sloth-story.txt`, `lazy-sloth.txt`, `tree-life.txt`]),
   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
-  collectConcur(toSet)
+  collectConcur(toSet),
 )
 
 console.log(slothMemoirs)
@@ -549,7 +549,7 @@ const slothMemoirs = await pipe(
     const content = await fs.promises.readFile(filename, `utf8`)
     return [{}, content]
   }),
-  collectConcur(toWeakMap)
+  collectConcur(toWeakMap),
 )
 
 console.log(slothMemoirs)
@@ -577,7 +577,7 @@ const slothMemoirs = await pipe(
     const content = await fs.promises.readFile(filename, `utf8`)
     return { filename, content }
   }),
-  collectConcur(toWeakSet)
+  collectConcur(toWeakSet),
 )
 
 console.log(slothMemoirs)
@@ -1673,7 +1673,7 @@ const slothFileContents = await pipe(
   asConcur(await fs.promises.opendir(`./city-of-sloths`)),
   filterConcur(dirent => dirent.isFile()),
   mapConcur(dirent => fs.promises.readFile(dirent.path, `utf8`)),
-  collectConcur(toArray)
+  collectConcur(toArray),
 )
 
 console.log(slothFileContents)
@@ -1713,7 +1713,7 @@ const slothFileContents = await pipe(
   asConcur(await fs.promises.opendir(`./city-of-sloths`)),
   filterConcur(dirent => dirent.isFile()),
   mapConcur(dirent => fs.promises.readFile(dirent.path, `utf8`)),
-  collectConcur(toArray)
+  collectConcur(toArray),
 )
 
 console.log(slothFileContents)
@@ -1754,7 +1754,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1777,7 +1777,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1814,7 +1814,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1853,7 +1853,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1894,7 +1894,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1937,7 +1937,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -1983,7 +1983,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -2032,7 +2032,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -2084,7 +2084,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -2138,7 +2138,7 @@ functions.
 const screamify = compose(
   name => `${name.toUpperCase()}!`,
   text => [text, text, text],
-  array => array.join(` `)
+  array => array.join(` `),
 )
 
 console.log(screamify(`sloth`))
@@ -2236,7 +2236,7 @@ Like `Array.prototype.concat`, but for async iterables.
 const asyncIterable = concatAsync(
   asAsync([1, 2]),
   [3, `sloth`, 5],
-  asAsync([6, 7])
+  asAsync([6, 7]),
 )
 
 console.log(await collectAsync(toArray, asyncIterable))
@@ -2283,7 +2283,7 @@ Like `Array.prototype.concat`, but for concur iterables.
 const concurIterable = concatConcur(
   asConcur([1, 2, 3]),
   asAsync([`sloth`, 5, 6]),
-  [7, 8, 9]
+  [7, 8, 9],
 )
 
 console.log(await collectConcur(toArray, concurIterable))
@@ -2436,7 +2436,7 @@ const slothDiaryEntries = [
   [`carl`, `climbed`],
   [`frank`, `ate`],
   [`frank`, `strolled`],
-  [`carl`, `slept`]
+  [`carl`, `slept`],
 ]
 
 const slothDiaryEntryCounts = collect(counting(toMap), slothDiaryEntries)
@@ -2565,8 +2565,8 @@ console.log(
   await pipe(
     cycleAsync(asAsync([`sloth`, `more sloth`])),
     takeAsync(6),
-    joinAsync(`, `)
-  )
+    joinAsync(`, `),
+  ),
 )
 //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
 ```
@@ -2893,7 +2893,7 @@ promise that resolves to `true`.
 const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectAsync(dropWhileAsync(value => value < 5, asyncIterable))
+  await collectAsync(dropWhileAsync(value => value < 5, asyncIterable)),
 )
 //=> [ 5, 6, 7, 8, 9 ]
 ```
@@ -2929,7 +2929,7 @@ promise that resolves to `true`.
 const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectAsync(dropWhileAsync(value => value < 5, asyncIterable))
+  await collectAsync(dropWhileAsync(value => value < 5, asyncIterable)),
 )
 //=> [ 5, 6, 7, 8, 9 ]
 ```
@@ -2969,7 +2969,7 @@ promise that resolves to `true`.
 const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectConcur(dropWhileConcur(value => value < 5, concurIterable))
+  await collectConcur(dropWhileConcur(value => value < 5, concurIterable)),
 )
 //=> [ 5, 6, 7, 8, 9 ]
 ```
@@ -3007,7 +3007,7 @@ promise that resolves to `true`.
 const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectConcur(dropWhileConcur(value => value < 5, concurIterable))
+  await collectConcur(dropWhileConcur(value => value < 5, concurIterable)),
 )
 //=> [ 5, 6, 7, 8, 9 ]
 ```
@@ -3126,7 +3126,7 @@ moving on to the next value.
 const eachedSloths = await pipe(
   asAsync([`carl`, `frank`, `phil`]),
   eachAsync(console.log),
-  collectAsync(toArray)
+  collectAsync(toArray),
 )
 //=> carl
 //=> frank
@@ -3169,7 +3169,7 @@ moving on to the next value.
 const eachedSloths = await pipe(
   asAsync([`carl`, `frank`, `phil`]),
   eachAsync(console.log),
-  collectAsync(toArray)
+  collectAsync(toArray),
 )
 //=> carl
 //=> frank
@@ -3214,7 +3214,7 @@ The result of applying `fn` to a value is awaited before yielding.
 const eachedSloths = await pipe(
   asConcur([`carl`, `frank`, `phil`]),
   eachConcur(console.log),
-  collectConcur(toArray)
+  collectConcur(toArray),
 )
 //=> carl
 //=> frank
@@ -3259,7 +3259,7 @@ The result of applying `fn` to a value is awaited before yielding.
 const eachedSloths = await pipe(
   asConcur([`carl`, `frank`, `phil`]),
   eachConcur(console.log),
-  collectConcur(toArray)
+  collectConcur(toArray),
 )
 //=> carl
 //=> frank
@@ -3411,8 +3411,8 @@ const things = asAsync([`sloth party`, `building`, `sloths in trees`, `city`])
 console.log(
   await collectAsync(
     toArray,
-    filterAsync(string => string.includes(`sloth`), things)
-  )
+    filterAsync(string => string.includes(`sloth`), things),
+  ),
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
@@ -3451,8 +3451,8 @@ const things = asAsync([`sloth party`, `building`, `sloths in trees`, `city`])
 console.log(
   await collectAsync(
     toArray,
-    filterAsync(string => string.includes(`sloth`), things)
-  )
+    filterAsync(string => string.includes(`sloth`), things),
+  ),
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
@@ -3495,8 +3495,8 @@ const things = asConcur([`sloth party`, `building`, `sloths in trees`, `city`])
 console.log(
   await collectConcur(
     toArray,
-    filterConcur(string => string.includes(`sloth`), things)
-  )
+    filterConcur(string => string.includes(`sloth`), things),
+  ),
 )
 //=> [ 'sloth party', 'sloths in trees' ] (not necessarily in this order)
 ```
@@ -3537,8 +3537,8 @@ const things = asConcur([`sloth party`, `building`, `sloths in trees`, `city`])
 console.log(
   await collectConcur(
     toArray,
-    filterConcur(string => string.includes(`sloth`), things)
-  )
+    filterConcur(string => string.includes(`sloth`), things),
+  ),
 )
 //=> [ 'sloth party', 'sloths in trees' ] (not necessarily in this order)
 ```
@@ -3657,12 +3657,12 @@ Like `Array.prototype.find`, but for async iterables.
 const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
 
 console.log(
-  await getAsync(findAsync(value => typeof value === `string`, asyncIterable))
+  await getAsync(findAsync(value => typeof value === `string`, asyncIterable)),
 )
 //=> sloth
 
 console.log(
-  await countAsync(findAsync(value => Array.isArray(value), asyncIterable))
+  await countAsync(findAsync(value => Array.isArray(value), asyncIterable)),
 )
 //=> 0
 ```
@@ -3700,12 +3700,12 @@ Like `Array.prototype.find`, but for async iterables.
 const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
 
 console.log(
-  await getAsync(findAsync(value => typeof value === `string`, asyncIterable))
+  await getAsync(findAsync(value => typeof value === `string`, asyncIterable)),
 )
 //=> sloth
 
 console.log(
-  await countAsync(findAsync(value => Array.isArray(value), asyncIterable))
+  await countAsync(findAsync(value => Array.isArray(value), asyncIterable)),
 )
 //=> 0
 ```
@@ -3747,13 +3747,13 @@ const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getConcur(
-    findConcur(value => typeof value === `string`, concurIterable)
-  )
+    findConcur(value => typeof value === `string`, concurIterable),
+  ),
 )
 //=> sloth (but maybe 'other string' depending on ordering)
 
 console.log(
-  await countConcur(findConcur(value => Array.isArray(value), concurIterable))
+  await countConcur(findConcur(value => Array.isArray(value), concurIterable)),
 )
 //=> 0
 ```
@@ -3794,13 +3794,13 @@ const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getConcur(
-    findConcur(value => typeof value === `string`, concurIterable)
-  )
+    findConcur(value => typeof value === `string`, concurIterable),
+  ),
 )
 //=> sloth (but maybe 'other string' depending on ordering)
 
 console.log(
-  await countConcur(findConcur(value => Array.isArray(value), concurIterable))
+  await countConcur(findConcur(value => Array.isArray(value), concurIterable)),
 )
 //=> 0
 ```
@@ -3915,13 +3915,13 @@ const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getAsync(
-    findLastAsync(value => typeof value === `string`, asyncIterable)
-  )
+    findLastAsync(value => typeof value === `string`, asyncIterable),
+  ),
 )
 //=> other string
 
 console.log(
-  await countAsync(findLastAsync(value => Array.isArray(value), asyncIterable))
+  await countAsync(findLastAsync(value => Array.isArray(value), asyncIterable)),
 )
 //=> 0
 ```
@@ -3958,13 +3958,13 @@ const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getAsync(
-    findLastAsync(value => typeof value === `string`, asyncIterable)
-  )
+    findLastAsync(value => typeof value === `string`, asyncIterable),
+  ),
 )
 //=> other string
 
 console.log(
-  await countAsync(findLastAsync(value => Array.isArray(value), asyncIterable))
+  await countAsync(findLastAsync(value => Array.isArray(value), asyncIterable)),
 )
 //=> 0
 ```
@@ -4005,15 +4005,15 @@ const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getConcur(
-    findLastConcur(value => typeof value === `string`, concurIterable)
-  )
+    findLastConcur(value => typeof value === `string`, concurIterable),
+  ),
 )
 //=> other string (but maybe 'sloth' depending on ordering)
 
 console.log(
   await countConcur(
-    findLastConcur(value => Array.isArray(value), concurIterable)
-  )
+    findLastConcur(value => Array.isArray(value), concurIterable),
+  ),
 )
 //=> 0
 ```
@@ -4052,15 +4052,15 @@ const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await getConcur(
-    findLastConcur(value => typeof value === `string`, concurIterable)
-  )
+    findLastConcur(value => typeof value === `string`, concurIterable),
+  ),
 )
 //=> other string (but maybe 'sloth' depending on ordering)
 
 console.log(
   await countConcur(
-    findLastConcur(value => Array.isArray(value), concurIterable)
-  )
+    findLastConcur(value => Array.isArray(value), concurIterable),
+  ),
 )
 //=> 0
 ```
@@ -4287,7 +4287,7 @@ const asyncIterable = flatMapAsync(
     await new Promise(resolve => setTimeout(resolve, 1000))
     return value > 1 ? asAsync([value, value * 2]) : [value, value * 3]
   },
-  [1, 2, 3]
+  [1, 2, 3],
 )
 
 console.log(await collectAsync(toArray, asyncIterable))
@@ -4330,7 +4330,7 @@ const asyncIterable = flatMapAsync(
     await new Promise(resolve => setTimeout(resolve, 1000))
     return value > 1 ? asAsync([value, value * 2]) : [value, value * 3]
   },
-  [1, 2, 3]
+  [1, 2, 3],
 )
 
 console.log(await collectAsync(toArray, asyncIterable))
@@ -4382,7 +4382,7 @@ const concurIterable = flatMapConcur(
       ? asAsync([value, value * 3])
       : [value, value * 4]
   },
-  [1, 2, 3, 4]
+  [1, 2, 3, 4],
 )
 
 console.log(await collectConcur(toArray, concurIterable))
@@ -4433,7 +4433,7 @@ const concurIterable = flatMapConcur(
       ? asAsync([value, value * 3])
       : [value, value * 4]
   },
-  [1, 2, 3, 4]
+  [1, 2, 3, 4],
 )
 
 console.log(await collectConcur(toArray, concurIterable))
@@ -4477,7 +4477,7 @@ Like `Array.prototype.flat`, but for iterables.
 const iterable = flatten([
   [1, 2],
   [3, `sloth`, 5],
-  [6, 7]
+  [6, 7],
 ])
 
 console.log([...iterable])
@@ -4520,7 +4520,7 @@ Like `Array.prototype.flat`, but for async iterables.
 const asyncIterable = flattenAsync([
   asAsync([1, 2]),
   [3, `sloth`, 5],
-  asAsync([6, 7])
+  asAsync([6, 7]),
 ])
 
 console.log(await collectAsync(toArray, asyncIterable))
@@ -4568,7 +4568,7 @@ this function does not necessarily iterate over each iterable in sequence.
 const concurIterable = flattenConcur([
   asConcur([1, 2, 3]),
   asAsync([`sloth`, 5, 6]),
-  [7, 8, 9]
+  [7, 8, 9],
 ])
 
 console.log(await collectConcur(toArray, concurIterable))
@@ -4614,7 +4614,7 @@ const message = fold((acc, string) => `${acc} ${string}`, `Hello`, [
   `What`,
   `an`,
   `interesting`,
-  `program!`
+  `program!`,
 ])
 
 console.log(message)
@@ -4658,7 +4658,7 @@ const message = fold((acc, string) => `${acc} ${string}`, `Hello`, [
   `What`,
   `an`,
   `interesting`,
-  `program!`
+  `program!`,
 ])
 
 console.log(message)
@@ -4702,7 +4702,7 @@ const message = fold((acc, string) => `${acc} ${string}`, `Hello`, [
   `What`,
   `an`,
   `interesting`,
-  `program!`
+  `program!`,
 ])
 
 console.log(message)
@@ -5077,16 +5077,16 @@ const slothFoodInventory = [
   [`twigs`, 5],
   [`fruit`, 2],
   [`leaves`, 10],
-  [`twigs`, 11]
+  [`twigs`, 11],
 ]
 
 const foldedSlothFoodInventory = collect(
   folding(
     value => value,
     (acc, value) => acc + value,
-    toMap
+    toMap,
   ),
-  slothFoodInventory
+  slothFoodInventory,
 )
 
 console.log(foldedSlothFoodInventory)
@@ -5138,16 +5138,16 @@ const slothFoodInventory = [
   [`twigs`, 5],
   [`fruit`, 2],
   [`leaves`, 10],
-  [`twigs`, 11]
+  [`twigs`, 11],
 ]
 
 const foldedSlothFoodInventory = collect(
   folding(
     value => value,
     (acc, value) => acc + value,
-    toMap
+    toMap,
   ),
-  slothFoodInventory
+  slothFoodInventory,
 )
 
 console.log(foldedSlothFoodInventory)
@@ -5198,16 +5198,16 @@ const slothFoodInventory = [
   [`twigs`, 5],
   [`fruit`, 2],
   [`leaves`, 10],
-  [`twigs`, 11]
+  [`twigs`, 11],
 ]
 
 const foldedSlothFoodInventory = collect(
   folding(
     value => value,
     (acc, value) => acc + value,
-    toMap
+    toMap,
   ),
-  slothFoodInventory
+  slothFoodInventory,
 )
 
 console.log(foldedSlothFoodInventory)
@@ -5496,8 +5496,8 @@ console.log(
   pipe(
     generate(previousValue => previousValue * 2, 1),
     take(5),
-    collect(toArray)
-  )
+    collect(toArray),
+  ),
 )
 //=> [ 1, 2, 4, 8, 16 ]
 ```
@@ -5533,8 +5533,8 @@ console.log(
   pipe(
     generate(previousValue => previousValue * 2, 1),
     take(5),
-    collect(toArray)
-  )
+    collect(toArray),
+  ),
 )
 //=> [ 1, 2, 4, 8, 16 ]
 ```
@@ -5575,8 +5575,8 @@ console.log(
   await pipe(
     generateAsync(previousValue => previousValue * 2, 1),
     takeAsync(5),
-    collectAsync(toArray)
-  )
+    collectAsync(toArray),
+  ),
 )
 //=> [ 1, 2, 4, 8, 16 ]
 ```
@@ -5612,8 +5612,8 @@ console.log(
   await pipe(
     generateAsync(previousValue => previousValue * 2, 1),
     takeAsync(5),
-    collectAsync(toArray)
-  )
+    collectAsync(toArray),
+  ),
 )
 //=> [ 1, 2, 4, 8, 16 ]
 ```
@@ -5800,12 +5800,12 @@ const slothDiaryEntries = [
   [`carl`, `climbed`],
   [`frank`, `ate`],
   [`frank`, `strolled`],
-  [`carl`, `slept`]
+  [`carl`, `slept`],
 ]
 
 const slothDiaryEntryGroups = collect(
   grouping(toArray, toMap),
-  slothDiaryEntries
+  slothDiaryEntries,
 )
 
 console.log(slothDiaryEntryGroups)
@@ -5851,12 +5851,12 @@ const slothDiaryEntries = [
   [`carl`, `climbed`],
   [`frank`, `ate`],
   [`frank`, `strolled`],
-  [`carl`, `slept`]
+  [`carl`, `slept`],
 ]
 
 const slothDiaryEntryGroups = collect(
   grouping(toArray, toMap),
-  slothDiaryEntries
+  slothDiaryEntries,
 )
 
 console.log(slothDiaryEntryGroups)
@@ -6590,8 +6590,8 @@ const asyncIterable = asAsync([1, 2, 3, 4])
 console.log(
   await collectAsync(
     toArray,
-    mapAsync(value => value * 2, asyncIterable)
-  )
+    mapAsync(value => value * 2, asyncIterable),
+  ),
 )
 //=> [ 2, 4, 6, 8 ]
 ```
@@ -6631,8 +6631,8 @@ const asyncIterable = asAsync([1, 2, 3, 4])
 console.log(
   await collectAsync(
     toArray,
-    mapAsync(value => value * 2, asyncIterable)
-  )
+    mapAsync(value => value * 2, asyncIterable),
+  ),
 )
 //=> [ 2, 4, 6, 8 ]
 ```
@@ -6676,8 +6676,8 @@ const concurIterable = asConcur([1, 2, 3, 4])
 console.log(
   await collectConcur(
     toArray,
-    mapConcur(value => value * 2, concurIterable)
-  )
+    mapConcur(value => value * 2, concurIterable),
+  ),
 )
 //=> [ 2, 4, 6, 8 ] (not necessarily in this order)
 ```
@@ -6720,8 +6720,8 @@ const concurIterable = asConcur([1, 2, 3, 4])
 console.log(
   await collectConcur(
     toArray,
-    mapConcur(value => value * 2, concurIterable)
-  )
+    mapConcur(value => value * 2, concurIterable),
+  ),
 )
 //=> [ 2, 4, 6, 8 ] (not necessarily in this order)
 ```
@@ -6894,7 +6894,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(maxByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(maxByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -6930,7 +6930,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(maxByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(maxByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -6972,7 +6972,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(maxByConcur((a, b) => a.length - b.length, slothActivities))
+  await getConcur(maxByConcur((a, b) => a.length - b.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7008,7 +7008,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(maxByConcur((a, b) => a.length - b.length, slothActivities))
+  await getConcur(maxByConcur((a, b) => a.length - b.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7153,7 +7153,7 @@ iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(maxWithAsync(value => value.length, slothActivities))
+  await getAsync(maxWithAsync(value => value.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7190,7 +7190,7 @@ iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(maxWithAsync(value => value.length, slothActivities))
+  await getAsync(maxWithAsync(value => value.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7233,7 +7233,7 @@ iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(maxWithConcur(value => value.length, slothActivities))
+  await getConcur(maxWithConcur(value => value.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7270,7 +7270,7 @@ iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(maxWithConcur(value => value.length, slothActivities))
+  await getConcur(maxWithConcur(value => value.length, slothActivities)),
 )
 //=> sleeping
 ```
@@ -7443,7 +7443,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(minByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> eating
 ```
@@ -7479,7 +7479,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(minByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> eating
 ```
@@ -7521,7 +7521,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minByConcur((a, b) => a.length - b.length, slothActivities))
+  await getConcur(minByConcur((a, b) => a.length - b.length, slothActivities)),
 )
 //=> eating
 ```
@@ -7557,7 +7557,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minByConcur((a, b) => a.length - b.length, slothActivities))
+  await getConcur(minByConcur((a, b) => a.length - b.length, slothActivities)),
 )
 //=> eating
 ```
@@ -7766,7 +7766,7 @@ empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minMaxByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(minMaxByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -7803,7 +7803,7 @@ empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minMaxByAsync((a, b) => a.length - b.length, slothActivities))
+  await getAsync(minMaxByAsync((a, b) => a.length - b.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -7847,8 +7847,8 @@ const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
   await getConcur(
-    minMaxByConcur((a, b) => a.length - b.length, slothActivities)
-  )
+    minMaxByConcur((a, b) => a.length - b.length, slothActivities),
+  ),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -7887,8 +7887,8 @@ const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
   await getConcur(
-    minMaxByConcur((a, b) => a.length - b.length, slothActivities)
-  )
+    minMaxByConcur((a, b) => a.length - b.length, slothActivities),
+  ),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -8035,7 +8035,7 @@ empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minMaxWithAsync(value => value.length, slothActivities))
+  await getAsync(minMaxWithAsync(value => value.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -8072,7 +8072,7 @@ empty async iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minMaxWithAsync(value => value.length, slothActivities))
+  await getAsync(minMaxWithAsync(value => value.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -8115,7 +8115,7 @@ empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minMaxWithConcur(value => value.length, slothActivities))
+  await getConcur(minMaxWithConcur(value => value.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -8153,7 +8153,7 @@ empty concur iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minMaxWithConcur(value => value.length, slothActivities))
+  await getConcur(minMaxWithConcur(value => value.length, slothActivities)),
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
@@ -8266,7 +8266,7 @@ iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minWithAsync(value => value.length, slothActivities))
+  await getAsync(minWithAsync(value => value.length, slothActivities)),
 )
 //=> eating
 ```
@@ -8303,7 +8303,7 @@ iterable.
 const slothActivities = asAsync([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getAsync(minWithAsync(value => value.length, slothActivities))
+  await getAsync(minWithAsync(value => value.length, slothActivities)),
 )
 //=> eating
 ```
@@ -8346,7 +8346,7 @@ iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minWithConcur(value => value.length, slothActivities))
+  await getConcur(minWithConcur(value => value.length, slothActivities)),
 )
 //=> eating
 ```
@@ -8383,7 +8383,7 @@ iterable.
 const slothActivities = asConcur([`eating`, `sleeping`, `yawning`])
 
 console.log(
-  await getConcur(minWithConcur(value => value.length, slothActivities))
+  await getConcur(minWithConcur(value => value.length, slothActivities)),
 )
 //=> eating
 ```
@@ -8895,7 +8895,7 @@ console.log(await orConcur(() => `I get called!`, asConcur([])))
 //=> I get called!
 
 console.log(
-  await orConcur(() => `I also get called!`, asConcur([1, `sloth`, 3]))
+  await orConcur(() => `I also get called!`, asConcur([1, `sloth`, 3])),
 )
 //=> I also get called!
 ```
@@ -8936,7 +8936,7 @@ console.log(await orConcur(() => `I get called!`, asConcur([])))
 //=> I get called!
 
 console.log(
-  await orConcur(() => `I also get called!`, asConcur([1, `sloth`, 3]))
+  await orConcur(() => `I also get called!`, asConcur([1, `sloth`, 3])),
 )
 //=> I also get called!
 ```
@@ -8975,8 +8975,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9010,8 +9010,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9048,8 +9048,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9088,8 +9088,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9130,8 +9130,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9175,8 +9175,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9222,8 +9222,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9271,8 +9271,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9322,8 +9322,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9376,8 +9376,8 @@ console.log(
     `sloth`,
     name => `${name.toUpperCase()}!`,
     text => [text, text, text],
-    array => array.join(` `)
-  )
+    array => array.join(` `),
+  ),
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
@@ -9560,7 +9560,7 @@ iterables.
 ```js
 const maybeMessage = reduce(
   (acc, string) => `${acc} ${string}`,
-  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]
+  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`],
 )
 
 console.log(get(maybeMessage))
@@ -9603,7 +9603,7 @@ iterables.
 ```js
 const maybeMessage = reduce(
   (acc, string) => `${acc} ${string}`,
-  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]
+  [`Hello`, `World!`, `What`, `an`, `interesting`, `program!`],
 )
 
 console.log(get(maybeMessage))
@@ -10163,7 +10163,7 @@ return `true` or a promise that resolves to `true`.
 const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectAsync(takeWhileAsync(value => value < 5, asyncIterable))
+  await collectAsync(takeWhileAsync(value => value < 5, asyncIterable)),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
@@ -10199,7 +10199,7 @@ return `true` or a promise that resolves to `true`.
 const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectAsync(takeWhileAsync(value => value < 5, asyncIterable))
+  await collectAsync(takeWhileAsync(value => value < 5, asyncIterable)),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
@@ -10239,7 +10239,7 @@ return `true` or a promise that resolves to `true`.
 const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectConcur(takeWhileConcur(value => value < 5, concurIterable))
+  await collectConcur(takeWhileConcur(value => value < 5, concurIterable)),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
@@ -10277,7 +10277,7 @@ return `true` or a promise that resolves to `true`.
 const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 console.log(
-  await collectConcur(takeWhileConcur(value => value < 5, concurIterable))
+  await collectConcur(takeWhileConcur(value => value < 5, concurIterable)),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
@@ -10458,8 +10458,8 @@ const asyncIterable = asAsync([1, -3, 4, 3, 1, -5, 5])
 console.log(
   await collectAsync(
     toArray,
-    uniqueByAsync(value => Math.abs(value), asyncIterable)
-  )
+    uniqueByAsync(value => Math.abs(value), asyncIterable),
+  ),
 )
 //=> [ 1, -3, 4, 1, -5 ]
 ```
@@ -10497,8 +10497,8 @@ const asyncIterable = asAsync([1, -3, 4, 3, 1, -5, 5])
 console.log(
   await collectAsync(
     toArray,
-    uniqueByAsync(value => Math.abs(value), asyncIterable)
-  )
+    uniqueByAsync(value => Math.abs(value), asyncIterable),
+  ),
 )
 //=> [ 1, -3, 4, 1, -5 ]
 ```
@@ -10540,8 +10540,8 @@ const concurIterable = asConcur([1, -3, 4, 3, 1, -5, 5])
 console.log(
   await collectConcur(
     toArray,
-    uniqueByConcur(value => Math.abs(value), concurIterable)
-  )
+    uniqueByConcur(value => Math.abs(value), concurIterable),
+  ),
 )
 //=> [ 1, -3, 4, 1, -5 ]
 ```
@@ -10581,8 +10581,8 @@ const concurIterable = asConcur([1, -3, 4, 3, 1, -5, 5])
 console.log(
   await collectConcur(
     toArray,
-    uniqueByConcur(value => Math.abs(value), concurIterable)
-  )
+    uniqueByConcur(value => Math.abs(value), concurIterable),
+  ),
 )
 //=> [ 1, -3, 4, 1, -5 ]
 ```

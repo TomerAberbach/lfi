@@ -21,7 +21,7 @@ export const toArray = {
   add(acc, value) {
     acc.push(value)
     return acc
-  }
+  },
 }
 
 const setAdd = (acc, value) => acc.add(value)
@@ -35,21 +35,21 @@ const createToObject = ({ writable }) => ({
       configurable: true,
       enumerable: true,
       writable,
-      value
+      value,
     }),
   has: (acc, key) => Object.prototype.hasOwnProperty.call(acc, key),
-  get: (acc, key) => acc[key]
+  get: (acc, key) => acc[key],
 })
 
 export const toObject = Object.assign(
   ({ writable }) => createToObject(writable),
-  createToObject({ writable: true })
+  createToObject({ writable: true }),
 )
 
 const mapAddHasGet = {
   add: (acc, [key, value]) => acc.set(key, value),
   has: (acc, key) => acc.has(key),
-  get: (acc, key) => acc.get(key)
+  get: (acc, key) => acc.get(key),
 }
 export const toMap = { create: () => new Map(), ...mapAddHasGet }
 export const toWeakMap = { create: () => new WeakMap(), ...mapAddHasGet }
@@ -57,16 +57,16 @@ export const toWeakMap = { create: () => new WeakMap(), ...mapAddHasGet }
 export const folding = curry((lift, merge, { create, add, has, get }) => ({
   create,
   add: (acc, [key, value]) =>
-    add(acc, [key, has(acc, key) ? merge(get(acc, key), value) : lift(value)])
+    add(acc, [key, has(acc, key) ? merge(get(acc, key), value) : lift(value)]),
 }))
 
 export const counting = folding(
   () => 1,
-  acc => acc + 1
+  acc => acc + 1,
 )
 
 export const grouping = curry(({ create, add }, mapCollector) =>
-  folding(value => add(create(), value), add, mapCollector)
+  folding(value => add(create(), value), add, mapCollector),
 )
 
 export const collect = curry(({ add, create }, iterable) => {

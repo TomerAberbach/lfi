@@ -48,7 +48,7 @@ testProp(
     const iterable = values(object)
 
     t.deepEqual([...iterable], [...object.values()])
-  }
+  },
 )
 
 testProp(`entries returns an iterable`, [mapArb], (t, map) => {

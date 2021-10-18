@@ -36,11 +36,11 @@ import { MaybePromiseLike } from './internal/types'
  */
 export const flatMap: {
   <From, To>(fn: (value: From) => Iterable<To>): (
-    iterable: Iterable<From>
+    iterable: Iterable<From>,
   ) => Iterable<To>
   <From, To>(
     fn: (value: From) => Iterable<To>,
-    iterable: Iterable<From>
+    iterable: Iterable<From>,
   ): Iterable<To>
 }
 
@@ -69,11 +69,11 @@ export const flatMap: {
  */
 export const flatMapAsync: {
   <From, To>(
-    fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>
+    fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>,
   ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>,
-    asyncIterable: AsyncIterable<From>
+    asyncIterable: AsyncIterable<From>,
   ): AsyncIterable<To>
 }
 
@@ -105,16 +105,18 @@ export const flatMapAsync: {
 export const flatMapConcur: {
   <From, To>(
     fn: (
-      value: From
-    ) => MaybePromiseLike<Iterable<To> | AsyncIterable<To> | ConcurIterable<To>>
-  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
-  <From, To>(
-    fn: (
-      value: From
+      value: From,
     ) => MaybePromiseLike<
       Iterable<To> | AsyncIterable<To> | ConcurIterable<To>
     >,
-    concurIterable: ConcurIterable<From>
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
+  <From, To>(
+    fn: (
+      value: From,
+    ) => MaybePromiseLike<
+      Iterable<To> | AsyncIterable<To> | ConcurIterable<To>
+    >,
+    concurIterable: ConcurIterable<From>,
   ): ConcurIterable<To>
 }
 
@@ -133,7 +135,7 @@ export const flatMapConcur: {
  * ```
  */
 export const flatten: <Value>(
-  iterable: Iterable<Iterable<Value>>
+  iterable: Iterable<Iterable<Value>>,
 ) => Iterable<Value>
 
 /**
@@ -155,7 +157,7 @@ export const flatten: <Value>(
  * ```
  */
 export const flattenAsync: <Value>(
-  asyncIterable: AsyncIterable<Iterable<Value> | AsyncIterable<Value>>
+  asyncIterable: AsyncIterable<Iterable<Value> | AsyncIterable<Value>>,
 ) => AsyncIterable<Value>
 
 /**
@@ -182,5 +184,5 @@ export const flattenAsync: <Value>(
 export const flattenConcur: <Value>(
   concurIterable: ConcurIterable<
     Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>
-  >
+  >,
 ) => ConcurIterable<Value>

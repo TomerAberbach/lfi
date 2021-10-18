@@ -21,34 +21,34 @@ import {
   ConcurIterable,
   map,
   mapAsync,
-  mapConcur
+  mapConcur,
 } from '../src'
 
 expectType<Iterable<string>>(map(value => String(value), [1, 2, 3]))
 expectType<Iterable<string>>(map((value: number) => String(value))([1, 2, 3]))
 
 expectType<AsyncIterable<string>>(
-  mapAsync(value => String(value), asAsync([1, 2, 3]))
+  mapAsync(value => String(value), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<string>>(
-  mapAsync(async value => String(value), asAsync([1, 2, 3]))
+  mapAsync(async value => String(value), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<string>>(
-  mapAsync((value: number) => String(value))(asAsync([1, 2, 3]))
+  mapAsync((value: number) => String(value))(asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<string>>(
-  mapAsync(async (value: number) => String(value))(asAsync([1, 2, 3]))
+  mapAsync(async (value: number) => String(value))(asAsync([1, 2, 3])),
 )
 
 expectType<ConcurIterable<string>>(
-  mapConcur(value => String(value), asConcur([1, 2, 3]))
+  mapConcur(value => String(value), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<string>>(
-  mapConcur(async value => String(value), asConcur([1, 2, 3]))
+  mapConcur(async value => String(value), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<string>>(
-  mapConcur((value: number) => String(value))(asConcur([1, 2, 3]))
+  mapConcur((value: number) => String(value))(asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<string>>(
-  mapConcur(async (value: number) => String(value))(asConcur([1, 2, 3]))
+  mapConcur(async (value: number) => String(value))(asConcur([1, 2, 3])),
 )

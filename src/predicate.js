@@ -46,7 +46,7 @@ export const allConcur = curry(
           resolve(false)
         }
       }).then(() => resolve(true))
-    })
+    }),
 )
 
 export const any = curry((fn, iterable) => {
@@ -79,7 +79,7 @@ export const anyConcur = curry(
           resolve(true)
         }
       }).then(() => resolve(false))
-    })
+    }),
 )
 
 export const none = curry((fn, iterable) => !any(fn, iterable))
@@ -92,7 +92,7 @@ export const noneConcur = createAsyncNone(anyConcur)
 
 const createIncludes = any =>
   curry((searchElement, iterable) =>
-    any(value => Object.is(value, searchElement), iterable)
+    any(value => Object.is(value, searchElement), iterable),
   )
 
 export const includes = createIncludes(any)

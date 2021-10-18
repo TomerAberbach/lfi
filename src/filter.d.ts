@@ -33,11 +33,11 @@ import { MaybePromiseLike } from './internal/types'
  */
 export const filter: {
   <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     fn: (value: Value) => boolean | unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
@@ -64,11 +64,11 @@ export const filter: {
  */
 export const filterAsync: {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
@@ -95,11 +95,11 @@ export const filterAsync: {
  */
 export const filterConcur: {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 
@@ -117,11 +117,11 @@ export const filterConcur: {
  */
 export const without: {
   (excluded: Iterable<unknown>): <Value>(
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
@@ -139,11 +139,11 @@ export const without: {
  */
 export const withoutAsync: {
   (excluded: Iterable<unknown>): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
@@ -161,10 +161,10 @@ export const withoutAsync: {
  */
 export const withoutConcur: {
   (excluded: Iterable<unknown>): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }

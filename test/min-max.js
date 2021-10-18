@@ -42,7 +42,7 @@ import {
   minMaxWithConcur,
   minWith,
   minWithAsync,
-  minWithConcur
+  minWithConcur,
 } from '../src/min-max.js'
 import { get, getAsync, getConcur } from '../src/optional.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
@@ -62,7 +62,7 @@ import {
   maybeAsyncCompareFnArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 
 testProp(
@@ -72,7 +72,7 @@ testProp(
     const minimum = minBy(fn, iterable)
 
     t.iterable(minimum)
-  }
+  },
 )
 
 testProp(
@@ -82,20 +82,22 @@ testProp(
     const minimum = minBy(fn, iterable)
 
     t.deepEqual([...minimum], [])
-  }
+  },
 )
 
 testProp(
   `minBy returns the minimum element based on the comparison function for a non-empty iterable`,
   [
     fc.compareFunc(),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const minimum = minBy(fn, iterable)
 
     t.deepEqual(get(minimum), [...iterable.values].sort(fn)[0])
-  }
+  },
 )
 
 testProp(
@@ -105,7 +107,7 @@ testProp(
     const asyncMinimum = minByAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMinimum)
-  }
+  },
 )
 
 testProp(
@@ -115,7 +117,7 @@ testProp(
     const asyncMinimum = minByAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -123,17 +125,17 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMinimum = minByAsync(fn, asyncIterable)
 
     t.deepEqual(
       await getAsync(asyncMinimum),
-      [...asyncIterable.values].sort(fn.sync)[0]
+      [...asyncIterable.values].sort(fn.sync)[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -143,7 +145,7 @@ testProp(
     const concurMinimum = minByConcur(fn, concurIterable)
 
     await t.concurIterable(concurMinimum)
-  }
+  },
 )
 
 testProp(
@@ -153,7 +155,7 @@ testProp(
     const concurMinimum = minByConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -161,8 +163,8 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMinimum = minByConcur(fn, concurIterable)
@@ -170,11 +172,11 @@ testProp(
     t.is(
       fn.sync(
         await getConcur(concurMinimum),
-        [...concurIterable.values].sort(fn.sync)[0]
+        [...concurIterable.values].sort(fn.sync)[0],
       ),
-      0
+      0,
     )
-  }
+  },
 )
 
 testProp(
@@ -184,7 +186,7 @@ testProp(
     const maximum = maxBy(fn, iterable)
 
     t.iterable(maximum)
-  }
+  },
 )
 
 testProp(
@@ -194,20 +196,22 @@ testProp(
     const maximum = maxBy(fn, iterable)
 
     t.deepEqual([...maximum], [])
-  }
+  },
 )
 
 testProp(
   `maxBy returns the maximum element based on the comparison function for a non-empty iterable`,
   [
     fc.compareFunc(),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const maximum = maxBy(fn, iterable)
 
     t.deepEqual(get(maximum), [...iterable.values].sort((a, b) => fn(b, a))[0])
-  }
+  },
 )
 
 testProp(
@@ -217,7 +221,7 @@ testProp(
     const asyncMaximum = maxByAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMaximum)
-  }
+  },
 )
 
 testProp(
@@ -227,7 +231,7 @@ testProp(
     const asyncMaximum = maxByAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -235,17 +239,17 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMaximum = maxByAsync(fn, asyncIterable)
 
     t.deepEqual(
       await getAsync(asyncMaximum),
-      [...asyncIterable.values].sort((a, b) => fn.sync(b, a))[0]
+      [...asyncIterable.values].sort((a, b) => fn.sync(b, a))[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -255,7 +259,7 @@ testProp(
     const concurMaximum = maxByConcur(fn, concurIterable)
 
     await t.concurIterable(concurMaximum)
-  }
+  },
 )
 
 testProp(
@@ -265,7 +269,7 @@ testProp(
     const concurMaximum = maxByConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -273,8 +277,8 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMaximum = maxByConcur(fn, concurIterable)
@@ -282,11 +286,11 @@ testProp(
     t.is(
       fn.sync(
         await getConcur(concurMaximum),
-        [...concurIterable.values].sort((a, b) => fn.sync(b, a))[0]
+        [...concurIterable.values].sort((a, b) => fn.sync(b, a))[0],
       ),
-      0
+      0,
     )
-  }
+  },
 )
 
 testProp(
@@ -296,7 +300,7 @@ testProp(
     const minimumMaximum = minMaxBy(fn, iterable)
 
     t.iterable(minimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -306,23 +310,25 @@ testProp(
     const minimumMaximum = minMaxBy(fn, iterable)
 
     t.deepEqual([...minimumMaximum], [])
-  }
+  },
 )
 
 testProp(
   `minMaxBy returns the maximum element based on the comparison function for a non-empty iterable`,
   [
     fc.compareFunc(),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const minimumMaximum = minMaxBy(fn, iterable)
 
     t.deepEqual(get(minimumMaximum), {
       min: get(minBy(fn, iterable)),
-      max: get(maxBy(fn, iterable))
+      max: get(maxBy(fn, iterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -332,7 +338,7 @@ testProp(
     const asyncMinimumMaximum = minMaxByAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -342,7 +348,7 @@ testProp(
     const asyncMinimumMaximum = minMaxByAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -350,17 +356,17 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMinimumMaximum = minMaxByAsync(fn, asyncIterable)
 
     t.deepEqual(await getAsync(asyncMinimumMaximum), {
       min: await getAsync(minByAsync(fn, asyncIterable)),
-      max: await getAsync(maxByAsync(fn, asyncIterable))
+      max: await getAsync(maxByAsync(fn, asyncIterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -370,7 +376,7 @@ testProp(
     const concurMinimumMaximum = minMaxByConcur(fn, concurIterable)
 
     await t.concurIterable(concurMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -380,7 +386,7 @@ testProp(
     const concurMinimumMaximum = minMaxByConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -388,8 +394,8 @@ testProp(
   [
     maybeAsyncCompareFnArb,
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMinimumMaximum = minMaxByConcur(fn, concurIterable)
@@ -399,18 +405,18 @@ testProp(
     t.is(
       fn.sync(
         minimumMaximum.min,
-        await getConcur(minByConcur(fn, concurIterable))
+        await getConcur(minByConcur(fn, concurIterable)),
       ),
-      0
+      0,
     )
     t.is(
       fn.sync(
         minimumMaximum.max,
-        await getConcur(maxByConcur(fn, concurIterable))
+        await getConcur(maxByConcur(fn, concurIterable)),
       ),
-      0
+      0,
     )
-  }
+  },
 )
 
 testProp(
@@ -420,7 +426,7 @@ testProp(
     const minimum = minWith(fn, iterable)
 
     t.iterable(minimum)
-  }
+  },
 )
 
 testProp(
@@ -430,23 +436,25 @@ testProp(
     const minimum = minWith(fn, iterable)
 
     t.deepEqual([...minimum], [])
-  }
+  },
 )
 
 testProp(
   `minWith returns the minimum element based on the selector function for a non-empty iterable`,
   [
     getFnArb(fc.integer()),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const minimum = minWith(fn, iterable)
 
     t.deepEqual(
       get(minimum),
-      [...iterable.values].sort((a, b) => fn(a) - fn(b))[0]
+      [...iterable.values].sort((a, b) => fn(a) - fn(b))[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -456,7 +464,7 @@ testProp(
     const asyncMinimum = minWithAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMinimum)
-  }
+  },
 )
 
 testProp(
@@ -466,7 +474,7 @@ testProp(
     const asyncMinimum = minWithAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -474,17 +482,17 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMinimum = minWithAsync(fn, asyncIterable)
 
     t.deepEqual(
       await getAsync(asyncMinimum),
-      [...asyncIterable.values].sort((a, b) => fn.sync(a) - fn.sync(b))[0]
+      [...asyncIterable.values].sort((a, b) => fn.sync(a) - fn.sync(b))[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -494,7 +502,7 @@ testProp(
     const concurMinimum = minWithConcur(fn, concurIterable)
 
     await t.concurIterable(concurMinimum)
-  }
+  },
 )
 
 testProp(
@@ -504,7 +512,7 @@ testProp(
     const concurMinimum = minWithConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -512,8 +520,8 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMinimum = minWithConcur(fn, concurIterable)
@@ -521,10 +529,10 @@ testProp(
     t.is(
       fn.sync(await getConcur(concurMinimum)),
       fn.sync(
-        [...concurIterable.values].sort((a, b) => fn.sync(a) - fn.sync(b))[0]
-      )
+        [...concurIterable.values].sort((a, b) => fn.sync(a) - fn.sync(b))[0],
+      ),
     )
-  }
+  },
 )
 
 testProp(
@@ -534,7 +542,7 @@ testProp(
     const maximum = maxWith(fn, iterable)
 
     t.iterable(maximum)
-  }
+  },
 )
 
 testProp(
@@ -544,23 +552,25 @@ testProp(
     const maximum = maxWith(fn, iterable)
 
     t.deepEqual([...maximum], [])
-  }
+  },
 )
 
 testProp(
   `maxWith returns the maximum element based on the selector function for a non-empty iterable`,
   [
     getFnArb(fc.integer()),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const maximum = maxWith(fn, iterable)
 
     t.deepEqual(
       get(maximum),
-      [...iterable.values].sort((a, b) => fn(b) - fn(a))[0]
+      [...iterable.values].sort((a, b) => fn(b) - fn(a))[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -570,7 +580,7 @@ testProp(
     const asyncMaximum = maxWithAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMaximum)
-  }
+  },
 )
 
 testProp(
@@ -580,7 +590,7 @@ testProp(
     const asyncMaximum = maxWithAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -588,17 +598,17 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMaximum = maxWithAsync(fn, asyncIterable)
 
     t.deepEqual(
       await getAsync(asyncMaximum),
-      [...asyncIterable.values].sort((a, b) => fn.sync(b) - fn.sync(a))[0]
+      [...asyncIterable.values].sort((a, b) => fn.sync(b) - fn.sync(a))[0],
     )
-  }
+  },
 )
 
 testProp(
@@ -608,7 +618,7 @@ testProp(
     const concurMaximum = maxWithConcur(fn, concurIterable)
 
     await t.concurIterable(concurMaximum)
-  }
+  },
 )
 
 testProp(
@@ -618,7 +628,7 @@ testProp(
     const concurMaximum = maxWithConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -626,8 +636,8 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMaximum = maxWithConcur(fn, concurIterable)
@@ -635,10 +645,10 @@ testProp(
     t.is(
       fn.sync(await getConcur(concurMaximum)),
       fn.sync(
-        [...concurIterable.values].sort((a, b) => fn.sync(b) - fn.sync(a))[0]
-      )
+        [...concurIterable.values].sort((a, b) => fn.sync(b) - fn.sync(a))[0],
+      ),
     )
-  }
+  },
 )
 
 testProp(
@@ -648,7 +658,7 @@ testProp(
     const minimumMaximum = minMaxWith(fn, iterable)
 
     t.iterable(minimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -658,23 +668,25 @@ testProp(
     const minimumMaximum = minMaxWith(fn, iterable)
 
     t.deepEqual([...minimumMaximum], [])
-  }
+  },
 )
 
 testProp(
   `minMaxWith returns the maximum element based on the selector function for a non-empty iterable`,
   [
     getFnArb(fc.integer()),
-    nonEmptyIterableArb.filter(iterable => !iterable.values.includes(undefined))
+    nonEmptyIterableArb.filter(
+      iterable => !iterable.values.includes(undefined),
+    ),
   ],
   (t, fn, iterable) => {
     const minimumMaximum = minMaxWith(fn, iterable)
 
     t.deepEqual(get(minimumMaximum), {
       min: get(minWith(fn, iterable)),
-      max: get(maxWith(fn, iterable))
+      max: get(maxWith(fn, iterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -684,7 +696,7 @@ testProp(
     const asyncMinimumMaximum = minMaxWithAsync(fn, asyncIterable)
 
     await t.asyncIterable(asyncMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -694,7 +706,7 @@ testProp(
     const asyncMinimumMaximum = minMaxWithAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -702,17 +714,17 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyAsyncIterableArb.filter(
-      asyncIterable => !asyncIterable.values.includes(undefined)
-    )
+      asyncIterable => !asyncIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, asyncIterable) => {
     const asyncMinimumMaximum = minMaxWithAsync(fn, asyncIterable)
 
     t.deepEqual(await getAsync(asyncMinimumMaximum), {
       min: await getAsync(minWithAsync(fn, asyncIterable)),
-      max: await getAsync(maxWithAsync(fn, asyncIterable))
+      max: await getAsync(maxWithAsync(fn, asyncIterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -722,7 +734,7 @@ testProp(
     const concurMinimumMaximum = minMaxWithConcur(fn, concurIterable)
 
     await t.concurIterable(concurMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -732,7 +744,7 @@ testProp(
     const concurMinimumMaximum = minMaxWithConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -740,8 +752,8 @@ testProp(
   [
     getMaybeAsyncFnArb(fc.integer()),
     nonEmptyConcurIterableArb.filter(
-      concurIterable => !concurIterable.values.includes(undefined)
-    )
+      concurIterable => !concurIterable.values.includes(undefined),
+    ),
   ],
   async (t, fn, concurIterable) => {
     const concurMinimumMaximum = minMaxWithConcur(fn, concurIterable)
@@ -750,13 +762,13 @@ testProp(
 
     t.is(
       fn.sync(minimumMaximum.min),
-      fn.sync(await getConcur(minWithConcur(fn, concurIterable)))
+      fn.sync(await getConcur(minWithConcur(fn, concurIterable))),
     )
     t.is(
       fn.sync(minimumMaximum.max),
-      fn.sync(await getConcur(maxWithConcur(fn, concurIterable)))
+      fn.sync(await getConcur(maxWithConcur(fn, concurIterable))),
     )
-  }
+  },
 )
 
 testProp(
@@ -766,7 +778,7 @@ testProp(
     const minimum = min(iterable)
 
     t.iterable(minimum)
-  }
+  },
 )
 
 testProp(
@@ -776,7 +788,7 @@ testProp(
     const minimum = min(iterable)
 
     t.deepEqual([...minimum], [])
-  }
+  },
 )
 
 testProp(
@@ -786,7 +798,7 @@ testProp(
     const minimum = min(iterable)
 
     t.is(get(minimum), Math.min(...iterable.values))
-  }
+  },
 )
 
 testProp(
@@ -796,7 +808,7 @@ testProp(
     const asyncMinimum = minAsync(asyncIterable)
 
     await t.asyncIterable(asyncMinimum)
-  }
+  },
 )
 
 testProp(
@@ -806,7 +818,7 @@ testProp(
     const asyncMinimum = minAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -816,7 +828,7 @@ testProp(
     const asyncMinimum = minAsync(asyncIterable)
 
     t.is(await getAsync(asyncMinimum), Math.min(...asyncIterable.values))
-  }
+  },
 )
 
 testProp(
@@ -826,7 +838,7 @@ testProp(
     const concurMinimum = minConcur(concurIterable)
 
     await t.concurIterable(concurMinimum)
-  }
+  },
 )
 
 testProp(
@@ -836,7 +848,7 @@ testProp(
     const concurMinimum = minConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimum), [])
-  }
+  },
 )
 
 testProp(
@@ -846,7 +858,7 @@ testProp(
     const concurMinimum = minConcur(concurIterable)
 
     t.is(await getConcur(concurMinimum), Math.min(...concurIterable.values))
-  }
+  },
 )
 
 testProp(
@@ -856,7 +868,7 @@ testProp(
     const maximum = max(iterable)
 
     t.iterable(maximum)
-  }
+  },
 )
 
 testProp(
@@ -866,7 +878,7 @@ testProp(
     const maximum = max(iterable)
 
     t.deepEqual([...maximum], [])
-  }
+  },
 )
 
 testProp(
@@ -876,7 +888,7 @@ testProp(
     const maximum = max(iterable)
 
     t.is(get(maximum), Math.max(...iterable.values))
-  }
+  },
 )
 
 testProp(
@@ -886,7 +898,7 @@ testProp(
     const asyncMaximum = maxAsync(asyncIterable)
 
     await t.asyncIterable(asyncMaximum)
-  }
+  },
 )
 
 testProp(
@@ -896,7 +908,7 @@ testProp(
     const asyncMaximum = maxAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -906,7 +918,7 @@ testProp(
     const asyncMaximum = maxAsync(asyncIterable)
 
     t.is(await getAsync(asyncMaximum), Math.max(...asyncIterable.values))
-  }
+  },
 )
 
 testProp(
@@ -916,7 +928,7 @@ testProp(
     const concurMaximum = maxConcur(concurIterable)
 
     await t.concurIterable(concurMaximum)
-  }
+  },
 )
 
 testProp(
@@ -926,7 +938,7 @@ testProp(
     const concurMaximum = maxConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -936,7 +948,7 @@ testProp(
     const concurMaximum = maxConcur(concurIterable)
 
     t.is(await getConcur(concurMaximum), Math.max(...concurIterable.values))
-  }
+  },
 )
 
 testProp(
@@ -946,7 +958,7 @@ testProp(
     const minimumMaximum = minMax(iterable)
 
     t.iterable(minimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -956,7 +968,7 @@ testProp(
     const minimumMaximum = minMax(iterable)
 
     t.deepEqual([...minimumMaximum], [])
-  }
+  },
 )
 
 testProp(
@@ -967,9 +979,9 @@ testProp(
 
     t.deepEqual(get(minimumMaximum), {
       min: get(min(iterable)),
-      max: get(max(iterable))
+      max: get(max(iterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -979,7 +991,7 @@ testProp(
     const asyncMinimumMaximum = minMaxAsync(asyncIterable)
 
     await t.asyncIterable(asyncMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -989,7 +1001,7 @@ testProp(
     const asyncMinimumMaximum = minMaxAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, asyncMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -1000,9 +1012,9 @@ testProp(
 
     t.deepEqual(await getAsync(asyncMinimumMaximum), {
       min: await getAsync(minAsync(asyncIterable)),
-      max: await getAsync(maxAsync(asyncIterable))
+      max: await getAsync(maxAsync(asyncIterable)),
     })
-  }
+  },
 )
 
 testProp(
@@ -1012,7 +1024,7 @@ testProp(
     const concurMinimumMaximum = minMaxConcur(concurIterable)
 
     await t.concurIterable(concurMinimumMaximum)
-  }
+  },
 )
 
 testProp(
@@ -1022,7 +1034,7 @@ testProp(
     const concurMinimumMaximum = minMaxConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, concurMinimumMaximum), [])
-  }
+  },
 )
 
 testProp(
@@ -1033,7 +1045,7 @@ testProp(
 
     t.deepEqual(await getConcur(concurMinimumMaximum), {
       min: await getConcur(minConcur(concurIterable)),
-      max: await getConcur(maxConcur(concurIterable))
+      max: await getConcur(maxConcur(concurIterable)),
     })
-  }
+  },
 )

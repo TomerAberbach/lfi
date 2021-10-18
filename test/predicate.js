@@ -27,7 +27,7 @@ import {
   includesConcur,
   none,
   noneAsync,
-  noneConcur
+  noneConcur,
 } from '../src/predicate.js'
 import { asAsync, asConcur } from '../src/as.js'
 import { test, testProp } from './helpers/macros.js'
@@ -36,7 +36,7 @@ import {
   concurIterableArb,
   iterableArb,
   maybeAsyncPredicateArb,
-  predicateArb
+  predicateArb,
 } from './helpers/arbs.js'
 
 testProp(
@@ -47,9 +47,9 @@ testProp(
 
     t.is(
       result,
-      iterable.values.every(value => fn(value) === true)
+      iterable.values.every(value => fn(value) === true),
     )
-  }
+  },
 )
 
 test(`all concrete example`, t => {
@@ -68,9 +68,9 @@ testProp(
 
     t.is(
       result,
-      asyncIterable.values.every(value => fn.sync(value) === true)
+      asyncIterable.values.every(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 test(`allAsync concrete example`, async t => {
@@ -89,9 +89,9 @@ testProp(
 
     t.is(
       result,
-      concurIterable.values.every(value => fn.sync(value) === true)
+      concurIterable.values.every(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 testProp(
@@ -105,7 +105,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`allConcur concrete example`, async t => {
@@ -124,9 +124,9 @@ testProp(
 
     t.is(
       result,
-      iterable.values.some(value => fn(value) === true)
+      iterable.values.some(value => fn(value) === true),
     )
-  }
+  },
 )
 
 test(`any concrete example`, t => {
@@ -145,9 +145,9 @@ testProp(
 
     t.is(
       result,
-      asyncIterable.values.some(value => fn.sync(value) === true)
+      asyncIterable.values.some(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 test(`anyAsync concrete example`, async t => {
@@ -166,9 +166,9 @@ testProp(
 
     t.is(
       result,
-      concurIterable.values.some(value => fn.sync(value) === true)
+      concurIterable.values.some(value => fn.sync(value) === true),
     )
-  }
+  },
 )
 
 testProp(
@@ -182,7 +182,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`anyConcur concrete example`, async t => {
@@ -200,7 +200,7 @@ testProp(
     const result = none(fn, iterable)
 
     t.is(result, !iterable.values.some(value => fn(value) === true))
-  }
+  },
 )
 
 test(`none concrete example`, t => {
@@ -217,7 +217,7 @@ testProp(
   async (t, fn, asyncIterable) => {
     const result = await noneAsync(fn, asyncIterable)
     t.is(result, !asyncIterable.values.some(value => fn.sync(value) === true))
-  }
+  },
 )
 
 test(`noneAsync concrete example`, async t => {
@@ -235,7 +235,7 @@ testProp(
     const result = await noneConcur(fn, concurIterable)
 
     t.is(result, !concurIterable.values.some(value => fn.sync(value) === true))
-  }
+  },
 )
 
 testProp(
@@ -249,7 +249,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`noneConcur concrete example`, async t => {
@@ -269,15 +269,15 @@ testProp(
         .tuple(fc.nat(), iterableArb)
         .map(([n, iterable]) => [
           iterable.values[n % iterable.values.length],
-          iterable
-        ])
-    )
+          iterable,
+        ]),
+    ),
   ],
   (t, [searchElement, iterable]) => {
     const result = includes(searchElement, iterable)
 
     t.is(result, iterable.values.includes(searchElement))
-  }
+  },
 )
 
 test(`includes concrete example`, t => {
@@ -297,15 +297,15 @@ testProp(
         .tuple(fc.nat(), asyncIterableArb)
         .map(([n, asyncIterable]) => [
           asyncIterable.values[n % asyncIterable.values.length],
-          asyncIterable
-        ])
-    )
+          asyncIterable,
+        ]),
+    ),
   ],
   async (t, [searchElement, asyncIterable]) => {
     const result = await includesAsync(searchElement, asyncIterable)
 
     t.is(result, asyncIterable.values.includes(searchElement))
-  }
+  },
 )
 
 test(`includesAsync concrete example`, async t => {
@@ -325,15 +325,15 @@ testProp(
         .tuple(fc.nat(), concurIterableArb)
         .map(([n, concurIterable]) => [
           concurIterable.values[n % concurIterable.values.length],
-          concurIterable
-        ])
-    )
+          concurIterable,
+        ]),
+    ),
   ],
   async (t, [searchElement, concurIterable]) => {
     const result = await includesConcur(searchElement, concurIterable)
 
     t.is(result, concurIterable.values.includes(searchElement))
-  }
+  },
 )
 
 testProp(
@@ -345,9 +345,9 @@ testProp(
         .tuple(fc.nat(), concurIterableArb)
         .map(([n, concurIterable]) => [
           concurIterable.values[n % concurIterable.values.length],
-          concurIterable
-        ])
-    )
+          concurIterable,
+        ]),
+    ),
   ],
   async (t, [searchElement, concurIterable]) => {
     const promise = includesConcur(searchElement, concurIterable)
@@ -357,7 +357,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`includesConcur concrete example`, async t => {

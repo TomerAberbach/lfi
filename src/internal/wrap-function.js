@@ -17,9 +17,9 @@
 export const wrapFunction = (oldFn, newFn) =>
   Object.defineProperties(newFn, {
     length: {
-      value: oldFn.length
+      value: oldFn.length,
     },
     name: {
-      value: oldFn.name
-    }
+      value: oldFn.name,
+    },
   })

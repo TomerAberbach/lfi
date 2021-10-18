@@ -17,7 +17,7 @@
 import { curry } from './curry.js'
 import {
   assertInteger,
-  assertPositiveInteger
+  assertPositiveInteger,
 } from './internal/preconditions.js'
 
 const exclusiveRangeIterable = (start, end, step) =>
@@ -27,14 +27,14 @@ const exclusiveRangeIterable = (start, end, step) =>
           for (let i = start; i < end; i += step) {
             yield i
           }
-        }
+        },
       }
     : {
         *[Symbol.iterator]() {
           for (let i = start; i > end; i -= step) {
             yield i
           }
-        }
+        },
       }
 
 const inclusiveRangeIterable = (start, end, step) =>
@@ -44,14 +44,14 @@ const inclusiveRangeIterable = (start, end, step) =>
           for (let i = start; i <= end; i += step) {
             yield i
           }
-        }
+        },
       }
     : {
         *[Symbol.iterator]() {
           for (let i = start; i >= end; i -= step) {
             yield i
           }
-        }
+        },
       }
 
 const createRange = createRangeIterable =>

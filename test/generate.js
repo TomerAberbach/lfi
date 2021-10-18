@@ -20,7 +20,7 @@ import {
   cycleAsync,
   generate,
   generateAsync,
-  repeat
+  repeat,
 } from '../src/generate.js'
 import { take, takeAsync } from '../src/sub.js'
 import { chunked, chunkedAsync } from '../src/chunked.js'
@@ -30,7 +30,7 @@ import {
   fnArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -41,7 +41,7 @@ testProp(
     const iterable = generate(fn, seed)
 
     t.iterable(take(100, iterable))
-  }
+  },
 )
 
 test(`generate concrete example`, t => {
@@ -57,7 +57,7 @@ testProp(
     const asyncIterable = generateAsync(fn, seed)
 
     await t.asyncIterable(takeAsync(100, asyncIterable))
-  }
+  },
 )
 
 test(`generateAsync concrete example`, async t => {
@@ -65,7 +65,7 @@ test(`generateAsync concrete example`, async t => {
 
   t.deepEqual(
     await collectAsync(toArray, takeAsync(10, asyncIterable)),
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
   )
 })
 
@@ -84,7 +84,7 @@ testProp(
     for (const currentValue of take(1000, iterable)) {
       t.is(currentValue, value)
     }
-  }
+  },
 )
 
 test(`repeat concrete example`, t => {
@@ -107,11 +107,11 @@ testProp(
 
     for (const values of take(
       100,
-      chunked(iterable.values.length, cyclingIterable)
+      chunked(iterable.values.length, cyclingIterable),
     )) {
       t.deepEqual(values, iterable.values)
     }
-  }
+  },
 )
 
 test(`cycle concrete example`, t => {
@@ -129,7 +129,7 @@ testProp(
     const cyclingAsyncIterable = cycleAsync(asyncIterable)
 
     await t.asyncIterable(takeAsync(100, cyclingAsyncIterable))
-  }
+  },
 )
 
 testProp(
@@ -140,11 +140,11 @@ testProp(
 
     for await (const values of takeAsync(
       100,
-      chunkedAsync(asyncIterable.values.length, cyclingAsyncIterable)
+      chunkedAsync(asyncIterable.values.length, cyclingAsyncIterable),
     )) {
       t.deepEqual(values, asyncIterable.values)
     }
-  }
+  },
 )
 
 test(`cycleAsync concrete example`, async t => {
@@ -154,6 +154,6 @@ test(`cycleAsync concrete example`, async t => {
 
   t.deepEqual(
     await collectAsync(toArray, takeAsync(9, cyclingAsyncIterable)),
-    [1, 2, 3, 1, 2, 3, 1, 2, 3]
+    [1, 2, 3, 1, 2, 3, 1, 2, 3],
   )
 })

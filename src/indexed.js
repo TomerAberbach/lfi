@@ -22,7 +22,7 @@ export const indexed = curry(iterable => ({
     for (const value of iterable) {
       yield [index++, value]
     }
-  }
+  },
 }))
 
 export const indexedAsync = curry(asyncIterable => ({
@@ -31,7 +31,7 @@ export const indexedAsync = curry(asyncIterable => ({
     for await (const value of asyncIterable) {
       yield [index++, value]
     }
-  }
+  },
 }))
 
 export const indexedConcur = curry(concurIterable => async apply => {

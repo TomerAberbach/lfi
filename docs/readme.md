@@ -65,7 +65,7 @@ import {
   toArray,
   toSet,
   toMap,
-  grouping
+  grouping,
 } from 'lfi'
 
 const messySlothDiaryEntries = [
@@ -76,7 +76,7 @@ const messySlothDiaryEntries = [
   [`Frank`, `ate`],
   [`frank`, `strolled`],
   [`carl`, `Slept`],
-  [`Frank`, `  `]
+  [`Frank`, `  `],
 ]
 
 const cleanSlothDiaryEntries = pipe(
@@ -84,14 +84,14 @@ const cleanSlothDiaryEntries = pipe(
   map(([sloth, activity]) => [sloth, activity.trim()]),
   filter(([, activity]) => activity.length > 0),
   map(entry => entry.map(string => string.toLowerCase())),
-  collect(toArray)
+  collect(toArray),
 )
 console.log(cleanSlothDiaryEntries)
 //=> [ [ 'carl', 'slept' ], [ 'phil', 'ate' ], [ 'carl', 'climbed' ], ... ]
 
 const uniqueActiviesPerSloth = collect(
   grouping(toSet, toMap),
-  cleanSlothDiaryEntries
+  cleanSlothDiaryEntries,
 )
 console.log(uniqueActiviesPerSloth)
 //=> Map(3) {
@@ -114,18 +114,18 @@ const filename = `every-sloth-name.txt`
 await pipe(
   readline.createInterface({
     input: createReadStream(filename, { encoding: `utf8` }),
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   }),
   chunkedAsync(4),
   mapAsync(async slothSquad => {
     const [adjective] = await got(
-      `https://random-word-form.herokuapp.com/random/adjective`
+      `https://random-word-form.herokuapp.com/random/adjective`,
     ).json()
     return `${slothSquad.slice(0, 3).join(`, `)}, and ${
       slothSquad[slothSquad.length - 1]
     } are ${adjective}`
   }),
-  forEachAsync(console.log)
+  forEachAsync(console.log),
 )
 //=> george, phil, carl, and frank are jolly!
 //=> scott, jerry, ralph, and mike are infinite!
@@ -146,7 +146,7 @@ const filename = `every-sloth-name.txt`
 await pipe(
   readline.createInterface({
     input: createReadStream(filename, { encoding: `utf8` }),
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   }),
   chunkedAsync(4),
   // Query for the adjectives of each group concurrently rather than sequentially!
@@ -155,14 +155,14 @@ await pipe(
     // At most 4 requests at a time!
     limitConcur(4, async slothSquad => {
       const [adjective] = await got(
-        `https://random-word-form.herokuapp.com/random/adjective`
+        `https://random-word-form.herokuapp.com/random/adjective`,
       ).json()
       return `${slothSquad.slice(0, 3).join(`, `)}, and ${
         slothSquad[slothSquad.length - 1]
       } are ${adjective}`
-    })
+    }),
   ),
-  forEachConcur(console.log)
+  forEachConcur(console.log),
 )
 //=> george, phil, carl, and frank are jolly!
 //=> scott, jerry, ralph, and mike are infinite!
@@ -247,7 +247,7 @@ await pipe(
   concurIterable,
   mapConcur(name => fs.readFile(`${name}.txt`, `utf8`)),
   filterConcur(contents => contents.includes(`sloth`)),
-  forEachConcur(console.log)
+  forEachConcur(console.log),
 )
 ```
 
@@ -266,14 +266,14 @@ They are different!
     mapConcur,
     filterConcur,
     collectConcur,
-    toArray
+    toArray,
   } from 'lfi'
 
   // N - 1 intermediate arrays for N operations!
   const intermediateArray1 = await pMap(someFunction, someArray)
   const intermediateArray2 = await pFilter(
     someOtherFunction,
-    intermediateArray1
+    intermediateArray1,
   )
   // ...
   const finalArray = await pMap(lastFunction, intermediateArrayN)
@@ -284,7 +284,7 @@ They are different!
     mapConcur(someFunction),
     filterConcur(someOtherFunction),
     // ...
-    collectConcur(toArray)
+    collectConcur(toArray),
   )
   ```
 
@@ -300,7 +300,7 @@ They are different!
     mapConcur,
     filterConcur,
     collectConcur,
-    toArray
+    toArray,
   } from 'lfi'
 
   const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout))
@@ -318,7 +318,7 @@ They are different!
     async index => {
       await delay(filterDelays[index] * 1000)
       return true
-    }
+    },
   )
 
   // Takes 11 seconds!
@@ -332,7 +332,7 @@ They are different!
       await delay(filterDelays[index] * 1000)
       return true
     }),
-    collectConcur(toArray)
+    collectConcur(toArray),
   )
   ```
 

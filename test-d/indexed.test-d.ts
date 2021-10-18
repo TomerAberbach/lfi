@@ -21,13 +21,13 @@ import {
   ConcurIterable,
   indexed,
   indexedAsync,
-  indexedConcur
+  indexedConcur,
 } from '../src'
 
 expectType<Iterable<[number, string]>>(indexed(['hello', 'world']))
 expectType<AsyncIterable<[number, string]>>(
-  indexedAsync(asAsync(['hello', 'world']))
+  indexedAsync(asAsync(['hello', 'world'])),
 )
 expectType<ConcurIterable<[number, string]>>(
-  indexedConcur(asConcur(['hello', 'world']))
+  indexedConcur(asConcur(['hello', 'world'])),
 )

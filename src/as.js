@@ -19,7 +19,7 @@ export const asAsync = iterable => ({
     for await (const value of iterable) {
       yield value
     }
-  }
+  },
 })
 
 export const asConcur = iterable =>

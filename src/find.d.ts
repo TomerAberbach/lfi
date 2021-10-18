@@ -20,33 +20,33 @@ import { ConcurIterable } from './types'
 /** @internal */
 type Find = {
   <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => Iterable<Value>
   <Value>(
     fn: (value: Value) => boolean | unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
 /** @internal */
 type FindAsync = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
 /** @internal */
 type FindConcur = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
 

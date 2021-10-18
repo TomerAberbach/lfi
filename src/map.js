@@ -21,7 +21,7 @@ export const map = curry((fn, iterable) => ({
     for (const value of iterable) {
       yield fn(value)
     }
-  }
+  },
 }))
 
 export const mapAsync = curry((fn, asyncIterable) => ({
@@ -29,10 +29,10 @@ export const mapAsync = curry((fn, asyncIterable) => ({
     for await (const value of asyncIterable) {
       yield fn(value)
     }
-  }
+  },
 }))
 
 export const mapConcur = curry(
   (fn, concurIterable) => apply =>
-    concurIterable(async value => apply(await fn(value)))
+    concurIterable(async value => apply(await fn(value))),
 )

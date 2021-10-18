@@ -46,81 +46,81 @@ import {
   minMaxAsync,
   minConcur,
   maxConcur,
-  minMaxConcur
+  minMaxConcur,
 } from '../src'
 
 expectType<Iterable<string>>(
-  minBy((left, right) => left.length - right.length, ['sdf', 'sdf'])
+  minBy((left, right) => left.length - right.length, ['sdf', 'sdf']),
 )
 expectType<Iterable<string>>(
-  maxBy((left, right) => left.length - right.length, ['sdf', 'sdf'])
+  maxBy((left, right) => left.length - right.length, ['sdf', 'sdf']),
 )
 expectType<Iterable<MinMax<string>>>(
-  minMaxBy((left, right) => left.length - right.length, ['sdf', 'sdf'])
+  minMaxBy((left, right) => left.length - right.length, ['sdf', 'sdf']),
 )
 
 expectType<AsyncIterable<string>>(
   minByAsync(
     (left, right) => left.length - right.length,
-    asAsync(['sdf', 'sdf'])
-  )
+    asAsync(['sdf', 'sdf']),
+  ),
 )
 expectType<AsyncIterable<string>>(
   maxByAsync(
     async (left, right) => left.length - right.length,
-    asAsync(['sdf', 'sdf'])
-  )
+    asAsync(['sdf', 'sdf']),
+  ),
 )
 expectType<AsyncIterable<MinMax<string>>>(
   minMaxByAsync(
     (left, right) => left.length - right.length,
-    asAsync(['sdf', 'sdf'])
-  )
+    asAsync(['sdf', 'sdf']),
+  ),
 )
 
 expectType<ConcurIterable<string>>(
   minByConcur(
     (left, right) => left.length - right.length,
-    asConcur(['sdf', 'sdf'])
-  )
+    asConcur(['sdf', 'sdf']),
+  ),
 )
 expectType<ConcurIterable<string>>(
   maxByConcur(
     async (left, right) => left.length - right.length,
-    asConcur(['sdf', 'sdf'])
-  )
+    asConcur(['sdf', 'sdf']),
+  ),
 )
 expectType<ConcurIterable<MinMax<string>>>(
   minMaxByConcur(
     (left, right) => left.length - right.length,
-    asConcur(['sdf', 'sdf'])
-  )
+    asConcur(['sdf', 'sdf']),
+  ),
 )
 
 expectType<Iterable<string>>(minWith(string => string.length, ['sdf', 'sdf']))
 expectType<Iterable<string>>(maxWith(string => string.length, ['sdf', 'sdf']))
 expectType<Iterable<MinMax<string>>>(
-  minMaxWith(string => string.length, ['sdf', 'sdf'])
+  minMaxWith(string => string.length, ['sdf', 'sdf']),
 )
 
 expectType<AsyncIterable<string>>(
-  minWithAsync(string => string.length, asAsync(['sdf', 'sdf']))
+  minWithAsync(string => string.length, asAsync(['sdf', 'sdf'])),
 )
 expectType<AsyncIterable<string>>(
-  maxWithAsync(async string => string.length, asAsync(['sdf', 'sdf']))
+  maxWithAsync(async string => string.length, asAsync(['sdf', 'sdf'])),
 )
 expectType<AsyncIterable<MinMax<string>>>(
-  minMaxWithAsync(string => string.length, asAsync(['sdf', 'sdf']))
+  minMaxWithAsync(string => string.length, asAsync(['sdf', 'sdf'])),
 )
 
 expectType<ConcurIterable<string>>(
-  minWithConcur(string => string.length, asConcur(['sdf', 'sdf']))
+  minWithConcur(string => string.length, asConcur(['sdf', 'sdf'])),
 )
 expectType<ConcurIterable<string>>(
-  maxWithConcur(async string => string.length, asConcur(['sdf', 'sdf']))
+  maxWithConcur(async string => string.length, asConcur(['sdf', 'sdf'])),
 )
 expectType<ConcurIterable<MinMax<string>>>(
-  minMaxWithConcur(string => string.length, asConcur(['sdf', 'sdf']))
+  minMaxWithConcur(string => string.length, asConcur(['sdf', 'sdf'])),
 )
 
 expectType<Iterable<number>>(min([1, 2, 3]))

@@ -24,7 +24,7 @@ export const find = curry((fn, iterable) => ({
         return
       }
     }
-  }
+  },
 }))
 
 export const findAsync = curry((fn, asyncIterable) => ({
@@ -35,7 +35,7 @@ export const findAsync = curry((fn, asyncIterable) => ({
         return
       }
     }
-  }
+  },
 }))
 
 export const findConcur = curry(
@@ -49,7 +49,7 @@ export const findConcur = curry(
           await apply(value)
         }
       }).then(() => resolve())
-    })
+    }),
 )
 
 export const findLast = curry((fn, iterable) => ({
@@ -65,7 +65,7 @@ export const findLast = curry((fn, iterable) => ({
     if (last != null) {
       yield last.value
     }
-  }
+  },
 }))
 
 export const findLastAsync = curry((fn, asyncIterable) => ({
@@ -81,7 +81,7 @@ export const findLastAsync = curry((fn, asyncIterable) => ({
     if (last != null) {
       yield last.value
     }
-  }
+  },
 }))
 
 export const findLastConcur = curry((fn, concurIterable) => async apply => {

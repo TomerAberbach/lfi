@@ -61,7 +61,7 @@ export const cached: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  */
 export const cachedAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**
@@ -86,5 +86,5 @@ export const cachedAsync: <Value>(
  * ```
  */
 export const cachedConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => ConcurIterable<Value>

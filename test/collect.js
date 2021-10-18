@@ -26,7 +26,7 @@ import {
   toObject,
   toSet,
   toWeakMap,
-  toWeakSet
+  toWeakSet,
 } from '../src/collect.js'
 import { asAsync, asConcur } from '../src/as.js'
 import { map, mapAsync, mapConcur } from '../src/map.js'
@@ -34,45 +34,45 @@ import { test, testProp } from './helpers/macros.js'
 import {
   getAsyncIterableArb,
   getConcurIterableArb,
-  getIterableArb
+  getIterableArb,
 } from './helpers/arbs.js'
 
 const getArrayArb = getIterableArb =>
   getIterableArb(fc.anything()).map(iterable => [
     toArray,
     iterable,
-    [...iterable.iterationOrder]
+    [...iterable.iterationOrder],
   ])
 const getSetArb = getIterableArb =>
   getIterableArb(fc.anything()).map(iterable => [
     toSet,
     iterable,
-    new Set([...iterable.iterationOrder])
+    new Set([...iterable.iterationOrder]),
   ])
 const getWeakSetArb = getIterableArb =>
   getIterableArb(fc.object()).map(iterable => [
     toWeakSet,
     iterable,
-    new WeakSet([...iterable.iterationOrder])
+    new WeakSet([...iterable.iterationOrder]),
   ])
 
 const getObjectArb = getIterableArb =>
   getIterableArb(fc.tuple(fc.string(), fc.anything())).map(iterable => [
     toObject,
     iterable,
-    Object.fromEntries(iterable.iterationOrder)
+    Object.fromEntries(iterable.iterationOrder),
   ])
 const getMapArb = getIterableArb =>
   getIterableArb(fc.tuple(fc.anything(), fc.anything())).map(iterable => [
     toMap,
     iterable,
-    new Map(iterable.iterationOrder)
+    new Map(iterable.iterationOrder),
   ])
 const getWeakMapArb = getIterableArb =>
   getIterableArb(fc.tuple(fc.object(), fc.anything())).map(iterable => [
     toWeakMap,
     iterable,
-    new WeakMap(iterable.iterationOrder)
+    new WeakMap(iterable.iterationOrder),
   ])
 
 testProp(
@@ -85,15 +85,15 @@ testProp(
         getWeakSetArb,
         getObjectArb,
         getMapArb,
-        getWeakMapArb
-      ].map(getArb => getArb(getIterableArb))
-    )
+        getWeakMapArb,
+      ].map(getArb => getArb(getIterableArb)),
+    ),
   ],
   (t, [to, iterable, expectedCollection]) => {
     const actualCollection = collect(to, iterable)
 
     t.deepEqual(actualCollection, expectedCollection)
-  }
+  },
 )
 
 testProp(
@@ -106,15 +106,15 @@ testProp(
         getWeakSetArb,
         getObjectArb,
         getMapArb,
-        getWeakMapArb
-      ].map(getArb => getArb(getAsyncIterableArb))
-    )
+        getWeakMapArb,
+      ].map(getArb => getArb(getAsyncIterableArb)),
+    ),
   ],
   async (t, [to, asyncIterable, expectedCollection]) => {
     const actualCollection = await collectAsync(to, asyncIterable)
 
     t.deepEqual(actualCollection, expectedCollection)
-  }
+  },
 )
 
 testProp(
@@ -123,20 +123,20 @@ testProp(
     fc
       .oneof(
         ...[getArrayArb, getSetArb, getObjectArb, getMapArb].map(getArb =>
-          getArb(getConcurIterableArb)
-        )
+          getArb(getConcurIterableArb),
+        ),
       )
       .filter(
         ([, concurIterable, collection]) =>
           concurIterable.values.length ===
-          (`size` in collection ? collection.size : collection.length)
-      )
+          (`size` in collection ? collection.size : collection.length),
+      ),
   ],
   async (t, [to, concurIterable, expectedCollection]) => {
     const actualCollection = await collectConcur(to, concurIterable)
 
     t.deepEqual(actualCollection, expectedCollection)
-  }
+  },
 )
 
 test(`collect counting concrete example`, t => {
@@ -144,7 +144,7 @@ test(`collect counting concrete example`, t => {
 
   const aMap = collect(
     counting(toMap),
-    map(value => [value, value], iterable)
+    map(value => [value, value], iterable),
   )
 
   t.deepEqual(
@@ -155,8 +155,8 @@ test(`collect counting concrete example`, t => {
       [3, 1],
       [4, 2],
       [6, 5],
-      [7, 1]
-    ])
+      [7, 1],
+    ]),
   )
 })
 
@@ -165,7 +165,7 @@ test(`collectAsync counting concrete example`, async t => {
 
   const map = await collectAsync(
     counting(toMap),
-    mapAsync(value => [value, value], asyncIterable)
+    mapAsync(value => [value, value], asyncIterable),
   )
 
   t.deepEqual(
@@ -176,8 +176,8 @@ test(`collectAsync counting concrete example`, async t => {
       [3, 1],
       [4, 2],
       [6, 5],
-      [7, 1]
-    ])
+      [7, 1],
+    ]),
   )
 })
 
@@ -186,7 +186,7 @@ test(`collectConcur counting concrete example`, async t => {
 
   const map = await collectConcur(
     counting(toMap),
-    mapConcur(value => [value, value], concurIterable)
+    mapConcur(value => [value, value], concurIterable),
   )
 
   t.deepEqual(
@@ -197,8 +197,8 @@ test(`collectConcur counting concrete example`, async t => {
       [3, 1],
       [4, 2],
       [6, 5],
-      [7, 1]
-    ])
+      [7, 1],
+    ]),
   )
 })
 
@@ -207,7 +207,7 @@ test(`collect grouping concrete example 1`, t => {
 
   const aMap = collect(
     grouping(toArray, toMap),
-    map(value => [value, value], iterable)
+    map(value => [value, value], iterable),
   )
 
   t.deepEqual(
@@ -218,8 +218,8 @@ test(`collect grouping concrete example 1`, t => {
       [3, [3]],
       [4, [4, 4]],
       [6, [6, 6, 6, 6, 6]],
-      [7, [7]]
-    ])
+      [7, [7]],
+    ]),
   )
 })
 
@@ -228,7 +228,7 @@ test(`collect grouping concrete example 2`, t => {
 
   const object = collect(
     grouping(toArray, toObject),
-    map(value => [String(value), value], iterable)
+    map(value => [String(value), value], iterable),
   )
 
   t.deepEqual(object, {
@@ -237,7 +237,7 @@ test(`collect grouping concrete example 2`, t => {
     3: [3],
     4: [4, 4],
     6: [6, 6, 6, 6, 6],
-    7: [7]
+    7: [7],
   })
 })
 
@@ -246,7 +246,7 @@ test(`collectAsync grouping concrete example`, async t => {
 
   const map = await collectAsync(
     grouping(toArray, toMap),
-    mapAsync(value => [value, value], asyncIterable)
+    mapAsync(value => [value, value], asyncIterable),
   )
 
   t.deepEqual(
@@ -257,8 +257,8 @@ test(`collectAsync grouping concrete example`, async t => {
       [3, [3]],
       [4, [4, 4]],
       [6, [6, 6, 6, 6, 6]],
-      [7, [7]]
-    ])
+      [7, [7]],
+    ]),
   )
 })
 
@@ -267,7 +267,7 @@ test(`collectConcur grouping concrete example`, async t => {
 
   const map = await collectConcur(
     grouping(toArray, toMap),
-    mapConcur(value => [value, value], concurIterable)
+    mapConcur(value => [value, value], concurIterable),
   )
 
   t.deepEqual(
@@ -278,7 +278,7 @@ test(`collectConcur grouping concrete example`, async t => {
       [3, [3]],
       [4, [4, 4]],
       [6, [6, 6, 6, 6, 6]],
-      [7, [7]]
-    ])
+      [7, [7]],
+    ]),
   )
 })

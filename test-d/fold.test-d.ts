@@ -23,45 +23,45 @@ expectType<number>(fold((a: number, b: number) => a + b)(0)([1, 2, 3]))
 
 expectType<Promise<number>>(foldAsync((a, b) => a + b, 0, asAsync([1, 2, 3])))
 expectType<Promise<number>>(
-  foldAsync(async (a, b) => a + b, 0, asAsync([1, 2, 3]))
+  foldAsync(async (a, b) => a + b, 0, asAsync([1, 2, 3])),
 )
 expectType<Promise<number>>(
-  foldAsync((a: number, b: number) => a + b)(0, asAsync([1, 2, 3]))
+  foldAsync((a: number, b: number) => a + b)(0, asAsync([1, 2, 3])),
 )
 expectType<Promise<number>>(
-  foldAsync(async (a: number, b: number) => a + b)(0, asAsync([1, 2, 3]))
+  foldAsync(async (a: number, b: number) => a + b)(0, asAsync([1, 2, 3])),
 )
 expectType<Promise<number>>(
-  foldAsync((a: number, b: number) => a + b)(0)(asAsync([1, 2, 3]))
+  foldAsync((a: number, b: number) => a + b)(0)(asAsync([1, 2, 3])),
 )
 expectType<Promise<number>>(
-  foldAsync(async (a: number, b: number) => a + b)(0)(asAsync([1, 2, 3]))
+  foldAsync(async (a: number, b: number) => a + b)(0)(asAsync([1, 2, 3])),
 )
 
 expectType<Promise<number>>(
-  foldConcur((a: number, b: number) => a + b, 0, asConcur([1, 2, 3]))
+  foldConcur((a: number, b: number) => a + b, 0, asConcur([1, 2, 3])),
 )
 expectType<Promise<number>>(
   foldConcur<number, number>(
     async (a: number, b: number) => a + b,
     0,
-    asConcur([1, 2, 3])
-  )
+    asConcur([1, 2, 3]),
+  ),
 )
 expectType<Promise<number>>(
-  foldConcur((a: number, b: number) => a + b)(0, asConcur([1, 2, 3]))
+  foldConcur((a: number, b: number) => a + b)(0, asConcur([1, 2, 3])),
 )
 expectType<Promise<number>>(
   foldConcur<number, number>(async (a: number, b: number) => a + b)(
     0,
-    asConcur([1, 2, 3])
-  )
+    asConcur([1, 2, 3]),
+  ),
 )
 expectType<Promise<number>>(
-  foldConcur((a: number, b: number) => a + b)(0)(asConcur([1, 2, 3]))
+  foldConcur((a: number, b: number) => a + b)(0)(asConcur([1, 2, 3])),
 )
 expectType<Promise<number>>(
   foldConcur<number, number>(async (a: number, b: number) => a + b)(0)(
-    asConcur([1, 2, 3])
-  )
+    asConcur([1, 2, 3]),
+  ),
 )

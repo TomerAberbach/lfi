@@ -23,7 +23,7 @@ import { test, testProp } from './helpers/macros.js'
 import {
   asyncIterableArb,
   concurIterableArb,
-  iterableArb
+  iterableArb,
 } from './helpers/arbs.js'
 
 testProp(
@@ -33,7 +33,7 @@ testProp(
     const concatenatedIterable = concat(...iterables)
 
     t.iterable(concatenatedIterable)
-  }
+  },
 )
 
 testProp(
@@ -44,9 +44,9 @@ testProp(
 
     t.deepEqual(
       [...concatenatedIterable],
-      iterables.flatMap(({ values }) => values)
+      iterables.flatMap(({ values }) => values),
     )
-  }
+  },
 )
 
 test(`concat returns an empty iterable for zero arguments`, t => {
@@ -71,7 +71,7 @@ testProp(
     const concatenatedAsyncIterable = concatAsync(...iterables)
 
     await t.asyncIterable(concatenatedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -82,9 +82,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, concatenatedAsyncIterable),
-      iterables.flatMap(({ values }) => values)
+      iterables.flatMap(({ values }) => values),
     )
-  }
+  },
 )
 
 test(`concatAsync returns an empty async iterable for zero arguments`, async t => {
@@ -101,7 +101,7 @@ test(`concatAsync concrete example`, async t => {
 
   t.deepEqual(
     await collectAsync(toArray, concatenatedAsyncIterable),
-    [1, 2, 3, 4, 5, 6]
+    [1, 2, 3, 4, 5, 6],
   )
 })
 
@@ -112,7 +112,7 @@ testProp(
     const concatenatedConcurIterable = concatConcur(...concurIterables)
 
     await t.concurIterable(concatenatedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -123,9 +123,9 @@ testProp(
 
     t.unorderedDeepEqual(
       await collectConcur(toArray, concatenatedConcurIterable),
-      iterables.flatMap(({ iterationOrder }) => iterationOrder)
+      iterables.flatMap(({ iterationOrder }) => iterationOrder),
     )
-  }
+  },
 )
 
 testProp(
@@ -140,11 +140,11 @@ testProp(
     t.pending(promise)
 
     await t.tick(
-      Math.max(...concurIterables.map(({ maxTimeout }) => maxTimeout))
+      Math.max(...concurIterables.map(({ maxTimeout }) => maxTimeout)),
     )
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`concatConcur returns an empty concur iterable for zero arguments`, async t => {
@@ -159,11 +159,11 @@ test(`concatConcur concrete example`, async t => {
 
   const concatenatedConcurIterable = concatConcur(
     concurIterable1,
-    concurIterable2
+    concurIterable2,
   )
 
   t.unorderedDeepEqual(
     await collectConcur(toArray, concatenatedConcurIterable),
-    [1, 2, 3, 4, 5, 6]
+    [1, 2, 3, 4, 5, 6],
   )
 })

@@ -36,23 +36,23 @@ import {
   takeConcur,
   takeWhile,
   takeWhileAsync,
-  takeWhileConcur
+  takeWhileConcur,
 } from '../src'
 
 expectType<Iterable<number>>(dropWhile(value => value < 2, [1, 2, 3]))
 expectType<AsyncIterable<number>>(
-  dropWhileAsync(value => value < 2, asAsync([1, 2, 3]))
+  dropWhileAsync(value => value < 2, asAsync([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  dropWhileConcur(value => value < 2, asConcur([1, 2, 3]))
+  dropWhileConcur(value => value < 2, asConcur([1, 2, 3])),
 )
 
 expectType<Iterable<number>>(takeWhile(value => value < 2, [1, 2, 3]))
 expectType<AsyncIterable<number>>(
-  takeWhileAsync(value => value < 2, asAsync([1, 2, 3]))
+  takeWhileAsync(value => value < 2, asAsync([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  takeWhileConcur(value => value < 2, asConcur([1, 2, 3]))
+  takeWhileConcur(value => value < 2, asConcur([1, 2, 3])),
 )
 
 expectType<Iterable<number>>(drop(3, [1, 2, 3]))

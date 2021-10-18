@@ -20,7 +20,7 @@ import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
-  nonEmptyConcurIterableArb
+  nonEmptyConcurIterableArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -31,7 +31,7 @@ testProp(
     const length = count(iterable)
 
     t.is(length, iterable.values.length)
-  }
+  },
 )
 
 test(`count concrete example`, t => {
@@ -49,7 +49,7 @@ testProp(
     const length = await countAsync(asyncIterable)
 
     t.is(length, asyncIterable.values.length)
-  }
+  },
 )
 
 test(`countAsync concrete example`, async t => {
@@ -67,7 +67,7 @@ testProp(
     const length = await countConcur(concurIterable)
 
     t.is(length, concurIterable.values.length)
-  }
+  },
 )
 
 testProp(
@@ -81,7 +81,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`countConcur concrete example`, async t => {

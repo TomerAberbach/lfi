@@ -25,7 +25,7 @@ testProp(
     const piped = pipe(value)
 
     t.is(piped, value)
-  }
+  },
 )
 
 testProp(
@@ -33,7 +33,7 @@ testProp(
   [fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })],
   (t, value, [firstFn, ...otherFns]) => {
     t.is(pipe(value, firstFn, ...otherFns), pipe(firstFn(value), ...otherFns))
-  }
+  },
 )
 
 test(`pipe concrete example`, t => {
@@ -41,7 +41,7 @@ test(`pipe concrete example`, t => {
     1,
     value => value * 2,
     String,
-    string => string.repeat(3)
+    string => string.repeat(3),
   )
 
   t.is(piped, `222`)
@@ -54,7 +54,7 @@ testProp(
     const fn = compose()
 
     t.is(fn(value), value)
-  }
+  },
 )
 
 testProp(
@@ -63,16 +63,16 @@ testProp(
   (t, value, [firstFn, ...otherFns]) => {
     t.is(
       compose(firstFn, ...otherFns)(value),
-      compose(...otherFns)(firstFn(value))
+      compose(...otherFns)(firstFn(value)),
     )
-  }
+  },
 )
 
 test(`compose concrete example`, t => {
   const composed = compose(
     value => value * 2,
     String,
-    string => string.repeat(3)
+    string => string.repeat(3),
   )
 
   t.is(composed(1), `222`)

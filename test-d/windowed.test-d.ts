@@ -21,7 +21,7 @@ import {
   ConcurIterable,
   windowed,
   windowedAsync,
-  windowedConcur
+  windowedConcur,
 } from '../src'
 
 expectType<Iterable<number[]>>(windowed(3, [1, 2, 3, 4]))

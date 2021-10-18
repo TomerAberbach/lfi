@@ -21,7 +21,7 @@ import { test, testProp } from './helpers/macros.js'
 import {
   asyncIterableArb,
   concurIterableArb,
-  iterableArb
+  iterableArb,
 } from './helpers/arbs.js'
 
 testProp(`join joins`, [fc.string(), iterableArb], (t, separator, iterable) => {
@@ -45,7 +45,7 @@ testProp(
     const joined = await joinAsync(separator, asyncIterable)
 
     t.is(joined, asyncIterable.values.map(String).join(separator))
-  }
+  },
 )
 
 test(`joinAsync concrete example`, async t => {
@@ -63,7 +63,7 @@ testProp(
     const joined = await joinConcur(separator, concurIterable)
 
     t.is(joined, concurIterable.iterationOrder.map(String).join(separator))
-  }
+  },
 )
 
 testProp(
@@ -77,7 +77,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`joinConcur concrete example`, async t => {

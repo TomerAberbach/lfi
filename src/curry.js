@@ -24,7 +24,7 @@ export const curry = fn => {
   }
 
   const curried = wrapFunction(fn, (...args) =>
-    args.length < fn.length ? curry(fn.bind(null, ...args)) : fn(...args)
+    args.length < fn.length ? curry(fn.bind(null, ...args)) : fn(...args),
   )
   curriedFunctions.add(curried)
 

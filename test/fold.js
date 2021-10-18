@@ -21,7 +21,7 @@ import {
   foldConcur,
   reduce,
   reduceAsync,
-  reduceConcur
+  reduceConcur,
 } from '../src/fold.js'
 import { asAsync, asConcur } from '../src/as.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
@@ -38,7 +38,7 @@ import {
   maybeAsyncFnArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -50,9 +50,9 @@ testProp(
 
     t.deepEqual(
       folded,
-      iterable.values.reduce((a, b) => fn(a, b), initial)
+      iterable.values.reduce((a, b) => fn(a, b), initial),
     )
-  }
+  },
 )
 
 test(`fold concrete example`, t => {
@@ -71,9 +71,9 @@ testProp(
 
     t.deepEqual(
       await folded,
-      asyncIterable.values.reduce((a, b) => fn.sync(a, b), initial)
+      asyncIterable.values.reduce((a, b) => fn.sync(a, b), initial),
     )
-  }
+  },
 )
 
 test(`foldAsync concrete example`, async t => {
@@ -90,19 +90,19 @@ testProp(
     fc.constantFrom(
       (a, b) => a + b,
       (a, b) => Math.max(a, b),
-      (a, b) => Math.min(a, b)
+      (a, b) => Math.min(a, b),
     ),
     fc.integer(),
-    getConcurIterableArb(fc.integer())
+    getConcurIterableArb(fc.integer()),
   ],
   async (t, fn, initial, concurIterable) => {
     const folded = await foldConcur(fn, initial, concurIterable)
 
     t.deepEqual(
       folded,
-      concurIterable.values.reduce((a, b) => fn(a, b), initial)
+      concurIterable.values.reduce((a, b) => fn(a, b), initial),
     )
-  }
+  },
 )
 
 testProp(
@@ -116,7 +116,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`foldConcur concrete example`, async t => {
@@ -134,7 +134,7 @@ testProp(
     const reduced = reduce(fn, iterable)
 
     t.iterable(reduced)
-  }
+  },
 )
 
 testProp(
@@ -144,7 +144,7 @@ testProp(
     const reduced = reduce(fn, iterable)
 
     t.deepEqual([...reduced], [])
-  }
+  },
 )
 
 testProp(`reduce reduces`, [fnArb, nonEmptyIterableArb], (t, fn, iterable) => {
@@ -168,7 +168,7 @@ testProp(
     const reduced = reduceAsync(fn, asyncIterable)
 
     await t.asyncIterable(reduced)
-  }
+  },
 )
 
 testProp(
@@ -178,7 +178,7 @@ testProp(
     const reduced = reduceAsync(fn, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, reduced), [])
-  }
+  },
 )
 
 testProp(
@@ -189,9 +189,9 @@ testProp(
 
     t.deepEqual(
       await getAsync(reduced),
-      asyncIterable.values.reduce((a, b) => fn.sync(a, b))
+      asyncIterable.values.reduce((a, b) => fn.sync(a, b)),
     )
-  }
+  },
 )
 
 test(`reduceAsync concrete example`, async t => {
@@ -209,7 +209,7 @@ testProp(
     const reduced = reduceConcur(fn, concurIterable)
 
     await t.concurIterable(reduced)
-  }
+  },
 )
 
 testProp(
@@ -219,7 +219,7 @@ testProp(
     const reduced = reduceConcur(fn, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, reduced), [])
-  }
+  },
 )
 
 testProp(
@@ -228,18 +228,18 @@ testProp(
     fc.constantFrom(
       (a, b) => a + b,
       (a, b) => Math.max(a, b),
-      (a, b) => Math.min(a, b)
+      (a, b) => Math.min(a, b),
     ),
-    getConcurIterableArb(fc.integer(), { minLength: 1 })
+    getConcurIterableArb(fc.integer(), { minLength: 1 }),
   ],
   async (t, fn, concurIterable) => {
     const reduced = reduceConcur(fn, concurIterable)
 
     t.deepEqual(
       await getConcur(reduced),
-      concurIterable.values.reduce((a, b) => fn(a, b))
+      concurIterable.values.reduce((a, b) => fn(a, b)),
     )
-  }
+  },
 )
 
 testProp(
@@ -253,7 +253,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`reduceConcur concrete example`, async t => {

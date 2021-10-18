@@ -19,7 +19,7 @@ import { rangeTo, rangeUntil } from '../src/range.js'
 import { test, testProp } from './helpers/macros.js'
 import {
   nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb
+  nonSafeIntegerDoubleArb,
 } from './helpers/arbs.js'
 
 const reasonableIntegerArb = fc.integer({ min: -100, max: 100 })
@@ -39,7 +39,7 @@ testProp(
     const range = rangeUntil(start, end)
 
     t.iterable(range)
-  }
+  },
 )
 
 testProp(
@@ -48,9 +48,9 @@ testProp(
   (t, start, end) => {
     t.throws(() => rangeUntil(start, end), {
       message: `\`start\` must be an integer: ${start}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -59,9 +59,9 @@ testProp(
   (t, start, end) => {
     t.throws(() => rangeUntil(start, end), {
       message: `\`end\` must be an integer: ${end}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -74,7 +74,7 @@ testProp(
       t.is(value, start)
       start++
     }
-  }
+  },
 )
 
 testProp(
@@ -87,7 +87,7 @@ testProp(
       t.is(value, start)
       start--
     }
-  }
+  },
 )
 
 test(`rangeUntil concrete example`, t => {
@@ -105,7 +105,7 @@ testProp(
     const range = rangeUntil(start, end).step(step)
 
     t.iterable(range)
-  }
+  },
 )
 
 testProp(
@@ -116,9 +116,9 @@ testProp(
 
     t.throws(() => range.step(step), {
       message: `\`step\` must be an integer: ${step}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -129,9 +129,9 @@ testProp(
 
     t.throws(() => range.step(step), {
       message: `\`step\` must be a positive integer: ${step}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -144,7 +144,7 @@ testProp(
       t.is(value, start)
       start += step
     }
-  }
+  },
 )
 
 testProp(
@@ -157,7 +157,7 @@ testProp(
       t.is(value, start)
       start -= step
     }
-  }
+  },
 )
 
 test(`rangeUntil step concrete example`, t => {
@@ -175,7 +175,7 @@ testProp(
     const range = rangeTo(start, end)
 
     t.iterable(range)
-  }
+  },
 )
 
 testProp(
@@ -184,9 +184,9 @@ testProp(
   (t, start, end) => {
     t.throws(() => rangeTo(start, end), {
       message: `\`start\` must be an integer: ${start}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -195,9 +195,9 @@ testProp(
   (t, start, end) => {
     t.throws(() => rangeTo(start, end), {
       message: `\`end\` must be an integer: ${end}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -210,7 +210,7 @@ testProp(
       t.is(value, start)
       start++
     }
-  }
+  },
 )
 
 testProp(
@@ -223,7 +223,7 @@ testProp(
       t.is(value, start)
       start--
     }
-  }
+  },
 )
 
 test(`rangeTo concrete example`, t => {
@@ -241,7 +241,7 @@ testProp(
     const range = rangeTo(start, end).step(step)
 
     t.iterable(range)
-  }
+  },
 )
 
 testProp(
@@ -252,9 +252,9 @@ testProp(
 
     t.throws(() => range.step(step), {
       message: `\`step\` must be an integer: ${step}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -265,9 +265,9 @@ testProp(
 
     t.throws(() => range.step(step), {
       message: `\`step\` must be a positive integer: ${step}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -280,7 +280,7 @@ testProp(
       t.is(value, start)
       start += step
     }
-  }
+  },
 )
 
 testProp(
@@ -293,7 +293,7 @@ testProp(
       t.is(value, start)
       start -= step
     }
-  }
+  },
 )
 
 test(`rangeTo step concrete example`, t => {

@@ -23,7 +23,7 @@ const deferred = () => {
       reject = rej
     }),
     resolve,
-    reject
+    reject,
   }
 }
 

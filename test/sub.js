@@ -33,7 +33,7 @@ import {
   takeConcur,
   takeWhile,
   takeWhileAsync,
-  takeWhileConcur
+  takeWhileConcur,
 } from '../src/sub.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
 import { asAsync, asConcur } from '../src/as.js'
@@ -51,7 +51,7 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
   nonNegativeIntegerArb,
-  nonSafeIntegerDoubleArb
+  nonSafeIntegerDoubleArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -62,7 +62,7 @@ testProp(
     const subIterable = dropWhile(fn, iterable)
 
     t.iterable(subIterable)
-  }
+  },
 )
 
 testProp(
@@ -72,7 +72,7 @@ testProp(
     const subIterable = dropWhile(() => false, iterable)
 
     t.deepEqual([...subIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -82,7 +82,7 @@ testProp(
     const subIterable = dropWhile(() => true, iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -90,14 +90,14 @@ testProp(
   [
     fc
       .tuple(iterableArb, nonNegativeIntegerArb)
-      .map(([iterable, index]) => [iterable, index % iterable.values.length])
+      .map(([iterable, index]) => [iterable, index % iterable.values.length]),
   ],
   (t, [iterable, stopDroppingIndex]) => {
     let index = 0
     const subIterable = dropWhile(() => index++ !== stopDroppingIndex, iterable)
 
     t.deepEqual([...subIterable], iterable.values.slice(stopDroppingIndex))
-  }
+  },
 )
 
 test(`dropWhile concrete example`, t => {
@@ -115,7 +115,7 @@ testProp(
     const subAsyncIterable = dropWhileAsync(fn, asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -126,9 +126,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -138,7 +138,7 @@ testProp(
     const subAsyncIterable = dropWhileAsync(() => true, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -148,21 +148,21 @@ testProp(
       .tuple(asyncIterableArb, nonNegativeIntegerArb)
       .map(([asyncIterable, index]) => [
         asyncIterable,
-        index % asyncIterable.values.length
-      ])
+        index % asyncIterable.values.length,
+      ]),
   ],
   async (t, [asyncIterable, stopDroppingIndex]) => {
     let index = 0
     const subAsyncIterable = dropWhileAsync(
       () => index++ !== stopDroppingIndex,
-      asyncIterable
+      asyncIterable,
     )
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values.slice(stopDroppingIndex)
+      asyncIterable.values.slice(stopDroppingIndex),
     )
-  }
+  },
 )
 
 test(`dropWhileAsync concrete example`, async t => {
@@ -180,7 +180,7 @@ testProp(
     const subConcurIterable = dropWhileConcur(fn, concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -191,9 +191,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -203,7 +203,7 @@ testProp(
     const subConcurIterable = dropWhileConcur(() => true, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -213,21 +213,21 @@ testProp(
       .tuple(concurIterableArb, nonNegativeIntegerArb)
       .map(([concurIterable, index]) => [
         concurIterable,
-        index % concurIterable.values.length
-      ])
+        index % concurIterable.values.length,
+      ]),
   ],
   async (t, [concurIterable, stopDroppingIndex]) => {
     let index = 0
     const subConcurIterable = dropWhileConcur(
       () => index++ !== stopDroppingIndex,
-      concurIterable
+      concurIterable,
     )
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder.slice(stopDroppingIndex)
+      concurIterable.iterationOrder.slice(stopDroppingIndex),
     )
-  }
+  },
 )
 
 testProp(
@@ -244,7 +244,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`dropWhileConcur concrete example`, async t => {
@@ -262,7 +262,7 @@ testProp(
     const subIterable = takeWhile(fn, iterable)
 
     t.iterable(subIterable)
-  }
+  },
 )
 
 testProp(
@@ -272,7 +272,7 @@ testProp(
     const subIterable = takeWhile(() => true, iterable)
 
     t.deepEqual([...subIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -282,7 +282,7 @@ testProp(
     const subIterable = takeWhile(() => false, iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -290,14 +290,14 @@ testProp(
   [
     fc
       .tuple(iterableArb, nonNegativeIntegerArb)
-      .map(([iterable, index]) => [iterable, index % iterable.values.length])
+      .map(([iterable, index]) => [iterable, index % iterable.values.length]),
   ],
   (t, [iterable, stopTakingIndex]) => {
     let index = 0
     const subIterable = takeWhile(() => index++ !== stopTakingIndex, iterable)
 
     t.deepEqual([...subIterable], iterable.values.slice(0, stopTakingIndex))
-  }
+  },
 )
 
 test(`takeWhile concrete example`, t => {
@@ -315,7 +315,7 @@ testProp(
     const subAsyncIterable = takeWhileAsync(fn, asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -326,9 +326,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -338,7 +338,7 @@ testProp(
     const subAsyncIterable = takeWhileAsync(() => false, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -348,21 +348,21 @@ testProp(
       .tuple(asyncIterableArb, nonNegativeIntegerArb)
       .map(([asyncIterable, index]) => [
         asyncIterable,
-        index % asyncIterable.values.length
-      ])
+        index % asyncIterable.values.length,
+      ]),
   ],
   async (t, [asyncIterable, stopTakingIndex]) => {
     let index = 0
     const subAsyncIterable = takeWhileAsync(
       () => index++ !== stopTakingIndex,
-      asyncIterable
+      asyncIterable,
     )
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values.slice(0, stopTakingIndex)
+      asyncIterable.values.slice(0, stopTakingIndex),
     )
-  }
+  },
 )
 
 test(`takeWhileAsync concrete example`, async t => {
@@ -380,7 +380,7 @@ testProp(
     const subConcurIterable = takeWhileConcur(fn, concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -391,9 +391,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -403,7 +403,7 @@ testProp(
     const subConcurIterable = takeWhileConcur(() => false, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -413,21 +413,21 @@ testProp(
       .tuple(concurIterableArb, nonNegativeIntegerArb)
       .map(([concurIterable, index]) => [
         concurIterable,
-        index % concurIterable.values.length
-      ])
+        index % concurIterable.values.length,
+      ]),
   ],
   async (t, [concurIterable, stopTakingIndex]) => {
     let index = 0
     const subConcurIterable = takeWhileConcur(
       () => index++ !== stopTakingIndex,
-      concurIterable
+      concurIterable,
     )
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder.slice(0, stopTakingIndex)
+      concurIterable.iterationOrder.slice(0, stopTakingIndex),
     )
-  }
+  },
 )
 
 testProp(
@@ -444,7 +444,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`takeWhileConcur concrete example`, async t => {
@@ -462,7 +462,7 @@ testProp(
     const subIterable = drop(count, iterable)
 
     t.iterable(subIterable)
-  }
+  },
 )
 
 testProp(
@@ -471,9 +471,9 @@ testProp(
   (t, count, iterable) => {
     t.throws(() => drop(count, iterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -482,9 +482,9 @@ testProp(
   (t, count, iterable) => {
     t.throws(() => drop(count, iterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -494,7 +494,7 @@ testProp(
     const subIterable = drop(0, iterable)
 
     t.deepEqual([...subIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -502,13 +502,13 @@ testProp(
   [
     fc
       .tuple(nonNegativeIntegerArb, iterableArb)
-      .map(([count, iterable]) => [count + iterable.values.length, iterable])
+      .map(([count, iterable]) => [count + iterable.values.length, iterable]),
   ],
   (t, [count, iterable]) => {
     const subIterable = drop(count, iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -516,13 +516,13 @@ testProp(
   [
     fc
       .tuple(nonNegativeIntegerArb, nonEmptyIterableArb)
-      .map(([count, iterable]) => [count % iterable.values.length, iterable])
+      .map(([count, iterable]) => [count % iterable.values.length, iterable]),
   ],
   (t, [count, iterable]) => {
     const subIterable = drop(count, iterable)
 
     t.deepEqual([...subIterable], iterable.values.slice(count))
-  }
+  },
 )
 
 test(`drop concrete example`, t => {
@@ -540,7 +540,7 @@ testProp(
     const subAsyncIterable = dropAsync(count, asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -549,9 +549,9 @@ testProp(
   (t, count, asyncIterable) => {
     t.throws(() => dropAsync(count, asyncIterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -560,9 +560,9 @@ testProp(
   (t, count, asyncIterable) => {
     t.throws(() => dropAsync(count, asyncIterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -573,9 +573,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -585,14 +585,14 @@ testProp(
       .tuple(nonNegativeIntegerArb, asyncIterableArb)
       .map(([count, asyncIterable]) => [
         count + asyncIterable.values.length,
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [count, asyncIterable]) => {
     const subAsyncIterable = dropAsync(count, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -602,17 +602,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, nonEmptyAsyncIterableArb)
       .map(([count, asyncIterable]) => [
         count % asyncIterable.values.length,
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [count, asyncIterable]) => {
     const subAsyncIterable = dropAsync(count, asyncIterable)
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values.slice(count)
+      asyncIterable.values.slice(count),
     )
-  }
+  },
 )
 
 test(`dropAsync concrete example`, async t => {
@@ -630,7 +630,7 @@ testProp(
     const subConcurIterable = dropConcur(count, concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -639,9 +639,9 @@ testProp(
   (t, count, concurIterable) => {
     t.throws(() => dropConcur(count, concurIterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -650,9 +650,9 @@ testProp(
   (t, count, concurIterable) => {
     t.throws(() => dropConcur(count, concurIterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -663,9 +663,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -675,14 +675,14 @@ testProp(
       .tuple(nonNegativeIntegerArb, concurIterableArb)
       .map(([count, concurIterable]) => [
         count + concurIterable.values.length,
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [count, concurIterable]) => {
     const subConcurIterable = dropConcur(count, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -692,17 +692,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, nonEmptyConcurIterableArb)
       .map(([count, concurIterable]) => [
         count % concurIterable.values.length,
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [count, concurIterable]) => {
     const subConcurIterable = dropConcur(count, concurIterable)
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder.slice(count)
+      concurIterable.iterationOrder.slice(count),
     )
-  }
+  },
 )
 
 testProp(
@@ -719,7 +719,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`dropConcur concrete example`, async t => {
@@ -737,7 +737,7 @@ testProp(
     const subIterable = take(count, iterable)
 
     t.iterable(subIterable)
-  }
+  },
 )
 
 testProp(
@@ -746,9 +746,9 @@ testProp(
   (t, count, iterable) => {
     t.throws(() => take(count, iterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -757,9 +757,9 @@ testProp(
   (t, count, iterable) => {
     t.throws(() => take(count, iterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -767,13 +767,13 @@ testProp(
   [
     fc
       .tuple(nonNegativeIntegerArb, iterableArb)
-      .map(([count, iterable]) => [count + iterable.values.length, iterable])
+      .map(([count, iterable]) => [count + iterable.values.length, iterable]),
   ],
   (t, [count, iterable]) => {
     const subIterable = take(count, iterable)
 
     t.deepEqual([...subIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -783,7 +783,7 @@ testProp(
     const subIterable = take(0, iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -791,13 +791,13 @@ testProp(
   [
     fc
       .tuple(nonNegativeIntegerArb, nonEmptyIterableArb)
-      .map(([count, iterable]) => [count % iterable.values.length, iterable])
+      .map(([count, iterable]) => [count % iterable.values.length, iterable]),
   ],
   (t, [count, iterable]) => {
     const subIterable = take(count, iterable)
 
     t.deepEqual([...subIterable], iterable.values.slice(0, count))
-  }
+  },
 )
 
 test(`take concrete example`, t => {
@@ -815,7 +815,7 @@ testProp(
     const subAsyncIterable = takeAsync(count, asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -824,9 +824,9 @@ testProp(
   (t, count, asyncIterable) => {
     t.throws(() => takeAsync(count, asyncIterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -835,9 +835,9 @@ testProp(
   (t, count, asyncIterable) => {
     t.throws(() => takeAsync(count, asyncIterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -847,17 +847,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, asyncIterableArb)
       .map(([count, asyncIterable]) => [
         count + asyncIterable.values.length,
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [count, asyncIterable]) => {
     const subAsyncIterable = takeAsync(count, asyncIterable)
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -867,7 +867,7 @@ testProp(
     const subAsyncIterable = takeAsync(0, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -877,17 +877,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, nonEmptyAsyncIterableArb)
       .map(([count, asyncIterable]) => [
         count % asyncIterable.values.length,
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [count, asyncIterable]) => {
     const subAsyncIterable = takeAsync(count, asyncIterable)
 
     t.deepEqual(
       await collectAsync(toArray, subAsyncIterable),
-      asyncIterable.values.slice(0, count)
+      asyncIterable.values.slice(0, count),
     )
-  }
+  },
 )
 
 test(`takeAsync concrete example`, async t => {
@@ -905,7 +905,7 @@ testProp(
     const subConcurIterable = takeConcur(count, concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -914,9 +914,9 @@ testProp(
   (t, count, concurIterable) => {
     t.throws(() => takeConcur(count, concurIterable), {
       message: `\`count\` must be an integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -925,9 +925,9 @@ testProp(
   (t, count, concurIterable) => {
     t.throws(() => takeConcur(count, concurIterable), {
       message: `\`count\` must be a non-negative integer: ${count}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -937,17 +937,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, concurIterableArb)
       .map(([count, concurIterable]) => [
         count + concurIterable.values.length,
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [count, concurIterable]) => {
     const subConcurIterable = takeConcur(count, concurIterable)
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -957,7 +957,7 @@ testProp(
     const subConcurIterable = takeConcur(0, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -967,17 +967,17 @@ testProp(
       .tuple(nonNegativeIntegerArb, nonEmptyConcurIterableArb)
       .map(([count, concurIterable]) => [
         count % concurIterable.values.length,
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [count, concurIterable]) => {
     const subConcurIterable = takeConcur(count, concurIterable)
 
     t.deepEqual(
       await collectConcur(toArray, subConcurIterable),
-      concurIterable.iterationOrder.slice(0, count)
+      concurIterable.iterationOrder.slice(0, count),
     )
-  }
+  },
 )
 
 testProp(
@@ -994,7 +994,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`takeConcur concrete example`, async t => {
@@ -1018,7 +1018,7 @@ testProp(
     const subIterable = first(iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -1028,7 +1028,7 @@ testProp(
     const subIterable = first(iterable)
 
     t.deepEqual([...subIterable], [iterable.values[0]])
-  }
+  },
 )
 
 test(`first concrete example`, t => {
@@ -1046,7 +1046,7 @@ testProp(
     const subAsyncIterable = firstAsync(asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -1056,7 +1056,7 @@ testProp(
     const subAsyncIterable = firstAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -1066,9 +1066,9 @@ testProp(
     const subAsyncIterable = firstAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [
-      asyncIterable.values[0]
+      asyncIterable.values[0],
     ])
-  }
+  },
 )
 
 test(`firstAsync concrete example`, async t => {
@@ -1086,7 +1086,7 @@ testProp(
     const subConcurIterable = firstConcur(concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -1096,7 +1096,7 @@ testProp(
     const subConcurIterable = firstConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -1106,9 +1106,9 @@ testProp(
     const subConcurIterable = firstConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [
-      concurIterable.iterationOrder[0]
+      concurIterable.iterationOrder[0],
     ])
-  }
+  },
 )
 
 testProp(
@@ -1125,7 +1125,7 @@ testProp(
     await t.tick(concurIterable.minTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`firstConcur concrete example`, async t => {
@@ -1149,7 +1149,7 @@ testProp(
     const subIterable = last(iterable)
 
     t.deepEqual([...subIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -1159,7 +1159,7 @@ testProp(
     const subIterable = last(iterable)
 
     t.deepEqual([...subIterable], [iterable.values[iterable.values.length - 1]])
-  }
+  },
 )
 
 test(`last concrete example`, t => {
@@ -1177,7 +1177,7 @@ testProp(
     const subAsyncIterable = lastAsync(asyncIterable)
 
     await t.asyncIterable(subAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -1187,7 +1187,7 @@ testProp(
     const subAsyncIterable = lastAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -1197,9 +1197,9 @@ testProp(
     const subAsyncIterable = lastAsync(asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, subAsyncIterable), [
-      asyncIterable.values[asyncIterable.values.length - 1]
+      asyncIterable.values[asyncIterable.values.length - 1],
     ])
-  }
+  },
 )
 
 test(`lastAsync concrete example`, async t => {
@@ -1217,7 +1217,7 @@ testProp(
     const subConcurIterable = lastConcur(concurIterable)
 
     await t.concurIterable(subConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -1227,7 +1227,7 @@ testProp(
     const subConcurIterable = lastConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -1237,9 +1237,9 @@ testProp(
     const subConcurIterable = lastConcur(concurIterable)
 
     t.deepEqual(await collectConcur(toArray, subConcurIterable), [
-      concurIterable.iterationOrder[concurIterable.iterationOrder.length - 1]
+      concurIterable.iterationOrder[concurIterable.iterationOrder.length - 1],
     ])
-  }
+  },
 )
 
 testProp(
@@ -1256,7 +1256,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`lastConcur concrete example`, async t => {

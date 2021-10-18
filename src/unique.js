@@ -31,7 +31,7 @@ export const uniqueBy = curry((fn, iterable) => ({
       set.add(by)
       yield value
     }
-  }
+  },
 }))
 
 export const uniqueByAsync = curry((fn, asyncIterable) => ({
@@ -48,7 +48,7 @@ export const uniqueByAsync = curry((fn, asyncIterable) => ({
       set.add(by)
       yield value
     }
-  }
+  },
 }))
 
 export const uniqueByConcur = curry((fn, concurIterable) => apply => {

@@ -24,63 +24,63 @@ import {
   eachConcur,
   forEach,
   forEachAsync,
-  forEachConcur
+  forEachConcur,
 } from '../src'
 
 expectType<Iterable<number>>(each(value => String(value), [1, 2, 3]))
 expectType<Iterable<number>>(each((value: number) => String(value))([1, 2, 3]))
 
 expectType<AsyncIterable<number>>(
-  eachAsync(value => String(value), asAsync([1, 2, 3]))
+  eachAsync(value => String(value), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  eachAsync(async value => String(value), asAsync([1, 2, 3]))
+  eachAsync(async value => String(value), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  eachAsync((value: number) => String(value))(asAsync([1, 2, 3]))
+  eachAsync((value: number) => String(value))(asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(
-  eachAsync(async (value: number) => String(value))(asAsync([1, 2, 3]))
+  eachAsync(async (value: number) => String(value))(asAsync([1, 2, 3])),
 )
 
 expectType<ConcurIterable<number>>(
-  eachConcur(value => String(value), asConcur([1, 2, 3]))
+  eachConcur(value => String(value), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  eachConcur(async value => String(value), asConcur([1, 2, 3]))
+  eachConcur(async value => String(value), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  eachConcur((value: number) => String(value))(asConcur([1, 2, 3]))
+  eachConcur((value: number) => String(value))(asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  eachConcur(async (value: number) => String(value))(asConcur([1, 2, 3]))
+  eachConcur(async (value: number) => String(value))(asConcur([1, 2, 3])),
 )
 
 expectType<void>(forEach(value => String(value), [1, 2, 3]))
 expectType<void>(forEach((value: number) => String(value))([1, 2, 3]))
 
 expectType<Promise<void>>(
-  forEachAsync(value => String(value), asAsync([1, 2, 3]))
+  forEachAsync(value => String(value), asAsync([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachAsync(async value => String(value), asAsync([1, 2, 3]))
+  forEachAsync(async value => String(value), asAsync([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachAsync((value: number) => String(value))(asAsync([1, 2, 3]))
+  forEachAsync((value: number) => String(value))(asAsync([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachAsync(async (value: number) => String(value))(asAsync([1, 2, 3]))
+  forEachAsync(async (value: number) => String(value))(asAsync([1, 2, 3])),
 )
 
 expectType<Promise<void>>(
-  forEachConcur(value => String(value), asConcur([1, 2, 3]))
+  forEachConcur(value => String(value), asConcur([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachConcur(async value => String(value), asConcur([1, 2, 3]))
+  forEachConcur(async value => String(value), asConcur([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachConcur((value: number) => String(value))(asConcur([1, 2, 3]))
+  forEachConcur((value: number) => String(value))(asConcur([1, 2, 3])),
 )
 expectType<Promise<void>>(
-  forEachConcur(async (value: number) => String(value))(asConcur([1, 2, 3]))
+  forEachConcur(async (value: number) => String(value))(asConcur([1, 2, 3])),
 )

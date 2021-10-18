@@ -24,8 +24,8 @@ const fnAndArgsArb = fc
   .chain(array =>
     fc.tuple(
       getFnArb(fc.anything(), { length: array.length }),
-      fc.clonedConstant(array)
-    )
+      fc.clonedConstant(array),
+    ),
   )
 
 testProp(
@@ -38,7 +38,7 @@ testProp(
 
     const resultAfterCurry = fn(...args)
     t.deepEqual(resultAfterCurry, resultBeforeCurry)
-  }
+  },
 )
 
 const partitions = array => ({
@@ -56,7 +56,7 @@ const partitions = array => ({
         yield [start, ...partition]
       }
     }
-  }
+  },
 })
 
 testProp(
@@ -70,12 +70,12 @@ testProp(
     for (const partition of partitions(inputs)) {
       const returned = partition.reduce(
         (acc, inputs) => acc(...inputs),
-        curried
+        curried,
       )
 
       t.deepEqual(returned, fn(...inputs))
     }
-  }
+  },
 )
 
 testProp(
@@ -83,7 +83,7 @@ testProp(
   [getFnArb(fc.anything(), { length: fc.nat().map(n => -n) })],
   (t, fn) => {
     t.is(curry(fn), fn)
-  }
+  },
 )
 
 testProp(`curry is idempotent`, [fnAndArgsArb], (t, [fn, inputs]) => {
@@ -101,7 +101,7 @@ testProp(
 
     t.is(curried.name, fn.name)
     t.is(curried.length, fn.length)
-  }
+  },
 )
 
 test(`curry concrete example`, t => {

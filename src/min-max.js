@@ -69,7 +69,7 @@ const createAsyncMinMaxCompare = fn => {
     if (minMaxSet.has(right)) {
       ;[minMax.min, minMax.max] = await Promise.all([
         minCompare(minMax.min, right.min),
-        maxCompare(minMax.max, right.max)
+        maxCompare(minMax.max, right.max),
       ])
     } else if ((await fn(right, minMax.min)) < 0) {
       minMax.min = right
@@ -96,7 +96,7 @@ const reduceToMinMaxAsync = createReduceToMinMax(mapAsync, reduceAsync)
 const reduceToMinMaxConcur = createReduceToMinMax(mapConcur, reduceConcur)
 
 const createBy = curry((reduce, createCompare) =>
-  curry((fn, iterable) => reduce(createCompare(fn), iterable))
+  curry((fn, iterable) => reduce(createCompare(fn), iterable)),
 )
 
 const createBySync = createBy(reduce)
@@ -109,7 +109,7 @@ export const minByAsync = createByAsync(createAsyncMinCompare)
 export const maxByAsync = createByAsync(createAsyncMaxCompare)
 export const minMaxByAsync = createBy(
   reduceToMinMaxAsync,
-  createAsyncMinMaxCompare
+  createAsyncMinMaxCompare,
 )
 
 const createByConcur = createBy(reduceConcur)
@@ -117,7 +117,7 @@ export const minByConcur = createByConcur(createAsyncMinCompare)
 export const maxByConcur = createByConcur(createAsyncMaxCompare)
 export const minMaxByConcur = createBy(
   reduceToMinMaxConcur,
-  createAsyncMinMaxCompare
+  createAsyncMinMaxCompare,
 )
 
 const createWith = by =>
@@ -132,7 +132,7 @@ export const createAsyncWith = by =>
     by(async (left, right) => {
       const [x, y] = await Promise.all([fn(left), fn(right)])
       return x - y
-    }, iterable)
+    }, iterable),
   )
 
 export const minWithAsync = createAsyncWith(minByAsync)

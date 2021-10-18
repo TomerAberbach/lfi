@@ -51,7 +51,7 @@ export const join: {
  */
 export const joinAsync: {
   (separator: string): (
-    asyncIterable: AsyncIterable<unknown>
+    asyncIterable: AsyncIterable<unknown>,
   ) => Promise<string>
   (separator: string, asyncIterable: AsyncIterable<unknown>): Promise<string>
 }
@@ -73,7 +73,7 @@ export const joinAsync: {
  */
 export const joinConcur: {
   (separator: string): (
-    concurIterable: ConcurIterable<unknown>
+    concurIterable: ConcurIterable<unknown>,
   ) => Promise<string>
   (separator: string, concurIterable: ConcurIterable<unknown>): Promise<string>
 }

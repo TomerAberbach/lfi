@@ -27,7 +27,7 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
   nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb
+  nonSafeIntegerDoubleArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -40,7 +40,7 @@ testProp(
     const windowedIterable = windowed(size, iterable)
 
     t.iterable(windowedIterable)
-  }
+  },
 )
 
 testProp(
@@ -49,9 +49,9 @@ testProp(
   (t, size, iterable) => {
     t.throws(() => windowed(size, iterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -60,9 +60,9 @@ testProp(
   (t, size, iterable) => {
     t.throws(() => windowed(size, iterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -70,13 +70,13 @@ testProp(
   [
     fc
       .tuple(positiveIntegerArb, iterableArb)
-      .map(([size, iterable]) => [size + iterable.values.length, iterable])
+      .map(([size, iterable]) => [size + iterable.values.length, iterable]),
   ],
   (t, [size, iterable]) => {
     const windowedIterable = windowed(size, iterable)
 
     t.deepEqual([...windowedIterable], [])
-  }
+  },
 )
 
 testProp(
@@ -86,8 +86,8 @@ testProp(
       .tuple(positiveIntegerArb, nonEmptyIterableArb)
       .map(([size, iterable]) => [
         Math.max(1, size % (iterable.values.length + 1)),
-        iterable
-      ])
+        iterable,
+      ]),
   ],
   (t, [size, iterable]) => {
     const windowedIterable = windowed(size, iterable)
@@ -97,7 +97,7 @@ testProp(
       t.deepEqual(window, iterable.values.slice(index, index + size))
       index++
     }
-  }
+  },
 )
 
 test(`windowed concrete example`, t => {
@@ -113,8 +113,8 @@ test(`windowed concrete example`, t => {
       [3, 4, 5],
       [4, 5, 6],
       [5, 6, 7],
-      [6, 7, 8]
-    ]
+      [6, 7, 8],
+    ],
   )
 })
 
@@ -125,7 +125,7 @@ testProp(
     const windowedAsyncIterable = windowedAsync(size, asyncIterable)
 
     await t.asyncIterable(windowedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -134,9 +134,9 @@ testProp(
   (t, size, asyncIterable) => {
     t.throws(() => windowedAsync(size, asyncIterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -145,9 +145,9 @@ testProp(
   (t, size, asyncIterable) => {
     t.throws(() => windowedAsync(size, asyncIterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -157,14 +157,14 @@ testProp(
       .tuple(positiveIntegerArb, asyncIterableArb)
       .map(([size, asyncIterable]) => [
         size + asyncIterable.values.length,
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [size, asyncIterable]) => {
     const windowedAsyncIterable = windowedAsync(size, asyncIterable)
 
     t.deepEqual(await collectAsync(toArray, windowedAsyncIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -174,8 +174,8 @@ testProp(
       .tuple(positiveIntegerArb, nonEmptyAsyncIterableArb)
       .map(([size, asyncIterable]) => [
         Math.max(1, size % (asyncIterable.values.length + 1)),
-        asyncIterable
-      ])
+        asyncIterable,
+      ]),
   ],
   async (t, [size, asyncIterable]) => {
     const windowedAsyncIterable = windowedAsync(size, asyncIterable)
@@ -185,7 +185,7 @@ testProp(
       t.deepEqual(window, asyncIterable.values.slice(index, index + size))
       index++
     }
-  }
+  },
 )
 
 test(`windowedAsync concrete example`, async t => {
@@ -199,7 +199,7 @@ test(`windowedAsync concrete example`, async t => {
     [3, 4, 5],
     [4, 5, 6],
     [5, 6, 7],
-    [6, 7, 8]
+    [6, 7, 8],
   ])
 })
 
@@ -210,7 +210,7 @@ testProp(
     const windowedConcurIterable = windowedConcur(size, concurIterable)
 
     await t.concurIterable(windowedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -219,9 +219,9 @@ testProp(
   (t, size, concurIterable) => {
     t.throws(() => windowedConcur(size, concurIterable), {
       message: `\`size\` must be an integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -230,9 +230,9 @@ testProp(
   (t, size, concurIterable) => {
     t.throws(() => windowedConcur(size, concurIterable), {
       message: `\`size\` must be a positive integer: ${size}`,
-      instanceOf: Error
+      instanceOf: Error,
     })
-  }
+  },
 )
 
 testProp(
@@ -242,14 +242,14 @@ testProp(
       .tuple(positiveIntegerArb, concurIterableArb)
       .map(([size, concurIterable]) => [
         size + concurIterable.values.length,
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [size, concurIterable]) => {
     const windowedConcurIterable = windowedConcur(size, concurIterable)
 
     t.deepEqual(await collectConcur(toArray, windowedConcurIterable), [])
-  }
+  },
 )
 
 testProp(
@@ -259,8 +259,8 @@ testProp(
       .tuple(positiveIntegerArb, nonEmptyConcurIterableArb)
       .map(([size, concurIterable]) => [
         Math.max(1, size % (concurIterable.values.length + 1)),
-        concurIterable
-      ])
+        concurIterable,
+      ]),
   ],
   async (t, [size, concurIterable]) => {
     const windowedConcurIterable = windowedConcur(size, concurIterable)
@@ -269,11 +269,11 @@ testProp(
     await forEachConcur(window => {
       t.deepEqual(
         window,
-        concurIterable.iterationOrder.slice(index, index + size)
+        concurIterable.iterationOrder.slice(index, index + size),
       )
       index++
     }, windowedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -290,7 +290,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`windowedConcur concrete example`, async t => {
@@ -304,6 +304,6 @@ test(`windowedConcur concrete example`, async t => {
     [3, 4, 5],
     [4, 5, 6],
     [5, 6, 7],
-    [6, 7, 8]
+    [6, 7, 8],
   ])
 })

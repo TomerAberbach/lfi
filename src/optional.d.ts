@@ -59,11 +59,11 @@ export const or: {
  */
 export const orAsync: {
   <Value>(fn: () => MaybePromiseLike<Value>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => Promise<Value>
   <Value>(
     fn: () => MaybePromiseLike<Value>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<Value>
 }
 
@@ -88,11 +88,11 @@ export const orAsync: {
  */
 export const orConcur: {
   <Value>(fn: () => MaybePromiseLike<Value>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => Promise<Value>
   <Value>(
     fn: () => MaybePromiseLike<Value>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<Value>
 }
 
@@ -147,7 +147,7 @@ export const get: <Value>(iterable: Iterable<Value>) => Value
  * ```
  */
 export const getAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => Promise<Value>
 
 /**
@@ -175,7 +175,7 @@ export const getAsync: <Value>(
  * ```
  */
 export const getConcur: <Value>(
-  concurIterable: ConcurIterable<Value>
+  concurIterable: ConcurIterable<Value>,
 ) => Promise<Value>
 
 /**
@@ -206,7 +206,7 @@ export const getConcur: <Value>(
  * ```
  */
 export const next: <Value>(
-  iterable: Iterable<Value>
+  iterable: Iterable<Value>,
 ) => [Iterable<Value>, Iterable<Value>]
 
 /**
@@ -238,5 +238,5 @@ export const next: <Value>(
  * ```
  */
 export const nextAsync: <Value>(
-  asyncIterable: AsyncIterable<Value>
+  asyncIterable: AsyncIterable<Value>,
 ) => Promise<[AsyncIterable<Value>, AsyncIterable<Value>]>

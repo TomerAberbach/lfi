@@ -26,7 +26,7 @@ import {
   maybeAsyncFnArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
-  nonEmptyIterableArb
+  nonEmptyIterableArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -37,7 +37,7 @@ testProp(
     const uniqueIterable = uniqueBy(fn, iterable)
 
     t.iterable(uniqueIterable)
-  }
+  },
 )
 
 testProp(
@@ -49,7 +49,7 @@ testProp(
     const numberOfElements = count(uniqueIterable)
     t.true(numberOfElements > 0)
     t.true(numberOfElements <= iterable.values.length)
-  }
+  },
 )
 
 testProp(
@@ -59,7 +59,7 @@ testProp(
     const map = new Map(
       iterable.values
         .map((value, index) => [fn(value), { value, index }])
-        .reverse()
+        .reverse(),
     )
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
@@ -68,7 +68,7 @@ testProp(
     const uniqueIterable = uniqueBy(fn, iterable)
 
     t.deepEqual([...uniqueIterable], expectedValues)
-  }
+  },
 )
 
 test(`uniqueBy concrete example`, t => {
@@ -86,7 +86,7 @@ testProp(
     const uniqueAsyncIterable = uniqueByAsync(fn, asyncIterable)
 
     await t.asyncIterable(uniqueAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -98,7 +98,7 @@ testProp(
     const numberOfElements = await countAsync(uniqueAsyncIterable)
     t.true(numberOfElements > 0)
     t.true(numberOfElements <= asyncIterable.values.length)
-  }
+  },
 )
 
 testProp(
@@ -108,7 +108,7 @@ testProp(
     const map = new Map(
       asyncIterable.values
         .map((value, index) => [fn.sync(value), { value, index }])
-        .reverse()
+        .reverse(),
     )
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
@@ -118,9 +118,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, uniqueAsyncIterable),
-      expectedValues
+      expectedValues,
     )
-  }
+  },
 )
 
 test(`uniqueByAsync concrete example`, async t => {
@@ -130,7 +130,7 @@ test(`uniqueByAsync concrete example`, async t => {
 
   t.deepEqual(
     await collectAsync(toArray, uniqueAsyncIterable),
-    [1, -2, 3, 10, -4]
+    [1, -2, 3, 10, -4],
   )
 })
 
@@ -141,7 +141,7 @@ testProp(
     const uniqueConcurIterable = uniqueByConcur(fn, concurIterable)
 
     await t.concurIterable(uniqueConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -153,7 +153,7 @@ testProp(
     const numberOfElements = await countConcur(uniqueConcurIterable)
     t.true(numberOfElements > 0)
     t.true(numberOfElements <= concurIterable.values.length)
-  }
+  },
 )
 
 testProp(
@@ -163,7 +163,7 @@ testProp(
     const map = new Map(
       concurIterable.iterationOrder
         .map((value, index) => [fn.sync(value), { value, index }])
-        .reverse()
+        .reverse(),
     )
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
@@ -173,9 +173,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, uniqueConcurIterable),
-      expectedValues
+      expectedValues,
     )
-  }
+  },
 )
 
 testProp(
@@ -192,7 +192,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`uniqueByConcur concrete example`, async t => {
@@ -202,6 +202,6 @@ test(`uniqueByConcur concrete example`, async t => {
 
   t.deepEqual(
     await collectConcur(toArray, uniqueConcurIterable),
-    [1, -2, 3, 10, -4]
+    [1, -2, 3, 10, -4],
   )
 })

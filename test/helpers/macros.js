@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-// eslint-disable-next-line ava/use-test
 import normalTest from 'ava'
 import { testProp as normalTestProp } from 'ava-fast-check'
 import { promiseStateSync } from 'p-state'
@@ -37,8 +36,8 @@ const enhanceTestContext = t => {
             value => [hash(value), value],
             typeof iterable[Symbol.iterator] === `function`
               ? iterable
-              : Object.entries(iterable)
-          )
+              : Object.entries(iterable),
+          ),
         )
       actual = counts(actual)
       expected = counts(expected)
@@ -107,9 +106,9 @@ const enhanceTestContext = t => {
     ...Object.fromEntries(
       [`pending`, `fulfilled`, `rejected`].map(state => [
         state,
-        promise => t.is(promiseStateSync(promise), state)
-      ])
-    )
+        promise => t.is(promiseStateSync(promise), state),
+      ]),
+    ),
   }
 
   return t

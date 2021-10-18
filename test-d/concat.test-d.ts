@@ -21,25 +21,25 @@ import {
   concat,
   concatAsync,
   concatConcur,
-  ConcurIterable
+  ConcurIterable,
 } from '../src'
 
 expectType<Iterable<number>>(concat([1, 2, 3], [1, 2, 3]))
 
 expectType<AsyncIterable<number>>(
-  concatAsync(asAsync([1, 2, 3]), asAsync([1, 2, 3]))
+  concatAsync(asAsync([1, 2, 3]), asAsync([1, 2, 3])),
 )
 expectType<AsyncIterable<number>>(concatAsync([1, 2, 3], asAsync([1, 2, 3])))
 expectType<AsyncIterable<number>>(concatAsync([1, 2, 3], [1, 2, 3]))
 
 expectType<ConcurIterable<number>>(
-  concatConcur(asConcur([1, 2, 3]), asConcur([1, 2, 3]))
+  concatConcur(asConcur([1, 2, 3]), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  concatConcur(asAsync([1, 2, 3]), asConcur([1, 2, 3]))
+  concatConcur(asAsync([1, 2, 3]), asConcur([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(
-  concatConcur([1, 2, 3], asConcur([1, 2, 3]), asAsync([1, 2, 3]))
+  concatConcur([1, 2, 3], asConcur([1, 2, 3]), asAsync([1, 2, 3])),
 )
 expectType<ConcurIterable<number>>(concatConcur([1, 2, 3], asAsync([1, 2, 3])))
 expectType<ConcurIterable<number>>(concatConcur([1, 2, 3], [1, 2, 3]))

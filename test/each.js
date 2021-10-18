@@ -20,7 +20,7 @@ import {
   eachConcur,
   forEach,
   forEachAsync,
-  forEachConcur
+  forEachConcur,
 } from '../src/each.js'
 import { collectAsync, collectConcur, toArray } from '../src/collect.js'
 import { asAsync, asConcur } from '../src/as.js'
@@ -29,7 +29,7 @@ import {
   concurIterableArb,
   fnArb,
   iterableArb,
-  maybeAsyncFnArb
+  maybeAsyncFnArb,
 } from './helpers/arbs.js'
 import { test, testProp } from './helpers/macros.js'
 
@@ -40,7 +40,7 @@ testProp(
     const iteratedIterable = each(fn, iterable)
 
     t.iterable(iteratedIterable)
-  }
+  },
 )
 
 testProp(
@@ -50,7 +50,7 @@ testProp(
     const iteratedIterable = each(fn, iterable)
 
     t.deepEqual([...iteratedIterable], iterable.values)
-  }
+  },
 )
 
 testProp(
@@ -63,7 +63,7 @@ testProp(
     ;[...each(value => parameters.push(value), iterable)]
 
     t.deepEqual(parameters, iterable.values)
-  }
+  },
 )
 
 testProp(`each is lazy`, [iterableArb], (t, iterable) => {
@@ -95,7 +95,7 @@ testProp(
     const iteratedAsyncIterable = eachAsync(fn, asyncIterable)
 
     await t.asyncIterable(iteratedAsyncIterable)
-  }
+  },
 )
 
 testProp(
@@ -106,9 +106,9 @@ testProp(
 
     t.deepEqual(
       await collectAsync(toArray, iteratedAsyncIterable),
-      asyncIterable.values
+      asyncIterable.values,
     )
-  }
+  },
 )
 
 testProp(
@@ -119,11 +119,11 @@ testProp(
 
     await collectAsync(
       toArray,
-      eachAsync(value => parameters.push(value), asyncIterable)
+      eachAsync(value => parameters.push(value), asyncIterable),
     )
 
     t.deepEqual(parameters, asyncIterable.values)
-  }
+  },
 )
 
 testProp(`eachAsync is lazy`, [asyncIterableArb], async (t, asyncIterable) => {
@@ -146,7 +146,7 @@ test(`eachAsync concrete example`, async t => {
 
   await collectAsync(
     toArray,
-    eachAsync(() => count++, asAsync([1, 2, 3]))
+    eachAsync(() => count++, asAsync([1, 2, 3])),
   )
 
   t.is(count, 3)
@@ -159,7 +159,7 @@ testProp(
     const iteratedConcurIterable = eachConcur(fn, concurIterable)
 
     await t.concurIterable(iteratedConcurIterable)
-  }
+  },
 )
 
 testProp(
@@ -170,9 +170,9 @@ testProp(
 
     t.deepEqual(
       await collectConcur(toArray, iteratedConcurIterable),
-      concurIterable.iterationOrder
+      concurIterable.iterationOrder,
     )
-  }
+  },
 )
 
 testProp(
@@ -183,11 +183,11 @@ testProp(
 
     await collectConcur(
       toArray,
-      eachConcur(value => parameters.push(value), concurIterable)
+      eachConcur(value => parameters.push(value), concurIterable),
     )
 
     t.deepEqual(parameters, concurIterable.iterationOrder)
-  }
+  },
 )
 
 testProp(`eachConcur is lazy`, [concurIterableArb], (t, concurIterable) => {
@@ -212,7 +212,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`eachConcur concrete example`, async t => {
@@ -220,7 +220,7 @@ test(`eachConcur concrete example`, async t => {
 
   await collectConcur(
     toArray,
-    eachConcur(() => count++, asConcur([1, 2, 3]))
+    eachConcur(() => count++, asConcur([1, 2, 3])),
   )
 
   t.is(count, 3)
@@ -233,7 +233,7 @@ testProp(
     const value = forEach(fn, iterable)
 
     t.is(value, undefined)
-  }
+  },
 )
 
 testProp(
@@ -245,7 +245,7 @@ testProp(
     forEach(value => parameters.push(value), iterable)
 
     t.deepEqual(parameters, iterable.values)
-  }
+  },
 )
 
 test(`forEach concrete example`, t => {
@@ -263,7 +263,7 @@ testProp(
     const value = await forEachAsync(fn, asyncIterable)
 
     t.is(value, undefined)
-  }
+  },
 )
 
 testProp(
@@ -275,7 +275,7 @@ testProp(
     await forEachAsync(value => parameters.push(value), asyncIterable)
 
     t.deepEqual(parameters, asyncIterable.values)
-  }
+  },
 )
 
 test(`forEachAsync concrete example`, async t => {
@@ -293,7 +293,7 @@ testProp(
     const value = await forEachConcur(fn, concurIterable)
 
     t.is(value, undefined)
-  }
+  },
 )
 
 testProp(
@@ -305,7 +305,7 @@ testProp(
     await forEachConcur(value => parameters.push(value), concurIterable)
 
     t.deepEqual(parameters, concurIterable.iterationOrder)
-  }
+  },
 )
 
 testProp(
@@ -320,7 +320,7 @@ testProp(
     await t.tick(concurIterable.maxTimeout + fn.timeout)
 
     t.fulfilled(promise)
-  }
+  },
 )
 
 test(`forEachConcur concrete example`, async t => {

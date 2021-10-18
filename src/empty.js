@@ -17,17 +17,17 @@
 const result = Object.freeze({ done: true })
 
 const iterator = Object.freeze({
-  next: () => result
+  next: () => result,
 })
 
 export const empty = Object.freeze({ [Symbol.iterator]: () => iterator })
 
 const asyncIterator = Object.freeze({
-  next: () => Promise.resolve(result)
+  next: () => Promise.resolve(result),
 })
 
 export const emptyAsync = Object.freeze({
-  [Symbol.asyncIterator]: () => asyncIterator
+  [Symbol.asyncIterator]: () => asyncIterator,
 })
 
 export const emptyConcur = () => Promise.resolve()

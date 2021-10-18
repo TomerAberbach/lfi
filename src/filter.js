@@ -19,15 +19,15 @@ import { flatMap, flatMapAsync, flatMapConcur } from './flat-map.js'
 import { asAsync, asConcur } from './as.js'
 
 export const filter = curry((fn, iterable) =>
-  flatMap(value => (fn(value) === true ? [value] : []), iterable)
+  flatMap(value => (fn(value) === true ? [value] : []), iterable),
 )
 
 const createAsyncFilter = (flatMap, as) =>
   curry((fn, iterable) =>
     flatMap(
       async value => as((await fn(value)) === true ? [value] : []),
-      iterable
-    )
+      iterable,
+    ),
   )
 
 export const filterAsync = createAsyncFilter(flatMapAsync, asAsync)

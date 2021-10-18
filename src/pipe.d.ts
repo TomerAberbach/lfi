@@ -38,14 +38,14 @@ export const pipe: {
     value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
-    fn3: (c: C) => D
+    fn3: (c: C) => D,
   ): D
   <A, B, C, D, E>(
     value: A,
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
-    fn4: (d: D) => E
+    fn4: (d: D) => E,
   ): E
   <A, B, C, D, E, F>(
     value: A,
@@ -53,7 +53,7 @@ export const pipe: {
     fn2: (b: B) => C,
     fn3: (c: C) => D,
     fn4: (d: D) => E,
-    fn5: (e: E) => F
+    fn5: (e: E) => F,
   ): F
   <A, B, C, D, E, F, G>(
     value: A,
@@ -62,7 +62,7 @@ export const pipe: {
     fn3: (c: C) => D,
     fn4: (d: D) => E,
     fn5: (e: E) => F,
-    fn6: (f: F) => G
+    fn6: (f: F) => G,
   ): G
   <A, B, C, D, E, F, G, H>(
     value: A,
@@ -72,7 +72,7 @@ export const pipe: {
     fn4: (d: D) => E,
     fn5: (e: E) => F,
     fn6: (f: F) => G,
-    fn7: (g: G) => H
+    fn7: (g: G) => H,
   ): H
   <A, B, C, D, E, F, G, H, I>(
     value: A,
@@ -83,7 +83,7 @@ export const pipe: {
     fn5: (e: E) => F,
     fn6: (f: F) => G,
     fn7: (g: G) => H,
-    fn8: (h: H) => I
+    fn8: (h: H) => I,
   ): I
   <A, B, C, D, E, F, G, H, I, J>(
     value: A,
@@ -95,7 +95,7 @@ export const pipe: {
     fn6: (f: F) => G,
     fn7: (g: G) => H,
     fn8: (h: H) => I,
-    fn9: (i: I) => J
+    fn9: (i: I) => J,
   ): J
 }
 
@@ -120,20 +120,20 @@ export const compose: {
   <A, B>(fn: (a: A) => B): (value: A) => B
   <A, B, C>(fn1: (a: A) => B, fn2: (b: B) => C): (value: A) => C
   <A, B, C, D>(fn1: (a: A) => B, fn2: (b: B) => C, fn3: (c: C) => D): (
-    value: A
+    value: A,
   ) => D
   <A, B, C, D, E>(
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
-    fn4: (d: D) => E
+    fn4: (d: D) => E,
   ): (value: A) => E
   <A, B, C, D, E, F>(
     fn1: (a: A) => B,
     fn2: (b: B) => C,
     fn3: (c: C) => D,
     fn4: (d: D) => E,
-    fn5: (e: E) => F
+    fn5: (e: E) => F,
   ): (value: A) => F
   <A, B, C, D, E, F, G>(
     fn1: (a: A) => B,
@@ -141,7 +141,7 @@ export const compose: {
     fn3: (c: C) => D,
     fn4: (d: D) => E,
     fn5: (e: E) => F,
-    fn6: (f: F) => G
+    fn6: (f: F) => G,
   ): (value: A) => G
   <A, B, C, D, E, F, G, H>(
     fn1: (a: A) => B,
@@ -150,7 +150,7 @@ export const compose: {
     fn4: (d: D) => E,
     fn5: (e: E) => F,
     fn6: (f: F) => G,
-    fn7: (g: G) => H
+    fn7: (g: G) => H,
   ): (value: A) => H
   <A, B, C, D, E, F, G, H, I>(
     fn1: (a: A) => B,
@@ -160,7 +160,7 @@ export const compose: {
     fn5: (e: E) => F,
     fn6: (f: F) => G,
     fn7: (g: G) => H,
-    fn8: (h: H) => I
+    fn8: (h: H) => I,
   ): (value: A) => I
   <A, B, C, D, E, F, G, H, I, J>(
     fn1: (a: A) => B,
@@ -171,6 +171,6 @@ export const compose: {
     fn6: (f: F) => G,
     fn7: (g: G) => H,
     fn8: (h: H) => I,
-    fn9: (i: I) => J
+    fn9: (i: I) => J,
   ): (value: A) => J
 }

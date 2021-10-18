@@ -20,33 +20,33 @@ import { MaybePromiseLike } from './internal/types'
 /** @internal */
 type Predicate = {
   <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ) => boolean
   <Value>(
     fn: (value: Value) => boolean | unknown,
-    iterable: Iterable<Value>
+    iterable: Iterable<Value>,
   ): boolean
 }
 
 /** @internal */
 type PredicateAsync = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => Promise<boolean>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<boolean>
 }
 
 /** @internal */
 type PredicateConcur = {
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => Promise<boolean>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<boolean>
 }
 
@@ -230,11 +230,11 @@ export const includes: {
  */
 export const includesAsync: {
   (searchElement: unknown): <Value>(
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ) => Promise<boolean>
   <Value>(
     searchElement: unknown,
-    asyncIterable: AsyncIterable<Value>
+    asyncIterable: AsyncIterable<Value>,
   ): Promise<boolean>
 }
 
@@ -255,10 +255,10 @@ export const includesAsync: {
  */
 export const includesConcur: {
   (searchElement: unknown): <Value>(
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ) => Promise<boolean>
   <Value>(
     searchElement: unknown,
-    concurIterable: ConcurIterable<Value>
+    concurIterable: ConcurIterable<Value>,
   ): Promise<boolean>
 }

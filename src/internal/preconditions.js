@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-const assert = predicate => (name, value) => {
-  const output = predicate(name, value)
+const createAssert =
+  ({ predicate, message }) =>
+  (name, value) => {
+    if (!predicate(name, value)) {
+      throw new Error(`${message(name)}: ${value}`)
+    }
 
-  if (output) {
-    throw new Error(output)
+    return true
   }
-}
 
-export const assertInteger = assert(
-  (name, value) =>
-    !Number.isSafeInteger(value) && `\`${name}\` must be an integer: ${value}`,
-)
+export const assertInteger = createAssert({
+  predicate: (_, value) => Number.isSafeInteger(value),
+  message: name => `\`${name}\` must be an integer`,
+})
 
-export const assertNonNegativeInteger = assert(
-  (name, value) =>
-    assertInteger(name, value) ||
-    (value < 0 && `\`${name}\` must be a non-negative integer: ${value}`),
-)
+export const assertNonNegativeInteger = createAssert({
+  predicate: (name, value) => assertInteger(name, value) && value >= 0,
+  message: name => `\`${name}\` must be a non-negative integer`,
+})
 
-export const assertPositiveInteger = assert(
-  (name, value) =>
-    assertInteger(name, value) ||
-    (value <= 0 && `\`${name}\` must be a positive integer: ${value}`),
-)
+export const assertPositiveInteger = createAssert({
+  predicate: (name, value) => assertInteger(name, value) && value > 0,
+  message: name => `\`${name}\` must be a positive integer`,
+})

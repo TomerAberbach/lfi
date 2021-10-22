@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-export const wrapFunction = (oldFn, newFn) =>
+export const wrapFunction = (previousFn, newFn) =>
   Object.defineProperties(newFn, {
     length: {
-      value: oldFn.length,
+      value: previousFn.length,
     },
     name: {
-      value: oldFn.name,
+      value: previousFn.name,
     },
   })

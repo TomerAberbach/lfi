@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@sinonjs/fake-timers": "8.0.1",
-    "@types/node": "16.11.1",
+    "@types/node": "16.11.2",
     "ava": "3.15.0",
     "ava-fast-check": "4.0.2",
     "fast-check": "2.14.0",

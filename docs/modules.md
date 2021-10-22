@@ -16,6 +16,7 @@
 
 ### Variables
 
+- [ToObject](modules.md#toobject)
 - [empty](modules.md#empty)
 - [emptyAsync](modules.md#emptyasync)
 - [toArray](modules.md#toarray)
@@ -65,6 +66,7 @@
 - [eachAsync](modules.md#eachasync)
 - [eachConcur](modules.md#eachconcur)
 - [emptyConcur](modules.md#emptyconcur)
+- [entries](modules.md#entries)
 - [filter](modules.md#filter)
 - [filterAsync](modules.md#filterasync)
 - [filterConcur](modules.md#filterconcur)
@@ -105,6 +107,7 @@
 - [join](modules.md#join)
 - [joinAsync](modules.md#joinasync)
 - [joinConcur](modules.md#joinconcur)
+- [keys](modules.md#keys)
 - [last](modules.md#last)
 - [lastAsync](modules.md#lastasync)
 - [lastConcur](modules.md#lastconcur)
@@ -165,6 +168,7 @@
 - [uniqueByAsync](modules.md#uniquebyasync)
 - [uniqueByConcur](modules.md#uniquebyconcur)
 - [uniqueConcur](modules.md#uniqueconcur)
+- [values](modules.md#values)
 - [windowed](modules.md#windowed)
 - [windowedAsync](modules.md#windowedasync)
 - [windowedConcur](modules.md#windowedconcur)
@@ -176,8 +180,18 @@
 
 ### AsyncCompare
 
-Ƭ **AsyncCompare**<Value\>: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>
+Ƭ **AsyncCompare**<`Value`\>: (`left`: `Value`, `right`: `Value`) =>
+`MaybePromiseLike`<`number`\>
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Type declaration
+
+▸ (`left`, `right`): `MaybePromiseLike`<`number`\>
 
 A function that compares two values of type `Value` possibly asynchronously.
 
@@ -187,47 +201,51 @@ A return value that awaits to:
 - Equal to zero implies `left === right`
 - Greater than zero implies `left > right`
 
-#### Type parameters:
+##### Parameters
 
-| Name    |
-| :------ |
-| `Value` |
+| Name    | Type    |
+| :------ | :------ |
+| `left`  | `Value` |
+| `right` | `Value` |
 
-#### Type declaration:
+##### Returns
 
-▸ (`left`: Value, `right`: Value): _MaybePromiseLike_<number\>
+`MaybePromiseLike`<`number`\>
 
-#### Parameters:
+#### Defined in
 
-| Name    | Type  |
-| :------ | :---- |
-| `left`  | Value |
-| `right` | Value |
-
-**Returns:** _MaybePromiseLike_<number\>
-
-Defined in:
-[min-max.d.ts:38](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L38)
+[min-max.d.ts:38](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L38)
 
 ---
 
 ### Collector
 
-Ƭ **Collector**: _typeof_ [_toArray_](modules.md#toarray) \| _typeof_
-[_toSet_](modules.md#toset) \| _typeof_ [_toWeakSet_](modules.md#toweakset) \|
-[_MapCollector_](modules.md#mapcollector)
+Ƭ **Collector**: typeof [`toArray`](modules.md#toarray) \| typeof
+[`toSet`](modules.md#toset) \| typeof [`toWeakSet`](modules.md#toweakset) \|
+[`MapCollector`](modules.md#mapcollector)
 
 An object that specifies how to collect values of an iterable to some
 collection.
 
-Defined in:
-[collect.d.ts:295](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L295)
+#### Defined in
+
+[collect.d.ts:298](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L298)
 
 ---
 
 ### Compare
 
-Ƭ **Compare**<Value\>: (`left`: Value, `right`: Value) => _number_
+Ƭ **Compare**<`Value`\>: (`left`: `Value`, `right`: `Value`) => `number`
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Type declaration
+
+▸ (`left`, `right`): `number`
 
 A function that compares two values of type `Value`.
 
@@ -237,34 +255,37 @@ A return value:
 - Equal to zero implies `left === right`
 - Greater than zero implies `left > right`
 
-#### Type parameters:
+##### Parameters
 
-| Name    |
-| :------ |
-| `Value` |
+| Name    | Type    |
+| :------ | :------ |
+| `left`  | `Value` |
+| `right` | `Value` |
 
-#### Type declaration:
+##### Returns
 
-▸ (`left`: Value, `right`: Value): _number_
+`number`
 
-#### Parameters:
+#### Defined in
 
-| Name    | Type  |
-| :------ | :---- |
-| `left`  | Value |
-| `right` | Value |
-
-**Returns:** _number_
-
-Defined in:
-[min-max.d.ts:28](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L28)
+[min-max.d.ts:28](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L28)
 
 ---
 
 ### ConcurIterable
 
-Ƭ **ConcurIterable**<Value\>: (`apply`: (`value`: Value) => _void_ \|
-_Promise_<void\>) => _Promise_<void\>
+Ƭ **ConcurIterable**<`Value`\>: (`apply`: (`value`: `Value`) => `void` \|
+`Promise`<`void`\>) => `Promise`<`void`\>
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Type declaration
+
+▸ (`apply`): `Promise`<`void`\>
 
 Represents a potentially lazy collection of values, each of type `Value`, that
 can be iterated over concurrently.
@@ -290,83 +311,89 @@ const slothNamesConcurIterable: ConcurIterable<string> = pipe(
 )
 ```
 
-#### Type parameters:
+##### Parameters
 
-| Name    |
-| :------ |
-| `Value` |
+| Name    | Type                                               |
+| :------ | :------------------------------------------------- |
+| `apply` | (`value`: `Value`) => `void` \| `Promise`<`void`\> |
 
-#### Type declaration:
+##### Returns
 
-▸ (`apply`: (`value`: Value) => _void_ \| _Promise_<void\>): _Promise_<void\>
+`Promise`<`void`\>
 
-#### Parameters:
+#### Defined in
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `apply` | (`value`: Value) => _void_ \| _Promise_<void\> |
-
-**Returns:** _Promise_<void\>
-
-Defined in:
-[types.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/types.d.ts#L42)
+[types.d.ts:42](https://github.com/TomerAberbach/fn/blob/447b200/src/types.d.ts#L42)
 
 ---
 
 ### MapCollector
 
-Ƭ **MapCollector**: _typeof_ [_toObject_](modules.md#toobject) \| _typeof_
-[_toMap_](modules.md#tomap) \| _typeof_ [_toWeakMap_](modules.md#toweakmap) \|
-_Folding_<any, any\>
+Ƭ **MapCollector**: typeof [`ToObject`](modules.md#toobject) \| typeof
+[`toMap`](modules.md#tomap) \| typeof [`toWeakMap`](modules.md#toweakmap) \|
+`Folding`<`any`, `any`\>
 
 An object that specifies how to collect an iterable of entries to some
 (typically keyed) collection.
 
-Defined in:
-[collect.d.ts:323](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L323)
+#### Defined in
+
+[collect.d.ts:326](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L326)
 
 ---
 
 ### MinMax
 
-Ƭ **MinMax**<Value\>: _object_
+Ƭ **MinMax**<`Value`\>: `Object`
 
 An object containing a minimum and maximum value.
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Type declaration:
+#### Type declaration
 
-| Name  | Type  |
-| :---- | :---- |
-| `max` | Value |
-| `min` | Value |
+| Name  | Type    |
+| :---- | :------ |
+| `max` | `Value` |
+| `min` | `Value` |
 
-Defined in:
-[min-max.d.ts:44](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L44)
+#### Defined in
+
+[min-max.d.ts:44](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L44)
 
 ---
 
 ### RangeIterable
 
-Ƭ **RangeIterable**: _Iterable_<number\> & { `step`: (`step`: _number_) =>
-_Iterable_<number\> }
+Ƭ **RangeIterable**: `Iterable`<`number`\> & { `step`: (`step`: `number`) =>
+`Iterable`<`number`\> }
 
 An iterable that yields integers in a range. Has a method for obtaining a new
 iterable that skips numbers in steps.
 
-Defined in:
-[range.d.ts:21](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L21)
+#### Defined in
+
+[range.d.ts:21](https://github.com/TomerAberbach/fn/blob/447b200/src/range.d.ts#L21)
 
 ## Variables
 
+### ToObject
+
+• **ToObject**: unique `symbol`
+
+#### Defined in
+
+[collect.d.ts:73](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L73)
+
+---
+
 ### empty
 
-• `Const` **empty**: _Iterable_<any\>
+• **empty**: `Iterable`<`any`\>
 
 An iterable that contains zero values.
 
@@ -381,14 +408,15 @@ console.log(count(empty))
 //=> 0
 ```
 
-Defined in:
-[empty.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L32)
+#### Defined in
+
+[empty.d.ts:32](https://github.com/TomerAberbach/fn/blob/447b200/src/empty.d.ts#L32)
 
 ---
 
 ### emptyAsync
 
-• `Const` **emptyAsync**: _AsyncIterable_<any\>
+• **emptyAsync**: `AsyncIterable`<`any`\>
 
 An async iterable that contains zero values.
 
@@ -403,14 +431,15 @@ console.log(await countAsync(emptyAsync))
 //=> 0
 ```
 
-Defined in:
-[empty.d.ts:47](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L47)
+#### Defined in
+
+[empty.d.ts:47](https://github.com/TomerAberbach/fn/blob/447b200/src/empty.d.ts#L47)
 
 ---
 
 ### toArray
 
-• `Const` **toArray**: unique _symbol_
+• **toArray**: unique `symbol`
 
 A [Collector](modules.md#collector) that collects the values of an iterable to
 an array.
@@ -428,14 +457,15 @@ console.log(slothMemoirs)
 //=> [ ..., ..., ... ] (an array containing the content of each file)
 ```
 
-Defined in:
-[collect.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L34)
+#### Defined in
+
+[collect.d.ts:34](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L34)
 
 ---
 
 ### toMap
 
-• `Const` **toMap**: unique _symbol_
+• **toMap**: unique `symbol`
 
 A [MapCollector](modules.md#mapcollector) that collects the key-value pairs of
 an iterable of entries to a map.
@@ -464,14 +494,16 @@ console.log(slothMemoirs)
 // }
 ```
 
-Defined in:
-[collect.d.ts:129](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L129)
+#### Defined in
+
+[collect.d.ts:132](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L132)
 
 ---
 
 ### toObject
 
-• `Const` **toObject**: unique _symbol_
+• **toObject**: typeof [`ToObject`](modules.md#toobject) & (`{ writable }`: {
+`writable`: `boolean` }) => typeof [`ToObject`](modules.md#toobject)
 
 A [MapCollector](modules.md#mapcollector) that collects the key-value pairs of
 an iterable of entries to an object.
@@ -500,14 +532,15 @@ console.log(slothMemoirs)
 // }
 ```
 
-Defined in:
-[collect.d.ts:100](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L100)
+#### Defined in
+
+[collect.d.ts:102](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L102)
 
 ---
 
 ### toSet
 
-• `Const` **toSet**: unique _symbol_
+• **toSet**: unique `symbol`
 
 A [Collector](modules.md#collector) that collects the values of an iterable to a
 set.
@@ -525,14 +558,15 @@ console.log(slothMemoirs)
 //=> Set(3) { ..., ..., ... } (a set containing the content of each file)
 ```
 
-Defined in:
-[collect.d.ts:51](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L51)
+#### Defined in
+
+[collect.d.ts:51](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L51)
 
 ---
 
 ### toWeakMap
 
-• `Const` **toWeakMap**: unique _symbol_
+• **toWeakMap**: unique `symbol`
 
 A [MapCollector](modules.md#mapcollector) that collects the key-value pairs of
 an iterable of entries to a weak map.
@@ -556,14 +590,15 @@ console.log(slothMemoirs)
 //=> WeakMap { <items unknown> } (a weak map containing the content of each file)
 ```
 
-Defined in:
-[collect.d.ts:153](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L153)
+#### Defined in
+
+[collect.d.ts:156](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L156)
 
 ---
 
 ### toWeakSet
 
-• `Const` **toWeakSet**: unique _symbol_
+• **toWeakSet**: unique `symbol`
 
 A [Collector](modules.md#collector) that collects the values of an iterable to a
 weak set.
@@ -584,14 +619,16 @@ console.log(slothMemoirs)
 //=> WeakSet { <items unknown> } (a weak set containing the contents of each file)
 ```
 
-Defined in:
-[collect.d.ts:71](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L71)
+#### Defined in
+
+[collect.d.ts:71](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L71)
 
 ## Functions
 
 ### all
 
-▸ `Const`**all**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **all**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`boolean`
 
 Returns `true` if `fn` returns `true` for all values of `iterable`. Otherwise
 returns `false`.
@@ -607,25 +644,39 @@ console.log(all(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L67)
+`fn`
 
-▸ `Const`**all**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _boolean_
+▸ (`iterable`): `boolean`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L67)
+
+▸ `Const` **all**<`Value`\>(`fn`, `iterable`): `boolean`
 
 Returns `true` if `fn` returns `true` for all values of `iterable`. Otherwise
 returns `false`.
@@ -641,29 +692,33 @@ console.log(all(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L67)
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:67](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L67)
 
 ---
 
 ### allAsync
 
-▸ `Const`**allAsync**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **allAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for all values of `asyncIterable`. Otherwise returns a
@@ -680,25 +735,39 @@ console.log(await allAsync(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L84)
+`fn`
 
-▸ `Const`**allAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
+▸ (`asyncIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L84)
+
+▸ `Const` **allAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for all values of `asyncIterable`. Otherwise returns a
@@ -715,29 +784,34 @@ console.log(await allAsync(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L84)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:84](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L84)
 
 ---
 
 ### allConcur
 
-▸ `Const`**allConcur**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **allConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for all values of `concurIterable`. Otherwise returns a
@@ -754,27 +828,39 @@ console.log(await allConcur(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L101)
+`fn`
 
-▸ `Const`**allConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<boolean\>
+▸ (`concurIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L101)
+
+▸ `Const` **allConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for all values of `concurIterable`. Otherwise returns a
@@ -791,29 +877,33 @@ console.log(await allConcur(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L101)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:101](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L101)
 
 ---
 
 ### any
 
-▸ `Const`**any**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **any**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`boolean`
 
 Returns `true` if `fn` returns `true` for any value of `iterable`. Otherwise
 returns `false`.
@@ -829,25 +919,39 @@ console.log(any(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L117)
+`fn`
 
-▸ `Const`**any**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _boolean_
+▸ (`iterable`): `boolean`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L117)
+
+▸ `Const` **any**<`Value`\>(`fn`, `iterable`): `boolean`
 
 Returns `true` if `fn` returns `true` for any value of `iterable`. Otherwise
 returns `false`.
@@ -863,29 +967,33 @@ console.log(any(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L117)
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:117](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L117)
 
 ---
 
 ### anyAsync
 
-▸ `Const`**anyAsync**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **anyAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for any value of `asyncIterable`. Otherwise returns a
@@ -902,25 +1010,39 @@ console.log(await anyAsync(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L134)
+`fn`
 
-▸ `Const`**anyAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
+▸ (`asyncIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L134)
+
+▸ `Const` **anyAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for any value of `asyncIterable`. Otherwise returns a
@@ -937,29 +1059,34 @@ console.log(await anyAsync(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L134)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:134](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L134)
 
 ---
 
 ### anyConcur
 
-▸ `Const`**anyConcur**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **anyConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for any value of `concurIterable`. Otherwise returns a
@@ -976,27 +1103,39 @@ console.log(await anyConcur(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L151)
+`fn`
 
-▸ `Const`**anyConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<boolean\>
+▸ (`concurIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L151)
+
+▸ `Const` **anyConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns `true` or a promise
 that resolves to `true` for any value of `concurIterable`. Otherwise returns a
@@ -1013,30 +1152,32 @@ console.log(await anyConcur(number => number > 1, numbers))
 //=> true
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L151)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:151](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L151)
 
 ---
 
 ### asAsync
 
-▸ `Const`**asAsync**<Value\>(`iterable`: _Iterable_<Value\> \|
-_AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ `Const` **asAsync**<`Value`\>(`iterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable wrapper around `iterable`.
 
@@ -1052,31 +1193,32 @@ console.log(await collectAsync(toArray, asyncIterable))
 //=> [ 1, 'sloth', 3 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                          |
-| :--------- | :-------------------------------------------- |
-| `iterable` | _Iterable_<Value\> \| _AsyncIterable_<Value\> |
+| Name       | Type                                              |
+| :--------- | :------------------------------------------------ |
+| `iterable` | `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[as.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/as.d.ts#L33)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[as.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/as.d.ts#L33)
 
 ---
 
 ### asConcur
 
-▸ `Const`**asConcur**<Value\>(`iterable`: _Iterable_<Value\> \|
-_AsyncIterable_<Value\> \|
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **asConcur**<`Value`\>(`iterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable wrapper around `iterable`.
 
@@ -1089,28 +1231,31 @@ console.log(await collectConcur(toArray, concurIterable))
 //=> [ 1, 'sloth', 3 ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                                                                                   |
-| :--------- | :----------------------------------------------------------------------------------------------------- |
-| `iterable` | _Iterable_<Value\> \| _AsyncIterable_<Value\> \| [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name       | Type                                                                                                         |
+| :--------- | :----------------------------------------------------------------------------------------------------------- |
+| `iterable` | `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[as.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/as.d.ts#L48)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[as.d.ts:48](https://github.com/TomerAberbach/fn/blob/447b200/src/as.d.ts#L48)
 
 ---
 
 ### cached
 
-▸ `Const`**cached**<Value\>(`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **cached**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable` that iterates over `iterable` at
 most once.
@@ -1133,29 +1278,31 @@ console.log([...cachedIterable])
 //=> [ 'sloth', 'more sloth', 'even more sloth' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[cached.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L40)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[cached.d.ts:40](https://github.com/TomerAberbach/fn/blob/447b200/src/cached.d.ts#L40)
 
 ---
 
 ### cachedAsync
 
-▸ `Const`**cachedAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **cachedAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable` that iterates over
 `asyncIterable` at most once.
@@ -1178,30 +1325,32 @@ console.log(await collectAsync(toArray, cachedAsyncIterable))
 //=> [ 'sloth', 'more sloth', 'even more sloth' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[cached.d.ts:63](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L63)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[cached.d.ts:63](https://github.com/TomerAberbach/fn/blob/447b200/src/cached.d.ts#L63)
 
 ---
 
 ### cachedConcur
 
-▸ `Const`**cachedConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **cachedConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable equivalent to `concurIterable` that iterates over
 `concurIterable` at most once.
@@ -1224,28 +1373,32 @@ console.log(await collectConcur(toArray, cachedConcurIterable))
 //=> [ 'sloth', 'more sloth', 'even more sloth' ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[cached.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/cached.d.ts#L88)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[cached.d.ts:88](https://github.com/TomerAberbach/fn/blob/447b200/src/cached.d.ts#L88)
 
 ---
 
 ### chunked
 
-▸ `Const`**chunked**(`size`: _number_): _function_
+▸ `Const` **chunked**(`size`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`[]\>
 
 Returns an iterable equivalent to `iterable` except its values are grouped into
 arrays that each contain `size` values.
@@ -1270,66 +1423,90 @@ console.log([...chunked(2, letters)])
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value[]\>
+#### Returns
 
-Defined in:
-[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L42)
+`fn`
 
-▸ `Const`**chunked**<Value\>(`size`: _number_, `iterable`: _Iterable_<Value\>):
-_Iterable_<Value[]\>
+▸ <`Value`\>(`iterable`): `Iterable`<`Value`[]\>
 
-Returns an iterable equivalent to `iterable` except its values are grouped into
-arrays that each contain `size` values.
-
-The last array in the returned iterable will contain fewer than `size` values
-(but at least one) if the number of values in `iterable` is not divisible by
-`size`.
-
-**`throws`** if `size` is not a positive integer.
-
-**`example`**
-
-```js
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-console.log([...chunked(3, numbers)])
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
-const letters = [`S`, `L`, `O`, `T`, `H`]
-
-console.log([...chunked(2, letters)])
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `size`     | _number_           |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value[]\>
+##### Returns
 
-Defined in:
-[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L42)
+`Iterable`<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L42)
+
+▸ `Const` **chunked**<`Value`\>(`size`, `iterable`): `Iterable`<`Value`[]\>
+
+Returns an iterable equivalent to `iterable` except its values are grouped into
+arrays that each contain `size` values.
+
+The last array in the returned iterable will contain fewer than `size` values
+(but at least one) if the number of values in `iterable` is not divisible by
+`size`.
+
+**`throws`** if `size` is not a positive integer.
+
+**`example`**
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+console.log([...chunked(3, numbers)])
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+const letters = [`S`, `L`, `O`, `T`, `H`]
+
+console.log([...chunked(2, letters)])
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `size`     | `number`             |
+| `iterable` | `Iterable`<`Value`\> |
+
+#### Returns
+
+`Iterable`<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:42](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L42)
 
 ---
 
 ### chunkedAsync
 
-▸ `Const`**chunkedAsync**(`size`: _number_): _function_
+▸ `Const` **chunkedAsync**(`size`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`[]\>
 
 Returns an async iterable equivalent to `asyncIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -1354,67 +1531,92 @@ console.log(await collectAsync(toArray, chunked(2, letters)))
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value[]\>
+#### Returns
 
-Defined in:
-[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L70)
+`fn`
 
-▸ `Const`**chunkedAsync**<Value\>(`size`: _number_, `asyncIterable`:
-_AsyncIterable_<Value\>): _AsyncIterable_<Value[]\>
+▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`[]\>
 
-Returns an async iterable equivalent to `asyncIterable` except its values are
-grouped into arrays that each contain `size` values.
-
-The last array in the returned async iterable will contain fewer than `size`
-values (but at least one) if the number of values in `asyncIterable` is not
-divisible by `size`.
-
-**`throws`** if `size` is not a positive integer.
-
-**`example`**
-
-```js
-const numbers = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
-console.log(await collectAsync(toArray, chunkedAsync(3, numbers)]))
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
-const letters = asAsync([`S`, `L`, `O`, `T`, `H`])
-
-console.log(await collectAsync(toArray, chunked(2, letters)))
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `size`          | _number_                |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value[]\>
+##### Returns
 
-Defined in:
-[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L70)
+`AsyncIterable`<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L70)
+
+▸ `Const` **chunkedAsync**<`Value`\>(`size`, `asyncIterable`):
+`AsyncIterable`<`Value`[]\>
+
+Returns an async iterable equivalent to `asyncIterable` except its values are
+grouped into arrays that each contain `size` values.
+
+The last array in the returned async iterable will contain fewer than `size`
+values (but at least one) if the number of values in `asyncIterable` is not
+divisible by `size`.
+
+**`throws`** if `size` is not a positive integer.
+
+**`example`**
+
+```js
+const numbers = asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+console.log(await collectAsync(toArray, chunkedAsync(3, numbers)]))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+const letters = asAsync([`S`, `L`, `O`, `T`, `H`])
+
+console.log(await collectAsync(toArray, chunked(2, letters)))
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `size`          | `number`                  |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L70)
 
 ---
 
 ### chunkedConcur
 
-▸ `Const`**chunkedConcur**(`size`: _number_): _function_
+▸ `Const` **chunkedConcur**(`size`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
 
 Returns a concur iterable equivalent to `concurIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -1439,69 +1641,92 @@ console.log(await collectConcur(toArray, chunkedConcur(2, letters)))
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ] (not necessarily in this order)
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+#### Returns
 
-Defined in:
-[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L102)
+`fn`
 
-▸ `Const`**chunkedConcur**<Value\>(`size`: _number_, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+▸ <`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
 
-Returns a concur iterable equivalent to `concurIterable` except its values are
-grouped into arrays that each contain `size` values.
-
-The last array in the returned concur iterable will contain fewer than `size`
-values (but at least one) if the number of values in `concurIterable` is not
-divisible by `size`.
-
-**`throws`** if `size` is not a positive integer.
-
-**`example`**
-
-```js
-const numbers = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
-
-console.log(await collectConcur(toArray, chunkedConcur(3, numbers)))
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ] (not necessarily in this order)
-
-const letters = asConcur([`S`, `L`, `O`, `T`, `H`])
-
-console.log(await collectConcur(toArray, chunkedConcur(2, letters)))
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ] (not necessarily in this order)
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `size`           | _number_                                              |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+##### Returns
 
-Defined in:
-[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/chunked.d.ts#L102)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L102)
+
+▸ `Const` **chunkedConcur**<`Value`\>(`size`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+Returns a concur iterable equivalent to `concurIterable` except its values are
+grouped into arrays that each contain `size` values.
+
+The last array in the returned concur iterable will contain fewer than `size`
+values (but at least one) if the number of values in `concurIterable` is not
+divisible by `size`.
+
+**`throws`** if `size` is not a positive integer.
+
+**`example`**
+
+```js
+const numbers = asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+console.log(await collectConcur(toArray, chunkedConcur(3, numbers)))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ] (not necessarily in this order)
+
+const letters = asConcur([`S`, `L`, `O`, `T`, `H`])
+
+console.log(await collectConcur(toArray, chunkedConcur(2, letters)))
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ] (not necessarily in this order)
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `size`           | `number`                                                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+#### Defined in
+
+[chunked.d.ts:102](https://github.com/TomerAberbach/fn/blob/447b200/src/chunked.d.ts#L102)
 
 ---
 
 ### collect
 
-▸ `Const`**collect**<C\>(`collector`: C): _function_
+▸ `Const` **collect**<`C`\>(`collector`): <Value\>(`iterable`:
+`Iterable`<`Value`\>) => `CollectorToCollection`<`C`, `Value`\>
 
 Returns a collection (collected by `collector`) containing the values of
 `iterable` in iteration order.
@@ -1519,26 +1744,46 @@ console.log(collect(toSet, getSloths(4)))
 //=> Set(4) { 'sloth 0', 'sloth 1', 'sloth 2', 'sloth 3'  }
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name | Type                                |
-| :--- | :---------------------------------- |
-| `C`  | [_Collector_](modules.md#collector) |
+| Name | Type                                        |
+| :--- | :------------------------------------------ |
+| `C`  | extends [`Collector`](modules.md#collector) |
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type |
 | :---------- | :--- |
-| `collector` | C    |
+| `collector` | `C`  |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) =>
-_CollectorToCollection_<C, Value\>
+#### Returns
 
-Defined in:
-[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L364)
+`fn`
 
-▸ `Const`**collect**<C, Value\>(`collector`: C, `iterable`: _Iterable_<Value\>):
-_CollectorToCollection_<C, Value\>
+▸ <`Value`\>(`iterable`): `CollectorToCollection`<`C`, `Value`\>
+
+##### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`CollectorToCollection`<`C`, `Value`\>
+
+#### Defined in
+
+[collect.d.ts:367](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L367)
+
+▸ `Const` **collect**<`C`, `Value`\>(`collector`, `iterable`):
+`CollectorToCollection`<`C`, `Value`\>
 
 Returns a collection (collected by `collector`) containing the values of
 `iterable` in iteration order.
@@ -1556,30 +1801,34 @@ console.log(collect(toSet, getSloths(4)))
 //=> Set(4) { 'sloth 0', 'sloth 1', 'sloth 2', 'sloth 3'  }
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name    | Type                                |
-| :------ | :---------------------------------- |
-| `C`     | [_Collector_](modules.md#collector) |
-| `Value` | -                                   |
+| Name    | Type                                        |
+| :------ | :------------------------------------------ |
+| `C`     | extends [`Collector`](modules.md#collector) |
+| `Value` | `Value`                                     |
 
-#### Parameters:
+#### Parameters
 
-| Name        | Type               |
-| :---------- | :----------------- |
-| `collector` | C                  |
-| `iterable`  | _Iterable_<Value\> |
+| Name        | Type                 |
+| :---------- | :------------------- |
+| `collector` | `C`                  |
+| `iterable`  | `Iterable`<`Value`\> |
 
-**Returns:** _CollectorToCollection_<C, Value\>
+#### Returns
 
-Defined in:
-[collect.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L364)
+`CollectorToCollection`<`C`, `Value`\>
+
+#### Defined in
+
+[collect.d.ts:367](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L367)
 
 ---
 
 ### collectAsync
 
-▸ `Const`**collectAsync**<C\>(`collector`: C): _function_
+▸ `Const` **collectAsync**<`C`\>(`collector`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`CollectorToCollection`<`C`, `Value`\>\>
 
 Returns a promise that resolves to a collection (collected by `collector`)
 containing the values of `asyncIterable` in iteration order.
@@ -1599,26 +1848,47 @@ console.log(await collectAsync(toArray, getSlothFilenames()))
 //=> [ ... ] (an array containing sloth filenames)
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name | Type                                |
-| :--- | :---------------------------------- |
-| `C`  | [_Collector_](modules.md#collector) |
+| Name | Type                                        |
+| :--- | :------------------------------------------ |
+| `C`  | extends [`Collector`](modules.md#collector) |
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type |
 | :---------- | :--- |
-| `collector` | C    |
+| `collector` | `C`  |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_Promise_<CollectorToCollection<C, Value\>\>
+#### Returns
 
-Defined in:
-[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L392)
+`fn`
 
-▸ `Const`**collectAsync**<C, Value\>(`collector`: C, `asyncIterable`:
-_AsyncIterable_<Value\>): _Promise_<CollectorToCollection<C, Value\>\>
+▸ <`Value`\>(`asyncIterable`): `Promise`<`CollectorToCollection`<`C`,
+`Value`\>\>
+
+##### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
+
+#### Defined in
+
+[collect.d.ts:395](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L395)
+
+▸ `Const` **collectAsync**<`C`, `Value`\>(`collector`, `asyncIterable`):
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
 
 Returns a promise that resolves to a collection (collected by `collector`)
 containing the values of `asyncIterable` in iteration order.
@@ -1638,30 +1908,35 @@ console.log(await collectAsync(toArray, getSlothFilenames()))
 //=> [ ... ] (an array containing sloth filenames)
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name    | Type                                |
-| :------ | :---------------------------------- |
-| `C`     | [_Collector_](modules.md#collector) |
-| `Value` | -                                   |
+| Name    | Type                                        |
+| :------ | :------------------------------------------ |
+| `C`     | extends [`Collector`](modules.md#collector) |
+| `Value` | `Value`                                     |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `collector`     | C                       |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `collector`     | `C`                       |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _Promise_<CollectorToCollection<C, Value\>\>
+#### Returns
 
-Defined in:
-[collect.d.ts:392](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L392)
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
+
+#### Defined in
+
+[collect.d.ts:395](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L395)
 
 ---
 
 ### collectConcur
 
-▸ `Const`**collectConcur**<C\>(`collector`: C): _function_
+▸ `Const` **collectConcur**<`C`\>(`collector`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
 
 Returns a promise that resolves to a collection (collected by `collector`)
 containing the values of `concurIterable`.
@@ -1680,28 +1955,47 @@ console.log(slothFileContents)
 //=> [ ... ] (an array containing sloth file contents)
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name | Type                                |
-| :--- | :---------------------------------- |
-| `C`  | [_Collector_](modules.md#collector) |
+| Name | Type                                        |
+| :--- | :------------------------------------------ |
+| `C`  | extends [`Collector`](modules.md#collector) |
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type |
 | :---------- | :--- |
-| `collector` | C    |
+| `collector` | `C`  |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-_Promise_<CollectorToCollection<C, Value\>\>
+#### Returns
 
-Defined in:
-[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L419)
+`fn`
 
-▸ `Const`**collectConcur**<C, Value\>(`collector`: C, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<CollectorToCollection<C, Value\>\>
+▸ <`Value`\>(`concurIterable`): `Promise`<`CollectorToCollection`<`C`,
+`Value`\>\>
+
+##### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
+
+#### Defined in
+
+[collect.d.ts:422](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L422)
+
+▸ `Const` **collectConcur**<`C`, `Value`\>(`collector`, `concurIterable`):
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
 
 Returns a promise that resolves to a collection (collected by `collector`)
 containing the values of `concurIterable`.
@@ -1720,30 +2014,33 @@ console.log(slothFileContents)
 //=> [ ... ] (an array containing sloth file contents)
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name    | Type                                |
-| :------ | :---------------------------------- |
-| `C`     | [_Collector_](modules.md#collector) |
-| `Value` | -                                   |
+| Name    | Type                                        |
+| :------ | :------------------------------------------ |
+| `C`     | extends [`Collector`](modules.md#collector) |
+| `Value` | `Value`                                     |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `collector`      | C                                                     |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `collector`      | `C`                                                     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<CollectorToCollection<C, Value\>\>
+#### Returns
 
-Defined in:
-[collect.d.ts:419](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L419)
+`Promise`<`CollectorToCollection`<`C`, `Value`\>\>
+
+#### Defined in
+
+[collect.d.ts:422](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L422)
 
 ---
 
 ### compose
 
-▸ `Const`**compose**(): _function_
+▸ `Const` **compose**(): <Value\>(`value`: `Value`) => `Value`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1761,12 +2058,33 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-**Returns:** <Value\>(`value`: Value) => Value
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B\>(`fn`: (`a`: A) => B): _function_
+▸ <`Value`\>(`value`): `Value`
+
+##### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+##### Parameters
+
+| Name    | Type    |
+| :------ | :------ |
+| `value` | `Value` |
+
+##### Returns
+
+`Value`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`\>(`fn`): (`value`: `A`) => `B`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1784,26 +2102,40 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
 | `A`  |
 | `B`  |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type          |
-| :--- | :------------ |
-| `fn` | (`a`: A) => B |
+| Name | Type              |
+| :--- | :---------------- |
+| `fn` | (`a`: `A`) => `B` |
 
-**Returns:** (`value`: A) => B
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C):
-_function_
+▸ (`value`): `B`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`B`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`\>(`fn1`, `fn2`): (`value`: `A`) => `C`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1821,7 +2153,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -1829,20 +2161,35 @@ console.log(screamify(`sloth`))
 | `B`  |
 | `C`  |
 
-#### Parameters:
+#### Parameters
 
-| Name  | Type          |
-| :---- | :------------ |
-| `fn1` | (`a`: A) => B |
-| `fn2` | (`b`: B) => C |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
 
-**Returns:** (`value`: A) => C
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C,
-`fn3`: (`c`: C) => D): _function_
+▸ (`value`): `C`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`C`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`\>(`fn1`, `fn2`, `fn3`): (`value`: `A`)
+=> `D`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1860,7 +2207,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -1869,21 +2216,36 @@ console.log(screamify(`sloth`))
 | `C`  |
 | `D`  |
 
-#### Parameters:
+#### Parameters
 
-| Name  | Type          |
-| :---- | :------------ |
-| `fn1` | (`a`: A) => B |
-| `fn2` | (`b`: B) => C |
-| `fn3` | (`c`: C) => D |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
 
-**Returns:** (`value`: A) => D
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) => C,
-`fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E): _function_
+▸ (`value`): `D`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`D`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`):
+(`value`: `A`) => `E`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1901,7 +2263,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -1911,22 +2273,37 @@ console.log(screamify(`sloth`))
 | `D`  |
 | `E`  |
 
-#### Parameters:
+#### Parameters
 
-| Name  | Type          |
-| :---- | :------------ |
-| `fn1` | (`a`: A) => B |
-| `fn2` | (`b`: B) => C |
-| `fn3` | (`c`: C) => D |
-| `fn4` | (`d`: D) => E |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
 
-**Returns:** (`value`: A) => E
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E, F\>(`fn1`: (`a`: A) => B, `fn2`: (`b`: B) =>
-C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) => F): _function_
+▸ (`value`): `E`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`E`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`,
+`fn5`): (`value`: `A`) => `F`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1944,7 +2321,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -1955,24 +2332,38 @@ console.log(screamify(`sloth`))
 | `E`  |
 | `F`  |
 
-#### Parameters:
+#### Parameters
 
-| Name  | Type          |
-| :---- | :------------ |
-| `fn1` | (`a`: A) => B |
-| `fn2` | (`b`: B) => C |
-| `fn3` | (`c`: C) => D |
-| `fn4` | (`d`: D) => E |
-| `fn5` | (`e`: E) => F |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
+| `fn5` | (`e`: `E`) => `F` |
 
-**Returns:** (`value`: A) => F
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E, F, G\>(`value`: A, `fn1`: (`a`: A) => B,
-`fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
-E) => F, `fn6`: (`f`: F) => G): _function_
+▸ (`value`): `F`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`F`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`,
+`fn4`, `fn5`, `fn6`): (`value`: `A`) => `G`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -1990,7 +2381,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -2002,26 +2393,39 @@ console.log(screamify(`sloth`))
 | `F`  |
 | `G`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
+| `fn5` | (`e`: `E`) => `F` |
+| `fn6` | (`f`: `F`) => `G` |
 
-**Returns:** (`value`: A) => G
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E, F, G, H\>(`value`: A, `fn1`: (`a`: A) => B,
-`fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
-E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H): _function_
+▸ (`value`): `G`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`G`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`, `fn7`): (`value`: `A`) => `H`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -2039,7 +2443,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -2052,28 +2456,40 @@ console.log(screamify(`sloth`))
 | `G`  |
 | `H`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
+| `fn5` | (`e`: `E`) => `F` |
+| `fn6` | (`f`: `F`) => `G` |
+| `fn7` | (`g`: `G`) => `H` |
 
-**Returns:** (`value`: A) => H
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E, F, G, H, I\>(`value`: A, `fn1`: (`a`: A) =>
-B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
-(`e`: E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H, `fn8`: (`h`: H) =>
-I): _function_
+▸ (`value`): `H`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`H`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`,
+`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`: `A`) => `I`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -2091,7 +2507,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -2105,29 +2521,41 @@ console.log(screamify(`sloth`))
 | `H`  |
 | `I`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
-| `fn8`   | (`h`: H) => I |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
+| `fn5` | (`e`: `E`) => `F` |
+| `fn6` | (`f`: `F`) => `G` |
+| `fn7` | (`g`: `G`) => `H` |
+| `fn8` | (`h`: `H`) => `I` |
 
-**Returns:** (`value`: A) => I
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
 
-▸ `Const`**compose**<A, B, C, D, E, F, G, H, I, J\>(`value`: A, `fn1`: (`a`: A)
-=> B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
-(`e`: E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H, `fn8`: (`h`: H) => I,
-`fn9`: (`i`: I) => J): _function_
+▸ (`value`): `I`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`I`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
+
+▸ `Const` **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`,
+`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`: `A`) => `J`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
@@ -2145,7 +2573,7 @@ console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -2160,32 +2588,45 @@ console.log(screamify(`sloth`))
 | `I`  |
 | `J`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
-| `fn8`   | (`h`: H) => I |
-| `fn9`   | (`i`: I) => J |
+| Name  | Type              |
+| :---- | :---------------- |
+| `fn1` | (`a`: `A`) => `B` |
+| `fn2` | (`b`: `B`) => `C` |
+| `fn3` | (`c`: `C`) => `D` |
+| `fn4` | (`d`: `D`) => `E` |
+| `fn5` | (`e`: `E`) => `F` |
+| `fn6` | (`f`: `F`) => `G` |
+| `fn7` | (`g`: `G`) => `H` |
+| `fn8` | (`h`: `H`) => `I` |
+| `fn9` | (`i`: `I`) => `J` |
 
-**Returns:** (`value`: A) => J
+#### Returns
 
-Defined in:
-[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L118)
+`fn`
+
+▸ (`value`): `J`
+
+##### Parameters
+
+| Name    | Type |
+| :------ | :--- |
+| `value` | `A`  |
+
+##### Returns
+
+`J`
+
+#### Defined in
+
+[pipe.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L118)
 
 ---
 
 ### concat
 
-▸ `Const`**concat**<Value\>(...`iterables`: readonly _Iterable_<Value\>[]):
-_Iterable_<Value\>
+▸ `Const` **concat**<`Value`\>(...`iterables`): `Iterable`<`Value`\>
 
 Returns an iterable that contains the values of each iterable in `iterables` in
 iteration order.
@@ -2201,29 +2642,31 @@ console.log([...iterable])
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name           | Type                          |
-| :------------- | :---------------------------- |
-| `...iterables` | readonly _Iterable_<Value\>[] |
+| Name           | Type                            |
+| :------------- | :------------------------------ |
+| `...iterables` | readonly `Iterable`<`Value`\>[] |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[concat.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L33)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[concat.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/concat.d.ts#L33)
 
 ---
 
 ### concatAsync
 
-▸ `Const`**concatAsync**<Value\>(...`iterables`: readonly (_Iterable_<Value\> \|
-_AsyncIterable_<Value\>)[]): _AsyncIterable_<Value\>
+▸ `Const` **concatAsync**<`Value`\>(...`iterables`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable that contains the values of each iterable in
 `iterables` in iteration order.
@@ -2243,31 +2686,32 @@ console.log(await collectAsync(toArray, asyncIterable))
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name           | Type                                                       |
-| :------------- | :--------------------------------------------------------- |
-| `...iterables` | readonly (_Iterable_<Value\> \| _AsyncIterable_<Value\>)[] |
+| Name           | Type                                                           |
+| :------------- | :------------------------------------------------------------- |
+| `...iterables` | readonly (`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\>)[] |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[concat.d.ts:55](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L55)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[concat.d.ts:55](https://github.com/TomerAberbach/fn/blob/447b200/src/concat.d.ts#L55)
 
 ---
 
 ### concatConcur
 
-▸ `Const`**concatConcur**<Value\>(...`iterables`: readonly (_Iterable_<Value\>
-\| _AsyncIterable_<Value\> \|
-[_ConcurIterable_](modules.md#concuriterable)<Value\>)[]):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **concatConcur**<`Value`\>(...`iterables`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable that contains the values of each iterable in
 `iterables`.
@@ -2290,28 +2734,31 @@ console.log(await collectConcur(toArray, concurIterable))
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7, 8, 9 ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name           | Type                                                                                                                |
-| :------------- | :------------------------------------------------------------------------------------------------------------------ |
-| `...iterables` | readonly (_Iterable_<Value\> \| _AsyncIterable_<Value\> \| [_ConcurIterable_](modules.md#concuriterable)<Value\>)[] |
+| Name           | Type                                                                                                                      |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `...iterables` | readonly (`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\>)[] |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[concat.d.ts:80](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/concat.d.ts#L80)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[concat.d.ts:80](https://github.com/TomerAberbach/fn/blob/447b200/src/concat.d.ts#L80)
 
 ---
 
 ### count
 
-▸ `Const`**count**<Value\>(`iterable`: _Iterable_<Value\>): _number_
+▸ `Const` **count**<`Value`\>(`iterable`): `number`
 
 Returns the number of values in `iterable`.
 
@@ -2326,29 +2773,31 @@ console.log(count(iterable))
 //=> 3
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _number_
+#### Returns
 
-Defined in:
-[count.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L32)
+`number`
+
+#### Defined in
+
+[count.d.ts:32](https://github.com/TomerAberbach/fn/blob/447b200/src/count.d.ts#L32)
 
 ---
 
 ### countAsync
 
-▸ `Const`**countAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_Promise_<number\>
+▸ `Const` **countAsync**<`Value`\>(`asyncIterable`): `Promise`<`number`\>
 
 Returns a promise that resolves to the number of values in `asyncIterable`.
 
@@ -2363,29 +2812,31 @@ console.log(await countAsync(asyncIterable))
 //=> 3
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _Promise_<number\>
+#### Returns
 
-Defined in:
-[count.d.ts:47](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L47)
+`Promise`<`number`\>
+
+#### Defined in
+
+[count.d.ts:47](https://github.com/TomerAberbach/fn/blob/447b200/src/count.d.ts#L47)
 
 ---
 
 ### countConcur
 
-▸ `Const`**countConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>): _Promise_<number\>
+▸ `Const` **countConcur**<`Value`\>(`concurIterable`): `Promise`<`number`\>
 
 Returns a promise that resolves to the number of values in `concurIterable`.
 
@@ -2400,28 +2851,31 @@ console.log(await countConcur(concurIterable))
 //=> 3
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<number\>
+#### Returns
 
-Defined in:
-[count.d.ts:64](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/count.d.ts#L64)
+`Promise`<`number`\>
+
+#### Defined in
+
+[count.d.ts:64](https://github.com/TomerAberbach/fn/blob/447b200/src/count.d.ts#L64)
 
 ---
 
 ### counting
 
-▸ `Const`**counting**<C\>(`mapCollector`: C): _Folding_<number, C\>
+▸ `Const` **counting**<`C`\>(`mapCollector`): `Folding`<`number`, `C`\>
 
 Returns a [Collector](modules.md#collector) that collects the key-value pairs of
 an iterable of entries using `mapCollector` such that each key in the resulting
@@ -2450,29 +2904,32 @@ console.log(slothDiaryEntryCounts)
 // }
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name | Type                                      |
-| :--- | :---------------------------------------- |
-| `C`  | [_MapCollector_](modules.md#mapcollector) |
+| Name | Type                                              |
+| :--- | :------------------------------------------------ |
+| `C`  | extends [`MapCollector`](modules.md#mapcollector) |
 
-#### Parameters:
+#### Parameters
 
 | Name           | Type |
 | :------------- | :--- |
-| `mapCollector` | C    |
+| `mapCollector` | `C`  |
 
-**Returns:** _Folding_<number, C\>
+#### Returns
 
-Defined in:
-[collect.d.ts:244](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L244)
+`Folding`<`number`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:247](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L247)
 
 ---
 
 ### curry
 
-▸ `Const`**curry**<Parameters, Return\>(`fn`: (...`args`: Parameters) =>
-Return): _Curried_<Parameters, Return\>
+▸ `Const` **curry**<`Parameters`, `Return`\>(`fn`): `Curried`<`Parameters`,
+`Return`\>
 
 Returns a curried version of `fn`.
 
@@ -2498,29 +2955,32 @@ curriedSlothLog(`Hello`)(`World`)(`!`)
 //=> Hello Sloth World Sloth !
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name         | Type             |
-| :----------- | :--------------- |
-| `Parameters` | readonly _any_[] |
-| `Return`     | -                |
+| Name         | Type                     |
+| :----------- | :----------------------- |
+| `Parameters` | extends readonly `any`[] |
+| `Return`     | `Return`                 |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                              |
-| :--- | :-------------------------------- |
-| `fn` | (...`args`: Parameters) => Return |
+| Name | Type                                  |
+| :--- | :------------------------------------ |
+| `fn` | (...`args`: `Parameters`) => `Return` |
 
-**Returns:** _Curried_<Parameters, Return\>
+#### Returns
 
-Defined in:
-[curry.d.ts:63](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/curry.d.ts#L63)
+`Curried`<`Parameters`, `Return`\>
+
+#### Defined in
+
+[curry.d.ts:63](https://github.com/TomerAberbach/fn/blob/447b200/src/curry.d.ts#L63)
 
 ---
 
 ### cycle
 
-▸ `Const`**cycle**<Value\>(`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **cycle**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an infinite iterable that repeatedly yields the values of `iterable`.
 
@@ -2531,29 +2991,31 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
 //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:100](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L100)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:100](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L100)
 
 ---
 
 ### cycleAsync
 
-▸ `Const`**cycleAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **cycleAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an infinite async iterable that repeatedly yields the values of
 `asyncIterable`.
@@ -2571,28 +3033,32 @@ console.log(
 //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L118)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L118)
 
 ---
 
 ### drop
 
-▸ `Const`**drop**(`count`: _number_): _function_
+▸ `Const` **drop**(`count`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 except for the first `count` values.
@@ -2611,60 +3077,84 @@ console.log([...drop(3, iterable)])
 //=> [ 4, 5 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L195)
+`fn`
 
-▸ `Const`**drop**<Value\>(`count`: _number_, `iterable`: _Iterable_<Value\>):
-_Iterable_<Value\>
+▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
 
-Returns an iterable containing the values of `iterable` in iteration order
-except for the first `count` values.
-
-If the `count` is greater than the number of values in `iterable`, then an empty
-iterable is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const iterable = [1, 2, 3, 4, 5]
-
-console.log([...drop(3, iterable)])
-//=> [ 4, 5 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `count`    | _number_           |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L195)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L195)
+
+▸ `Const` **drop**<`Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order
+except for the first `count` values.
+
+If the `count` is greater than the number of values in `iterable`, then an empty
+iterable is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const iterable = [1, 2, 3, 4, 5]
+
+console.log([...drop(3, iterable)])
+//=> [ 4, 5 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `count`    | `number`             |
+| `iterable` | `Iterable`<`Value`\> |
+
+#### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:195](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L195)
 
 ---
 
 ### dropAsync
 
-▸ `Const`**dropAsync**(`count`: _number_): _function_
+▸ `Const` **dropAsync**(`count`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order except for the first `count` values.
@@ -2683,61 +3173,86 @@ console.log(await collectAsync(dropAsync(3, asyncIterable)))
 //=> [ 4, 5 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L214)
+`fn`
 
-▸ `Const`**dropAsync**<Value\>(`count`: _number_, `asyncIterable`:
-_AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order except for the first `count` values.
-
-If the `count` is greater than the number of values in `asyncIterable`, then an
-empty async iterable is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const asyncIterable = asAsync([1, 2, 3, 4, 5])
-
-console.log(await collectAsync(dropAsync(3, asyncIterable)))
-//=> [ 4, 5 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `count`         | _number_                |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L214)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L214)
+
+▸ `Const` **dropAsync**<`Value`\>(`count`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order except for the first `count` values.
+
+If the `count` is greater than the number of values in `asyncIterable`, then an
+empty async iterable is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const asyncIterable = asAsync([1, 2, 3, 4, 5])
+
+console.log(await collectAsync(dropAsync(3, asyncIterable)))
+//=> [ 4, 5 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `count`         | `number`                  |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:214](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L214)
 
 ---
 
 ### dropConcur
 
-▸ `Const`**dropConcur**(`count`: _number_): _function_
+▸ `Const` **dropConcur**(`count`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order except for the first `count` values.
@@ -2756,63 +3271,86 @@ console.log(await collectConcur(dropConcur(3, concurIterable)))
 //=> [ 4, 5 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L233)
+`fn`
 
-▸ `Const`**dropConcur**<Value\>(`count`: _number_, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ <`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order except for the first `count` values.
-
-If the `count` is greater than the number of values in `concurIterable`, then an
-empty concur iterable is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const concurIterable = asConcur([1, 2, 3, 4, 5])
-
-console.log(await collectConcur(dropConcur(3, concurIterable)))
-//=> [ 4, 5 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `count`          | _number_                                              |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L233)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L233)
+
+▸ `Const` **dropConcur**<`Value`\>(`count`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order except for the first `count` values.
+
+If the `count` is greater than the number of values in `concurIterable`, then an
+empty concur iterable is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const concurIterable = asConcur([1, 2, 3, 4, 5])
+
+console.log(await collectConcur(dropConcur(3, concurIterable)))
+//=> [ 4, 5 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `count`          | `number`                                                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:233](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L233)
 
 ---
 
 ### dropWhile
 
-▸ `Const`**dropWhile**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **dropWhile**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 starting with the first value for which `fn` does not return `true`.
@@ -2826,25 +3364,39 @@ console.log([...dropWhile(value => value < 5, iterable)])
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L65)
+`fn`
 
-▸ `Const`**dropWhile**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L65)
+
+▸ `Const` **dropWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 starting with the first value for which `fn` does not return `true`.
@@ -2858,30 +3410,33 @@ console.log([...dropWhile(value => value < 5, iterable)])
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L65)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:65](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L65)
 
 ---
 
 ### dropWhileAsync
 
-▸ `Const`**dropWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **dropWhileAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order starting with the first value for which `fn` does not return `true` or a
@@ -2898,26 +3453,40 @@ console.log(
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L82)
+`fn`
 
-▸ `Const`**dropWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L82)
+
+▸ `Const` **dropWhileAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order starting with the first value for which `fn` does not return `true` or a
@@ -2934,30 +3503,34 @@ console.log(
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L82)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:82](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L82)
 
 ---
 
 ### dropWhileConcur
 
-▸ `Const`**dropWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **dropWhileConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order starting with the first value for which `fn` does not return `true` or a
@@ -2974,28 +3547,40 @@ console.log(
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L99)
+`fn`
 
-▸ `Const`**dropWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L99)
+
+▸ `Const` **dropWhileConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order starting with the first value for which `fn` does not return `true` or a
@@ -3012,29 +3597,33 @@ console.log(
 //=> [ 5, 6, 7, 8, 9 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L99)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:99](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L99)
 
 ---
 
 ### each
 
-▸ `Const`**each**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **each**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable` that applies `fn` to each value of
 `iterable` as it is iterated.
@@ -3053,25 +3642,39 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L37)
+`fn`
 
-▸ `Const`**each**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L37)
+
+▸ `Const` **each**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable` that applies `fn` to each value of
 `iterable` as it is iterated.
@@ -3090,29 +3693,33 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L37)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[each.d.ts:37](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L37)
 
 ---
 
 ### eachAsync
 
-▸ `Const`**eachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **eachAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
 each value of `asyncIterable` as it is iterated.
@@ -3136,26 +3743,40 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L69)
+`fn`
 
-▸ `Const`**eachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L69)
+
+▸ `Const` **eachAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
 each value of `asyncIterable` as it is iterated.
@@ -3179,29 +3800,34 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L69)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[each.d.ts:69](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L69)
 
 ---
 
 ### eachConcur
 
-▸ `Const`**eachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **eachConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
 each value of `concurIterable` as it is iterated.
@@ -3225,28 +3851,40 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L101)
+`fn`
 
-▸ `Const`**eachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L101)
+
+▸ `Const` **eachConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
 each value of `concurIterable` as it is iterated.
@@ -3270,30 +3908,32 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L101)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[each.d.ts:101](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L101)
 
 ---
 
 ### emptyConcur
 
-▸ `Const`**emptyConcur**(`apply`: (`value`: _any_) => _void_ \|
-_Promise_<void\>): _Promise_<void\>
+▸ `Const` **emptyConcur**(`apply`): `Promise`<`void`\>
 
 A concur iterable that contains zero values.
 
@@ -3308,22 +3948,58 @@ console.log(await countConcur(emptyConcur))
 //=> 0
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type                                           |
-| :------ | :--------------------------------------------- |
-| `apply` | (`value`: _any_) => _void_ \| _Promise_<void\> |
+| Name    | Type                                             |
+| :------ | :----------------------------------------------- |
+| `apply` | (`value`: `any`) => `void` \| `Promise`<`void`\> |
 
-**Returns:** _Promise_<void\>
+#### Returns
 
-Defined in:
-[empty.d.ts:62](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/empty.d.ts#L62)
+`Promise`<`void`\>
+
+#### Defined in
+
+[empty.d.ts:62](https://github.com/TomerAberbach/fn/blob/447b200/src/empty.d.ts#L62)
+
+---
+
+### entries
+
+▸ `Const` **entries**<`Key`, `Value`\>(`map`): `Iterable`<[`Key`, `Value`]\>
+
+Returns an iterable of the entries in `map`.
+
+This differs from `Map.prototype.entries` in that the iterable returned by this
+function can be iterated multiple times.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Key`   |
+| `Value` |
+
+#### Parameters
+
+| Name  | Type                   |
+| :---- | :--------------------- |
+| `map` | `Map`<`Key`, `Value`\> |
+
+#### Returns
+
+`Iterable`<[`Key`, `Value`]\>
+
+#### Defined in
+
+[from.d.ts:41](https://github.com/TomerAberbach/fn/blob/447b200/src/from.d.ts#L41)
 
 ---
 
 ### filter
 
-▸ `Const`**filter**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **filter**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable that contains the values of `iterable` for which `fn`
 returns `true`.
@@ -3339,25 +4015,39 @@ console.log([...filter(string => string.includes(`sloth`), things)])
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L34)
+`fn`
 
-▸ `Const`**filter**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L34)
+
+▸ `Const` **filter**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable that contains the values of `iterable` for which `fn`
 returns `true`.
@@ -3373,30 +4063,33 @@ console.log([...filter(string => string.includes(`sloth`), things)])
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L34)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:34](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L34)
 
 ---
 
 ### filterAsync
 
-▸ `Const`**filterAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **filterAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable that contains the values of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`.
@@ -3417,26 +4110,40 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L65)
+`fn`
 
-▸ `Const`**filterAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L65)
+
+▸ `Const` **filterAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable that contains the values of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`.
@@ -3457,30 +4164,34 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L65)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:65](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L65)
 
 ---
 
 ### filterConcur
 
-▸ `Const`**filterConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **filterConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable that contains the values of `concurIterable` for which
 `fn` returns `true` or a promise that resolves to `true`.
@@ -3501,28 +4212,40 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L96)
+`fn`
 
-▸ `Const`**filterConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L96)
+
+▸ `Const` **filterConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable that contains the values of `concurIterable` for which
 `fn` returns `true` or a promise that resolves to `true`.
@@ -3543,29 +4266,33 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L96)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:96](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L96)
 
 ---
 
 ### find
 
-▸ `Const`**find**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **find**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Return an iterable containing the first value of `iterable` for which `fn`
 returns `true`. Otherwise, returns an empty iterable.
@@ -3584,25 +4311,39 @@ console.log(count(find(value => Array.isArray(value), iterable)))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L70)
+`fn`
 
-▸ `Const`**find**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L70)
+
+▸ `Const` **find**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Return an iterable containing the first value of `iterable` for which `fn`
 returns `true`. Otherwise, returns an empty iterable.
@@ -3621,29 +4362,33 @@ console.log(count(find(value => Array.isArray(value), iterable)))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L70)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L70)
 
 ---
 
 ### findAsync
 
-▸ `Const`**findAsync**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **findAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Return an async iterable containing the first value of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`. Otherwise, returns an
@@ -3667,26 +4412,40 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L96)
+`fn`
 
-▸ `Const`**findAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L96)
+
+▸ `Const` **findAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Return an async iterable containing the first value of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`. Otherwise, returns an
@@ -3710,29 +4469,34 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L96)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:96](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L96)
 
 ---
 
 ### findConcur
 
-▸ `Const`**findConcur**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **findConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the first value of `concurIterable` for
 which `fn` returns `true` or a promise that resolves to `true`. Otherwise,
@@ -3758,28 +4522,40 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L124)
+`fn`
 
-▸ `Const`**findConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L124)
+
+▸ `Const` **findConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the first value of `concurIterable` for
 which `fn` returns `true` or a promise that resolves to `true`. Otherwise,
@@ -3805,29 +4581,33 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L124)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[find.d.ts:124](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L124)
 
 ---
 
 ### findLast
 
-▸ `Const`**findLast**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **findLast**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the last value of `iterable` for which `fn`
 returns `true`. Otherwise, returns an empty iterable.
@@ -3844,25 +4624,39 @@ console.log(count(findLast(value => Array.isArray(value), iterable)))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L141)
+`fn`
 
-▸ `Const`**findLast**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L141)
+
+▸ `Const` **findLast**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing the last value of `iterable` for which `fn`
 returns `true`. Otherwise, returns an empty iterable.
@@ -3879,30 +4673,33 @@ console.log(count(findLast(value => Array.isArray(value), iterable)))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L141)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:141](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L141)
 
 ---
 
 ### findLastAsync
 
-▸ `Const`**findLastAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **findLastAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the last value of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`. Otherwise, returns an
@@ -3926,26 +4723,40 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L167)
+`fn`
 
-▸ `Const`**findLastAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L167)
+
+▸ `Const` **findLastAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the last value of `asyncIterable` for which
 `fn` returns `true` or a promise that resolves to `true`. Otherwise, returns an
@@ -3969,30 +4780,34 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L167)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[find.d.ts:167](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L167)
 
 ---
 
 ### findLastConcur
 
-▸ `Const`**findLastConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **findLastConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the last value of `concurIterable` for
 which `fn` returns `true` or a promise that resolves to `true`. Otherwise,
@@ -4018,28 +4833,40 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L193)
+`fn`
 
-▸ `Const`**findLastConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L193)
+
+▸ `Const` **findLastConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the last value of `concurIterable` for
 which `fn` returns `true` or a promise that resolves to `true`. Otherwise,
@@ -4065,29 +4892,32 @@ console.log(
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/find.d.ts#L193)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[find.d.ts:193](https://github.com/TomerAberbach/fn/blob/447b200/src/find.d.ts#L193)
 
 ---
 
 ### first
 
-▸ `Const`**first**<Value\>(`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **first**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing the first value of `iterable`, or an empty
 iterable if `iterable` is empty.
@@ -4101,29 +4931,31 @@ console.log([...first(iterable)])
 //=> [ 1 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:304](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L304)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:304](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L304)
 
 ---
 
 ### firstAsync
 
-▸ `Const`**firstAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **firstAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the first value of `asyncIterable`, or an
 empty async iterable if `asyncIterable` is empty.
@@ -4137,30 +4969,32 @@ console.log(await collectAsync(firstAsync(asyncIterable)))
 //=> [ 1 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:318](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L318)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:318](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L318)
 
 ---
 
 ### firstConcur
 
-▸ `Const`**firstConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **firstConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the first value of `concurIterable`, or an
 empty concur iterable if `concurIterable` is empty.
@@ -4174,29 +5008,32 @@ console.log(await collectConcur(firstConcur(concurIterable)))
 //=> [ 1 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:334](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L334)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:334](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L334)
 
 ---
 
 ### flatMap
 
-▸ `Const`**flatMap**<From, To\>(`fn`: (`value`: From) => _Iterable_<To\>):
-_function_
+▸ `Const` **flatMap**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
+`Iterable`<`To`\>
 
 Returns an iterable containing the values of the iterables returned from
 applying `fn` to each value of `iterable` in iteration order.
@@ -4212,26 +5049,40 @@ console.log([...iterable])
 //=> [ 'a', 'sloth', 'the', 'sloth', 'some', 'sloth' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                               |
-| :--- | :--------------------------------- |
-| `fn` | (`value`: From) => _Iterable_<To\> |
+| Name | Type                                   |
+| :--- | :------------------------------------- |
+| `fn` | (`value`: `From`) => `Iterable`<`To`\> |
 
-**Returns:** (`iterable`: _Iterable_<From\>) => _Iterable_<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L37)
+`fn`
 
-▸ `Const`**flatMap**<From, To\>(`fn`: (`value`: From) => _Iterable_<To\>,
-`iterable`: _Iterable_<From\>): _Iterable_<To\>
+▸ (`iterable`): `Iterable`<`To`\>
+
+##### Parameters
+
+| Name       | Type                |
+| :--------- | :------------------ |
+| `iterable` | `Iterable`<`From`\> |
+
+##### Returns
+
+`Iterable`<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L37)
+
+▸ `Const` **flatMap**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
 
 Returns an iterable containing the values of the iterables returned from
 applying `fn` to each value of `iterable` in iteration order.
@@ -4247,31 +5098,34 @@ console.log([...iterable])
 //=> [ 'a', 'sloth', 'the', 'sloth', 'some', 'sloth' ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                               |
-| :--------- | :--------------------------------- |
-| `fn`       | (`value`: From) => _Iterable_<To\> |
-| `iterable` | _Iterable_<From\>                  |
+| Name       | Type                                   |
+| :--------- | :------------------------------------- |
+| `fn`       | (`value`: `From`) => `Iterable`<`To`\> |
+| `iterable` | `Iterable`<`From`\>                    |
 
-**Returns:** _Iterable_<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L37)
+`Iterable`<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:37](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L37)
 
 ---
 
 ### flatMapAsync
 
-▸ `Const`**flatMapAsync**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\>\>): _function_
+▸ `Const` **flatMapAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`From`\>) => `AsyncIterable`<`To`\>
 
 Returns an async iterable containing the values of the async iterables returned,
 or resolving from promises returned, from applying `fn` to each value of
@@ -4294,27 +5148,41 @@ console.log(await collectAsync(toArray, asyncIterable))
 //=> [1, 3, 2, 4, 3, 6]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                                        |
-| :--- | :-------------------------------------------------------------------------- |
-| `fn` | (`value`: From) => _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\>\> |
+| Name | Type                                                                                  |
+| :--- | :------------------------------------------------------------------------------------ |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\>\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<From\>) => _AsyncIterable_<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L70)
+`fn`
 
-▸ `Const`**flatMapAsync**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\>\>, `asyncIterable`:
-_AsyncIterable_<From\>): _AsyncIterable_<To\>
+▸ (`asyncIterable`): `AsyncIterable`<`To`\>
+
+##### Parameters
+
+| Name            | Type                     |
+| :-------------- | :----------------------- |
+| `asyncIterable` | `AsyncIterable`<`From`\> |
+
+##### Returns
+
+`AsyncIterable`<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L70)
+
+▸ `Const` **flatMapAsync**<`From`, `To`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`To`\>
 
 Returns an async iterable containing the values of the async iterables returned,
 or resolving from promises returned, from applying `fn` to each value of
@@ -4337,32 +5205,35 @@ console.log(await collectAsync(toArray, asyncIterable))
 //=> [1, 3, 2, 4, 3, 6]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                                        |
-| :-------------- | :-------------------------------------------------------------------------- |
-| `fn`            | (`value`: From) => _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\>\> |
-| `asyncIterable` | _AsyncIterable_<From\>                                                      |
+| Name            | Type                                                                                  |
+| :-------------- | :------------------------------------------------------------------------------------ |
+| `fn`            | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\>\> |
+| `asyncIterable` | `AsyncIterable`<`From`\>                                                              |
 
-**Returns:** _AsyncIterable_<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L70)
+`AsyncIterable`<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L70)
 
 ---
 
 ### flatMapConcur
 
-▸ `Const`**flatMapConcur**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\> \|
-[_ConcurIterable_](modules.md#concuriterable)<To\>\>): _function_
+▸ `Const` **flatMapConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
 
 Returns an concur iterable containing the values of the concur iterables
 returned, or resolving from promises returned, from applying `fn` to each value
@@ -4389,31 +5260,41 @@ console.log(await collectConcur(toArray, concurIterable))
 //=> [1, 4, 2, 6, 3, 9, 4, 8] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                                                                                              |
-| :--- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `fn` | (`value`: From) => _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\> \| [_ConcurIterable_](modules.md#concuriterable)<To\>\> |
+| Name | Type                                                                                                                                          |
+| :--- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\> \| [`ConcurIterable`](modules.md#concuriterable)<`To`\>\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<From\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L105)
+`fn`
 
-▸ `Const`**flatMapConcur**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\> \|
-[_ConcurIterable_](modules.md#concuriterable)<To\>\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<From\>):
-[_ConcurIterable_](modules.md#concuriterable)<To\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+##### Parameters
+
+| Name             | Type                                                   |
+| :--------------- | :----------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L105)
+
+▸ `Const` **flatMapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
 
 Returns an concur iterable containing the values of the concur iterables
 returned, or resolving from promises returned, from applying `fn` to each value
@@ -4440,31 +5321,33 @@ console.log(await collectConcur(toArray, concurIterable))
 //=> [1, 4, 2, 6, 3, 9, 4, 8] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                                                                                              |
-| :--------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `fn`             | (`value`: From) => _MaybePromiseLike_<Iterable<To\> \| AsyncIterable<To\> \| [_ConcurIterable_](modules.md#concuriterable)<To\>\> |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<From\>                                                                              |
+| Name             | Type                                                                                                                                          |
+| :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fn`             | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\> \| [`ConcurIterable`](modules.md#concuriterable)<`To`\>\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\>                                                                                        |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<To\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L105)
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+#### Defined in
+
+[flat-map.d.ts:105](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L105)
 
 ---
 
 ### flatten
 
-▸ `Const`**flatten**<Value\>(`iterable`: _Iterable_<Iterable<Value\>\>):
-_Iterable_<Value\>
+▸ `Const` **flatten**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an iterable that contains the values of each iterable in `iterable` in
 iteration order.
@@ -4484,30 +5367,31 @@ console.log([...iterable])
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `iterable` | _Iterable_<Iterable<Value\>\> |
+| Name       | Type                              |
+| :--------- | :-------------------------------- |
+| `iterable` | `Iterable`<`Iterable`<`Value`\>\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:135](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L135)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[flat-map.d.ts:137](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L137)
 
 ---
 
 ### flattenAsync
 
-▸ `Const`**flattenAsync**<Value\>(`asyncIterable`:
-_AsyncIterable_<Iterable<Value\> \| AsyncIterable<Value\>\>):
-_AsyncIterable_<Value\>
+▸ `Const` **flattenAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable that contains the values of each iterable in
 `asyncIterable` in iteration order.
@@ -4527,32 +5411,32 @@ console.log(await collectAsync(toArray, asyncIterable))
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                        |
-| :-------------- | :---------------------------------------------------------- |
-| `asyncIterable` | _AsyncIterable_<Iterable<Value\> \| AsyncIterable<Value\>\> |
+| Name            | Type                                                                |
+| :-------------- | :------------------------------------------------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\>\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:157](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L157)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[flat-map.d.ts:159](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L159)
 
 ---
 
 ### flattenConcur
 
-▸ `Const`**flattenConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Iterable<Value\> \|
-AsyncIterable<Value\> \|
-[_ConcurIterable_](modules.md#concuriterable)<Value\>\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **flattenConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable that contains the values of each iterable in
 `concurIterable`.
@@ -4575,29 +5459,33 @@ console.log(await collectConcur(toArray, concurIterable))
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7, 8, 9 ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                                                                                                               |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Iterable<Value\> \| AsyncIterable<Value\> \| [_ConcurIterable_](modules.md#concuriterable)<Value\>\> |
+| Name             | Type                                                                                                                                                         |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\>\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[flat-map.d.ts:182](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/flat-map.d.ts#L182)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[flat-map.d.ts:184](https://github.com/TomerAberbach/fn/blob/447b200/src/flat-map.d.ts#L184)
 
 ---
 
 ### fold
 
-▸ `Const`**fold**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc):
-_function_
+▸ `Const` **fold**<`Acc`, `Value`\>(`fn`): (`initial`: `Acc`) => (`iterable`:
+`Iterable`<`Value`\>) => `Acc`(`initial`: `Acc`, `iterable`:
+`Iterable`<`Value`\>) => `Acc`
 
 Returns the accumulator (initially set to `initial`) after updating the
 accumulator to the result of applying `fn` to the accumulator's current value
@@ -4621,27 +5509,66 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                |
-| :--- | :---------------------------------- |
-| `fn` | (`acc`: Acc, `value`: Value) => Acc |
+| Name | Type                                      |
+| :--- | :---------------------------------------- |
+| `fn` | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
 
-**Returns:** (`initial`: Acc) => (`iterable`: _Iterable_<Value\>) =>
-Acc(`initial`: Acc, `iterable`: _Iterable_<Value\>) => Acc
+#### Returns
 
-Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
+`fn`
 
-▸ `Const`**fold**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
-`initial`: Acc): _function_
+▸ (`initial`): (`iterable`: `Iterable`<`Value`\>) => `Acc`
+
+##### Parameters
+
+| Name      | Type  |
+| :-------- | :---- |
+| `initial` | `Acc` |
+
+##### Returns
+
+`fn`
+
+▸ (`iterable`): `Acc`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Acc`
+
+▸ (`initial`, `iterable`): `Acc`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `initial`  | `Acc`                |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Acc`
+
+#### Defined in
+
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L40)
+
+▸ `Const` **fold**<`Acc`, `Value`\>(`fn`, `initial`): (`iterable`:
+`Iterable`<`Value`\>) => `Acc`
 
 Returns the accumulator (initially set to `initial`) after updating the
 accumulator to the result of applying `fn` to the accumulator's current value
@@ -4665,27 +5592,41 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name      | Type                                |
-| :-------- | :---------------------------------- |
-| `fn`      | (`acc`: Acc, `value`: Value) => Acc |
-| `initial` | Acc                                 |
+| Name      | Type                                      |
+| :-------- | :---------------------------------------- |
+| `fn`      | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+| `initial` | `Acc`                                     |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => Acc
+#### Returns
 
-Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
+`fn`
 
-▸ `Const`**fold**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
-`initial`: Acc, `iterable`: _Iterable_<Value\>): Acc
+▸ (`iterable`): `Acc`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Acc`
+
+#### Defined in
+
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L40)
+
+▸ `Const` **fold**<`Acc`, `Value`\>(`fn`, `initial`, `iterable`): `Acc`
 
 Returns the accumulator (initially set to `initial`) after updating the
 accumulator to the result of applying `fn` to the accumulator's current value
@@ -4709,32 +5650,36 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                |
-| :--------- | :---------------------------------- |
-| `fn`       | (`acc`: Acc, `value`: Value) => Acc |
-| `initial`  | Acc                                 |
-| `iterable` | _Iterable_<Value\>                  |
+| Name       | Type                                      |
+| :--------- | :---------------------------------------- |
+| `fn`       | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+| `initial`  | `Acc`                                     |
+| `iterable` | `Iterable`<`Value`\>                      |
 
-**Returns:** Acc
+#### Returns
 
-Defined in:
-[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L40)
+`Acc`
+
+#### Defined in
+
+[fold.d.ts:40](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L40)
 
 ---
 
 ### foldAsync
 
-▸ `Const`**foldAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
-_MaybePromiseLike_<Acc\>): _function_
+▸ `Const` **foldAsync**<`Acc`, `Value`\>(`fn`): (`initial`: `Acc`) =>
+(`asyncIterable`: `AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>(`initial`:
+`Acc`, `asyncIterable`: `AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>
 
 Returns a promise that resolves to the accumulator (initially set to `initial`)
 after updating the accumulator to the result, or resolved value of the promise
@@ -4760,28 +5705,66 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                     |
-| :--- | :------------------------------------------------------- |
-| `fn` | (`acc`: Acc, `value`: Value) => _MaybePromiseLike_<Acc\> |
+| Name | Type                                                           |
+| :--- | :------------------------------------------------------------- |
+| `fn` | (`acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
 
-**Returns:** (`initial`: Acc) => (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_Promise_<Acc\>(`initial`: Acc, `asyncIterable`: _AsyncIterable_<Value\>) =>
-_Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
+`fn`
 
-▸ `Const`**foldAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
-_MaybePromiseLike_<Acc\>, `initial`: Acc): _function_
+▸ (`initial`): (`asyncIterable`: `AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name      | Type  |
+| :-------- | :---- |
+| `initial` | `Acc` |
+
+##### Returns
+
+`fn`
+
+▸ (`asyncIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+▸ (`initial`, `asyncIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `initial`       | `Acc`                     |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L79)
+
+▸ `Const` **foldAsync**<`Acc`, `Value`\>(`fn`, `initial`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>
 
 Returns a promise that resolves to the accumulator (initially set to `initial`)
 after updating the accumulator to the result, or resolved value of the promise
@@ -4807,28 +5790,42 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name      | Type                                                     |
-| :-------- | :------------------------------------------------------- |
-| `fn`      | (`acc`: Acc, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `initial` | Acc                                                      |
+| Name      | Type                                                           |
+| :-------- | :------------------------------------------------------------- |
+| `fn`      | (`acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `initial` | `Acc`                                                          |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
+`fn`
 
-▸ `Const`**foldAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
-_MaybePromiseLike_<Acc\>, `initial`: Acc, `asyncIterable`:
-_AsyncIterable_<Value\>): _Promise_<Acc\>
+▸ (`asyncIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L79)
+
+▸ `Const` **foldAsync**<`Acc`, `Value`\>(`fn`, `initial`, `asyncIterable`):
+`Promise`<`Acc`\>
 
 Returns a promise that resolves to the accumulator (initially set to `initial`)
 after updating the accumulator to the result, or resolved value of the promise
@@ -4854,32 +5851,37 @@ console.log(message)
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                     |
-| :-------------- | :------------------------------------------------------- |
-| `fn`            | (`acc`: Acc, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `initial`       | Acc                                                      |
-| `asyncIterable` | _AsyncIterable_<Value\>                                  |
+| Name            | Type                                                           |
+| :-------------- | :------------------------------------------------------------- |
+| `fn`            | (`acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `initial`       | `Acc`                                                          |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                                      |
 
-**Returns:** _Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L79)
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:79](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L79)
 
 ---
 
 ### foldConcur
 
-▸ `Const`**foldConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`: Value)
-=> _MaybePromiseLike_<Acc\>): _function_
+▸ `Const` **foldConcur**<`Acc`, `Value`\>(`fn`): (`initial`: `Acc`) =>
+(`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`Acc`\>(`initial`: `Acc`, `concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Acc`\>
 
 Returns a promise that resolves once `concurIterable` is exhausted and the
 collection of "available" values only contains one value. The promise resolves
@@ -4916,29 +5918,67 @@ console.log(message)
 // (the words could end up in any order...)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                              |
-| :--- | :---------------------------------------------------------------- |
-| `fn` | (`acc`: Acc \| Value, `value`: Value) => _MaybePromiseLike_<Acc\> |
+| Name | Type                                                                      |
+| :--- | :------------------------------------------------------------------------ |
+| `fn` | (`acc`: `Acc` \| `Value`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
 
-**Returns:** (`initial`: Acc) => (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-_Promise_<Acc\>(`initial`: Acc, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
+`fn`
 
-▸ `Const`**foldConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`: Value)
-=> _MaybePromiseLike_<Acc\>, `initial`: Acc): _function_
+▸ (`initial`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name      | Type  |
+| :-------- | :---- |
+| `initial` | `Acc` |
+
+##### Returns
+
+`fn`
+
+▸ (`concurIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+▸ (`initial`, `concurIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `initial`        | `Acc`                                                   |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L130)
+
+▸ `Const` **foldConcur**<`Acc`, `Value`\>(`fn`, `initial`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Acc`\>
 
 Returns a promise that resolves once `concurIterable` is exhausted and the
 collection of "available" values only contains one value. The promise resolves
@@ -4975,29 +6015,42 @@ console.log(message)
 // (the words could end up in any order...)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name      | Type                                                              |
-| :-------- | :---------------------------------------------------------------- |
-| `fn`      | (`acc`: Acc \| Value, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `initial` | Acc                                                               |
+| Name      | Type                                                                      |
+| :-------- | :------------------------------------------------------------------------ |
+| `fn`      | (`acc`: `Acc` \| `Value`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `initial` | `Acc`                                                                     |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
+`fn`
 
-▸ `Const`**foldConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`: Value)
-=> _MaybePromiseLike_<Acc\>, `initial`: Acc, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>): _Promise_<Acc\>
+▸ (`concurIterable`): `Promise`<`Acc`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L130)
+
+▸ `Const` **foldConcur**<`Acc`, `Value`\>(`fn`, `initial`, `concurIterable`):
+`Promise`<`Acc`\>
 
 Returns a promise that resolves once `concurIterable` is exhausted and the
 collection of "available" values only contains one value. The promise resolves
@@ -5034,31 +6087,37 @@ console.log(message)
 // (the words could end up in any order...)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                              |
-| :--------------- | :---------------------------------------------------------------- |
-| `fn`             | (`acc`: Acc \| Value, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `initial`        | Acc                                                               |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\>             |
+| Name             | Type                                                                      |
+| :--------------- | :------------------------------------------------------------------------ |
+| `fn`             | (`acc`: `Acc` \| `Value`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `initial`        | `Acc`                                                                     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                   |
 
-**Returns:** _Promise_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L130)
+`Promise`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:130](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L130)
 
 ---
 
 ### folding
 
-▸ `Const`**folding**<Acc, Value\>(`lift`: (`value`: Value) => Acc): _function_
+▸ `Const` **folding**<`Acc`, `Value`\>(`lift`): (`merge`: (`acc`: `Acc`,
+`value`: `Value`) => `Acc`) => <C\>(`mapCollector`: `C`) => `Folding`<`Acc`,
+`C`\><C\>(`merge`: (`acc`: `Acc`, `value`: `Value`) => `Acc`, `mapCollector`:
+`C`) => `Folding`<`Acc`, `C`\>
 
 Returns a [Collector](modules.md#collector) that collects the key-value pairs of
 an iterable of entries using `mapCollector`, but uses `lift` and `merge` to fold
@@ -5098,153 +6157,228 @@ console.log(foldedSlothFoodInventory)
 // }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name   | Type                    |
-| :----- | :---------------------- |
-| `lift` | (`value`: Value) => Acc |
+| Name   | Type                        |
+| :----- | :-------------------------- |
+| `lift` | (`value`: `Value`) => `Acc` |
 
-**Returns:** (`merge`: (`acc`: Acc, `value`: Value) => Acc) =>
-<C\>(`mapCollector`: C) => _Folding_<Acc, C\><C\>(`merge`: (`acc`: Acc, `value`:
-Value) => Acc, `mapCollector`: C) => _Folding_<Acc, C\>
+#### Returns
 
-Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
+`fn`
 
-▸ `Const`**folding**<Acc, Value\>(`lift`: (`value`: Value) => Acc, `merge`:
-(`acc`: Acc, `value`: Value) => Acc): _function_
+▸ (`merge`): <C\>(`mapCollector`: `C`) => `Folding`<`Acc`, `C`\>
 
-Returns a [Collector](modules.md#collector) that collects the key-value pairs of
-an iterable of entries using `mapCollector`, but uses `lift` and `merge` to fold
-multiple entries with the same key.
-
-As entries are collected, if the current entry's key has not been seen before,
-then it is collected and its value is transformed using `lift`. Otherwise, the
-existing value associated with the entry's key is merged with the new entry's
-value using `merge`.
-
-**`example`**
-
-```js
-const slothFoodInventory = [
-  [`leaves`, 3],
-  [`twigs`, 5],
-  [`fruit`, 2],
-  [`leaves`, 10],
-  [`twigs`, 11],
-]
-
-const foldedSlothFoodInventory = collect(
-  folding(
-    value => value,
-    (acc, value) => acc + value,
-    toMap,
-  ),
-  slothFoodInventory,
-)
-
-console.log(foldedSlothFoodInventory)
-//=> (a map containing the folded inventory)
-// Map(3) {
-//   'leaves' => 13,
-//   'twigs' => 16,
-//   'fruit' => 2
-// }
-```
-
-#### Type parameters:
-
-| Name    |
-| :------ |
-| `Acc`   |
-| `Value` |
-
-#### Parameters:
-
-| Name    | Type                                |
-| :------ | :---------------------------------- |
-| `lift`  | (`value`: Value) => Acc             |
-| `merge` | (`acc`: Acc, `value`: Value) => Acc |
-
-**Returns:** <C\>(`mapCollector`: C) => _Folding_<Acc, C\>
-
-Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
-
-▸ `Const`**folding**<Acc, Value, C\>(`lift`: (`value`: Value) => Acc, `merge`:
-(`acc`: Acc, `value`: Value) => Acc, `mapCollector`: C): _Folding_<Acc, C\>
-
-Returns a [Collector](modules.md#collector) that collects the key-value pairs of
-an iterable of entries using `mapCollector`, but uses `lift` and `merge` to fold
-multiple entries with the same key.
-
-As entries are collected, if the current entry's key has not been seen before,
-then it is collected and its value is transformed using `lift`. Otherwise, the
-existing value associated with the entry's key is merged with the new entry's
-value using `merge`.
-
-**`example`**
-
-```js
-const slothFoodInventory = [
-  [`leaves`, 3],
-  [`twigs`, 5],
-  [`fruit`, 2],
-  [`leaves`, 10],
-  [`twigs`, 11],
-]
-
-const foldedSlothFoodInventory = collect(
-  folding(
-    value => value,
-    (acc, value) => acc + value,
-    toMap,
-  ),
-  slothFoodInventory,
-)
-
-console.log(foldedSlothFoodInventory)
-//=> (a map containing the folded inventory)
-// Map(3) {
-//   'leaves' => 13,
-//   'twigs' => 16,
-//   'fruit' => 2
-// }
-```
-
-#### Type parameters:
+##### Parameters
 
 | Name    | Type                                      |
 | :------ | :---------------------------------------- |
-| `Acc`   | -                                         |
-| `Value` | -                                         |
-| `C`     | [_MapCollector_](modules.md#mapcollector) |
+| `merge` | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
 
-#### Parameters:
+##### Returns
 
-| Name           | Type                                |
-| :------------- | :---------------------------------- |
-| `lift`         | (`value`: Value) => Acc             |
-| `merge`        | (`acc`: Acc, `value`: Value) => Acc |
-| `mapCollector` | C                                   |
+`fn`
 
-**Returns:** _Folding_<Acc, C\>
+▸ <`C`\>(`mapCollector`): `Folding`<`Acc`, `C`\>
 
-Defined in:
-[collect.d.ts:196](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L196)
+##### Type parameters
+
+| Name | Type                                              |
+| :--- | :------------------------------------------------ |
+| `C`  | extends [`MapCollector`](modules.md#mapcollector) |
+
+##### Parameters
+
+| Name           | Type |
+| :------------- | :--- |
+| `mapCollector` | `C`  |
+
+##### Returns
+
+`Folding`<`Acc`, `C`\>
+
+▸ <`C`\>(`merge`, `mapCollector`): `Folding`<`Acc`, `C`\>
+
+##### Type parameters
+
+| Name | Type                                              |
+| :--- | :------------------------------------------------ |
+| `C`  | extends [`MapCollector`](modules.md#mapcollector) |
+
+##### Parameters
+
+| Name           | Type                                      |
+| :------------- | :---------------------------------------- |
+| `merge`        | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+| `mapCollector` | `C`                                       |
+
+##### Returns
+
+`Folding`<`Acc`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:199](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L199)
+
+▸ `Const` **folding**<`Acc`, `Value`\>(`lift`, `merge`): <C\>(`mapCollector`:
+`C`) => `Folding`<`Acc`, `C`\>
+
+Returns a [Collector](modules.md#collector) that collects the key-value pairs of
+an iterable of entries using `mapCollector`, but uses `lift` and `merge` to fold
+multiple entries with the same key.
+
+As entries are collected, if the current entry's key has not been seen before,
+then it is collected and its value is transformed using `lift`. Otherwise, the
+existing value associated with the entry's key is merged with the new entry's
+value using `merge`.
+
+**`example`**
+
+```js
+const slothFoodInventory = [
+  [`leaves`, 3],
+  [`twigs`, 5],
+  [`fruit`, 2],
+  [`leaves`, 10],
+  [`twigs`, 11],
+]
+
+const foldedSlothFoodInventory = collect(
+  folding(
+    value => value,
+    (acc, value) => acc + value,
+    toMap,
+  ),
+  slothFoodInventory,
+)
+
+console.log(foldedSlothFoodInventory)
+//=> (a map containing the folded inventory)
+// Map(3) {
+//   'leaves' => 13,
+//   'twigs' => 16,
+//   'fruit' => 2
+// }
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Acc`   |
+| `Value` |
+
+#### Parameters
+
+| Name    | Type                                      |
+| :------ | :---------------------------------------- |
+| `lift`  | (`value`: `Value`) => `Acc`               |
+| `merge` | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+
+#### Returns
+
+`fn`
+
+▸ <`C`\>(`mapCollector`): `Folding`<`Acc`, `C`\>
+
+##### Type parameters
+
+| Name | Type                                              |
+| :--- | :------------------------------------------------ |
+| `C`  | extends [`MapCollector`](modules.md#mapcollector) |
+
+##### Parameters
+
+| Name           | Type |
+| :------------- | :--- |
+| `mapCollector` | `C`  |
+
+##### Returns
+
+`Folding`<`Acc`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:199](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L199)
+
+▸ `Const` **folding**<`Acc`, `Value`, `C`\>(`lift`, `merge`, `mapCollector`):
+`Folding`<`Acc`, `C`\>
+
+Returns a [Collector](modules.md#collector) that collects the key-value pairs of
+an iterable of entries using `mapCollector`, but uses `lift` and `merge` to fold
+multiple entries with the same key.
+
+As entries are collected, if the current entry's key has not been seen before,
+then it is collected and its value is transformed using `lift`. Otherwise, the
+existing value associated with the entry's key is merged with the new entry's
+value using `merge`.
+
+**`example`**
+
+```js
+const slothFoodInventory = [
+  [`leaves`, 3],
+  [`twigs`, 5],
+  [`fruit`, 2],
+  [`leaves`, 10],
+  [`twigs`, 11],
+]
+
+const foldedSlothFoodInventory = collect(
+  folding(
+    value => value,
+    (acc, value) => acc + value,
+    toMap,
+  ),
+  slothFoodInventory,
+)
+
+console.log(foldedSlothFoodInventory)
+//=> (a map containing the folded inventory)
+// Map(3) {
+//   'leaves' => 13,
+//   'twigs' => 16,
+//   'fruit' => 2
+// }
+```
+
+#### Type parameters
+
+| Name    | Type                                              |
+| :------ | :------------------------------------------------ |
+| `Acc`   | `Acc`                                             |
+| `Value` | `Value`                                           |
+| `C`     | extends [`MapCollector`](modules.md#mapcollector) |
+
+#### Parameters
+
+| Name           | Type                                      |
+| :------------- | :---------------------------------------- |
+| `lift`         | (`value`: `Value`) => `Acc`               |
+| `merge`        | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+| `mapCollector` | `C`                                       |
+
+#### Returns
+
+`Folding`<`Acc`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:199](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L199)
 
 ---
 
 ### forEach
 
-▸ `Const`**forEach**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **forEach**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`void`
 
 Applies `fn` to each value of `iterable`.
 
@@ -5261,25 +6395,39 @@ forEach(console.log, sloths)
 //=> phil
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _void_
+#### Returns
 
-Defined in:
-[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L126)
+`fn`
 
-▸ `Const`**forEach**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _void_
+▸ (`iterable`): `void`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`void`
+
+#### Defined in
+
+[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L126)
+
+▸ `Const` **forEach**<`Value`\>(`fn`, `iterable`): `void`
 
 Applies `fn` to each value of `iterable`.
 
@@ -5296,30 +6444,33 @@ forEach(console.log, sloths)
 //=> phil
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _void_
+#### Returns
 
-Defined in:
-[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L126)
+`void`
+
+#### Defined in
+
+[each.d.ts:126](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L126)
 
 ---
 
 ### forEachAsync
 
-▸ `Const`**forEachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **forEachAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
@@ -5340,25 +6491,39 @@ await forEachAsync(console.log, sloths)
 //=> phil
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<void\>
+#### Returns
 
-Defined in:
-[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L150)
+`fn`
 
-▸ `Const`**forEachAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _Promise_<void\>
+▸ (`asyncIterable`): `Promise`<`void`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L150)
+
+▸ `Const` **forEachAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
@@ -5379,30 +6544,33 @@ await forEachAsync(console.log, sloths)
 //=> phil
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _Promise_<void\>
+#### Returns
 
-Defined in:
-[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L150)
+`Promise`<`void`\>
+
+#### Defined in
+
+[each.d.ts:150](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L150)
 
 ---
 
 ### forEachConcur
 
-▸ `Const`**forEachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **forEachConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `concurIterable` and the result of each application has been awaited.
@@ -5421,27 +6589,40 @@ await forEachConcur(console.log, sloths)
 // (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<void\>
+#### Returns
 
-Defined in:
-[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L177)
+`fn`
 
-▸ `Const`**forEachConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<void\>
+▸ (`concurIterable`): `Promise`<`void`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`void`\>
+
+#### Defined in
+
+[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L177)
+
+▸ `Const` **forEachConcur**<`Value`\>(`fn`, `concurIterable`):
+`Promise`<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `concurIterable` and the result of each application has been awaited.
@@ -5460,30 +6641,33 @@ await forEachConcur(console.log, sloths)
 // (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<void\>
+#### Returns
 
-Defined in:
-[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/each.d.ts#L177)
+`Promise`<`void`\>
+
+#### Defined in
+
+[each.d.ts:177](https://github.com/TomerAberbach/fn/blob/447b200/src/each.d.ts#L177)
 
 ---
 
 ### generate
 
-▸ `Const`**generate**<Value\>(`fn`: (`previousValue`: Value) => Value):
-_function_
+▸ `Const` **generate**<`Value`\>(`fn`): (`seed`: `Value`) =>
+`Iterable`<`Value`\>
 
 Returns an infinite iterable that yields `seed` for its first value and then
 yields the result of applying `fn` to its previously yielded value for every
@@ -5502,25 +6686,39 @@ console.log(
 //=> [ 1, 2, 4, 8, 16 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                              |
-| :--- | :-------------------------------- |
-| `fn` | (`previousValue`: Value) => Value |
+| Name | Type                                  |
+| :--- | :------------------------------------ |
+| `fn` | (`previousValue`: `Value`) => `Value` |
 
-**Returns:** (`seed`: Value) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L36)
+`fn`
 
-▸ `Const`**generate**<Value\>(`fn`: (`previousValue`: Value) => Value, `seed`:
-Value): _Iterable_<Value\>
+▸ (`seed`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name   | Type    |
+| :----- | :------ |
+| `seed` | `Value` |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L36)
+
+▸ `Const` **generate**<`Value`\>(`fn`, `seed`): `Iterable`<`Value`\>
 
 Returns an infinite iterable that yields `seed` for its first value and then
 yields the result of applying `fn` to its previously yielded value for every
@@ -5539,30 +6737,33 @@ console.log(
 //=> [ 1, 2, 4, 8, 16 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name   | Type                              |
-| :----- | :-------------------------------- |
-| `fn`   | (`previousValue`: Value) => Value |
-| `seed` | Value                             |
+| Name   | Type                                  |
+| :----- | :------------------------------------ |
+| `fn`   | (`previousValue`: `Value`) => `Value` |
+| `seed` | `Value`                               |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L36)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:36](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L36)
 
 ---
 
 ### generateAsync
 
-▸ `Const`**generateAsync**<Value\>(`fn`: (`previousValue`: Value) =>
-_MaybePromiseLike_<Value\>): _function_
+▸ `Const` **generateAsync**<`Value`\>(`fn`): (`seed`: `Value`) =>
+`AsyncIterable`<`Value`\>
 
 Returns an infinite async iterable that yields `seed` for its first value and
 then yields the awaited result of applying `fn` to its previously yielded value
@@ -5581,25 +6782,39 @@ console.log(
 //=> [ 1, 2, 4, 8, 16 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                   |
-| :--- | :----------------------------------------------------- |
-| `fn` | (`previousValue`: Value) => _MaybePromiseLike_<Value\> |
+| Name | Type                                                       |
+| :--- | :--------------------------------------------------------- |
+| `fn` | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
 
-**Returns:** (`seed`: Value) => _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L58)
+`fn`
 
-▸ `Const`**generateAsync**<Value\>(`fn`: (`previousValue`: Value) =>
-_MaybePromiseLike_<Value\>, `seed`: Value): _AsyncIterable_<Value\>
+▸ (`seed`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name   | Type    |
+| :----- | :------ |
+| `seed` | `Value` |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L58)
+
+▸ `Const` **generateAsync**<`Value`\>(`fn`, `seed`): `AsyncIterable`<`Value`\>
 
 Returns an infinite async iterable that yields `seed` for its first value and
 then yields the awaited result of applying `fn` to its previously yielded value
@@ -5618,29 +6833,32 @@ console.log(
 //=> [ 1, 2, 4, 8, 16 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name   | Type                                                   |
-| :----- | :----------------------------------------------------- |
-| `fn`   | (`previousValue`: Value) => _MaybePromiseLike_<Value\> |
-| `seed` | Value                                                  |
+| Name   | Type                                                       |
+| :----- | :--------------------------------------------------------- |
+| `fn`   | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
+| `seed` | `Value`                                                    |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L58)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:58](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L58)
 
 ---
 
 ### get
 
-▸ `Const`**get**<Value\>(`iterable`: _Iterable_<Value\>): Value
+▸ `Const` **get**<`Value`\>(`iterable`): `Value`
 
 Returns the only value in `iterable` if it contains exactly one value.
 Otherwise, throws an error.
@@ -5666,29 +6884,31 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** Value
+#### Returns
 
-Defined in:
-[optional.d.ts:123](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L123)
+`Value`
+
+#### Defined in
+
+[optional.d.ts:123](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L123)
 
 ---
 
 ### getAsync
 
-▸ `Const`**getAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_Promise_<Value\>
+▸ `Const` **getAsync**<`Value`\>(`asyncIterable`): `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
 contains exactly one value. Otherwise, returns a promise that rejects.
@@ -5714,29 +6934,31 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:149](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L149)
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:149](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L149)
 
 ---
 
 ### getConcur
 
-▸ `Const`**getConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>): _Promise_<Value\>
+▸ `Const` **getConcur**<`Value`\>(`concurIterable`): `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `concurIterable` if it
 contains exactly one value. Otherwise, returns a promise that rejects.
@@ -5762,29 +6984,32 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:177](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L177)
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:177](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L177)
 
 ---
 
 ### grouping
 
-▸ `Const`**grouping**<GroupCollector\>(`groupCollector`: GroupCollector):
-_function_
+▸ `Const` **grouping**<`GroupCollector`\>(`groupCollector`):
+<C\>(`mapCollector`: `C`) => `Folding`<`GroupCollector`, `C`\>
 
 Returns a [Collector](modules.md#collector) that collects the key-value pairs of
 an iterable of entries using `mapCollector` such that each key in the resulting
@@ -5817,25 +7042,46 @@ console.log(slothDiaryEntryGroups)
 // }
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name             | Type                                |
-| :--------------- | :---------------------------------- |
-| `GroupCollector` | [_Collector_](modules.md#collector) |
+| Name             | Type                                        |
+| :--------------- | :------------------------------------------ |
+| `GroupCollector` | extends [`Collector`](modules.md#collector) |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type           |
-| :--------------- | :------------- |
-| `groupCollector` | GroupCollector |
+| Name             | Type             |
+| :--------------- | :--------------- |
+| `groupCollector` | `GroupCollector` |
 
-**Returns:** <C\>(`mapCollector`: C) => _Folding_<GroupCollector, C\>
+#### Returns
 
-Defined in:
-[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L279)
+`fn`
 
-▸ `Const`**grouping**<GroupCollector, C\>(`groupCollector`: GroupCollector,
-`mapCollector`: C): _Folding_<GroupCollector, C\>
+▸ <`C`\>(`mapCollector`): `Folding`<`GroupCollector`, `C`\>
+
+##### Type parameters
+
+| Name | Type                                              |
+| :--- | :------------------------------------------------ |
+| `C`  | extends [`MapCollector`](modules.md#mapcollector) |
+
+##### Parameters
+
+| Name           | Type |
+| :------------- | :--- |
+| `mapCollector` | `C`  |
+
+##### Returns
+
+`Folding`<`GroupCollector`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:282](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L282)
+
+▸ `Const` **grouping**<`GroupCollector`, `C`\>(`groupCollector`,
+`mapCollector`): `Folding`<`GroupCollector`, `C`\>
 
 Returns a [Collector](modules.md#collector) that collects the key-value pairs of
 an iterable of entries using `mapCollector` such that each key in the resulting
@@ -5868,30 +7114,34 @@ console.log(slothDiaryEntryGroups)
 // }
 ```
 
-#### Type parameters:
+#### Type parameters
 
-| Name             | Type                                      |
-| :--------------- | :---------------------------------------- |
-| `GroupCollector` | [_Collector_](modules.md#collector)       |
-| `C`              | [_MapCollector_](modules.md#mapcollector) |
+| Name             | Type                                              |
+| :--------------- | :------------------------------------------------ |
+| `GroupCollector` | extends [`Collector`](modules.md#collector)       |
+| `C`              | extends [`MapCollector`](modules.md#mapcollector) |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type           |
-| :--------------- | :------------- |
-| `groupCollector` | GroupCollector |
-| `mapCollector`   | C              |
+| Name             | Type             |
+| :--------------- | :--------------- |
+| `groupCollector` | `GroupCollector` |
+| `mapCollector`   | `C`              |
 
-**Returns:** _Folding_<GroupCollector, C\>
+#### Returns
 
-Defined in:
-[collect.d.ts:279](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/collect.d.ts#L279)
+`Folding`<`GroupCollector`, `C`\>
+
+#### Defined in
+
+[collect.d.ts:282](https://github.com/TomerAberbach/fn/blob/447b200/src/collect.d.ts#L282)
 
 ---
 
 ### includes
 
-▸ `Const`**includes**(`searchElement`: _unknown_): _function_
+▸ `Const` **includes**(`searchElement`): <Value\>(`iterable`:
+`Iterable`<`Value`\>) => `boolean`
 
 Returns `true` if any value of `iterable` is equal to `searchElement` using
 `Object.is`. Otherwise returns `false`.
@@ -5907,57 +7157,81 @@ console.log(includes(3, numbers))
 //=> true
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name            | Type      |
 | :-------------- | :-------- |
-| `searchElement` | _unknown_ |
+| `searchElement` | `unknown` |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L211)
+`fn`
 
-▸ `Const`**includes**<Value\>(`searchElement`: _unknown_, `iterable`:
-_Iterable_<Value\>): _boolean_
+▸ <`Value`\>(`iterable`): `boolean`
 
-Returns `true` if any value of `iterable` is equal to `searchElement` using
-`Object.is`. Otherwise returns `false`.
-
-Like `Array.prototype.includes`, but for iterables.
-
-**`example`**
-
-```js
-const numbers = [1, 2, 3, 4, 5]
-
-console.log(includes(3, numbers))
-//=> true
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type               |
-| :-------------- | :----------------- |
-| `searchElement` | _unknown_          |
-| `iterable`      | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _boolean_
+##### Returns
 
-Defined in:
-[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L211)
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L211)
+
+▸ `Const` **includes**<`Value`\>(`searchElement`, `iterable`): `boolean`
+
+Returns `true` if any value of `iterable` is equal to `searchElement` using
+`Object.is`. Otherwise returns `false`.
+
+Like `Array.prototype.includes`, but for iterables.
+
+**`example`**
+
+```js
+const numbers = [1, 2, 3, 4, 5]
+
+console.log(includes(3, numbers))
+//=> true
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                 |
+| :-------------- | :------------------- |
+| `searchElement` | `unknown`            |
+| `iterable`      | `Iterable`<`Value`\> |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:211](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L211)
 
 ---
 
 ### includesAsync
 
-▸ `Const`**includesAsync**(`searchElement`: _unknown_): _function_
+▸ `Const` **includesAsync**(`searchElement`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `asyncIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -5974,59 +7248,84 @@ console.log(await includesAsync(3, numbers))
 //=> true
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name            | Type      |
 | :-------------- | :-------- |
-| `searchElement` | _unknown_ |
+| `searchElement` | `unknown` |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L231)
+`fn`
 
-▸ `Const`**includesAsync**<Value\>(`searchElement`: _unknown_, `asyncIterable`:
-_AsyncIterable_<Value\>): _Promise_<boolean\>
+▸ <`Value`\>(`asyncIterable`): `Promise`<`boolean`\>
 
-Returns a promise that resolves to `true` if any value of `asyncIterable` is
-equal to `searchElement` using `Object.is`. Otherwise returns a promise that
-resolves to `false`.
-
-Like `Array.prototype.includes`, but for async iterables.
-
-**`example`**
-
-```js
-const numbers = asAsync([1, 2, 3, 4, 5])
-
-console.log(await includesAsync(3, numbers))
-//=> true
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `searchElement` | _unknown_               |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _Promise_<boolean\>
+##### Returns
 
-Defined in:
-[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L231)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L231)
+
+▸ `Const` **includesAsync**<`Value`\>(`searchElement`, `asyncIterable`):
+`Promise`<`boolean`\>
+
+Returns a promise that resolves to `true` if any value of `asyncIterable` is
+equal to `searchElement` using `Object.is`. Otherwise returns a promise that
+resolves to `false`.
+
+Like `Array.prototype.includes`, but for async iterables.
+
+**`example`**
+
+```js
+const numbers = asAsync([1, 2, 3, 4, 5])
+
+console.log(await includesAsync(3, numbers))
+//=> true
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `searchElement` | `unknown`                 |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:231](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L231)
 
 ---
 
 ### includesConcur
 
-▸ `Const`**includesConcur**(`searchElement`: _unknown_): _function_
+▸ `Const` **includesConcur**(`searchElement`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `concurIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -6043,61 +7342,82 @@ console.log(await includesConcur(3, numbers))
 //=> true
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name            | Type      |
 | :-------------- | :-------- |
-| `searchElement` | _unknown_ |
+| `searchElement` | `unknown` |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L256)
+`fn`
 
-▸ `Const`**includesConcur**<Value\>(`searchElement`: _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<boolean\>
+▸ <`Value`\>(`concurIterable`): `Promise`<`boolean`\>
 
-Returns a promise that resolves to `true` if any value of `concurIterable` is
-equal to `searchElement` using `Object.is`. Otherwise returns a promise that
-resolves to `false`.
-
-Like `Array.prototype.includes`, but for concur iterables.
-
-**`example`**
-
-```js
-const numbers = asConcur([1, 2, 3, 4, 5])
-
-console.log(await includesConcur(3, numbers))
-//=> true
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `searchElement`  | _unknown_                                             |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<boolean\>
+##### Returns
 
-Defined in:
-[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L256)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L256)
+
+▸ `Const` **includesConcur**<`Value`\>(`searchElement`, `concurIterable`):
+`Promise`<`boolean`\>
+
+Returns a promise that resolves to `true` if any value of `concurIterable` is
+equal to `searchElement` using `Object.is`. Otherwise returns a promise that
+resolves to `false`.
+
+Like `Array.prototype.includes`, but for concur iterables.
+
+**`example`**
+
+```js
+const numbers = asConcur([1, 2, 3, 4, 5])
+
+console.log(await includesConcur(3, numbers))
+//=> true
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `searchElement`  | `unknown`                                               |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:256](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L256)
 
 ---
 
 ### indexed
 
-▸ `Const`**indexed**<Value\>(`iterable`: _Iterable_<Value\>):
-_Iterable_<[*number*, Value]\>
+▸ `Const` **indexed**<`Value`\>(`iterable`): `Iterable`<[`number`, `Value`]\>
 
 Returns an iterable equivalent to `iterable` except each value of `iterable` is
 placed in an entry containing the value's 0-based index in the iteration order
@@ -6112,29 +7432,32 @@ console.log([...indexed(iterable)])
 //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<[*number*, Value]\>
+#### Returns
 
-Defined in:
-[indexed.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L32)
+`Iterable`<[`number`, `Value`]\>
+
+#### Defined in
+
+[indexed.d.ts:32](https://github.com/TomerAberbach/fn/blob/447b200/src/indexed.d.ts#L32)
 
 ---
 
 ### indexedAsync
 
-▸ `Const`**indexedAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<[*number*, Value]\>
+▸ `Const` **indexedAsync**<`Value`\>(`asyncIterable`):
+`AsyncIterable`<[`number`, `Value`]\>
 
 Returns an async iterable equivalent to `asyncIterable` except each value of
 `asyncIterable` is placed in an entry containing the value's 0-based index in
@@ -6149,30 +7472,32 @@ console.log(await collectAsync(toArray, indexedAsync(asyncIterable)))
 //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<[*number*, Value]\>
+#### Returns
 
-Defined in:
-[indexed.d.ts:49](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L49)
+`AsyncIterable`<[`number`, `Value`]\>
+
+#### Defined in
+
+[indexed.d.ts:49](https://github.com/TomerAberbach/fn/blob/447b200/src/indexed.d.ts#L49)
 
 ---
 
 ### indexedConcur
 
-▸ `Const`**indexedConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<[*number*, Value]\>
+▸ `Const` **indexedConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`number`, `Value`]\>
 
 Returns a concur iterable equivalent to `concurIterable` except each value of
 `concurIterable` is placed in an entry containing the value's 0-based index in
@@ -6188,28 +7513,32 @@ console.log(await collectConcur(toArray, indexedConcur(concurIterable)))
 // (the indices are necessarily in this order, but not the values!)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<[*number*, Value]\>
+#### Returns
 
-Defined in:
-[indexed.d.ts:67](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/indexed.d.ts#L67)
+[`ConcurIterable`](modules.md#concuriterable)<[`number`, `Value`]\>
+
+#### Defined in
+
+[indexed.d.ts:67](https://github.com/TomerAberbach/fn/blob/447b200/src/indexed.d.ts#L67)
 
 ---
 
 ### join
 
-▸ `Const`**join**(`separator`: _string_): _function_
+▸ `Const` **join**(`separator`): (`iterable`: `Iterable`<`unknown`\>) =>
+`string`
 
 Returns the result of concatenating the values of `iterable` to a string where
 values are separated by `separator`.
@@ -6225,19 +7554,33 @@ console.log(join(`, `, iterable))
 //=> sloth, more sloth, even more sloth
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type     |
 | :---------- | :------- |
-| `separator` | _string_ |
+| `separator` | `string` |
 
-**Returns:** (`iterable`: _Iterable_<unknown\>) => _string_
+#### Returns
 
-Defined in:
-[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L33)
+`fn`
 
-▸ `Const`**join**(`separator`: _string_, `iterable`: _Iterable_<unknown\>):
-_string_
+▸ (`iterable`): `string`
+
+##### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `iterable` | `Iterable`<`unknown`\> |
+
+##### Returns
+
+`string`
+
+#### Defined in
+
+[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L33)
+
+▸ `Const` **join**(`separator`, `iterable`): `string`
 
 Returns the result of concatenating the values of `iterable` to a string where
 values are separated by `separator`.
@@ -6253,23 +7596,27 @@ console.log(join(`, `, iterable))
 //=> sloth, more sloth, even more sloth
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name        | Type                 |
-| :---------- | :------------------- |
-| `separator` | _string_             |
-| `iterable`  | _Iterable_<unknown\> |
+| Name        | Type                   |
+| :---------- | :--------------------- |
+| `separator` | `string`               |
+| `iterable`  | `Iterable`<`unknown`\> |
 
-**Returns:** _string_
+#### Returns
 
-Defined in:
-[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L33)
+`string`
+
+#### Defined in
+
+[join.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L33)
 
 ---
 
 ### joinAsync
 
-▸ `Const`**joinAsync**(`separator`: _string_): _function_
+▸ `Const` **joinAsync**(`separator`): (`asyncIterable`:
+`AsyncIterable`<`unknown`\>) => `Promise`<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `asyncIterable` to a string where values are separated by `separator`.
@@ -6285,19 +7632,33 @@ console.log(await joinAsync(`, `, asyncIterable))
 //=> sloth, more sloth, even more sloth
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type     |
 | :---------- | :------- |
-| `separator` | _string_ |
+| `separator` | `string` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<unknown\>) => _Promise_<string\>
+#### Returns
 
-Defined in:
-[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L52)
+`fn`
 
-▸ `Const`**joinAsync**(`separator`: _string_, `asyncIterable`:
-_AsyncIterable_<unknown\>): _Promise_<string\>
+▸ (`asyncIterable`): `Promise`<`string`\>
+
+##### Parameters
+
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `asyncIterable` | `AsyncIterable`<`unknown`\> |
+
+##### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L52)
+
+▸ `Const` **joinAsync**(`separator`, `asyncIterable`): `Promise`<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `asyncIterable` to a string where values are separated by `separator`.
@@ -6313,23 +7674,28 @@ console.log(await joinAsync(`, `, asyncIterable))
 //=> sloth, more sloth, even more sloth
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `separator`     | _string_                  |
-| `asyncIterable` | _AsyncIterable_<unknown\> |
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `separator`     | `string`                    |
+| `asyncIterable` | `AsyncIterable`<`unknown`\> |
 
-**Returns:** _Promise_<string\>
+#### Returns
 
-Defined in:
-[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L52)
+`Promise`<`string`\>
+
+#### Defined in
+
+[join.d.ts:52](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L52)
 
 ---
 
 ### joinConcur
 
-▸ `Const`**joinConcur**(`separator`: _string_): _function_
+▸ `Const` **joinConcur**(`separator`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`unknown`\>) =>
+`Promise`<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `concurIterable` to a string where values are separated by `separator`.
@@ -6346,20 +7712,33 @@ console.log(await joinConcur(`, `, concurIterable))
 // (not necessarily in this order)
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name        | Type     |
 | :---------- | :------- |
-| `separator` | _string_ |
+| `separator` | `string` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<unknown\>) => _Promise_<string\>
+#### Returns
 
-Defined in:
-[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L74)
+`fn`
 
-▸ `Const`**joinConcur**(`separator`: _string_, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<unknown\>): _Promise_<string\>
+▸ (`concurIterable`): `Promise`<`string`\>
+
+##### Parameters
+
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`unknown`\> |
+
+##### Returns
+
+`Promise`<`string`\>
+
+#### Defined in
+
+[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L74)
+
+▸ `Const` **joinConcur**(`separator`, `concurIterable`): `Promise`<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `concurIterable` to a string where values are separated by `separator`.
@@ -6376,23 +7755,57 @@ console.log(await joinConcur(`, `, concurIterable))
 // (not necessarily in this order)
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `separator`      | _string_                                                |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<unknown\> |
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `separator`      | `string`                                                  |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`unknown`\> |
 
-**Returns:** _Promise_<string\>
+#### Returns
 
-Defined in:
-[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/join.d.ts#L74)
+`Promise`<`string`\>
+
+#### Defined in
+
+[join.d.ts:74](https://github.com/TomerAberbach/fn/blob/447b200/src/join.d.ts#L74)
+
+---
+
+### keys
+
+▸ `Const` **keys**<`Key`\>(`map`): `Iterable`<`Key`\>
+
+Returns an iterable of the keys in `map`.
+
+This differs from `Map.prototype.keys` in that the iterable returned by this
+function can be iterated multiple times.
+
+#### Type parameters
+
+| Name  |
+| :---- |
+| `Key` |
+
+#### Parameters
+
+| Name  | Type                     |
+| :---- | :----------------------- |
+| `map` | `Map`<`Key`, `unknown`\> |
+
+#### Returns
+
+`Iterable`<`Key`\>
+
+#### Defined in
+
+[from.d.ts:23](https://github.com/TomerAberbach/fn/blob/447b200/src/from.d.ts#L23)
 
 ---
 
 ### last
 
-▸ `Const`**last**<Value\>(`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **last**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing the last value of `iterable`, or an empty
 iterable if `iterable` is empty.
@@ -6406,29 +7819,31 @@ console.log([...last(iterable)])
 //=> [ 3 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:350](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L350)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:350](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L350)
 
 ---
 
 ### lastAsync
 
-▸ `Const`**lastAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **lastAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the last value of `asyncIterable`, or an
 empty async iterable if `asyncIterable` is empty.
@@ -6442,30 +7857,32 @@ console.log(await collectAsync(lastAsync(asyncIterable)))
 //=> [ 3 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:364](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L364)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:364](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L364)
 
 ---
 
 ### lastConcur
 
-▸ `Const`**lastConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **lastConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the last value of `concurIterable`, or an
 empty concur iterable if `concurIterable` is empty.
@@ -6479,28 +7896,32 @@ console.log(await collectConcur(lastConcur(concurIterable)))
 //=> [ 3 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:380](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L380)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:380](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L380)
 
 ---
 
 ### map
 
-▸ `Const`**map**<From, To\>(`fn`: (`value`: From) => To): _function_
+▸ `Const` **map**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
+`Iterable`<`To`\>
 
 Returns an iterable containing the values of `iterable` transformed by `fn` in
 iteration order.
@@ -6516,26 +7937,40 @@ console.log([...map(value => value * 2, iterable)])
 //=> [ 2, 4, 6, 8 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                  |
-| :--- | :-------------------- |
-| `fn` | (`value`: From) => To |
+| Name | Type                      |
+| :--- | :------------------------ |
+| `fn` | (`value`: `From`) => `To` |
 
-**Returns:** (`iterable`: _Iterable_<From\>) => _Iterable_<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L34)
+`fn`
 
-▸ `Const`**map**<From, To\>(`fn`: (`value`: From) => To, `iterable`:
-_Iterable_<From\>): _Iterable_<To\>
+▸ (`iterable`): `Iterable`<`To`\>
+
+##### Parameters
+
+| Name       | Type                |
+| :--------- | :------------------ |
+| `iterable` | `Iterable`<`From`\> |
+
+##### Returns
+
+`Iterable`<`To`\>
+
+#### Defined in
+
+[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L34)
+
+▸ `Const` **map**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
 
 Returns an iterable containing the values of `iterable` transformed by `fn` in
 iteration order.
@@ -6551,31 +7986,34 @@ console.log([...map(value => value * 2, iterable)])
 //=> [ 2, 4, 6, 8 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                  |
-| :--------- | :-------------------- |
-| `fn`       | (`value`: From) => To |
-| `iterable` | _Iterable_<From\>     |
+| Name       | Type                      |
+| :--------- | :------------------------ |
+| `fn`       | (`value`: `From`) => `To` |
+| `iterable` | `Iterable`<`From`\>       |
 
-**Returns:** _Iterable_<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L34)
+`Iterable`<`To`\>
+
+#### Defined in
+
+[map.d.ts:34](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L34)
 
 ---
 
 ### mapAsync
 
-▸ `Const`**mapAsync**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<To\>): _function_
+▸ `Const` **mapAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`From`\>) => `AsyncIterable`<`To`\>
 
 Returns an async iterable containing the values of `asyncIterable` transformed
 by `fn` in iteration order.
@@ -6596,27 +8034,41 @@ console.log(
 //=> [ 2, 4, 6, 8 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                       |
-| :--- | :----------------------------------------- |
-| `fn` | (`value`: From) => _MaybePromiseLike_<To\> |
+| Name | Type                                           |
+| :--- | :--------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<From\>) => _AsyncIterable_<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L57)
+`fn`
 
-▸ `Const`**mapAsync**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<To\>, `asyncIterable`: _AsyncIterable_<From\>):
-_AsyncIterable_<To\>
+▸ (`asyncIterable`): `AsyncIterable`<`To`\>
+
+##### Parameters
+
+| Name            | Type                     |
+| :-------------- | :----------------------- |
+| `asyncIterable` | `AsyncIterable`<`From`\> |
+
+##### Returns
+
+`AsyncIterable`<`To`\>
+
+#### Defined in
+
+[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L57)
+
+▸ `Const` **mapAsync**<`From`, `To`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`To`\>
 
 Returns an async iterable containing the values of `asyncIterable` transformed
 by `fn` in iteration order.
@@ -6637,31 +8089,35 @@ console.log(
 //=> [ 2, 4, 6, 8 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                       |
-| :-------------- | :----------------------------------------- |
-| `fn`            | (`value`: From) => _MaybePromiseLike_<To\> |
-| `asyncIterable` | _AsyncIterable_<From\>                     |
+| Name            | Type                                           |
+| :-------------- | :--------------------------------------------- |
+| `fn`            | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| `asyncIterable` | `AsyncIterable`<`From`\>                       |
 
-**Returns:** _AsyncIterable_<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L57)
+`AsyncIterable`<`To`\>
+
+#### Defined in
+
+[map.d.ts:57](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L57)
 
 ---
 
 ### mapConcur
 
-▸ `Const`**mapConcur**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<To\>): _function_
+▸ `Const` **mapConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
 
 Returns a concur iterable containing the values of `concurIterable` transformed
 by `fn` in iteration order.
@@ -6682,30 +8138,41 @@ console.log(
 //=> [ 2, 4, 6, 8 ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                       |
-| :--- | :----------------------------------------- |
-| `fn` | (`value`: From) => _MaybePromiseLike_<To\> |
+| Name | Type                                           |
+| :--- | :--------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<From\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L83)
+`fn`
 
-▸ `Const`**mapConcur**<From, To\>(`fn`: (`value`: From) =>
-_MaybePromiseLike_<To\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<From\>):
-[_ConcurIterable_](modules.md#concuriterable)<To\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+##### Parameters
+
+| Name             | Type                                                   |
+| :--------------- | :----------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+#### Defined in
+
+[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L83)
+
+▸ `Const` **mapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
 
 Returns a concur iterable containing the values of `concurIterable` transformed
 by `fn` in iteration order.
@@ -6726,30 +8193,33 @@ console.log(
 //=> [ 2, 4, 6, 8 ] (not necessarily in this order)
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name   |
 | :----- |
 | `From` |
 | `To`   |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                 |
-| :--------------- | :--------------------------------------------------- |
-| `fn`             | (`value`: From) => _MaybePromiseLike_<To\>           |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<From\> |
+| Name             | Type                                                   |
+| :--------------- | :----------------------------------------------------- |
+| `fn`             | (`value`: `From`) => `MaybePromiseLike`<`To`\>         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<To\>
+#### Returns
 
-Defined in:
-[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/map.d.ts#L83)
+[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+
+#### Defined in
+
+[map.d.ts:83](https://github.com/TomerAberbach/fn/blob/447b200/src/map.d.ts#L83)
 
 ---
 
 ### max
 
-▸ `Const`**max**(`iterable`: _Iterable_<number\>): _Iterable_<number\>
+▸ `Const` **max**(`iterable`): `Iterable`<`number`\>
 
 Returns an iterable containing a maximum value of `iterable` if `iterable`
 contains at least one value. Otherwise, returns an empty iterable.
@@ -6763,23 +8233,25 @@ console.log(get(max(iterable)))
 //=> 5
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | _Iterable_<number\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`<`number`\> |
 
-**Returns:** _Iterable_<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:529](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L529)
+`Iterable`<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:529](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L529)
 
 ---
 
 ### maxAsync
 
-▸ `Const`**maxAsync**(`asyncIterable`: _AsyncIterable_<number\>):
-_AsyncIterable_<number\>
+▸ `Const` **maxAsync**(`asyncIterable`): `AsyncIterable`<`number`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
@@ -6794,23 +8266,25 @@ console.log(await getAsync(maxAsync(asyncIterable)))
 //=> 5
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | _AsyncIterable_<number\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`<`number`\> |
 
-**Returns:** _AsyncIterable_<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:544](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L544)
+`AsyncIterable`<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:544](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L544)
 
 ---
 
 ### maxBy
 
-▸ `Const`**maxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_,
-`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **maxBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
@@ -6825,26 +8299,29 @@ console.log(get(maxBy((a, b) => a.length - b.length, slothActivities)))
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                        |
-| :--------- | :------------------------------------------ |
-| `fn`       | (`left`: Value, `right`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>                          |
+| Name       | Type                                            |
+| :--------- | :---------------------------------------------- |
+| `fn`       | (`left`: `Value`, `right`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>                            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L143)
+`Iterable`<`Value`\>
 
-▸ `Const`**maxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_):
-_function_
+#### Defined in
+
+[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L143)
+
+▸ `Const` **maxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
@@ -6859,30 +8336,44 @@ console.log(get(maxBy((a, b) => a.length - b.length, slothActivities)))
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                        |
-| :--- | :------------------------------------------ |
-| `fn` | (`left`: Value, `right`: Value) => _number_ |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L143)
+`fn`
+
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:143](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L143)
 
 ---
 
 ### maxByAsync
 
-▸ `Const`**maxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **maxByAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
@@ -6899,26 +8390,29 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                           |
-| :-------------- | :------------------------------------------------------------- |
-| `fn`            | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                                        |
+| Name            | Type                                                                 |
+| :-------------- | :------------------------------------------------------------------- |
+| `fn`            | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                                            |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L160)
+`AsyncIterable`<`Value`\>
 
-▸ `Const`**maxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L160)
+
+▸ `Const` **maxByAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
@@ -6935,32 +8429,44 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L160)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:160](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L160)
 
 ---
 
 ### maxByConcur
 
-▸ `Const`**maxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **maxByConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
@@ -6977,26 +8483,30 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                           |
-| :--------------- | :------------------------------------------------------------- |
-| `fn`             | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\>          |
+| Name             | Type                                                                 |
+| :--------------- | :------------------------------------------------------------------- |
+| `fn`             | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>              |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L179)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-▸ `Const`**maxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L179)
+
+▸ `Const` **maxByConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
@@ -7013,32 +8523,44 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L179)
+`fn`
+
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:179](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L179)
 
 ---
 
 ### maxConcur
 
-▸ `Const`**maxConcur**(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<number\>):
-[_ConcurIterable_](modules.md#concuriterable)<number\>
+▸ `Const` **maxConcur**(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`number`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
@@ -7053,23 +8575,25 @@ console.log(await getConcur(maxConcur(concurIterable)))
 //=> 5
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<number\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:561](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L561)
+[`ConcurIterable`](modules.md#concuriterable)<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:561](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L561)
 
 ---
 
 ### maxWith
 
-▸ `Const`**maxWith**<Value\>(`fn`: (`value`: Value) => _number_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **maxWith**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` by comparing the
 numerical values of each value, as defined by `fn`, if `iterable` contains at
@@ -7084,25 +8608,29 @@ console.log(get(maxWith(value => value.length, slothActivities)))
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                         |
-| :--------- | :--------------------------- |
-| `fn`       | (`value`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>           |
+| Name       | Type                           |
+| :--------- | :----------------------------- |
+| `fn`       | (`value`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>           |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L357)
+`Iterable`<`Value`\>
 
-▸ `Const`**maxWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
+#### Defined in
+
+[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L357)
+
+▸ `Const` **maxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` by comparing the
 numerical values of each value, as defined by `fn`, if `iterable` contains at
@@ -7117,30 +8645,44 @@ console.log(get(maxWith(value => value.length, slothActivities)))
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                         |
-| :--- | :--------------------------- |
-| `fn` | (`value`: Value) => _number_ |
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L357)
+`fn`
+
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:357](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L357)
 
 ---
 
 ### maxWithAsync
 
-▸ `Const`**maxWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **maxWithAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -7158,26 +8700,29 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                            |
-| :-------------- | :---------------------------------------------- |
-| `fn`            | (`value`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                         |
+| Name            | Type                                                |
+| :-------------- | :-------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L375)
+`AsyncIterable`<`Value`\>
 
-▸ `Const`**maxWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L375)
+
+▸ `Const` **maxWithAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -7195,32 +8740,44 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L375)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:375](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L375)
 
 ---
 
 ### maxWithConcur
 
-▸ `Const`**maxWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **maxWithConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -7238,26 +8795,30 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _MaybePromiseLike_<number\>       |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L393)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-▸ `Const`**maxWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L393)
+
+▸ `Const` **maxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -7275,30 +8836,43 @@ console.log(
 //=> sleeping
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L393)
+`fn`
+
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:393](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L393)
 
 ---
 
 ### min
 
-▸ `Const`**min**(`iterable`: _Iterable_<number\>): _Iterable_<number\>
+▸ `Const` **min**(`iterable`): `Iterable`<`number`\>
 
 Returns an iterable containing a minimum value of `iterable` if `iterable`
 contains at least one value. Otherwise, returns an empty iterable.
@@ -7312,23 +8886,25 @@ console.log(get(min(iterable)))
 //=> -3
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | _Iterable_<number\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`<`number`\> |
 
-**Returns:** _Iterable_<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:481](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L481)
+`Iterable`<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:481](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L481)
 
 ---
 
 ### minAsync
 
-▸ `Const`**minAsync**(`asyncIterable`: _AsyncIterable_<number\>):
-_AsyncIterable_<number\>
+▸ `Const` **minAsync**(`asyncIterable`): `AsyncIterable`<`number`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
@@ -7343,23 +8919,25 @@ console.log(await getAsync(minAsync(asyncIterable)))
 //=> -3
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | _AsyncIterable_<number\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`<`number`\> |
 
-**Returns:** _AsyncIterable_<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:496](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L496)
+`AsyncIterable`<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:496](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L496)
 
 ---
 
 ### minBy
 
-▸ `Const`**minBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_,
-`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **minBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing a minimum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
@@ -7374,26 +8952,29 @@ console.log(get(minBy((a, b) => a.length - b.length, slothActivities)))
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                        |
-| :--------- | :------------------------------------------ |
-| `fn`       | (`left`: Value, `right`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>                          |
+| Name       | Type                                            |
+| :--------- | :---------------------------------------------- |
+| `fn`       | (`left`: `Value`, `right`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>                            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L92)
+`Iterable`<`Value`\>
 
-▸ `Const`**minBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_):
-_function_
+#### Defined in
+
+[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L92)
+
+▸ `Const` **minBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing a minimum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
@@ -7408,30 +8989,44 @@ console.log(get(minBy((a, b) => a.length - b.length, slothActivities)))
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                        |
-| :--- | :------------------------------------------ |
-| `fn` | (`left`: Value, `right`: Value) => _number_ |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L92)
+`fn`
+
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:92](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L92)
 
 ---
 
 ### minByAsync
 
-▸ `Const`**minByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **minByAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
@@ -7448,26 +9043,29 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                           |
-| :-------------- | :------------------------------------------------------------- |
-| `fn`            | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                                        |
+| Name            | Type                                                                 |
+| :-------------- | :------------------------------------------------------------------- |
+| `fn`            | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                                            |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L109)
+`AsyncIterable`<`Value`\>
 
-▸ `Const`**minByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L109)
+
+▸ `Const` **minByAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
@@ -7484,32 +9082,44 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L109)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:109](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L109)
 
 ---
 
 ### minByConcur
 
-▸ `Const`**minByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **minByConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
@@ -7526,26 +9136,30 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                           |
-| :--------------- | :------------------------------------------------------------- |
-| `fn`             | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\>          |
+| Name             | Type                                                                 |
+| :--------------- | :------------------------------------------------------------------- |
+| `fn`             | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>              |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L128)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-▸ `Const`**minByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L128)
+
+▸ `Const` **minByConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
@@ -7562,32 +9176,44 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L128)
+`fn`
+
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:128](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L128)
 
 ---
 
 ### minConcur
 
-▸ `Const`**minConcur**(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<number\>):
-[_ConcurIterable_](modules.md#concuriterable)<number\>
+▸ `Const` **minConcur**(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`number`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
@@ -7602,23 +9228,26 @@ console.log(await getConcur(minConcur(concurIterable)))
 //=> -3
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<number\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<number\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:513](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L513)
+[`ConcurIterable`](modules.md#concuriterable)<`number`\>
+
+#### Defined in
+
+[min-max.d.ts:513](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L513)
 
 ---
 
 ### minMax
 
-▸ `Const`**minMax**(`iterable`: _Iterable_<number\>):
-_Iterable_<[_MinMax_](modules.md#minmax)<number\>\>
+▸ `Const` **minMax**(`iterable`):
+`Iterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 if `iterable` contains at least one value. Otherwise, returns an empty iterable.
@@ -7632,23 +9261,26 @@ console.log(get(minMax(iterable)))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | _Iterable_<number\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`<`number`\> |
 
-**Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<number\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:577](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L577)
+`Iterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
+
+#### Defined in
+
+[min-max.d.ts:577](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L577)
 
 ---
 
 ### minMaxAsync
 
-▸ `Const`**minMaxAsync**(`asyncIterable`: _AsyncIterable_<number\>):
-_AsyncIterable_<[_MinMax_](modules.md#minmax)<number\>\>
+▸ `Const` **minMaxAsync**(`asyncIterable`):
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` if `asyncIterable` contains at least one value. Otherwise,
@@ -7663,24 +9295,26 @@ console.log(await getAsync(minMaxAsync(asyncIterable)))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | _AsyncIterable_<number\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`<`number`\> |
 
-**Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<number\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:592](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L592)
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
+
+#### Defined in
+
+[min-max.d.ts:592](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L592)
 
 ---
 
 ### minMaxBy
 
-▸ `Const`**minMaxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) => _number_,
-`iterable`: _Iterable_<Value\>):
-_Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxBy**<`Value`\>(`fn`, `iterable`):
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 based on the `fn` [Compare](modules.md#compare) function if `iterable` contains
@@ -7695,26 +9329,29 @@ console.log(get(minMaxBy((a, b) => a.length - b.length, slothActivities)))
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                        |
-| :--------- | :------------------------------------------ |
-| `fn`       | (`left`: Value, `right`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>                          |
+| Name       | Type                                            |
+| :--------- | :---------------------------------------------- |
+| `fn`       | (`left`: `Value`, `right`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>                            |
 
-**Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L194)
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxBy**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_number_): _function_
+#### Defined in
+
+[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L194)
+
+▸ `Const` **minMaxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 based on the `fn` [Compare](modules.md#compare) function if `iterable` contains
@@ -7729,31 +9366,44 @@ console.log(get(minMaxBy((a, b) => a.length - b.length, slothActivities)))
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                        |
-| :--- | :------------------------------------------ |
-| `fn` | (`left`: Value, `right`: Value) => _number_ |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) =>
-_Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L194)
+`fn`
+
+▸ (`iterable`): `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:194](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L194)
 
 ---
 
 ### minMaxByAsync
 
-▸ `Const`**minMaxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxByAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
@@ -7771,26 +9421,30 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                           |
-| :-------------- | :------------------------------------------------------------- |
-| `fn`            | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                                        |
+| Name            | Type                                                                 |
+| :-------------- | :------------------------------------------------------------------- |
+| `fn`            | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                                            |
 
-**Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L222)
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxByAsync**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L222)
+
+▸ `Const` **minMaxByAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) =>
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
@@ -7808,32 +9462,44 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L222)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:222](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L222)
 
 ---
 
 ### minMaxByConcur
 
-▸ `Const`**minMaxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxByConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
@@ -7853,27 +9519,30 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                           |
-| :--------------- | :------------------------------------------------------------- |
-| `fn`             | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\>          |
+| Name             | Type                                                                 |
+| :--------------- | :------------------------------------------------------------------- |
+| `fn`             | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>              |
 
-**Returns:**
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L250)
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxByConcur**<Value\>(`fn`: (`left`: Value, `right`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L250)
+
+▸ `Const` **minMaxByConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
@@ -7893,32 +9562,45 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                           |
-| :--- | :------------------------------------------------------------- |
-| `fn` | (`left`: Value, `right`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                                 |
+| :--- | :------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L250)
+`fn`
+
+▸ (`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:250](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L250)
 
 ---
 
 ### minMaxConcur
 
-▸ `Const`**minMaxConcur**(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<number\>):
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<number\>\>
+▸ `Const` **minMaxConcur**(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`number`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` if `concurIterable` contains at least one value. Otherwise,
@@ -7933,24 +9615,26 @@ console.log(await getConcur(minMaxConcur(concurIterable)))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<number\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
 
-**Returns:**
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<number\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:609](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L609)
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`number`\>\>
+
+#### Defined in
+
+[min-max.d.ts:609](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L609)
 
 ---
 
 ### minMaxWith
 
-▸ `Const`**minMaxWith**<Value\>(`fn`: (`value`: Value) => _number_, `iterable`:
-_Iterable_<Value\>): _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxWith**<`Value`\>(`fn`, `iterable`):
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 by comparing the numerical values of each value, as defined by `fn`, if
@@ -7965,25 +9649,29 @@ console.log(get(minMaxWith(value => value.length, slothActivities)))
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                         |
-| :--------- | :--------------------------- |
-| `fn`       | (`value`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>           |
+| Name       | Type                           |
+| :--------- | :----------------------------- |
+| `fn`       | (`value`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>           |
 
-**Returns:** _Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L408)
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
+#### Defined in
+
+[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L408)
+
+▸ `Const` **minMaxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 by comparing the numerical values of each value, as defined by `fn`, if
@@ -7998,31 +9686,44 @@ console.log(get(minMaxWith(value => value.length, slothActivities)))
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                         |
-| :--- | :--------------------------- |
-| `fn` | (`value`: Value) => _number_ |
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) =>
-_Iterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L408)
+`fn`
+
+▸ (`iterable`): `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:408](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L408)
 
 ---
 
 ### minMaxWithAsync
 
-▸ `Const`**minMaxWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxWithAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` by comparing the numerical values of each value, as defined by
@@ -8040,26 +9741,30 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                            |
-| :-------------- | :---------------------------------------------- |
-| `fn`            | (`value`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                         |
+| Name            | Type                                                |
+| :-------------- | :-------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
 
-**Returns:** _AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L433)
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L433)
+
+▸ `Const` **minMaxWithAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) =>
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` by comparing the numerical values of each value, as defined by
@@ -8077,32 +9782,44 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L433)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:433](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L433)
 
 ---
 
 ### minMaxWithConcur
 
-▸ `Const`**minMaxWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+▸ `Const` **minMaxWithConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` by comparing the numerical values of each value, as defined by
@@ -8120,27 +9837,30 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _MaybePromiseLike_<number\>       |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:**
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L459)
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
-▸ `Const`**minMaxWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L459)
+
+▸ `Const` **minMaxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` by comparing the numerical values of each value, as defined by
@@ -8158,31 +9878,44 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<[_MinMax_](modules.md#minmax)<Value\>\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L459)
+`fn`
+
+▸ (`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+
+#### Defined in
+
+[min-max.d.ts:459](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L459)
 
 ---
 
 ### minWith
 
-▸ `Const`**minWith**<Value\>(`fn`: (`value`: Value) => _number_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **minWith**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing a minimum value of `iterable` by comparing the
 numerical values of each value, as defined by `fn`, if `iterable` contains at
@@ -8197,25 +9930,29 @@ console.log(get(minWith(value => value.length, slothActivities)))
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                         |
-| :--------- | :--------------------------- |
-| `fn`       | (`value`: Value) => _number_ |
-| `iterable` | _Iterable_<Value\>           |
+| Name       | Type                           |
+| :--------- | :----------------------------- |
+| `fn`       | (`value`: `Value`) => `number` |
+| `iterable` | `Iterable`<`Value`\>           |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L306)
+`Iterable`<`Value`\>
 
-▸ `Const`**minWith**<Value\>(`fn`: (`value`: Value) => _number_): _function_
+#### Defined in
+
+[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L306)
+
+▸ `Const` **minWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing a minimum value of `iterable` by comparing the
 numerical values of each value, as defined by `fn`, if `iterable` contains at
@@ -8230,30 +9967,44 @@ console.log(get(minWith(value => value.length, slothActivities)))
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                         |
-| :--- | :--------------------------- |
-| `fn` | (`value`: Value) => _number_ |
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L306)
+`fn`
+
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:306](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L306)
 
 ---
 
 ### minWithAsync
 
-▸ `Const`**minWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **minWithAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -8271,26 +10022,29 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                            |
-| :-------------- | :---------------------------------------------- |
-| `fn`            | (`value`: Value) => _MaybePromiseLike_<number\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                         |
+| Name            | Type                                                |
+| :-------------- | :-------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L324)
+`AsyncIterable`<`Value`\>
 
-▸ `Const`**minWithAsync**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L324)
+
+▸ `Const` **minWithAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -8308,32 +10062,44 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L324)
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:324](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L324)
 
 ---
 
 ### minWithConcur
 
-▸ `Const`**minWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **minWithConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -8351,26 +10117,30 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _MaybePromiseLike_<number\>       |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L342)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-▸ `Const`**minWithConcur**<Value\>(`fn`: (`value`: Value) =>
-_MaybePromiseLike_<number\>): _function_
+#### Defined in
+
+[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L342)
+
+▸ `Const` **minWithConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
@@ -8388,31 +10158,44 @@ console.log(
 //=> eating
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: Value) => _MaybePromiseLike_<number\> |
+| Name | Type                                                |
+| :--- | :-------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/min-max.d.ts#L342)
+`fn`
+
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[min-max.d.ts:342](https://github.com/TomerAberbach/fn/blob/447b200/src/min-max.d.ts#L342)
 
 ---
 
 ### next
 
-▸ `Const`**next**<Value\>(`iterable`: _Iterable_<Value\>): [*Iterable*<Value\>,
-*Iterable*<Value\>]
+▸ `Const` **next**<`Value`\>(`iterable`): [`Iterable`<`Value`\>,
+`Iterable`<`Value`\>]
 
 Returns a pair of iterables. If `iterable` is empty, then both of the returned
 iterables are empty. Otherwise, the first iterable contains the first value of
@@ -8441,29 +10224,32 @@ console.log(count(rest))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** [*Iterable*<Value\>, *Iterable*<Value\>]
+#### Returns
 
-Defined in:
-[optional.d.ts:208](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L208)
+[`Iterable`<`Value`\>, `Iterable`<`Value`\>]
+
+#### Defined in
+
+[optional.d.ts:208](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L208)
 
 ---
 
 ### nextAsync
 
-▸ `Const`**nextAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_Promise_<[*AsyncIterable*<Value\>, *AsyncIterable*<Value\>]\>
+▸ `Const` **nextAsync**<`Value`\>(`asyncIterable`):
+`Promise`<[`AsyncIterable`<`Value`\>, `AsyncIterable`<`Value`\>]\>
 
 Returns a promise that resolves to a pair of async iterables. If `asyncIterable`
 is empty, then both of the returned async iterables are empty. Otherwise, the
@@ -8493,28 +10279,32 @@ console.log(await countAsync(rest))
 //=> 0
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _Promise_<[*AsyncIterable*<Value\>, *AsyncIterable*<Value\>]\>
+#### Returns
 
-Defined in:
-[optional.d.ts:240](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L240)
+`Promise`<[`AsyncIterable`<`Value`\>, `AsyncIterable`<`Value`\>]\>
+
+#### Defined in
+
+[optional.d.ts:240](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L240)
 
 ---
 
 ### none
 
-▸ `Const`**none**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **none**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`boolean`
 
 Returns `true` if `fn` does not return `true` for all values of `iterable`.
 Otherwise returns `false`.
@@ -8528,25 +10318,39 @@ console.log(none(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L165)
+`fn`
 
-▸ `Const`**none**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _boolean_
+▸ (`iterable`): `boolean`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L165)
+
+▸ `Const` **none**<`Value`\>(`fn`, `iterable`): `boolean`
 
 Returns `true` if `fn` does not return `true` for all values of `iterable`.
 Otherwise returns `false`.
@@ -8560,29 +10364,33 @@ console.log(none(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _boolean_
+#### Returns
 
-Defined in:
-[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L165)
+`boolean`
+
+#### Defined in
+
+[predicate.d.ts:165](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L165)
 
 ---
 
 ### noneAsync
 
-▸ `Const`**noneAsync**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **noneAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` does not return `true` and
 does not return a promise that resolves to `true` for all values of
@@ -8597,25 +10405,39 @@ console.log(await noneAsync(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L180)
+`fn`
 
-▸ `Const`**noneAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _Promise_<boolean\>
+▸ (`asyncIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L180)
+
+▸ `Const` **noneAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` does not return `true` and
 does not return a promise that resolves to `true` for all values of
@@ -8630,29 +10452,34 @@ console.log(await noneAsync(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L180)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:180](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L180)
 
 ---
 
 ### noneConcur
 
-▸ `Const`**noneConcur**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **noneConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+`Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` does not return `true` and
 does not return a promise that resolves to `true` for all values of
@@ -8667,27 +10494,40 @@ console.log(await noneConcur(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L195)
+`fn`
 
-▸ `Const`**noneConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<boolean\>
+▸ (`concurIterable`): `Promise`<`boolean`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L195)
+
+▸ `Const` **noneConcur**<`Value`\>(`fn`, `concurIterable`):
+`Promise`<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` does not return `true` and
 does not return a promise that resolves to `true` for all values of
@@ -8702,29 +10542,32 @@ console.log(await noneConcur(number => number > 1, numbers))
 //=> false
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<boolean\>
+#### Returns
 
-Defined in:
-[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/predicate.d.ts#L195)
+`Promise`<`boolean`\>
+
+#### Defined in
+
+[predicate.d.ts:195](https://github.com/TomerAberbach/fn/blob/447b200/src/predicate.d.ts#L195)
 
 ---
 
 ### or
 
-▸ `Const`**or**<Value\>(`fn`: () => Value): _function_
+▸ `Const` **or**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `Value`
 
 Returns the only value in `iterable` if it contains exactly one value.
 Otherwise, returns the result of invoking `fn`.
@@ -8742,25 +10585,39 @@ console.log(or(() => `I also get called!`, [1, `sloth`, 3]))
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type        |
-| :--- | :---------- |
-| `fn` | () => Value |
+| Name | Type          |
+| :--- | :------------ |
+| `fn` | () => `Value` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => Value
+#### Returns
 
-Defined in:
-[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L36)
+`fn`
 
-▸ `Const`**or**<Value\>(`fn`: () => Value, `iterable`: _Iterable_<Value\>):
-Value
+▸ (`iterable`): `Value`
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Value`
+
+#### Defined in
+
+[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L36)
+
+▸ `Const` **or**<`Value`\>(`fn`, `iterable`): `Value`
 
 Returns the only value in `iterable` if it contains exactly one value.
 Otherwise, returns the result of invoking `fn`.
@@ -8778,29 +10635,33 @@ console.log(or(() => `I also get called!`, [1, `sloth`, 3]))
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `fn`       | () => Value        |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `fn`       | () => `Value`        |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** Value
+#### Returns
 
-Defined in:
-[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L36)
+`Value`
+
+#### Defined in
+
+[optional.d.ts:36](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L36)
 
 ---
 
 ### orAsync
 
-▸ `Const`**orAsync**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>): _function_
+▸ `Const` **orAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
 contains exactly one value. Otherwise, returns a promise that resolves to the
@@ -8819,25 +10680,39 @@ console.log(await orAsync(() => `I also get called!`, asAsync([1, `sloth`, 3])))
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                             |
-| :--- | :------------------------------- |
-| `fn` | () => _MaybePromiseLike_<Value\> |
+| Name | Type                               |
+| :--- | :--------------------------------- |
+| `fn` | () => `MaybePromiseLike`<`Value`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) => _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L60)
+`fn`
 
-▸ `Const`**orAsync**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>,
-`asyncIterable`: _AsyncIterable_<Value\>): _Promise_<Value\>
+▸ (`asyncIterable`): `Promise`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L60)
+
+▸ `Const` **orAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
 contains exactly one value. Otherwise, returns a promise that resolves to the
@@ -8856,30 +10731,33 @@ console.log(await orAsync(() => `I also get called!`, asAsync([1, `sloth`, 3])))
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                             |
-| :-------------- | :------------------------------- |
-| `fn`            | () => _MaybePromiseLike_<Value\> |
-| `asyncIterable` | _AsyncIterable_<Value\>          |
+| Name            | Type                               |
+| :-------------- | :--------------------------------- |
+| `fn`            | () => `MaybePromiseLike`<`Value`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>          |
 
-**Returns:** _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L60)
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:60](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L60)
 
 ---
 
 ### orConcur
 
-▸ `Const`**orConcur**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>):
-_function_
+▸ `Const` **orConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `concurIterable` if it
 contains exactly one value. Otherwise, returns a promise that resolves to the
@@ -8900,27 +10778,39 @@ console.log(
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                             |
-| :--- | :------------------------------- |
-| `fn` | () => _MaybePromiseLike_<Value\> |
+| Name | Type                               |
+| :--- | :--------------------------------- |
+| `fn` | () => `MaybePromiseLike`<`Value`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) => _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L89)
+`fn`
 
-▸ `Const`**orConcur**<Value\>(`fn`: () => _MaybePromiseLike_<Value\>,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-_Promise_<Value\>
+▸ (`concurIterable`): `Promise`<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L89)
+
+▸ `Const` **orConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`Value`\>
 
 Returns a promise that resolves to the only value in `concurIterable` if it
 contains exactly one value. Otherwise, returns a promise that resolves to the
@@ -8941,29 +10831,32 @@ console.log(
 //=> I also get called!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | () => _MaybePromiseLike_<Value\>                      |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | () => `MaybePromiseLike`<`Value`\>                      |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** _Promise_<Value\>
+#### Returns
 
-Defined in:
-[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/optional.d.ts#L89)
+`Promise`<`Value`\>
+
+#### Defined in
+
+[optional.d.ts:89](https://github.com/TomerAberbach/fn/blob/447b200/src/optional.d.ts#L89)
 
 ---
 
 ### pipe
 
-▸ `Const`**pipe**<Value\>(`value`: Value): Value
+▸ `Const` **pipe**<`Value`\>(`value`): `Value`
 
 Returns the result of piping `value` through the given functions.
 
@@ -8981,24 +10874,27 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type  |
-| :------ | :---- |
-| `value` | Value |
+| Name    | Type    |
+| :------ | :------ |
+| `value` | `Value` |
 
-**Returns:** Value
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`Value`
 
-▸ `Const`**pipe**<A, B\>(`value`: A, `fn`: (`a`: A) => B): B
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`\>(`value`, `fn`): `B`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9016,27 +10912,29 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
 | `A`  |
 | `B`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn`    | (`a`: A) => B |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn`    | (`a`: `A`) => `B` |
 
-**Returns:** B
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`B`
 
-▸ `Const`**pipe**<A, B, C\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`: B) =>
-C): C
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`\>(`value`, `fn1`, `fn2`): `C`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9054,7 +10952,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9062,21 +10960,23 @@ console.log(
 | `B`  |
 | `C`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
 
-**Returns:** C
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`C`
 
-▸ `Const`**pipe**<A, B, C, D\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`: B)
-=> C, `fn3`: (`c`: C) => D): D
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`\>(`value`, `fn1`, `fn2`, `fn3`): `D`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9094,7 +10994,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9103,22 +11003,25 @@ console.log(
 | `C`  |
 | `D`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
 
-**Returns:** D
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`D`
 
-▸ `Const`**pipe**<A, B, C, D, E\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`: (`b`:
-B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E): E
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`\>(`value`, `fn1`, `fn2`, `fn3`,
+`fn4`): `E`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9136,7 +11039,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9146,24 +11049,26 @@ console.log(
 | `D`  |
 | `E`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
 
-**Returns:** E
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`E`
 
-▸ `Const`**pipe**<A, B, C, D, E, F\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`:
-(`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) =>
-F): F
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`value`, `fn1`, `fn2`, `fn3`,
+`fn4`, `fn5`): `F`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9181,7 +11086,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9192,25 +11097,27 @@ console.log(
 | `E`  |
 | `F`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
+| `fn5`   | (`e`: `E`) => `F` |
 
-**Returns:** F
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`F`
 
-▸ `Const`**pipe**<A, B, C, D, E, F, G\>(`value`: A, `fn1`: (`a`: A) => B, `fn2`:
-(`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`: E) => F,
-`fn6`: (`f`: F) => G): G
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`value`, `fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`): `G`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9228,7 +11135,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9240,26 +11147,28 @@ console.log(
 | `F`  |
 | `G`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
+| `fn5`   | (`e`: `E`) => `F` |
+| `fn6`   | (`f`: `F`) => `G` |
 
-**Returns:** G
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`G`
 
-▸ `Const`**pipe**<A, B, C, D, E, F, G, H\>(`value`: A, `fn1`: (`a`: A) => B,
-`fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
-E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H): H
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`value`, `fn1`,
+`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`): `H`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9277,7 +11186,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9290,27 +11199,29 @@ console.log(
 | `G`  |
 | `H`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
+| `fn5`   | (`e`: `E`) => `F` |
+| `fn6`   | (`f`: `F`) => `G` |
+| `fn7`   | (`g`: `G`) => `H` |
 
-**Returns:** H
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`H`
 
-▸ `Const`**pipe**<A, B, C, D, E, F, G, H, I\>(`value`: A, `fn1`: (`a`: A) => B,
-`fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`: (`e`:
-E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H, `fn8`: (`h`: H) => I): I
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`value`, `fn1`,
+`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): `I`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9328,7 +11239,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9342,29 +11253,30 @@ console.log(
 | `H`  |
 | `I`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
-| `fn8`   | (`h`: H) => I |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
+| `fn5`   | (`e`: `E`) => `F` |
+| `fn6`   | (`f`: `F`) => `G` |
+| `fn7`   | (`g`: `G`) => `H` |
+| `fn8`   | (`h`: `H`) => `I` |
 
-**Returns:** I
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`I`
 
-▸ `Const`**pipe**<A, B, C, D, E, F, G, H, I, J\>(`value`: A, `fn1`: (`a`: A) =>
-B, `fn2`: (`b`: B) => C, `fn3`: (`c`: C) => D, `fn4`: (`d`: D) => E, `fn5`:
-(`e`: E) => F, `fn6`: (`f`: F) => G, `fn7`: (`g`: G) => H, `fn8`: (`h`: H) => I,
-`fn9`: (`i`: I) => J): J
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
+
+▸ `Const` **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`value`,
+`fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): `J`
 
 Returns the result of piping `value` through the given functions.
 
@@ -9382,7 +11294,7 @@ console.log(
 // => SLOTH! SLOTH! SLOTH!
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :--- |
@@ -9397,31 +11309,35 @@ console.log(
 | `I`  |
 | `J`  |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type          |
-| :------ | :------------ |
-| `value` | A             |
-| `fn1`   | (`a`: A) => B |
-| `fn2`   | (`b`: B) => C |
-| `fn3`   | (`c`: C) => D |
-| `fn4`   | (`d`: D) => E |
-| `fn5`   | (`e`: E) => F |
-| `fn6`   | (`f`: F) => G |
-| `fn7`   | (`g`: G) => H |
-| `fn8`   | (`h`: H) => I |
-| `fn9`   | (`i`: I) => J |
+| Name    | Type              |
+| :------ | :---------------- |
+| `value` | `A`               |
+| `fn1`   | (`a`: `A`) => `B` |
+| `fn2`   | (`b`: `B`) => `C` |
+| `fn3`   | (`c`: `C`) => `D` |
+| `fn4`   | (`d`: `D`) => `E` |
+| `fn5`   | (`e`: `E`) => `F` |
+| `fn6`   | (`f`: `F`) => `G` |
+| `fn7`   | (`g`: `G`) => `H` |
+| `fn8`   | (`h`: `H`) => `I` |
+| `fn9`   | (`i`: `I`) => `J` |
 
-**Returns:** J
+#### Returns
 
-Defined in:
-[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/pipe.d.ts#L33)
+`J`
+
+#### Defined in
+
+[pipe.d.ts:33](https://github.com/TomerAberbach/fn/blob/447b200/src/pipe.d.ts#L33)
 
 ---
 
 ### rangeTo
 
-▸ `Const`**rangeTo**(`start`: _number_): _function_
+▸ `Const` **rangeTo**(`start`): (`end`: `number`) =>
+[`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` (including `start` and `end`).
@@ -9438,19 +11354,34 @@ console.log([...rangeTo(0, 6).step(2)])
 //=> [ 0, 2, 4, 6 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `start` | _number_ |
+| `start` | `number` |
 
-**Returns:** (`end`: _number_) => [_RangeIterable_](modules.md#rangeiterable)
+#### Returns
 
-Defined in:
-[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L53)
+`fn`
 
-▸ `Const`**rangeTo**(`start`: _number_, `end`: _number_):
-[_RangeIterable_](modules.md#rangeiterable)
+▸ (`end`): [`RangeIterable`](modules.md#rangeiterable)
+
+##### Parameters
+
+| Name  | Type     |
+| :---- | :------- |
+| `end` | `number` |
+
+##### Returns
+
+[`RangeIterable`](modules.md#rangeiterable)
+
+#### Defined in
+
+[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/447b200/src/range.d.ts#L53)
+
+▸ `Const` **rangeTo**(`start`, `end`):
+[`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` (including `start` and `end`).
@@ -9467,23 +11398,27 @@ console.log([...rangeTo(0, 6).step(2)])
 //=> [ 0, 2, 4, 6 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `start` | _number_ |
-| `end`   | _number_ |
+| `start` | `number` |
+| `end`   | `number` |
 
-**Returns:** [_RangeIterable_](modules.md#rangeiterable)
+#### Returns
 
-Defined in:
-[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L53)
+[`RangeIterable`](modules.md#rangeiterable)
+
+#### Defined in
+
+[range.d.ts:53](https://github.com/TomerAberbach/fn/blob/447b200/src/range.d.ts#L53)
 
 ---
 
 ### rangeUntil
 
-▸ `Const`**rangeUntil**(`start`: _number_): _function_
+▸ `Const` **rangeUntil**(`start`): (`end`: `number`) =>
+[`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` (including `start`, but excluding `end`).
@@ -9500,19 +11435,34 @@ console.log([...rangeUntil(0, 6).step(2)])
 //=> [ 0, 2, 4 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `start` | _number_ |
+| `start` | `number` |
 
-**Returns:** (`end`: _number_) => [_RangeIterable_](modules.md#rangeiterable)
+#### Returns
 
-Defined in:
-[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L70)
+`fn`
 
-▸ `Const`**rangeUntil**(`start`: _number_, `end`: _number_):
-[_RangeIterable_](modules.md#rangeiterable)
+▸ (`end`): [`RangeIterable`](modules.md#rangeiterable)
+
+##### Parameters
+
+| Name  | Type     |
+| :---- | :------- |
+| `end` | `number` |
+
+##### Returns
+
+[`RangeIterable`](modules.md#rangeiterable)
+
+#### Defined in
+
+[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/range.d.ts#L70)
+
+▸ `Const` **rangeUntil**(`start`, `end`):
+[`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` (including `start`, but excluding `end`).
@@ -9529,24 +11479,27 @@ console.log([...rangeUntil(0, 6).step(2)])
 //=> [ 0, 2, 4 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `start` | _number_ |
-| `end`   | _number_ |
+| `start` | `number` |
+| `end`   | `number` |
 
-**Returns:** [_RangeIterable_](modules.md#rangeiterable)
+#### Returns
 
-Defined in:
-[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/range.d.ts#L70)
+[`RangeIterable`](modules.md#rangeiterable)
+
+#### Defined in
+
+[range.d.ts:70](https://github.com/TomerAberbach/fn/blob/447b200/src/range.d.ts#L70)
 
 ---
 
 ### reduce
 
-▸ `Const`**reduce**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc):
-_function_
+▸ `Const` **reduce**<`Acc`, `Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>)
+=> `Iterable`<`Value`\>
 
 Returns an iterable containing the result of folding `iterable` with
 [fold](modules.md#fold) using `fn` if `iterable` contains at least one value
@@ -9570,26 +11523,40 @@ get(reduce(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                |
-| :--- | :---------------------------------- |
-| `fn` | (`acc`: Acc, `value`: Value) => Acc |
+| Name | Type                                      |
+| :--- | :---------------------------------------- |
+| `fn` | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L168)
+`fn`
 
-▸ `Const`**reduce**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) => Acc,
-`iterable`: _Iterable_<Value\>): _Iterable_<Acc\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L168)
+
+▸ `Const` **reduce**<`Acc`, `Value`\>(`fn`, `iterable`): `Iterable`<`Acc`\>
 
 Returns an iterable containing the result of folding `iterable` with
 [fold](modules.md#fold) using `fn` if `iterable` contains at least one value
@@ -9613,31 +11580,34 @@ get(reduce(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                                |
-| :--------- | :---------------------------------- |
-| `fn`       | (`acc`: Acc, `value`: Value) => Acc |
-| `iterable` | _Iterable_<Value\>                  |
+| Name       | Type                                      |
+| :--------- | :---------------------------------------- |
+| `fn`       | (`acc`: `Acc`, `value`: `Value`) => `Acc` |
+| `iterable` | `Iterable`<`Value`\>                      |
 
-**Returns:** _Iterable_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L168)
+`Iterable`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:168](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L168)
 
 ---
 
 ### reduceAsync
 
-▸ `Const`**reduceAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
-_MaybePromiseLike_<Acc\>): _function_
+▸ `Const` **reduceAsync**<`Acc`, `Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the result of folding `asyncIterable` with
 [foldAsync](modules.md#foldasync) using `fn` if `asyncIterable` contains at
@@ -9662,28 +11632,41 @@ getAsync(reduceAsync(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                     |
-| :--- | :------------------------------------------------------- |
-| `fn` | (`acc`: Acc, `value`: Value) => _MaybePromiseLike_<Acc\> |
+| Name | Type                                                           |
+| :--- | :------------------------------------------------------------- |
+| `fn` | (`acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L204)
+`fn`
 
-▸ `Const`**reduceAsync**<Acc, Value\>(`fn`: (`acc`: Acc, `value`: Value) =>
-_MaybePromiseLike_<Acc\>, `asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Acc\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L204)
+
+▸ `Const` **reduceAsync**<`Acc`, `Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Acc`\>
 
 Returns an async iterable containing the result of folding `asyncIterable` with
 [foldAsync](modules.md#foldasync) using `fn` if `asyncIterable` contains at
@@ -9708,31 +11691,35 @@ getAsync(reduceAsync(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                                                     |
-| :-------------- | :------------------------------------------------------- |
-| `fn`            | (`acc`: Acc, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `asyncIterable` | _AsyncIterable_<Value\>                                  |
+| Name            | Type                                                           |
+| :-------------- | :------------------------------------------------------------- |
+| `fn`            | (`acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `asyncIterable` | `AsyncIterable`<`Value`\>                                      |
 
-**Returns:** _AsyncIterable_<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L204)
+`AsyncIterable`<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:204](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L204)
 
 ---
 
 ### reduceConcur
 
-▸ `Const`**reduceConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`:
-Value) => _MaybePromiseLike_<Acc\>): _function_
+▸ `Const` **reduceConcur**<`Acc`, `Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the result of folding `concurIterable` with
 [foldConcur](modules.md#foldconcur) using `fn` if `concurIterable` contains at
@@ -9758,30 +11745,41 @@ getConcur(reduceConcur(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                                                              |
-| :--- | :---------------------------------------------------------------- |
-| `fn` | (`acc`: Acc \| Value, `value`: Value) => _MaybePromiseLike_<Acc\> |
+| Name | Type                                                                      |
+| :--- | :------------------------------------------------------------------------ |
+| `fn` | (`acc`: `Acc` \| `Value`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L241)
+`fn`
 
-▸ `Const`**reduceConcur**<Acc, Value\>(`fn`: (`acc`: Acc \| Value, `value`:
-Value) => _MaybePromiseLike_<Acc\>, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Acc\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L241)
+
+▸ `Const` **reduceConcur**<`Acc`, `Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Acc`\>
 
 Returns a concur iterable containing the result of folding `concurIterable` with
 [foldConcur](modules.md#foldconcur) using `fn` if `concurIterable` contains at
@@ -9807,30 +11805,33 @@ getConcur(reduceConcur(() => {}, []))
 //=> Uncaught Error: Did not contain exactly one value
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Acc`   |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                              |
-| :--------------- | :---------------------------------------------------------------- |
-| `fn`             | (`acc`: Acc \| Value, `value`: Value) => _MaybePromiseLike_<Acc\> |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\>             |
+| Name             | Type                                                                      |
+| :--------------- | :------------------------------------------------------------------------ |
+| `fn`             | (`acc`: `Acc` \| `Value`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                   |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Acc\>
+#### Returns
 
-Defined in:
-[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/fold.d.ts#L241)
+[`ConcurIterable`](modules.md#concuriterable)<`Acc`\>
+
+#### Defined in
+
+[fold.d.ts:241](https://github.com/TomerAberbach/fn/blob/447b200/src/fold.d.ts#L241)
 
 ---
 
 ### repeat
 
-▸ `Const`**repeat**<Value\>(`value`: Value): _Iterable_<Value\>
+▸ `Const` **repeat**<`Value`\>(`value`): `Iterable`<`Value`\>
 
 Returns an infinite iterable that repeatedly yields `value`.
 
@@ -9841,28 +11842,32 @@ console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
 //=> sloth, sloth, sloth
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name    | Type  |
-| :------ | :---- |
-| `value` | Value |
+| Name    | Type    |
+| :------ | :------ |
+| `value` | `Value` |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[generate.d.ts:83](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/generate.d.ts#L83)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[generate.d.ts:83](https://github.com/TomerAberbach/fn/blob/447b200/src/generate.d.ts#L83)
 
 ---
 
 ### take
 
-▸ `Const`**take**(`count`: _number_): _function_
+▸ `Const` **take**(`count`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the first `count` values of `iterable` in
 iteration order.
@@ -9881,60 +11886,84 @@ console.log([...take(3, iterable)])
 //=> [ 1, 2, 3 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L252)
+`fn`
 
-▸ `Const`**take**<Value\>(`count`: _number_, `iterable`: _Iterable_<Value\>):
-_Iterable_<Value\>
+▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
 
-Returns an iterable containing the first `count` values of `iterable` in
-iteration order.
-
-If the `count` is greater than the number of values in `iterable`, then an
-iterable equivalent `iterable` is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const iterable = [1, 2, 3, 4, 5]
-
-console.log([...take(3, iterable)])
-//=> [ 1, 2, 3 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `count`    | _number_           |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L252)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L252)
+
+▸ `Const` **take**<`Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
+
+Returns an iterable containing the first `count` values of `iterable` in
+iteration order.
+
+If the `count` is greater than the number of values in `iterable`, then an
+iterable equivalent `iterable` is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const iterable = [1, 2, 3, 4, 5]
+
+console.log([...take(3, iterable)])
+//=> [ 1, 2, 3 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `count`    | `number`             |
+| `iterable` | `Iterable`<`Value`\> |
+
+#### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:252](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L252)
 
 ---
 
 ### takeAsync
 
-▸ `Const`**takeAsync**(`count`: _number_): _function_
+▸ `Const` **takeAsync**(`count`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the first `count` values of `asyncIterable`
 in iteration order.
@@ -9953,61 +11982,86 @@ console.log(await collectAsync(takeAsync(3, asyncIterable)))
 //=> [ 1, 2, 3 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L271)
+`fn`
 
-▸ `Const`**takeAsync**<Value\>(`count`: _number_, `asyncIterable`:
-_AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
-Returns an async iterable containing the first `count` values of `asyncIterable`
-in iteration order.
-
-If the `count` is greater than the number of values in `asyncIterable`, then an
-async iterable equivalent `asyncIterable` is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const asyncIterable = asAsync([1, 2, 3, 4, 5])
-
-console.log(await collectAsync(takeAsync(3, asyncIterable)))
-//=> [ 1, 2, 3 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `count`         | _number_                |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L271)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L271)
+
+▸ `Const` **takeAsync**<`Value`\>(`count`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
+
+Returns an async iterable containing the first `count` values of `asyncIterable`
+in iteration order.
+
+If the `count` is greater than the number of values in `asyncIterable`, then an
+async iterable equivalent `asyncIterable` is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const asyncIterable = asAsync([1, 2, 3, 4, 5])
+
+console.log(await collectAsync(takeAsync(3, asyncIterable)))
+//=> [ 1, 2, 3 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `count`         | `number`                  |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:271](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L271)
 
 ---
 
 ### takeConcur
 
-▸ `Const`**takeConcur**(`count`: _number_): _function_
+▸ `Const` **takeConcur**(`count`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the first `count` values of
 `concurIterable` in iteration order.
@@ -10026,63 +12080,86 @@ console.log(await collectConcur(takeConcur(3, concurIterable)))
 //=> [ 1, 2, 3 ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name    | Type     |
 | :------ | :------- |
-| `count` | _number_ |
+| `count` | `number` |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L290)
+`fn`
 
-▸ `Const`**takeConcur**<Value\>(`count`: _number_, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ <`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-Returns a concur iterable containing the first `count` values of
-`concurIterable` in iteration order.
-
-If the `count` is greater than the number of values in `concurIterable`, then a
-concur iterable equivalent `concurIterable` is returned.
-
-**`throws`** if `count` isn't a non-negative integer.
-
-**`example`**
-
-```js
-const concurIterable = asConcur([1, 2, 3, 4, 5])
-
-console.log(await collectConcur(takeConcur(3, concurIterable)))
-//=> [ 1, 2, 3 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `count`          | _number_                                              |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+##### Returns
 
-Defined in:
-[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L290)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L290)
+
+▸ `Const` **takeConcur**<`Value`\>(`count`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+Returns a concur iterable containing the first `count` values of
+`concurIterable` in iteration order.
+
+If the `count` is greater than the number of values in `concurIterable`, then a
+concur iterable equivalent `concurIterable` is returned.
+
+**`throws`** if `count` isn't a non-negative integer.
+
+**`example`**
+
+```js
+const concurIterable = asConcur([1, 2, 3, 4, 5])
+
+console.log(await collectConcur(takeConcur(3, concurIterable)))
+//=> [ 1, 2, 3 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `count`          | `number`                                                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:290](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L290)
 
 ---
 
 ### takeWhile
 
-▸ `Const`**takeWhile**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **takeWhile**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order up
 until, but not including, the first value for which `fn` does not return `true`.
@@ -10096,25 +12173,39 @@ console.log([...takeWhile(value => value < 5, iterable)])
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L114)
+`fn`
 
-▸ `Const`**takeWhile**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L114)
+
+▸ `Const` **takeWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order up
 until, but not including, the first value for which `fn` does not return `true`.
@@ -10128,30 +12219,33 @@ console.log([...takeWhile(value => value < 5, iterable)])
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L114)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:114](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L114)
 
 ---
 
 ### takeWhileAsync
 
-▸ `Const`**takeWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **takeWhileAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order up until, but not including, the first value for which `fn` does not
@@ -10168,26 +12262,40 @@ console.log(
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L131)
+`fn`
 
-▸ `Const`**takeWhileAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L131)
+
+▸ `Const` **takeWhileAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order up until, but not including, the first value for which `fn` does not
@@ -10204,30 +12312,34 @@ console.log(
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L131)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:131](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L131)
 
 ---
 
 ### takeWhileConcur
 
-▸ `Const`**takeWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **takeWhileConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order up until, but not including, the first value for which `fn` does not
@@ -10244,28 +12356,40 @@ console.log(
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L148)
+`fn`
 
-▸ `Const`**takeWhileConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L148)
+
+▸ `Const` **takeWhileConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order up until, but not including, the first value for which `fn` does not
@@ -10282,29 +12406,32 @@ console.log(
 //=> [ 1, 2, 3, 4 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/sub.d.ts#L148)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[sub.d.ts:148](https://github.com/TomerAberbach/fn/blob/447b200/src/sub.d.ts#L148)
 
 ---
 
 ### unique
 
-▸ `Const`**unique**<Value\>(`iterable`: _Iterable_<Value\>): _Iterable_<Value\>
+▸ `Const` **unique**<`Value`\>(`iterable`): `Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable`, except values are deduplicated if
 they are equal (using `Object.is`).
@@ -10318,29 +12445,31 @@ console.log([...unique(iterable)])
 //=> [ 1, -3, 4, 3, -5, 5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:110](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L110)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:110](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L110)
 
 ---
 
 ### uniqueAsync
 
-▸ `Const`**uniqueAsync**<Value\>(`asyncIterable`: _AsyncIterable_<Value\>):
-_AsyncIterable_<Value\>
+▸ `Const` **uniqueAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable`, except values are
 deduplicated if they are equal (using `Object.is`).
@@ -10354,28 +12483,32 @@ console.log(await collectAsync(toArray, uniqueAsync(asyncIterable)))
 //=> [ 1, -3, 4, 3, -5, 5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:124](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L124)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:124](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L124)
 
 ---
 
 ### uniqueBy
 
-▸ `Const`**uniqueBy**<Value\>(`fn`: (`value`: Value) => _unknown_): _function_
+▸ `Const` **uniqueBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable`, except values are deduplicated if
 applying `fn` to them returns the same value.
@@ -10389,25 +12522,39 @@ console.log([...uniqueBy(value => Math.abs(value), iterable)])
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L32)
+`fn`
 
-▸ `Const`**uniqueBy**<Value\>(`fn`: (`value`: Value) => _unknown_, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ (`iterable`): `Iterable`<`Value`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
+
+##### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L32)
+
+▸ `Const` **uniqueBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
 Returns an iterable equivalent to `iterable`, except values are deduplicated if
 applying `fn` to them returns the same value.
@@ -10421,30 +12568,33 @@ console.log([...uniqueBy(value => Math.abs(value), iterable)])
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                          |
-| :--------- | :---------------------------- |
-| `fn`       | (`value`: Value) => _unknown_ |
-| `iterable` | _Iterable_<Value\>            |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `fn`       | (`value`: `Value`) => `unknown` |
+| `iterable` | `Iterable`<`Value`\>            |
 
-**Returns:** _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L32)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:32](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L32)
 
 ---
 
 ### uniqueByAsync
 
-▸ `Const`**uniqueByAsync**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **uniqueByAsync**<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable`, except values are
 deduplicated if applying `fn` to them returns the same value or returns a
@@ -10464,26 +12614,40 @@ console.log(
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L60)
+`fn`
 
-▸ `Const`**uniqueByAsync**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+##### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L60)
+
+▸ `Const` **uniqueByAsync**<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable`, except values are
 deduplicated if applying `fn` to them returns the same value or returns a
@@ -10503,30 +12667,34 @@ console.log(
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name            | Type                          |
-| :-------------- | :---------------------------- |
-| `fn`            | (`value`: Value) => _unknown_ |
-| `asyncIterable` | _AsyncIterable_<Value\>       |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `fn`            | (`value`: `Value`) => `unknown` |
+| `asyncIterable` | `AsyncIterable`<`Value`\>       |
 
-**Returns:** _AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L60)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:60](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L60)
 
 ---
 
 ### uniqueByConcur
 
-▸ `Const`**uniqueByConcur**<Value\>(`fn`: (`value`: Value) => _unknown_):
-_function_
+▸ `Const` **uniqueByConcur**<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable equivalent to `concurIterable`, except values are
 deduplicated if applying `fn` to them returns the same value or returns a
@@ -10546,28 +12714,40 @@ console.log(
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name | Type                          |
-| :--- | :---------------------------- |
-| `fn` | (`value`: Value) => _unknown_ |
+| Name | Type                            |
+| :--- | :------------------------------ |
+| `fn` | (`value`: `Value`) => `unknown` |
 
-**Returns:** (`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L88)
+`fn`
 
-▸ `Const`**uniqueByConcur**<Value\>(`fn`: (`value`: Value) => _unknown_,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L88)
+
+▸ `Const` **uniqueByConcur**<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable equivalent to `concurIterable`, except values are
 deduplicated if applying `fn` to them returns the same value or returns a
@@ -10587,31 +12767,33 @@ console.log(
 //=> [ 1, -3, 4, 1, -5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `fn`             | (`value`: Value) => _unknown_                         |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `Value`) => `unknown`                         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L88)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:88](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L88)
 
 ---
 
 ### uniqueConcur
 
-▸ `Const`**uniqueConcur**<Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ `Const` **uniqueConcur**<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable equivalent to `concurIterable`, except values are
 deduplicated if they are equal (using `Object.is`).
@@ -10625,28 +12807,63 @@ console.log(await collectConcur(toArray, uniqueConcur(concurIterable)))
 //=> [ 1, -3, 4, 3, -5, 5 ]
 ```
 
-#### Type parameters:
+#### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+#### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[unique.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/unique.d.ts#L140)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[unique.d.ts:140](https://github.com/TomerAberbach/fn/blob/447b200/src/unique.d.ts#L140)
+
+---
+
+### values
+
+▸ `Const` **values**<`Value`\>(`object`): `Iterable`<`Value`\>
+
+Returns an iterable of the values in `object`.
+
+This differs from `Map.prototype.values` and `Set.prototype.values` in that the
+iterable returned by this function can be iterated multiple times.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name     | Type                                          |
+| :------- | :-------------------------------------------- |
+| `object` | `Map`<`unknown`, `Value`\> \| `Set`<`Value`\> |
+
+#### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[from.d.ts:31](https://github.com/TomerAberbach/fn/blob/447b200/src/from.d.ts#L31)
 
 ---
 
 ### windowed
 
-▸ `Const`**windowed**(`size`: _number_): _function_
+▸ `Const` **windowed**(`size`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`[]\>
 
 Returns an iterable containing a rolling window of the values of `iterable` as
 arrays of length `size`.
@@ -10660,55 +12877,79 @@ console.log([...windowed(3, iterable)])
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value[]\>
+#### Returns
 
-Defined in:
-[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L31)
+`fn`
 
-▸ `Const`**windowed**<Value\>(`size`: _number_, `iterable`: _Iterable_<Value\>):
-_Iterable_<Value[]\>
+▸ <`Value`\>(`iterable`): `Iterable`<`Value`[]\>
 
-Returns an iterable containing a rolling window of the values of `iterable` as
-arrays of length `size`.
-
-**`example`**
-
-```js
-const iterable = [1, 2, 3, 4, 5, 6, 7]
-
-console.log([...windowed(3, iterable)])
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name       | Type               |
-| :--------- | :----------------- |
-| `size`     | _number_           |
-| `iterable` | _Iterable_<Value\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value[]\>
+##### Returns
 
-Defined in:
-[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L31)
+`Iterable`<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L31)
+
+▸ `Const` **windowed**<`Value`\>(`size`, `iterable`): `Iterable`<`Value`[]\>
+
+Returns an iterable containing a rolling window of the values of `iterable` as
+arrays of length `size`.
+
+**`example`**
+
+```js
+const iterable = [1, 2, 3, 4, 5, 6, 7]
+
+console.log([...windowed(3, iterable)])
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `size`     | `number`             |
+| `iterable` | `Iterable`<`Value`\> |
+
+#### Returns
+
+`Iterable`<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:31](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L31)
 
 ---
 
 ### windowedAsync
 
-▸ `Const`**windowedAsync**(`size`: _number_): _function_
+▸ `Const` **windowedAsync**(`size`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`[]\>
 
 Returns an async iterable containing a rolling window of the values of
 `asyncIterable` as arrays of length `size`.
@@ -10722,56 +12963,81 @@ console.log(await collectAsync(toArray, windowedAsync(3, asyncIterable)))
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value[]\>
+#### Returns
 
-Defined in:
-[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L48)
+`fn`
 
-▸ `Const`**windowedAsync**<Value\>(`size`: _number_, `asyncIterable`:
-_AsyncIterable_<Value\>): _AsyncIterable_<Value[]\>
+▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`[]\>
 
-Returns an async iterable containing a rolling window of the values of
-`asyncIterable` as arrays of length `size`.
-
-**`example`**
-
-```js
-const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7])
-
-console.log(await collectAsync(toArray, windowedAsync(3, asyncIterable)))
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `size`          | _number_                |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value[]\>
+##### Returns
 
-Defined in:
-[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L48)
+`AsyncIterable`<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L48)
+
+▸ `Const` **windowedAsync**<`Value`\>(`size`, `asyncIterable`):
+`AsyncIterable`<`Value`[]\>
+
+Returns an async iterable containing a rolling window of the values of
+`asyncIterable` as arrays of length `size`.
+
+**`example`**
+
+```js
+const asyncIterable = asAsync([1, 2, 3, 4, 5, 6, 7])
+
+console.log(await collectAsync(toArray, windowedAsync(3, asyncIterable)))
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `size`          | `number`                  |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:48](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L48)
 
 ---
 
 ### windowedConcur
 
-▸ `Const`**windowedConcur**(`size`: _number_): _function_
+▸ `Const` **windowedConcur**(`size`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
 
 Returns a concur iterable containing a rolling window of the values of
 `concurIterable` as arrays of length `size`.
@@ -10785,58 +13051,81 @@ console.log(await collectConcur(toArray, windowedConcur(3, concurIterable)))
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name   | Type     |
 | :----- | :------- |
-| `size` | _number_ |
+| `size` | `number` |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+#### Returns
 
-Defined in:
-[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L69)
+`fn`
 
-▸ `Const`**windowedConcur**<Value\>(`size`: _number_, `concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+▸ <`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
 
-Returns a concur iterable containing a rolling window of the values of
-`concurIterable` as arrays of length `size`.
-
-**`example`**
-
-```js
-const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7])
-
-console.log(await collectConcur(toArray, windowedConcur(3, concurIterable)))
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `size`           | _number_                                              |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value[]\>
+##### Returns
 
-Defined in:
-[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/windowed.d.ts#L69)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L69)
+
+▸ `Const` **windowedConcur**<`Value`\>(`size`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+Returns a concur iterable containing a rolling window of the values of
+`concurIterable` as arrays of length `size`.
+
+**`example`**
+
+```js
+const concurIterable = asConcur([1, 2, 3, 4, 5, 6, 7])
+
+console.log(await collectConcur(toArray, windowedConcur(3, concurIterable)))
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 7 ] ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `size`           | `number`                                                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+
+#### Defined in
+
+[windowed.d.ts:69](https://github.com/TomerAberbach/fn/blob/447b200/src/windowed.d.ts#L69)
 
 ---
 
 ### without
 
-▸ `Const`**without**(`excluded`: _Iterable_<unknown\>): _function_
+▸ `Const` **without**(`excluded`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+`Iterable`<`Value`\>
 
 Returns an iterable containing the values of `iterable` excluding the values of
 `excluded`.
@@ -10850,55 +13139,79 @@ console.log([...without([3, 5], numbers)])
 //=> [ 1, 2, 4, 6 ]
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `excluded` | _Iterable_<unknown\> |
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `excluded` | `Iterable`<`unknown`\> |
 
-**Returns:** <Value\>(`iterable`: _Iterable_<Value\>) => _Iterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L118)
+`fn`
 
-▸ `Const`**without**<Value\>(`excluded`: _Iterable_<unknown\>, `iterable`:
-_Iterable_<Value\>): _Iterable_<Value\>
+▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
 
-Returns an iterable containing the values of `iterable` excluding the values of
-`excluded`.
-
-**`example`**
-
-```js
-const numbers = [1, 2, 3, 4, 5, 6]
-
-console.log([...without([3, 5], numbers)])
-//=> [ 1, 2, 4, 6 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
 | Name       | Type                 |
 | :--------- | :------------------- |
-| `excluded` | _Iterable_<unknown\> |
-| `iterable` | _Iterable_<Value\>   |
+| `iterable` | `Iterable`<`Value`\> |
 
-**Returns:** _Iterable_<Value\>
+##### Returns
 
-Defined in:
-[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L118)
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L118)
+
+▸ `Const` **without**<`Value`\>(`excluded`, `iterable`): `Iterable`<`Value`\>
+
+Returns an iterable containing the values of `iterable` excluding the values of
+`excluded`.
+
+**`example`**
+
+```js
+const numbers = [1, 2, 3, 4, 5, 6]
+
+console.log([...without([3, 5], numbers)])
+//=> [ 1, 2, 4, 6 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `excluded` | `Iterable`<`unknown`\> |
+| `iterable` | `Iterable`<`Value`\>   |
+
+#### Returns
+
+`Iterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:118](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L118)
 
 ---
 
 ### withoutAsync
 
-▸ `Const`**withoutAsync**(`excluded`: _Iterable_<unknown\>): _function_
+▸ `Const` **withoutAsync**(`excluded`): <Value\>(`asyncIterable`:
+`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` excluding the
 values of `excluded`.
@@ -10912,56 +13225,81 @@ console.log(await collectAsync(toArray, withoutAsync([3, 5], numbers)))
 //=> [ 1, 2, 4, 6 ]
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `excluded` | _Iterable_<unknown\> |
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `excluded` | `Iterable`<`unknown`\> |
 
-**Returns:** <Value\>(`asyncIterable`: _AsyncIterable_<Value\>) =>
-_AsyncIterable_<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L140)
+`fn`
 
-▸ `Const`**withoutAsync**<Value\>(`excluded`: _Iterable_<unknown\>,
-`asyncIterable`: _AsyncIterable_<Value\>): _AsyncIterable_<Value\>
+▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
 
-Returns an async iterable containing the values of `asyncIterable` excluding the
-values of `excluded`.
-
-**`example`**
-
-```js
-const numbers = asAsync([1, 2, 3, 4, 5, 6])
-
-console.log(await collectAsync(toArray, withoutAsync([3, 5], numbers)))
-//=> [ 1, 2, 4, 6 ]
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name            | Type                    |
-| :-------------- | :---------------------- |
-| `excluded`      | _Iterable_<unknown\>    |
-| `asyncIterable` | _AsyncIterable_<Value\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
 
-**Returns:** _AsyncIterable_<Value\>
+##### Returns
 
-Defined in:
-[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L140)
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L140)
+
+▸ `Const` **withoutAsync**<`Value`\>(`excluded`, `asyncIterable`):
+`AsyncIterable`<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` excluding the
+values of `excluded`.
+
+**`example`**
+
+```js
+const numbers = asAsync([1, 2, 3, 4, 5, 6])
+
+console.log(await collectAsync(toArray, withoutAsync([3, 5], numbers)))
+//=> [ 1, 2, 4, 6 ]
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `excluded`      | `Iterable`<`unknown`\>    |
+| `asyncIterable` | `AsyncIterable`<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:140](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L140)
 
 ---
 
 ### withoutConcur
 
-▸ `Const`**withoutConcur**(`excluded`: _Iterable_<unknown\>): _function_
+▸ `Const` **withoutConcur**(`excluded`): <Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` excluding
 the values of `excluded`.
@@ -10975,49 +13313,71 @@ console.log(await collectConcur(toArray, withoutConcur([3, 5], numbers)))
 //=> [ 1, 2, 4, 6 ] (not necessarily in this order)
 ```
 
-#### Parameters:
+#### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `excluded` | _Iterable_<unknown\> |
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `excluded` | `Iterable`<`unknown`\> |
 
-**Returns:** <Value\>(`concurIterable`:
-[_ConcurIterable_](modules.md#concuriterable)<Value\>) =>
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+#### Returns
 
-Defined in:
-[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L162)
+`fn`
 
-▸ `Const`**withoutConcur**<Value\>(`excluded`: _Iterable_<unknown\>,
-`concurIterable`: [_ConcurIterable_](modules.md#concuriterable)<Value\>):
-[_ConcurIterable_](modules.md#concuriterable)<Value\>
+▸ <`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` excluding
-the values of `excluded`.
-
-**`example`**
-
-```js
-const numbers = asConcur([1, 2, 3, 4, 5, 6])
-
-console.log(await collectConcur(toArray, withoutConcur([3, 5], numbers)))
-//=> [ 1, 2, 4, 6 ] (not necessarily in this order)
-```
-
-#### Type parameters:
+##### Type parameters
 
 | Name    |
 | :------ |
 | `Value` |
 
-#### Parameters:
+##### Parameters
 
-| Name             | Type                                                  |
-| :--------------- | :---------------------------------------------------- |
-| `excluded`       | _Iterable_<unknown\>                                  |
-| `concurIterable` | [_ConcurIterable_](modules.md#concuriterable)<Value\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
-**Returns:** [_ConcurIterable_](modules.md#concuriterable)<Value\>
+##### Returns
 
-Defined in:
-[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/6bd73bc/src/filter.d.ts#L162)
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L162)
+
+▸ `Const` **withoutConcur**<`Value`\>(`excluded`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` excluding
+the values of `excluded`.
+
+**`example`**
+
+```js
+const numbers = asConcur([1, 2, 3, 4, 5, 6])
+
+console.log(await collectConcur(toArray, withoutConcur([3, 5], numbers)))
+//=> [ 1, 2, 4, 6 ] (not necessarily in this order)
+```
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `excluded`       | `Iterable`<`unknown`\>                                  |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+
+#### Defined in
+
+[filter.d.ts:162](https://github.com/TomerAberbach/fn/blob/447b200/src/filter.d.ts#L162)

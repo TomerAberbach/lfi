@@ -52,7 +52,7 @@
     "test": "tomer test",
     "coverage": "tomer test -- -c",
     "build": "tomer build -f \"esm,cjs\" src/index.js",
-    "docs": "typedoc --plugin typedoc-plugin-markdown",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --githubPages false",
     "prepublishOnly": "pnpm run build"
   },
   "ava": {

@@ -2,11 +2,11 @@ lockfileVersion: 5.3
 
 specifiers:
   '@sinonjs/fake-timers': 8.0.1
-  '@types/node': 16.11.2
+  '@types/node': 16.11.4
   ava: 3.15.0
   ava-fast-check: 4.0.2
   betterator: 0.0.2
-  fast-check: 2.14.0
+  fast-check: 2.18.1
   object-hash: 2.2.0
   p-state: 1.0.0
   tomer: 0.0.17
@@ -20,10 +20,10 @@ dependencies:
 
 devDependencies:
   '@sinonjs/fake-timers': 8.0.1
-  '@types/node': 16.11.2
+  '@types/node': 16.11.4
   ava: 3.15.0
-  ava-fast-check: 4.0.2_ava@3.15.0+fast-check@2.14.0
-  fast-check: 2.14.0
+  ava-fast-check: 4.0.2_ava@3.15.0+fast-check@2.18.1
+  fast-check: 2.18.1
   object-hash: 2.2.0
   p-state: 1.0.0
   tomer: 0.0.17
@@ -425,8 +425,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node/16.11.2:
-    resolution: {integrity: sha512-w34LtBB0OkDTs19FQHXy4Ig/TOXI4zqvXS2Kk1PAsRKZ0I+nik7LlMYxckW0tSNGtvWmzB+mrCTbuEjuB9DVsw==}
+  /@types/node/16.11.4:
+    resolution: {integrity: sha512-TMgXmy0v2xWyuCSCJM6NCna2snndD8yvQF67J29ipdzMcsPa9u+o0tjF5+EQNdhcuZplYuouYqpc4zcd5I6amQ==}
     dev: true
 
   /@types/normalize-package-data/2.4.1:
@@ -440,7 +440,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 16.11.2
+      '@types/node': 16.11.4
     dev: true
 
   /JSONStream/1.3.5:
@@ -651,14 +651,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ava-fast-check/4.0.2_ava@3.15.0+fast-check@2.14.0:
+  /ava-fast-check/4.0.2_ava@3.15.0+fast-check@2.18.1:
     resolution: {integrity: sha512-VmCbunKVjwKREH1OXvTIAOqaNTTabZGl2X3AQyN1x+60u1fuWqKC9zyddqIJkmLqZYmH6b4eVN6wbHH20eDuBA==}
     peerDependencies:
       ava: '>=3.9.0'
       fast-check: ^2.0.0
     dependencies:
       ava: 3.15.0
-      fast-check: 2.14.0
+      fast-check: 2.18.1
     dev: true
 
   /ava/3.15.0:
@@ -797,9 +797,9 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001270
+      caniuse-lite: 1.0.30001271
       colorette: 1.4.0
-      electron-to-chromium: 1.3.877
+      electron-to-chromium: 1.3.878
       escalade: 3.1.1
       node-releases: 1.1.77
     dev: true
@@ -883,8 +883,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001270:
-    resolution: {integrity: sha512-TcIC7AyNWXhcOmv2KftOl1ShFAaHQYcB/EPL/hEyMrcS7ZX0/DvV1aoy6BzV0+16wTpoAyTMGDNAJfSqS/rz7A==}
+  /caniuse-lite/1.0.30001271:
+    resolution: {integrity: sha512-BBruZFWmt3HFdVPS8kceTBIguKxu4f99n5JNp06OlPD/luoAMIaIK5ieV5YjnBLH3Nysai9sxj9rpJj4ZisXOA==}
     dev: true
 
   /chalk/2.4.2:
@@ -1015,6 +1015,10 @@ packages:
 
   /colorette/1.4.0:
     resolution: {integrity: sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==}
+    dev: true
+
+  /colorette/2.0.16:
+    resolution: {integrity: sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==}
     dev: true
 
   /command-exists/1.2.9:
@@ -1321,8 +1325,8 @@ packages:
     resolution: {integrity: sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=}
     dev: true
 
-  /electron-to-chromium/1.3.877:
-    resolution: {integrity: sha512-fT5mW5Giw5iyVukeHb2XvB4joBKvzHtl8Vs3QzE7APATpFMt/T7RWyUcIKSZzYkKQgpMbu+vDBTCHfQZvh8klA==}
+  /electron-to-chromium/1.3.878:
+    resolution: {integrity: sha512-O6yxWCN9ph2AdspAIszBnd9v8s11hQx8ub9w4UGApzmNRnoKhbulOWqbO8THEQec/aEHtvy+donHZMlh6l1rbA==}
     dev: true
 
   /emittery/0.8.1:
@@ -1461,7 +1465,7 @@ packages:
       '@mdn/browser-compat-data': 2.0.7
       ast-metadata-inferer: 0.4.0
       browserslist: 4.16.6
-      caniuse-lite: 1.0.30001270
+      caniuse-lite: 1.0.30001271
       core-js: 3.18.3
       eslint: 7.31.0
       find-up: 4.1.0
@@ -1702,11 +1706,11 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
     dev: true
 
-  /fast-check/2.14.0:
-    resolution: {integrity: sha512-4hm0ioyEVCwgjBLBqriwAFYu3/yc7pNH9fBfvzi6JRWRs4R3mwZwrr/d4MHbY0fTBJ0Uakg4TaMAAQ8Cnt2+KQ==}
+  /fast-check/2.18.1:
+    resolution: {integrity: sha512-iNntcmt4xX3UvDV6tJNUIUrbskT78RCUTtZDfT8/QU+b8pDrmfi4aBIVaXDi3qHtseSp0pDIsdPPy73Uu4RmsA==}
     engines: {node: '>=8.0.0'}
     dependencies:
-      pure-rand: 4.2.1
+      pure-rand: 5.0.0
     dev: true
 
   /fast-deep-equal/3.1.3:
@@ -2404,7 +2408,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 16.11.2
+      '@types/node': 16.11.4
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -2541,7 +2545,7 @@ packages:
       dedent: 0.7.0
       enquirer: 2.3.6
       execa: 5.1.1
-      listr2: 3.12.2_enquirer@2.3.6
+      listr2: 3.13.1_enquirer@2.3.6
       log-symbols: 4.1.0
       micromatch: 4.0.4
       normalize-path: 3.0.0
@@ -2552,14 +2556,14 @@ packages:
       - supports-color
     dev: true
 
-  /listr2/3.12.2_enquirer@2.3.6:
-    resolution: {integrity: sha512-64xC2CJ/As/xgVI3wbhlPWVPx0wfTqbUAkpb7bjDi0thSWMqrf07UFhrfsGoo8YSXmF049Rp9C0cjLC8rZxK9A==}
+  /listr2/3.13.1_enquirer@2.3.6:
+    resolution: {integrity: sha512-pk4YBDA2cxtpM8iLHbz6oEsfZieJKHf6Pt19NlKaHZZVpqHyVs/Wqr7RfBBCeAFCJchGO7WQHVkUPZTvJMHk8w==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       enquirer: '>= 2.3.0 < 3'
     dependencies:
       cli-truncate: 2.1.0
-      colorette: 1.4.0
+      colorette: 2.0.16
       enquirer: 2.3.6
       log-update: 4.0.0
       p-map: 4.0.0
@@ -3307,8 +3311,8 @@ packages:
       escape-goat: 2.1.1
     dev: true
 
-  /pure-rand/4.2.1:
-    resolution: {integrity: sha512-ESI2eqHP9JlrnTb7H7fgczRUWB6VxMMJ2m9870WCIBhYkBzSGd6gml6WhQVXHK+ZM8k70TqsyI28ixaLPaNz5g==}
+  /pure-rand/5.0.0:
+    resolution: {integrity: sha512-lD2/y78q+7HqBx2SaT6OT4UcwtvXNRfEpzYEzl0EQ+9gZq2Qi3fa0HDnYPeqQwhlHJFBUhT7AO3mLU3+8bynHA==}
     dev: true
 
   /q/1.5.1:

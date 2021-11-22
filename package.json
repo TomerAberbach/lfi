@@ -61,7 +61,7 @@
     ]
   },
   "dependencies": {
-    "betterator": "0.0.2"
+    "betterator": "1.0.0"
   },
   "devDependencies": {
     "@sinonjs/fake-timers": "8.0.1",

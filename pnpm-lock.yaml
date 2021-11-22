@@ -5,7 +5,7 @@ specifiers:
   '@types/node': 16.11.4
   ava: 3.15.0
   ava-fast-check: 4.0.2
-  betterator: 0.0.2
+  betterator: 1.0.0
   fast-check: 2.18.1
   object-hash: 2.2.0
   p-state: 1.0.0
@@ -16,7 +16,7 @@ specifiers:
   typescript: 4.4.4
 
 dependencies:
-  betterator: 0.0.2
+  betterator: 1.0.0
 
 devDependencies:
   '@sinonjs/fake-timers': 8.0.1
@@ -746,6 +746,12 @@ packages:
   /betterator/0.0.2:
     resolution: {integrity: sha512-onN+altB/xO3GvDRI2P4nO6u9Mnejp1P0bNQ+ZUhmwOdKcsCrs3l+wYaRITiudhmON3Rcy43++gP3VMikDWiEQ==}
     engines: {node: '>= 12.17'}
+    dev: true
+
+  /betterator/1.0.0:
+    resolution: {integrity: sha512-eefv9TngSxMW4VOn7XWCCDHZRjQuJrJo/bJzwFK9JI3AcfTRIH1WMMUQwt9fO84BzxuCQ3GxQfiH2Js/u6iAfg==}
+    engines: {node: '>= 12.17'}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}

@@ -27,7 +27,7 @@
   "license": "Apache-2.0",
   "files": [
     "dist",
-    "src/*.d.ts"
+    "src/**/*.d.ts"
   ],
   "type": "module",
   "engines": {

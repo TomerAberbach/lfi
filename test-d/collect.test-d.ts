@@ -23,6 +23,7 @@ import {
   collectConcur,
   Collector,
   folding,
+  grouping,
   MapCollector,
   toArray,
   toMap,
@@ -109,4 +110,11 @@ expectType<Promise<Map<string, object[]>>>(
 )
 expectType<Promise<Map<string, object[]>>>(
   collectConcur(foldingCollector, asConcur(entries1)),
+)
+
+expectType<Record<string, string[]>>(
+  collect(grouping(toArray, toObject), [[`string`, `string`]] as [
+    string,
+    string,
+  ][]),
 )

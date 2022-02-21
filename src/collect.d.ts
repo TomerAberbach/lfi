@@ -345,7 +345,11 @@ type MapCollectorToCollection<
     ? WeakMap<Key, Value>
     : never
   : C extends Folding<infer Acc, infer InnerC>
-  ? MapCollectorToCollection<InnerC, Key, Acc>
+  ? MapCollectorToCollection<
+      InnerC,
+      Key,
+      Acc extends Collector ? CollectorToCollection<Acc, Value> : Acc
+    >
   : never
 
 /**

@@ -21,7 +21,7 @@ type Curried<Parameters extends ReadonlyArray<any>, Return> = <
   ...args: PartialParameters
 ) => PartialParameters extends Parameters
   ? Return
-  : Parameters extends [
+  : Parameters extends readonly [
       ...TupleOfSameLength<PartialParameters>,
       ...infer RemainingParameters
     ]

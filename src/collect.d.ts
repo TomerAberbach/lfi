@@ -314,7 +314,7 @@ type CollectorToCollection<
     ? WeakSet<Value>
     : never
   : C extends MapCollector
-  ? Value extends [infer EntryKey, infer EntryValue]
+  ? Value extends readonly [infer EntryKey, infer EntryValue]
     ? MapCollectorToCollection<C, EntryKey, EntryValue>
     : never
   : never

@@ -24,7 +24,9 @@ import {
   Collector,
   folding,
   grouping,
+  map,
   MapCollector,
+  pipe,
   toArray,
   toMap,
   toObject,
@@ -117,4 +119,12 @@ expectType<Record<string, string[]>>(
     string,
     string,
   ][]),
+)
+
+expectType<Record<number, Set<number>>>(
+  pipe(
+    [1, 2, 3],
+    map(x => [x, x * 2] as const),
+    collect(grouping(toSet, toObject)),
+  ),
 )

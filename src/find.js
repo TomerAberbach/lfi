@@ -45,8 +45,8 @@ export const findConcur = curry(
       concurIterable(async value => {
         if (!found && (await fn(value)) === true && !found) {
           found = true
-          resolve()
           await apply(value)
+          resolve()
         }
       }).then(() => resolve())
     }),

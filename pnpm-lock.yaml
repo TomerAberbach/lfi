@@ -4,9 +4,9 @@ specifiers:
   '@sinonjs/fake-timers': 8.0.1
   '@types/node': 16.11.4
   ava: 3.15.0
-  ava-fast-check: 4.0.2
+  ava-fast-check: 5.0.0
   betterator: 1.0.0
-  fast-check: 2.18.1
+  fast-check: 2.24.0
   object-hash: 2.2.0
   p-state: 1.0.0
   tomer: 0.0.17
@@ -22,8 +22,8 @@ devDependencies:
   '@sinonjs/fake-timers': 8.0.1
   '@types/node': 16.11.4
   ava: 3.15.0
-  ava-fast-check: 4.0.2_ava@3.15.0+fast-check@2.18.1
-  fast-check: 2.18.1
+  ava-fast-check: 5.0.0_ava@3.15.0+fast-check@2.24.0
+  fast-check: 2.24.0
   object-hash: 2.2.0
   p-state: 1.0.0
   tomer: 0.0.17
@@ -651,14 +651,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ava-fast-check/4.0.2_ava@3.15.0+fast-check@2.18.1:
-    resolution: {integrity: sha512-VmCbunKVjwKREH1OXvTIAOqaNTTabZGl2X3AQyN1x+60u1fuWqKC9zyddqIJkmLqZYmH6b4eVN6wbHH20eDuBA==}
+  /ava-fast-check/5.0.0_ava@3.15.0+fast-check@2.24.0:
+    resolution: {integrity: sha512-ZXXVVJ74KntRkG1Iolgiia+UUNU/uN8PZpvae3BiuZVkGW9oyhuy3FUHEEzjYvpkwK7gzNw0rUzsuyLidXPNSQ==}
     peerDependencies:
-      ava: '>=3.9.0'
+      ava: '>=4.0.0'
       fast-check: ^2.0.0
     dependencies:
       ava: 3.15.0
-      fast-check: 2.18.1
+      fast-check: 2.24.0
     dev: true
 
   /ava/3.15.0:
@@ -1712,11 +1712,11 @@ packages:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
     dev: true
 
-  /fast-check/2.18.1:
-    resolution: {integrity: sha512-iNntcmt4xX3UvDV6tJNUIUrbskT78RCUTtZDfT8/QU+b8pDrmfi4aBIVaXDi3qHtseSp0pDIsdPPy73Uu4RmsA==}
+  /fast-check/2.24.0:
+    resolution: {integrity: sha512-iNXbN90lbabaCUfnW5jyXYPwMJLFYl09eJDkXA9ZoidFlBK63gNRvcKxv+8D1OJ1kIYjwBef4bO/K3qesUeWLQ==}
     engines: {node: '>=8.0.0'}
     dependencies:
-      pure-rand: 5.0.0
+      pure-rand: 5.0.1
     dev: true
 
   /fast-deep-equal/3.1.3:
@@ -1840,6 +1840,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -2008,7 +2009,7 @@ packages:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.14.2
+      uglify-js: 3.15.3
     dev: true
 
   /hard-rejection/2.1.0:
@@ -3317,8 +3318,8 @@ packages:
       escape-goat: 2.1.1
     dev: true
 
-  /pure-rand/5.0.0:
-    resolution: {integrity: sha512-lD2/y78q+7HqBx2SaT6OT4UcwtvXNRfEpzYEzl0EQ+9gZq2Qi3fa0HDnYPeqQwhlHJFBUhT7AO3mLU3+8bynHA==}
+  /pure-rand/5.0.1:
+    resolution: {integrity: sha512-ksWccjmXOHU2gJBnH0cK1lSYdvSZ0zLoCMSz/nTGh6hDvCSgcRxDyIcOBD6KNxFz3xhMPm/T267Tbe2JRymKEQ==}
     dev: true
 
   /q/1.5.1:
@@ -4125,8 +4126,8 @@ packages:
     hasBin: true
     dev: true
 
-  /uglify-js/3.14.2:
-    resolution: {integrity: sha512-rtPMlmcO4agTUfz10CbgJ1k6UAoXM2gWb3GoMPPZB/+/Ackf8lNWk11K4rYi2D0apgoFRLtQOZhb+/iGNJq26A==}
+  /uglify-js/3.15.3:
+    resolution: {integrity: sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==}
     engines: {node: '>=0.8.0'}
     hasBin: true
     requiresBuild: true

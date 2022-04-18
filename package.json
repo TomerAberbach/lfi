@@ -40,12 +40,13 @@
     "not ios_saf >= 3.2"
   ],
   "exports": {
+    "types": "./src/index.d.ts",
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
   "types": "./src/index.d.ts",
+  "module": "./dist/index.js",
+  "main": "./dist/index.cjs",
   "scripts": {
     "prepare": "tomer install",
     "lint": "tomer lint -g",

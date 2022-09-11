@@ -13,8 +13,11 @@
   <a href="https://github.com/TomerAberbach/lfi/actions">
     <img src="https://github.com/TomerAberbach/lfi/workflows/CI/badge.svg" alt="CI" />
   </a>
-  <a href="https://bundlephobia.com/result?p=lfi">
-    <img src="https://badgen.net/bundlephobia/minzip/lfi" alt="minzip size" />
+  <a href="http://img.badgesize.io/https://unpkg.com/lfi/dist/index.min.js?compression=gzip&label=gzip">
+    <img src="https://unpkg.com/lfi/dist/index.min.js" alt="gzip size" />
+  </a>
+  <a href="http://img.badgesize.io/https://unpkg.com/lfi/dist/index.min.js?compression=brotli&label=brotli">
+    <img src="https://unpkg.com/lfi/dist/index.min.js" alt="brotli size" />
   </a>
 </div>
 
@@ -56,14 +59,14 @@ Some _synchronous_ operations:
 
 ```js
 import {
-  pipe,
-  map,
   filter,
-  collect,
+  map,
+  pipe,
+  reduce,
   toArray,
-  toSet,
+  toGrouped,
   toMap,
-  grouping,
+  toSet,
 } from 'lfi'
 
 const messySlothDiaryEntries = [
@@ -82,21 +85,21 @@ const cleanSlothDiaryEntries = pipe(
   map(([sloth, activity]) => [sloth, activity.trim()]),
   filter(([, activity]) => activity.length > 0),
   map(entry => entry.map(string => string.toLowerCase())),
-  collect(toArray),
+  reduce(toArray()),
 )
 console.log(cleanSlothDiaryEntries)
 //=> [ [ 'carl', 'slept' ], [ 'phil', 'ate' ], [ 'carl', 'climbed' ], ... ]
 
-const uniqueActiviesPerSloth = collect(
-  grouping(toSet, toMap),
+const uniqueActiviesPerSloth = reduce(
+  toGrouped(toSet(), toMap()),
   cleanSlothDiaryEntries,
 )
 console.log(uniqueActiviesPerSloth)
 //=> Map(3) {
-//     'carl' => Set(2) { 'slept', 'climbed' },
-//     'phil' => Set(1) { 'ate' },
-//     'frank' => Set(2) { 'ate', 'strolled' }
-//   }
+//=>   'carl' => Set(2) { 'slept', 'climbed' },
+//=>   'phil' => Set(1) { 'ate' },
+//=>   'frank' => Set(2) { 'ate', 'strolled' }
+//=> }
 ```
 
 Some _sequential asynchronous_ operations:
@@ -105,7 +108,7 @@ Some _sequential asynchronous_ operations:
 import { createReadStream } from 'fs'
 import readline from 'readline'
 import got from 'got'
-import { pipe, chunkedAsync, mapAsync, forEachAsync } from 'lfi'
+import { chunkAsync, forEachAsync, mapAsync, pipe } from 'lfi'
 
 const filename = `every-sloth-name.txt`
 
@@ -114,7 +117,7 @@ await pipe(
     input: createReadStream(filename, { encoding: `utf8` }),
     crlfDelay: Infinity,
   }),
-  chunkedAsync(4),
+  chunkAsync(4),
   mapAsync(async slothSquad => {
     const [adjective] = await got(
       `https://random-word-form.herokuapp.com/random/adjective`,
@@ -137,7 +140,7 @@ import { createReadStream } from 'fs'
 import readline from 'readline'
 import got from 'got'
 import limitConcur from 'limit-concur'
-import { pipe, chunkedAsync, asConcur, mapConcur, forEachConcur } from 'lfi'
+import { asConcur, chunkAsync, forEachConcur, mapConcur, pipe } from 'lfi'
 
 const filename = `every-sloth-name.txt`
 
@@ -146,7 +149,7 @@ await pipe(
     input: createReadStream(filename, { encoding: `utf8` }),
     crlfDelay: Infinity,
   }),
-  chunkedAsync(4),
+  chunkAsync(4),
   // Query for the adjectives of each group concurrently rather than sequentially!
   asConcur,
   mapConcur(
@@ -263,7 +266,7 @@ They are different!
     asConcur,
     mapConcur,
     filterConcur,
-    collectConcur,
+    reduceConcur,
     toArray,
   } from 'lfi'
 
@@ -276,13 +279,13 @@ They are different!
   // ...
   const finalArray = await pMap(lastFunction, intermediateArrayN)
 
-  // No intermediate arrays! No processing even happens until the call to `collectConcur`!
+  // No intermediate arrays! No processing even happens until the call to `reduceConcur`!
   const otherFinalArray = await pipe(
     asConcur(someArray),
     mapConcur(someFunction),
     filterConcur(someOtherFunction),
     // ...
-    collectConcur(toArray),
+    reduceConcur(toArray()),
   )
   ```
 
@@ -297,7 +300,7 @@ They are different!
     asConcur,
     mapConcur,
     filterConcur,
-    collectConcur,
+    reduceConcur,
     toArray,
   } from 'lfi'
 
@@ -330,7 +333,7 @@ They are different!
       await delay(filterDelays[index] * 1000)
       return true
     }),
-    collectConcur(toArray),
+    reduceConcur(toArray()),
   )
   ```
 

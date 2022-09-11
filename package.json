@@ -1,6 +1,6 @@
 {
   "name": "lfi",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "author": {
     "name": "Tomer Aberbach",
     "email": "tomeraberbach@gmail.com",
@@ -26,56 +26,46 @@
   },
   "license": "Apache-2.0",
   "files": [
-    "dist",
-    "src/**/*.d.ts"
+    "dist"
   ],
   "type": "module",
+  "sideEffects": false,
   "engines": {
-    "node": ">= 12.17"
+    "node": ">= 14.6"
   },
-  "browserslist": [
-    "defaults",
-    "not IE 11",
-    "not op_mini all",
-    "not ios_saf >= 3.2"
-  ],
   "exports": {
-    "types": "./src/index.d.ts",
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs"
+    "types": "./dist/index.d.ts",
+    "require": "./dist/index.min.cjs",
+    "import": "./dist/index.min.js"
   },
-  "types": "./src/index.d.ts",
-  "module": "./dist/index.js",
-  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.min.cjs",
+  "module": "./dist/index.min.js",
   "scripts": {
     "prepare": "tomer install",
-    "lint": "tomer lint -g",
+    "format": "tomer format",
+    "lint": "tomer lint",
+    "typecheck": "tomer typecheck",
     "test": "tomer test",
-    "coverage": "tomer test -- -c",
-    "build": "tomer build -f \"esm,cjs\" src/index.js",
-    "docs": "typedoc --plugin typedoc-plugin-markdown --githubPages false",
-    "prepublishOnly": "pnpm run build"
+    "build": "tomer build",
+    "clean": "tomer clean dist",
+    "prepublishOnly": "tomer build",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --githubPages false"
   },
-  "ava": {
-    "require": [
-      "./test/helpers/fast-check.js"
-    ]
-  },
-  "dependencies": {
-    "betterator": "1.0.0"
+  "prettier": "tomer/prettier",
+  "terser": {
+    "mangle": {
+      "properties": {
+        "regex": "^_[^_]+"
+      }
+    }
   },
   "devDependencies": {
-    "@sinonjs/fake-timers": "8.0.1",
-    "@types/node": "16.11.4",
-    "ava": "3.15.0",
-    "ava-fast-check": "5.0.0",
-    "fast-check": "2.24.0",
-    "object-hash": "2.2.0",
-    "p-state": "1.0.0",
-    "tomer": "0.0.17",
-    "tsd": "0.18.0",
-    "typedoc": "0.22.6",
-    "typedoc-plugin-markdown": "3.11.3",
-    "typescript": "4.4.4"
+    "@types/jest": "^29.0.0",
+    "betterator": "^2.0.2",
+    "svkc": "^0.0.2",
+    "tomer": "^0.2.0",
+    "typedoc": "^0.23.14",
+    "typedoc-plugin-markdown": "^3.13.6"
   }
 }

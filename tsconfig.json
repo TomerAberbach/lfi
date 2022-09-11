@@ -1,10 +1,21 @@
 {
+  "extends": "tomer/tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"],
+    "skipLibCheck": true
+  },
   "typedocOptions": {
     "entryPoints": "./src/index.d.ts",
     "entryDocument": "readme.md",
-    "excludeInternal": true
-  },
-  "compilerOptions": {
-    "lib": ["ESNext"]
+    "excludeInternal": true,
+    "exclude": "./test",
+    "intentionallyNotExported": [
+      "CheckNumericLiteral",
+      "Curried",
+      "MaybePromiseLike",
+      "NonNegative",
+      "PositiveInteger",
+      "StrictInteger"
+    ]
   }
 }

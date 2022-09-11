@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        nodejs: [12, 14]
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        nodejs: [14, 16]
+        os: [ubuntu-latest, macOS-latest]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -39,5 +39,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Format
+        run: pnpm format -- --no-write
+
+      - name: Lint
+        run: pnpm lint -- --no-fix
+
+      - name: Typecheck
+        run: pnpm typecheck
+
       - name: Test
-        run: pnpm test
+        run: pnpm test -- --coverage

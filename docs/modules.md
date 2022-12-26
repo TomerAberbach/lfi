@@ -253,7 +253,7 @@ A return value that awaits to:
 
 #### Defined in
 
-[operations/statistics.d.ts:166](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L166)
+[operations/statistics.d.ts:166](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L166)
 
 ---
 
@@ -288,7 +288,7 @@ application.
 
 #### Defined in
 
-[operations/reducer.d.ts:115](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L115)
+[operations/reducer.d.ts:131](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L131)
 
 ---
 
@@ -314,7 +314,7 @@ accumulator can be queried for values by key using AsyncKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:231](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L231)
+[operations/reducer.d.ts:247](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L247)
 
 ---
 
@@ -332,7 +332,7 @@ An async iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:24](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L24)
+[operations/optional.d.ts:24](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L24)
 
 ---
 
@@ -355,7 +355,7 @@ AsyncOptionalReducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:149](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L149)
+[operations/reducer.d.ts:165](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L165)
 
 ---
 
@@ -381,7 +381,7 @@ accumulators using AsyncReducer.combine.
 
 #### Defined in
 
-[operations/reducer.d.ts:196](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L196)
+[operations/reducer.d.ts:212](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L212)
 
 ---
 
@@ -420,7 +420,7 @@ A return value:
 
 #### Defined in
 
-[operations/statistics.d.ts:156](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L156)
+[operations/statistics.d.ts:156](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L156)
 
 ---
 
@@ -456,9 +456,9 @@ promise that resolves when all events have been emitted and handled.
 
 **`Example`**
 
-```ts
-const slothNamesConcurIterable: ConcurIterable<string> = pipe(
-  asConcur(['sloth-names1.txt', 'sloth-names2.txt']),
+```js
+const slothNamesConcurIterable = pipe(
+  asConcur([`sloth-names1.txt`, `sloth-names2.txt`]),
   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
   flatMapConcur(content => content.split(`\n`)),
 )
@@ -476,7 +476,7 @@ const slothNamesConcurIterable: ConcurIterable<string> = pipe(
 
 #### Defined in
 
-[operations/as.d.ts:65](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/as.d.ts#L65)
+[operations/as.d.ts:65](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/as.d.ts#L65)
 
 ---
 
@@ -510,7 +510,7 @@ The callback invoked for each value of a
 
 #### Defined in
 
-[operations/as.d.ts:70](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/as.d.ts#L70)
+[operations/as.d.ts:70](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/as.d.ts#L70)
 
 ---
 
@@ -529,7 +529,7 @@ A concur iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:27](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L27)
+[operations/optional.d.ts:27](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L27)
 
 ---
 
@@ -562,7 +562,7 @@ A reducer that reduces by combining pairs of values using function application.
 
 #### Defined in
 
-[operations/reducer.d.ts:7](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L7)
+[operations/reducer.d.ts:23](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L23)
 
 ---
 
@@ -586,7 +586,7 @@ KeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:105](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L105)
+[operations/reducer.d.ts:121](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L121)
 
 ---
 
@@ -611,7 +611,7 @@ An object containing a minimum and maximum value.
 
 #### Defined in
 
-[operations/statistics.d.ts:172](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L172)
+[operations/statistics.d.ts:172](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L172)
 
 ---
 
@@ -629,7 +629,7 @@ An iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:21](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L21)
+[operations/optional.d.ts:21](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L21)
 
 ---
 
@@ -651,7 +651,7 @@ and then tranforming the final value using OptionalReducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:38](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L38)
+[operations/reducer.d.ts:54](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L54)
 
 ---
 
@@ -665,7 +665,7 @@ iterable that skips numbers in steps.
 
 #### Defined in
 
-[operations/generate.d.ts:130](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L130)
+[operations/generate.d.ts:131](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L131)
 
 ---
 
@@ -694,7 +694,7 @@ accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:210](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L210)
+[operations/reducer.d.ts:226](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L226)
 
 ---
 
@@ -719,7 +719,7 @@ RawAsyncOptionalReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:136](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L136)
+[operations/reducer.d.ts:152](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L152)
 
 ---
 
@@ -745,7 +745,7 @@ RawAsyncOptionalReducerWithoutFinish.add.
 
 #### Defined in
 
-[operations/reducer.d.ts:124](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L124)
+[operations/reducer.d.ts:140](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L140)
 
 ---
 
@@ -773,7 +773,7 @@ combine pairs of accumulators using RawAsyncReducerWithFinish.combine.
 
 #### Defined in
 
-[operations/reducer.d.ts:180](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L180)
+[operations/reducer.d.ts:196](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L196)
 
 ---
 
@@ -805,7 +805,7 @@ RawAsyncReducerWithoutFinish.combine.
 
 #### Defined in
 
-[operations/reducer.d.ts:161](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L161)
+[operations/reducer.d.ts:177](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L177)
 
 ---
 
@@ -832,7 +832,7 @@ using RawKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:90](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L90)
+[operations/reducer.d.ts:106](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L106)
 
 ---
 
@@ -856,7 +856,7 @@ RawOptionalReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:25](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L25)
+[operations/reducer.d.ts:41](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L41)
 
 ---
 
@@ -882,7 +882,7 @@ RawOptionalReducerWithoutFinish.add.
 
 #### Defined in
 
-[operations/reducer.d.ts:16](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L16)
+[operations/reducer.d.ts:32](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L32)
 
 ---
 
@@ -908,7 +908,7 @@ RawReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:63](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L63)
+[operations/reducer.d.ts:79](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L79)
 
 ---
 
@@ -937,7 +937,7 @@ using RawReducerWithoutFinish.add.
 
 #### Defined in
 
-[operations/reducer.d.ts:48](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L48)
+[operations/reducer.d.ts:64](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L64)
 
 ---
 
@@ -961,7 +961,7 @@ tranforming the final accumulator using Reducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:78](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L78)
+[operations/reducer.d.ts:94](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L94)
 
 ---
 
@@ -981,7 +981,7 @@ and [windowConcur](modules.md#windowconcur).
 
 #### Defined in
 
-[operations/slice.d.ts:722](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L722)
+[operations/slice.d.ts:721](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L721)
 
 ## Variables
 
@@ -1000,7 +1000,7 @@ twice when the entry exists: `has` followed by `get` for the same key.
 
 #### Defined in
 
-[operations/reducer.d.ts:246](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L246)
+[operations/reducer.d.ts:262](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L262)
 
 ---
 
@@ -1023,7 +1023,7 @@ console.log([...empty])
 
 #### Defined in
 
-[operations/empty.d.ts:34](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/empty.d.ts#L34)
+[operations/empty.d.ts:34](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/empty.d.ts#L34)
 
 ---
 
@@ -1046,7 +1046,7 @@ console.log(await pipe(emptyAsync, reduceAsync(toArray())))
 
 #### Defined in
 
-[operations/empty.d.ts:49](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/empty.d.ts#L49)
+[operations/empty.d.ts:49](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/empty.d.ts#L49)
 
 ## Functions
 
@@ -1101,7 +1101,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L22)
+[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L22)
 
 ▸ **all**<`Value`\>(`fn`, `iterable`): `boolean`
 
@@ -1141,7 +1141,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L25)
 
 ---
 
@@ -1198,7 +1198,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L33)
+[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L33)
 
 ▸ **allAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
@@ -1239,7 +1239,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L36)
+[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L36)
 
 ---
 
@@ -1297,7 +1297,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L44)
+[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L44)
 
 ▸ **allConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
 
@@ -1338,7 +1338,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L47)
+[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L47)
 
 ---
 
@@ -1393,7 +1393,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L22)
+[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L22)
 
 ▸ **any**<`Value`\>(`fn`, `iterable`): `boolean`
 
@@ -1433,7 +1433,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L25)
 
 ---
 
@@ -1490,7 +1490,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L33)
+[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L33)
 
 ▸ **anyAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
@@ -1531,7 +1531,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L36)
+[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L36)
 
 ---
 
@@ -1589,7 +1589,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L44)
+[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L44)
 
 ▸ **anyConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
 
@@ -1630,7 +1630,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L47)
+[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L47)
 
 ---
 
@@ -1674,7 +1674,7 @@ for await (const value of asyncIterable) {
 
 #### Defined in
 
-[operations/as.d.ts:37](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/as.d.ts#L37)
+[operations/as.d.ts:37](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/as.d.ts#L37)
 
 ---
 
@@ -1706,7 +1706,7 @@ await forEachConcur(console.log, concurIterable)
 
 | Name       | Type                                                                                                         |
 | :--------- | :----------------------------------------------------------------------------------------------------------- |
-| `iterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> \| `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> |
+| `iterable` | `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
 
 #### Returns
 
@@ -1714,7 +1714,7 @@ await forEachConcur(console.log, concurIterable)
 
 #### Defined in
 
-[operations/as.d.ts:87](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/as.d.ts#L87)
+[operations/as.d.ts:87](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/as.d.ts#L87)
 
 ---
 
@@ -1761,7 +1761,7 @@ console.log([...cachedIterable])
 
 #### Defined in
 
-[operations/cache.d.ts:40](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/cache.d.ts#L40)
+[operations/cache.d.ts:40](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/cache.d.ts#L40)
 
 ---
 
@@ -1808,7 +1808,7 @@ console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
 
 #### Defined in
 
-[operations/cache.d.ts:63](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/cache.d.ts#L63)
+[operations/cache.d.ts:63](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/cache.d.ts#L63)
 
 ---
 
@@ -1856,7 +1856,7 @@ console.log(await pipe(cachedConcurIterable, reduceConcur(toArray())))
 
 #### Defined in
 
-[operations/cache.d.ts:88](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/cache.d.ts#L88)
+[operations/cache.d.ts:88](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/cache.d.ts#L88)
 
 ---
 
@@ -1922,7 +1922,7 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:490](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L490)
+[operations/slice.d.ts:489](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L489)
 
 ▸ **chunk**<`Size`, `Value`\>(`size`, `iterable`): `Iterable`<`Value`[]\>
 
@@ -1967,7 +1967,7 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:493](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L493)
+[operations/slice.d.ts:492](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L492)
 
 ---
 
@@ -2045,7 +2045,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:531](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L531)
+[operations/slice.d.ts:530](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L530)
 
 ▸ **chunkAsync**<`Size`, `Value`\>(`size`, `asyncIterable`):
 `AsyncIterable`<`Value`[]\>
@@ -2103,7 +2103,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:534](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L534)
+[operations/slice.d.ts:533](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L533)
 
 ---
 
@@ -2183,7 +2183,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:572](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L572)
+[operations/slice.d.ts:571](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L571)
 
 ▸ **chunkConcur**<`Size`, `Value`\>(`size`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
@@ -2241,7 +2241,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:575](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L575)
+[operations/slice.d.ts:574](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L574)
 
 ---
 
@@ -2289,7 +2289,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:174](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L174)
+[operations/fn.d.ts:174](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L174)
 
 ▸ **compose**<`A`, `B`\>(`fn`): (`value`: `A`) => `B`
 
@@ -2340,7 +2340,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:175](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L175)
+[operations/fn.d.ts:175](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L175)
 
 ▸ **compose**<`A`, `B`, `C`\>(`fn1`, `fn2`): (`value`: `A`) => `C`
 
@@ -2393,7 +2393,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:176](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L176)
+[operations/fn.d.ts:176](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L176)
 
 ▸ **compose**<`A`, `B`, `C`, `D`\>(`fn1`, `fn2`, `fn3`): (`value`: `A`) => `D`
 
@@ -2448,7 +2448,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:177](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L177)
+[operations/fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L177)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`): (`value`:
 `A`) => `E`
@@ -2506,7 +2506,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:180](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L180)
+[operations/fn.d.ts:180](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L180)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`):
 (`value`: `A`) => `F`
@@ -2566,7 +2566,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:186](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L186)
+[operations/fn.d.ts:186](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L186)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`, `fn4`,
 `fn5`, `fn6`): (`value`: `A`) => `G`
@@ -2628,7 +2628,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:193](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L193)
+[operations/fn.d.ts:193](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L193)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`, `fn3`,
 `fn4`, `fn5`, `fn6`, `fn7`): (`value`: `A`) => `H`
@@ -2692,7 +2692,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:201](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L201)
+[operations/fn.d.ts:201](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L201)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`, `fn2`, `fn3`,
 `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`: `A`) => `I`
@@ -2758,7 +2758,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:210](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L210)
+[operations/fn.d.ts:210](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L210)
 
 ▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`, `fn2`,
 `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`: `A`) => `J`
@@ -2826,7 +2826,7 @@ console.log(screamify(`sloth`))
 
 #### Defined in
 
-[operations/fn.d.ts:220](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L220)
+[operations/fn.d.ts:220](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L220)
 
 ---
 
@@ -2864,7 +2864,7 @@ console.log(pipe(concat([1, 2], [3, `sloth`, 5], [6, 7]), reduce(toArray())))
 
 #### Defined in
 
-[operations/collect.d.ts:459](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L459)
+[operations/collect.d.ts:480](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L480)
 
 ---
 
@@ -2907,7 +2907,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:480](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L480)
+[operations/collect.d.ts:501](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L501)
 
 ---
 
@@ -2951,7 +2951,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:501](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L501)
+[operations/collect.d.ts:522](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L522)
 
 ---
 
@@ -2985,7 +2985,7 @@ consume(iterable)
 
 #### Defined in
 
-[operations/iterate.d.ts:201](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L201)
+[operations/iterate.d.ts:201](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L201)
 
 ---
 
@@ -3019,7 +3019,7 @@ await consumeAsync(asyncIterable)
 
 #### Defined in
 
-[operations/iterate.d.ts:220](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L220)
+[operations/iterate.d.ts:220](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L220)
 
 ---
 
@@ -3053,7 +3053,7 @@ await consumeConcur(asyncIterable)
 
 #### Defined in
 
-[operations/iterate.d.ts:241](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L241)
+[operations/iterate.d.ts:241](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L241)
 
 ---
 
@@ -3090,7 +3090,7 @@ console.log(count([`sloth`, `more sloth`, `even more sloth`]))
 
 #### Defined in
 
-[operations/statistics.d.ts:56](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L56)
+[operations/statistics.d.ts:56](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L56)
 
 ---
 
@@ -3129,7 +3129,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:71](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L71)
+[operations/statistics.d.ts:71](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L71)
 
 ---
 
@@ -3168,7 +3168,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:88](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L88)
+[operations/statistics.d.ts:88](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L88)
 
 ---
 
@@ -3222,7 +3222,7 @@ curriedSlothLog(`Hello`)(`World`)(`!`)
 
 #### Defined in
 
-[operations/fn.d.ts:68](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L68)
+[operations/fn.d.ts:68](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L68)
 
 ---
 
@@ -3258,7 +3258,7 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
 
 #### Defined in
 
-[operations/generate.d.ts:104](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L104)
+[operations/generate.d.ts:105](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L105)
 
 ---
 
@@ -3300,7 +3300,7 @@ console.log(
 
 #### Defined in
 
-[operations/generate.d.ts:122](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L122)
+[operations/generate.d.ts:123](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L123)
 
 ---
 
@@ -3362,7 +3362,7 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:311](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L311)
+[operations/slice.d.ts:310](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L310)
 
 ▸ **drop**<`Count`, `Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
 
@@ -3403,7 +3403,7 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:314](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L314)
+[operations/slice.d.ts:313](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L313)
 
 ---
 
@@ -3471,7 +3471,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:322](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L322)
+[operations/slice.d.ts:321](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L321)
 
 ▸ **dropAsync**<`Count`, `Value`\>(`count`, `asyncIterable`):
 `AsyncIterable`<`Value`\>
@@ -3519,7 +3519,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:325](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L325)
+[operations/slice.d.ts:324](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L324)
 
 ---
 
@@ -3589,7 +3589,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:333](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L333)
+[operations/slice.d.ts:332](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L332)
 
 ▸ **dropConcur**<`Count`, `Value`\>(`count`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -3637,7 +3637,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:336](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L336)
+[operations/slice.d.ts:335](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L335)
 
 ---
 
@@ -3692,7 +3692,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:140](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L140)
+[operations/slice.d.ts:139](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L139)
 
 ▸ **dropWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
@@ -3731,7 +3731,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:143](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L143)
+[operations/slice.d.ts:142](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L142)
 
 ---
 
@@ -3787,7 +3787,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:151](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L151)
+[operations/slice.d.ts:150](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L150)
 
 ▸ **dropWhileAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
 
@@ -3827,7 +3827,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:154](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L154)
+[operations/slice.d.ts:153](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L153)
 
 ---
 
@@ -3843,7 +3843,6 @@ a falsy value.
 
 **`Example`**
 
-````js
 ```js
 console.log(
   await pipe(
@@ -3853,7 +3852,7 @@ console.log(
   ),
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
-````
+```
 
 #### Type parameters
 
@@ -3885,7 +3884,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:162](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L162)
+[operations/slice.d.ts:161](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L161)
 
 ▸ **dropWhileConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -3896,7 +3895,6 @@ a falsy value.
 
 **`Example`**
 
-````js
 ```js
 console.log(
   await pipe(
@@ -3906,7 +3904,7 @@ console.log(
   ),
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
-````
+```
 
 #### Type parameters
 
@@ -3927,7 +3925,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:165](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L165)
+[operations/slice.d.ts:164](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L164)
 
 ---
 
@@ -3981,7 +3979,7 @@ console.log([...each(console.log, sloths)])
 
 #### Defined in
 
-[operations/iterate.d.ts:36](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L36)
+[operations/iterate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L36)
 
 ▸ **each**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
@@ -4019,7 +4017,7 @@ console.log([...each(console.log, sloths)])
 
 #### Defined in
 
-[operations/iterate.d.ts:39](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L39)
+[operations/iterate.d.ts:39](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L39)
 
 ---
 
@@ -4080,7 +4078,7 @@ console.log(eachedSloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:68](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L68)
+[operations/iterate.d.ts:68](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L68)
 
 ▸ **eachAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
 
@@ -4125,7 +4123,7 @@ console.log(eachedSloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:71](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L71)
+[operations/iterate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L71)
 
 ---
 
@@ -4186,7 +4184,7 @@ console.log(eachedSloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:99](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L99)
+[operations/iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L99)
 
 ▸ **eachConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -4231,7 +4229,7 @@ console.log(eachedSloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:102](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L102)
+[operations/iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L102)
 
 ---
 
@@ -4255,9 +4253,9 @@ promise that resolves when all events have been emitted and handled.
 
 **`Example`**
 
-```ts
-const slothNamesConcurIterable: ConcurIterable<string> = pipe(
-  asConcur(['sloth-names1.txt', 'sloth-names2.txt']),
+```js
+const slothNamesConcurIterable = pipe(
+  asConcur([`sloth-names1.txt`, `sloth-names2.txt`]),
   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
   flatMapConcur(content => content.split(`\n`)),
 )
@@ -4275,7 +4273,7 @@ const slothNamesConcurIterable: ConcurIterable<string> = pipe(
 
 #### Defined in
 
-[operations/as.d.ts:65](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/as.d.ts#L65)
+[operations/as.d.ts:65](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/as.d.ts#L65)
 
 ---
 
@@ -4309,7 +4307,7 @@ iterable is opaque.
 
 #### Defined in
 
-[operations/from.d.ts:48](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/from.d.ts#L48)
+[operations/from.d.ts:48](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/from.d.ts#L48)
 
 ▸ **entries**<`Key`, `Value`\>(`object`): `Iterable`<[`Key`, `Value`]\>
 
@@ -4338,7 +4336,7 @@ iterable is opaque.
 
 #### Defined in
 
-[operations/from.d.ts:51](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/from.d.ts#L51)
+[operations/from.d.ts:51](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/from.d.ts#L51)
 
 ---
 
@@ -4393,7 +4391,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:219](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L219)
+[operations/exclude.d.ts:219](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L219)
 
 ▸ **exclude**<`Value`\>(`excluded`, `iterable`): `Iterable`<`Value`\>
 
@@ -4432,7 +4430,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:222](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L222)
+[operations/exclude.d.ts:222](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L222)
 
 ---
 
@@ -4487,7 +4485,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:245](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L245)
+[operations/exclude.d.ts:245](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L245)
 
 ▸ **excludeAsync**<`Value`\>(`excluded`, `asyncIterable`):
 `AsyncIterable`<`Value`\>
@@ -4527,7 +4525,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:248](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L248)
+[operations/exclude.d.ts:248](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L248)
 
 ---
 
@@ -4584,7 +4582,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:271](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L271)
+[operations/exclude.d.ts:271](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L271)
 
 ▸ **excludeConcur**<`Value`\>(`excluded`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -4624,7 +4622,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:274](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L274)
+[operations/exclude.d.ts:274](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L274)
 
 ---
 
@@ -4681,7 +4679,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:39](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L39)
+[operations/exclude.d.ts:39](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L39)
 
 ▸ **filter**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
@@ -4722,7 +4720,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:42](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L42)
+[operations/exclude.d.ts:42](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L42)
 
 ---
 
@@ -4780,7 +4778,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:68](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L68)
+[operations/exclude.d.ts:68](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L68)
 
 ▸ **filterAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
 
@@ -4822,7 +4820,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:71](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L71)
+[operations/exclude.d.ts:71](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L71)
 
 ---
 
@@ -4880,7 +4878,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:97](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L97)
+[operations/exclude.d.ts:97](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L97)
 
 ▸ **filterConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -4922,7 +4920,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:100](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L100)
+[operations/exclude.d.ts:100](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L100)
 
 ---
 
@@ -4984,7 +4982,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:129](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L129)
+[operations/exclude.d.ts:129](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L129)
 
 ▸ **filterMap**<`From`, `To`\>(`fn`, `iterable`):
 `Iterable`<`NonNullable`<`To`\>\>
@@ -5031,7 +5029,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:132](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L132)
+[operations/exclude.d.ts:132](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L132)
 
 ---
 
@@ -5093,7 +5091,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:161](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L161)
+[operations/exclude.d.ts:161](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L161)
 
 ▸ **filterMapAsync**<`From`, `To`\>(`fn`, `asyncIterable`):
 `AsyncIterable`<`NonNullable`<`To`\>\>
@@ -5140,7 +5138,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:164](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L164)
+[operations/exclude.d.ts:164](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L164)
 
 ---
 
@@ -5204,7 +5202,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:193](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L193)
+[operations/exclude.d.ts:193](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L193)
 
 ▸ **filterMapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
@@ -5251,7 +5249,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:196](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L196)
+[operations/exclude.d.ts:196](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L196)
 
 ---
 
@@ -5319,7 +5317,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:23](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L23)
+[operations/find.d.ts:23](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L23)
 
 ▸ **find**<`Value`\>(`fn`, `iterable`):
 [`Optional`](modules.md#optional)<`Value`\>
@@ -5372,7 +5370,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:26](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L26)
+[operations/find.d.ts:26](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L26)
 
 ---
 
@@ -5441,7 +5439,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:34](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L34)
+[operations/find.d.ts:34](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L34)
 
 ▸ **findAsync**<`Value`\>(`fn`, `asyncIterable`):
 [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
@@ -5495,7 +5493,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:37](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L37)
+[operations/find.d.ts:37](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L37)
 
 ---
 
@@ -5565,7 +5563,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:45](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L45)
+[operations/find.d.ts:45](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L45)
 
 ▸ **findConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
@@ -5619,7 +5617,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:48](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L48)
+[operations/find.d.ts:48](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L48)
 
 ---
 
@@ -5685,7 +5683,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:23](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L23)
+[operations/find.d.ts:23](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L23)
 
 ▸ **findLast**<`Value`\>(`fn`, `iterable`):
 [`Optional`](modules.md#optional)<`Value`\>
@@ -5736,7 +5734,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:26](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L26)
+[operations/find.d.ts:26](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L26)
 
 ---
 
@@ -5804,7 +5802,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:34](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L34)
+[operations/find.d.ts:34](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L34)
 
 ▸ **findLastAsync**<`Value`\>(`fn`, `asyncIterable`):
 [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
@@ -5856,7 +5854,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:37](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L37)
+[operations/find.d.ts:37](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L37)
 
 ---
 
@@ -5924,7 +5922,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:45](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L45)
+[operations/find.d.ts:45](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L45)
 
 ▸ **findLastConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
@@ -5976,7 +5974,7 @@ console.log(
 
 #### Defined in
 
-[operations/find.d.ts:48](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/find.d.ts#L48)
+[operations/find.d.ts:48](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/find.d.ts#L48)
 
 ---
 
@@ -6018,7 +6016,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:358](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L358)
+[operations/slice.d.ts:357](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L357)
 
 ---
 
@@ -6060,7 +6058,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:376](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L376)
+[operations/slice.d.ts:375](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L375)
 
 ---
 
@@ -6103,7 +6101,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:396](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L396)
+[operations/slice.d.ts:395](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L395)
 
 ---
 
@@ -6161,7 +6159,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:120](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L120)
+[operations/transform.d.ts:120](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L120)
 
 ▸ **flatMap**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
 
@@ -6203,7 +6201,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:123](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L123)
+[operations/transform.d.ts:123](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L123)
 
 ---
 
@@ -6262,7 +6260,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:149](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L149)
+[operations/transform.d.ts:149](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L149)
 
 ▸ **flatMapAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
 
@@ -6305,7 +6303,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:152](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L152)
+[operations/transform.d.ts:152](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L152)
 
 ---
 
@@ -6365,7 +6363,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:178](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L178)
+[operations/transform.d.ts:178](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L178)
 
 ▸ **flatMapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`To`\>
@@ -6409,7 +6407,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:185](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L185)
+[operations/transform.d.ts:185](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L185)
 
 ---
 
@@ -6457,7 +6455,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:213](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L213)
+[operations/transform.d.ts:213](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L213)
 
 ---
 
@@ -6501,7 +6499,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:235](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L235)
+[operations/transform.d.ts:235](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L235)
 
 ---
 
@@ -6541,7 +6539,7 @@ console.log(
 
 | Name             | Type                                                                                                                                                         |
 | :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<[`ConcurIterable`](modules.md#concuriterable)<`Value`\> \| `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\>\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\>\> |
 
 #### Returns
 
@@ -6549,7 +6547,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:260](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L260)
+[operations/transform.d.ts:260](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L260)
 
 ---
 
@@ -6602,7 +6600,7 @@ forEach(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:124](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L124)
+[operations/iterate.d.ts:124](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L124)
 
 ▸ **forEach**<`Value`\>(`fn`, `iterable`): `void`
 
@@ -6640,7 +6638,7 @@ forEach(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:125](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L125)
+[operations/iterate.d.ts:125](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L125)
 
 ---
 
@@ -6698,7 +6696,7 @@ await forEachAsync(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:148](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L148)
+[operations/iterate.d.ts:148](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L148)
 
 ▸ **forEachAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`void`\>
 
@@ -6740,7 +6738,7 @@ await forEachAsync(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:151](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L151)
+[operations/iterate.d.ts:151](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L151)
 
 ---
 
@@ -6796,7 +6794,7 @@ await forEachConcur(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:175](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L175)
+[operations/iterate.d.ts:175](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L175)
 
 ▸ **forEachConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`void`\>
 
@@ -6836,7 +6834,7 @@ await forEachConcur(console.log, sloths)
 
 #### Defined in
 
-[operations/iterate.d.ts:178](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/iterate.d.ts#L178)
+[operations/iterate.d.ts:178](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/iterate.d.ts#L178)
 
 ---
 
@@ -6891,7 +6889,7 @@ console.log(
 
 #### Defined in
 
-[operations/generate.d.ts:41](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L41)
+[operations/generate.d.ts:41](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L41)
 
 ▸ **generate**<`Value`\>(`fn`, `seed`): `Iterable`<`Value`\>
 
@@ -6931,7 +6929,7 @@ console.log(
 
 #### Defined in
 
-[operations/generate.d.ts:42](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L42)
+[operations/generate.d.ts:42](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L42)
 
 ---
 
@@ -6946,7 +6944,7 @@ for every subsequent value.
 
 **`Example`**
 
-````js
+```js
 console.log(
   await pipe(
     generateAsync(previousValue => previousValue + previousValue, `sloth`),
@@ -6955,17 +6953,18 @@ console.log(
   ),
 )
 //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+```
 
 #### Type parameters
 
-| Name |
+| Name    |
 | :------ |
 | `Value` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name | Type                                                       |
+| :--- | :--------------------------------------------------------- |
 | `fn` | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
 
 #### Returns
@@ -6976,8 +6975,8 @@ console.log(
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name   | Type    |
+| :----- | :------ |
 | `seed` | `Value` |
 
 ##### Returns
@@ -6986,13 +6985,13 @@ console.log(
 
 #### Defined in
 
-[operations/generate.d.ts:62](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L62)
+[operations/generate.d.ts:63](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L63)
 
 ▸ **generateAsync**<`Value`\>(`fn`, `seed`): `AsyncIterable`<`Value`\>
 
 Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded
-value for every subsequent value.
+then yields the awaited result of applying `fn` to its previously yielded value
+for every subsequent value.
 
 **`Example`**
 
@@ -7005,19 +7004,20 @@ console.log(
   ),
 )
 //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+```
 
 #### Type parameters
 
-| Name |
+| Name    |
 | :------ |
 | `Value` |
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `fn` | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
-| `seed` | `Value` |
+| Name   | Type                                                       |
+| :----- | :--------------------------------------------------------- |
+| `fn`   | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
+| `seed` | `Value`                                                    |
 
 #### Returns
 
@@ -7025,9 +7025,9 @@ console.log(
 
 #### Defined in
 
-[operations/generate.d.ts:65](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L65)
+[operations/generate.d.ts:66](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L66)
 
-___
+---
 
 ### get
 
@@ -7055,7 +7055,7 @@ try {
   console.log(`Oh no! It had more than one value...`)
 }
 //=> Oh no! It had more than one value...
-````
+```
 
 #### Type parameters
 
@@ -7075,7 +7075,7 @@ try {
 
 #### Defined in
 
-[operations/optional.d.ts:138](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L138)
+[operations/optional.d.ts:138](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L138)
 
 ---
 
@@ -7125,7 +7125,7 @@ try {
 
 #### Defined in
 
-[operations/optional.d.ts:164](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L164)
+[operations/optional.d.ts:164](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L164)
 
 ---
 
@@ -7175,7 +7175,7 @@ try {
 
 #### Defined in
 
-[operations/optional.d.ts:192](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L192)
+[operations/optional.d.ts:192](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L192)
 
 ---
 
@@ -7226,7 +7226,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 
 #### Defined in
 
-[operations/predicate.d.ts:242](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L242)
+[operations/predicate.d.ts:242](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L242)
 
 ▸ **includes**<`Value`\>(`searchElement`, `iterable`): `boolean`
 
@@ -7261,7 +7261,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 
 #### Defined in
 
-[operations/predicate.d.ts:243](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L243)
+[operations/predicate.d.ts:243](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L243)
 
 ---
 
@@ -7318,7 +7318,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:265](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L265)
+[operations/predicate.d.ts:265](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L265)
 
 ▸ **includesAsync**<`Value`\>(`searchElement`, `asyncIterable`):
 `Promise`<`boolean`\>
@@ -7360,7 +7360,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:268](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L268)
+[operations/predicate.d.ts:268](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L268)
 
 ---
 
@@ -7418,7 +7418,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:293](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L293)
+[operations/predicate.d.ts:293](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L293)
 
 ▸ **includesConcur**<`Value`\>(`searchElement`, `concurIterable`):
 `Promise`<`boolean`\>
@@ -7460,7 +7460,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:296](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L296)
+[operations/predicate.d.ts:296](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L296)
 
 ---
 
@@ -7499,7 +7499,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:283](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L283)
+[operations/transform.d.ts:283](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L283)
 
 ---
 
@@ -7543,7 +7543,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:304](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L304)
+[operations/transform.d.ts:304](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L304)
 
 ---
 
@@ -7587,7 +7587,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:325](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L325)
+[operations/transform.d.ts:325](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L325)
 
 ---
 
@@ -7632,7 +7632,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 
 #### Defined in
 
-[operations/collect.d.ts:388](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L388)
+[operations/collect.d.ts:409](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L409)
 
 ▸ **join**(`separator`, `iterable`): `string`
 
@@ -7662,7 +7662,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 
 #### Defined in
 
-[operations/collect.d.ts:389](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L389)
+[operations/collect.d.ts:410](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L410)
 
 ---
 
@@ -7713,7 +7713,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:411](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L411)
+[operations/collect.d.ts:432](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L432)
 
 ▸ **joinAsync**(`separator`, `asyncIterable`): `Promise`<`string`\>
 
@@ -7748,7 +7748,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:414](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L414)
+[operations/collect.d.ts:435](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L435)
 
 ---
 
@@ -7800,7 +7800,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:436](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L436)
+[operations/collect.d.ts:457](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L457)
 
 ▸ **joinConcur**(`separator`, `concurIterable`): `Promise`<`string`\>
 
@@ -7835,7 +7835,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:439](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L439)
+[operations/collect.d.ts:460](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L460)
 
 ---
 
@@ -7867,7 +7867,7 @@ iterable is opaque.
 
 #### Defined in
 
-[operations/from.d.ts:25](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/from.d.ts#L25)
+[operations/from.d.ts:25](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/from.d.ts#L25)
 
 ▸ **keys**<`Key`\>(`object`): `Iterable`<`Key`\>
 
@@ -7895,7 +7895,7 @@ iterable is opaque.
 
 #### Defined in
 
-[operations/from.d.ts:26](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/from.d.ts#L26)
+[operations/from.d.ts:26](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/from.d.ts#L26)
 
 ---
 
@@ -7937,7 +7937,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:416](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L416)
+[operations/slice.d.ts:415](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L415)
 
 ---
 
@@ -7979,7 +7979,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:434](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L434)
+[operations/slice.d.ts:433](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L433)
 
 ---
 
@@ -8022,7 +8022,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:454](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L454)
+[operations/slice.d.ts:453](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L453)
 
 ---
 
@@ -8080,7 +8080,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:39](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L39)
+[operations/transform.d.ts:39](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L39)
 
 ▸ **map**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
 
@@ -8122,7 +8122,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:42](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L42)
+[operations/transform.d.ts:42](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L42)
 
 ---
 
@@ -8180,7 +8180,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:64](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L64)
+[operations/transform.d.ts:64](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L64)
 
 ▸ **mapAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
 
@@ -8222,7 +8222,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:67](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L67)
+[operations/transform.d.ts:67](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L67)
 
 ---
 
@@ -8258,7 +8258,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:299](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L299)
+[operations/reducer.d.ts:315](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L315)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, Acc, This\>(`asyncReducer`:
 [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`,
@@ -8308,7 +8308,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:303](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L303)
+[operations/reducer.d.ts:319](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L319)
 
 ▸ **mapAsyncReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
 [`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`, `To`\>
@@ -8338,7 +8338,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:307](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L307)
+[operations/reducer.d.ts:323](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L323)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, This\>(`asyncReducer`:
 [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`,
@@ -8387,7 +8387,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:311](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L311)
+[operations/reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L327)
 
 ▸ **mapAsyncReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
@@ -8417,7 +8417,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:315](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L315)
+[operations/reducer.d.ts:331](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L331)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, This\>(`asyncReducer`:
 [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`,
@@ -8466,7 +8466,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:319](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L319)
+[operations/reducer.d.ts:335](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L335)
 
 ▸ **mapAsyncReducer**<`From`, `To`, `This`\>(`fn`, `asyncReducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
@@ -8495,7 +8495,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:323](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L323)
+[operations/reducer.d.ts:339](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L339)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <This\>(`asyncReducer`:
 [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`From`,
@@ -8543,7 +8543,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:327](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L327)
+[operations/reducer.d.ts:343](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L343)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`, `asyncReducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
@@ -8571,7 +8571,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:331](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L331)
+[operations/reducer.d.ts:347](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L347)
 
 ▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): (`asyncReducer`:
 [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`From`\>) =>
@@ -8612,7 +8612,7 @@ except its final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:335](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L335)
+[operations/reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L351)
 
 ---
 
@@ -8671,7 +8671,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:92](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L92)
+[operations/transform.d.ts:92](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L92)
 
 ▸ **mapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`To`\>
@@ -8714,7 +8714,7 @@ console.log(
 
 #### Defined in
 
-[operations/transform.d.ts:95](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/transform.d.ts#L95)
+[operations/transform.d.ts:95](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/transform.d.ts#L95)
 
 ---
 
@@ -8750,7 +8750,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:253](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L253)
+[operations/reducer.d.ts:269](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L269)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, Acc, This\>(`reducer`:
 [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`,
@@ -8800,7 +8800,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:257](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L257)
+[operations/reducer.d.ts:273](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L273)
 
 ▸ **mapReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
 [`Reducer`](modules.md#reducer)<`Value`, `To`, `To`\>
@@ -8831,7 +8831,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:261](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L261)
+[operations/reducer.d.ts:277](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L277)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, This\>(`reducer`:
 [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `From`,
@@ -8880,7 +8880,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:265](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L265)
+[operations/reducer.d.ts:281](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L281)
 
 ▸ **mapReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`Value`, `To`\>
@@ -8911,7 +8911,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:269](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L269)
+[operations/reducer.d.ts:285](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L285)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, This\>(`reducer`:
 [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`,
@@ -8961,7 +8961,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:273](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L273)
+[operations/reducer.d.ts:289](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L289)
 
 ▸ **mapReducer**<`From`, `To`, `This`\>(`fn`, `reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
@@ -8991,7 +8991,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:277](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L277)
+[operations/reducer.d.ts:293](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L293)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`): <This\>(`reducer`:
 [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`From`,
@@ -9039,7 +9039,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:281](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L281)
+[operations/reducer.d.ts:297](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L297)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`, `reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
@@ -9068,7 +9068,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:285](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L285)
+[operations/reducer.d.ts:301](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L301)
 
 ▸ **mapReducer**<`From`, `To`\>(`fn`): (`reducer`:
 [`FunctionReducer`](modules.md#functionreducer)<`From`\>) =>
@@ -9109,7 +9109,7 @@ final value is transformed using `fn`.
 
 #### Defined in
 
-[operations/reducer.d.ts:289](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L289)
+[operations/reducer.d.ts:305](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L305)
 
 ---
 
@@ -9139,7 +9139,7 @@ console.log(pipe([4, 1, 5, -3], max, get))
 
 #### Defined in
 
-[operations/statistics.d.ts:939](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L939)
+[operations/statistics.d.ts:939](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L939)
 
 ---
 
@@ -9170,7 +9170,7 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), maxAsync, getAsync))
 
 #### Defined in
 
-[operations/statistics.d.ts:952](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L952)
+[operations/statistics.d.ts:952](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L952)
 
 ---
 
@@ -9214,7 +9214,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:179](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L179)
+[operations/statistics.d.ts:179](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L179)
 
 ▸ **maxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<`Value`\>
@@ -9266,7 +9266,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:180](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L180)
+[operations/statistics.d.ts:180](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L180)
 
 ---
 
@@ -9310,7 +9310,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:190](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L190)
+[operations/statistics.d.ts:190](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L190)
 
 ▸ **maxByAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
 => `AsyncIterable`<`Value`\>
@@ -9362,7 +9362,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:194](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L194)
+[operations/statistics.d.ts:194](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L194)
 
 ---
 
@@ -9407,7 +9407,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:201](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L201)
+[operations/statistics.d.ts:201](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L201)
 
 ▸ **maxByConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -9460,7 +9460,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:205](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L205)
+[operations/statistics.d.ts:205](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L205)
 
 ---
 
@@ -9492,7 +9492,7 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), maxConcur, getConcur))
 
 #### Defined in
 
-[operations/statistics.d.ts:967](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L967)
+[operations/statistics.d.ts:967](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L967)
 
 ---
 
@@ -9536,7 +9536,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:510](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L510)
+[operations/statistics.d.ts:510](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L510)
 
 ▸ **maxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<`Value`\>
@@ -9588,7 +9588,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:514](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L514)
+[operations/statistics.d.ts:514](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L514)
 
 ---
 
@@ -9633,7 +9633,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:526](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L526)
+[operations/statistics.d.ts:526](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L526)
 
 ▸ **maxWithAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
 => `AsyncIterable`<`Value`\>
@@ -9686,7 +9686,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:530](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L530)
+[operations/statistics.d.ts:530](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L530)
 
 ---
 
@@ -9732,7 +9732,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:537](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L537)
+[operations/statistics.d.ts:537](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L537)
 
 ▸ **maxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -9786,7 +9786,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:541](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L541)
+[operations/statistics.d.ts:541](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L541)
 
 ---
 
@@ -9816,7 +9816,7 @@ console.log(pipe([4, 1, 5, -3], min, get))
 
 #### Defined in
 
-[operations/statistics.d.ts:877](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L877)
+[operations/statistics.d.ts:877](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L877)
 
 ---
 
@@ -9847,7 +9847,7 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), minAsync, getAsync))
 
 #### Defined in
 
-[operations/statistics.d.ts:890](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L890)
+[operations/statistics.d.ts:890](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L890)
 
 ---
 
@@ -9891,7 +9891,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:179](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L179)
+[operations/statistics.d.ts:179](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L179)
 
 ▸ **minBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<`Value`\>
@@ -9943,7 +9943,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:180](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L180)
+[operations/statistics.d.ts:180](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L180)
 
 ---
 
@@ -9987,7 +9987,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:190](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L190)
+[operations/statistics.d.ts:190](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L190)
 
 ▸ **minByAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
 => `AsyncIterable`<`Value`\>
@@ -10039,7 +10039,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:194](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L194)
+[operations/statistics.d.ts:194](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L194)
 
 ---
 
@@ -10084,7 +10084,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:201](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L201)
+[operations/statistics.d.ts:201](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L201)
 
 ▸ **minByConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -10137,7 +10137,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:205](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L205)
+[operations/statistics.d.ts:205](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L205)
 
 ---
 
@@ -10169,7 +10169,7 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), minConcur, getConcur))
 
 #### Defined in
 
-[operations/statistics.d.ts:905](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L905)
+[operations/statistics.d.ts:905](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L905)
 
 ---
 
@@ -10199,7 +10199,7 @@ console.log(pipe([4, 1, 5, -3], minMax, get))
 
 #### Defined in
 
-[operations/statistics.d.ts:1002](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L1002)
+[operations/statistics.d.ts:1002](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L1002)
 
 ---
 
@@ -10231,7 +10231,7 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), minMaxAsync, getAsync))
 
 #### Defined in
 
-[operations/statistics.d.ts:1015](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L1015)
+[operations/statistics.d.ts:1015](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L1015)
 
 ---
 
@@ -10276,7 +10276,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:428](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L428)
+[operations/statistics.d.ts:428](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L428)
 
 ▸ **minMaxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
@@ -10328,7 +10328,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:431](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L431)
+[operations/statistics.d.ts:431](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L431)
 
 ---
 
@@ -10374,7 +10374,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:466](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L466)
+[operations/statistics.d.ts:466](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L466)
 
 ▸ **minMaxByAsync**<`Value`\>(`fn`): (`asyncIterable`:
 `AsyncIterable`<`Value`\>) =>
@@ -10428,7 +10428,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:470](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L470)
+[operations/statistics.d.ts:470](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L470)
 
 ---
 
@@ -10474,7 +10474,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:494](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L494)
+[operations/statistics.d.ts:494](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L494)
 
 ▸ **minMaxByConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -10529,7 +10529,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:498](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L498)
+[operations/statistics.d.ts:498](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L498)
 
 ---
 
@@ -10561,7 +10561,7 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), minMaxConcur, getConcur))
 
 #### Defined in
 
-[operations/statistics.d.ts:1030](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L1030)
+[operations/statistics.d.ts:1030](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L1030)
 
 ---
 
@@ -10606,7 +10606,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:771](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L771)
+[operations/statistics.d.ts:771](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L771)
 
 ▸ **minMaxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
@@ -10658,7 +10658,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:774](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L774)
+[operations/statistics.d.ts:774](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L774)
 
 ---
 
@@ -10704,7 +10704,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:810](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L810)
+[operations/statistics.d.ts:810](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L810)
 
 ▸ **minMaxWithAsync**<`Value`\>(`fn`): (`asyncIterable`:
 `AsyncIterable`<`Value`\>) =>
@@ -10758,7 +10758,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:814](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L814)
+[operations/statistics.d.ts:814](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L814)
 
 ---
 
@@ -10804,7 +10804,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:838](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L838)
+[operations/statistics.d.ts:838](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L838)
 
 ▸ **minMaxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -10859,7 +10859,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:842](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L842)
+[operations/statistics.d.ts:842](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L842)
 
 ---
 
@@ -10903,7 +10903,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:510](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L510)
+[operations/statistics.d.ts:510](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L510)
 
 ▸ **minWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
 `Iterable`<`Value`\>
@@ -10955,7 +10955,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:514](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L514)
+[operations/statistics.d.ts:514](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L514)
 
 ---
 
@@ -11000,7 +11000,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:526](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L526)
+[operations/statistics.d.ts:526](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L526)
 
 ▸ **minWithAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
 => `AsyncIterable`<`Value`\>
@@ -11053,7 +11053,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:530](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L530)
+[operations/statistics.d.ts:530](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L530)
 
 ---
 
@@ -11099,7 +11099,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:537](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L537)
+[operations/statistics.d.ts:537](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L537)
 
 ▸ **minWithConcur**<`Value`\>(`fn`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -11153,7 +11153,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:541](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L541)
+[operations/statistics.d.ts:541](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L541)
 
 ---
 
@@ -11180,12 +11180,12 @@ console.log([...rest])
 //=> [ 'yawning', 'eating' ]
 
 const badThingsAboutSloths = []
-const [first, rest] = next(badThingsAboutSloths)
+const [first2, rest2] = next(badThingsAboutSloths)
 
-console.log(count(first))
+console.log(count(first2))
 //=> 0
 
-console.log(count(rest))
+console.log(count(rest2))
 //=> 0
 ```
 
@@ -11207,7 +11207,7 @@ console.log(count(rest))
 
 #### Defined in
 
-[operations/optional.d.ts:223](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L223)
+[operations/optional.d.ts:223](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L223)
 
 ---
 
@@ -11236,12 +11236,12 @@ console.log(await reduceAsync(toArray(), rest))
 //=> [ 'yawning', 'eating' ]
 
 const badThingsAboutSloths = emptyAsync
-const [first, rest] = await nextAsync(badThingsAboutSloths)
+const [first2, rest2] = await nextAsync(badThingsAboutSloths)
 
-console.log(await countAsync(first))
+console.log(await countAsync(first2))
 //=> 0
 
-console.log(await countAsync(rest))
+console.log(await countAsync(rest2))
 //=> 0
 ```
 
@@ -11264,7 +11264,7 @@ console.log(await countAsync(rest))
 
 #### Defined in
 
-[operations/optional.d.ts:255](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L255)
+[operations/optional.d.ts:255](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L255)
 
 ---
 
@@ -11317,7 +11317,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L22)
+[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L22)
 
 ▸ **none**<`Value`\>(`fn`, `iterable`): `boolean`
 
@@ -11355,7 +11355,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L25)
 
 ---
 
@@ -11410,7 +11410,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L33)
+[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L33)
 
 ▸ **noneAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
 
@@ -11449,7 +11449,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L36)
+[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L36)
 
 ---
 
@@ -11505,7 +11505,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L44)
+[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L44)
 
 ▸ **noneConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
 
@@ -11544,7 +11544,7 @@ console.log(
 
 #### Defined in
 
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/predicate.d.ts#L47)
+[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/predicate.d.ts#L47)
 
 ---
 
@@ -11576,7 +11576,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:342](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L342)
+[operations/reducer.d.ts:358](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L358)
 
 ▸ **normalizeReducer**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
 [`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Finished`\>
@@ -11604,7 +11604,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:345](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L345)
+[operations/reducer.d.ts:361](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L361)
 
 ▸ **normalizeReducer**<`Value`, `Acc`, `This`\>(`reducer`):
 [`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Acc`\>
@@ -11631,7 +11631,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:348](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L348)
+[operations/reducer.d.ts:364](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L364)
 
 ▸ **normalizeReducer**<`Value`, `Finished`, `This`\>(`reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Finished`\>
@@ -11658,7 +11658,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:351](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L351)
+[operations/reducer.d.ts:367](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L367)
 
 ▸ **normalizeReducer**<`Value`, `This`\>(`reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
@@ -11684,7 +11684,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:354](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L354)
+[operations/reducer.d.ts:370](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L370)
 
 ▸ **normalizeReducer**<`Value`\>(`reducer`):
 [`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
@@ -11709,7 +11709,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:357](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L357)
+[operations/reducer.d.ts:373](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L373)
 
 ▸ **normalizeReducer**<`Key`, `Value`, `Acc`, `This`\>(`reducer`):
 [`AsyncKeyedReducer`](modules.md#asynckeyedreducer)<`Key`, `Value`, `Acc`\>
@@ -11737,7 +11737,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:359](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L359)
+[operations/reducer.d.ts:375](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L375)
 
 ▸ **normalizeReducer**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
 [`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Finished`\>
@@ -11765,7 +11765,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:362](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L362)
+[operations/reducer.d.ts:378](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L378)
 
 ▸ **normalizeReducer**<`Value`, `Acc`, `This`\>(`reducer`):
 [`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Acc`\>
@@ -11792,7 +11792,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:365](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L365)
+[operations/reducer.d.ts:381](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L381)
 
 ▸ **normalizeReducer**<`Value`, `Finished`, `This`\>(`reducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Finished`\>
@@ -11819,7 +11819,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:368](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L368)
+[operations/reducer.d.ts:384](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L384)
 
 ▸ **normalizeReducer**<`Value`, `This`\>(`reducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
@@ -11845,7 +11845,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:371](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L371)
+[operations/reducer.d.ts:387](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L387)
 
 ▸ **normalizeReducer**<`Value`\>(`reducer`):
 [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
@@ -11870,7 +11870,7 @@ Returns a non-raw version of `reducer`.
 
 #### Defined in
 
-[operations/reducer.d.ts:374](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reducer.d.ts#L374)
+[operations/reducer.d.ts:390](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reducer.d.ts#L390)
 
 ---
 
@@ -11898,7 +11898,7 @@ Returns an iterable equivalent, but not referentially equal, to `iterable`.
 
 #### Defined in
 
-[operations/opaque.d.ts:6](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/opaque.d.ts#L6)
+[operations/opaque.d.ts:22](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/opaque.d.ts#L22)
 
 ---
 
@@ -11927,7 +11927,7 @@ Returns an async iterable equivalent, but not referentially equal, to
 
 #### Defined in
 
-[operations/opaque.d.ts:12](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/opaque.d.ts#L12)
+[operations/opaque.d.ts:28](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/opaque.d.ts#L28)
 
 ---
 
@@ -11957,7 +11957,7 @@ Returns an concur iterable equivalent, but not referentially equal, to
 
 #### Defined in
 
-[operations/opaque.d.ts:20](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/opaque.d.ts#L20)
+[operations/opaque.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/opaque.d.ts#L36)
 
 ---
 
@@ -12026,7 +12026,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:46](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L46)
+[operations/optional.d.ts:46](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L46)
 
 ▸ **or**<`Value`\>(`fn`, `iterable`): `Value`
 
@@ -12080,7 +12080,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:47](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L47)
+[operations/optional.d.ts:47](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L47)
 
 ---
 
@@ -12151,7 +12151,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:73](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L73)
+[operations/optional.d.ts:73](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L73)
 
 ▸ **orAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`Value`\>
 
@@ -12206,7 +12206,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:76](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L76)
+[operations/optional.d.ts:76](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L76)
 
 ---
 
@@ -12277,7 +12277,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:105](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L105)
+[operations/optional.d.ts:105](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L105)
 
 ▸ **orConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`Value`\>
 
@@ -12332,7 +12332,7 @@ console.log(
 
 #### Defined in
 
-[operations/optional.d.ts:108](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/optional.d.ts#L108)
+[operations/optional.d.ts:108](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/optional.d.ts#L108)
 
 ---
 
@@ -12374,7 +12374,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:89](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L89)
+[operations/fn.d.ts:89](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L89)
 
 ▸ **pipe**<`A`, `B`\>(`value`, `fn`): `B`
 
@@ -12414,7 +12414,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:90](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L90)
+[operations/fn.d.ts:90](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L90)
 
 ▸ **pipe**<`A`, `B`, `C`\>(`value`, `fn1`, `fn2`): `C`
 
@@ -12456,7 +12456,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:91](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L91)
+[operations/fn.d.ts:91](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L91)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`\>(`value`, `fn1`, `fn2`, `fn3`): `D`
 
@@ -12500,7 +12500,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:92](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L92)
+[operations/fn.d.ts:92](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L92)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`): `E`
 
@@ -12546,7 +12546,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:98](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L98)
+[operations/fn.d.ts:98](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L98)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`,
 `fn5`): `F`
@@ -12595,7 +12595,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:105](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L105)
+[operations/fn.d.ts:105](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L105)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`value`, `fn1`, `fn2`, `fn3`,
 `fn4`, `fn5`, `fn6`): `G`
@@ -12646,7 +12646,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:113](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L113)
+[operations/fn.d.ts:113](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L113)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`value`, `fn1`, `fn2`,
 `fn3`, `fn4`, `fn5`, `fn6`, `fn7`): `H`
@@ -12699,7 +12699,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:122](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L122)
+[operations/fn.d.ts:122](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L122)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`value`, `fn1`, `fn2`,
 `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): `I`
@@ -12754,7 +12754,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:132](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L132)
+[operations/fn.d.ts:132](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L132)
 
 ▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`value`, `fn1`,
 `fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): `J`
@@ -12811,7 +12811,7 @@ console.log(
 
 #### Defined in
 
-[operations/fn.d.ts:143](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/fn.d.ts#L143)
+[operations/fn.d.ts:143](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/fn.d.ts#L143)
 
 ---
 
@@ -12873,7 +12873,7 @@ console.log([...rangeTo(0, 6).step(2)])
 
 #### Defined in
 
-[operations/generate.d.ts:143](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L143)
+[operations/generate.d.ts:144](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L144)
 
 ▸ **rangeTo**<`Start`, `End`\>(`start`, `end`):
 [`RangeIterable`](modules.md#rangeiterable)
@@ -12915,7 +12915,7 @@ console.log([...rangeTo(0, 6).step(2)])
 
 #### Defined in
 
-[operations/generate.d.ts:146](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L146)
+[operations/generate.d.ts:147](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L147)
 
 ---
 
@@ -12977,7 +12977,7 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 #### Defined in
 
-[operations/generate.d.ts:143](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L143)
+[operations/generate.d.ts:144](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L144)
 
 ▸ **rangeUntil**<`Start`, `End`\>(`start`, `end`):
 [`RangeIterable`](modules.md#rangeiterable)
@@ -13019,7 +13019,7 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 #### Defined in
 
-[operations/generate.d.ts:146](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L146)
+[operations/generate.d.ts:147](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L147)
 
 ---
 
@@ -13085,7 +13085,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:68](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L68)
+[operations/reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L68)
 
 ▸ **reduce**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`): (`iterable`:
 `Iterable`<`Value`\>) => `Finished`
@@ -13158,7 +13158,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:72](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L72)
+[operations/reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L72)
 
 ▸ **reduce**<`Value`, `Acc`, `This`\>(`reducer`, `iterable`): `Acc`
 
@@ -13218,7 +13218,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:76](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L76)
+[operations/reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L76)
 
 ▸ **reduce**<`Value`, `Acc`, `This`\>(`reducer`): (`iterable`:
 `Iterable`<`Value`\>) => `Acc`
@@ -13290,7 +13290,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:80](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L80)
+[operations/reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L80)
 
 ▸ **reduce**<`Value`, `Finished`, `This`\>(`reducer`, `iterable`):
 [`Optional`](modules.md#optional)<`Finished`\>
@@ -13351,7 +13351,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:84](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L84)
+[operations/reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L84)
 
 ▸ **reduce**<`Value`, `Finished`, `This`\>(`reducer`): (`iterable`:
 `Iterable`<`Value`\>) => [`Optional`](modules.md#optional)<`Finished`\>
@@ -13423,7 +13423,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:88](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L88)
+[operations/reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L88)
 
 ▸ **reduce**<`Value`, `This`\>(`reducer`, `iterable`):
 [`Optional`](modules.md#optional)<`Value`\>
@@ -13483,7 +13483,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:92](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L92)
+[operations/reduce.d.ts:92](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L92)
 
 ▸ **reduce**<`Value`, `This`\>(`reducer`): (`iterable`: `Iterable`<`Value`\>) =>
 [`Optional`](modules.md#optional)<`Value`\>
@@ -13554,7 +13554,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:96](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L96)
+[operations/reduce.d.ts:96](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L96)
 
 ▸ **reduce**<`Value`\>(`reducer`, `iterable`):
 [`Optional`](modules.md#optional)<`Value`\>
@@ -13613,7 +13613,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:100](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L100)
+[operations/reduce.d.ts:100](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L100)
 
 ▸ **reduce**<`Value`\>(`reducer`): (`iterable`: `Iterable`<`Value`\>) =>
 [`Optional`](modules.md#optional)<`Value`\>
@@ -13683,7 +13683,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:104](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L104)
+[operations/reduce.d.ts:104](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L104)
 
 ---
 
@@ -13752,7 +13752,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:150](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L150)
+[operations/reduce.d.ts:150](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L150)
 
 ▸ **reduceAsync**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
 (`asyncIterable`: `AsyncIterable`<`Value`\>) => `Promise`<`Finished`\>
@@ -13828,7 +13828,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:156](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L156)
+[operations/reduce.d.ts:156](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L156)
 
 ▸ **reduceAsync**<`Value`, `Acc`, `This`\>(`asyncReducer`, `asyncIterable`):
 `Promise`<`Acc`\>
@@ -13892,7 +13892,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:162](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L162)
+[operations/reduce.d.ts:162](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L162)
 
 ▸ **reduceAsync**<`Value`, `Acc`, `This`\>(`asyncReducer`): (`asyncIterable`:
 `AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>
@@ -13967,7 +13967,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:168](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L168)
+[operations/reduce.d.ts:168](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L168)
 
 ▸ **reduceAsync**<`Value`, `Finished`, `This`\>(`asyncReducer`,
 `asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
@@ -14031,7 +14031,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:174](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L174)
+[operations/reduce.d.ts:174](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L174)
 
 ▸ **reduceAsync**<`Value`, `Finished`, `This`\>(`asyncReducer`):
 (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
@@ -14107,7 +14107,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:180](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L180)
+[operations/reduce.d.ts:180](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L180)
 
 ▸ **reduceAsync**<`Value`, `This`\>(`asyncReducer`, `asyncIterable`):
 [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
@@ -14170,7 +14170,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:186](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L186)
+[operations/reduce.d.ts:186](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L186)
 
 ▸ **reduceAsync**<`Value`, `This`\>(`asyncReducer`): (`asyncIterable`:
 `AsyncIterable`<`Value`\>) =>
@@ -14245,7 +14245,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:192](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L192)
+[operations/reduce.d.ts:192](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L192)
 
 ▸ **reduceAsync**<`Value`\>(`asyncReducer`, `asyncIterable`):
 [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
@@ -14307,7 +14307,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:198](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L198)
+[operations/reduce.d.ts:198](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L198)
 
 ▸ **reduceAsync**<`Value`\>(`asyncReducer`): (`asyncIterable`:
 `AsyncIterable`<`Value`\>) =>
@@ -14381,7 +14381,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:202](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L202)
+[operations/reduce.d.ts:202](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L202)
 
 ---
 
@@ -14450,7 +14450,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:248](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L248)
+[operations/reduce.d.ts:248](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L248)
 
 ▸ **reduceConcur**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
 (`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -14527,7 +14527,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:254](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L254)
+[operations/reduce.d.ts:254](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L254)
 
 ▸ **reduceConcur**<`Value`, `Acc`, `This`\>(`asyncReducer`, `concurIterable`):
 `Promise`<`Acc`\>
@@ -14591,7 +14591,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:260](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L260)
+[operations/reduce.d.ts:260](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L260)
 
 ▸ **reduceConcur**<`Value`, `Acc`, `This`\>(`asyncReducer`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Acc`\>
@@ -14666,7 +14666,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:266](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L266)
+[operations/reduce.d.ts:266](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L266)
 
 ▸ **reduceConcur**<`Value`, `Finished`, `This`\>(`asyncReducer`,
 `concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
@@ -14730,7 +14730,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:272](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L272)
+[operations/reduce.d.ts:272](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L272)
 
 ▸ **reduceConcur**<`Value`, `Finished`, `This`\>(`asyncReducer`):
 (`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -14806,7 +14806,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:278](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L278)
+[operations/reduce.d.ts:278](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L278)
 
 ▸ **reduceConcur**<`Value`, `This`\>(`asyncReducer`, `concurIterable`):
 [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
@@ -14869,7 +14869,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:284](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L284)
+[operations/reduce.d.ts:284](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L284)
 
 ▸ **reduceConcur**<`Value`, `This`\>(`asyncReducer`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -14944,7 +14944,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:290](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L290)
+[operations/reduce.d.ts:290](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L290)
 
 ▸ **reduceConcur**<`Value`\>(`asyncReducer`, `concurIterable`):
 [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
@@ -15006,7 +15006,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:296](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L296)
+[operations/reduce.d.ts:296](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L296)
 
 ▸ **reduceConcur**<`Value`\>(`asyncReducer`): (`concurIterable`:
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
@@ -15080,7 +15080,7 @@ console.log(
 
 #### Defined in
 
-[operations/reduce.d.ts:300](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/reduce.d.ts#L300)
+[operations/reduce.d.ts:300](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/reduce.d.ts#L300)
 
 ---
 
@@ -15115,7 +15115,7 @@ console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
 
 #### Defined in
 
-[operations/generate.d.ts:86](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/generate.d.ts#L86)
+[operations/generate.d.ts:87](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/generate.d.ts#L87)
 
 ---
 
@@ -15144,7 +15144,7 @@ console.log(sum([1, 4, 6, 2]))
 
 #### Defined in
 
-[operations/statistics.d.ts:121](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L121)
+[operations/statistics.d.ts:121](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L121)
 
 ---
 
@@ -15173,7 +15173,7 @@ console.log(await sumAsync(asAsync([1, 4, 6, 2])))
 
 #### Defined in
 
-[operations/statistics.d.ts:132](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L132)
+[operations/statistics.d.ts:132](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L132)
 
 ---
 
@@ -15202,7 +15202,7 @@ console.log(await sumConcur(asConcur([1, 4, 6, 2])))
 
 #### Defined in
 
-[operations/statistics.d.ts:144](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L144)
+[operations/statistics.d.ts:144](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L144)
 
 ---
 
@@ -15264,7 +15264,7 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:311](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L311)
+[operations/slice.d.ts:310](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L310)
 
 ▸ **take**<`Count`, `Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
 
@@ -15305,7 +15305,7 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 
 #### Defined in
 
-[operations/slice.d.ts:314](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L314)
+[operations/slice.d.ts:313](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L313)
 
 ---
 
@@ -15373,7 +15373,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:322](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L322)
+[operations/slice.d.ts:321](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L321)
 
 ▸ **takeAsync**<`Count`, `Value`\>(`count`, `asyncIterable`):
 `AsyncIterable`<`Value`\>
@@ -15421,7 +15421,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:325](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L325)
+[operations/slice.d.ts:324](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L324)
 
 ---
 
@@ -15491,7 +15491,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:333](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L333)
+[operations/slice.d.ts:332](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L332)
 
 ▸ **takeConcur**<`Count`, `Value`\>(`count`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -15539,7 +15539,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:336](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L336)
+[operations/slice.d.ts:335](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L335)
 
 ---
 
@@ -15594,7 +15594,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:140](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L140)
+[operations/slice.d.ts:139](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L139)
 
 ▸ **takeWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
@@ -15633,7 +15633,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:143](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L143)
+[operations/slice.d.ts:142](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L142)
 
 ---
 
@@ -15689,7 +15689,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:151](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L151)
+[operations/slice.d.ts:150](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L150)
 
 ▸ **takeWhileAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
 
@@ -15729,7 +15729,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:154](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L154)
+[operations/slice.d.ts:153](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L153)
 
 ---
 
@@ -15786,7 +15786,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:162](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L162)
+[operations/slice.d.ts:161](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L161)
 
 ▸ **takeWhileConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -15827,7 +15827,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:165](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L165)
+[operations/slice.d.ts:164](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L164)
 
 ---
 
@@ -15857,7 +15857,7 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
 
 #### Defined in
 
-[operations/collect.d.ts:28](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L28)
+[operations/collect.d.ts:44](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L44)
 
 ---
 
@@ -15891,7 +15891,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:43](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L43)
+[operations/statistics.d.ts:43](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L43)
 
 ---
 
@@ -15946,7 +15946,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:158](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L158)
+[operations/collect.d.ts:174](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L174)
 
 ▸ **toGrouped**<`Value`, `InnerAcc`, `InnerFinished`,
 `InnerThis`\>(`innerReducer`): <Key, OuterAcc, OuterThis\>(`outerReducer`:
@@ -16016,7 +16016,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:172](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L172)
+[operations/collect.d.ts:188](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L188)
 
 ▸ **toGrouped**<`Key`, `Value`, `InnerAcc`, `InnerThis`, `OuterAcc`,
 `OuterThis`\>(`innerReducer`, `outerReducer`):
@@ -16066,7 +16066,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:188](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L188)
+[operations/collect.d.ts:204](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L204)
 
 ▸ **toGrouped**<`Value`, `InnerAcc`, `InnerThis`\>(`innerReducer`): <Key,
 OuterAcc, OuterThis\>(`outerReducer`:
@@ -16135,7 +16135,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:192](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L192)
+[operations/collect.d.ts:208](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L208)
 
 ▸ **toGrouped**<`Key`, `Value`, `InnerFinished`, `InnerThis`, `OuterAcc`,
 `OuterThis`\>(`innerReducer`, `outerReducer`):
@@ -16185,7 +16185,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:198](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L198)
+[operations/collect.d.ts:214](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L214)
 
 ▸ **toGrouped**<`Value`, `InnerFinished`, `InnerThis`\>(`innerReducer`): <Key,
 OuterAcc, OuterThis\>(`outerReducer`:
@@ -16254,7 +16254,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:207](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L207)
+[operations/collect.d.ts:223](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L223)
 
 ▸ **toGrouped**<`Key`, `Value`, `InnerThis`, `OuterAcc`,
 `OuterThis`\>(`innerReducer`, `outerReducer`):
@@ -16303,7 +16303,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:218](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L218)
+[operations/collect.d.ts:234](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L234)
 
 ▸ **toGrouped**<`Value`, `InnerThis`\>(`innerReducer`): <Key, OuterAcc,
 OuterThis\>(`outerReducer`:
@@ -16371,7 +16371,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:222](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L222)
+[operations/collect.d.ts:238](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L238)
 
 ▸ **toGrouped**<`Key`, `Value`, `OuterAcc`, `OuterThis`\>(`innerReducer`,
 `outerReducer`): [`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`],
@@ -16419,7 +16419,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:228](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L228)
+[operations/collect.d.ts:244](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L244)
 
 ▸ **toGrouped**<`Value`\>(`innerReducer`): <Key, OuterAcc,
 OuterThis\>(`outerReducer`:
@@ -16486,7 +16486,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:232](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L232)
+[operations/collect.d.ts:248](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L248)
 
 ---
 
@@ -16530,7 +16530,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:365](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L365)
+[operations/collect.d.ts:386](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L386)
 
 ---
 
@@ -16572,7 +16572,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:108](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L108)
+[operations/collect.d.ts:124](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L124)
 
 ---
 
@@ -16606,7 +16606,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:927](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L927)
+[operations/statistics.d.ts:927](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L927)
 
 ---
 
@@ -16640,7 +16640,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:865](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L865)
+[operations/statistics.d.ts:865](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L865)
 
 ---
 
@@ -16676,7 +16676,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:990](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L990)
+[operations/statistics.d.ts:990](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L990)
 
 ---
 
@@ -16727,7 +16727,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:406](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L406)
+[operations/statistics.d.ts:406](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L406)
 
 ---
 
@@ -16763,7 +16763,7 @@ and [minMaxByConcur](modules.md#minmaxbyconcur) for direct use on iterables.
 
 #### Defined in
 
-[operations/statistics.d.ts:443](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L443)
+[operations/statistics.d.ts:443](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L443)
 
 ---
 
@@ -16815,7 +16815,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:749](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L749)
+[operations/statistics.d.ts:749](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L749)
 
 ---
 
@@ -16852,7 +16852,7 @@ Use when composing reducers. Prefer
 
 #### Defined in
 
-[operations/statistics.d.ts:787](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L787)
+[operations/statistics.d.ts:787](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L787)
 
 ---
 
@@ -16927,7 +16927,7 @@ never }\>
 
 #### Defined in
 
-[operations/collect.d.ts:274](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L274)
+[operations/collect.d.ts:290](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L290)
 
 ▸ **toMultiple**<`Value`, `Reducers`\>(`reducers`):
 [`OptionalReducer`](modules.md#optionalreducer)<`Value`, { -readonly [Key in
@@ -16994,7 +16994,7 @@ RawOptionalReducerWithFinish<Value, Finished, unknown\> ? Finished : Value }\>
 
 #### Defined in
 
-[operations/collect.d.ts:305](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L305)
+[operations/collect.d.ts:321](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L321)
 
 ---
 
@@ -17036,7 +17036,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:85](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L85)
+[operations/collect.d.ts:101](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L101)
 
 ---
 
@@ -17066,7 +17066,7 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
 
 #### Defined in
 
-[operations/collect.d.ts:45](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L45)
+[operations/collect.d.ts:61](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L61)
 
 ---
 
@@ -17099,7 +17099,7 @@ console.log(
 
 #### Defined in
 
-[operations/statistics.d.ts:110](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/statistics.d.ts#L110)
+[operations/statistics.d.ts:110](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/statistics.d.ts#L110)
 
 ---
 
@@ -17141,7 +17141,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:131](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L131)
+[operations/collect.d.ts:147](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L147)
 
 ---
 
@@ -17179,7 +17179,7 @@ console.log(
 
 #### Defined in
 
-[operations/collect.d.ts:63](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/collect.d.ts#L63)
+[operations/collect.d.ts:79](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/collect.d.ts#L79)
 
 ---
 
@@ -17215,7 +17215,7 @@ console.log(pipe([`sloth`, `not sloth`, `sloth`], unique, reduce(toArray())))
 
 #### Defined in
 
-[operations/exclude.d.ts:382](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L382)
+[operations/exclude.d.ts:382](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L382)
 
 ---
 
@@ -17257,7 +17257,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:401](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L401)
+[operations/exclude.d.ts:401](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L401)
 
 ---
 
@@ -17314,7 +17314,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:299](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L299)
+[operations/exclude.d.ts:299](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L299)
 
 ▸ **uniqueBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
 
@@ -17355,7 +17355,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:302](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L302)
+[operations/exclude.d.ts:302](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L302)
 
 ---
 
@@ -17413,7 +17413,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:328](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L328)
+[operations/exclude.d.ts:328](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L328)
 
 ▸ **uniqueByAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
 
@@ -17455,7 +17455,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:331](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L331)
+[operations/exclude.d.ts:331](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L331)
 
 ---
 
@@ -17514,7 +17514,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:357](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L357)
+[operations/exclude.d.ts:357](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L357)
 
 ▸ **uniqueByConcur**<`Value`\>(`fn`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
@@ -17557,7 +17557,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:360](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L360)
+[operations/exclude.d.ts:360](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L360)
 
 ---
 
@@ -17600,7 +17600,7 @@ console.log(
 
 #### Defined in
 
-[operations/exclude.d.ts:422](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/exclude.d.ts#L422)
+[operations/exclude.d.ts:422](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/exclude.d.ts#L422)
 
 ---
 
@@ -17632,7 +17632,7 @@ returned iterable can be iterated multiple times and differs from
 
 #### Defined in
 
-[operations/from.d.ts:36](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/from.d.ts#L36)
+[operations/from.d.ts:36](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/from.d.ts#L36)
 
 ---
 
@@ -17709,7 +17709,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:618](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L618)
+[operations/slice.d.ts:617](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L617)
 
 ▸ **window**<`Size`, `Value`\>(`options`, `iterable`): `Iterable`<`Value`[]\>
 
@@ -17765,7 +17765,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:621](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L621)
+[operations/slice.d.ts:620](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L620)
 
 ---
 
@@ -17848,7 +17848,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:664](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L664)
+[operations/slice.d.ts:663](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L663)
 
 ▸ **windowAsync**<`Size`, `Value`\>(`options`, `asyncIterable`):
 `AsyncIterable`<`Value`[]\>
@@ -17911,7 +17911,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:667](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L667)
+[operations/slice.d.ts:666](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L666)
 
 ---
 
@@ -17996,7 +17996,7 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:710](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L710)
+[operations/slice.d.ts:709](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L709)
 
 ▸ **windowConcur**<`Size`, `Value`\>(`options`, `concurIterable`):
 [`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
@@ -18059,4 +18059,4 @@ console.log(
 
 #### Defined in
 
-[operations/slice.d.ts:713](https://github.com/TomerAberbach/fn/blob/e949393/src/operations/slice.d.ts#L713)
+[operations/slice.d.ts:712](https://github.com/TomerAberbach/lfi/blob/076b445/src/operations/slice.d.ts#L712)

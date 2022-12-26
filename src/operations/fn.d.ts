@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable typescript/no-explicit-any */
 
 /** @internal */
 type Curried<Parameters extends readonly any[], Return> = <

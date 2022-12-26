@@ -211,12 +211,12 @@ export const getConcur: <Value>(
  * //=> [ 'yawning', 'eating' ]
  *
  * const badThingsAboutSloths = []
- * const [first, rest] = next(badThingsAboutSloths)
+ * const [first2, rest2] = next(badThingsAboutSloths)
  *
- * console.log(count(first))
+ * console.log(count(first2))
  * //=> 0
  *
- * console.log(count(rest))
+ * console.log(count(rest2))
  * //=> 0
  * ```
  */
@@ -243,12 +243,12 @@ export const next: <Value>(
  * //=> [ 'yawning', 'eating' ]
  *
  * const badThingsAboutSloths = emptyAsync
- * const [first, rest] = await nextAsync(badThingsAboutSloths)
+ * const [first2, rest2] = await nextAsync(badThingsAboutSloths)
  *
- * console.log(await countAsync(first))
+ * console.log(await countAsync(first2))
  * //=> 0
  *
- * console.log(await countAsync(rest))
+ * console.log(await countAsync(rest2))
  * //=> 0
  * ```
  */

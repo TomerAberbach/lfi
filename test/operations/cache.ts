@@ -94,7 +94,7 @@ testProp(
     )
     do {
       const index = iteratorIndices.next().value % iterators.length
-      if (iterators[index].next().done) {
+      if (iterators[index]!.next().done) {
         iterators.splice(index, 1)
       }
     } while (iterators.length > 0)
@@ -152,7 +152,7 @@ testProp(
     )
     do {
       const index = iteratorIndices.next().value % iterators.length
-      if ((await iterators[index].next()).done) {
+      if ((await iterators[index]!.next()).done) {
         iterators.splice(index, 1)
       }
     } while (iterators.length > 0)

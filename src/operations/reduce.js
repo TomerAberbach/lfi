@@ -34,7 +34,7 @@ export const reduce = curry((reducer, iterable) => {
   })
 })
 
-function reduceInternal(acc, add, finish, iterable) {
+const reduceInternal = (acc, add, finish, iterable) => {
   for (const value of iterable) {
     acc = add(acc, value)
   }

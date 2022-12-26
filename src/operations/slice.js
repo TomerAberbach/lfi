@@ -279,7 +279,7 @@ export const windowConcur = curry((options, concurIterable) => {
   }
 })
 
-function normalizeWindowOptions(options) {
+const normalizeWindowOptions = options => {
   const {
     size,
     partialStart = false,
@@ -288,20 +288,20 @@ function normalizeWindowOptions(options) {
   return { _size: size, _partialStart: partialStart, _partialEnd: partialEnd }
 }
 
-function createWindow(size) {
+const createWindow = size => {
   let nextValueIndex = 0
   let count = 0
   const window = Array.from({ length: size })
 
   return {
-    _push(value) {
+    _push: value => {
       window[nextValueIndex] = value
       nextValueIndex = (nextValueIndex + 1) % size
 
       count = Math.min(count + 1, size)
       return count
     },
-    _get(index = 0) {
+    _get: (index = 0) => {
       const offset = size - count + nextValueIndex + index
       return Array.from(
         { length: count - index },

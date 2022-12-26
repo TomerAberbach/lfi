@@ -250,7 +250,7 @@ export const toGrouped: {
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable typescript/no-explicit-any */
 /**
  * Returns a {@link Reducer} or {@link OptionalReducer} that reduces values to
  * an object or array of the same shape as `reducers` using all of the reducers
@@ -359,7 +359,7 @@ export const toMultiple: {
     }
   >
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
+/* eslint-enable typescript/no-explicit-any */
 
 /**
  * Returns a {@link Reducer} that concatenates values to a string where values

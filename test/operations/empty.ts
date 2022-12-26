@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable typescript/no-explicit-any */
 
 import { expectTypeOf } from 'tomer'
 import type { ConcurIterable } from '../../src/index.js'

@@ -70,6 +70,13 @@ test.skip(`filter types are correct`, () => {
       filter(n => n > 2),
     ),
   ).toMatchTypeOf<Iterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      [1, 2, 3, null],
+      filter((x): x is number => typeof x === `number`),
+    ),
+  ).toMatchTypeOf<Iterable<number>>()
 })
 
 testProp(
@@ -113,6 +120,12 @@ test.skip(`filterAsync types are correct`, () => {
     pipe(
       asAsync([1, 2, 3]),
       filterAsync(n => n > 2),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number>>()
+  expectTypeOf(
+    pipe(
+      asAsync([1, 2, 3, null]),
+      filterAsync((x): x is number => typeof x === `number`),
     ),
   ).toMatchTypeOf<AsyncIterable<number>>()
   expectTypeOf(
@@ -168,6 +181,12 @@ test.skip(`filterConcur types are correct`, () => {
     pipe(
       asConcur([1, 2, 3]),
       filterConcur(n => n > 2),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number>>()
+  expectTypeOf(
+    pipe(
+      asConcur([1, 2, 3, null]),
+      filterConcur((x): x is number => typeof x === `number`),
     ),
   ).toMatchTypeOf<ConcurIterable<number>>()
   expectTypeOf(

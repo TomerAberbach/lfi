@@ -36,6 +36,14 @@ import type { ConcurIterable } from './as.js'
  * ```
  */
 export const filter: {
+  <From, To>(fn: (value: From) => value is To): (
+    iterable: Iterable<From>,
+  ) => Iterable<To>
+  <From, To>(
+    fn: (value: From) => value is To,
+    iterable: Iterable<From>,
+  ): Iterable<To>
+
   <Value>(fn: (value: Value) => boolean | unknown): (
     iterable: Iterable<Value>,
   ) => Iterable<Value>
@@ -65,6 +73,14 @@ export const filter: {
  * ```
  */
 export const filterAsync: {
+  <From, To>(fn: (value: From) => value is To): (
+    asyncIterable: AsyncIterable<From>,
+  ) => AsyncIterable<To>
+  <From, To>(
+    fn: (value: From) => Value is To,
+    asyncIterable: AsyncIterable<From>,
+  ): AsyncIterable<To>
+
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
     asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
@@ -94,6 +110,14 @@ export const filterAsync: {
  * ```
  */
 export const filterConcur: {
+  <From, To>(fn: (value: From) => value is To): (
+    concurIterable: ConcurIterable<From>,
+  ) => ConcurIterable<To>
+  <From, To>(
+    fn: (value: From) => value is To,
+    concurIterable: ConcurIterable<From>,
+  ): ConcurIterable<To>
+
   <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
     concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>

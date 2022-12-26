@@ -19,20 +19,28 @@ import type { MaybePromiseLike } from '../../../src/internal/types.js'
 import type { ConcurIterable } from '../../../src/index.js'
 import { getIterableIndex, getScheduler } from './test-prop.js'
 
-export const iterableArb = getIterableArb(fc.anything())
-export const nonEmptyIterableArb = getIterableArb(fc.anything(), {
-  minLength: 1,
-})
+const getArrayArb = <Value>(
+  arb: fc.Arbitrary<Value>,
+  {
+    unique = false,
+    ...constraints
+  }: fc.ArrayConstraints & { unique?: boolean } = {},
+): fc.Arbitrary<Value[]> => {
+  if (!unique) {
+    return fc.array(arb, constraints)
+  }
 
-export function getIterableArb<Value>(
+  return fc.uniqueArray(arb, { ...constraints, comparator: `SameValue` })
+}
+
+export const getIterableArb = <Value>(
   arb: fc.Arbitrary<Value>,
   constraints?: fc.ArrayConstraints & { unique?: boolean },
-): fc.Arbitrary<GeneratedIterable<Value>> {
-  return getArrayArb(arb, constraints).map(values => ({
+): fc.Arbitrary<GeneratedIterable<Value>> =>
+  getArrayArb(arb, constraints).map(values => ({
     iterable: new IterableWithPrivateFields(values),
     values,
   }))
-}
 
 export type GeneratedIterable<Value> = {
   iterable: Iterable<Value>
@@ -58,23 +66,19 @@ class IterableWithPrivateFields<Value> {
   }
 }
 
-export const asyncIterableArb = getAsyncIterableArb(fc.anything())
-export const uniqueAsyncIterableArb = getAsyncIterableArb(fc.anything(), {
-  unique: true,
-})
-export const nonEmptyAsyncIterableArb = getAsyncIterableArb(fc.anything(), {
+export const iterableArb = getIterableArb(fc.anything())
+export const nonEmptyIterableArb = getIterableArb(fc.anything(), {
   minLength: 1,
 })
 
-export function getAsyncIterableArb<Value>(
+export const getAsyncIterableArb = <Value>(
   arb: fc.Arbitrary<Value>,
   constraints?: fc.ArrayConstraints & { unique?: boolean },
-): fc.Arbitrary<GeneratedAsyncIterable<Value>> {
-  return getArrayArb(arb, constraints).map(values => ({
+): fc.Arbitrary<GeneratedAsyncIterable<Value>> =>
+  getArrayArb(arb, constraints).map(values => ({
     iterable: new AsyncIterableWithPrivateFields(values),
     values,
   }))
-}
 
 export type GeneratedAsyncIterable<Value> = {
   iterable: AsyncIterable<Value>
@@ -91,7 +95,7 @@ class AsyncIterableWithPrivateFields<Value> {
     this.#index = getIterableIndex()
   }
 
-  // eslint-disable-next-line @typescript-eslint/require-await
+  // eslint-disable-next-line typescript/require-await
   public async *[Symbol.asyncIterator](): AsyncIterator<Value> {
     yield* this.#values.map(value => getScheduler()!.schedule(value))
   }
@@ -101,19 +105,19 @@ class AsyncIterableWithPrivateFields<Value> {
   }
 }
 
-export const concurIterableArb = getConcurIterableArb(fc.anything())
-export const uniqueConcurIterableArb = getConcurIterableArb(fc.anything(), {
+export const asyncIterableArb = getAsyncIterableArb(fc.anything())
+export const uniqueAsyncIterableArb = getAsyncIterableArb(fc.anything(), {
   unique: true,
 })
-export const nonEmptyConcurIterableArb = getConcurIterableArb(fc.anything(), {
+export const nonEmptyAsyncIterableArb = getAsyncIterableArb(fc.anything(), {
   minLength: 1,
 })
 
-export function getConcurIterableArb<Value>(
+export const getConcurIterableArb = <Value>(
   arb: fc.Arbitrary<Value>,
   constraints?: fc.ArrayConstraints & { unique?: boolean },
-): fc.Arbitrary<GeneratedConcurIterable<Value>> {
-  return getArrayArb(arb, constraints).map(values => {
+): fc.Arbitrary<GeneratedConcurIterable<Value>> =>
+  getArrayArb(arb, constraints).map(values => {
     const index = getIterableIndex()
     return {
       iterable: Object.assign(
@@ -129,23 +133,16 @@ export function getConcurIterableArb<Value>(
       values,
     }
   })
-}
-
-function getArrayArb<Value>(
-  arb: fc.Arbitrary<Value>,
-  {
-    unique = false,
-    ...constraints
-  }: fc.ArrayConstraints & { unique?: boolean } = {},
-): fc.Arbitrary<Value[]> {
-  if (!unique) {
-    return fc.array(arb, constraints)
-  }
-
-  return fc.uniqueArray(arb, { ...constraints, comparator: `SameValue` })
-}
 
 export type GeneratedConcurIterable<Value> = {
   iterable: ConcurIterable<Value>
   values: Value[]
 }
+
+export const concurIterableArb = getConcurIterableArb(fc.anything())
+export const uniqueConcurIterableArb = getConcurIterableArb(fc.anything(), {
+  unique: true,
+})
+export const nonEmptyConcurIterableArb = getConcurIterableArb(fc.anything(), {
+  minLength: 1,
+})

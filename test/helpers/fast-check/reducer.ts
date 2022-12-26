@@ -72,29 +72,25 @@ export const rawKeyedReducer = fc
       new RawKeyedReducerWithPrivateFields(create, add, get),
   )
 
-export const asyncFunctionReducerArb = getAsyncFunctionReducerArb(asyncFnArb)
-
-export function getAsyncFunctionReducerArb<Value>(
+export const getAsyncFunctionReducerArb = <Value>(
   asyncFnArb: fc.Arbitrary<GeneratedAsyncFn<Value>>,
-): fc.Arbitrary<GeneratedAsyncFunctionReducer<Value>> {
-  return asyncFnArb.map(({ asyncFn, syncFn }) => ({
+): fc.Arbitrary<GeneratedAsyncFunctionReducer<Value>> =>
+  asyncFnArb.map(({ asyncFn, syncFn }) => ({
     asyncFunctionReducer: (acc: unknown, value: unknown) => asyncFn(acc, value),
     syncFunctionReducer: (acc: unknown, value: unknown) => syncFn(acc, value),
   }))
-}
 
 export type GeneratedAsyncFunctionReducer<Value = unknown> = {
   asyncFunctionReducer: AsyncFunctionReducer<Value>
   syncFunctionReducer: FunctionReducer<Value>
 }
 
-export const rawAsyncOptionalReducerWithoutFinishArb =
-  getRawAsyncOptionalReducerWithoutFinishArb(asyncFnArb)
+export const asyncFunctionReducerArb = getAsyncFunctionReducerArb(asyncFnArb)
 
-export function getRawAsyncOptionalReducerWithoutFinishArb<Value>(
+export const getRawAsyncOptionalReducerWithoutFinishArb = <Value>(
   asyncFnArb: fc.Arbitrary<GeneratedAsyncFn<Value>>,
-): fc.Arbitrary<GeneratedRawAsyncOptionalReducerWithoutFinish<Value>> {
-  return asyncFnArb.map(add => ({
+): fc.Arbitrary<GeneratedRawAsyncOptionalReducerWithoutFinish<Value>> =>
+  asyncFnArb.map(add => ({
     asyncReducer: new RawOptionalReducerWithoutFinishWithPrivateFields(
       add.asyncFn,
     ),
@@ -102,12 +98,14 @@ export function getRawAsyncOptionalReducerWithoutFinishArb<Value>(
       add.syncFn,
     ),
   }))
-}
 
 export type GeneratedRawAsyncOptionalReducerWithoutFinish<Value = unknown> = {
   asyncReducer: RawAsyncOptionalReducerWithoutFinish<Value>
   syncReducer: RawOptionalReducerWithoutFinish<Value>
 }
+
+export const rawAsyncOptionalReducerWithoutFinishArb =
+  getRawAsyncOptionalReducerWithoutFinishArb(asyncFnArb)
 
 // Used to ensure we call methods with the right `this`
 class RawOptionalReducerWithoutFinishWithPrivateFields<Value = unknown> {
@@ -122,13 +120,10 @@ class RawOptionalReducerWithoutFinishWithPrivateFields<Value = unknown> {
   }
 }
 
-export const rawAsyncOptionalReducerWithFinishArb =
-  getRawAsyncOptionalReducerWithFinishArb(asyncFnArb)
-
-export function getRawAsyncOptionalReducerWithFinishArb<Value>(
+export const getRawAsyncOptionalReducerWithFinishArb = <Value>(
   asyncFnArb: fc.Arbitrary<GeneratedAsyncFn<Value>>,
-): fc.Arbitrary<GeneratedRawAsyncOptionalReducerWithFinish<Value>> {
-  return fc.tuple(asyncFnArb, asyncFnArb).map(([add, finish]) => ({
+): fc.Arbitrary<GeneratedRawAsyncOptionalReducerWithFinish<Value>> =>
+  fc.tuple(asyncFnArb, asyncFnArb).map(([add, finish]) => ({
     asyncReducer: new RawOptionalReducerWithFinishAndPrivateFields(
       add.asyncFn,
       finish.asyncFn,
@@ -138,7 +133,6 @@ export function getRawAsyncOptionalReducerWithFinishArb<Value>(
       finish.syncFn,
     ),
   }))
-}
 
 export type GeneratedRawAsyncOptionalReducerWithFinish<Value = unknown> = {
   asyncReducer: RawAsyncOptionalReducerWithFinish<Value, Value>
@@ -161,13 +155,13 @@ class RawOptionalReducerWithFinishAndPrivateFields<
   }
 }
 
-export const rawAsyncReducerWithoutFinishArb =
-  getRawAsyncReducerWithoutFinishArb(asyncFnArb)
+export const rawAsyncOptionalReducerWithFinishArb =
+  getRawAsyncOptionalReducerWithFinishArb(asyncFnArb)
 
-export function getRawAsyncReducerWithoutFinishArb<Value>(
+export const getRawAsyncReducerWithoutFinishArb = <Value>(
   asyncFnArb: fc.Arbitrary<GeneratedAsyncFn<Value>>,
-): fc.Arbitrary<GeneratedRawAsyncReducerWithoutFinish<Value>> {
-  return fc.tuple(asyncFnArb, asyncFnArb).map(([create, add]) => ({
+): fc.Arbitrary<GeneratedRawAsyncReducerWithoutFinish<Value>> =>
+  fc.tuple(asyncFnArb, asyncFnArb).map(([create, add]) => ({
     asyncReducer: new RawReducerWithoutFinishWithPrivateFields(
       create.asyncFn,
       add.asyncFn,
@@ -177,7 +171,6 @@ export function getRawAsyncReducerWithoutFinishArb<Value>(
       add.syncFn,
     ),
   }))
-}
 
 export type GeneratedRawAsyncReducerWithoutFinish<Value = unknown> = {
   asyncReducer: RawAsyncReducerWithoutFinish<Value, Value>
@@ -200,27 +193,24 @@ class RawReducerWithoutFinishWithPrivateFields<
   }
 }
 
-export const rawAsyncReducerWithFinishArb =
-  getRawAsyncReducerWithFinishArb(asyncFnArb)
+export const rawAsyncReducerWithoutFinishArb =
+  getRawAsyncReducerWithoutFinishArb(asyncFnArb)
 
-export function getRawAsyncReducerWithFinishArb<Value>(
+export const getRawAsyncReducerWithFinishArb = <Value>(
   asyncFnArb: fc.Arbitrary<GeneratedAsyncFn<Value>>,
-): fc.Arbitrary<GeneratedRawAsyncReducerWithFinish<Value>> {
-  return fc
-    .tuple(asyncFnArb, asyncFnArb, asyncFnArb)
-    .map(([create, add, finish]) => ({
-      asyncReducer: new RawReducerWithFinishAndPrivateFields(
-        create.asyncFn,
-        add.asyncFn,
-        finish.asyncFn,
-      ),
-      syncReducer: new RawReducerWithFinishAndPrivateFields(
-        create.syncFn,
-        add.syncFn,
-        finish.syncFn,
-      ),
-    }))
-}
+): fc.Arbitrary<GeneratedRawAsyncReducerWithFinish<Value>> =>
+  fc.tuple(asyncFnArb, asyncFnArb, asyncFnArb).map(([create, add, finish]) => ({
+    asyncReducer: new RawReducerWithFinishAndPrivateFields(
+      create.asyncFn,
+      add.asyncFn,
+      finish.asyncFn,
+    ),
+    syncReducer: new RawReducerWithFinishAndPrivateFields(
+      create.syncFn,
+      add.syncFn,
+      finish.syncFn,
+    ),
+  }))
 
 export type GeneratedRawAsyncReducerWithFinish<Value = unknown> = {
   asyncReducer: RawAsyncReducerWithFinish<Value, Value, Value>
@@ -258,3 +248,6 @@ class RawKeyedReducerWithPrivateFields extends RawReducerWithoutFinishWithPrivat
 }
 
 type Fn<Value = unknown> = (...args: unknown[]) => Value
+
+export const rawAsyncReducerWithFinishArb =
+  getRawAsyncReducerWithFinishArb(asyncFnArb)

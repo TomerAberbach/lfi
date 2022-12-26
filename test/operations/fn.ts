@@ -36,6 +36,7 @@ const fnAndArgsArb = fc
   )
 
 test.skip(`curry types are correct`, () => {
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const fn = (a: number, b: string, c: boolean): string => `${a}${b}${c}`
   const curriedFn = curry(fn)
 
@@ -75,25 +76,23 @@ testProp(
   },
 )
 
-function partitions<Value>(array: Value[]): Iterable<Value[][]> {
-  return {
-    *[Symbol.iterator](): Iterator<Value[][]> {
-      if (array.length === 0) {
-        yield []
-        return
-      }
+const partitions = <Value>(array: Value[]): Iterable<Value[][]> => ({
+  *[Symbol.iterator](): Iterator<Value[][]> {
+    if (array.length === 0) {
+      yield []
+      return
+    }
 
-      for (let i = 0; i < array.length; i++) {
-        const start = array.slice(0, i + 1)
-        const end = array.slice(i + 1)
+    for (let i = 0; i < array.length; i++) {
+      const start = array.slice(0, i + 1)
+      const end = array.slice(i + 1)
 
-        for (const partition of partitions(end)) {
-          yield [start, ...partition]
-        }
+      for (const partition of partitions(end)) {
+        yield [start, ...partition]
       }
-    },
-  }
-}
+    }
+  },
+})
 
 testProp(
   `curry returns the original function if its length is less than or equal to zero`,
@@ -166,16 +165,16 @@ testProp(
     expect(
       (pipe as (...args: unknown[]) => unknown)(value, firstFn, ...otherFns),
     ).toBe(
-      (pipe as (...args: unknown[]) => unknown)(firstFn(value), ...otherFns),
+      (pipe as (...args: unknown[]) => unknown)(firstFn!(value), ...otherFns),
     )
   },
 )
 
 test.skip(`compose types are correct`, () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line typescript/no-explicit-any
   expectTypeOf(compose(String)).toMatchTypeOf<(a: any) => string>()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line typescript/no-explicit-any
   expectTypeOf(compose(String, Boolean)).toMatchTypeOf<(a: any) => boolean>()
 })
 
@@ -201,7 +200,7 @@ testProp(
     ).toBe(
       (compose as (...args: unknown[]) => (arg: unknown) => unknown)(
         ...otherFns,
-      )(firstFn(value)),
+      )(firstFn!(value)),
     )
   },
 )

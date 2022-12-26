@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-export default function delay(timeout: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, timeout))
-}
+const delay = (timeout: number): Promise<void> =>
+  new Promise(resolve => setTimeout(resolve, timeout))
+
+export default delay

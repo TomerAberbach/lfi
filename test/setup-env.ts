@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* eslint-disable require-atomic-updates, jest/no-standalone-expect */
+/* eslint-disable require-atomic-updates, no-restricted-syntax, jest/no-standalone-expect */
 
 import { fc, jest } from 'tomer'
 import delay from './helpers/delay.js'
@@ -155,7 +155,7 @@ expect.extend({
       received != null &&
       [`add`, `finish`].every(
         methodName =>
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // eslint-disable-next-line typescript/no-unsafe-member-access
           typeof (received as Record<keyof never, unknown>)[methodName] ===
           `function`,
       ) &&
@@ -174,7 +174,7 @@ expect.extend({
       received != null &&
       [`create`, `add`, `finish`, keyed && `get`].filter(Boolean).every(
         methodName =>
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          // eslint-disable-next-line typescript/no-unsafe-member-access
           typeof (received as Record<keyof never, unknown>)[methodName] ===
           `function`,
       )

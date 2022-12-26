@@ -20,14 +20,9 @@ import delay from '../delay.js'
 import withElapsed from '../with-elapsed.js'
 import autoAdvance from '../auto-advance.js'
 
-export const testProp = Object.assign(wrapTestProp(testPropInternal), {
-  only: wrapTestProp(testPropInternal.only),
-  skip: wrapTestProp(testPropInternal.skip),
-  todo: wrapTestProp(testPropInternal.todo),
-})
-
-function wrapTestProp(testProp: typeof testPropInternal.only) {
-  return <Values extends unknown[] | [unknown]>(
+const wrapTestProp =
+  (testProp: typeof testPropInternal.only) =>
+  <Values extends unknown[] | [unknown]>(
     label: string,
     arbitraries: ArbitrariesTuple<Values>,
     prop: (...values: [...Values, Scheduler]) => unknown,
@@ -47,7 +42,7 @@ function wrapTestProp(testProp: typeof testPropInternal.only) {
         context.scheduler = new Scheduler(args[args.length - 1] as fc.Scheduler)
         try {
           await autoAdvance(prop)(
-            ...(args.slice(0, args.length - 1) as Values),
+            ...(args.slice(0, -1) as Values),
             context.scheduler,
           )
         } finally {
@@ -68,19 +63,19 @@ function wrapTestProp(testProp: typeof testPropInternal.only) {
       params,
     )
   }
-}
 
 type ArbitrariesTuple<Values extends unknown[] | [unknown]> = {
   [Key in keyof Values]: fc.Arbitrary<Values[Key]>
 }
 
-export function getScheduler(): Scheduler | undefined {
-  return context.scheduler
-}
+export const testProp = Object.assign(wrapTestProp(testPropInternal), {
+  only: wrapTestProp(testPropInternal.only),
+  skip: wrapTestProp(testPropInternal.skip),
+})
 
-export function getIterableIndex(): number {
-  return context.iterableIndex!++
-}
+export const getScheduler = (): Scheduler | undefined => context.scheduler
+
+export const getIterableIndex = (): number => context.iterableIndex!++
 
 const context: { scheduler?: Scheduler; iterableIndex?: number } = {
   iterableIndex: 0,
@@ -103,7 +98,7 @@ export class Scheduler {
 
   public async schedule<Value>(value: Value): Promise<Value>
   public async schedule(): Promise<void>
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+  // eslint-disable-next-line typescript/no-invalid-void-type
   public schedule<Value>(...args: Value[]): Promise<Value | void> {
     const promise = withElapsed(async () => {
       await this.scheduler
@@ -115,7 +110,7 @@ export class Scheduler {
     })
 
     if (args.length === 0) {
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      // eslint-disable-next-line typescript/no-empty-function
       return promise.then(() => {})
     }
 
@@ -170,7 +165,7 @@ export class Scheduler {
           return { elapsed: 0, values: [] }
         }
 
-        const { elapsed } = elapsedValues[0]
+        const { elapsed } = elapsedValues[0]!
         return { elapsed, values: getElapsed(elapsed) }
       },
       max: (): { elapsed: number; values: unknown[] } => {
@@ -178,7 +173,7 @@ export class Scheduler {
           return { elapsed: 0, values: [] }
         }
 
-        const { elapsed } = elapsedValues[elapsedValues.length - 1]
+        const { elapsed } = elapsedValues[elapsedValues.length - 1]!
         return { elapsed, values: getElapsed(elapsed) }
       },
       sum: (): number =>

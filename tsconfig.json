@@ -1,9 +1,6 @@
 {
   "extends": "tomer/tsconfig.json",
-  "compilerOptions": {
-    "typeRoots": ["./node_modules/@types"],
-    "skipLibCheck": true
-  },
+  "include": ["**/*"],
   "typedocOptions": {
     "entryPoints": "./src/index.d.ts",
     "entryDocument": "readme.md",

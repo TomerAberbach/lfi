@@ -27,7 +27,7 @@ export const mapAsyncReducer = curry((fn, asyncReducer) => {
   return { ...restAsyncReducer, finish: async value => fn(await finish(value)) }
 })
 
-export function normalizeReducer(reducer) {
+export const normalizeReducer = reducer => {
   const normalizedReducer = { finish: identity }
 
   if (typeof reducer === `function`) {

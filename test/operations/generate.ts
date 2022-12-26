@@ -246,10 +246,10 @@ const stepIntegerArb = fc.integer({ min: 1, max: 100 })
 
 const ascendingIntervalArb = fc
   .tuple(reasonableIntegerArb, reasonableIntegerArb)
-  .map(([a, b]) => (a < b ? [a, b] : [b, a]))
+  .map(([a, b]): [number, number] => (a < b ? [a, b] : [b, a]))
 const descendingIntervalArb = fc
   .tuple(reasonableIntegerArb, reasonableIntegerArb)
-  .map(([a, b]) => (a > b ? [a, b] : [b, a]))
+  .map(([a, b]): [number, number] => (a > b ? [a, b] : [b, a]))
 
 test.skip(`rangeUntil types are correct`, () => {
   expectTypeOf(rangeUntil(0, 5)).toMatchTypeOf<Iterable<number>>()

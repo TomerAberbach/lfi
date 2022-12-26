@@ -54,8 +54,8 @@ export const asAsync: <Value>(
  * promise that resolves when all events have been emitted and handled.
  *
  * @example
- * ```ts
- * const slothNamesConcurIterable: ConcurIterable<string> = pipe(
+ * ```js
+ * const slothNamesConcurIterable = pipe(
  *   asConcur(['sloth-names1.txt', 'sloth-names2.txt']),
  *   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
  *   flatMapConcur(content => content.split(`\n`)),

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable typescript/no-confusing-void-expression */
 
 import { expectTypeOf } from 'tomer'
 import type { ConcurIterable } from '../../src/index.js'
@@ -245,7 +245,7 @@ test.skip(`forEach types are correct`, () => {
       forEach(a => console.log(a)),
     ),
   )
-    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+    // eslint-disable-next-line typescript/no-invalid-void-type
     .toMatchTypeOf<void>()
 })
 

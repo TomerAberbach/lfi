@@ -57,6 +57,7 @@ export const generate: {
  *   ),
  * )
  * //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+ * ```
  */
 export const generateAsync: {
   <Value>(fn: (previousValue: Value) => MaybePromiseLike<Value>): (

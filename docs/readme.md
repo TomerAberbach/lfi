@@ -74,7 +74,7 @@ import {
 const messySlothDiaryEntries = [
   [`Carl`, `slept`],
   [`phil`, `ate  `],
-  ['phil', ``],
+  [`phil`, ``],
   [`CARL`, `climbed`],
   [`Frank`, `ate`],
   [`frank`, `strolled`],
@@ -226,7 +226,7 @@ We can manually map and filter them:
 ```js
 import fs from 'fs/promises'
 
-const transformedConcurIterable = async apply =>
+const transformedConcurIterable = apply =>
   concurIterable(async name => {
     const contents = await fs.readFile(`${name}.txt`, `utf8`)
 
@@ -244,7 +244,7 @@ Or we can use lfi's awesome functions to map and filter them!
 
 ```js
 import fs from 'fs/promises'
-import { pipe, filterConcur, mapConcur, forEachConcur } from 'lfi'
+import { filterConcur, forEachConcur, mapConcur, pipe } from 'lfi'
 
 await pipe(
   concurIterable,
@@ -264,10 +264,10 @@ They are different!
   import pMap from 'p-map'
   import pFilter from 'p-filter'
   import {
-    pipe,
     asConcur,
-    mapConcur,
     filterConcur,
+    mapConcur,
+    pipe,
     reduceConcur,
     toArray,
   } from 'lfi'
@@ -298,10 +298,10 @@ They are different!
   import pMap from 'p-map'
   import pFilter from 'p-filter'
   import {
-    pipe,
     asConcur,
-    mapConcur,
     filterConcur,
+    mapConcur,
+    pipe,
     reduceConcur,
     toArray,
   } from 'lfi'

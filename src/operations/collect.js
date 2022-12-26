@@ -24,7 +24,7 @@ import { asAsync, asConcur } from './as.js'
 export const toArray = thunk(
   normalizeReducer({
     create: () => [],
-    add(acc, value) {
+    add: (acc, value) => {
       acc.push(value)
       return acc
     },
@@ -79,7 +79,7 @@ export const toGrouped = curry((innerReducer, outerReducer) => {
 
   return {
     create: () => ({ _acc: createOuter(), _keys: [] }),
-    add(acc, [key, value]) {
+    add: (acc, [key, value]) => {
       let group = getOuter(acc._acc, key)
 
       if (group === NO_ENTRY) {
@@ -138,7 +138,7 @@ export const toMultiple = reducers => {
 
   return {
     add: (acc, value) => add(asMultiple(acc, mapReducers), value),
-    finish(acc) {
+    finish: acc => {
       acc = finish(asMultiple(acc, mapReducers))
       multipleSet.delete(acc)
       return acc

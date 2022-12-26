@@ -101,7 +101,7 @@ test.skip(`toWeakSet types are correct`, () => {
 const namedTestCases = <TestCase>(
   testCases: readonly Record<string, TestCase>[],
 ): [string, TestCase][] =>
-  testCases.map(testCase => Object.entries(testCase)[0])
+  testCases.map(testCase => Object.entries(testCase)[0]!)
 
 const reducerTestCases = namedTestCases<() => unknown>([
   { toArray },

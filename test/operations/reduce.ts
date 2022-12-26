@@ -300,11 +300,11 @@ testProp(
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
-      add(acc: unknown[], value: unknown) {
+      add: (acc: unknown[], value: unknown) => {
         acc.push(value)
         return acc
       },
-      combine(acc1: unknown[], acc2: unknown[]) {
+      combine: (acc1: unknown[], acc2: unknown[]) => {
         acc1.push(...acc2)
         return acc1
       },
@@ -353,11 +353,11 @@ testProp(
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
-      add(acc: unknown[], value: unknown) {
+      add: (acc: unknown[], value: unknown) => {
         acc.push(value)
         return acc
       },
-      combine(acc1: unknown[], acc2: unknown[]) {
+      combine: (acc1: unknown[], acc2: unknown[]) => {
         acc1.push(...acc2)
         return acc1
       },
@@ -518,11 +518,11 @@ testProp(
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
-      add(acc: unknown[], value: unknown) {
+      add: (acc: unknown[], value: unknown) => {
         acc.push(value)
         return acc
       },
-      combine(acc1: unknown[], acc2: unknown[]) {
+      combine: (acc1: unknown[], acc2: unknown[]) => {
         acc1.push(...acc2)
         return acc1
       },
@@ -571,11 +571,11 @@ testProp(
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
-      add(acc: unknown[], value: unknown) {
+      add: (acc: unknown[], value: unknown) => {
         acc.push(value)
         return acc
       },
-      combine(acc1: unknown[], acc2: unknown[]) {
+      combine: (acc1: unknown[], acc2: unknown[]) => {
         acc1.push(...acc2)
         return acc1
       },

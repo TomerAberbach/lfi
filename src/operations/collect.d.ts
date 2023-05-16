@@ -172,81 +172,67 @@ export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
  */
 export const toGrouped: {
   <Key, Value, InnerAcc, InnerFinished, InnerThis, OuterAcc, OuterThis>(
-    innerReducer: RawReducerWithFinish<
-      Value,
-      InnerAcc,
-      InnerFinished,
-      InnerThis
+    innerReducer: Readonly<
+      RawReducerWithFinish<Value, InnerAcc, InnerFinished, InnerThis>
     >,
-    outerReducer: RawKeyedReducer<
-      Key,
-      InnerAcc | InnerFinished,
-      OuterAcc,
-      OuterThis
+    outerReducer: Readonly<
+      RawKeyedReducer<Key, InnerAcc | InnerFinished, OuterAcc, OuterThis>
     >,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
   <Value, InnerAcc, InnerFinished, InnerThis>(
-    innerReducer: RawReducerWithFinish<
-      Value,
-      InnerAcc,
-      InnerFinished,
-      InnerThis
+    innerReducer: Readonly<
+      RawReducerWithFinish<Value, InnerAcc, InnerFinished, InnerThis>
     >,
   ): <Key, OuterAcc, OuterThis>(
-    outerReducer: RawKeyedReducer<
-      Key,
-      InnerAcc | InnerFinished,
-      OuterAcc,
-      OuterThis
+    outerReducer: Readonly<
+      RawKeyedReducer<Key, InnerAcc | InnerFinished, OuterAcc, OuterThis>
     >,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 
   <Key, Value, InnerAcc, InnerThis, OuterAcc, OuterThis>(
-    innerReducer: RawReducerWithoutFinish<Value, InnerAcc, InnerThis>,
-    outerReducer: RawKeyedReducer<Key, InnerAcc, OuterAcc, OuterThis>,
+    innerReducer: Readonly<RawReducerWithoutFinish<Value, InnerAcc, InnerThis>>,
+    outerReducer: Readonly<RawKeyedReducer<Key, InnerAcc, OuterAcc, OuterThis>>,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
   <Value, InnerAcc, InnerThis>(
-    innerReducer: RawReducerWithoutFinish<Value, InnerAcc, InnerThis>,
+    innerReducer: Readonly<RawReducerWithoutFinish<Value, InnerAcc, InnerThis>>,
   ): <Key, OuterAcc, OuterThis>(
-    outerReducer: RawKeyedReducer<Key, InnerAcc, OuterAcc, OuterThis>,
+    outerReducer: Readonly<RawKeyedReducer<Key, InnerAcc, OuterAcc, OuterThis>>,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 
   <Key, Value, InnerFinished, InnerThis, OuterAcc, OuterThis>(
-    innerReducer: RawOptionalReducerWithFinish<Value, InnerFinished, InnerThis>,
-    outerReducer: RawKeyedReducer<
-      Key,
-      Value | InnerFinished,
-      OuterAcc,
-      OuterThis
+    innerReducer: Readonly<
+      RawOptionalReducerWithFinish<Value, InnerFinished, InnerThis>
+    >,
+    outerReducer: Readonly<
+      RawKeyedReducer<Key, Value | InnerFinished, OuterAcc, OuterThis>
     >,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
   <Value, InnerFinished, InnerThis>(
-    innerReducer: RawOptionalReducerWithFinish<Value, InnerFinished, InnerThis>,
+    innerReducer: Readonly<
+      RawOptionalReducerWithFinish<Value, InnerFinished, InnerThis>
+    >,
   ): <Key, OuterAcc, OuterThis>(
-    outerReducer: RawKeyedReducer<
-      Key,
-      Value | InnerFinished,
-      OuterAcc,
-      OuterThis
+    outerReducer: Readonly<
+      RawKeyedReducer<Key, Value | InnerFinished, OuterAcc, OuterThis>
     >,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 
   <Key, Value, InnerThis, OuterAcc, OuterThis>(
-    innerReducer: RawOptionalReducerWithoutFinish<Value, InnerThis>,
-    outerReducer: RawKeyedReducer<Key, Value, OuterAcc, OuterThis>,
+    innerReducer: Readonly<RawOptionalReducerWithoutFinish<Value, InnerThis>>,
+    outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
   <Value, InnerThis>(
-    innerReducer: RawOptionalReducerWithoutFinish<Value, InnerThis>,
+    innerReducer: Readonly<RawOptionalReducerWithoutFinish<Value, InnerThis>>,
   ): <Key, OuterAcc, OuterThis>(
-    outerReducer: RawKeyedReducer<Key, Value, OuterAcc, OuterThis>,
+    outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 
   <Key, Value, OuterAcc, OuterThis>(
     innerReducer: FunctionReducer<Value>,
-    outerReducer: RawKeyedReducer<Key, Value, OuterAcc, OuterThis>,
+    outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
   <Value>(innerReducer: FunctionReducer<Value>): <Key, OuterAcc, OuterThis>(
-    outerReducer: RawKeyedReducer<Key, Value, OuterAcc, OuterThis>,
+    outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 }
 

@@ -63,9 +63,13 @@
   "devDependencies": {
     "@types/jest": "^29.0.0",
     "betterator": "^2.0.2",
+    "eslint": "^8.40.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.8",
     "svkc": "^0.0.2",
-    "tomer": "^1.2.0",
+    "tomer": "^2.0.2",
     "typedoc": "^0.23.14",
-    "typedoc-plugin-markdown": "^3.13.6"
+    "typedoc-plugin-markdown": "^3.13.6",
+    "typescript": "^5.0.4"
   }
 }

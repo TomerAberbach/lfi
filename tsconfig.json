@@ -1,5 +1,5 @@
 {
-  "extends": "tomer/tsconfig.json",
+  "extends": "tomer/tsconfig",
   "include": ["**/*"],
   "typedocOptions": {
     "entryPoints": "./src/index.d.ts",

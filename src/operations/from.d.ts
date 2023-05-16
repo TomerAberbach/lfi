@@ -22,8 +22,10 @@
  * iterable is opaque.
  */
 export const keys: {
-  <Key>(object: Map<Key, unknown>): Iterable<Key>
-  <Key extends keyof never>(object: Record<Key, unknown>): Iterable<Key>
+  <Key>(object: ReadonlyMap<Key, unknown>): Iterable<Key>
+  <Key extends keyof never>(
+    object: Readonly<Record<Key, unknown>>,
+  ): Iterable<Key>
 }
 
 /**
@@ -34,7 +36,10 @@ export const keys: {
  * `Object.values` in that the returned iterable is opaque.
  */
 export const values: <Value>(
-  object: Map<unknown, Value> | Set<Value> | Record<keyof never, Value>,
+  object:
+    | ReadonlyMap<unknown, Value>
+    | ReadonlySet<Value>
+    | Readonly<Record<keyof never, Value>>,
 ) => Iterable<Value>
 
 /**
@@ -48,7 +53,7 @@ export const entries: {
   <Key, Value>(object: { entries: () => Iterable<[Key, Value]> }): Iterable<
     [Key, Value]
   >
-  <Key extends keyof never, Value>(object: Record<Key, Value>): Iterable<
-    [Key, Value]
-  >
+  <Key extends keyof never, Value>(
+    object: Readonly<Record<Key, Value>>,
+  ): Iterable<[Key, Value]>
 }

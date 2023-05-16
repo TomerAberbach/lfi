@@ -268,34 +268,34 @@ export const NO_ENTRY: unique symbol
 export const mapReducer: {
   <Value, Acc, From, To, This>(
     fn: (value: From) => To,
-    reducer: RawReducerWithFinish<Value, Acc, From, This>,
+    reducer: Readonly<RawReducerWithFinish<Value, Acc, From, This>>,
   ): Reducer<Value, Acc, To>
   <From, To>(fn: (value: From) => To): <Value, Acc, This>(
-    reducer: RawReducerWithFinish<Value, Acc, From, This>,
+    reducer: Readonly<RawReducerWithFinish<Value, Acc, From, This>>,
   ) => Reducer<Value, Acc, To>
 
   <Value, From, To, This>(
     fn: (value: From) => To,
-    reducer: RawReducerWithoutFinish<Value, From, This>,
+    reducer: Readonly<RawReducerWithoutFinish<Value, From, This>>,
   ): Reducer<Value, To>
   <From, To>(fn: (value: From) => To): <Value, This>(
-    reducer: RawReducerWithoutFinish<Value, From, This>,
+    reducer: Readonly<RawReducerWithoutFinish<Value, From, This>>,
   ) => Reducer<Value, To>
 
   <Value, From, To, This>(
     fn: (value: From) => To,
-    reducer: RawOptionalReducerWithFinish<Value, From, This>,
+    reducer: Readonly<RawOptionalReducerWithFinish<Value, From, This>>,
   ): OptionalReducer<Value, To>
   <From, To>(fn: (value: From) => To): <Value, This>(
-    reducer: RawOptionalReducerWithFinish<Value, From, This>,
+    reducer: Readonly<RawOptionalReducerWithFinish<Value, From, This>>,
   ) => OptionalReducer<Value, To>
 
   <From, To, This>(
     fn: (value: From) => To,
-    reducer: RawOptionalReducerWithoutFinish<From, This>,
+    reducer: Readonly<RawOptionalReducerWithoutFinish<From, This>>,
   ): OptionalReducer<To>
   <From, To>(fn: (value: From) => To): <This>(
-    reducer: RawOptionalReducerWithoutFinish<From, This>,
+    reducer: Readonly<RawOptionalReducerWithoutFinish<From, This>>,
   ) => OptionalReducer<To>
 
   <From, To>(
@@ -314,34 +314,38 @@ export const mapReducer: {
 export const mapAsyncReducer: {
   <Value, Acc, From, To, This>(
     fn: (value: From) => MaybePromiseLike<To>,
-    asyncReducer: RawAsyncReducerWithFinish<Value, Acc, From, This>,
+    asyncReducer: Readonly<RawAsyncReducerWithFinish<Value, Acc, From, This>>,
   ): AsyncReducer<Value, Acc, To>
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, Acc, This>(
-    asyncReducer: RawAsyncReducerWithFinish<Value, Acc, From, This>,
+    asyncReducer: Readonly<RawAsyncReducerWithFinish<Value, Acc, From, This>>,
   ) => AsyncReducer<Value, Acc, To>
 
   <Value, From, To, This>(
     fn: (value: From) => MaybePromiseLike<To>,
-    asyncReducer: RawAsyncReducerWithoutFinish<Value, From, This>,
+    asyncReducer: Readonly<RawAsyncReducerWithoutFinish<Value, From, This>>,
   ): AsyncReducer<Value, To>
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, This>(
-    asyncReducer: RawAsyncReducerWithoutFinish<Value, From, This>,
+    asyncReducer: Readonly<RawAsyncReducerWithoutFinish<Value, From, This>>,
   ) => AsyncReducer<Value, To>
 
   <Value, From, To, This>(
     fn: (value: From) => MaybePromiseLike<To>,
-    asyncReducer: RawAsyncOptionalReducerWithFinish<Value, From, This>,
+    asyncReducer: Readonly<
+      RawAsyncOptionalReducerWithFinish<Value, From, This>
+    >,
   ): AsyncOptionalReducer<Value, To>
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, This>(
-    asyncReducer: RawAsyncOptionalReducerWithFinish<Value, From, This>,
+    asyncReducer: Readonly<
+      RawAsyncOptionalReducerWithFinish<Value, From, This>
+    >,
   ) => AsyncOptionalReducer<Value, To>
 
   <From, To, This>(
     fn: (value: From) => MaybePromiseLike<To>,
-    asyncReducer: RawAsyncOptionalReducerWithoutFinish<From, This>,
+    asyncReducer: Readonly<RawAsyncOptionalReducerWithoutFinish<From, This>>,
   ): AsyncOptionalReducer<To>
   <From, To>(fn: (value: From) => MaybePromiseLike<To>): <This>(
-    asyncReducer: RawAsyncOptionalReducerWithoutFinish<From, This>,
+    asyncReducer: Readonly<RawAsyncOptionalReducerWithoutFinish<From, This>>,
   ) => AsyncOptionalReducer<To>
 
   <From, To>(
@@ -356,36 +360,36 @@ export const mapAsyncReducer: {
 /** Returns a non-raw version of `reducer`. */
 export const normalizeReducer: {
   <Key, Value, Acc, This>(
-    reducer: RawKeyedReducer<Key, Value, Acc, This>,
+    reducer: Readonly<RawKeyedReducer<Key, Value, Acc, This>>,
   ): KeyedReducer<Key, Value, Acc>
   <Value, Acc, Finished, This>(
-    reducer: RawReducerWithFinish<Value, Acc, Finished, This>,
+    reducer: Readonly<RawReducerWithFinish<Value, Acc, Finished, This>>,
   ): Reducer<Value, Acc, Finished>
   <Value, Acc, This>(
-    reducer: RawReducerWithoutFinish<Value, Acc, This>,
+    reducer: Readonly<RawReducerWithoutFinish<Value, Acc, This>>,
   ): Reducer<Value, Acc>
   <Value, Finished, This>(
-    reducer: RawOptionalReducerWithFinish<Value, Finished, This>,
+    reducer: Readonly<RawOptionalReducerWithFinish<Value, Finished, This>>,
   ): OptionalReducer<Value, Finished>
   <Value, This>(
-    reducer: RawOptionalReducerWithoutFinish<Value, This>,
+    reducer: Readonly<RawOptionalReducerWithoutFinish<Value, This>>,
   ): OptionalReducer<Value>
   <Value>(reducer: FunctionReducer<Value>): OptionalReducer<Value>
 
   <Key, Value, Acc, This>(
-    reducer: RawAsyncKeyedReducer<Key, Value, Acc, This>,
+    reducer: Readonly<RawAsyncKeyedReducer<Key, Value, Acc, This>>,
   ): AsyncKeyedReducer<Key, Value, Acc>
   <Value, Acc, Finished, This>(
-    reducer: RawAsyncReducerWithFinish<Value, Acc, Finished, This>,
+    reducer: Readonly<RawAsyncReducerWithFinish<Value, Acc, Finished, This>>,
   ): AsyncReducer<Value, Acc, Finished>
   <Value, Acc, This>(
-    reducer: RawAsyncReducerWithoutFinish<Value, Acc, This>,
+    reducer: Readonly<RawAsyncReducerWithoutFinish<Value, Acc, This>>,
   ): AsyncReducer<Value, Acc>
   <Value, Finished, This>(
-    reducer: RawAsyncOptionalReducerWithFinish<Value, Finished, This>,
+    reducer: Readonly<RawAsyncOptionalReducerWithFinish<Value, Finished, This>>,
   ): AsyncOptionalReducer<Value, Finished>
   <Value, This>(
-    reducer: RawAsyncOptionalReducerWithoutFinish<Value, This>,
+    reducer: Readonly<RawAsyncOptionalReducerWithoutFinish<Value, This>>,
   ): AsyncOptionalReducer<Value>
   <Value>(reducer: AsyncFunctionReducer<Value>): AsyncOptionalReducer<Value>
 }

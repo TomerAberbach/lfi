@@ -66,36 +66,36 @@ import type {
  */
 export const reduce: {
   <Value, Acc, Finished, This>(
-    reducer: RawReducerWithFinish<Value, Acc, Finished, This>,
+    reducer: Readonly<RawReducerWithFinish<Value, Acc, Finished, This>>,
     iterable: Iterable<Value>,
   ): Finished
   <Value, Acc, Finished, This>(
-    reducer: RawReducerWithFinish<Value, Acc, Finished, This>,
+    reducer: Readonly<RawReducerWithFinish<Value, Acc, Finished, This>>,
   ): (iterable: Iterable<Value>) => Finished
 
   <Value, Acc, This>(
-    reducer: RawReducerWithoutFinish<Value, Acc, This>,
+    reducer: Readonly<RawReducerWithoutFinish<Value, Acc, This>>,
     iterable: Iterable<Value>,
   ): Acc
-  <Value, Acc, This>(reducer: RawReducerWithoutFinish<Value, Acc, This>): (
-    iterable: Iterable<Value>,
-  ) => Acc
+  <Value, Acc, This>(
+    reducer: Readonly<RawReducerWithoutFinish<Value, Acc, This>>,
+  ): (iterable: Iterable<Value>) => Acc
 
   <Value, Finished, This>(
-    reducer: RawOptionalReducerWithFinish<Value, Finished, This>,
+    reducer: Readonly<RawOptionalReducerWithFinish<Value, Finished, This>>,
     iterable: Iterable<Value>,
   ): Optional<Finished>
   <Value, Finished, This>(
-    reducer: RawOptionalReducerWithFinish<Value, Finished, This>,
+    reducer: Readonly<RawOptionalReducerWithFinish<Value, Finished, This>>,
   ): (iterable: Iterable<Value>) => Optional<Finished>
 
   <Value, This>(
-    reducer: RawOptionalReducerWithoutFinish<Value, This>,
+    reducer: Readonly<RawOptionalReducerWithoutFinish<Value, This>>,
     iterable: Iterable<Value>,
   ): Optional<Value>
-  <Value, This>(reducer: RawOptionalReducerWithoutFinish<Value, This>): (
-    iterable: Iterable<Value>,
-  ) => Optional<Value>
+  <Value, This>(
+    reducer: Readonly<RawOptionalReducerWithoutFinish<Value, This>>,
+  ): (iterable: Iterable<Value>) => Optional<Value>
 
   <Value>(
     reducer: FunctionReducer<Value>,

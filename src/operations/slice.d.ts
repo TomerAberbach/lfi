@@ -720,7 +720,7 @@ export const windowConcur: {
  */
 export type WindowOptions<Size extends number = number> =
   | PositiveInteger<Size>
-  | {
+  | Readonly<{
       /** The size of each window. Must be a positive integer. */
       size: PositiveInteger<Size>
 
@@ -735,4 +735,4 @@ export type WindowOptions<Size extends number = number> =
        * Defaults to `false`.
        */
       partialEnd?: boolean
-    }
+    }>

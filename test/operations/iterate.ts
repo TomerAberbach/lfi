@@ -55,6 +55,18 @@ test.skip(`each types are correct`, () => {
       each(a => console.log(a)),
     ),
   ).toMatchTypeOf<Iterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      [1, 2, null],
+      each((a): asserts a is number => {
+        // eslint-disable-next-line jest/no-conditional-in-test
+        if (a == null) {
+          throw new Error(`null`)
+        }
+      }),
+    ),
+  ).toMatchTypeOf<Iterable<number>>()
 })
 
 testProp(
@@ -111,6 +123,18 @@ test.skip(`eachAsync types are correct`, () => {
     pipe(
       asAsync([1, 2, 3]),
       eachAsync(a => Promise.resolve(console.log(a))),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      asAsync([1, 2, null]),
+      eachAsync((a): asserts a is number => {
+        // eslint-disable-next-line jest/no-conditional-in-test
+        if (a == null) {
+          throw new Error(`null`)
+        }
+      }),
     ),
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
@@ -173,6 +197,18 @@ test.skip(`eachConcur types are correct`, () => {
     pipe(
       asConcur([1, 2, 3]),
       eachConcur(a => Promise.resolve(console.log(a))),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      asConcur([1, 2, null]),
+      eachConcur((a): asserts a is number => {
+        // eslint-disable-next-line jest/no-conditional-in-test
+        if (a == null) {
+          throw new Error(`null`)
+        }
+      }),
     ),
   ).toMatchTypeOf<ConcurIterable<number>>()
 })

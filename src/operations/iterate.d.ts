@@ -33,6 +33,14 @@ import type { ConcurIterable } from './as.js'
  * ```
  */
 export const each: {
+  <From, To extends From>(fn: (value: From) => asserts value is To): (
+    iterable: Iterable<From>,
+  ) => Iterable<To>
+  <From, To extends From>(
+    fn: (value: From) => asserts value is To,
+    iterable: Iterable<From>,
+  ): Iterable<To>
+
   <Value>(fn: (value: Value) => unknown): (
     iterable: Iterable<Value>,
   ) => Iterable<Value>
@@ -65,13 +73,21 @@ export const each: {
  * ```
  */
 export const eachAsync: {
-  <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
+  <Value>(fn: (value: Value) => PromiseLike<unknown>): (
     asyncIterable: AsyncIterable<Value>,
   ) => AsyncIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<unknown>,
+    fn: (value: Value) => PromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
+
+  <From, To extends From>(fn: (value: From) => asserts value is To): (
+    asyncIterable: AsyncIterable<From>,
+  ) => AsyncIterable<To>
+  <From, To extends From>(
+    fn: (value: From) => asserts value is To,
+    asyncIterable: AsyncIterable<From>,
+  ): AsyncIterable<To>
 }
 
 /**
@@ -96,13 +112,21 @@ export const eachAsync: {
  * ```
  */
 export const eachConcur: {
-  <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
+  <Value>(fn: (value: Value) => PromiseLike<unknown>): (
     concurIterable: ConcurIterable<Value>,
   ) => ConcurIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<unknown>,
+    fn: (value: Value) => PromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
+
+  <From, To extends From>(fn: (value: From) => asserts value is To): (
+    concurIterable: ConcurIterable<From>,
+  ) => ConcurIterable<To>
+  <From, To extends From>(
+    fn: (value: From) => asserts value is To,
+    concurIterable: ConcurIterable<From>,
+  ): ConcurIterable<To>
 }
 
 /**

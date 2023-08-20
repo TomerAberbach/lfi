@@ -31,7 +31,7 @@
   "type": "module",
   "sideEffects": false,
   "engines": {
-    "node": ">= 14.6"
+    "node": ">= 16"
   },
   "exports": {
     "types": "./dist/index.d.ts",

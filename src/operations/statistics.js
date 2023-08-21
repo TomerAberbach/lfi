@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { identity, thunk } from '../internal/helpers.js'
-import { reduce, reduceAsync, reduceConcur } from './reduce.js'
 import { curry } from './fn.js'
+import { reduce, reduceAsync, reduceConcur } from './reduce.js'
 import { mapAsyncReducer, mapReducer, normalizeReducer } from './reducer.js'
 
 export const toCount = thunk({ create: () => 0, add: acc => acc + 1 })

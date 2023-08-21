@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { jest } from 'tomer'
 import { getScheduler } from './fast-check/test-prop.js'
 

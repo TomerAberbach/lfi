@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { fc } from 'tomer'
-import type { MaybePromiseLike } from '../../../src/internal/types.js'
 import type { ConcurIterable } from '../../../src/index.js'
+import type { MaybePromiseLike } from '../../../src/internal/types.js'
 import { getIterableIndex, getScheduler } from './test-prop.js'
 
 const getArrayArb = <Value>(

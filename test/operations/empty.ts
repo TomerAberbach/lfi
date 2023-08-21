@@ -15,7 +15,6 @@
  */
 
 /* eslint-disable typescript/no-explicit-any */
-
 import { expectTypeOf } from 'tomer'
 import type { ConcurIterable } from '../../src/index.js'
 import {

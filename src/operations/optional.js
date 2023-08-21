@@ -13,15 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import {
   createAsyncIterable,
   createIterable,
   promiseWithEarlyResolve,
 } from '../internal/helpers.js'
-import { curry } from './fn.js'
-import { empty, emptyAsync } from './empty.js'
 import { asAsync } from './as.js'
+import { empty, emptyAsync } from './empty.js'
+import { curry } from './fn.js'
 import { opaque } from './opaque.js'
 
 export const or = curry((fn, iterable) => {

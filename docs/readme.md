@@ -108,9 +108,9 @@ Some _sequential asynchronous_ operations:
 
 ```js
 import { createReadStream } from 'fs'
-import readline from 'readline'
 import got from 'got'
 import { chunkAsync, forEachAsync, mapAsync, pipe } from 'lfi'
+import readline from 'readline'
 
 const filename = `every-sloth-name.txt`
 
@@ -139,10 +139,10 @@ Some _concurrent asynchronous_ operations:
 
 ```js
 import { createReadStream } from 'fs'
-import readline from 'readline'
 import got from 'got'
-import limitConcur from 'limit-concur'
 import { asConcur, chunkAsync, forEachConcur, mapConcur, pipe } from 'lfi'
+import limitConcur from 'limit-concur'
+import readline from 'readline'
 
 const filename = `every-sloth-name.txt`
 
@@ -261,8 +261,6 @@ They are different!
 - Concur iterables don't create an intermediate array for each operation:
 
   ```js
-  import pMap from 'p-map'
-  import pFilter from 'p-filter'
   import {
     asConcur,
     filterConcur,
@@ -271,6 +269,8 @@ They are different!
     reduceConcur,
     toArray,
   } from 'lfi'
+  import pFilter from 'p-filter'
+  import pMap from 'p-map'
 
   // N - 1 intermediate arrays for N operations!
   const intermediateArray1 = await pMap(someFunction, someArray)
@@ -295,8 +295,6 @@ They are different!
   values:
 
   ```js
-  import pMap from 'p-map'
-  import pFilter from 'p-filter'
   import {
     asConcur,
     filterConcur,
@@ -305,6 +303,8 @@ They are different!
     reduceConcur,
     toArray,
   } from 'lfi'
+  import pFilter from 'p-filter'
+  import pMap from 'p-map'
 
   const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout))
   const mapDelays = [10, 1, 1]

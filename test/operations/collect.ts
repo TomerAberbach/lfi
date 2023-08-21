@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { expectTypeOf, fc } from 'tomer'
 import {
   asAsync,
@@ -54,9 +53,7 @@ import type {
   Reducer,
 } from '../../src/index.js'
 import autoAdvance from '../helpers/auto-advance.js'
-import withElapsed from '../helpers/with-elapsed.js'
-import { sameValueZero } from '../helpers/same-value-zero.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { stringifiableArb } from '../helpers/fast-check/anything.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -70,7 +67,9 @@ import {
   rawOptionalReducerArb,
   rawReducerArb,
 } from '../helpers/fast-check/reducer.js'
-import { stringifiableArb } from '../helpers/fast-check/anything.js'
+import { testProp } from '../helpers/fast-check/test-prop.js'
+import { sameValueZero } from '../helpers/same-value-zero.js'
+import withElapsed from '../helpers/with-elapsed.js'
 
 test.skip(`toArray types are correct`, () => {
   expectTypeOf(toArray<string>()).toMatchTypeOf<Reducer<string, string[]>>()

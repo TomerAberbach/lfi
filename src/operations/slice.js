@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import {
-  assertNonNegativeInteger,
-  assertPositiveInteger,
-} from '../internal/preconditions.js'
 import {
   createAsyncIterable,
   createIterable,
   promiseWithEarlyResolve,
 } from '../internal/helpers.js'
-import { curry, pipe } from './fn.js'
+import {
+  assertNonNegativeInteger,
+  assertPositiveInteger,
+} from '../internal/preconditions.js'
 import { findLast, findLastAsync, findLastConcur } from './find.js'
+import { curry, pipe } from './fn.js'
 import {
   index,
   indexAsync,

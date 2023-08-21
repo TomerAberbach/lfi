@@ -15,7 +15,6 @@
  */
 
 /* eslint-disable require-atomic-updates, no-restricted-syntax, jest/no-standalone-expect */
-
 import { fc, jest } from 'tomer'
 import delay from './helpers/delay.js'
 

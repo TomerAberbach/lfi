@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { expectTypeOf, fc } from 'tomer'
 import type { ConcurIterable, WindowOptions } from '../../src/index.js'
 import {

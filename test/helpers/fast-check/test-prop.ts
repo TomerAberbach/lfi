@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { fc, testProp as testPropInternal } from 'tomer'
 import { SameValueMap } from 'svkc'
+import { fc, testProp as testPropInternal } from 'tomer'
+import autoAdvance from '../auto-advance.js'
 import delay from '../delay.js'
 import withElapsed from '../with-elapsed.js'
-import autoAdvance from '../auto-advance.js'
 
 const wrapTestProp =
   (testProp: typeof testPropInternal.only) =>

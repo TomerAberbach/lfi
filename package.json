@@ -61,15 +61,15 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^29.0.0",
+    "@types/jest": "^29.5.3",
     "betterator": "^2.0.2",
-    "eslint": "^8.40.0",
-    "jest": "^29.5.0",
+    "eslint": "^8.47.0",
+    "jest": "^29.6.2",
     "prettier": "^2.8.8",
     "svkc": "^0.0.2",
-    "tomer": "^2.0.2",
-    "typedoc": "^0.23.14",
-    "typedoc-plugin-markdown": "^3.13.6",
-    "typescript": "^5.0.4"
+    "tomer": "^2.0.7",
+    "typedoc": "^0.24.8",
+    "typedoc-plugin-markdown": "^3.15.4",
+    "typescript": "^5.1.6"
   }
 }

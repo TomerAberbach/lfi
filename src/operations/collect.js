@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { thunk } from '../internal/helpers.js'
+import { asAsync, asConcur } from './as.js'
 import { curry } from './fn.js'
 import { reduce, reduceAsync, reduceConcur } from './reduce.js'
 import { NO_ENTRY, normalizeReducer } from './reducer.js'
 import { flatten, flattenAsync, flattenConcur, map } from './transform.js'
-import { asAsync, asConcur } from './as.js'
 
 export const toArray = thunk(
   normalizeReducer({

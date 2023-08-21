@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import { createAsyncIterable, createIterable } from '../internal/helpers.js'
 import {
   assertInteger,
   assertPositiveInteger,
   assertPureIterable,
 } from '../internal/preconditions.js'
-import { createAsyncIterable, createIterable } from '../internal/helpers.js'
 import { curry } from './fn.js'
 
 export const generate = curry((fn, seed) =>

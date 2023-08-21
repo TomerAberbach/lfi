@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { createAsyncIterable, createIterable } from '../internal/helpers.js'
-import { curry } from './fn.js'
 import { asConcur } from './as.js'
-import { normalizeReducer } from './reducer.js'
+import { curry } from './fn.js'
 import { next } from './optional.js'
+import { normalizeReducer } from './reducer.js'
 import { map } from './transform.js'
 
 export const reduce = curry((reducer, iterable) => {

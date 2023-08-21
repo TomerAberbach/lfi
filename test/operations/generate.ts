@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { expectTypeOf, fc } from 'tomer'
 import {
   asAsync,
@@ -30,20 +29,20 @@ import {
   takeAsync,
   toArray,
 } from '../../src/index.js'
-import delay from '../helpers/delay.js'
 import autoAdvance from '../helpers/auto-advance.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import delay from '../helpers/delay.js'
 import { fnArb } from '../helpers/fast-check/fn.js'
+import {
+  nonPositiveIntegerArb,
+  nonSafeIntegerDoubleArb,
+} from '../helpers/fast-check/integer.js'
 import {
   asyncIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import {
-  nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb,
-} from '../helpers/fast-check/integer.js'
+import { testProp } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`generate types are correct`, () => {
   expectTypeOf(generate(a => a + 1, 0)).toMatchTypeOf<Iterable<number>>()

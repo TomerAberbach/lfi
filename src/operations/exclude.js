@@ -19,7 +19,6 @@ import {
   createIterable,
   identity,
 } from '../internal/helpers.js'
-import { asAsync, asConcur } from './as.js'
 import { curry } from './fn.js'
 import { flatMap, flatMapAsync, flatMapConcur } from './transform.js'
 
@@ -27,13 +26,13 @@ export const filter = curry((fn, iterable) =>
   flatMap(value => (fn(value) ? [value] : []), iterable),
 )
 
-const createAsyncFilter = (flatMap, as) =>
+const createAsyncFilter = flatMap =>
   curry((fn, iterable) =>
-    flatMap(async value => as((await fn(value)) ? [value] : []), iterable),
+    flatMap(async value => ((await fn(value)) ? [value] : []), iterable),
   )
 
-export const filterAsync = createAsyncFilter(flatMapAsync, asAsync)
-export const filterConcur = createAsyncFilter(flatMapConcur, asConcur)
+export const filterAsync = createAsyncFilter(flatMapAsync)
+export const filterConcur = createAsyncFilter(flatMapConcur)
 
 export const filterMap = curry((fn, iterable) =>
   flatMap(value => filterMapInner(fn(value)), iterable),

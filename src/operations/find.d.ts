@@ -13,39 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
 import type { AsyncOptional, ConcurOptional, Optional } from './optional.js'
 
 /** @internal */
 type Find = {
-  <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>,
-  ) => Optional<Value>
   <Value>(
-    fn: (value: Value) => boolean | unknown,
+    fn: (value: Value) => unknown,
+  ): (iterable: Iterable<Value>) => Optional<Value>
+  <Value>(
+    fn: (value: Value) => unknown,
     iterable: Iterable<Value>,
   ): Optional<Value>
 }
 
 /** @internal */
 type FindAsync = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncOptional<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
   ): AsyncOptional<Value>
 }
 
 /** @internal */
 type FindConcur = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurOptional<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,
   ): ConcurOptional<Value>
 }

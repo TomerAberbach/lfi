@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { ConcurIterable } from './as.js'
 import type { AsyncOptional, ConcurOptional, Optional } from './optional.js'
 import type {
@@ -100,9 +101,9 @@ export const reduce: {
     reducer: FunctionReducer<Value>,
     iterable: Iterable<Value>,
   ): Optional<Value>
-  <Value>(reducer: FunctionReducer<Value>): (
-    iterable: Iterable<Value>,
-  ) => Optional<Value>
+  <Value>(
+    reducer: FunctionReducer<Value>,
+  ): (iterable: Iterable<Value>) => Optional<Value>
 }
 
 /**
@@ -198,9 +199,9 @@ export const reduceAsync: {
     asyncReducer: AsyncFunctionReducer<Value> | FunctionReducer<Value>,
     asyncIterable: AsyncIterable<Value>,
   ): AsyncOptional<Value>
-  <Value>(asyncReducer: AsyncFunctionReducer<Value> | FunctionReducer<Value>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncOptional<Value>
+  <Value>(
+    asyncReducer: AsyncFunctionReducer<Value> | FunctionReducer<Value>,
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<Value>
 }
 
 /**
@@ -296,7 +297,7 @@ export const reduceConcur: {
     asyncReducer: FunctionReducer<Value> | AsyncFunctionReducer<Value>,
     concurIterable: ConcurIterable<Value>,
   ): ConcurOptional<Value>
-  <Value>(asyncReducer: AsyncFunctionReducer<Value> | FunctionReducer<Value>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurOptional<Value>
+  <Value>(
+    asyncReducer: AsyncFunctionReducer<Value> | FunctionReducer<Value>,
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<Value>
 }

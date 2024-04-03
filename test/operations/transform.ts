@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { AsyncBetterator, Betterator } from 'betterator'
 import { expectTypeOf, fc } from 'tomer'
 import type { ConcurIterable } from '../../src/index.js'
@@ -295,10 +296,13 @@ testProp(
     const asyncIterator = AsyncBetterator.fromAsyncIterable(
       flatMapAsync(
         async value =>
-          mapAsync(innerValue => {
-            count++
-            return innerValue
-          }, asAsync((await asyncFn(value)).iterable)),
+          mapAsync(
+            innerValue => {
+              count++
+              return innerValue
+            },
+            asAsync((await asyncFn(value)).iterable),
+          ),
         iterable,
       ),
     )

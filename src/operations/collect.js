@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { thunk } from '../internal/helpers.js'
 import { asAsync, asConcur } from './as.js'
 import { curry } from './fn.js'
@@ -159,7 +160,8 @@ const asMultiple = (value, mapReducers) => {
 }
 
 export const toJoin = separator => ({
-  create: () => undefined,
+  // eslint-disable-next-line no-empty-function
+  create: () => {},
   add: (acc, value) =>
     acc === undefined ? String(value) : String(acc) + separator + String(value),
   finish: acc => acc ?? ``,

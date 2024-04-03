@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { expectTypeOf, fc } from 'tomer'
 import {
   asAsync,
@@ -1114,6 +1115,7 @@ testProp(
 )
 
 test(`minAsync returns an empty async iterable for an empty async iterable`, async () => {
+  // eslint-disable-next-line typescript/no-unsafe-argument
   const minimum = minAsync(emptyAsync)
 
   expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
@@ -1208,6 +1210,7 @@ testProp(
 )
 
 test(`maxAsync returns an empty async iterable for an empty async iterable`, async () => {
+  // eslint-disable-next-line typescript/no-unsafe-argument
   const maximum = maxAsync(emptyAsync)
 
   expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
@@ -1311,6 +1314,7 @@ testProp(
 )
 
 test(`minMaxAsync returns an empty async iterable for an empty async iterable`, async () => {
+  // eslint-disable-next-line typescript/no-unsafe-argument
   const minimumMaximum = minMaxAsync(emptyAsync)
 
   expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()

@@ -54,7 +54,7 @@ expect.extend({
     return {
       pass,
       message: (): string =>
-        `expected ${received} ${pass ? `not ` : ``}to be ${
+        `expected ${String(received)} ${pass ? `not ` : ``}to be ${
           pure ? `a pure ` : ``
         }iterable`,
     }
@@ -98,7 +98,7 @@ expect.extend({
     return {
       pass,
       message: (): string =>
-        `expected ${received} ${pass ? `not ` : ``}to be ${
+        `expected ${String(received)} ${pass ? `not ` : ``}to be ${
           pure ? `a pure ` : ``
         }async iterable`,
     }
@@ -142,7 +142,7 @@ expect.extend({
     return {
       pass,
       message: (): string =>
-        `expected ${received} ${pass ? `not ` : ``}to be ${
+        `expected ${String(received)} ${pass ? `not ` : ``}to be ${
           pure ? `a pure ` : ``
         }concur iterable`,
     }
@@ -163,7 +163,7 @@ expect.extend({
     return {
       pass,
       message: (): string =>
-        `expected ${received} ${pass ? `not ` : ``}to be an optional reducer`,
+        `expected ${String(received)} ${pass ? `not ` : ``}to be an optional reducer`,
     }
   },
 
@@ -181,7 +181,7 @@ expect.extend({
     return {
       pass,
       message: (): string =>
-        `expected ${received} ${pass ? `not ` : ``}to be a reducer`,
+        `expected ${String(received)} ${pass ? `not ` : ``}to be a reducer`,
     }
   },
 })
@@ -197,7 +197,7 @@ type CustomMatchers<Returned = unknown> = {
 type IterableOptions = { pure?: boolean }
 
 declare global {
-  /* eslint-disable */
+  /* eslint-disable typescript/no-namespace, typescript/consistent-type-definitions */
   namespace jest {
     interface Expect extends CustomMatchers {}
     interface Matchers<R> extends CustomMatchers<R> {}

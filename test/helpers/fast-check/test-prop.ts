@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { SameValueMap } from 'svkc'
 import { fc, testProp as testPropInternal } from 'tomer'
 import autoAdvance from '../auto-advance.js'
@@ -38,7 +39,7 @@ const wrapTestProp =
         [fc.ContextValue, ...Values, fc.Scheduler]
       >,
       async (ctx, ...args) => {
-        context.scheduler = new Scheduler(args[args.length - 1] as fc.Scheduler)
+        context.scheduler = new Scheduler(args.at(-1) as fc.Scheduler)
         try {
           await autoAdvance(prop)(
             ...(args.slice(0, -1) as Values),
@@ -83,13 +84,13 @@ const context: { scheduler?: Scheduler; iterableIndex?: number } = {
 export class Scheduler {
   private readonly scheduler: fc.Scheduler
   private resolveIndex = 0
-  private readonly timeoutMap: SameValueMap<
+  private readonly timeoutMap = new SameValueMap<
     unknown,
     {
       promise: Promise<{ elapsed: number; resolveIndex: number }>
       value: unknown
     }[]
-  > = new SameValueMap()
+  >()
 
   public constructor(scheduler: fc.Scheduler) {
     this.scheduler = scheduler
@@ -172,7 +173,7 @@ export class Scheduler {
           return { elapsed: 0, values: [] }
         }
 
-        const { elapsed } = elapsedValues[elapsedValues.length - 1]!
+        const { elapsed } = elapsedValues.at(-1)!
         return { elapsed, values: getElapsed(elapsed) }
       },
       sum: (): number =>

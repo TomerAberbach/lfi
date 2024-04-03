@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
 
@@ -35,19 +36,19 @@ import type { ConcurIterable } from './as.js'
  * ```
  */
 export const filter: {
-  <From, To>(fn: (value: From) => value is To): (
-    iterable: Iterable<From>,
-  ) => Iterable<To>
+  <From, To>(
+    fn: (value: From) => value is To,
+  ): (iterable: Iterable<From>) => Iterable<To>
   <From, To>(
     fn: (value: From) => value is To,
     iterable: Iterable<From>,
   ): Iterable<To>
 
-  <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>,
-  ) => Iterable<Value>
   <Value>(
-    fn: (value: Value) => boolean | unknown,
+    fn: (value: Value) => unknown,
+  ): (iterable: Iterable<Value>) => Iterable<Value>
+  <Value>(
+    fn: (value: Value) => unknown,
     iterable: Iterable<Value>,
   ): Iterable<Value>
 }
@@ -72,19 +73,19 @@ export const filter: {
  * ```
  */
 export const filterAsync: {
-  <From, To>(fn: (value: From) => value is To): (
-    asyncIterable: AsyncIterable<From>,
-  ) => AsyncIterable<To>
+  <From, To>(
+    fn: (value: From) => value is To,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
   <From, To>(
     fn: (value: From) => Value is To,
     asyncIterable: AsyncIterable<From>,
   ): AsyncIterable<To>
 
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
@@ -109,19 +110,19 @@ export const filterAsync: {
  * ```
  */
 export const filterConcur: {
-  <From, To>(fn: (value: From) => value is To): (
-    concurIterable: ConcurIterable<From>,
-  ) => ConcurIterable<To>
+  <From, To>(
+    fn: (value: From) => value is To,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
   <From, To>(
     fn: (value: From) => value is To,
     concurIterable: ConcurIterable<From>,
   ): ConcurIterable<To>
 
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
@@ -149,9 +150,9 @@ export const filterConcur: {
  * ```
  */
 export const filterMap: {
-  <From, To>(fn: (value: From) => To | null | undefined): (
-    iterable: Iterable<From>,
-  ) => Iterable<NonNullable<To>>
+  <From, To>(
+    fn: (value: From) => To | null | undefined,
+  ): (iterable: Iterable<From>) => Iterable<NonNullable<To>>
   <From, To>(
     fn: (value: From) => To | null | undefined,
     iterable: Iterable<From>,
@@ -181,9 +182,9 @@ export const filterMap: {
  * ```
  */
 export const filterMapAsync: {
-  <From, To>(fn: (value: From) => MaybePromiseLike<To | null | undefined>): (
-    asyncIterable: AsyncIterable<From>,
-  ) => AsyncIterable<NonNullable<To>>
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<NonNullable<To>>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To | null | undefined>,
     asyncIterable: AsyncIterable<From>,
@@ -213,9 +214,9 @@ export const filterMapAsync: {
  * ```
  */
 export const filterMapConcur: {
-  <From, To>(fn: (value: From) => MaybePromiseLike<To | null | undefined>): (
-    concurIterable: ConcurIterable<From>,
-  ) => ConcurIterable<NonNullable<To>>
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<NonNullable<To>>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To | null | undefined>,
     concurIterable: ConcurIterable<From>,
@@ -239,9 +240,9 @@ export const filterMapConcur: {
  * ```
  */
 export const exclude: {
-  (excluded: Iterable<unknown>): <Value>(
-    iterable: Iterable<Value>,
-  ) => Iterable<Value>
+  (
+    excluded: Iterable<unknown>,
+  ): <Value>(iterable: Iterable<Value>) => Iterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
     iterable: Iterable<Value>,
@@ -265,9 +266,9 @@ export const exclude: {
  * ```
  */
 export const excludeAsync: {
-  (excluded: Iterable<unknown>): <Value>(
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value>
+  (
+    excluded: Iterable<unknown>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
     asyncIterable: AsyncIterable<Value>,
@@ -291,9 +292,9 @@ export const excludeAsync: {
  * ```
  */
 export const excludeConcur: {
-  (excluded: Iterable<unknown>): <Value>(
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value>
+  (
+    excluded: Iterable<unknown>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
   <Value>(
     excluded: Iterable<unknown>,
     concurIterable: ConcurIterable<Value>,
@@ -319,9 +320,9 @@ export const excludeConcur: {
  * ```
  */
 export const uniqueBy: {
-  <Value>(fn: (value: Value) => unknown): (
-    iterable: Iterable<Value>,
-  ) => Iterable<Value>
+  <Value>(
+    fn: (value: Value) => unknown,
+  ): (iterable: Iterable<Value>) => Iterable<Value>
   <Value>(
     fn: (value: Value) => unknown,
     iterable: Iterable<Value>,
@@ -348,9 +349,9 @@ export const uniqueBy: {
  * ```
  */
 export const uniqueByAsync: {
-  <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
@@ -377,9 +378,9 @@ export const uniqueByAsync: {
  * ```
  */
 export const uniqueByConcur: {
-  <Value>(fn: (value: Value) => MaybePromiseLike<unknown>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,

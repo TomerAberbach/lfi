@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { fc } from 'tomer'
 import type {
   AsyncFunctionReducer,
@@ -108,7 +109,7 @@ export const rawAsyncOptionalReducerWithoutFinishArb =
 
 // Used to ensure we call methods with the right `this`
 class RawOptionalReducerWithoutFinishWithPrivateFields<Value = unknown> {
-  #add: Fn<Value>
+  readonly #add: Fn<Value>
 
   public constructor(add: Fn<Value>) {
     this.#add = add
@@ -142,7 +143,7 @@ export type GeneratedRawAsyncOptionalReducerWithFinish<Value = unknown> = {
 class RawOptionalReducerWithFinishAndPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithoutFinishWithPrivateFields<Value> {
-  #finish: Fn<Value>
+  readonly #finish: Fn<Value>
 
   public constructor(add: Fn<Value>, finish: Fn<Value>) {
     super(add)
@@ -180,7 +181,7 @@ export type GeneratedRawAsyncReducerWithoutFinish<Value = unknown> = {
 class RawReducerWithoutFinishWithPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithoutFinishWithPrivateFields<Value> {
-  #create: Fn<Value>
+  readonly #create: Fn<Value>
 
   public constructor(create: Fn<Value>, add: Fn<Value>) {
     super(add)
@@ -220,7 +221,7 @@ export type GeneratedRawAsyncReducerWithFinish<Value = unknown> = {
 class RawReducerWithFinishAndPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithFinishAndPrivateFields<Value> {
-  #create: Fn<Value>
+  readonly #create: Fn<Value>
 
   public constructor(create: Fn<Value>, add: Fn<Value>, finish: Fn<Value>) {
     super(add, finish)
@@ -234,7 +235,7 @@ class RawReducerWithFinishAndPrivateFields<
 
 // Used to ensure we call methods with the right `this`
 class RawKeyedReducerWithPrivateFields extends RawReducerWithoutFinishWithPrivateFields {
-  #get: Fn
+  readonly #get: Fn
 
   public constructor(create: Fn, add: Fn, get: Fn) {
     super(create, add)

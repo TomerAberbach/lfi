@@ -21,22 +21,22 @@ export type MaybePromiseLike<Value> = Value | PromiseLike<Value>
 type StrictNegative<Numeric extends number> = Numeric extends 0
   ? never
   : `${Numeric}` extends `-${string}`
-  ? Numeric
-  : never
+    ? Numeric
+    : never
 
 /** @internal */
 type StrictPositive<Numeric extends number> = Numeric extends 0
   ? never
   : StrictNegative<Numeric> extends never
-  ? Numeric
-  : never
+    ? Numeric
+    : never
 
 /** @internal */
 type NonNegative<Numeric extends number> = Numeric extends 0
   ? Numeric
   : StrictNegative<Numeric> extends never
-  ? Numeric
-  : never
+    ? Numeric
+    : never
 
 /** @internal */
 type StrictInteger<Numeric extends number> = `${Numeric}` extends `${bigint}`

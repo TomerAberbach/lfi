@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { expectTypeOf, fc } from 'tomer'
 import {
   asAsync,
@@ -205,12 +206,12 @@ test.skip(`toGrouped types are correct`, () => {
   ).toMatchTypeOf<WeakMap<{ n: number }, Set<number>>>()
 
   expectTypeOf(
-    toGrouped({ create: () => ``, add: (a, b) => `${a}${b}` }, toMap()),
+    toGrouped({ create: () => ``, add: (a, b) => `${a}${String(b)}` }, toMap()),
   ).toMatchTypeOf<
     Reducer<readonly [unknown, unknown], never, Map<unknown, string>>
   >()
   expectTypeOf(
-    toGrouped({ create: () => ``, add: (a, b) => `${a}${b}` })(toMap()),
+    toGrouped({ create: () => ``, add: (a, b) => `${a}${String(b)}` })(toMap()),
   ).toMatchTypeOf<
     Reducer<readonly [unknown, unknown], never, Map<unknown, string>>
   >()

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type {
   Integer,
   MaybePromiseLike,
@@ -59,9 +60,9 @@ export const generate: {
  * ```
  */
 export const generateAsync: {
-  <Value>(fn: (previousValue: Value) => MaybePromiseLike<Value>): (
-    seed: Value,
-  ) => AsyncIterable<Value>
+  <Value>(
+    fn: (previousValue: Value) => MaybePromiseLike<Value>,
+  ): (seed: Value) => AsyncIterable<Value>
   <Value>(
     fn: (previousValue: Value) => MaybePromiseLike<Value>,
     seed: Value,
@@ -140,9 +141,9 @@ export type RangeIterable = Iterable<number> & {
 
 /** @internal */
 type Range = {
-  <Start extends number>(start: Integer<Start>): <End extends number>(
-    end: Integer<End>,
-  ) => RangeIterable
+  <Start extends number>(
+    start: Integer<Start>,
+  ): <End extends number>(end: Integer<End>) => RangeIterable
   <Start extends number, End extends number>(
     start: Integer<Start>,
     end: Integer<End>,

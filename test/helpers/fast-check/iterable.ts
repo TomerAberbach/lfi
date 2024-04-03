@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { fc } from 'tomer'
 import type { ConcurIterable } from '../../../src/index.js'
 import type { MaybePromiseLike } from '../../../src/internal/types.js'
@@ -48,8 +49,8 @@ export type GeneratedIterable<Value> = {
 
 // Used to ensure we call `Symbol.iterator` with the right `this`
 class IterableWithPrivateFields<Value> {
-  #values
-  #index
+  readonly #values
+  readonly #index
 
   public constructor(values: Value[]) {
     this.#values = values
@@ -86,8 +87,8 @@ export type GeneratedAsyncIterable<Value> = {
 
 // Used to ensure we call `Symbol.asyncIterator` with the right `this`
 class AsyncIterableWithPrivateFields<Value> {
-  #values
-  #index
+  readonly #values
+  readonly #index
 
   public constructor(values: Value[]) {
     this.#values = values

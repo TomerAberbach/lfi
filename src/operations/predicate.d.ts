@@ -13,38 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
 
 /** @internal */
 type Predicate = {
-  <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>,
-  ) => boolean
-  <Value>(
-    fn: (value: Value) => boolean | unknown,
-    iterable: Iterable<Value>,
-  ): boolean
+  <Value>(fn: (value: Value) => unknown): (iterable: Iterable<Value>) => boolean
+  <Value>(fn: (value: Value) => unknown, iterable: Iterable<Value>): boolean
 }
 
 /** @internal */
 type PredicateAsync = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => Promise<boolean>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (asyncIterable: AsyncIterable<Value>) => Promise<boolean>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
   ): Promise<boolean>
 }
 
 /** @internal */
 type PredicateConcur = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => Promise<boolean>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (concurIterable: ConcurIterable<Value>) => Promise<boolean>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,
   ): Promise<boolean>
 }
@@ -261,9 +257,9 @@ export const includes: {
  * ```
  */
 export const includesAsync: {
-  (searchElement: unknown): <Value>(
-    asyncIterable: AsyncIterable<Value>,
-  ) => Promise<boolean>
+  (
+    searchElement: unknown,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => Promise<boolean>
   <Value>(
     searchElement: unknown,
     asyncIterable: AsyncIterable<Value>,
@@ -289,9 +285,9 @@ export const includesAsync: {
  * ```
  */
 export const includesConcur: {
-  (searchElement: unknown): <Value>(
-    concurIterable: ConcurIterable<Value>,
-  ) => Promise<boolean>
+  (
+    searchElement: unknown,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => Promise<boolean>
   <Value>(
     searchElement: unknown,
     concurIterable: ConcurIterable<Value>,

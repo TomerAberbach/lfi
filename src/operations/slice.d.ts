@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type {
   MaybePromiseLike,
   NonNegativeInteger,
@@ -135,33 +136,33 @@ export const takeWhileConcur: SubWhileConcur
 
 /** @internal */
 type SubWhile = {
-  <Value>(fn: (value: Value) => boolean | unknown): (
-    iterable: Iterable<Value>,
-  ) => Iterable<Value>
   <Value>(
-    fn: (value: Value) => boolean | unknown,
+    fn: (value: Value) => unknown,
+  ): (iterable: Iterable<Value>) => Iterable<Value>
+  <Value>(
+    fn: (value: Value) => unknown,
     iterable: Iterable<Value>,
   ): Iterable<Value>
 }
 
 /** @internal */
 type SubWhileAsync = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     asyncIterable: AsyncIterable<Value>,
   ): AsyncIterable<Value>
 }
 
 /** @internal */
 type SubWhileConcur = {
-  <Value>(fn: (value: Value) => MaybePromiseLike<boolean | unknown>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value>
   <Value>(
-    fn: (value: Value) => MaybePromiseLike<boolean | unknown>,
+    fn: (value: Value) => MaybePromiseLike<unknown>,
+  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+  <Value>(
+    fn: (value: Value) => MaybePromiseLike<unknown>,
     concurIterable: ConcurIterable<Value>,
   ): ConcurIterable<Value>
 }
@@ -306,9 +307,9 @@ export const takeConcur: SubConcur
 
 /** @internal */
 type Sub = {
-  <Count extends number>(count: NonNegativeInteger<Count>): <Value>(
-    iterable: Iterable<Value>,
-  ) => Iterable<Value>
+  <Count extends number>(
+    count: NonNegativeInteger<Count>,
+  ): <Value>(iterable: Iterable<Value>) => Iterable<Value>
   <Count extends number, Value>(
     count: NonNegativeInteger<Count>,
     iterable: Iterable<Value>,
@@ -317,9 +318,9 @@ type Sub = {
 
 /** @internal */
 type SubAsync = {
-  <Count extends number>(count: NonNegativeInteger<Count>): <Value>(
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value>
+  <Count extends number>(
+    count: NonNegativeInteger<Count>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
   <Count extends number, Value>(
     count: NonNegativeInteger<Count>,
     asyncIterable: AsyncIterable<Value>,
@@ -328,9 +329,9 @@ type SubAsync = {
 
 /** @internal */
 type SubConcur = {
-  <Count extends number>(count: NonNegativeInteger<Count>): <Value>(
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value>
+  <Count extends number>(
+    count: NonNegativeInteger<Count>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
   <Count extends number, Value>(
     count: NonNegativeInteger<Count>,
     concurIterable: ConcurIterable<Value>,
@@ -485,9 +486,9 @@ export const lastConcur: <Value>(
  * ```
  */
 export const chunk: {
-  <Size extends number>(size: PositiveInteger<Size>): <Value>(
-    iterable: Iterable<Value>,
-  ) => Iterable<Value[]>
+  <Size extends number>(
+    size: PositiveInteger<Size>,
+  ): <Value>(iterable: Iterable<Value>) => Iterable<Value[]>
   <Size extends number, Value>(
     size: PositiveInteger<Size>,
     iterable: Iterable<Value>,
@@ -526,9 +527,9 @@ export const chunk: {
  * ```
  */
 export const chunkAsync: {
-  <Size extends number>(size: PositiveInteger<Size>): <Value>(
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value[]>
+  <Size extends number>(
+    size: PositiveInteger<Size>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value[]>
   <Size extends number, Value>(
     size: PositiveInteger<Size>,
     asyncIterable: AsyncIterable<Value>,
@@ -567,9 +568,9 @@ export const chunkAsync: {
  * ```
  */
 export const chunkConcur: {
-  <Size extends number>(size: PositiveInteger<Size>): <Value>(
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value[]>
+  <Size extends number>(
+    size: PositiveInteger<Size>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value[]>
   <Size extends number, Value>(
     size: PositiveInteger<Size>,
     concurIterable: ConcurIterable<Value>,
@@ -613,9 +614,9 @@ export const chunkConcur: {
  * ```
  */
 export const window: {
-  <Size extends number>(options: WindowOptions<Size>): <Value>(
-    iterable: Iterable<Value>,
-  ) => Iterable<Value[]>
+  <Size extends number>(
+    options: WindowOptions<Size>,
+  ): <Value>(iterable: Iterable<Value>) => Iterable<Value[]>
   <Size extends number, Value>(
     options: WindowOptions<Size>,
     iterable: Iterable<Value>,
@@ -659,9 +660,9 @@ export const window: {
  * ```
  */
 export const windowAsync: {
-  <Size extends number>(options: WindowOptions<Size>): <Value>(
-    asyncIterable: AsyncIterable<Value>,
-  ) => AsyncIterable<Value[]>
+  <Size extends number>(
+    options: WindowOptions<Size>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value[]>
   <Size extends number, Value>(
     options: WindowOptions<Size>,
     asyncIterable: AsyncIterable<Value>,
@@ -705,9 +706,9 @@ export const windowAsync: {
  * ```
  */
 export const windowConcur: {
-  <Size extends number>(options: WindowOptions<Size>): <Value>(
-    concurIterable: ConcurIterable<Value>,
-  ) => ConcurIterable<Value[]>
+  <Size extends number>(
+    options: WindowOptions<Size>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value[]>
   <Size extends number, Value>(
     options: WindowOptions<Size>,
     concurIterable: ConcurIterable<Value>,

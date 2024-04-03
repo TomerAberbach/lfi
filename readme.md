@@ -105,10 +105,10 @@ console.log(uniqueActiviesPerSloth)
 Some _sequential asynchronous_ operations:
 
 ```js
-import { createReadStream } from 'fs'
+import { createReadStream } from 'node:fs'
+import readline from 'node:readline'
 import got from 'got'
 import { chunkAsync, forEachAsync, mapAsync, pipe } from 'lfi'
-import readline from 'readline'
 
 const filename = `every-sloth-name.txt`
 
@@ -122,9 +122,9 @@ await pipe(
     const [adjective] = await got(
       `https://random-word-form.herokuapp.com/random/adjective`,
     ).json()
-    return `${slothSquad.slice(0, 3).join(`, `)}, and ${
-      slothSquad[slothSquad.length - 1]
-    } are ${adjective}`
+    return `${slothSquad.slice(0, 3).join(`, `)}, and ${slothSquad.at(
+      -1,
+    )} are ${adjective}`
   }),
   forEachAsync(console.log),
 )
@@ -136,11 +136,11 @@ await pipe(
 Some _concurrent asynchronous_ operations:
 
 ```js
-import { createReadStream } from 'fs'
+import { createReadStream } from 'node:fs'
+import readline from 'node:readline'
 import got from 'got'
 import { asConcur, chunkAsync, forEachConcur, mapConcur, pipe } from 'lfi'
 import limitConcur from 'limit-concur'
-import readline from 'readline'
 
 const filename = `every-sloth-name.txt`
 
@@ -158,9 +158,9 @@ await pipe(
       const [adjective] = await got(
         `https://random-word-form.herokuapp.com/random/adjective`,
       ).json()
-      return `${slothSquad.slice(0, 3).join(`, `)}, and ${
-        slothSquad[slothSquad.length - 1]
-      } are ${adjective}`
+      return `${slothSquad.slice(0, 3).join(`, `)}, and ${slothSquad.at(
+        -1,
+      )} are ${adjective}`
     }),
   ),
   forEachConcur(console.log),
@@ -222,7 +222,7 @@ await concurIterable(console.log)
 We can manually map and filter them:
 
 ```js
-import fs from 'fs/promises'
+import fs from 'node:fs/promises'
 
 const transformedConcurIterable = apply =>
   concurIterable(async name => {
@@ -241,7 +241,7 @@ await transformedConcurIterable(console.log)
 Or we can use lfi's awesome functions to map and filter them!
 
 ```js
-import fs from 'fs/promises'
+import fs from 'node:fs/promises'
 import { filterConcur, forEachConcur, mapConcur, pipe } from 'lfi'
 
 await pipe(

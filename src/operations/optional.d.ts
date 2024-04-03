@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
 
@@ -69,9 +70,9 @@ export const or: {
  * ```
  */
 export const orAsync: {
-  <Value>(fn: () => MaybePromiseLike<Value>): (
-    asyncIterable: AsyncIterable<Value>,
-  ) => Promise<Value>
+  <Value>(
+    fn: () => MaybePromiseLike<Value>,
+  ): (asyncIterable: AsyncIterable<Value>) => Promise<Value>
   <Value>(
     fn: () => MaybePromiseLike<Value>,
     asyncIterable: AsyncIterable<Value>,
@@ -101,9 +102,9 @@ export const orAsync: {
  * ```
  */
 export const orConcur: {
-  <Value>(fn: () => MaybePromiseLike<Value>): (
-    concurIterable: ConcurIterable<Value>,
-  ) => Promise<Value>
+  <Value>(
+    fn: () => MaybePromiseLike<Value>,
+  ): (concurIterable: ConcurIterable<Value>) => Promise<Value>
   <Value>(
     fn: () => MaybePromiseLike<Value>,
     concurIterable: ConcurIterable<Value>,

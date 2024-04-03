@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 
 /**
@@ -269,7 +270,9 @@ export const mapReducer: {
     fn: (value: From) => To,
     reducer: Readonly<RawReducerWithFinish<Value, Acc, From, This>>,
   ): Reducer<Value, Acc, To>
-  <From, To>(fn: (value: From) => To): <Value, Acc, This>(
+  <From, To>(
+    fn: (value: From) => To,
+  ): <Value, Acc, This>(
     reducer: Readonly<RawReducerWithFinish<Value, Acc, From, This>>,
   ) => Reducer<Value, Acc, To>
 
@@ -277,7 +280,9 @@ export const mapReducer: {
     fn: (value: From) => To,
     reducer: Readonly<RawReducerWithoutFinish<Value, From, This>>,
   ): Reducer<Value, To>
-  <From, To>(fn: (value: From) => To): <Value, This>(
+  <From, To>(
+    fn: (value: From) => To,
+  ): <Value, This>(
     reducer: Readonly<RawReducerWithoutFinish<Value, From, This>>,
   ) => Reducer<Value, To>
 
@@ -285,7 +290,9 @@ export const mapReducer: {
     fn: (value: From) => To,
     reducer: Readonly<RawOptionalReducerWithFinish<Value, From, This>>,
   ): OptionalReducer<Value, To>
-  <From, To>(fn: (value: From) => To): <Value, This>(
+  <From, To>(
+    fn: (value: From) => To,
+  ): <Value, This>(
     reducer: Readonly<RawOptionalReducerWithFinish<Value, From, This>>,
   ) => OptionalReducer<Value, To>
 
@@ -293,7 +300,9 @@ export const mapReducer: {
     fn: (value: From) => To,
     reducer: Readonly<RawOptionalReducerWithoutFinish<From, This>>,
   ): OptionalReducer<To>
-  <From, To>(fn: (value: From) => To): <This>(
+  <From, To>(
+    fn: (value: From) => To,
+  ): <This>(
     reducer: Readonly<RawOptionalReducerWithoutFinish<From, This>>,
   ) => OptionalReducer<To>
 
@@ -301,9 +310,9 @@ export const mapReducer: {
     fn: (value: From) => To,
     reducer: FunctionReducer<From>,
   ): OptionalReducer<To>
-  <From, To>(fn: (value: From) => To): (
-    reducer: FunctionReducer<From>,
-  ) => OptionalReducer<To>
+  <From, To>(
+    fn: (value: From) => To,
+  ): (reducer: FunctionReducer<From>) => OptionalReducer<To>
 }
 
 /**
@@ -315,7 +324,9 @@ export const mapAsyncReducer: {
     fn: (value: From) => MaybePromiseLike<To>,
     asyncReducer: Readonly<RawAsyncReducerWithFinish<Value, Acc, From, This>>,
   ): AsyncReducer<Value, Acc, To>
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, Acc, This>(
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): <Value, Acc, This>(
     asyncReducer: Readonly<RawAsyncReducerWithFinish<Value, Acc, From, This>>,
   ) => AsyncReducer<Value, Acc, To>
 
@@ -323,7 +334,9 @@ export const mapAsyncReducer: {
     fn: (value: From) => MaybePromiseLike<To>,
     asyncReducer: Readonly<RawAsyncReducerWithoutFinish<Value, From, This>>,
   ): AsyncReducer<Value, To>
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, This>(
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): <Value, This>(
     asyncReducer: Readonly<RawAsyncReducerWithoutFinish<Value, From, This>>,
   ) => AsyncReducer<Value, To>
 
@@ -333,7 +346,9 @@ export const mapAsyncReducer: {
       RawAsyncOptionalReducerWithFinish<Value, From, This>
     >,
   ): AsyncOptionalReducer<Value, To>
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): <Value, This>(
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): <Value, This>(
     asyncReducer: Readonly<
       RawAsyncOptionalReducerWithFinish<Value, From, This>
     >,
@@ -343,7 +358,9 @@ export const mapAsyncReducer: {
     fn: (value: From) => MaybePromiseLike<To>,
     asyncReducer: Readonly<RawAsyncOptionalReducerWithoutFinish<From, This>>,
   ): AsyncOptionalReducer<To>
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): <This>(
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): <This>(
     asyncReducer: Readonly<RawAsyncOptionalReducerWithoutFinish<From, This>>,
   ) => AsyncOptionalReducer<To>
 
@@ -351,9 +368,9 @@ export const mapAsyncReducer: {
     fn: (value: From) => MaybePromiseLike<To>,
     asyncReducer: AsyncFunctionReducer<From>,
   ): AsyncOptionalReducer<To>
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): (
-    asyncReducer: AsyncFunctionReducer<From>,
-  ) => AsyncOptionalReducer<To>
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): (asyncReducer: AsyncFunctionReducer<From>) => AsyncOptionalReducer<To>
 }
 
 /** Returns a non-raw version of `reducer`. */

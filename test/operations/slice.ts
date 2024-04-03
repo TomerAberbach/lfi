@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { expectTypeOf, fc } from 'tomer'
 import type { ConcurIterable, WindowOptions } from '../../src/index.js'
 import {
@@ -1124,7 +1125,7 @@ testProp(
   ({ iterable, values }) => {
     const subIterable = last(iterable)
 
-    expect([...subIterable]).toStrictEqual([values[values.length - 1]])
+    expect([...subIterable]).toStrictEqual([values.at(-1)])
   },
 )
 
@@ -1160,7 +1161,7 @@ testProp(
     const subIterable = lastAsync(iterable)
 
     expect(await reduceAsync(toArray(), subIterable)).toStrictEqual([
-      values[values.length - 1],
+      values.at(-1),
     ])
   },
 )

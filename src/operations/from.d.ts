@@ -50,9 +50,9 @@ export const values: <Value>(
  * returned iterable is opaque.
  */
 export const entries: {
-  <Key, Value>(object: { entries: () => Iterable<[Key, Value]> }): Iterable<
-    [Key, Value]
-  >
+  <Key, Value>(object: {
+    entries: () => Iterable<[Key, Value]>
+  }): Iterable<[Key, Value]>
   <Key extends keyof never, Value>(
     object: Readonly<Record<Key, Value>>,
   ): Iterable<[Key, Value]>

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { expectTypeOf, fc } from 'tomer'
 import {
   asAsync,
@@ -146,7 +147,7 @@ testProp(
 
     expect(() => cycle(impureIterable)).toThrowWithMessage(
       Error,
-      `\`iterable\` must be a pure iterable: ${impureIterable}`,
+      `\`iterable\` must be a pure iterable: ${String(impureIterable)}`,
     )
   },
 )
@@ -204,7 +205,7 @@ testProp(
 
     expect(() => cycleAsync(impureIterable)).toThrowWithMessage(
       Error,
-      `\`asyncIterable\` must be a pure iterable: ${impureIterable}`,
+      `\`asyncIterable\` must be a pure iterable: ${String(impureIterable)}`,
     )
   },
 )

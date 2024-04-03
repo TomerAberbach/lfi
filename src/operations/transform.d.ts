@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
 
@@ -35,9 +36,9 @@ import type { ConcurIterable } from './as.js'
  * ```
  */
 export const map: {
-  <From, To>(fn: (value: From) => To): (
-    iterable: Iterable<From>,
-  ) => Iterable<To>
+  <From, To>(
+    fn: (value: From) => To,
+  ): (iterable: Iterable<From>) => Iterable<To>
   <From, To>(fn: (value: From) => To, iterable: Iterable<From>): Iterable<To>
 }
 
@@ -60,9 +61,9 @@ export const map: {
  * ```
  */
 export const mapAsync: {
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): (
-    asyncIterable: AsyncIterable<From>,
-  ) => AsyncIterable<To>
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
     asyncIterable: AsyncIterable<From>,
@@ -88,9 +89,9 @@ export const mapAsync: {
  * ```
  */
 export const mapConcur: {
-  <From, To>(fn: (value: From) => MaybePromiseLike<To>): (
-    concurIterable: ConcurIterable<From>,
-  ) => ConcurIterable<To>
+  <From, To>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
     concurIterable: ConcurIterable<From>,
@@ -116,9 +117,9 @@ export const mapConcur: {
  * ```
  */
 export const flatMap: {
-  <From, To>(fn: (value: From) => Iterable<To>): (
-    iterable: Iterable<From>,
-  ) => Iterable<To>
+  <From, To>(
+    fn: (value: From) => Iterable<To>,
+  ): (iterable: Iterable<From>) => Iterable<To>
   <From, To>(
     fn: (value: From) => Iterable<To>,
     iterable: Iterable<From>,

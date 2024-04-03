@@ -24,13 +24,13 @@ type Curried<Parameters extends readonly any[], Return> = <
 ) => PartialParameters extends Parameters
   ? Return
   : Parameters extends readonly [
-      ...TupleOfSameLength<PartialParameters>,
-      ...infer RemainingParameters,
-    ]
-  ? RemainingParameters extends any[]
-    ? Curried<RemainingParameters, Return>
+        ...TupleOfSameLength<PartialParameters>,
+        ...infer RemainingParameters,
+      ]
+    ? RemainingParameters extends any[]
+      ? Curried<RemainingParameters, Return>
+      : never
     : never
-  : never
 
 /** @internal */
 type TupleOfSameLength<Tuple extends readonly any[]> = Extract<
@@ -174,9 +174,11 @@ export const compose: {
   (): <Value>(value: Value) => Value
   <A, B>(fn: (a: A) => B): (value: A) => B
   <A, B, C>(fn1: (a: A) => B, fn2: (b: B) => C): (value: A) => C
-  <A, B, C, D>(fn1: (a: A) => B, fn2: (b: B) => C, fn3: (c: C) => D): (
-    value: A,
-  ) => D
+  <A, B, C, D>(
+    fn1: (a: A) => B,
+    fn2: (b: B) => C,
+    fn3: (c: C) => D,
+  ): (value: A) => D
   <A, B, C, D, E>(
     fn1: (a: A) => B,
     fn2: (b: B) => C,

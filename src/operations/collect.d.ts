@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import type { ConcurIterable } from './as.js'
 import type {
   FunctionReducer,
@@ -230,7 +231,9 @@ export const toGrouped: {
     innerReducer: FunctionReducer<Value>,
     outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ): Reducer<readonly [Key, Value], never, OuterAcc>
-  <Value>(innerReducer: FunctionReducer<Value>): <Key, OuterAcc, OuterThis>(
+  <Value>(
+    innerReducer: FunctionReducer<Value>,
+  ): <Key, OuterAcc, OuterThis>(
     outerReducer: Readonly<RawKeyedReducer<Key, Value, OuterAcc, OuterThis>>,
   ) => Reducer<readonly [Key, Value], never, OuterAcc>
 }
@@ -298,8 +301,8 @@ export const toMultiple: {
       >
         ? Finished
         : Reducers[Key] extends RawReducerWithoutFinish<Value, infer Acc>
-        ? Acc
-        : never
+          ? Acc
+          : never
     }
   >
 
@@ -336,11 +339,11 @@ export const toMultiple: {
       >
         ? Finished
         : Reducers[Key] extends RawOptionalReducerWithFinish<
-            Value,
-            infer Finished
-          >
-        ? Finished
-        : Value
+              Value,
+              infer Finished
+            >
+          ? Finished
+          : Value
     }
   >
 }
@@ -368,9 +371,7 @@ export const toMultiple: {
  * //=> Map(2) { 5 => 'sloth,sleep', 10 => 'more sloth,some sloth' }
  * ```
  */
-export const toJoin: (
-  separator: string,
-) => Reducer<unknown, unknown | string, string>
+export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
 
 /**
  * Returns the result of concatenating the values of `iterable` to a string
@@ -414,9 +415,9 @@ export const join: {
  * ```
  */
 export const joinAsync: {
-  (separator: string): (
-    asyncIterable: AsyncIterable<unknown>,
-  ) => Promise<string>
+  (
+    separator: string,
+  ): (asyncIterable: AsyncIterable<unknown>) => Promise<string>
   (separator: string, asyncIterable: AsyncIterable<unknown>): Promise<string>
 }
 
@@ -439,9 +440,9 @@ export const joinAsync: {
  * ```
  */
 export const joinConcur: {
-  (separator: string): (
-    concurIterable: ConcurIterable<unknown>,
-  ) => Promise<string>
+  (
+    separator: string,
+  ): (concurIterable: ConcurIterable<unknown>) => Promise<string>
   (separator: string, concurIterable: ConcurIterable<unknown>): Promise<string>
 }
 

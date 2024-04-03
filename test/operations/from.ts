@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { expectTypeOf, fc, testProp } from 'tomer'
 import { entries, keys, values } from '../../src/index.js'
 

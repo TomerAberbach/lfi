@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { jest } from 'tomer'
 import { getScheduler } from './fast-check/test-prop.js'
 
 const autoAdvance =
   <Args extends unknown[], Return>(
-    fn: (...args: Args) => Return | Promise<Return>,
+    fn: (...args: Args) => Return | PromiseLike<Return>,
   ): ((...args: Args) => Promise<Return>) =>
   async (...args) => {
     let done = false

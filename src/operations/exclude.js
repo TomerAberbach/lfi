@@ -64,7 +64,6 @@ export const uniqueBy = curry((fn, iterable) =>
 
     for (const value of iterable) {
       const by = fn(value)
-
       if (set.has(by)) {
         continue
       }
@@ -81,7 +80,6 @@ export const uniqueByAsync = curry((fn, asyncIterable) =>
 
     for await (const value of asyncIterable) {
       const by = await fn(value)
-
       if (set.has(by)) {
         continue
       }
@@ -97,7 +95,6 @@ export const uniqueByConcur = curry((fn, concurIterable) => apply => {
 
   return concurIterable(async value => {
     const by = await fn(value)
-
     if (set.has(by)) {
       return
     }

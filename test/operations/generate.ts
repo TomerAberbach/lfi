@@ -255,13 +255,13 @@ test.skip(`rangeUntil types are correct`, () => {
   expectTypeOf(rangeUntil(0, 5)).toMatchTypeOf<Iterable<number>>()
   expectTypeOf(rangeUntil(0, 5).step(2)).toMatchTypeOf<Iterable<number>>()
 
-  // @ts-expect-error Non-integer literals
+  // @ts-expect-error Non-integer literals.
   rangeUntil(0.2, 5)
 
-  // @ts-expect-error Non-integer literals
+  // @ts-expect-error Non-integer literals.
   rangeUntil(0.2, 5.2)
 
-  // @ts-expect-error A non-integer literal
+  // @ts-expect-error A non-integer literal.
   rangeUntil(0, 5.2)
 
   const decimal = 2.4 as number
@@ -396,13 +396,13 @@ test.skip(`rangeTo types are correct`, () => {
   expectTypeOf(rangeTo(0, 5)).toMatchTypeOf<Iterable<number>>()
   expectTypeOf(rangeTo(0, 5).step(2)).toMatchTypeOf<Iterable<number>>()
 
-  // @ts-expect-error Non-integer literals
+  // @ts-expect-error Non-integer literals.
   rangeTo(0.2, 5)
 
-  // @ts-expect-error Non-integer literals
+  // @ts-expect-error Non-integer literals.
   rangeTo(0.2, 5.2)
 
-  // @ts-expect-error A non-integer literal
+  // @ts-expect-error A non-integer literal.
   rangeTo(0, 5.2)
 
   const decimal = 2.4 as number

@@ -31,7 +31,6 @@ export const cache = iterable => {
       }
 
       const { value, done } = iterator.next()
-
       if (done) {
         break
       }
@@ -57,7 +56,6 @@ export const cacheAsync = asyncIterable => {
       }
 
       const { value, done } = await asyncIterator.next()
-
       if (done) {
         break
       }

@@ -23,7 +23,6 @@ import { map } from './transform.js'
 
 export const reduce = curry((reducer, iterable) => {
   const { create, add, finish } = normalizeReducer(reducer)
-
   if (create) {
     return reduceInternal(create(), add, finish, iterable)
   }
@@ -45,7 +44,6 @@ const reduceInternal = (acc, add, finish, iterable) => {
 export const reduceAsync = curry((asyncReducer, asyncIterable) => {
   const { create, add, combine, finish } = normalizeReducer(asyncReducer)
   const concurIterable = asConcur(asyncIterable)
-
   if (!create) {
     return createAsyncIterable(async function* () {
       yield* await reduceConcurWithoutCreate(add, finish, concurIterable)
@@ -70,7 +68,6 @@ export const reduceAsync = curry((asyncReducer, asyncIterable) => {
 
 export const reduceConcur = curry((asyncReducer, concurIterable) => {
   const { create, add, combine, finish } = normalizeReducer(asyncReducer)
-
   if (!create) {
     return async apply => {
       const accs = await reduceConcurWithoutCreate(add, finish, concurIterable)

@@ -53,9 +53,8 @@ export const cycle = iterable => {
   return createIterable(function* () {
     const iterator = iterable[Symbol.iterator]()
     const { value, done } = iterator.next()
-
-    // This is an empty iterable! Return early to avoid an infinite loop
     if (done) {
+      // This is an empty iterable! Return early to avoid an infinite loop.
       return
     }
 
@@ -76,9 +75,8 @@ export const cycleAsync = asyncIterable => {
   return createAsyncIterable(async function* () {
     const asyncIterator = asyncIterable[Symbol.asyncIterator]()
     const { value, done } = await asyncIterator.next()
-
-    // This is an empty iterable! Return early to avoid an infinite loop
     if (done) {
+      // This is an empty iterable! Return early to avoid an infinite loop.
       return
     }
 

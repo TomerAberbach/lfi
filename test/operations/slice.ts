@@ -475,10 +475,10 @@ testProp(
 test.skip(`drop types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], drop(2))).toMatchTypeOf<Iterable<number>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   drop(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   drop(-2)
 })
 
@@ -563,10 +563,10 @@ test.skip(`dropAsync types are correct`, () => {
     AsyncIterable<number>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   dropAsync(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   dropAsync(-2)
 })
 
@@ -653,10 +653,10 @@ test.skip(`dropConcur types are correct`, () => {
     ConcurIterable<number>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   dropConcur(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   dropConcur(-2)
 })
 
@@ -743,10 +743,10 @@ testProp(
 test.skip(`take types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], take(2))).toMatchTypeOf<Iterable<number>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   take(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   take(-2)
 })
 
@@ -831,10 +831,10 @@ test.skip(`takeAsync types are correct`, () => {
     AsyncIterable<number>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   takeAsync(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   takeAsync(-2)
 })
 
@@ -921,10 +921,10 @@ test.skip(`takeConcur types are correct`, () => {
     ConcurIterable<number>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   takeConcur(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   takeConcur(-2)
 })
 
@@ -1206,10 +1206,10 @@ testProp(
 test.skip(`chunk types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], chunk(2))).toMatchTypeOf<Iterable<number[]>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   chunk(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   chunk(-2)
 })
 
@@ -1315,10 +1315,10 @@ test.skip(`chunkAsync types are correct`, () => {
     AsyncIterable<number[]>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   chunkAsync(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   chunkAsync(-2)
 })
 
@@ -1426,10 +1426,10 @@ test.skip(`chunkConcur types are correct`, () => {
     ConcurIterable<number[]>
   >()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   chunkConcur(2.4)
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   chunkConcur(-2)
 })
 
@@ -1570,16 +1570,16 @@ test.skip(`window types are correct`, () => {
     ),
   ).toMatchTypeOf<Iterable<number[]>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   window(2.4)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   window({ size: 2.4 })
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   window(-2)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   window({ size: -2 })
 })
 
@@ -1763,16 +1763,16 @@ test.skip(`windowAsync types are correct`, () => {
     ),
   ).toMatchTypeOf<AsyncIterable<number[]>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowAsync(2.4)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowAsync({ size: 2.4 })
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   windowAsync(-2)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowAsync({ size: -2 })
 })
 
@@ -1918,16 +1918,16 @@ test.skip(`windowConcur types are correct`, () => {
     ),
   ).toMatchTypeOf<ConcurIterable<number[]>>()
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowConcur(2.4)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowConcur({ size: 2.4 })
 
-  // @ts-expect-error Not a non-negative integer
+  // @ts-expect-error Not a non-negative integer.
   windowConcur(-2)
 
-  // @ts-expect-error Not an integer literal
+  // @ts-expect-error Not an integer literal.
   windowConcur({ size: -2 })
 })
 

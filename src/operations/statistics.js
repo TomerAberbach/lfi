@@ -54,7 +54,6 @@ export const toMaxBy = fn =>
 export const toMinMaxBy = fn =>
   mapReducer(ensureMinMax, (acc, value) => {
     const minMax = asMinMax(acc)
-
     if (fn(value, minMax._min) < 0) {
       minMax._min = value
     } else if (fn(value, minMax._max) > 0) {
@@ -77,7 +76,6 @@ export const toMinMaxByAsync = fn => {
 
   return mapAsyncReducer(ensureMinMax, async (acc, value) => {
     const minMax = asMinMax(acc)
-
     if (minMaxSet.has(value)) {
       ;[minMax._min, minMax._max] = await Promise.all([
         addMin(value._min, minMax._min),

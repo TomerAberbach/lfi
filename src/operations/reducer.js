@@ -29,7 +29,6 @@ export const mapAsyncReducer = curry((fn, asyncReducer) => {
 
 export const normalizeReducer = reducer => {
   const normalizedReducer = { finish: identity }
-
   if (typeof reducer === `function`) {
     normalizedReducer.add = reducer
     return normalizedReducer
@@ -37,7 +36,6 @@ export const normalizeReducer = reducer => {
 
   for (const methodName of REDUCER_METHOD_NAMES) {
     const method = reducer[methodName]
-
     if (method) {
       normalizedReducer[methodName] = method.bind(reducer)
     }

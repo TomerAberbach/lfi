@@ -107,7 +107,7 @@ export type GeneratedRawAsyncOptionalReducerWithoutFinish<Value = unknown> = {
 export const rawAsyncOptionalReducerWithoutFinishArb =
   getRawAsyncOptionalReducerWithoutFinishArb(asyncFnArb)
 
-// Used to ensure we call methods with the right `this`
+// Used to ensure we call methods with the right `this`.
 class RawOptionalReducerWithoutFinishWithPrivateFields<Value = unknown> {
   readonly #add: Fn<Value>
 
@@ -139,7 +139,7 @@ export type GeneratedRawAsyncOptionalReducerWithFinish<Value = unknown> = {
   syncReducer: RawOptionalReducerWithFinish<Value, Value>
 }
 
-// Used to ensure we call methods with the right `this`
+// Used to ensure we call methods with the right `this`.
 class RawOptionalReducerWithFinishAndPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithoutFinishWithPrivateFields<Value> {
@@ -177,7 +177,7 @@ export type GeneratedRawAsyncReducerWithoutFinish<Value = unknown> = {
   syncReducer: RawReducerWithoutFinish<Value, Value>
 }
 
-// Used to ensure we call methods with the right `this`
+// Used to ensure we call methods with the right `this`.
 class RawReducerWithoutFinishWithPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithoutFinishWithPrivateFields<Value> {
@@ -217,7 +217,7 @@ export type GeneratedRawAsyncReducerWithFinish<Value = unknown> = {
   syncReducer: RawReducerWithFinish<Value, Value, Value>
 }
 
-// Used to ensure we call methods with the right `this`
+// Used to ensure we call methods with the right `this`.
 class RawReducerWithFinishAndPrivateFields<
   Value = unknown,
 > extends RawOptionalReducerWithFinishAndPrivateFields<Value> {
@@ -233,7 +233,7 @@ class RawReducerWithFinishAndPrivateFields<
   }
 }
 
-// Used to ensure we call methods with the right `this`
+// Used to ensure we call methods with the right `this`.
 class RawKeyedReducerWithPrivateFields extends RawReducerWithoutFinishWithPrivateFields {
   readonly #get: Fn
 

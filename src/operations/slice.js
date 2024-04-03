@@ -150,7 +150,6 @@ export const chunk = curry((size, iterable) => {
     let chunk = []
     for (const value of iterable) {
       chunk.push(value)
-
       if (chunk.length < size) {
         continue
       }
@@ -172,7 +171,6 @@ export const chunkAsync = curry((size, asyncIterable) => {
     let chunk = []
     for await (const value of asyncIterable) {
       chunk.push(value)
-
       if (chunk.length < size) {
         continue
       }
@@ -194,7 +192,6 @@ export const chunkConcur = curry((size, concurIterable) => {
     let chunk = []
     await concurIterable(async value => {
       chunk.push(value)
-
       if (chunk.length < size) {
         return
       }

@@ -47,7 +47,7 @@ export type GeneratedIterable<Value> = {
   values: Value[]
 }
 
-// Used to ensure we call `Symbol.iterator` with the right `this`
+// Used to ensure we call `Symbol.iterator` with the right `this`.
 class IterableWithPrivateFields<Value> {
   readonly #values
   readonly #index
@@ -85,7 +85,7 @@ export type GeneratedAsyncIterable<Value> = {
   values: Value[]
 }
 
-// Used to ensure we call `Symbol.asyncIterator` with the right `this`
+// Used to ensure we call `Symbol.asyncIterator` with the right `this`.
 class AsyncIterableWithPrivateFields<Value> {
   readonly #values
   readonly #index

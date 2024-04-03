@@ -26,7 +26,6 @@ const getAsyncFn = <Args extends unknown[], Value>(
   const asyncFn = Object.assign(
     (...args: Args) => {
       const [value, shouldReturnPromise] = fn(...args)
-
       if (!shouldReturnPromise) {
         return value
       }

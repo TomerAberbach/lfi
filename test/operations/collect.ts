@@ -94,7 +94,7 @@ test.skip(`toWeakSet types are correct`, () => {
     ),
   ).toMatchTypeOf<WeakSet<{ n: number }>>()
 
-  // @ts-expect-error WeakSets can't contain primitives
+  // @ts-expect-error WeakSets can't contain primitives.
   toWeakSet<string>()
 })
 
@@ -129,7 +129,7 @@ test.skip(`toObject types are correct`, () => {
     ),
   ).toMatchTypeOf<Record<string, number>>()
 
-  // @ts-expect-error Objects can only have string, symbol, and number keys
+  // @ts-expect-error Objects can only have string, symbol, and number keys.
   toObject<object, string>()
 })
 
@@ -158,7 +158,7 @@ test.skip(`toWeakMap types are correct`, () => {
     ),
   ).toMatchTypeOf<WeakMap<{ n: number }, number>>()
 
-  // @ts-expect-error WeakMaps can't have primitive keys
+  // @ts-expect-error WeakMaps can't have primitive keys.
   toWeakMap<string, string>()
 })
 
@@ -257,7 +257,7 @@ test.skip(`toGrouped types are correct`, () => {
     ),
   ).toMatchTypeOf<Map<number, number>>()
 
-  // @ts-expect-error TODO: Make this typecheck without generic type arguments
+  // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toGrouped((a: number, b: number) => a + b, toMap())
 
   expectTypeOf(
@@ -451,14 +451,14 @@ test.skip(`toMultiple types are correct`, () => {
     pipe([1, 2, 3], reduce(toMultiple([toMax(), toSet()])), get),
   ).toMatchTypeOf<[number, Set<number>]>()
 
-  // @ts-expect-error TODO: Make this typecheck without generic type arguments
+  // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toMultiple([toMax(), toSet()])
 
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple({ max: toMax(), set: toSet() })), get),
   ).toMatchTypeOf<{ max: number; set: Set<number> }>()
 
-  // @ts-expect-error TODO: Make this typecheck without generic type arguments
+  // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toMultiple({ max: toMax(), set: toSet() })
 
   expectTypeOf(
@@ -672,12 +672,12 @@ testProp(
     for (const value of values) {
       expect(joined).toContain(String(value))
     }
-    // Max.max is needed in case the iterable is empty
+    // Max.max is needed in case the iterable is empty.
     const expectedSeparatorCount =
       separator === `` ? 0 : Math.max(values.length - 1, 0)
     // The number of occurrences of the separator exceeds the "expected" count
     // when a string representation of a value in the iterable contains the
-    // separator
+    // separator.
     expect(count(indicesOf(joined, separator))).toBeGreaterThanOrEqual(
       expectedSeparatorCount,
     )

@@ -81,7 +81,6 @@ export const toGrouped = curry((innerReducer, outerReducer) => {
     create: () => ({ _acc: createOuter(), _keys: [] }),
     add: (acc, [key, value]) => {
       let group = getOuter(acc._acc, key)
-
       if (group === NO_ENTRY) {
         group = createInner ? addInner(createInner(), value) : value
         acc._keys.push(key)
@@ -127,7 +126,6 @@ export const toMultiple = reducers => {
   const add = (acc, value) =>
     applyReducers(acc, (acc, { add }) => add(acc, value))
   const finish = acc => applyReducers(acc, (acc, { finish }) => finish(acc))
-
   if (reducers.every(([, { create }]) => create)) {
     return {
       create: () => mapReducers(({ create }) => create()),

@@ -29,6 +29,7 @@ export const asAsync = iterable => {
           let buffer = []
           let done = false
           let nonEmptyBufferDeferred = deferred()
+          let deferredError
 
           iterable(value => {
             buffer.push(value)
@@ -37,14 +38,23 @@ export const asAsync = iterable => {
               nonEmptyBufferDeferred = null
               currentDeferred._resolve()
             }
-          }).then(() => {
-            done = true
-            nonEmptyBufferDeferred?._resolve()
           })
+            .then(() => {
+              done = true
+              nonEmptyBufferDeferred?._resolve()
+            })
+            .catch(error => {
+              deferredError = error
+              nonEmptyBufferDeferred?._resolve()
+            })
 
           // eslint-disable-next-line no-unmodified-loop-condition
           while (!done) {
             if (!buffer.length) {
+              if (deferredError) {
+                throw deferredError
+              }
+
               await nonEmptyBufferDeferred._promise
               continue
             }
@@ -53,6 +63,10 @@ export const asAsync = iterable => {
             buffer = []
             nonEmptyBufferDeferred = deferred()
             yield* currentBuffer
+
+            if (deferredError) {
+              throw deferredError
+            }
           }
         },
   )

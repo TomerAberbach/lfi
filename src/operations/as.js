@@ -51,11 +51,10 @@ export const asAsync = iterable => {
           // eslint-disable-next-line no-unmodified-loop-condition
           while (!done) {
             if (!buffer.length) {
+              await nonEmptyBufferDeferred._promise
               if (deferredError) {
                 throw deferredError
               }
-
-              await nonEmptyBufferDeferred._promise
               continue
             }
 

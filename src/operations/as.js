@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { createAsyncIterable } from '../internal/helpers.js'
+import { createAsyncIterable, deferred } from '../internal/helpers.js'
 import { map } from './transform.js'
 
 export const asAsync = iterable => {
@@ -22,7 +22,40 @@ export const asAsync = iterable => {
     return iterable
   }
 
-  return createAsyncIterable(() => iterable[Symbol.iterator]())
+  return createAsyncIterable(
+    iterable[Symbol.iterator]
+      ? () => iterable[Symbol.iterator]()
+      : async function* () {
+          let buffer = []
+          let done = false
+          let nonEmptyBufferDeferred = deferred()
+
+          iterable(value => {
+            buffer.push(value)
+            if (nonEmptyBufferDeferred) {
+              const currentDeferred = nonEmptyBufferDeferred
+              nonEmptyBufferDeferred = null
+              currentDeferred._resolve()
+            }
+          }).then(() => {
+            done = true
+            nonEmptyBufferDeferred?._resolve()
+          })
+
+          // eslint-disable-next-line no-unmodified-loop-condition
+          while (!done) {
+            if (!buffer.length) {
+              await nonEmptyBufferDeferred._promise
+              continue
+            }
+
+            const currentBuffer = buffer
+            buffer = []
+            nonEmptyBufferDeferred = deferred()
+            yield* currentBuffer
+          }
+        },
+  )
 }
 
 export const asConcur = iterable => {

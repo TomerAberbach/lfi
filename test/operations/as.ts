@@ -40,10 +40,13 @@ test.skip(`asAsync types are correct`, () => {
   expectTypeOf(asAsync(asAsync([`a`, `b`, `c`]))).toMatchTypeOf<
     AsyncIterable<string>
   >()
+  expectTypeOf(asAsync(asConcur([`a`, `b`, `c`]))).toMatchTypeOf<
+    AsyncIterable<string>
+  >()
 })
 
 testProp(
-  `asAsync returns a pure async iterable`,
+  `asAsync returns a pure async iterable for non-concur iterables`,
   [fc.oneof(iterableArb, asyncIterableArb)],
   async ({ iterable }) => {
     const asyncIterable = asAsync(iterable)
@@ -53,12 +56,24 @@ testProp(
 )
 
 testProp(
-  `asAsync returns an async iterable containing the same values in the same order as the given iterable`,
+  `asAsync returns an async iterable containing the same values in the same order as the given iterable or async iterable`,
   [fc.oneof(iterableArb, asyncIterableArb)],
   async ({ iterable, values }) => {
     const asyncIterable = asAsync(iterable)
 
     expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(values)
+  },
+)
+
+testProp(
+  `asAsync returns an async iterable containing the same values as the given concur iterable`,
+  [concurIterableArb],
+  async ({ iterable, values }) => {
+    const asyncIterable = asAsync(iterable)
+
+    expect(await reduceAsync(toArray(), asyncIterable)).toIncludeSameMembers(
+      values,
+    )
   },
 )
 

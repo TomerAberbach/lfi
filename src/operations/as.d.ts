@@ -19,6 +19,12 @@ import type { MaybePromiseLike } from '../internal/types.js'
 /**
  * Returns an async iterable wrapper around `iterable`.
  *
+ * Note that when passing a concur iterable the returned async iterable may have
+ * to buffer the values produced by the concur iterable because values may not
+ * be read from the async iterable as quickly as they are produced by the concur
+ * iterable. This is a fundamental problem because concur iterables are "push"
+ * based while async iterables are "pull" based, which creates backpressure.
+ *
  * @example
  * ```js
  * const asyncIterable = asAsync([`sloth`, `more sloth`, `even more sloth`])
@@ -35,7 +41,7 @@ import type { MaybePromiseLike } from '../internal/types.js'
  * ```
  */
 export const asAsync: <Value>(
-  iterable: Iterable<Value> | AsyncIterable<Value>,
+  iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
 ) => AsyncIterable<Value>
 
 /**

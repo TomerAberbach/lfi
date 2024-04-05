@@ -50,11 +50,13 @@ export const asAsync = iterable => {
 
           // eslint-disable-next-line no-unmodified-loop-condition
           while (!done) {
+            if (deferredError) {
+              yield* buffer
+              throw deferredError
+            }
+
             if (!buffer.length) {
               await nonEmptyBufferDeferred._promise
-              if (deferredError) {
-                throw deferredError
-              }
               continue
             }
 
@@ -62,10 +64,6 @@ export const asAsync = iterable => {
             buffer = []
             nonEmptyBufferDeferred = deferred()
             yield* currentBuffer
-
-            if (deferredError) {
-              throw deferredError
-            }
           }
         },
   )

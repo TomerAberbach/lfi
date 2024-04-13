@@ -31,6 +31,8 @@ import {
 } from '../helpers/fast-check/iterable.js'
 import { testProp } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
+import delay from '../helpers/delay.js'
+import autoAdvance from '../helpers/auto-advance.js'
 
 test.skip(`asAsync types are correct`, () => {
   expectTypeOf(asAsync([1, 2, 3])).toMatchTypeOf<AsyncIterable<number>>()
@@ -75,6 +77,34 @@ testProp(
       values,
     )
   },
+)
+
+test(
+  `asAsync handles throwing concur iterable`,
+  autoAdvance(async () => {
+    const concurIterable: ConcurIterable<number> = async apply => {
+      await delay(1)
+      await apply(1)
+
+      await delay(1)
+      await apply(2)
+
+      await delay(1)
+      throw new Error(`BOOM!`)
+    }
+
+    const asyncIterable = asAsync(concurIterable)
+
+    const values: number[] = []
+    await expect(
+      (async () => {
+        for await (const value of asyncIterable) {
+          values.push(value)
+        }
+      })(),
+    ).rejects.toStrictEqual(new Error(`BOOM!`))
+    expect(values).toStrictEqual([1, 2])
+  }),
 )
 
 test.skip(`asConcur types are correct`, () => {

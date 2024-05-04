@@ -49,10 +49,10 @@ export const toObject = thunk(
         writable: true,
         value,
       }),
-    get: (acc, key) => (hasOwnProperty.call(acc, key) ? acc[key] : NO_ENTRY),
+    get: (acc, key) => (hasOwn.call(acc, key) ? acc[key] : NO_ENTRY),
   }),
 )
-const { hasOwnProperty } = {}
+const hasOwn = {}.hasOwnProperty
 
 const mapAddGet = {
   add: (acc, [key, value]) => acc.set(key, value),

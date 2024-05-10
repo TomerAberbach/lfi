@@ -13,10 +13,10 @@
   <a href="https://github.com/TomerAberbach/lfi/actions">
     <img src="https://github.com/TomerAberbach/lfi/workflows/CI/badge.svg" alt="CI" />
   </a>
-  <a href="https://unpkg.com/lfi/dist/index.js">
+  <a href="https://unpkg.com/lfi/dist/index.min.js">
     <img src="https://deno.bundlejs.com/?q=lfi&badge" alt="gzip size" />
   </a>
-  <a href="https://unpkg.com/lfi/dist/index.js">
+  <a href="https://unpkg.com/lfi/dist/index.min.js">
     <img src="https://deno.bundlejs.com/?q=lfi&config={%22compression%22:{%22type%22:%22brotli%22}}&badge" alt="brotli size" />
   </a>
 </div>

@@ -136,8 +136,8 @@ const reduceConcurWithCreateWithoutCombine = async (
   concurIterable,
 ) => {
   let accPromise = Promise.resolve(create())
-  await concurIterable(
-    value => (accPromise = accPromise.then(acc => add(acc, value))),
-  )
+  await concurIterable(value => {
+    accPromise = accPromise.then(acc => add(acc, value))
+  })
   return finish(await accPromise)
 }

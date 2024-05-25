@@ -37,3 +37,6 @@ export const deferred = () => {
   let resolve
   return { _promise: new Promise(r => (resolve = r)), _resolve: resolve }
 }
+
+export const isPromise = value =>
+  Boolean(value && typeof value.then === `function`)

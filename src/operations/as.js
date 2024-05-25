@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import { createAsyncIterable, deferred } from '../internal/helpers.js'
+import {
+  createAsyncIterable,
+  deferred,
+  isPromise,
+} from '../internal/helpers.js'
 import { map } from './transform.js'
 
 export const asAsync = iterable => {
@@ -84,7 +88,10 @@ export const asConcur = iterable => {
     const promises = []
 
     for await (const value of iterable) {
-      promises.push(apply(value))
+      const result = apply(value)
+      if (isPromise(result)) {
+        promises.push(result)
+      }
     }
 
     await Promise.all(promises)

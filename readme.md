@@ -352,7 +352,6 @@ For bugs and feature requests,
 
 ## License
 
-[Apache 2.0](https://github.com/TomerAberbach/lfi/blob/main/license-apache) ©
-[Google](https://github.com/TomerAberbach/lfi/blob/main/notice-apache) AND
 [MIT](https://github.com/TomerAberbach/lfi/blob/main/license) ©
-[Tomer Aberbach](https://github.com/TomerAberbach)
+[Tomer Aberbach](https://github.com/TomerAberbach) \
+[Apache 2.0](https://github.com/TomerAberbach/lfi/blob/main/license-apache) © [Google](https://github.com/TomerAberbach/lfi/blob/main/notice-apache)

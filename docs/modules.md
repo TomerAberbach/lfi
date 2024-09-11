@@ -192,12 +192,20 @@
 - [toJoin](modules.md#tojoin)
 - [toMap](modules.md#tomap)
 - [toMax](modules.md#tomax)
+- [toMaxBy](modules.md#tomaxby)
+- [toMaxByAsync](modules.md#tomaxbyasync)
+- [toMaxWith](modules.md#tomaxwith)
+- [toMaxWithAsync](modules.md#tomaxwithasync)
 - [toMin](modules.md#tomin)
+- [toMinBy](modules.md#tominby)
+- [toMinByAsync](modules.md#tominbyasync)
 - [toMinMax](modules.md#tominmax)
 - [toMinMaxBy](modules.md#tominmaxby)
 - [toMinMaxByAsync](modules.md#tominmaxbyasync)
 - [toMinMaxWith](modules.md#tominmaxwith)
 - [toMinMaxWithAsync](modules.md#tominmaxwithasync)
+- [toMinWith](modules.md#tominwith)
+- [toMinWithAsync](modules.md#tominwithasync)
 - [toMultiple](modules.md#tomultiple)
 - [toObject](modules.md#toobject)
 - [toSet](modules.md#toset)
@@ -219,8 +227,16 @@
 
 ### AsyncCompare
 
-Ƭ **AsyncCompare**<`Value`\>: (`left`: `Value`, `right`: `Value`) =>
-`MaybePromiseLike`<`number`\>
+Ƭ **AsyncCompare**\<`Value`\>: (`left`: `Value`, `right`: `Value`) =>
+`MaybePromiseLike`\<`number`\>
+
+A function that compares two values of type `Value` possibly asynchronously.
+
+A return value that awaits to:
+
+- Less than zero implies `left < right`
+- Equal to zero implies `left === right`
+- Greater than zero implies `left > right`
 
 #### Type parameters
 
@@ -230,15 +246,7 @@
 
 #### Type declaration
 
-▸ (`left`, `right`): `MaybePromiseLike`<`number`\>
-
-A function that compares two values of type `Value` possibly asynchronously.
-
-A return value that awaits to:
-
-- Less than zero implies `left < right`
-- Equal to zero implies `left === right`
-- Greater than zero implies `left > right`
+▸ (`left`, `right`): `MaybePromiseLike`\<`number`\>
 
 ##### Parameters
 
@@ -249,18 +257,21 @@ A return value that awaits to:
 
 ##### Returns
 
-`MaybePromiseLike`<`number`\>
+`MaybePromiseLike`\<`number`\>
 
 #### Defined in
 
-[operations/statistics.d.ts:166](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L166)
+[operations/statistics.d.ts:150](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L150)
 
 ---
 
 ### AsyncFunctionReducer
 
-Ƭ **AsyncFunctionReducer**<`Value`\>: (`acc`: `Value`, `value`: `Value`) =>
-`MaybePromiseLike`<`Value`\>
+Ƭ **AsyncFunctionReducer**\<`Value`\>: (`acc`: `Value`, `value`: `Value`) =>
+`MaybePromiseLike`\<`Value`\>
+
+An async reducer that reduces by combining pairs of values using function
+application.
 
 #### Type parameters
 
@@ -270,10 +281,7 @@ A return value that awaits to:
 
 #### Type declaration
 
-▸ (`acc`, `value`): `MaybePromiseLike`<`Value`\>
-
-An async reducer that reduces by combining pairs of values using function
-application.
+▸ (`acc`, `value`): `MaybePromiseLike`\<`Value`\>
 
 ##### Parameters
 
@@ -284,18 +292,18 @@ application.
 
 ##### Returns
 
-`MaybePromiseLike`<`Value`\>
+`MaybePromiseLike`\<`Value`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:131](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L131)
+[operations/reducer.d.ts:115](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L115)
 
 ---
 
 ### AsyncKeyedReducer
 
-Ƭ **AsyncKeyedReducer**<`Key`, `Value`, `Acc`\>:
-[`RawAsyncKeyedReducer`](modules.md#rawasynckeyedreducer)<`Key`, `Value`,
+Ƭ **AsyncKeyedReducer**\<`Key`, `Value`, `Acc`\>:
+[`RawAsyncKeyedReducer`](modules.md#rawasynckeyedreducer)\<`Key`, `Value`,
 `Acc`\>
 
 An async keyed reducer that reduces by creating an initial accumulator using
@@ -314,13 +322,13 @@ accumulator can be queried for values by key using AsyncKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:247](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L247)
+[operations/reducer.d.ts:231](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L231)
 
 ---
 
 ### AsyncOptional
 
-Ƭ **AsyncOptional**<`Value`\>: `AsyncIterable`<`Value`\>
+Ƭ **AsyncOptional**\<`Value`\>: `AsyncIterable`\<`Value`\>
 
 An async iterable containing exactly zero or one values.
 
@@ -332,14 +340,14 @@ An async iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:24](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L24)
+[operations/optional.d.ts:8](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L8)
 
 ---
 
 ### AsyncOptionalReducer
 
-Ƭ **AsyncOptionalReducer**<`Value`, `Finished`\>:
-[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`,
+Ƭ **AsyncOptionalReducer**\<`Value`, `Finished`\>:
+[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`,
 `Finished`\>
 
 An async reducer that reduces by combining pairs of values using
@@ -355,14 +363,14 @@ AsyncOptionalReducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:165](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L165)
+[operations/reducer.d.ts:149](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L149)
 
 ---
 
 ### AsyncReducer
 
-Ƭ **AsyncReducer**<`Value`, `Acc`, `Finished`\>:
-[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`,
+Ƭ **AsyncReducer**\<`Value`, `Acc`, `Finished`\>:
+[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`,
 `Acc`, `Finished`\>
 
 An async reducer that reduces by creating an initial accumulator using
@@ -381,13 +389,21 @@ accumulators using AsyncReducer.combine.
 
 #### Defined in
 
-[operations/reducer.d.ts:212](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L212)
+[operations/reducer.d.ts:196](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L196)
 
 ---
 
 ### Compare
 
-Ƭ **Compare**<`Value`\>: (`left`: `Value`, `right`: `Value`) => `number`
+Ƭ **Compare**\<`Value`\>: (`left`: `Value`, `right`: `Value`) => `number`
+
+A function that compares two values of type `Value`.
+
+A return value:
+
+- Less than zero implies `left < right`
+- Equal to zero implies `left === right`
+- Greater than zero implies `left > right`
 
 #### Type parameters
 
@@ -398,14 +414,6 @@ accumulators using AsyncReducer.combine.
 #### Type declaration
 
 ▸ (`left`, `right`): `number`
-
-A function that compares two values of type `Value`.
-
-A return value:
-
-- Less than zero implies `left < right`
-- Equal to zero implies `left === right`
-- Greater than zero implies `left > right`
 
 ##### Parameters
 
@@ -420,25 +428,15 @@ A return value:
 
 #### Defined in
 
-[operations/statistics.d.ts:156](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L156)
+[operations/statistics.d.ts:140](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L140)
 
 ---
 
 ### ConcurIterable
 
-Ƭ **ConcurIterable**<`Value`\>: (`apply`:
-[`ConcurIterableApply`](modules.md#concuriterableapply)<`Value`\>) =>
-`Promise`<`void`\>
-
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Type declaration
-
-▸ (`apply`): `Promise`<`void`\>
+Ƭ **ConcurIterable**\<`Value`\>: (`apply`:
+[`ConcurIterableApply`](modules.md#concuriterableapply)\<`Value`\>) =>
+`Promise`\<`void`\>
 
 Represents a potentially lazy collection of values, each of type `Value`, that
 can be iterated over concurrently.
@@ -464,26 +462,39 @@ const slothNamesConcurIterable = pipe(
 )
 ```
 
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Type declaration
+
+▸ (`apply`): `Promise`\<`void`\>
+
 ##### Parameters
 
-| Name    | Type                                                              |
-| :------ | :---------------------------------------------------------------- |
-| `apply` | [`ConcurIterableApply`](modules.md#concuriterableapply)<`Value`\> |
+| Name    | Type                                                               |
+| :------ | :----------------------------------------------------------------- |
+| `apply` | [`ConcurIterableApply`](modules.md#concuriterableapply)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
-[operations/as.d.ts:65](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/as.d.ts#L65)
+[operations/as.d.ts:55](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/as.d.ts#L55)
 
 ---
 
 ### ConcurIterableApply
 
-Ƭ **ConcurIterableApply**<`Value`\>: (`value`: `Value`) =>
-`MaybePromiseLike`<`void`\>
+Ƭ **ConcurIterableApply**\<`Value`\>: (`value`: `Value`) =>
+`MaybePromiseLike`\<`void`\>
+
+The callback invoked for each value of a
+[ConcurIterable](modules.md#concuriterable).
 
 #### Type parameters
 
@@ -493,10 +504,7 @@ const slothNamesConcurIterable = pipe(
 
 #### Type declaration
 
-▸ (`value`): `MaybePromiseLike`<`void`\>
-
-The callback invoked for each value of a
-[ConcurIterable](modules.md#concuriterable).
+▸ (`value`): `MaybePromiseLike`\<`void`\>
 
 ##### Parameters
 
@@ -506,18 +514,18 @@ The callback invoked for each value of a
 
 ##### Returns
 
-`MaybePromiseLike`<`void`\>
+`MaybePromiseLike`\<`void`\>
 
 #### Defined in
 
-[operations/as.d.ts:70](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/as.d.ts#L70)
+[operations/as.d.ts:60](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/as.d.ts#L60)
 
 ---
 
 ### ConcurOptional
 
-Ƭ **ConcurOptional**<`Value`\>:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+Ƭ **ConcurOptional**\<`Value`\>:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 A concur iterable containing exactly zero or one values.
 
@@ -529,13 +537,15 @@ A concur iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:27](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L27)
+[operations/optional.d.ts:11](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L11)
 
 ---
 
 ### FunctionReducer
 
-Ƭ **FunctionReducer**<`Value`\>: (`acc`: `Value`, `value`: `Value`) => `Value`
+Ƭ **FunctionReducer**\<`Value`\>: (`acc`: `Value`, `value`: `Value`) => `Value`
+
+A reducer that reduces by combining pairs of values using function application.
 
 #### Type parameters
 
@@ -546,8 +556,6 @@ A concur iterable containing exactly zero or one values.
 #### Type declaration
 
 ▸ (`acc`, `value`): `Value`
-
-A reducer that reduces by combining pairs of values using function application.
 
 ##### Parameters
 
@@ -562,14 +570,14 @@ A reducer that reduces by combining pairs of values using function application.
 
 #### Defined in
 
-[operations/reducer.d.ts:23](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L23)
+[operations/reducer.d.ts:7](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L7)
 
 ---
 
 ### KeyedReducer
 
-Ƭ **KeyedReducer**<`Key`, `Value`, `Acc`\>:
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Acc`\>
+Ƭ **KeyedReducer**\<`Key`, `Value`, `Acc`\>:
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `Acc`\>
 
 A keyed reducer that reduces by creating an initial accumulator using
 KeyedReducer.create and then adding key-value pairs to the accumulator values
@@ -586,13 +594,13 @@ KeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:121](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L121)
+[operations/reducer.d.ts:105](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L105)
 
 ---
 
 ### MinMax
 
-Ƭ **MinMax**<`Value`\>: `Object`
+Ƭ **MinMax**\<`Value`\>: `Object`
 
 An object containing a minimum and maximum value.
 
@@ -611,13 +619,13 @@ An object containing a minimum and maximum value.
 
 #### Defined in
 
-[operations/statistics.d.ts:172](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L172)
+[operations/statistics.d.ts:156](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L156)
 
 ---
 
 ### Optional
 
-Ƭ **Optional**<`Value`\>: `Iterable`<`Value`\>
+Ƭ **Optional**\<`Value`\>: `Iterable`\<`Value`\>
 
 An iterable containing exactly zero or one values.
 
@@ -629,14 +637,14 @@ An iterable containing exactly zero or one values.
 
 #### Defined in
 
-[operations/optional.d.ts:21](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L21)
+[operations/optional.d.ts:5](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L5)
 
 ---
 
 ### OptionalReducer
 
-Ƭ **OptionalReducer**<`Value`, `Finished`\>:
-[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`,
+Ƭ **OptionalReducer**\<`Value`, `Finished`\>:
+[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`,
 `Finished`\>
 
 A reducer that reduces by combining pairs of values using OptionalReducer.add
@@ -651,30 +659,30 @@ and then tranforming the final value using OptionalReducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:54](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L54)
+[operations/reducer.d.ts:38](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L38)
 
 ---
 
 ### RangeIterable
 
-Ƭ **RangeIterable**: `Iterable`<`number`\> & { `step`: <Step\>(`step`:
-`PositiveInteger`<`Step`\>) => `Iterable`<`number`\> }
+Ƭ **RangeIterable**: `Iterable`\<`number`\> & \{ `step`: \<Step\>(`step`:
+`PositiveInteger`\<`Step`\>) => `Iterable`\<`number`\> }
 
 An iterable that yields integers in a range. Has a method for obtaining a new
 iterable that skips numbers in steps.
 
 #### Defined in
 
-[operations/generate.d.ts:131](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L131)
+[operations/generate.d.ts:115](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L115)
 
 ---
 
 ### RawAsyncKeyedReducer
 
-Ƭ **RawAsyncKeyedReducer**<`Key`, `Value`, `Acc`, `This`\>:
-[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<readonly
-[`Key`, `Value`], `Acc`, `This`\> & { `get`: (`this`: `This`, `acc`: `Acc`,
-`key`: `Key`) => `MaybePromiseLike`<`Value` \| typeof
+Ƭ **RawAsyncKeyedReducer**\<`Key`, `Value`, `Acc`, `This`\>:
+[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<readonly
+[`Key`, `Value`], `Acc`, `This`\> & \{ `get`: (`this`: `This`, `acc`: `Acc`,
+`key`: `Key`) => `MaybePromiseLike`\<`Value` \| typeof
 [`NO_ENTRY`](modules.md#no_entry)\> }
 
 An async keyed reducer that reduces by creating an initial accumulator using
@@ -694,16 +702,16 @@ accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:226](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L226)
+[operations/reducer.d.ts:210](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L210)
 
 ---
 
 ### RawAsyncOptionalReducerWithFinish
 
-Ƭ **RawAsyncOptionalReducerWithFinish**<`Value`, `Finished`, `This`\>:
-[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`,
-`This`\> & { `finish`: (`this`: `This`, `acc`: `Value`) =>
-`MaybePromiseLike`<`Finished`\> }
+Ƭ **RawAsyncOptionalReducerWithFinish**\<`Value`, `Finished`, `This`\>:
+[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`,
+`This`\> & \{ `finish`: (`this`: `This`, `acc`: `Value`) =>
+`MaybePromiseLike`\<`Finished`\> }
 
 An async reducer that reduces by combining pairs of values using
 RawAsyncOptionalReducerWithFinish.add and then tranforming the final value using
@@ -719,16 +727,16 @@ RawAsyncOptionalReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:152](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L152)
+[operations/reducer.d.ts:136](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L136)
 
 ---
 
 ### RawAsyncOptionalReducerWithoutFinish
 
-Ƭ **RawAsyncOptionalReducerWithoutFinish**<`Value`, `This`\>: `Object`
+Ƭ **RawAsyncOptionalReducerWithoutFinish**\<`Value`, `This`\>: `Object`
 
 An async reducer that reduces by combining pairs of values using
-RawAsyncOptionalReducerWithoutFinish.add.
+[RawAsyncOptionalReducerWithoutFinish.add](modules.md#add).
 
 #### Type parameters
 
@@ -739,22 +747,22 @@ RawAsyncOptionalReducerWithoutFinish.add.
 
 #### Type declaration
 
-| Name  | Type                                                                               |
-| :---- | :--------------------------------------------------------------------------------- |
-| `add` | (`this`: `This`, `acc`: `Value`, `value`: `Value`) => `MaybePromiseLike`<`Value`\> |
+| Name  | Type                                                                                |
+| :---- | :---------------------------------------------------------------------------------- |
+| `add` | (`this`: `This`, `acc`: `Value`, `value`: `Value`) => `MaybePromiseLike`\<`Value`\> |
 
 #### Defined in
 
-[operations/reducer.d.ts:140](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L140)
+[operations/reducer.d.ts:124](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L124)
 
 ---
 
 ### RawAsyncReducerWithFinish
 
-Ƭ **RawAsyncReducerWithFinish**<`Value`, `Acc`, `Finished`, `This`\>:
-[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`,
-`Acc`, `This`\> & { `finish`: (`this`: `This`, `acc`: `Acc`) =>
-`MaybePromiseLike`<`Finished`\> }
+Ƭ **RawAsyncReducerWithFinish**\<`Value`, `Acc`, `Finished`, `This`\>:
+[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`,
+`Acc`, `This`\> & \{ `finish`: (`this`: `This`, `acc`: `Acc`) =>
+`MaybePromiseLike`\<`Finished`\> }
 
 An async reducer that reduces by creating an initial accumulator using
 RawAsyncReducerWithFinish.create, then adding values to the accumulator values
@@ -773,19 +781,20 @@ combine pairs of accumulators using RawAsyncReducerWithFinish.combine.
 
 #### Defined in
 
-[operations/reducer.d.ts:196](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L196)
+[operations/reducer.d.ts:180](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L180)
 
 ---
 
 ### RawAsyncReducerWithoutFinish
 
-Ƭ **RawAsyncReducerWithoutFinish**<`Value`, `Acc`, `This`\>: `Object`
+Ƭ **RawAsyncReducerWithoutFinish**\<`Value`, `Acc`, `This`\>: `Object`
 
 An async reducer that reduces by creating an initial accumulator using
-RawAsyncReducerWithoutFinish.create and then adding values to the accumulator
-values using RawAsyncReducerWithoutFinish.add. The async reducer is optionally
-able to combine pairs of accumulators using
-RawAsyncReducerWithoutFinish.combine.
+[RawAsyncReducerWithoutFinish.create](modules.md#create) and then adding values
+to the accumulator values using
+[RawAsyncReducerWithoutFinish.add](modules.md#add). The async reducer is
+optionally able to combine pairs of accumulators using
+[RawAsyncReducerWithoutFinish.combine](modules.md#combine).
 
 #### Type parameters
 
@@ -797,24 +806,24 @@ RawAsyncReducerWithoutFinish.combine.
 
 #### Type declaration
 
-| Name       | Type                                                                           |
-| :--------- | :----------------------------------------------------------------------------- |
-| `add`      | (`this`: `This`, `acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`<`Acc`\> |
-| `combine?` | (`this`: `This`, `acc1`: `Acc`, `acc2`: `Acc`) => `MaybePromiseLike`<`Acc`\>   |
-| `create`   | (`this`: `This`) => `MaybePromiseLike`<`Acc`\>                                 |
+| Name       | Type                                                                            |
+| :--------- | :------------------------------------------------------------------------------ |
+| `add`      | (`this`: `This`, `acc`: `Acc`, `value`: `Value`) => `MaybePromiseLike`\<`Acc`\> |
+| `combine?` | (`this`: `This`, `acc1`: `Acc`, `acc2`: `Acc`) => `MaybePromiseLike`\<`Acc`\>   |
+| `create`   | (`this`: `This`) => `MaybePromiseLike`\<`Acc`\>                                 |
 
 #### Defined in
 
-[operations/reducer.d.ts:177](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L177)
+[operations/reducer.d.ts:161](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L161)
 
 ---
 
 ### RawKeyedReducer
 
-Ƭ **RawKeyedReducer**<`Key`, `Value`, `Acc`, `This`\>:
-[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<readonly [`Key`,
-`Value`], `Acc`, `This`\> & { `get`: (`this`: `This`, `acc`: `Acc`, `key`:
-`Key`) => `Value` \| typeof [`NO_ENTRY`](modules.md#no_entry) }
+Ƭ **RawKeyedReducer**\<`Key`, `Value`, `Acc`, `This`\>:
+[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<readonly
+[`Key`, `Value`], `Acc`, `This`\> & \{ `get`: (`this`: `This`, `acc`: `Acc`,
+`key`: `Key`) => `Value` \| typeof [`NO_ENTRY`](modules.md#no_entry) }
 
 A keyed reducer that reduces by creating an initial accumulator using
 RawKeyedReducer.create and then adding key-value pairs to the accumulator values
@@ -832,15 +841,15 @@ using RawKeyedReducer.get.
 
 #### Defined in
 
-[operations/reducer.d.ts:106](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L106)
+[operations/reducer.d.ts:90](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L90)
 
 ---
 
 ### RawOptionalReducerWithFinish
 
-Ƭ **RawOptionalReducerWithFinish**<`Value`, `Finished`, `This`\>:
-[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`,
-`This`\> & { `finish`: (`this`: `This`, `acc`: `Value`) => `Finished` }
+Ƭ **RawOptionalReducerWithFinish**\<`Value`, `Finished`, `This`\>:
+[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`,
+`This`\> & \{ `finish`: (`this`: `This`, `acc`: `Value`) => `Finished` }
 
 A reducer that reduces by combining pairs of values using
 RawOptionalReducerWithFinish.add and then tranforming the final value using
@@ -856,16 +865,16 @@ RawOptionalReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:41](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L41)
+[operations/reducer.d.ts:25](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L25)
 
 ---
 
 ### RawOptionalReducerWithoutFinish
 
-Ƭ **RawOptionalReducerWithoutFinish**<`Value`, `This`\>: `Object`
+Ƭ **RawOptionalReducerWithoutFinish**\<`Value`, `This`\>: `Object`
 
 A reducer that reduces by combining pairs of values using
-RawOptionalReducerWithoutFinish.add.
+[RawOptionalReducerWithoutFinish.add](modules.md#add).
 
 #### Type parameters
 
@@ -882,15 +891,15 @@ RawOptionalReducerWithoutFinish.add.
 
 #### Defined in
 
-[operations/reducer.d.ts:32](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L32)
+[operations/reducer.d.ts:16](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L16)
 
 ---
 
 ### RawReducerWithFinish
 
-Ƭ **RawReducerWithFinish**<`Value`, `Acc`, `Finished`, `This`\>:
-[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`,
-`This`\> & { `finish`: (`this`: `This`, `acc`: `Acc`) => `Finished` }
+Ƭ **RawReducerWithFinish**\<`Value`, `Acc`, `Finished`, `This`\>:
+[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`,
+`This`\> & \{ `finish`: (`this`: `This`, `acc`: `Acc`) => `Finished` }
 
 A reducer that reduces by creating an initial accumulator using
 RawReducerWithFinish.create, then adding values to the accumulator values using
@@ -908,17 +917,17 @@ RawReducerWithFinish.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:79](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L79)
+[operations/reducer.d.ts:63](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L63)
 
 ---
 
 ### RawReducerWithoutFinish
 
-Ƭ **RawReducerWithoutFinish**<`Value`, `Acc`, `This`\>: `Object`
+Ƭ **RawReducerWithoutFinish**\<`Value`, `Acc`, `This`\>: `Object`
 
 A reducer that reduces by creating an initial accumulator using
-RawReducerWithoutFinish.create and then adding values to the accumulator values
-using RawReducerWithoutFinish.add.
+[RawReducerWithoutFinish.create](modules.md#create) and then adding values to
+the accumulator values using [RawReducerWithoutFinish.add](modules.md#add).
 
 #### Type parameters
 
@@ -937,14 +946,14 @@ using RawReducerWithoutFinish.add.
 
 #### Defined in
 
-[operations/reducer.d.ts:64](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L64)
+[operations/reducer.d.ts:48](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L48)
 
 ---
 
 ### Reducer
 
-Ƭ **Reducer**<`Value`, `Acc`, `Finished`\>:
-[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`,
+Ƭ **Reducer**\<`Value`, `Acc`, `Finished`\>:
+[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`,
 `Finished`\>
 
 A reducer that reduces by creating an initial accumulator using Reducer.create,
@@ -961,15 +970,15 @@ tranforming the final accumulator using Reducer.finish.
 
 #### Defined in
 
-[operations/reducer.d.ts:94](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L94)
+[operations/reducer.d.ts:78](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L78)
 
 ---
 
 ### WindowOptions
 
-Ƭ **WindowOptions**<`Size`\>: `PositiveInteger`<`Size`\> \| `Readonly`<{
+Ƭ **WindowOptions**\<`Size`\>: `PositiveInteger`\<`Size`\> \| `Readonly`\<\{
 `partialEnd?`: `boolean` ; `partialStart?`: `boolean` ; `size`:
-`PositiveInteger`<`Size`\> }\>
+`PositiveInteger`\<`Size`\> }\>
 
 Options for [window](modules.md#window), [windowAsync](modules.md#windowasync),
 and [windowConcur](modules.md#windowconcur).
@@ -982,7 +991,7 @@ and [windowConcur](modules.md#windowconcur).
 
 #### Defined in
 
-[operations/slice.d.ts:721](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L721)
+[operations/slice.d.ts:705](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L705)
 
 ## Variables
 
@@ -1001,13 +1010,13 @@ twice when the entry exists: `has` followed by `get` for the same key.
 
 #### Defined in
 
-[operations/reducer.d.ts:262](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L262)
+[operations/reducer.d.ts:246](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L246)
 
 ---
 
 ### empty
 
-• `Const` **empty**: `Iterable`<`any`\>
+• `Const` **empty**: `Iterable`\<`any`\>
 
 An iterable that contains zero values.
 
@@ -1024,13 +1033,13 @@ console.log([...empty])
 
 #### Defined in
 
-[operations/empty.d.ts:34](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/empty.d.ts#L34)
+[operations/empty.d.ts:17](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/empty.d.ts#L17)
 
 ---
 
 ### emptyAsync
 
-• `Const` **emptyAsync**: `AsyncIterable`<`any`\>
+• `Const` **emptyAsync**: `AsyncIterable`\<`any`\>
 
 An async iterable that contains zero values.
 
@@ -1047,30 +1056,18 @@ console.log(await pipe(emptyAsync, reduceAsync(toArray())))
 
 #### Defined in
 
-[operations/empty.d.ts:49](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/empty.d.ts#L49)
+[operations/empty.d.ts:32](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/empty.d.ts#L32)
 
 ## Functions
 
 ### all
 
-▸ **all**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `boolean`
+▸ **all**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) => `boolean`
 
 Returns `true` if `fn` returns a truthy value for all values of `iterable`.
 Otherwise returns `false`.
 
 Like `Array.prototype.every`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    all(string => string.length > 8),
-  ),
-)
-//=> false
-```
 
 #### Type parameters
 
@@ -1092,24 +1089,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `boolean`
-
-#### Defined in
-
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L22)
-
-▸ **all**<`Value`\>(`fn`, `iterable`): `boolean`
-
-Returns `true` if `fn` returns a truthy value for all values of `iterable`.
-Otherwise returns `false`.
-
-Like `Array.prototype.every`, but for iterables.
 
 **`Example`**
 
@@ -1123,6 +1109,17 @@ console.log(
 //=> false
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:49](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L49)
+
+▸ **all**\<`Value`\>(`fn`, `iterable`): `boolean`
+
+Returns `true` if `fn` returns a truthy value for all values of `iterable`.
+Otherwise returns `false`.
+
+Like `Array.prototype.every`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -1134,40 +1131,40 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
 `boolean`
 
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    all(string => string.length > 8),
+  ),
+)
+//=> false
+```
+
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:49](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L49)
 
 ---
 
 ### allAsync
 
-▸ **allAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-`Promise`<`boolean`\>
+▸ **allAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns a truthy value or a
 promise that resolves to a truthy value for all values of `asyncIterable`.
 Otherwise returns a promise that resolves to `false`.
 
 Like `Array.prototype.every`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    allAsync(string => string.length > 8),
-  ),
-)
-//=> false
-```
 
 #### Type parameters
 
@@ -1185,29 +1182,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`boolean`\>
+▸ (`asyncIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L33)
-
-▸ **allAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for all values of `asyncIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.every`, but for async iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -1220,6 +1205,18 @@ console.log(
 )
 //=> false
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:69](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L69)
+
+▸ **allAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for all values of `asyncIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.every`, but for async iterables.
 
 #### Type parameters
 
@@ -1232,41 +1229,41 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L36)
-
----
-
-### allConcur
-
-▸ **allConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-`Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for all values of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.every`, but for concur iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    allConcur(string => string.length > 8),
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    allAsync(string => string.length > 8),
   ),
 )
 //=> false
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:69](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L69)
+
+---
+
+### allConcur
+
+▸ **allConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for all values of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.every`, but for concur iterables.
 
 #### Type parameters
 
@@ -1284,29 +1281,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`boolean`\>
+▸ (`concurIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L44)
-
-▸ **allConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for all values of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.every`, but for concur iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -1320,6 +1305,18 @@ console.log(
 //=> false
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L89)
+
+▸ **allConcur**\<`Value`\>(`fn`, `concurIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for all values of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.every`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -1328,41 +1325,41 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L47)
-
----
-
-### any
-
-▸ **any**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `boolean`
-
-Returns `true` if `fn` returns a truthy value for any value of `iterable`.
-Otherwise returns `false`.
-
-Like `Array.prototype.some`, but for iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    any(string => string.length > 8),
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    allConcur(string => string.length > 8),
   ),
 )
-//=> true
+//=> false
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L89)
+
+---
+
+### any
+
+▸ **any**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) => `boolean`
+
+Returns `true` if `fn` returns a truthy value for any value of `iterable`.
+Otherwise returns `false`.
+
+Like `Array.prototype.some`, but for iterables.
 
 #### Type parameters
 
@@ -1384,24 +1381,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `boolean`
-
-#### Defined in
-
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L22)
-
-▸ **any**<`Value`\>(`fn`, `iterable`): `boolean`
-
-Returns `true` if `fn` returns a truthy value for any value of `iterable`.
-Otherwise returns `false`.
-
-Like `Array.prototype.some`, but for iterables.
 
 **`Example`**
 
@@ -1415,6 +1401,17 @@ console.log(
 //=> true
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:108](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L108)
+
+▸ **any**\<`Value`\>(`fn`, `iterable`): `boolean`
+
+Returns `true` if `fn` returns a truthy value for any value of `iterable`.
+Otherwise returns `false`.
+
+Like `Array.prototype.some`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -1426,40 +1423,40 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
 `boolean`
 
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    any(string => string.length > 8),
+  ),
+)
+//=> true
+```
+
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:108](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L108)
 
 ---
 
 ### anyAsync
 
-▸ **anyAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-`Promise`<`boolean`\>
+▸ **anyAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns a truthy value or a
 promise that resolves to a truthy value for any value of `asyncIterable`.
 Otherwise returns a promise that resolves to `false`.
 
 Like `Array.prototype.some`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    anyAsync(string => string.length > 8),
-  ),
-)
-//=> true
-```
 
 #### Type parameters
 
@@ -1477,29 +1474,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`boolean`\>
+▸ (`asyncIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L33)
-
-▸ **anyAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for any value of `asyncIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.some`, but for async iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -1512,6 +1497,18 @@ console.log(
 )
 //=> true
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:128](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L128)
+
+▸ **anyAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for any value of `asyncIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.some`, but for async iterables.
 
 #### Type parameters
 
@@ -1524,41 +1521,41 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L36)
-
----
-
-### anyConcur
-
-▸ **anyConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-`Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for any value of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.some`, but for concur iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    anyConcur(string => string.length > 8),
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    anyAsync(string => string.length > 8),
   ),
 )
 //=> true
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:128](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L128)
+
+---
+
+### anyConcur
+
+▸ **anyConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for any value of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.some`, but for concur iterables.
 
 #### Type parameters
 
@@ -1576,29 +1573,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`boolean`\>
+▸ (`concurIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L44)
-
-▸ **anyConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a truthy value or a
-promise that resolves to a truthy value for any value of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
-
-Like `Array.prototype.some`, but for concur iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -1612,6 +1597,18 @@ console.log(
 //=> true
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:148](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L148)
+
+▸ **anyConcur**\<`Value`\>(`fn`, `concurIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a truthy value or a
+promise that resolves to a truthy value for any value of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
+
+Like `Array.prototype.some`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -1620,26 +1617,60 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    anyConcur(string => string.length > 8),
+  ),
+)
+//=> true
+```
 
 #### Defined in
 
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L47)
+[operations/predicate.d.ts:148](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L148)
 
 ---
 
 ### asAsync
 
-▸ **asAsync**<`Value`\>(`iterable`): `AsyncIterable`<`Value`\>
+▸ **asAsync**\<`Value`\>(`iterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable wrapper around `iterable`.
+
+Note that when passing a concur iterable the returned async iterable may have to
+buffer the values produced by the concur iterable because values may not be read
+from the async iterable as quickly as they are produced by the concur iterable.
+This is a fundamental problem because concur iterables are "push" based while
+async iterables are "pull" based, which creates backpressure.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                                                                                                            |
+| :--------- | :-------------------------------------------------------------------------------------------------------------- |
+| `iterable` | `AsyncIterable`\<`Value`\> \| `Iterable`\<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -1657,6 +1688,19 @@ for await (const value of asyncIterable) {
 //=> even more sloth
 ```
 
+#### Defined in
+
+[operations/as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/as.d.ts#L27)
+
+---
+
+### asConcur
+
+▸ **asConcur**\<`Value`\>(`iterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable wrapper around `iterable`.
+
 #### Type parameters
 
 | Name    |
@@ -1665,26 +1709,13 @@ for await (const value of asyncIterable) {
 
 #### Parameters
 
-| Name       | Type                                              |
-| :--------- | :------------------------------------------------ |
-| `iterable` | `AsyncIterable`<`Value`\> \| `Iterable`<`Value`\> |
+| Name       | Type                                                                                                            |
+| :--------- | :-------------------------------------------------------------------------------------------------------------- |
+| `iterable` | `Iterable`\<`Value`\> \| `AsyncIterable`\<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/as.d.ts:37](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/as.d.ts#L37)
-
----
-
-### asConcur
-
-▸ **asConcur**<`Value`\>(`iterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable wrapper around `iterable`.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -1697,6 +1728,19 @@ await forEachConcur(console.log, concurIterable)
 //=> even more sloth
 ```
 
+#### Defined in
+
+[operations/as.d.ts:77](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/as.d.ts#L77)
+
+---
+
+### cache
+
+▸ **cache**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable equivalent to `iterable` that iterates over `iterable` at
+most once.
+
 #### Type parameters
 
 | Name    |
@@ -1705,26 +1749,13 @@ await forEachConcur(console.log, concurIterable)
 
 #### Parameters
 
-| Name       | Type                                                                                                         |
-| :--------- | :----------------------------------------------------------------------------------------------------------- |
-| `iterable` | `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/as.d.ts:87](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/as.d.ts#L87)
-
----
-
-### cache
-
-▸ **cache**<`Value`\>(`iterable`): `Iterable`<`Value`\>
-
-Returns an iterable equivalent to `iterable` that iterates over `iterable` at
-most once.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -1744,6 +1775,19 @@ console.log([...cachedIterable])
 //=> [ 'sloth', 'more sloth', 'even more sloth' ]
 ```
 
+#### Defined in
+
+[operations/cache.d.ts:24](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/cache.d.ts#L24)
+
+---
+
+### cacheAsync
+
+▸ **cacheAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable equivalent to `asyncIterable` that iterates over
+`asyncIterable` at most once.
+
 #### Type parameters
 
 | Name    |
@@ -1752,26 +1796,13 @@ console.log([...cachedIterable])
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/cache.d.ts:40](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/cache.d.ts#L40)
-
----
-
-### cacheAsync
-
-▸ **cacheAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable equivalent to `asyncIterable` that iterates over
-`asyncIterable` at most once.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -1791,6 +1822,20 @@ console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
 //=> [ 'sloth', 'more sloth', 'even more sloth' ]
 ```
 
+#### Defined in
+
+[operations/cache.d.ts:47](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/cache.d.ts#L47)
+
+---
+
+### cacheConcur
+
+▸ **cacheConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable equivalent to `concurIterable` that iterates over
+`concurIterable` at most once.
+
 #### Type parameters
 
 | Name    |
@@ -1799,27 +1844,13 @@ console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/cache.d.ts:63](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/cache.d.ts#L63)
-
----
-
-### cacheConcur
-
-▸ **cacheConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable equivalent to `concurIterable` that iterates over
-`concurIterable` at most once.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -1839,32 +1870,16 @@ console.log(await pipe(cachedConcurIterable, reduceConcur(toArray())))
 //=> [ 'sloth', 'more sloth', 'even more sloth' ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
 #### Defined in
 
-[operations/cache.d.ts:88](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/cache.d.ts#L88)
+[operations/cache.d.ts:72](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/cache.d.ts#L72)
 
 ---
 
 ### chunk
 
-▸ **chunk**<`Size`\>(`size`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`[]\>
+▸ **chunk**\<`Size`\>(`size`): \<Value\>(`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`[]\>
 
 Returns an iterable equivalent to `iterable` except its values are grouped into
 arrays that each contain `size` values.
@@ -1872,20 +1887,6 @@ arrays that each contain `size` values.
 The last array in the returned iterable will contain fewer than `size` values
 (but at least one) if the number of values in `iterable` is not divisible by
 `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
-console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
-```
 
 #### Type parameters
 
@@ -1895,15 +1896,15 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 #### Parameters
 
-| Name   | Type                       |
-| :----- | :------------------------- |
-| `size` | `PositiveInteger`<`Size`\> |
+| Name   | Type                        |
+| :----- | :-------------------------- |
+| `size` | `PositiveInteger`\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `Iterable`<`Value`[]\>
+▸ \<`Value`\>(`iterable`): `Iterable`\<`Value`[]\>
 
 ##### Type parameters
 
@@ -1913,26 +1914,13 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:489](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L489)
-
-▸ **chunk**<`Size`, `Value`\>(`size`, `iterable`): `Iterable`<`Value`[]\>
-
-Returns an iterable equivalent to `iterable` except its values are grouped into
-arrays that each contain `size` values.
-
-The last array in the returned iterable will contain fewer than `size` values
-(but at least one) if the number of values in `iterable` is not divisible by
-`size`.
+`Iterable`\<`Value`[]\>
 
 **`Throws`**
 
@@ -1947,6 +1935,19 @@ console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
 console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:473](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L473)
+
+▸ **chunk**\<`Size`, `Value`\>(`size`, `iterable`): `Iterable`\<`Value`[]\>
+
+Returns an iterable equivalent to `iterable` except its values are grouped into
+arrays that each contain `size` values.
+
+The last array in the returned iterable will contain fewer than `size` values
+(but at least one) if the number of values in `iterable` is not divisible by
+`size`.
 
 #### Type parameters
 
@@ -1957,25 +1958,39 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 #### Parameters
 
-| Name       | Type                       |
-| :--------- | :------------------------- |
-| `size`     | `PositiveInteger`<`Size`\> |
-| `iterable` | `Iterable`<`Value`\>       |
+| Name       | Type                        |
+| :--------- | :-------------------------- |
+| `size`     | `PositiveInteger`\<`Size`\> |
+| `iterable` | `Iterable`\<`Value`\>       |
 
 #### Returns
 
-`Iterable`<`Value`[]\>
+`Iterable`\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:492](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L492)
+[operations/slice.d.ts:476](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L476)
 
 ---
 
 ### chunkAsync
 
-▸ **chunkAsync**<`Size`\>(`size`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`[]\>
+▸ **chunkAsync**\<`Size`\>(`size`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`[]\>
 
 Returns an async iterable equivalent to `asyncIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -1983,32 +1998,6 @@ grouped into arrays that each contain `size` values.
 The last array in the returned async iterable will contain fewer than `size`
 values (but at least one) if the number of values in `asyncIterable` is not
 divisible by `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9]),
-    chunkAsync(3),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
-console.log(
-  await pipe(
-    asAsync([`S`, `L`, `O`, `T`, `H`]),
-    chunkAsync(2),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
-```
 
 #### Type parameters
 
@@ -2018,15 +2007,15 @@ console.log(
 
 #### Parameters
 
-| Name   | Type                       |
-| :----- | :------------------------- |
-| `size` | `PositiveInteger`<`Size`\> |
+| Name   | Type                        |
+| :----- | :-------------------------- |
+| `size` | `PositiveInteger`\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`[]\>
+▸ \<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`[]\>
 
 ##### Type parameters
 
@@ -2036,27 +2025,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:530](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L530)
-
-▸ **chunkAsync**<`Size`, `Value`\>(`size`, `asyncIterable`):
-`AsyncIterable`<`Value`[]\>
-
-Returns an async iterable equivalent to `asyncIterable` except its values are
-grouped into arrays that each contain `size` values.
-
-The last array in the returned async iterable will contain fewer than `size`
-values (but at least one) if the number of values in `asyncIterable` is not
-divisible by `size`.
+`AsyncIterable`\<`Value`[]\>
 
 **`Throws`**
 
@@ -2083,6 +2058,20 @@ console.log(
 )
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:514](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L514)
+
+▸ **chunkAsync**\<`Size`, `Value`\>(`size`, `asyncIterable`):
+`AsyncIterable`\<`Value`[]\>
+
+Returns an async iterable equivalent to `asyncIterable` except its values are
+grouped into arrays that each contain `size` values.
+
+The last array in the returned async iterable will contain fewer than `size`
+values (but at least one) if the number of values in `asyncIterable` is not
+divisible by `size`.
 
 #### Type parameters
 
@@ -2093,26 +2082,52 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                       |
-| :-------------- | :------------------------- |
-| `size`          | `PositiveInteger`<`Size`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>  |
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `size`          | `PositiveInteger`\<`Size`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>  |
 
 #### Returns
 
-`AsyncIterable`<`Value`[]\>
+`AsyncIterable`\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+    chunkAsync(3),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+console.log(
+  await pipe(
+    asAsync([`S`, `L`, `O`, `T`, `H`]),
+    chunkAsync(2),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:533](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L533)
+[operations/slice.d.ts:517](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L517)
 
 ---
 
 ### chunkConcur
 
-▸ **chunkConcur**<`Size`\>(`size`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+▸ **chunkConcur**\<`Size`\>(`size`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 Returns a concur iterable equivalent to `concurIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -2120,32 +2135,6 @@ grouped into arrays that each contain `size` values.
 The last array in the returned concur iterable will contain fewer than `size`
 values (but at least one) if the number of values in `concurIterable` is not
 divisible by `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9]),
-    chunkConcur(3),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
-
-console.log(
-  await pipe(
-    asConcur([`S`, `L`, `O`, `T`, `H`]),
-    chunkConcur(2),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
-```
 
 #### Type parameters
 
@@ -2155,16 +2144,16 @@ console.log(
 
 #### Parameters
 
-| Name   | Type                       |
-| :----- | :------------------------- |
-| `size` | `PositiveInteger`<`Size`\> |
+| Name   | Type                        |
+| :----- | :-------------------------- |
+| `size` | `PositiveInteger`\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+▸ \<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 ##### Type parameters
 
@@ -2174,27 +2163,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:571](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L571)
-
-▸ **chunkConcur**<`Size`, `Value`\>(`size`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
-
-Returns a concur iterable equivalent to `concurIterable` except its values are
-grouped into arrays that each contain `size` values.
-
-The last array in the returned concur iterable will contain fewer than `size`
-values (but at least one) if the number of values in `concurIterable` is not
-divisible by `size`.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 **`Throws`**
 
@@ -2221,6 +2196,20 @@ console.log(
 )
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:555](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L555)
+
+▸ **chunkConcur**\<`Size`, `Value`\>(`size`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
+
+Returns a concur iterable equivalent to `concurIterable` except its values are
+grouped into arrays that each contain `size` values.
+
+The last array in the returned concur iterable will contain fewer than `size`
+values (but at least one) if the number of values in `concurIterable` is not
+divisible by `size`.
 
 #### Type parameters
 
@@ -2231,46 +2220,59 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `size`           | `PositiveInteger`<`Size`\>                              |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `size`           | `PositiveInteger`\<`Size`\>                              |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, 7, 8, 9]),
+    chunkConcur(3),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+
+console.log(
+  await pipe(
+    asConcur([`S`, `L`, `O`, `T`, `H`]),
+    chunkConcur(2),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:574](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L574)
+[operations/slice.d.ts:558](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L558)
 
 ---
 
 ### compose
 
-▸ **compose**(): <Value\>(`value`: `Value`) => `Value`
+▸ **compose**(): \<Value\>(`value`: `Value`) => `Value`
 
 Returns a function that takes a single parameter and pipes it through the given
 functions.
-
-**`Example`**
-
-```js
-const screamify = compose(
-  name => `${name.toUpperCase()}!`,
-  text => [text, text, text],
-  array => array.join(` `),
-)
-
-console.log(screamify(`sloth`))
-// => SLOTH! SLOTH! SLOTH!
-```
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`value`): `Value`
+▸ \<`Value`\>(`value`): `Value`
 
 ##### Type parameters
 
@@ -2288,15 +2290,6 @@ console.log(screamify(`sloth`))
 
 `Value`
 
-#### Defined in
-
-[operations/fn.d.ts:174](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L174)
-
-▸ **compose**<`A`, `B`\>(`fn`): (`value`: `A`) => `B`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2309,6 +2302,15 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:158](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L158)
+
+▸ **compose**\<`A`, `B`\>(`fn`): (`value`: `A`) => `B`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2339,15 +2341,6 @@ console.log(screamify(`sloth`))
 
 `B`
 
-#### Defined in
-
-[operations/fn.d.ts:175](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L175)
-
-▸ **compose**<`A`, `B`, `C`\>(`fn1`, `fn2`): (`value`: `A`) => `C`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2360,6 +2353,15 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:159](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L159)
+
+▸ **compose**\<`A`, `B`, `C`\>(`fn1`, `fn2`): (`value`: `A`) => `C`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2392,15 +2394,6 @@ console.log(screamify(`sloth`))
 
 `C`
 
-#### Defined in
-
-[operations/fn.d.ts:176](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L176)
-
-▸ **compose**<`A`, `B`, `C`, `D`\>(`fn1`, `fn2`, `fn3`): (`value`: `A`) => `D`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2413,6 +2406,15 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:160](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L160)
+
+▸ **compose**\<`A`, `B`, `C`, `D`\>(`fn1`, `fn2`, `fn3`): (`value`: `A`) => `D`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2447,16 +2449,6 @@ console.log(screamify(`sloth`))
 
 `D`
 
-#### Defined in
-
-[operations/fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L177)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`): (`value`:
-`A`) => `E`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2469,6 +2461,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:161](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L161)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`): (`value`:
+`A`) => `E`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2505,16 +2507,6 @@ console.log(screamify(`sloth`))
 
 `E`
 
-#### Defined in
-
-[operations/fn.d.ts:180](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L180)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`):
-(`value`: `A`) => `F`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2527,6 +2519,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:166](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L166)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`,
+`fn5`): (`value`: `A`) => `F`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2565,16 +2567,6 @@ console.log(screamify(`sloth`))
 
 `F`
 
-#### Defined in
-
-[operations/fn.d.ts:186](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L186)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`, `fn4`,
-`fn5`, `fn6`): (`value`: `A`) => `G`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2587,6 +2579,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:172](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L172)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`, `fn4`,
+`fn5`, `fn6`): (`value`: `A`) => `G`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2627,16 +2629,6 @@ console.log(screamify(`sloth`))
 
 `G`
 
-#### Defined in
-
-[operations/fn.d.ts:193](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L193)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`, `fn3`,
-`fn4`, `fn5`, `fn6`, `fn7`): (`value`: `A`) => `H`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2649,6 +2641,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:179](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L179)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`, `fn3`,
+`fn4`, `fn5`, `fn6`, `fn7`): (`value`: `A`) => `H`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2691,16 +2693,6 @@ console.log(screamify(`sloth`))
 
 `H`
 
-#### Defined in
-
-[operations/fn.d.ts:201](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L201)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`, `fn2`, `fn3`,
-`fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`: `A`) => `I`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2713,6 +2705,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:187](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L187)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`: `A`) => `I`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2757,16 +2759,6 @@ console.log(screamify(`sloth`))
 
 `I`
 
-#### Defined in
-
-[operations/fn.d.ts:210](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L210)
-
-▸ **compose**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`, `fn2`,
-`fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`: `A`) => `J`
-
-Returns a function that takes a single parameter and pipes it through the given
-functions.
-
 **`Example`**
 
 ```js
@@ -2779,6 +2771,16 @@ const screamify = compose(
 console.log(screamify(`sloth`))
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:196](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L196)
+
+▸ **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`: `A`) => `J`
+
+Returns a function that takes a single parameter and pipes it through the given
+functions.
 
 #### Type parameters
 
@@ -2825,27 +2827,33 @@ console.log(screamify(`sloth`))
 
 `J`
 
+**`Example`**
+
+```js
+const screamify = compose(
+  name => `${name.toUpperCase()}!`,
+  text => [text, text, text],
+  array => array.join(` `),
+)
+
+console.log(screamify(`sloth`))
+// => SLOTH! SLOTH! SLOTH!
+```
+
 #### Defined in
 
-[operations/fn.d.ts:220](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L220)
+[operations/fn.d.ts:206](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L206)
 
 ---
 
 ### concat
 
-▸ **concat**<`Value`\>(...`iterables`): `Iterable`<`Value`\>
+▸ **concat**\<`Value`\>(`...iterables`): `Iterable`\<`Value`\>
 
 Returns an iterable that contains the values of each iterable in `iterables` in
 iteration order.
 
 Like `Array.prototype.concat`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(pipe(concat([1, 2], [3, `sloth`, 5], [6, 7]), reduce(toArray())))
-//=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
-```
 
 #### Type parameters
 
@@ -2855,28 +2863,51 @@ console.log(pipe(concat([1, 2], [3, `sloth`, 5], [6, 7]), reduce(toArray())))
 
 #### Parameters
 
-| Name           | Type                            |
-| :------------- | :------------------------------ |
-| `...iterables` | readonly `Iterable`<`Value`\>[] |
+| Name           | Type                             |
+| :------------- | :------------------------------- |
+| `...iterables` | readonly `Iterable`\<`Value`\>[] |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(pipe(concat([1, 2], [3, `sloth`, 5], [6, 7]), reduce(toArray())))
+//=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
+```
 
 #### Defined in
 
-[operations/collect.d.ts:466](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L466)
+[operations/collect.d.ts:450](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L450)
 
 ---
 
 ### concatAsync
 
-▸ **concatAsync**<`Value`\>(...`iterables`): `AsyncIterable`<`Value`\>
+▸ **concatAsync**\<`Value`\>(`...iterables`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable that contains the values of each iterable in
 `iterables` in iteration order.
 
 Like `Array.prototype.concat`, but for async iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name           | Type                                                             |
+| :------------- | :--------------------------------------------------------------- |
+| `...iterables` | readonly (`AsyncIterable`\<`Value`\> \| `Iterable`\<`Value`\>)[] |
+
+#### Returns
+
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -2890,6 +2921,22 @@ console.log(
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
+#### Defined in
+
+[operations/collect.d.ts:471](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L471)
+
+---
+
+### concatConcur
+
+▸ **concatConcur**\<`Value`\>(`...iterables`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable that contains the values of each iterable in
+`iterables`.
+
+Like `Array.prototype.concat`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -2898,29 +2945,13 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                           |
-| :------------- | :------------------------------------------------------------- |
-| `...iterables` | readonly (`AsyncIterable`<`Value`\> \| `Iterable`<`Value`\>)[] |
+| Name           | Type                                                                                                                         |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `...iterables` | readonly ([`ConcurIterable`](modules.md#concuriterable)\<`Value`\> \| `Iterable`\<`Value`\> \| `AsyncIterable`\<`Value`\>)[] |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/collect.d.ts:487](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L487)
-
----
-
-### concatConcur
-
-▸ **concatConcur**<`Value`\>(...`iterables`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable that contains the values of each iterable in
-`iterables`.
-
-Like `Array.prototype.concat`, but for concur iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -2934,25 +2965,9 @@ console.log(
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name           | Type                                                                                                                      |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------ |
-| `...iterables` | readonly ([`ConcurIterable`](modules.md#concuriterable)<`Value`\> \| `Iterable`<`Value`\> \| `AsyncIterable`<`Value`\>)[] |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
 #### Defined in
 
-[operations/collect.d.ts:508](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L508)
+[operations/collect.d.ts:492](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L492)
 
 ---
 
@@ -2961,6 +2976,16 @@ console.log(
 ▸ **consume**(`iterable`): `void`
 
 Iterates through `iterable` causing lazy operations to run.
+
+#### Parameters
+
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `iterable` | `Iterable`\<`unknown`\> |
+
+#### Returns
+
+`void`
 
 **`Example`**
 
@@ -2974,27 +2999,27 @@ consume(iterable)
 //=> 3
 ```
 
-#### Parameters
-
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `iterable` | `Iterable`<`unknown`\> |
-
-#### Returns
-
-`void`
-
 #### Defined in
 
-[operations/iterate.d.ts:225](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L225)
+[operations/iterate.d.ts:209](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L209)
 
 ---
 
 ### consumeAsync
 
-▸ **consumeAsync**(`asyncIterable`): `Promise`<`void`\>
+▸ **consumeAsync**(`asyncIterable`): `Promise`\<`void`\>
 
 Iterates through `asyncIterable` causing lazy operations to run.
+
+#### Parameters
+
+| Name            | Type                         |
+| :-------------- | :--------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`unknown`\> |
+
+#### Returns
+
+`Promise`\<`void`\>
 
 **`Example`**
 
@@ -3008,27 +3033,27 @@ await consumeAsync(asyncIterable)
 //=> 3
 ```
 
-#### Parameters
-
-| Name            | Type                        |
-| :-------------- | :-------------------------- |
-| `asyncIterable` | `AsyncIterable`<`unknown`\> |
-
-#### Returns
-
-`Promise`<`void`\>
-
 #### Defined in
 
-[operations/iterate.d.ts:244](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L244)
+[operations/iterate.d.ts:228](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L228)
 
 ---
 
 ### consumeConcur
 
-▸ **consumeConcur**(`concurIterable`): `Promise`<`void`\>
+▸ **consumeConcur**(`concurIterable`): `Promise`\<`void`\>
 
 Iterates through the `concurIterable` causing lazy operations to run.
+
+#### Parameters
+
+| Name             | Type                                                       |
+| :--------------- | :--------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`unknown`\> |
+
+#### Returns
+
+`Promise`\<`void`\>
 
 **`Example`**
 
@@ -3042,36 +3067,19 @@ await consumeConcur(asyncIterable)
 //=> 3
 ```
 
-#### Parameters
-
-| Name             | Type                                                      |
-| :--------------- | :-------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`unknown`\> |
-
-#### Returns
-
-`Promise`<`void`\>
-
 #### Defined in
 
-[operations/iterate.d.ts:265](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L265)
+[operations/iterate.d.ts:249](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L249)
 
 ---
 
 ### count
 
-▸ **count**<`Value`\>(`iterable`): `number`
+▸ **count**\<`Value`\>(`iterable`): `number`
 
 Returns the number of values in `iterable`.
 
 Like `Array.prototype.length`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(count([`sloth`, `more sloth`, `even more sloth`]))
-//=> 3
-```
 
 #### Type parameters
 
@@ -3081,27 +3089,50 @@ console.log(count([`sloth`, `more sloth`, `even more sloth`]))
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
 `number`
 
+**`Example`**
+
+```js
+console.log(count([`sloth`, `more sloth`, `even more sloth`]))
+//=> 3
+```
+
 #### Defined in
 
-[operations/statistics.d.ts:56](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L56)
+[operations/statistics.d.ts:40](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L40)
 
 ---
 
 ### countAsync
 
-▸ **countAsync**<`Value`\>(`asyncIterable`): `Promise`<`number`\>
+▸ **countAsync**\<`Value`\>(`asyncIterable`): `Promise`\<`number`\>
 
 Returns a promise that resolves to the number of values in `asyncIterable`.
 
 Like `Array.prototype.length`, but for async iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
+
+#### Returns
+
+`Promise`\<`number`\>
 
 **`Example`**
 
@@ -3112,6 +3143,20 @@ console.log(
 //=> 3
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:55](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L55)
+
+---
+
+### countConcur
+
+▸ **countConcur**\<`Value`\>(`concurIterable`): `Promise`\<`number`\>
+
+Returns a promise that resolves to the number of values in `concurIterable`.
+
+Like `Array.prototype.length`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -3120,27 +3165,13 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`number`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:71](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L71)
-
----
-
-### countConcur
-
-▸ **countConcur**<`Value`\>(`concurIterable`): `Promise`<`number`\>
-
-Returns a promise that resolves to the number of values in `concurIterable`.
-
-Like `Array.prototype.length`, but for concur iterables.
+`Promise`\<`number`\>
 
 **`Example`**
 
@@ -3151,33 +3182,34 @@ console.log(
 //=> 3
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-`Promise`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:88](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L88)
+[operations/statistics.d.ts:72](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L72)
 
 ---
 
 ### curry
 
-▸ **curry**<`Parameters`, `Return`\>(`fn`): `Curried`<`Parameters`, `Return`\>
+▸ **curry**\<`Parameters`, `Return`\>(`fn`): `Curried`\<`Parameters`, `Return`\>
 
 Returns a curried version of `fn`.
+
+#### Type parameters
+
+| Name         | Type                     |
+| :----------- | :----------------------- |
+| `Parameters` | extends readonly `any`[] |
+| `Return`     | `Return`                 |
+
+#### Parameters
+
+| Name | Type                                  |
+| :--- | :------------------------------------ |
+| `fn` | (...`args`: `Parameters`) => `Return` |
+
+#### Returns
+
+`Curried`\<`Parameters`, `Return`\>
 
 **`Example`**
 
@@ -3204,42 +3236,18 @@ curriedSlothLog(`Hello`)(`World`)(`!`)
 //=> Hello Sloth World Sloth !
 ```
 
-#### Type parameters
-
-| Name         | Type                     |
-| :----------- | :----------------------- |
-| `Parameters` | extends readonly `any`[] |
-| `Return`     | `Return`                 |
-
-#### Parameters
-
-| Name | Type                                  |
-| :--- | :------------------------------------ |
-| `fn` | (...`args`: `Parameters`) => `Return` |
-
-#### Returns
-
-`Curried`<`Parameters`, `Return`\>
-
 #### Defined in
 
-[operations/fn.d.ts:68](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L68)
+[operations/fn.d.ts:52](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L52)
 
 ---
 
 ### cycle
 
-▸ **cycle**<`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ **cycle**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 Returns an infinite iterable that repeatedly yields the values of `iterable` in
 iteration order.
-
-**`Example`**
-
-```js
-console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
-//=> sloth, more sloth, sloth, more sloth, sloth, more sloth
-```
 
 #### Type parameters
 
@@ -3249,26 +3257,49 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(pipe(cycle([`sloth`, `more sloth`]), take(6), join(`, `)))
+//=> sloth, more sloth, sloth, more sloth, sloth, more sloth
+```
 
 #### Defined in
 
-[operations/generate.d.ts:105](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L105)
+[operations/generate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L89)
 
 ---
 
 ### cycleAsync
 
-▸ **cycleAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **cycleAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an infinite async iterable that repeatedly yields the values of
 `asyncIterable`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -3283,49 +3314,22 @@ console.log(
 //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
-
-#### Returns
-
-`AsyncIterable`<`Value`\>
-
 #### Defined in
 
-[operations/generate.d.ts:123](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L123)
+[operations/generate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L107)
 
 ---
 
 ### drop
 
-▸ **drop**<`Count`\>(`count`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
+▸ **drop**\<`Count`\>(`count`): \<Value\>(`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 except for the first `count` values.
 
 If the `count` is greater than the number of values in `iterable`, then an empty
 iterable is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
-//=> [ 4, 5, 'sloth' ]
-```
 
 #### Type parameters
 
@@ -3335,15 +3339,15 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ \<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -3353,25 +3357,13 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:310](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L310)
-
-▸ **drop**<`Count`, `Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order
-except for the first `count` values.
-
-If the `count` is greater than the number of values in `iterable`, then an empty
-iterable is returned.
+`Iterable`\<`Value`\>
 
 **`Throws`**
 
@@ -3383,6 +3375,18 @@ if `count` isn't a non-negative integer.
 console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 //=> [ 4, 5, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L175)
+
+▸ **drop**\<`Count`, `Value`\>(`count`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order
+except for the first `count` values.
+
+If the `count` is greater than the number of values in `iterable`, then an empty
+iterable is returned.
 
 #### Type parameters
 
@@ -3393,48 +3397,42 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 #### Parameters
 
-| Name       | Type                           |
-| :--------- | :----------------------------- |
-| `count`    | `NonNegativeInteger`<`Count`\> |
-| `iterable` | `Iterable`<`Value`\>           |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `count`    | `NonNegativeInteger`\<`Count`\> |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Throws`**
+
+if `count` isn't a non-negative integer.
+
+**`Example`**
+
+```js
+console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
+//=> [ 4, 5, 'sloth' ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:313](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L313)
+[operations/slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L175)
 
 ---
 
 ### dropAsync
 
-▸ **dropAsync**<`Count`\>(`count`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
+▸ **dropAsync**\<`Count`\>(`count`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order except for the first `count` values.
 
 If the `count` is greater than the number of values in `asyncIterable`, then an
 empty async iterable is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, `sloth`]),
-    dropAsync(3),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 4, 5, 'sloth' ]
-```
 
 #### Type parameters
 
@@ -3444,15 +3442,15 @@ console.log(
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ \<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -3462,26 +3460,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:321](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L321)
-
-▸ **dropAsync**<`Count`, `Value`\>(`count`, `asyncIterable`):
-`AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order except for the first `count` values.
-
-If the `count` is greater than the number of values in `asyncIterable`, then an
-empty async iterable is returned.
+`AsyncIterable`\<`Value`\>
 
 **`Throws`**
 
@@ -3499,6 +3484,19 @@ console.log(
 )
 //=> [ 4, 5, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:198](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L198)
+
+▸ **dropAsync**\<`Count`, `Value`\>(`count`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order except for the first `count` values.
+
+If the `count` is greater than the number of values in `asyncIterable`, then an
+empty async iterable is returned.
 
 #### Type parameters
 
@@ -3509,49 +3507,49 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                           |
-| :-------------- | :----------------------------- |
-| `count`         | `NonNegativeInteger`<`Count`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>      |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `count`         | `NonNegativeInteger`\<`Count`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Throws`**
+
+if `count` isn't a non-negative integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, `sloth`]),
+    dropAsync(3),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 4, 5, 'sloth' ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:324](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L324)
+[operations/slice.d.ts:198](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L198)
 
 ---
 
 ### dropConcur
 
-▸ **dropConcur**<`Count`\>(`count`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **dropConcur**\<`Count`\>(`count`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order except for the first `count` values.
 
 If the `count` is greater than the number of values in `concurIterable`, then an
 empty concur iterable is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, `sloth`]),
-    dropConcur(3),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 4, 5, 'sloth' ]
-```
 
 #### Type parameters
 
@@ -3561,16 +3559,16 @@ console.log(
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ \<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Type parameters
 
@@ -3580,26 +3578,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:332](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L332)
-
-▸ **dropConcur**<`Count`, `Value`\>(`count`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order except for the first `count` values.
-
-If the `count` is greater than the number of values in `concurIterable`, then an
-empty concur iterable is returned.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Throws`**
 
@@ -3617,6 +3602,19 @@ console.log(
 )
 //=> [ 4, 5, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L221)
+
+▸ **dropConcur**\<`Count`, `Value`\>(`count`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order except for the first `count` values.
+
+If the `count` is greater than the number of values in `concurIterable`, then an
+empty concur iterable is returned.
 
 #### Type parameters
 
@@ -3627,41 +3625,45 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `count`          | `NonNegativeInteger`<`Count`\>                          |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `count`          | `NonNegativeInteger`\<`Count`\>                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
-#### Defined in
+**`Throws`**
 
-[operations/slice.d.ts:335](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L335)
-
----
-
-### dropWhile
-
-▸ **dropWhile**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order
-starting with the first value for which `fn` returns a falsy value.
+if `count` isn't a non-negative integer.
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
-    dropWhile(value => value < 5),
-    reduce(toArray()),
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, `sloth`]),
+    dropConcur(3),
+    reduceConcur(toArray()),
   ),
 )
-//=> [ 5, 6, 7, 8, 'sloth' ]
+//=> [ 4, 5, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L221)
+
+---
+
+### dropWhile
+
+▸ **dropWhile**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order
+starting with the first value for which `fn` returns a falsy value.
 
 #### Type parameters
 
@@ -3679,26 +3681,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:139](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L139)
-
-▸ **dropWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order
-starting with the first value for which `fn` returns a falsy value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -3712,6 +3705,15 @@ console.log(
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L24)
+
+▸ **dropWhile**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order
+starting with the first value for which `fn` returns a falsy value.
 
 #### Type parameters
 
@@ -3724,39 +3726,39 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:142](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L142)
-
----
-
-### dropWhileAsync
-
-▸ **dropWhileAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
-    dropWhileAsync(value => value < 5),
-    reduceAsync(toArray()),
+  pipe(
+    [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
+    dropWhile(value => value < 5),
+    reduce(toArray()),
   ),
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L24)
+
+---
+
+### dropWhileAsync
+
+▸ **dropWhileAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order starting with the first value for which `fn` returns a value awaitable to
+a falsy value.
 
 #### Type parameters
 
@@ -3774,27 +3776,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:150](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L150)
-
-▸ **dropWhileAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -3808,6 +3800,17 @@ console.log(
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L43)
+
+▸ **dropWhileAsync**\<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order starting with the first value for which `fn` returns a value awaitable to
+a falsy value.
 
 #### Type parameters
 
@@ -3820,40 +3823,40 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:153](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L153)
-
----
-
-### dropWhileConcur
-
-▸ **dropWhileConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
-    dropWhileConcur(value => value < 5),
-    reduceConcur(toArray()),
+    asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
+    dropWhileAsync(value => value < 5),
+    reduceAsync(toArray()),
   ),
 )
 //=> [ 5, 6, 7, 8, 'sloth' ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L43)
+
+---
+
+### dropWhileConcur
+
+▸ **dropWhileConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order starting with the first value for which `fn` returns a value awaitable to
+a falsy value.
 
 #### Type parameters
 
@@ -3871,28 +3874,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:161](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L161)
-
-▸ **dropWhileConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -3907,6 +3899,17 @@ console.log(
 //=> [ 5, 6, 7, 8, 'sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:62](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L62)
+
+▸ **dropWhileConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order starting with the first value for which `fn` returns a value awaitable to
+a falsy value.
+
 #### Type parameters
 
 | Name    |
@@ -3915,40 +3918,41 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
+    dropWhileConcur(value => value < 5),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 5, 6, 7, 8, 'sloth' ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:164](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L164)
+[operations/slice.d.ts:62](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L62)
 
 ---
 
 ### each
 
-▸ **each**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
-`Iterable`<`To`\>
+▸ **each**\<`From`, `To`\>(`fn`): (`iterable`: `Iterable`\<`From`\>) =>
+`Iterable`\<`To`\>
 
 Returns an iterable equivalent to `iterable` that applies `fn` to each value of
 `iterable` as it is iterated.
-
-**`Example`**
-
-```js
-const sloths = [`carl`, `frank`, `phil`]
-
-console.log([...each(console.log, sloths)])
-//=> carl
-//=> frank
-//=> phil
-//=> [ 'carl', 'frank', 'phil' ]
-```
 
 #### Type parameters
 
@@ -3967,26 +3971,17 @@ console.log([...each(console.log, sloths)])
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`To`\>
+▸ (`iterable`): `Iterable`\<`To`\>
 
 ##### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | `Iterable`<`From`\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`\<`From`\> |
 
 ##### Returns
 
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L36)
-
-▸ **each**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
-
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+`Iterable`\<`To`\>
 
 **`Example`**
 
@@ -3999,6 +3994,15 @@ console.log([...each(console.log, sloths)])
 //=> phil
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:20](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L20)
+
+▸ **each**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`To`\>
+
+Returns an iterable equivalent to `iterable` that applies `fn` to each value of
+`iterable` as it is iterated.
 
 #### Type parameters
 
@@ -4012,21 +4016,11 @@ console.log([...each(console.log, sloths)])
 | Name       | Type                                     |
 | :--------- | :--------------------------------------- |
 | `fn`       | (`value`: `From`) => asserts value is To |
-| `iterable` | `Iterable`<`From`\>                      |
+| `iterable` | `Iterable`\<`From`\>                     |
 
 #### Returns
 
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:39](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L39)
-
-▸ **each**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+`Iterable`\<`To`\>
 
 **`Example`**
 
@@ -4039,6 +4033,16 @@ console.log([...each(console.log, sloths)])
 //=> phil
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:23](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L23)
+
+▸ **each**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable equivalent to `iterable` that applies `fn` to each value of
+`iterable` as it is iterated.
 
 #### Type parameters
 
@@ -4056,26 +4060,17 @@ console.log([...each(console.log, sloths)])
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L44)
-
-▸ **each**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -4089,6 +4084,15 @@ console.log([...each(console.log, sloths)])
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
+#### Defined in
+
+[operations/iterate.d.ts:28](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L28)
+
+▸ **each**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable equivalent to `iterable` that applies `fn` to each value of
+`iterable` as it is iterated.
+
 #### Type parameters
 
 | Name    |
@@ -4100,44 +4104,40 @@ console.log([...each(console.log, sloths)])
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+const sloths = [`carl`, `frank`, `phil`]
+
+console.log([...each(console.log, sloths)])
+//=> carl
+//=> frank
+//=> phil
+//=> [ 'carl', 'frank', 'phil' ]
+```
 
 #### Defined in
 
-[operations/iterate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L47)
+[operations/iterate.d.ts:31](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L31)
 
 ---
 
 ### eachAsync
 
-▸ **eachAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-`AsyncIterable`<`Value`\>
+▸ **eachAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `AsyncIterable`\<`Value`\>
 
 Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
 each value of `asyncIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding and then
 moving on to the next value.
-
-**`Example`**
-
-```js
-const eachedSloths = await pipe(
-  asAsync([`carl`, `frank`, `phil`]),
-  eachAsync(console.log),
-  reduceAsync(toArray()),
-)
-//=> carl
-//=> frank
-//=> phil
-
-console.log(eachedSloths)
-//=> [ 'carl', 'frank', 'phil' ]
-```
 
 #### Type parameters
 
@@ -4147,37 +4147,25 @@ console.log(eachedSloths)
 
 #### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: `Value`) => `PromiseLike`<`unknown`\> |
+| Name | Type                                             |
+| :--- | :----------------------------------------------- |
+| `fn` | (`value`: `Value`) => `PromiseLike`\<`unknown`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:76](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L76)
-
-▸ **eachAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
-each value of `asyncIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding and then
-moving on to the next value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -4194,6 +4182,18 @@ const eachedSloths = await pipe(
 console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:60](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L60)
+
+▸ **eachAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
+each value of `asyncIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding and then
+moving on to the next value.
 
 #### Type parameters
 
@@ -4203,27 +4203,14 @@ console.log(eachedSloths)
 
 #### Parameters
 
-| Name            | Type                                            |
-| :-------------- | :---------------------------------------------- |
-| `fn`            | (`value`: `Value`) => `PromiseLike`<`unknown`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                       |
+| Name            | Type                                             |
+| :-------------- | :----------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `PromiseLike`\<`unknown`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                       |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:79](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L79)
-
-▸ **eachAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`From`\>) => `AsyncIterable`<`To`\>
-
-Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
-each value of `asyncIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding and then
-moving on to the next value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -4240,6 +4227,19 @@ const eachedSloths = await pipe(
 console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:63](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L63)
+
+▸ **eachAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`From`\>) => `AsyncIterable`\<`To`\>
+
+Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
+each value of `asyncIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding and then
+moving on to the next value.
 
 #### Type parameters
 
@@ -4258,29 +4258,17 @@ console.log(eachedSloths)
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`To`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`To`\>
 
 ##### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | `AsyncIterable`<`From`\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`\<`From`\> |
 
 ##### Returns
 
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:84](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L84)
-
-▸ **eachAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
-
-Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
-each value of `asyncIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding and then
-moving on to the next value.
+`AsyncIterable`\<`To`\>
 
 **`Example`**
 
@@ -4297,6 +4285,18 @@ const eachedSloths = await pipe(
 console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:68](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L68)
+
+▸ **eachAsync**\<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`To`\>
+
+Returns an async iterable equivalent to `asyncIterable` that applies `fn` to
+each value of `asyncIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding and then
+moving on to the next value.
 
 #### Type parameters
 
@@ -4310,44 +4310,44 @@ console.log(eachedSloths)
 | Name            | Type                                     |
 | :-------------- | :--------------------------------------- |
 | `fn`            | (`value`: `From`) => asserts value is To |
-| `asyncIterable` | `AsyncIterable`<`From`\>                 |
+| `asyncIterable` | `AsyncIterable`\<`From`\>                |
 
 #### Returns
 
-`AsyncIterable`<`To`\>
+`AsyncIterable`\<`To`\>
+
+**`Example`**
+
+```js
+const eachedSloths = await pipe(
+  asAsync([`carl`, `frank`, `phil`]),
+  eachAsync(console.log),
+  reduceAsync(toArray()),
+)
+//=> carl
+//=> frank
+//=> phil
+
+console.log(eachedSloths)
+//=> [ 'carl', 'frank', 'phil' ]
+```
 
 #### Defined in
 
-[operations/iterate.d.ts:87](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L87)
+[operations/iterate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L71)
 
 ---
 
 ### eachConcur
 
-▸ **eachConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **eachConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
 each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
-
-**`Example`**
-
-```js
-const eachedSloths = await pipe(
-  asConcur([`carl`, `frank`, `phil`]),
-  eachConcur(console.log),
-  reduceConcur(toArray()),
-)
-//=> carl
-//=> frank
-//=> phil
-
-console.log(eachedSloths)
-//=> [ 'carl', 'frank', 'phil' ]
-```
 
 #### Type parameters
 
@@ -4357,37 +4357,25 @@ console.log(eachedSloths)
 
 #### Parameters
 
-| Name | Type                                            |
-| :--- | :---------------------------------------------- |
-| `fn` | (`value`: `Value`) => `PromiseLike`<`unknown`\> |
+| Name | Type                                             |
+| :--- | :----------------------------------------------- |
+| `fn` | (`value`: `Value`) => `PromiseLike`\<`unknown`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:115](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L115)
-
-▸ **eachConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -4404,6 +4392,18 @@ const eachedSloths = await pipe(
 console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L99)
+
+▸ **eachConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
+each value of `concurIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding.
 
 #### Type parameters
 
@@ -4413,27 +4413,14 @@ console.log(eachedSloths)
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `PromiseLike`<`unknown`\>         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `PromiseLike`\<`unknown`\>         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:118](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L118)
-
-▸ **eachConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -4450,6 +4437,19 @@ const eachedSloths = await pipe(
 console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L102)
+
+▸ **eachConcur**\<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
+each value of `concurIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding.
 
 #### Type parameters
 
@@ -4468,29 +4468,17 @@ console.log(eachedSloths)
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 ##### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:123](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L123)
-
-▸ **eachConcur**<`From`, `To`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
-
-The result of applying `fn` to a value is awaited before yielding.
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 **`Example`**
 
@@ -4508,6 +4496,18 @@ console.log(eachedSloths)
 //=> [ 'carl', 'frank', 'phil' ]
 ```
 
+#### Defined in
+
+[operations/iterate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L107)
+
+▸ **eachConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
+each value of `concurIterable` as it is iterated.
+
+The result of applying `fn` to a value is awaited before yielding.
+
 #### Type parameters
 
 | Name   |
@@ -4517,68 +4517,73 @@ console.log(eachedSloths)
 
 #### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `fn`             | (`value`: `From`) => asserts value is To               |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `From`) => asserts value is To                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+**`Example`**
+
+```js
+const eachedSloths = await pipe(
+  asConcur([`carl`, `frank`, `phil`]),
+  eachConcur(console.log),
+  reduceConcur(toArray()),
+)
+//=> carl
+//=> frank
+//=> phil
+
+console.log(eachedSloths)
+//=> [ 'carl', 'frank', 'phil' ]
+```
 
 #### Defined in
 
-[operations/iterate.d.ts:126](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L126)
+[operations/iterate.d.ts:110](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L110)
 
 ---
 
 ### emptyConcur
 
-▸ **emptyConcur**(`apply`): `Promise`<`void`\>
+▸ **emptyConcur**(`apply`): `Promise`\<`void`\>
 
-Represents a potentially lazy collection of values, each of type `Value`, that
-can be iterated over concurrently.
+A concur iterable that contains zero values.
 
-The collection can be iterated by invoking the concur iterable with an `apply`
-callback. The callback is applied to each value in the collection, potentially
-asynchronously, in some order.
+Can be used as a concur iterable of any type.
 
-Invoking the concur iterable returns a promise that resolves when `apply` has
-been applied to each value in the concur iterable and each result returned by
-`apply` is awaited.
+Like `[]`, but for concur iterables.
 
-It is like an event emitter that accepts only one event handler and returns a
-promise that resolves when all events have been emitted and handled.
+#### Parameters
+
+| Name    | Type                                                             |
+| :------ | :--------------------------------------------------------------- |
+| `apply` | [`ConcurIterableApply`](modules.md#concuriterableapply)\<`any`\> |
+
+#### Returns
+
+`Promise`\<`void`\>
 
 **`Example`**
 
 ```js
-const slothNamesConcurIterable = pipe(
-  asConcur([`sloth-names1.txt`, `sloth-names2.txt`]),
-  mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
-  flatMapConcur(content => content.split(`\n`)),
-)
+console.log(await pipe(emptyConcur, reduceConcur(toArray())))
+//=> []
 ```
-
-#### Parameters
-
-| Name    | Type                                                            |
-| :------ | :-------------------------------------------------------------- |
-| `apply` | [`ConcurIterableApply`](modules.md#concuriterableapply)<`any`\> |
-
-#### Returns
-
-`Promise`<`void`\>
 
 #### Defined in
 
-[operations/as.d.ts:65](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/as.d.ts#L65)
+[operations/empty.d.ts:47](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/empty.d.ts#L47)
 
 ---
 
 ### entries
 
-▸ **entries**<`Key`, `Value`\>(`object`): `Iterable`<[`Key`, `Value`]\>
+▸ **entries**\<`Key`, `Value`\>(`object`): `Iterable`\<[`Key`, `Value`]\>
 
 Returns an iterable containing the entries of `object`.
 
@@ -4595,20 +4600,20 @@ iterable is opaque.
 
 #### Parameters
 
-| Name             | Type                                |
-| :--------------- | :---------------------------------- |
-| `object`         | `Object`                            |
-| `object.entries` | () => `Iterable`<[`Key`, `Value`]\> |
+| Name             | Type                                 |
+| :--------------- | :----------------------------------- |
+| `object`         | `Object`                             |
+| `object.entries` | () => `Iterable`\<[`Key`, `Value`]\> |
 
 #### Returns
 
-`Iterable`<[`Key`, `Value`]\>
+`Iterable`\<[`Key`, `Value`]\>
 
 #### Defined in
 
-[operations/from.d.ts:53](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/from.d.ts#L53)
+[operations/from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/from.d.ts#L37)
 
-▸ **entries**<`Key`, `Value`\>(`object`): `Iterable`<[`Key`, `Value`]\>
+▸ **entries**\<`Key`, `Value`\>(`object`): `Iterable`\<[`Key`, `Value`]\>
 
 Returns an iterable containing the entries of `object`.
 
@@ -4625,52 +4630,39 @@ iterable is opaque.
 
 #### Parameters
 
-| Name     | Type                                   |
-| :------- | :------------------------------------- |
-| `object` | `Readonly`<`Record`<`Key`, `Value`\>\> |
+| Name     | Type                                     |
+| :------- | :--------------------------------------- |
+| `object` | `Readonly`\<`Record`\<`Key`, `Value`\>\> |
 
 #### Returns
 
-`Iterable`<[`Key`, `Value`]\>
+`Iterable`\<[`Key`, `Value`]\>
 
 #### Defined in
 
-[operations/from.d.ts:56](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/from.d.ts#L56)
+[operations/from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/from.d.ts#L40)
 
 ---
 
 ### exclude
 
-▸ **exclude**(`excluded`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
+▸ **exclude**(`excluded`): \<Value\>(`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 excluding the values of `excluded`.
 
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `sleep`, `fast`, `slow`, `mean`],
-    exclude([`mean`, `fast`]),
-    reduce(toArray()),
-  ),
-)
-//=> [ 'sloth', 'sleep', 'slow' ]
-```
-
 #### Parameters
 
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `excluded` | `Iterable`<`unknown`\> |
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `excluded` | `Iterable`\<`unknown`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ \<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -4680,22 +4672,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:243](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L243)
-
-▸ **exclude**<`Value`\>(`excluded`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order
-excluding the values of `excluded`.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -4710,6 +4693,15 @@ console.log(
 //=> [ 'sloth', 'sleep', 'slow' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:227](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L227)
+
+▸ **exclude**\<`Value`\>(`excluded`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order
+excluding the values of `excluded`.
+
 #### Type parameters
 
 | Name    |
@@ -4718,53 +4710,53 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `excluded` | `Iterable`<`unknown`\> |
-| `iterable` | `Iterable`<`Value`\>   |
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `excluded` | `Iterable`\<`unknown`\> |
+| `iterable` | `Iterable`\<`Value`\>   |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `sleep`, `fast`, `slow`, `mean`],
+    exclude([`mean`, `fast`]),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth', 'sleep', 'slow' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:246](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L246)
+[operations/exclude.d.ts:230](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L230)
 
 ---
 
 ### excludeAsync
 
-▸ **excludeAsync**(`excluded`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
+▸ **excludeAsync**(`excluded`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order excluding the values of `excluded`.
 
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
-    excludeAsync([`mean`, `fast`]),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth', 'sleep', 'slow' ]
-```
-
 #### Parameters
 
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `excluded` | `Iterable`<`unknown`\> |
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `excluded` | `Iterable`\<`unknown`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ \<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -4774,23 +4766,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:269](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L269)
-
-▸ **excludeAsync**<`Value`\>(`excluded`, `asyncIterable`):
-`AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order excluding the values of `excluded`.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -4805,6 +4787,16 @@ console.log(
 //=> [ 'sloth', 'sleep', 'slow' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:253](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L253)
+
+▸ **excludeAsync**\<`Value`\>(`excluded`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order excluding the values of `excluded`.
+
 #### Type parameters
 
 | Name    |
@@ -4813,55 +4805,55 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `excluded`      | `Iterable`<`unknown`\>    |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `excluded`      | `Iterable`\<`unknown`\>    |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
+    excludeAsync([`mean`, `fast`]),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 'sloth', 'sleep', 'slow' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:272](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L272)
+[operations/exclude.d.ts:256](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L256)
 
 ---
 
 ### excludeConcur
 
-▸ **excludeConcur**(`excluded`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **excludeConcur**(`excluded`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order excluding the values of `excluded`.
 
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
-    excludeConcur([`mean`, `fast`]),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 'sloth', 'sleep', 'slow' ]
-```
-
 #### Parameters
 
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `excluded` | `Iterable`<`unknown`\> |
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `excluded` | `Iterable`\<`unknown`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ \<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Type parameters
 
@@ -4871,23 +4863,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:295](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L295)
-
-▸ **excludeConcur**<`Value`\>(`excluded`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order excluding the values of `excluded`.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -4902,6 +4884,16 @@ console.log(
 //=> [ 'sloth', 'sleep', 'slow' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:279](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L279)
+
+▸ **excludeConcur**\<`Value`\>(`excluded`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order excluding the values of `excluded`.
+
 #### Type parameters
 
 | Name    |
@@ -4910,43 +4902,43 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `excluded`       | `Iterable`<`unknown`\>                                  |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `excluded`       | `Iterable`\<`unknown`\>                                  |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:298](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L298)
-
----
-
-### filter
-
-▸ **filter**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
-`Iterable`<`To`\>
-
-Returns an iterable that contains the values of `iterable` in iteration order
-excluding the values for which `fn` returns a falsy value.
-
-Like `Array.prototype.filter`, but for iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [`sloth party`, `building`, `sloths in trees`, `city`],
-    filter(string => string.includes(`sloth`)),
-    reduce(toArray()),
+  await pipe(
+    asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
+    excludeConcur([`mean`, `fast`]),
+    reduceConcur(toArray()),
   ),
 )
-//=> [ 'sloth party', 'sloths in trees' ]
+//=> [ 'sloth', 'sleep', 'slow' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:282](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L282)
+
+---
+
+### filter
+
+▸ **filter**\<`From`, `To`\>(`fn`): (`iterable`: `Iterable`\<`From`\>) =>
+`Iterable`\<`To`\>
+
+Returns an iterable that contains the values of `iterable` in iteration order
+excluding the values for which `fn` returns a falsy value.
+
+Like `Array.prototype.filter`, but for iterables.
 
 #### Type parameters
 
@@ -4965,28 +4957,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`To`\>
+▸ (`iterable`): `Iterable`\<`To`\>
 
 ##### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | `Iterable`<`From`\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`\<`From`\> |
 
 ##### Returns
 
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:39](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L39)
-
-▸ **filter**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
-
-Returns an iterable that contains the values of `iterable` in iteration order
-excluding the values for which `fn` returns a falsy value.
-
-Like `Array.prototype.filter`, but for iterables.
+`Iterable`\<`To`\>
 
 **`Example`**
 
@@ -5000,6 +4981,17 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L23)
+
+▸ **filter**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`To`\>
+
+Returns an iterable that contains the values of `iterable` in iteration order
+excluding the values for which `fn` returns a falsy value.
+
+Like `Array.prototype.filter`, but for iterables.
 
 #### Type parameters
 
@@ -5013,23 +5005,11 @@ console.log(
 | Name       | Type                             |
 | :--------- | :------------------------------- |
 | `fn`       | (`value`: `From`) => value is To |
-| `iterable` | `Iterable`<`From`\>              |
+| `iterable` | `Iterable`\<`From`\>             |
 
 #### Returns
 
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:42](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L42)
-
-▸ **filter**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable that contains the values of `iterable` in iteration order
-excluding the values for which `fn` returns a falsy value.
-
-Like `Array.prototype.filter`, but for iterables.
+`Iterable`\<`To`\>
 
 **`Example`**
 
@@ -5043,6 +5023,18 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L26)
+
+▸ **filter**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable that contains the values of `iterable` in iteration order
+excluding the values for which `fn` returns a falsy value.
+
+Like `Array.prototype.filter`, but for iterables.
 
 #### Type parameters
 
@@ -5060,28 +5052,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L47)
-
-▸ **filter**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable that contains the values of `iterable` in iteration order
-excluding the values for which `fn` returns a falsy value.
-
-Like `Array.prototype.filter`, but for iterables.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -5096,6 +5077,17 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L31)
+
+▸ **filter**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable that contains the values of `iterable` in iteration order
+excluding the values for which `fn` returns a falsy value.
+
+Like `Array.prototype.filter`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -5107,41 +5099,41 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth party`, `building`, `sloths in trees`, `city`],
+    filter(string => string.includes(`sloth`)),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth party', 'sloths in trees' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:50](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L50)
+[operations/exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L34)
 
 ---
 
 ### filterAsync
 
-▸ **filterAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`From`\>) => `AsyncIterable`<`To`\>
+▸ **filterAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`From`\>) => `AsyncIterable`\<`To`\>
 
 Returns an async iterable that contains the values of `asyncIterable` in
 iteration order excluding the values for which `fn` returns a value awaitable to
 a falsy value.
 
 Like `Array.prototype.filter`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth party`, `building`, `sloths in trees`, `city`]),
-    filterAsync(string => string.includes(`sloth`)),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth party', 'sloths in trees' ]
-```
 
 #### Type parameters
 
@@ -5160,29 +5152,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`To`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`To`\>
 
 ##### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | `AsyncIterable`<`From`\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`\<`From`\> |
 
 ##### Returns
 
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:76](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L76)
-
-▸ **filterAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
-
-Returns an async iterable that contains the values of `asyncIterable` in
-iteration order excluding the values for which `fn` returns a value awaitable to
-a falsy value.
-
-Like `Array.prototype.filter`, but for async iterables.
+`AsyncIterable`\<`To`\>
 
 **`Example`**
 
@@ -5196,6 +5176,19 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:60](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L60)
+
+▸ **filterAsync**\<`From`, `To`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`To`\>
+
+Returns an async iterable that contains the values of `asyncIterable` in
+iteration order excluding the values for which `fn` returns a value awaitable to
+a falsy value.
+
+Like `Array.prototype.filter`, but for async iterables.
 
 #### Type parameters
 
@@ -5209,24 +5202,11 @@ console.log(
 | Name            | Type                             |
 | :-------------- | :------------------------------- |
 | `fn`            | (`value`: `From`) => Value is To |
-| `asyncIterable` | `AsyncIterable`<`From`\>         |
+| `asyncIterable` | `AsyncIterable`\<`From`\>        |
 
 #### Returns
 
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:79](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L79)
-
-▸ **filterAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `AsyncIterable`<`Value`\>
-
-Returns an async iterable that contains the values of `asyncIterable` in
-iteration order excluding the values for which `fn` returns a value awaitable to
-a falsy value.
-
-Like `Array.prototype.filter`, but for async iterables.
+`AsyncIterable`\<`To`\>
 
 **`Example`**
 
@@ -5240,6 +5220,19 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:63](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L63)
+
+▸ **filterAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
+
+Returns an async iterable that contains the values of `asyncIterable` in
+iteration order excluding the values for which `fn` returns a value awaitable to
+a falsy value.
+
+Like `Array.prototype.filter`, but for async iterables.
 
 #### Type parameters
 
@@ -5257,29 +5250,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:84](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L84)
-
-▸ **filterAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable that contains the values of `asyncIterable` in
-iteration order excluding the values for which `fn` returns a value awaitable to
-a falsy value.
-
-Like `Array.prototype.filter`, but for async iterables.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -5294,6 +5275,18 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:68](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L68)
+
+▸ **filterAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable that contains the values of `asyncIterable` in
+iteration order excluding the values for which `fn` returns a value awaitable to
+a falsy value.
+
+Like `Array.prototype.filter`, but for async iterables.
+
 #### Type parameters
 
 | Name    |
@@ -5305,41 +5298,41 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:87](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L87)
-
----
-
-### filterConcur
-
-▸ **filterConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns a concur iterable that contains the values of `concurIterable` excluding
-the values for which `fn` returns a value awaitable to a falsy value.
-
-Like `Array.prototype.filter`, but for concur iterables.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([`sloth party`, `building`, `sloths in trees`, `city`]),
-    filterConcur(string => string.includes(`sloth`)),
-    reduceConcur(toArray()),
+    asAsync([`sloth party`, `building`, `sloths in trees`, `city`]),
+    filterAsync(string => string.includes(`sloth`)),
+    reduceAsync(toArray()),
   ),
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:71](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L71)
+
+---
+
+### filterConcur
+
+▸ **filterConcur**\<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns a concur iterable that contains the values of `concurIterable` excluding
+the values for which `fn` returns a value awaitable to a falsy value.
+
+Like `Array.prototype.filter`, but for concur iterables.
 
 #### Type parameters
 
@@ -5358,29 +5351,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 ##### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:113](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L113)
-
-▸ **filterConcur**<`From`, `To`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns a concur iterable that contains the values of `concurIterable` excluding
-the values for which `fn` returns a value awaitable to a falsy value.
-
-Like `Array.prototype.filter`, but for concur iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 **`Example`**
 
@@ -5394,6 +5375,18 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:97](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L97)
+
+▸ **filterConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns a concur iterable that contains the values of `concurIterable` excluding
+the values for which `fn` returns a value awaitable to a falsy value.
+
+Like `Array.prototype.filter`, but for concur iterables.
 
 #### Type parameters
 
@@ -5404,27 +5397,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `fn`             | (`value`: `From`) => value is To                       |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `From`) => value is To                        |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:116](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L116)
-
-▸ **filterConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable that contains the values of `concurIterable` excluding
-the values for which `fn` returns a value awaitable to a falsy value.
-
-Like `Array.prototype.filter`, but for concur iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 **`Example`**
 
@@ -5438,6 +5418,19 @@ console.log(
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:100](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L100)
+
+▸ **filterConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable that contains the values of `concurIterable` excluding
+the values for which `fn` returns a value awaitable to a falsy value.
+
+Like `Array.prototype.filter`, but for concur iterables.
 
 #### Type parameters
 
@@ -5455,29 +5448,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:121](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L121)
-
-▸ **filterConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable that contains the values of `concurIterable` excluding
-the values for which `fn` returns a value awaitable to a falsy value.
-
-Like `Array.prototype.filter`, but for concur iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -5492,6 +5473,18 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:105](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L105)
+
+▸ **filterConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable that contains the values of `concurIterable` excluding
+the values for which `fn` returns a value awaitable to a falsy value.
+
+Like `Array.prototype.filter`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -5500,47 +5493,42 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:124](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L124)
-
----
-
-### filterMap
-
-▸ **filterMap**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
-`Iterable`<`NonNullable`<`To`\>\>
-
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order excluding the values for which `fn` returns `null` or
-`undefined`.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [
-      { sloth: `sloth party` },
-      { notSloth: `building` },
-      { sloth: `sloths in trees` },
-      { notSloth: `city` },
-    ],
-    filterMap(object => object.sloth),
-    reduce(toArray()),
+  await pipe(
+    asConcur([`sloth party`, `building`, `sloths in trees`, `city`]),
+    filterConcur(string => string.includes(`sloth`)),
+    reduceConcur(toArray()),
   ),
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:108](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L108)
+
+---
+
+### filterMap
+
+▸ **filterMap**\<`From`, `To`\>(`fn`): (`iterable`: `Iterable`\<`From`\>) =>
+`Iterable`\<`NonNullable`\<`To`\>\>
+
+Returns an iterable containing the values of `iterable` transformed by `fn` in
+iteration order excluding the values for which `fn` returns `null` or
+`undefined`.
 
 #### Type parameters
 
@@ -5559,28 +5547,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`NonNullable`<`To`\>\>
+▸ (`iterable`): `Iterable`\<`NonNullable`\<`To`\>\>
 
 ##### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | `Iterable`<`From`\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`\<`From`\> |
 
 ##### Returns
 
-`Iterable`<`NonNullable`<`To`\>\>
-
-#### Defined in
-
-[operations/exclude.d.ts:153](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L153)
-
-▸ **filterMap**<`From`, `To`\>(`fn`, `iterable`):
-`Iterable`<`NonNullable`<`To`\>\>
-
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order excluding the values for which `fn` returns `null` or
-`undefined`.
+`Iterable`\<`NonNullable`\<`To`\>\>
 
 **`Example`**
 
@@ -5600,6 +5577,17 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:137](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L137)
+
+▸ **filterMap**\<`From`, `To`\>(`fn`, `iterable`):
+`Iterable`\<`NonNullable`\<`To`\>\>
+
+Returns an iterable containing the values of `iterable` transformed by `fn` in
+iteration order excluding the values for which `fn` returns `null` or
+`undefined`.
+
 #### Type parameters
 
 | Name   |
@@ -5612,44 +5600,44 @@ console.log(
 | Name       | Type                                               |
 | :--------- | :------------------------------------------------- |
 | `fn`       | (`value`: `From`) => `undefined` \| `null` \| `To` |
-| `iterable` | `Iterable`<`From`\>                                |
+| `iterable` | `Iterable`\<`From`\>                               |
 
 #### Returns
 
-`Iterable`<`NonNullable`<`To`\>\>
+`Iterable`\<`NonNullable`\<`To`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [
+      { sloth: `sloth party` },
+      { notSloth: `building` },
+      { sloth: `sloths in trees` },
+      { notSloth: `city` },
+    ],
+    filterMap(object => object.sloth),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth party', 'sloths in trees' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:156](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L156)
+[operations/exclude.d.ts:140](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L140)
 
 ---
 
 ### filterMapAsync
 
-▸ **filterMapAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`From`\>) => `AsyncIterable`<`NonNullable`<`To`\>\>
+▸ **filterMapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`From`\>) => `AsyncIterable`\<`NonNullable`\<`To`\>\>
 
 Returns an async iterable containing the values of `asyncIterable` transformed
 by `fn` in iteration order excluding the values for which `fn` returns a value
 awaitable to null or undefined.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([
-      { sloth: `sloth party` },
-      { notSloth: `building` },
-      { sloth: `sloths in trees` },
-      { notSloth: `city` },
-    ]),
-    filterMapAsync(object => object.sloth),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth party', 'sloths in trees' ]
-```
 
 #### Type parameters
 
@@ -5660,36 +5648,25 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                                    |
-| :--- | :---------------------------------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`undefined` \| `null` \| `To`\> |
+| Name | Type                                                                     |
+| :--- | :----------------------------------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`undefined` \| `null` \| `To`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`NonNullable`<`To`\>\>
+▸ (`asyncIterable`): `AsyncIterable`\<`NonNullable`\<`To`\>\>
 
 ##### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | `AsyncIterable`<`From`\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`\<`From`\> |
 
 ##### Returns
 
-`AsyncIterable`<`NonNullable`<`To`\>\>
-
-#### Defined in
-
-[operations/exclude.d.ts:185](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L185)
-
-▸ **filterMapAsync**<`From`, `To`\>(`fn`, `asyncIterable`):
-`AsyncIterable`<`NonNullable`<`To`\>\>
-
-Returns an async iterable containing the values of `asyncIterable` transformed
-by `fn` in iteration order excluding the values for which `fn` returns a value
-awaitable to null or undefined.
+`AsyncIterable`\<`NonNullable`\<`To`\>\>
 
 **`Example`**
 
@@ -5709,6 +5686,17 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:169](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L169)
+
+▸ **filterMapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`NonNullable`\<`To`\>\>
+
+Returns an async iterable containing the values of `asyncIterable` transformed
+by `fn` in iteration order excluding the values for which `fn` returns a value
+awaitable to null or undefined.
+
 #### Type parameters
 
 | Name   |
@@ -5718,48 +5706,48 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                                    |
-| :-------------- | :---------------------------------------------------------------------- |
-| `fn`            | (`value`: `From`) => `MaybePromiseLike`<`undefined` \| `null` \| `To`\> |
-| `asyncIterable` | `AsyncIterable`<`From`\>                                                |
+| Name            | Type                                                                     |
+| :-------------- | :----------------------------------------------------------------------- |
+| `fn`            | (`value`: `From`) => `MaybePromiseLike`\<`undefined` \| `null` \| `To`\> |
+| `asyncIterable` | `AsyncIterable`\<`From`\>                                                |
 
 #### Returns
 
-`AsyncIterable`<`NonNullable`<`To`\>\>
-
-#### Defined in
-
-[operations/exclude.d.ts:188](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L188)
-
----
-
-### filterMapConcur
-
-▸ **filterMapConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
-
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` excluding the values for which `fn` returns a value awaitable to `null`
-or `undefined`.
+`AsyncIterable`\<`NonNullable`\<`To`\>\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([
+    asAsync([
       { sloth: `sloth party` },
       { notSloth: `building` },
       { sloth: `sloths in trees` },
       { notSloth: `city` },
     ]),
-    filterMapConcur(object => object.sloth),
-    reduceConcur(toArray()),
+    filterMapAsync(object => object.sloth),
+    reduceAsync(toArray()),
   ),
 )
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:172](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L172)
+
+---
+
+### filterMapConcur
+
+▸ **filterMapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`NonNullable`\<`To`\>\>
+
+Returns a concur iterable containing the values of `concurIterable` transformed
+by `fn` excluding the values for which `fn` returns a value awaitable to `null`
+or `undefined`.
 
 #### Type parameters
 
@@ -5770,37 +5758,26 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                                    |
-| :--- | :---------------------------------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`undefined` \| `null` \| `To`\> |
+| Name | Type                                                                     |
+| :--- | :----------------------------------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`undefined` \| `null` \| `To`\> |
 
 #### Returns
 
 `fn`
 
 ▸ (`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<`NonNullable`\<`To`\>\>
 
 ##### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
-
-#### Defined in
-
-[operations/exclude.d.ts:217](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L217)
-
-▸ **filterMapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
-
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` excluding the values for which `fn` returns a value awaitable to `null`
-or `undefined`.
+[`ConcurIterable`](modules.md#concuriterable)\<`NonNullable`\<`To`\>\>
 
 **`Example`**
 
@@ -5820,6 +5797,17 @@ console.log(
 //=> [ 'sloth party', 'sloths in trees' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:201](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L201)
+
+▸ **filterMapConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`NonNullable`\<`To`\>\>
+
+Returns a concur iterable containing the values of `concurIterable` transformed
+by `fn` excluding the values for which `fn` returns a value awaitable to `null`
+or `undefined`.
+
 #### Type parameters
 
 | Name   |
@@ -5829,54 +5817,48 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                    |
-| :--------------- | :---------------------------------------------------------------------- |
-| `fn`             | (`value`: `From`) => `MaybePromiseLike`<`undefined` \| `null` \| `To`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\>                  |
+| Name             | Type                                                                     |
+| :--------------- | :----------------------------------------------------------------------- |
+| `fn`             | (`value`: `From`) => `MaybePromiseLike`\<`undefined` \| `null` \| `To`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\>                  |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`NonNullable`<`To`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<`NonNullable`\<`To`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([
+      { sloth: `sloth party` },
+      { notSloth: `building` },
+      { sloth: `sloths in trees` },
+      { notSloth: `city` },
+    ]),
+    filterMapConcur(object => object.sloth),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 'sloth party', 'sloths in trees' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:220](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L220)
+[operations/exclude.d.ts:204](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L204)
 
 ---
 
 ### find
 
-▸ **find**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-[`Optional`](modules.md#optional)<`Value`\>
+▸ **find**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+[`Optional`](modules.md#optional)\<`Value`\>
 
 Returns an iterable containing the first value of `iterable` for which `fn`
 returns a truthy value. Otherwise, returns an empty iterable.
 
 Like `Array.prototype.find`, but for iterables.
-
-**`Example`**
-
-```js
-const iterable = [1, 2, `sloth`, 4, `other string`]
-
-console.log(
-  pipe(
-    iterable,
-    find(value => typeof value === `string`),
-    or(() => `yawn!`),
-  ),
-)
-//=> sloth
-
-console.log(
-  pipe(
-    iterable,
-    find(value => Array.isArray(value)),
-    or(() => `yawn!`),
-  ),
-)
-//=> yawn!
-```
 
 #### Type parameters
 
@@ -5894,29 +5876,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): [`Optional`](modules.md#optional)<`Value`\>
+▸ (`iterable`): [`Optional`](modules.md#optional)\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:23](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L23)
-
-▸ **find**<`Value`\>(`fn`, `iterable`):
-[`Optional`](modules.md#optional)<`Value`\>
-
-Returns an iterable containing the first value of `iterable` for which `fn`
-returns a truthy value. Otherwise, returns an empty iterable.
-
-Like `Array.prototype.find`, but for iterables.
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
@@ -5942,6 +5912,18 @@ console.log(
 //=> yawn!
 ```
 
+#### Defined in
+
+[operations/find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L67)
+
+▸ **find**\<`Value`\>(`fn`, `iterable`):
+[`Optional`](modules.md#optional)\<`Value`\>
+
+Returns an iterable containing the first value of `iterable` for which `fn`
+returns a truthy value. Otherwise, returns an empty iterable.
+
+Like `Array.prototype.find`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -5953,52 +5935,52 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
+[`Optional`](modules.md#optional)\<`Value`\>
+
+**`Example`**
+
+```js
+const iterable = [1, 2, `sloth`, 4, `other string`]
+
+console.log(
+  pipe(
+    iterable,
+    find(value => typeof value === `string`),
+    or(() => `yawn!`),
+  ),
+)
+//=> sloth
+
+console.log(
+  pipe(
+    iterable,
+    find(value => Array.isArray(value)),
+    or(() => `yawn!`),
+  ),
+)
+//=> yawn!
+```
 
 #### Defined in
 
-[operations/find.d.ts:26](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L26)
+[operations/find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L67)
 
 ---
 
 ### findAsync
 
-▸ **findAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ **findAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> [`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 Returns an async iterable containing the first value of `asyncIterable` for
 which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
 empty async iterable.
 
 Like `Array.prototype.find`, but for async iterables.
-
-**`Example`**
-
-```js
-const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
-
-console.log(
-  await pipe(
-    asyncIterable,
-    findAsync(value => typeof value === `string`),
-    orAsync(() => `yawn!`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    asyncIterable,
-    findAsync(value => Array.isArray(value)),
-    orAsync(() => `yawn!`),
-  ),
-)
-//=> yawn!
-```
 
 #### Type parameters
 
@@ -6016,30 +5998,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:34](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L34)
-
-▸ **findAsync**<`Value`\>(`fn`, `asyncIterable`):
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns an async iterable containing the first value of `asyncIterable` for
-which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
-empty async iterable.
-
-Like `Array.prototype.find`, but for async iterables.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
@@ -6064,6 +6033,19 @@ console.log(
 )
 //=> yawn!
 ```
+
+#### Defined in
+
+[operations/find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L99)
+
+▸ **findAsync**\<`Value`\>(`fn`, `asyncIterable`):
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns an async iterable containing the first value of `asyncIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty async iterable.
+
+Like `Array.prototype.find`, but for async iterables.
 
 #### Type parameters
 
@@ -6076,53 +6058,53 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+**`Example`**
+
+```js
+const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
+
+console.log(
+  await pipe(
+    asyncIterable,
+    findAsync(value => typeof value === `string`),
+    orAsync(() => `yawn!`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    asyncIterable,
+    findAsync(value => Array.isArray(value)),
+    orAsync(() => `yawn!`),
+  ),
+)
+//=> yawn!
+```
 
 #### Defined in
 
-[operations/find.d.ts:37](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L37)
+[operations/find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L99)
 
 ---
 
 ### findConcur
 
-▸ **findConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ **findConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 Returns a concur iterable containing the first value of `concurIterable` for
 which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
 empty concur iterable.
 
 Like `Array.prototype.find`, but for concur iterables.
-
-**`Example`**
-
-```js
-const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
-
-console.log(
-  await pipe(
-    concurIterable,
-    findConcur(value => typeof value === `string`),
-    orConcur(() => `yawn`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    concurIterable,
-    findConcur(value => Array.isArray(value)),
-    orConcur(() => `yawn`),
-  ),
-)
-//=> yawn!
-```
 
 #### Type parameters
 
@@ -6140,30 +6122,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:45](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L45)
-
-▸ **findConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns a concur iterable containing the first value of `concurIterable` for
-which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
-empty concur iterable.
-
-Like `Array.prototype.find`, but for concur iterables.
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 **`Example`**
 
@@ -6189,6 +6158,19 @@ console.log(
 //=> yawn!
 ```
 
+#### Defined in
+
+[operations/find.d.ts:131](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L131)
+
+▸ **findConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns a concur iterable containing the first value of `concurIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty concur iterable.
+
+Like `Array.prototype.find`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -6197,52 +6179,52 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+**`Example`**
+
+```js
+const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
+
+console.log(
+  await pipe(
+    concurIterable,
+    findConcur(value => typeof value === `string`),
+    orConcur(() => `yawn`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    concurIterable,
+    findConcur(value => Array.isArray(value)),
+    orConcur(() => `yawn`),
+  ),
+)
+//=> yawn!
+```
 
 #### Defined in
 
-[operations/find.d.ts:48](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L48)
+[operations/find.d.ts:131](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L131)
 
 ---
 
 ### findLast
 
-▸ **findLast**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-[`Optional`](modules.md#optional)<`Value`\>
+▸ **findLast**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+[`Optional`](modules.md#optional)\<`Value`\>
 
 Returns an iterable containing the last value of `iterable` for which `fn`
 returns a truthy value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-const iterable = [1, 2, `sloth`, 4, `other string`]
-
-console.log(
-  pipe(
-    iterable,
-    findLast(value => typeof value === `string`),
-    or(() => `yawn!`),
-  ),
-)
-//=> other string
-
-console.log(
-  pipe(
-    iterable,
-    findLast(value => Array.isArray(value)),
-    or(() => `yawn!`),
-  ),
-)
-//=> yawn!
-```
 
 #### Type parameters
 
@@ -6260,27 +6242,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): [`Optional`](modules.md#optional)<`Value`\>
+▸ (`iterable`): [`Optional`](modules.md#optional)\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:23](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L23)
-
-▸ **findLast**<`Value`\>(`fn`, `iterable`):
-[`Optional`](modules.md#optional)<`Value`\>
-
-Returns an iterable containing the last value of `iterable` for which `fn`
-returns a truthy value. Otherwise, returns an empty iterable.
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
@@ -6305,6 +6277,16 @@ console.log(
 )
 //=> yawn!
 ```
+
+#### Defined in
+
+[operations/find.d.ts:160](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L160)
+
+▸ **findLast**\<`Value`\>(`fn`, `iterable`):
+[`Optional`](modules.md#optional)\<`Value`\>
+
+Returns an iterable containing the last value of `iterable` for which `fn`
+returns a truthy value. Otherwise, returns an empty iterable.
 
 #### Type parameters
 
@@ -6317,51 +6299,51 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:26](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L26)
-
----
-
-### findLastAsync
-
-▸ **findLastAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) =>
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns an async iterable containing the last value of `asyncIterable` for which
-`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
-async iterable.
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
 ```js
-const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
+const iterable = [1, 2, `sloth`, 4, `other string`]
 
 console.log(
-  await pipe(
-    asyncIterable,
-    findLastAsync(value => typeof value === `string`),
-    orAsync(() => `yawn!`),
+  pipe(
+    iterable,
+    findLast(value => typeof value === `string`),
+    or(() => `yawn!`),
   ),
 )
 //=> other string
 
 console.log(
-  await pipe(
-    asyncIterable,
-    findLastAsync(value => Array.isArray(value)),
-    orAsync(() => `yawn!`),
+  pipe(
+    iterable,
+    findLast(value => Array.isArray(value)),
+    or(() => `yawn!`),
   ),
 )
 //=> yawn!
 ```
+
+#### Defined in
+
+[operations/find.d.ts:160](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L160)
+
+---
+
+### findLastAsync
+
+▸ **findLastAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) =>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns an async iterable containing the last value of `asyncIterable` for which
+`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
+async iterable.
 
 #### Type parameters
 
@@ -6379,28 +6361,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:34](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L34)
-
-▸ **findLastAsync**<`Value`\>(`fn`, `asyncIterable`):
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns an async iterable containing the last value of `asyncIterable` for which
-`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
-async iterable.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
@@ -6425,6 +6396,17 @@ console.log(
 )
 //=> yawn!
 ```
+
+#### Defined in
+
+[operations/find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L190)
+
+▸ **findLastAsync**\<`Value`\>(`fn`, `asyncIterable`):
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns an async iterable containing the last value of `asyncIterable` for which
+`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
+async iterable.
 
 #### Type parameters
 
@@ -6437,51 +6419,51 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:37](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L37)
-
----
-
-### findLastConcur
-
-▸ **findLastConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns a concur iterable containing the last value of `concurIterable` for
-which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
-empty concur iterable.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
 ```js
-const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
+const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
 
 console.log(
   await pipe(
-    concurIterable,
-    findLastConcur(value => typeof value === `string`),
-    orConcur(() => `yawn!`),
+    asyncIterable,
+    findLastAsync(value => typeof value === `string`),
+    orAsync(() => `yawn!`),
   ),
 )
 //=> other string
 
 console.log(
   await pipe(
-    concurIterable,
-    findLastConcur(value => Array.isArray(value)),
-    orConcur(() => `yawn!`),
+    asyncIterable,
+    findLastAsync(value => Array.isArray(value)),
+    orAsync(() => `yawn!`),
   ),
 )
 //=> yawn!
 ```
+
+#### Defined in
+
+[operations/find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L190)
+
+---
+
+### findLastConcur
+
+▸ **findLastConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns a concur iterable containing the last value of `concurIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty concur iterable.
 
 #### Type parameters
 
@@ -6499,28 +6481,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-#### Defined in
-
-[operations/find.d.ts:45](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L45)
-
-▸ **findLastConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns a concur iterable containing the last value of `concurIterable` for
-which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
-empty concur iterable.
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 **`Example`**
 
@@ -6546,6 +6517,17 @@ console.log(
 //=> yawn!
 ```
 
+#### Defined in
+
+[operations/find.d.ts:220](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L220)
+
+▸ **findLastConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns a concur iterable containing the last value of `concurIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty concur iterable.
+
 #### Type parameters
 
 | Name    |
@@ -6554,27 +6536,67 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+**`Example`**
+
+```js
+const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
+
+console.log(
+  await pipe(
+    concurIterable,
+    findLastConcur(value => typeof value === `string`),
+    orConcur(() => `yawn!`),
+  ),
+)
+//=> other string
+
+console.log(
+  await pipe(
+    concurIterable,
+    findLastConcur(value => Array.isArray(value)),
+    orConcur(() => `yawn!`),
+  ),
+)
+//=> yawn!
+```
 
 #### Defined in
 
-[operations/find.d.ts:48](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/find.d.ts#L48)
+[operations/find.d.ts:220](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/find.d.ts#L220)
 
 ---
 
 ### first
 
-▸ **first**<`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ **first**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing the first value of `iterable`, or an empty
 iterable if `iterable` is empty.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
+
+#### Returns
+
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -6589,6 +6611,19 @@ console.log(
 //=> [ 'sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:341](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L341)
+
+---
+
+### firstAsync
+
+▸ **firstAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the first value of `asyncIterable`, or an
+empty async iterable if `asyncIterable` is empty.
+
 #### Type parameters
 
 | Name    |
@@ -6597,26 +6632,13 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:357](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L357)
-
----
-
-### firstAsync
-
-▸ **firstAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the first value of `asyncIterable`, or an
-empty async iterable if `asyncIterable` is empty.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -6631,6 +6653,20 @@ console.log(
 //=> [ 'sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:359](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L359)
+
+---
+
+### firstConcur
+
+▸ **firstConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the first value of `concurIterable`, or an
+empty concur iterable if `concurIterable` is empty.
+
 #### Type parameters
 
 | Name    |
@@ -6639,27 +6675,13 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:375](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L375)
-
----
-
-### firstConcur
-
-▸ **firstConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the first value of `concurIterable`, or an
-empty concur iterable if `concurIterable` is empty.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -6674,6 +6696,328 @@ console.log(
 //=> [ 'sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:379](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L379)
+
+---
+
+### flatMap
+
+▸ **flatMap**\<`From`, `To`\>(`fn`): (`iterable`: `Iterable`\<`From`\>) =>
+`Iterable`\<`To`\>
+
+Returns an iterable containing the values of the iterables returned from
+applying `fn` to each value of `iterable` in iteration order.
+
+Like `Array.prototype.flatMap`, but for iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name | Type                                    |
+| :--- | :-------------------------------------- |
+| `fn` | (`value`: `From`) => `Iterable`\<`To`\> |
+
+#### Returns
+
+`fn`
+
+▸ (`iterable`): `Iterable`\<`To`\>
+
+##### Parameters
+
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`\<`From`\> |
+
+##### Returns
+
+`Iterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    flatMap(string => [string, string.length]),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:104](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L104)
+
+▸ **flatMap**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`To`\>
+
+Returns an iterable containing the values of the iterables returned from
+applying `fn` to each value of `iterable` in iteration order.
+
+Like `Array.prototype.flatMap`, but for iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name       | Type                                    |
+| :--------- | :-------------------------------------- |
+| `fn`       | (`value`: `From`) => `Iterable`\<`To`\> |
+| `iterable` | `Iterable`\<`From`\>                    |
+
+#### Returns
+
+`Iterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    flatMap(string => [string, string.length]),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:107](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L107)
+
+---
+
+### flatMapAsync
+
+▸ **flatMapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`From`\>) => `AsyncIterable`\<`To`\>
+
+Returns an async iterable containing the values of the async iterables returned,
+or resolving from promises returned, from applying `fn` to each value of
+`asyncIterable` in iteration order.
+
+Like `Array.prototype.flatMap`, but for async iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name | Type                                                                                     |
+| :--- | :--------------------------------------------------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`AsyncIterable`\<`To`\> \| `Iterable`\<`To`\>\> |
+
+#### Returns
+
+`fn`
+
+▸ (`asyncIterable`): `AsyncIterable`\<`To`\>
+
+##### Parameters
+
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`\<`From`\> |
+
+##### Returns
+
+`AsyncIterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    flatMapAsync(string => [string, string.length]),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:133](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L133)
+
+▸ **flatMapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`To`\>
+
+Returns an async iterable containing the values of the async iterables returned,
+or resolving from promises returned, from applying `fn` to each value of
+`asyncIterable` in iteration order.
+
+Like `Array.prototype.flatMap`, but for async iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name            | Type                                                                                     |
+| :-------------- | :--------------------------------------------------------------------------------------- |
+| `fn`            | (`value`: `From`) => `MaybePromiseLike`\<`Iterable`\<`To`\> \| `AsyncIterable`\<`To`\>\> |
+| `asyncIterable` | `AsyncIterable`\<`From`\>                                                                |
+
+#### Returns
+
+`AsyncIterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    flatMapAsync(string => [string, string.length]),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:136](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L136)
+
+---
+
+### flatMapConcur
+
+▸ **flatMapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns an concur iterable containing the values of the concur iterables
+returned, or resolving from promises returned, from applying `fn` to each value
+of `concurIterable`.
+
+Like `Array.prototype.flatMap`, but for concur iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name | Type                                                                                                                                              |
+| :--- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<[`ConcurIterable`](modules.md#concuriterable)\<`To`\> \| `Iterable`\<`To`\> \| `AsyncIterable`\<`To`\>\> |
+
+#### Returns
+
+`fn`
+
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+##### Parameters
+
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
+
+##### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    flatMapConcur(string => [string, string.length]),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:162](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L162)
+
+▸ **flatMapConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns an concur iterable containing the values of the concur iterables
+returned, or resolving from promises returned, from applying `fn` to each value
+of `concurIterable`.
+
+Like `Array.prototype.flatMap`, but for concur iterables.
+
+#### Type parameters
+
+| Name   |
+| :----- |
+| `From` |
+| `To`   |
+
+#### Parameters
+
+| Name             | Type                                                                                                                                              |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `fn`             | (`value`: `From`) => `MaybePromiseLike`\<`Iterable`\<`To`\> \| `AsyncIterable`\<`To`\> \| [`ConcurIterable`](modules.md#concuriterable)\<`To`\>\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\>                                                                                           |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    flatMapConcur(string => [string, string.length]),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+```
+
+#### Defined in
+
+[operations/transform.d.ts:169](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L169)
+
+---
+
+### flatten
+
+▸ **flatten**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable that contains the values of each iterable in `iterable` in
+iteration order.
+
+Like `Array.prototype.flat`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -6682,334 +7026,13 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name       | Type                                |
+| :--------- | :---------------------------------- |
+| `iterable` | `Iterable`\<`Iterable`\<`Value`\>\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:395](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L395)
-
----
-
-### flatMap
-
-▸ **flatMap**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
-`Iterable`<`To`\>
-
-Returns an iterable containing the values of the iterables returned from
-applying `fn` to each value of `iterable` in iteration order.
-
-Like `Array.prototype.flatMap`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    flatMap(string => [string, string.length]),
-    reduce(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name | Type                                   |
-| :--- | :------------------------------------- |
-| `fn` | (`value`: `From`) => `Iterable`<`To`\> |
-
-#### Returns
-
-`fn`
-
-▸ (`iterable`): `Iterable`<`To`\>
-
-##### Parameters
-
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | `Iterable`<`From`\> |
-
-##### Returns
-
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:120](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L120)
-
-▸ **flatMap**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
-
-Returns an iterable containing the values of the iterables returned from
-applying `fn` to each value of `iterable` in iteration order.
-
-Like `Array.prototype.flatMap`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    flatMap(string => [string, string.length]),
-    reduce(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name       | Type                                   |
-| :--------- | :------------------------------------- |
-| `fn`       | (`value`: `From`) => `Iterable`<`To`\> |
-| `iterable` | `Iterable`<`From`\>                    |
-
-#### Returns
-
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:123](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L123)
-
----
-
-### flatMapAsync
-
-▸ **flatMapAsync**<`From`, `To`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`From`\>) => `AsyncIterable`<`To`\>
-
-Returns an async iterable containing the values of the async iterables returned,
-or resolving from promises returned, from applying `fn` to each value of
-`asyncIterable` in iteration order.
-
-Like `Array.prototype.flatMap`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    flatMapAsync(string => [string, string.length]),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name | Type                                                                                  |
-| :--- | :------------------------------------------------------------------------------------ |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`AsyncIterable`<`To`\> \| `Iterable`<`To`\>\> |
-
-#### Returns
-
-`fn`
-
-▸ (`asyncIterable`): `AsyncIterable`<`To`\>
-
-##### Parameters
-
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | `AsyncIterable`<`From`\> |
-
-##### Returns
-
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:149](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L149)
-
-▸ **flatMapAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
-
-Returns an async iterable containing the values of the async iterables returned,
-or resolving from promises returned, from applying `fn` to each value of
-`asyncIterable` in iteration order.
-
-Like `Array.prototype.flatMap`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    flatMapAsync(string => [string, string.length]),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name            | Type                                                                                  |
-| :-------------- | :------------------------------------------------------------------------------------ |
-| `fn`            | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\>\> |
-| `asyncIterable` | `AsyncIterable`<`From`\>                                                              |
-
-#### Returns
-
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:152](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L152)
-
----
-
-### flatMapConcur
-
-▸ **flatMapConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns an concur iterable containing the values of the concur iterables
-returned, or resolving from promises returned, from applying `fn` to each value
-of `concurIterable`.
-
-Like `Array.prototype.flatMap`, but for concur iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    flatMapConcur(string => [string, string.length]),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name | Type                                                                                                                                          |
-| :--- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<[`ConcurIterable`](modules.md#concuriterable)<`To`\> \| `Iterable`<`To`\> \| `AsyncIterable`<`To`\>\> |
-
-#### Returns
-
-`fn`
-
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-##### Parameters
-
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
-
-##### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:178](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L178)
-
-▸ **flatMapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns an concur iterable containing the values of the concur iterables
-returned, or resolving from promises returned, from applying `fn` to each value
-of `concurIterable`.
-
-Like `Array.prototype.flatMap`, but for concur iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    flatMapConcur(string => [string, string.length]),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
-```
-
-#### Type parameters
-
-| Name   |
-| :----- |
-| `From` |
-| `To`   |
-
-#### Parameters
-
-| Name             | Type                                                                                                                                          |
-| :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fn`             | (`value`: `From`) => `MaybePromiseLike`<`Iterable`<`To`\> \| `AsyncIterable`<`To`\> \| [`ConcurIterable`](modules.md#concuriterable)<`To`\>\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\>                                                                                        |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:185](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L185)
-
----
-
-### flatten
-
-▸ **flatten**<`Value`\>(`iterable`): `Iterable`<`Value`\>
-
-Returns an iterable that contains the values of each iterable in `iterable` in
-iteration order.
-
-Like `Array.prototype.flat`, but for iterables.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -7028,6 +7051,21 @@ console.log(
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
+#### Defined in
+
+[operations/transform.d.ts:197](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L197)
+
+---
+
+### flattenAsync
+
+▸ **flattenAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable that contains the values of each iterable in
+`asyncIterable` in iteration order.
+
+Like `Array.prototype.flat`, but for async iterables.
+
 #### Type parameters
 
 | Name    |
@@ -7036,28 +7074,13 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                              |
-| :--------- | :-------------------------------- |
-| `iterable` | `Iterable`<`Iterable`<`Value`\>\> |
+| Name            | Type                                                                   |
+| :-------------- | :--------------------------------------------------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Iterable`\<`Value`\> \| `AsyncIterable`\<`Value`\>\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/transform.d.ts:213](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L213)
-
----
-
-### flattenAsync
-
-▸ **flattenAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable that contains the values of each iterable in
-`asyncIterable` in iteration order.
-
-Like `Array.prototype.flat`, but for async iterables.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -7072,32 +7095,16 @@ console.log(
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                                                                |
-| :-------------- | :------------------------------------------------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\>\> |
-
-#### Returns
-
-`AsyncIterable`<`Value`\>
-
 #### Defined in
 
-[operations/transform.d.ts:235](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L235)
+[operations/transform.d.ts:219](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L219)
 
 ---
 
 ### flattenConcur
 
-▸ **flattenConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **flattenConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable that contains the values of each iterable in
 `concurIterable`.
@@ -7106,6 +7113,22 @@ Like `Array.prototype.flat`, but for concur iterables.
 
 Unlike [concat](modules.md#concat) and [concatAsync](modules.md#concatasync),
 this function does not necessarily iterate over each iterable in sequence.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                                                                                                                             |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Iterable`\<`Value`\> \| `AsyncIterable`\<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -7120,46 +7143,19 @@ console.log(
 //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                                                                                                                         |
-| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Iterable`<`Value`\> \| `AsyncIterable`<`Value`\> \| [`ConcurIterable`](modules.md#concuriterable)<`Value`\>\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
 #### Defined in
 
-[operations/transform.d.ts:260](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L260)
+[operations/transform.d.ts:244](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L244)
 
 ---
 
 ### forEach
 
-▸ **forEach**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `void`
+▸ **forEach**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) => `void`
 
 Applies `fn` to each value of `iterable`.
 
 Like `Array.prototype.forEach`, but for iterables.
-
-**`Example`**
-
-```js
-const sloths = [`carl`, `frank`, `phil`]
-
-forEach(console.log, sloths)
-//=> carl
-//=> frank
-//=> phil
-```
 
 #### Type parameters
 
@@ -7181,23 +7177,13 @@ forEach(console.log, sloths)
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `void`
-
-#### Defined in
-
-[operations/iterate.d.ts:148](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L148)
-
-▸ **forEach**<`Value`\>(`fn`, `iterable`): `void`
-
-Applies `fn` to each value of `iterable`.
-
-Like `Array.prototype.forEach`, but for iterables.
 
 **`Example`**
 
@@ -7210,6 +7196,16 @@ forEach(console.log, sloths)
 //=> phil
 ```
 
+#### Defined in
+
+[operations/iterate.d.ts:132](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L132)
+
+▸ **forEach**\<`Value`\>(`fn`, `iterable`): `void`
+
+Applies `fn` to each value of `iterable`.
+
+Like `Array.prototype.forEach`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -7221,22 +7217,33 @@ forEach(console.log, sloths)
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
 `void`
 
+**`Example`**
+
+```js
+const sloths = [`carl`, `frank`, `phil`]
+
+forEach(console.log, sloths)
+//=> carl
+//=> frank
+//=> phil
+```
+
 #### Defined in
 
-[operations/iterate.d.ts:149](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L149)
+[operations/iterate.d.ts:133](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L133)
 
 ---
 
 ### forEachAsync
 
-▸ **forEachAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `Promise`<`void`\>
+▸ **forEachAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `Promise`\<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
@@ -7245,17 +7252,6 @@ The result of applying `fn` to a value is awaited before moving on to the next
 value.
 
 Like `Array.prototype.forEach`, but for async iterables.
-
-**`Example`**
-
-```js
-const sloths = asAsync([`carl`, `frank`, `phil`])
-
-await forEachAsync(console.log, sloths)
-//=> carl
-//=> frank
-//=> phil
-```
 
 #### Type parameters
 
@@ -7273,31 +7269,17 @@ await forEachAsync(console.log, sloths)
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`void`\>
+▸ (`asyncIterable`): `Promise`\<`void`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`void`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:172](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L172)
-
-▸ **forEachAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`void`\>
-
-Returns a promise that resolves when `fn` has been applied to each value of
-`asyncIterable` and the result of each application has been awaited.
-
-The result of applying `fn` to a value is awaited before moving on to the next
-value.
-
-Like `Array.prototype.forEach`, but for async iterables.
+`Promise`\<`void`\>
 
 **`Example`**
 
@@ -7309,6 +7291,20 @@ await forEachAsync(console.log, sloths)
 //=> frank
 //=> phil
 ```
+
+#### Defined in
+
+[operations/iterate.d.ts:156](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L156)
+
+▸ **forEachAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`void`\>
+
+Returns a promise that resolves when `fn` has been applied to each value of
+`asyncIterable` and the result of each application has been awaited.
+
+The result of applying `fn` to a value is awaited before moving on to the next
+value.
+
+Like `Array.prototype.forEach`, but for async iterables.
 
 #### Type parameters
 
@@ -7321,39 +7317,38 @@ await forEachAsync(console.log, sloths)
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
+
+**`Example`**
+
+```js
+const sloths = asAsync([`carl`, `frank`, `phil`])
+
+await forEachAsync(console.log, sloths)
+//=> carl
+//=> frank
+//=> phil
+```
 
 #### Defined in
 
-[operations/iterate.d.ts:175](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L175)
+[operations/iterate.d.ts:159](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L159)
 
 ---
 
 ### forEachConcur
 
-▸ **forEachConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`void`\>
+▸ **forEachConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) => `Promise`\<`void`\>
 
 Returns a promise that resolves when `fn` has been applied to each value of
 `concurIterable` and the result of each application has been awaited.
 
 Like `Array.prototype.forEach`, but for concur iterables.
-
-**`Example`**
-
-```js
-const sloths = asConcur([`carl`, `frank`, `phil`])
-
-await forEachConcur(console.log, sloths)
-//=> carl
-//=> frank
-//=> phil
-//
-```
 
 #### Type parameters
 
@@ -7371,28 +7366,17 @@ await forEachConcur(console.log, sloths)
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`void`\>
+▸ (`concurIterable`): `Promise`\<`void`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`void`\>
-
-#### Defined in
-
-[operations/iterate.d.ts:199](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L199)
-
-▸ **forEachConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`void`\>
-
-Returns a promise that resolves when `fn` has been applied to each value of
-`concurIterable` and the result of each application has been awaited.
-
-Like `Array.prototype.forEach`, but for concur iterables.
+`Promise`\<`void`\>
 
 **`Example`**
 
@@ -7406,6 +7390,17 @@ await forEachConcur(console.log, sloths)
 //
 ```
 
+#### Defined in
+
+[operations/iterate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L183)
+
+▸ **forEachConcur**\<`Value`\>(`fn`, `concurIterable`): `Promise`\<`void`\>
+
+Returns a promise that resolves when `fn` has been applied to each value of
+`concurIterable` and the result of each application has been awaited.
+
+Like `Array.prototype.forEach`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -7414,41 +7409,40 @@ await forEachConcur(console.log, sloths)
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
+
+**`Example`**
+
+```js
+const sloths = asConcur([`carl`, `frank`, `phil`])
+
+await forEachConcur(console.log, sloths)
+//=> carl
+//=> frank
+//=> phil
+//
+```
 
 #### Defined in
 
-[operations/iterate.d.ts:202](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/iterate.d.ts#L202)
+[operations/iterate.d.ts:186](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/iterate.d.ts#L186)
 
 ---
 
 ### generate
 
-▸ **generate**<`Value`\>(`fn`): (`seed`: `Value`) => `Iterable`<`Value`\>
+▸ **generate**\<`Value`\>(`fn`): (`seed`: `Value`) => `Iterable`\<`Value`\>
 
 Returns an infinite iterable that yields `seed` for its first value and then
 yields the result of applying `fn` to its previously yielded value for every
 subsequent value.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    generate(previousValue => previousValue + previousValue, `sloth`),
-    take(3),
-    reduce(toArray()),
-  ),
-)
-//=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
-```
 
 #### Type parameters
 
@@ -7466,7 +7460,7 @@ console.log(
 
 `fn`
 
-▸ (`seed`): `Iterable`<`Value`\>
+▸ (`seed`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
@@ -7476,17 +7470,7 @@ console.log(
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/generate.d.ts:41](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L41)
-
-▸ **generate**<`Value`\>(`fn`, `seed`): `Iterable`<`Value`\>
-
-Returns an infinite iterable that yields `seed` for its first value and then
-yields the result of applying `fn` to its previously yielded value for every
-subsequent value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -7500,6 +7484,16 @@ console.log(
 )
 //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
 ```
+
+#### Defined in
+
+[operations/generate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L25)
+
+▸ **generate**\<`Value`\>(`fn`, `seed`): `Iterable`\<`Value`\>
+
+Returns an infinite iterable that yields `seed` for its first value and then
+yields the result of applying `fn` to its previously yielded value for every
+subsequent value.
 
 #### Type parameters
 
@@ -7516,35 +7510,35 @@ console.log(
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/generate.d.ts:42](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L42)
-
----
-
-### generateAsync
-
-▸ **generateAsync**<`Value`\>(`fn`): (`seed`: `Value`) =>
-`AsyncIterable`<`Value`\>
-
-Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded value
-for every subsequent value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
-  await pipe(
-    generateAsync(previousValue => previousValue + previousValue, `sloth`),
-    takeAsync(3),
-    reduceAsync(toArray()),
+  pipe(
+    generate(previousValue => previousValue + previousValue, `sloth`),
+    take(3),
+    reduce(toArray()),
   ),
 )
 //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
 ```
+
+#### Defined in
+
+[operations/generate.d.ts:26](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L26)
+
+---
+
+### generateAsync
+
+▸ **generateAsync**\<`Value`\>(`fn`): (`seed`: `Value`) =>
+`AsyncIterable`\<`Value`\>
+
+Returns an infinite async iterable that yields `seed` for its first value and
+then yields the awaited result of applying `fn` to its previously yielded value
+for every subsequent value.
 
 #### Type parameters
 
@@ -7554,15 +7548,15 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                       |
-| :--- | :--------------------------------------------------------- |
-| `fn` | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
+| Name | Type                                                        |
+| :--- | :---------------------------------------------------------- |
+| `fn` | (`previousValue`: `Value`) => `MaybePromiseLike`\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`seed`): `AsyncIterable`<`Value`\>
+▸ (`seed`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
@@ -7572,17 +7566,7 @@ console.log(
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/generate.d.ts:63](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L63)
-
-▸ **generateAsync**<`Value`\>(`fn`, `seed`): `AsyncIterable`<`Value`\>
-
-Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded value
-for every subsequent value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -7597,6 +7581,16 @@ console.log(
 //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
 ```
 
+#### Defined in
+
+[operations/generate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L47)
+
+▸ **generateAsync**\<`Value`\>(`fn`, `seed`): `AsyncIterable`\<`Value`\>
+
+Returns an infinite async iterable that yields `seed` for its first value and
+then yields the awaited result of applying `fn` to its previously yielded value
+for every subsequent value.
+
 #### Type parameters
 
 | Name    |
@@ -7605,27 +7599,56 @@ console.log(
 
 #### Parameters
 
-| Name   | Type                                                       |
-| :----- | :--------------------------------------------------------- |
-| `fn`   | (`previousValue`: `Value`) => `MaybePromiseLike`<`Value`\> |
-| `seed` | `Value`                                                    |
+| Name   | Type                                                        |
+| :----- | :---------------------------------------------------------- |
+| `fn`   | (`previousValue`: `Value`) => `MaybePromiseLike`\<`Value`\> |
+| `seed` | `Value`                                                     |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    generateAsync(previousValue => previousValue + previousValue, `sloth`),
+    takeAsync(3),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+```
 
 #### Defined in
 
-[operations/generate.d.ts:66](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L66)
+[operations/generate.d.ts:50](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L50)
 
 ---
 
 ### get
 
-▸ **get**<`Value`\>(`iterable`): `Value`
+▸ **get**\<`Value`\>(`iterable`): `Value`
 
 Returns the only value in `iterable` if it contains exactly one value.
 Otherwise, throws an error.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
+
+#### Returns
+
+`Value`
 
 **`Example`**
 
@@ -7648,6 +7671,19 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
+#### Defined in
+
+[operations/optional.d.ts:122](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L122)
+
+---
+
+### getAsync
+
+▸ **getAsync**\<`Value`\>(`asyncIterable`): `Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `asyncIterable` if it
+contains exactly one value. Otherwise, returns a promise that rejects.
+
 #### Type parameters
 
 | Name    |
@@ -7656,26 +7692,13 @@ try {
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Value`
-
-#### Defined in
-
-[operations/optional.d.ts:138](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L138)
-
----
-
-### getAsync
-
-▸ **getAsync**<`Value`\>(`asyncIterable`): `Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that rejects.
+`Promise`\<`Value`\>
 
 **`Example`**
 
@@ -7698,6 +7721,19 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
+#### Defined in
+
+[operations/optional.d.ts:148](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L148)
+
+---
+
+### getConcur
+
+▸ **getConcur**\<`Value`\>(`concurIterable`): `Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `concurIterable` if it
+contains exactly one value. Otherwise, returns a promise that rejects.
+
 #### Type parameters
 
 | Name    |
@@ -7706,26 +7742,13 @@ try {
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`Value`\>
-
-#### Defined in
-
-[operations/optional.d.ts:164](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L164)
-
----
-
-### getConcur
-
-▸ **getConcur**<`Value`\>(`concurIterable`): `Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `concurIterable` if it
-contains exactly one value. Otherwise, returns a promise that rejects.
+`Promise`\<`Value`\>
 
 **`Example`**
 
@@ -7748,44 +7771,21 @@ try {
 //=> Oh no! It had more than one value...
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-`Promise`<`Value`\>
-
 #### Defined in
 
-[operations/optional.d.ts:192](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L192)
+[operations/optional.d.ts:176](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L176)
 
 ---
 
 ### includes
 
-▸ **includes**(`searchElement`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
+▸ **includes**(`searchElement`): \<Value\>(`iterable`: `Iterable`\<`Value`\>) =>
 `boolean`
 
 Returns `true` if any value of `iterable` is equal to `searchElement` using
 `Object.is`. Otherwise returns `false`.
 
 Like `Array.prototype.includes`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
-//=> true
-```
 
 #### Parameters
 
@@ -7797,7 +7797,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `boolean`
+▸ \<`Value`\>(`iterable`): `boolean`
 
 ##### Type parameters
 
@@ -7807,24 +7807,13 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `boolean`
-
-#### Defined in
-
-[operations/predicate.d.ts:242](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L242)
-
-▸ **includes**<`Value`\>(`searchElement`, `iterable`): `boolean`
-
-Returns `true` if any value of `iterable` is equal to `searchElement` using
-`Object.is`. Otherwise returns `false`.
-
-Like `Array.prototype.includes`, but for iterables.
 
 **`Example`**
 
@@ -7832,6 +7821,17 @@ Like `Array.prototype.includes`, but for iterables.
 console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 //=> true
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:221](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L221)
+
+▸ **includes**\<`Value`\>(`searchElement`, `iterable`): `boolean`
+
+Returns `true` if any value of `iterable` is equal to `searchElement` using
+`Object.is`. Otherwise returns `false`.
+
+Like `Array.prototype.includes`, but for iterables.
 
 #### Type parameters
 
@@ -7841,43 +7841,38 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
 
 #### Parameters
 
-| Name            | Type                 |
-| :-------------- | :------------------- |
-| `searchElement` | `unknown`            |
-| `iterable`      | `Iterable`<`Value`\> |
+| Name            | Type                  |
+| :-------------- | :-------------------- |
+| `searchElement` | `unknown`             |
+| `iterable`      | `Iterable`\<`Value`\> |
 
 #### Returns
 
 `boolean`
 
+**`Example`**
+
+```js
+console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
+//=> true
+```
+
 #### Defined in
 
-[operations/predicate.d.ts:243](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L243)
+[operations/predicate.d.ts:222](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L222)
 
 ---
 
 ### includesAsync
 
-▸ **includesAsync**(`searchElement`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `Promise`<`boolean`\>
+▸ **includesAsync**(`searchElement`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `asyncIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
 resolves to `false`.
 
 Like `Array.prototype.includes`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    includesAsync(3),
-  ),
-)
-//=> true
-```
 
 #### Parameters
 
@@ -7889,7 +7884,7 @@ console.log(
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `Promise`<`boolean`\>
+▸ \<`Value`\>(`asyncIterable`): `Promise`\<`boolean`\>
 
 ##### Type parameters
 
@@ -7899,26 +7894,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:265](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L265)
-
-▸ **includesAsync**<`Value`\>(`searchElement`, `asyncIterable`):
-`Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if any value of `asyncIterable` is
-equal to `searchElement` using `Object.is`. Otherwise returns a promise that
-resolves to `false`.
-
-Like `Array.prototype.includes`, but for async iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -7932,6 +7914,19 @@ console.log(
 //=> true
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:244](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L244)
+
+▸ **includesAsync**\<`Value`\>(`searchElement`, `asyncIterable`):
+`Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if any value of `asyncIterable` is
+equal to `searchElement` using `Object.is`. Otherwise returns a promise that
+resolves to `false`.
+
+Like `Array.prototype.includes`, but for async iterables.
+
 #### Type parameters
 
 | Name    |
@@ -7940,44 +7935,44 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `searchElement` | `unknown`                 |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `searchElement` | `unknown`                  |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    includesAsync(3),
+  ),
+)
+//=> true
+```
 
 #### Defined in
 
-[operations/predicate.d.ts:268](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L268)
+[operations/predicate.d.ts:247](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L247)
 
 ---
 
 ### includesConcur
 
-▸ **includesConcur**(`searchElement`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-`Promise`<`boolean`\>
+▸ **includesConcur**(`searchElement`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `concurIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
 resolves to `false`.
 
 Like `Array.prototype.includes`, but for concur iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    includesConcur(3),
-  ),
-)
-//=> true
-```
 
 #### Parameters
 
@@ -7989,7 +7984,7 @@ console.log(
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`): `Promise`<`boolean`\>
+▸ \<`Value`\>(`concurIterable`): `Promise`\<`boolean`\>
 
 ##### Type parameters
 
@@ -7999,26 +7994,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:293](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L293)
-
-▸ **includesConcur**<`Value`\>(`searchElement`, `concurIterable`):
-`Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if any value of `concurIterable` is
-equal to `searchElement` using `Object.is`. Otherwise returns a promise that
-resolves to `false`.
-
-Like `Array.prototype.includes`, but for concur iterables.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -8032,6 +8014,19 @@ console.log(
 //=> true
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:272](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L272)
+
+▸ **includesConcur**\<`Value`\>(`searchElement`, `concurIterable`):
+`Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if any value of `concurIterable` is
+equal to `searchElement` using `Object.is`. Otherwise returns a promise that
+resolves to `false`.
+
+Like `Array.prototype.includes`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -8040,28 +8035,56 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `searchElement`  | `unknown`                                               |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `searchElement`  | `unknown`                                                |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    includesConcur(3),
+  ),
+)
+//=> true
+```
 
 #### Defined in
 
-[operations/predicate.d.ts:296](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L296)
+[operations/predicate.d.ts:275](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L275)
 
 ---
 
 ### index
 
-▸ **index**<`Value`\>(`iterable`): `Iterable`<[`number`, `Value`]\>
+▸ **index**\<`Value`\>(`iterable`): `Iterable`\<[`number`, `Value`]\>
 
 Returns an iterable equivalent to `iterable` except each value of `iterable` is
 placed in an entry containing the value's 0-based index in the iteration order
 followed by the value itself.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
+
+#### Returns
+
+`Iterable`\<[`number`, `Value`]\>
 
 **`Example`**
 
@@ -8072,6 +8095,21 @@ console.log(
 //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
 ```
 
+#### Defined in
+
+[operations/transform.d.ts:267](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L267)
+
+---
+
+### indexAsync
+
+▸ **indexAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<[`number`,
+`Value`]\>
+
+Returns an async iterable equivalent to `asyncIterable` except each value of
+`asyncIterable` is placed in an entry containing the value's 0-based index in
+the iteration order followed by the value itself.
+
 #### Type parameters
 
 | Name    |
@@ -8080,28 +8118,13 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<[`number`, `Value`]\>
-
-#### Defined in
-
-[operations/transform.d.ts:283](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L283)
-
----
-
-### indexAsync
-
-▸ **indexAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<[`number`,
-`Value`]\>
-
-Returns an async iterable equivalent to `asyncIterable` except each value of
-`asyncIterable` is placed in an entry containing the value's 0-based index in
-the iteration order followed by the value itself.
+`AsyncIterable`\<[`number`, `Value`]\>
 
 **`Example`**
 
@@ -8116,6 +8139,21 @@ console.log(
 //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
 ```
 
+#### Defined in
+
+[operations/transform.d.ts:288](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L288)
+
+---
+
+### indexConcur
+
+▸ **indexConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<[`number`, `Value`]\>
+
+Returns a concur iterable equivalent to `concurIterable` except each value of
+`concurIterable` is placed in an entry containing the value's 0-based index in
+the iteration order followed by the value itself.
+
 #### Type parameters
 
 | Name    |
@@ -8124,28 +8162,13 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<[`number`, `Value`]\>
-
-#### Defined in
-
-[operations/transform.d.ts:304](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L304)
-
----
-
-### indexConcur
-
-▸ **indexConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`number`, `Value`]\>
-
-Returns a concur iterable equivalent to `concurIterable` except each value of
-`concurIterable` is placed in an entry containing the value's 0-based index in
-the iteration order followed by the value itself.
+[`ConcurIterable`](modules.md#concuriterable)\<[`number`, `Value`]\>
 
 **`Example`**
 
@@ -8160,44 +8183,21 @@ console.log(
 //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<[`number`, `Value`]\>
-
 #### Defined in
 
-[operations/transform.d.ts:325](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L325)
+[operations/transform.d.ts:309](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L309)
 
 ---
 
 ### join
 
-▸ **join**(`separator`): (`iterable`: `Iterable`<`unknown`\>) => `string`
+▸ **join**(`separator`): (`iterable`: `Iterable`\<`unknown`\>) => `string`
 
 Returns the result of concatenating the values of `iterable` to a string where
 values are separated by `separator`.
 
 Like `Array.prototype.join`, but for iterables, but does not treat `null`,
 `undefined`, or `[]` specially.
-
-**`Example`**
-
-```js
-console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
-//=> sloth, more sloth, even more sloth
-```
 
 #### Parameters
 
@@ -8213,17 +8213,24 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 
 ##### Parameters
 
-| Name       | Type                   |
-| :--------- | :--------------------- |
-| `iterable` | `Iterable`<`unknown`\> |
+| Name       | Type                    |
+| :--------- | :---------------------- |
+| `iterable` | `Iterable`\<`unknown`\> |
 
 ##### Returns
 
 `string`
 
+**`Example`**
+
+```js
+console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
+//=> sloth, more sloth, even more sloth
+```
+
 #### Defined in
 
-[operations/collect.d.ts:395](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L395)
+[operations/collect.d.ts:379](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L379)
 
 ▸ **join**(`separator`, `iterable`): `string`
 
@@ -8233,6 +8240,17 @@ values are separated by `separator`.
 Like `Array.prototype.join`, but for iterables, but does not treat `null`,
 `undefined`, or `[]` specially.
 
+#### Parameters
+
+| Name        | Type                    |
+| :---------- | :---------------------- |
+| `separator` | `string`                |
+| `iterable`  | `Iterable`\<`unknown`\> |
+
+#### Returns
+
+`string`
+
 **`Example`**
 
 ```js
@@ -8240,45 +8258,22 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 //=> sloth, more sloth, even more sloth
 ```
 
-#### Parameters
-
-| Name        | Type                   |
-| :---------- | :--------------------- |
-| `separator` | `string`               |
-| `iterable`  | `Iterable`<`unknown`\> |
-
-#### Returns
-
-`string`
-
 #### Defined in
 
-[operations/collect.d.ts:396](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L396)
+[operations/collect.d.ts:380](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L380)
 
 ---
 
 ### joinAsync
 
-▸ **joinAsync**(`separator`): (`asyncIterable`: `AsyncIterable`<`unknown`\>) =>
-`Promise`<`string`\>
+▸ **joinAsync**(`separator`): (`asyncIterable`: `AsyncIterable`\<`unknown`\>) =>
+`Promise`\<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `asyncIterable` to a string where values are separated by `separator`.
 
 Like `Array.prototype.join`, but for async iterables, but does not treat `null`,
 `undefined`, or `[]` specially.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    joinAsync(`, `),
-  ),
-)
-//=> sloth, more sloth, even more sloth
-```
 
 #### Parameters
 
@@ -8290,29 +8285,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`string`\>
+▸ (`asyncIterable`): `Promise`\<`string`\>
 
 ##### Parameters
 
-| Name            | Type                        |
-| :-------------- | :-------------------------- |
-| `asyncIterable` | `AsyncIterable`<`unknown`\> |
+| Name            | Type                         |
+| :-------------- | :--------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`unknown`\> |
 
 ##### Returns
 
-`Promise`<`string`\>
-
-#### Defined in
-
-[operations/collect.d.ts:418](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L418)
-
-▸ **joinAsync**(`separator`, `asyncIterable`): `Promise`<`string`\>
-
-Returns a promise that resolves to the result of concatenating the values of
-`asyncIterable` to a string where values are separated by `separator`.
-
-Like `Array.prototype.join`, but for async iterables, but does not treat `null`,
-`undefined`, or `[]` specially.
+`Promise`\<`string`\>
 
 **`Example`**
 
@@ -8326,46 +8309,58 @@ console.log(
 //=> sloth, more sloth, even more sloth
 ```
 
+#### Defined in
+
+[operations/collect.d.ts:402](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L402)
+
+▸ **joinAsync**(`separator`, `asyncIterable`): `Promise`\<`string`\>
+
+Returns a promise that resolves to the result of concatenating the values of
+`asyncIterable` to a string where values are separated by `separator`.
+
+Like `Array.prototype.join`, but for async iterables, but does not treat `null`,
+`undefined`, or `[]` specially.
+
 #### Parameters
 
-| Name            | Type                        |
-| :-------------- | :-------------------------- |
-| `separator`     | `string`                    |
-| `asyncIterable` | `AsyncIterable`<`unknown`\> |
+| Name            | Type                         |
+| :-------------- | :--------------------------- |
+| `separator`     | `string`                     |
+| `asyncIterable` | `AsyncIterable`\<`unknown`\> |
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    joinAsync(`, `),
+  ),
+)
+//=> sloth, more sloth, even more sloth
+```
 
 #### Defined in
 
-[operations/collect.d.ts:421](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L421)
+[operations/collect.d.ts:405](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L405)
 
 ---
 
 ### joinConcur
 
 ▸ **joinConcur**(`separator`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`unknown`\>) =>
-`Promise`<`string`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`unknown`\>) =>
+`Promise`\<`string`\>
 
 Returns a promise that resolves to the result of concatenating the values of
 `concurIterable` to a string where values are separated by `separator`.
 
 Like `Array.prototype.join`, but for concur iterables, but does not treat
 `null`, `undefined`, or `[]` specially.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    joinConcur(`, `),
-  ),
-)
-//=> sloth, more sloth, even more sloth
-```
 
 #### Parameters
 
@@ -8377,29 +8372,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`string`\>
+▸ (`concurIterable`): `Promise`\<`string`\>
 
 ##### Parameters
 
-| Name             | Type                                                      |
-| :--------------- | :-------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`unknown`\> |
+| Name             | Type                                                       |
+| :--------------- | :--------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`unknown`\> |
 
 ##### Returns
 
-`Promise`<`string`\>
-
-#### Defined in
-
-[operations/collect.d.ts:443](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L443)
-
-▸ **joinConcur**(`separator`, `concurIterable`): `Promise`<`string`\>
-
-Returns a promise that resolves to the result of concatenating the values of
-`concurIterable` to a string where values are separated by `separator`.
-
-Like `Array.prototype.join`, but for concur iterables, but does not treat
-`null`, `undefined`, or `[]` specially.
+`Promise`\<`string`\>
 
 **`Example`**
 
@@ -8413,26 +8396,50 @@ console.log(
 //=> sloth, more sloth, even more sloth
 ```
 
+#### Defined in
+
+[operations/collect.d.ts:427](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L427)
+
+▸ **joinConcur**(`separator`, `concurIterable`): `Promise`\<`string`\>
+
+Returns a promise that resolves to the result of concatenating the values of
+`concurIterable` to a string where values are separated by `separator`.
+
+Like `Array.prototype.join`, but for concur iterables, but does not treat
+`null`, `undefined`, or `[]` specially.
+
 #### Parameters
 
-| Name             | Type                                                      |
-| :--------------- | :-------------------------------------------------------- |
-| `separator`      | `string`                                                  |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`unknown`\> |
+| Name             | Type                                                       |
+| :--------------- | :--------------------------------------------------------- |
+| `separator`      | `string`                                                   |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`unknown`\> |
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    joinConcur(`, `),
+  ),
+)
+//=> sloth, more sloth, even more sloth
+```
 
 #### Defined in
 
-[operations/collect.d.ts:446](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L446)
+[operations/collect.d.ts:430](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L430)
 
 ---
 
 ### keys
 
-▸ **keys**<`Key`\>(`object`): `Iterable`<`Key`\>
+▸ **keys**\<`Key`\>(`object`): `Iterable`\<`Key`\>
 
 Returns an iterable containing the keys of `object`.
 
@@ -8448,19 +8455,19 @@ iterable is opaque.
 
 #### Parameters
 
-| Name     | Type                             |
-| :------- | :------------------------------- |
-| `object` | `ReadonlyMap`<`Key`, `unknown`\> |
+| Name     | Type                              |
+| :------- | :-------------------------------- |
+| `object` | `ReadonlyMap`\<`Key`, `unknown`\> |
 
 #### Returns
 
-`Iterable`<`Key`\>
+`Iterable`\<`Key`\>
 
 #### Defined in
 
-[operations/from.d.ts:25](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/from.d.ts#L25)
+[operations/from.d.ts:9](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/from.d.ts#L9)
 
-▸ **keys**<`Key`\>(`object`): `Iterable`<`Key`\>
+▸ **keys**\<`Key`\>(`object`): `Iterable`\<`Key`\>
 
 Returns an iterable containing the keys of `object`.
 
@@ -8476,26 +8483,42 @@ iterable is opaque.
 
 #### Parameters
 
-| Name     | Type                                     |
-| :------- | :--------------------------------------- |
-| `object` | `Readonly`<`Record`<`Key`, `unknown`\>\> |
+| Name     | Type                                       |
+| :------- | :----------------------------------------- |
+| `object` | `Readonly`\<`Record`\<`Key`, `unknown`\>\> |
 
 #### Returns
 
-`Iterable`<`Key`\>
+`Iterable`\<`Key`\>
 
 #### Defined in
 
-[operations/from.d.ts:26](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/from.d.ts#L26)
+[operations/from.d.ts:10](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/from.d.ts#L10)
 
 ---
 
 ### last
 
-▸ **last**<`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ **last**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing the last value of `iterable`, or an empty
 iterable if `iterable` is empty.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
+
+#### Returns
+
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -8510,6 +8533,19 @@ console.log(
 //=> [ 'even more sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:399](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L399)
+
+---
+
+### lastAsync
+
+▸ **lastAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the last value of `asyncIterable`, or an
+empty async iterable if `asyncIterable` is empty.
+
 #### Type parameters
 
 | Name    |
@@ -8518,26 +8554,13 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:415](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L415)
-
----
-
-### lastAsync
-
-▸ **lastAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the last value of `asyncIterable`, or an
-empty async iterable if `asyncIterable` is empty.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -8552,6 +8575,20 @@ console.log(
 //=> [ 'even more sloth' ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:417](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L417)
+
+---
+
+### lastConcur
+
+▸ **lastConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the last value of `concurIterable`, or an
+empty concur iterable if `concurIterable` is empty.
+
 #### Type parameters
 
 | Name    |
@@ -8560,27 +8597,13 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:433](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L433)
-
----
-
-### lastConcur
-
-▸ **lastConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the last value of `concurIterable`, or an
-empty concur iterable if `concurIterable` is empty.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -8595,50 +8618,21 @@ console.log(
 //=> [ 'even more sloth' ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
 #### Defined in
 
-[operations/slice.d.ts:453](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L453)
+[operations/slice.d.ts:437](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L437)
 
 ---
 
 ### map
 
-▸ **map**<`From`, `To`\>(`fn`): (`iterable`: `Iterable`<`From`\>) =>
-`Iterable`<`To`\>
+▸ **map**\<`From`, `To`\>(`fn`): (`iterable`: `Iterable`\<`From`\>) =>
+`Iterable`\<`To`\>
 
 Returns an iterable containing the values of `iterable` transformed by `fn` in
 iteration order.
 
 Like `Array.prototype.map`, but for iterables.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    map(string => string.length),
-    reduce(toArray()),
-  ),
-)
-//=> [ 5, 10, 15 ]
-```
 
 #### Type parameters
 
@@ -8657,28 +8651,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`To`\>
+▸ (`iterable`): `Iterable`\<`To`\>
 
 ##### Parameters
 
-| Name       | Type                |
-| :--------- | :------------------ |
-| `iterable` | `Iterable`<`From`\> |
+| Name       | Type                 |
+| :--------- | :------------------- |
+| `iterable` | `Iterable`\<`From`\> |
 
 ##### Returns
 
-`Iterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:39](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L39)
-
-▸ **map**<`From`, `To`\>(`fn`, `iterable`): `Iterable`<`To`\>
-
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order.
-
-Like `Array.prototype.map`, but for iterables.
+`Iterable`\<`To`\>
 
 **`Example`**
 
@@ -8692,6 +8675,17 @@ console.log(
 )
 //=> [ 5, 10, 15 ]
 ```
+
+#### Defined in
+
+[operations/transform.d.ts:23](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L23)
+
+▸ **map**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`To`\>
+
+Returns an iterable containing the values of `iterable` transformed by `fn` in
+iteration order.
+
+Like `Array.prototype.map`, but for iterables.
 
 #### Type parameters
 
@@ -8705,40 +8699,40 @@ console.log(
 | Name       | Type                      |
 | :--------- | :------------------------ |
 | `fn`       | (`value`: `From`) => `To` |
-| `iterable` | `Iterable`<`From`\>       |
+| `iterable` | `Iterable`\<`From`\>      |
 
 #### Returns
 
-`Iterable`<`To`\>
+`Iterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    map(string => string.length),
+    reduce(toArray()),
+  ),
+)
+//=> [ 5, 10, 15 ]
+```
 
 #### Defined in
 
-[operations/transform.d.ts:42](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L42)
+[operations/transform.d.ts:26](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L26)
 
 ---
 
 ### mapAsync
 
-▸ **mapAsync**<`From`, `To`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`From`\>)
-=> `AsyncIterable`<`To`\>
+▸ **mapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`From`\>) => `AsyncIterable`\<`To`\>
 
 Returns an async iterable containing the values of `asyncIterable` transformed
 by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    mapAsync(string => string.length),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 5, 10, 15 ]
-```
 
 #### Type parameters
 
@@ -8749,36 +8743,25 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`To`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`To`\>
 
 ##### Parameters
 
-| Name            | Type                     |
-| :-------------- | :----------------------- |
-| `asyncIterable` | `AsyncIterable`<`From`\> |
+| Name            | Type                      |
+| :-------------- | :------------------------ |
+| `asyncIterable` | `AsyncIterable`\<`From`\> |
 
 ##### Returns
 
-`AsyncIterable`<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:64](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L64)
-
-▸ **mapAsync**<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`<`To`\>
-
-Returns an async iterable containing the values of `asyncIterable` transformed
-by `fn` in iteration order.
-
-Like `Array.prototype.map`, but for async iterables.
+`AsyncIterable`\<`To`\>
 
 **`Example`**
 
@@ -8793,6 +8776,17 @@ console.log(
 //=> [ 5, 10, 15 ]
 ```
 
+#### Defined in
+
+[operations/transform.d.ts:48](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L48)
+
+▸ **mapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`To`\>
+
+Returns an async iterable containing the values of `asyncIterable` transformed
+by `fn` in iteration order.
+
+Like `Array.prototype.map`, but for async iterables.
+
 #### Type parameters
 
 | Name   |
@@ -8802,25 +8796,38 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                           |
-| :-------------- | :--------------------------------------------- |
-| `fn`            | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
-| `asyncIterable` | `AsyncIterable`<`From`\>                       |
+| Name            | Type                                            |
+| :-------------- | :---------------------------------------------- |
+| `fn`            | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
+| `asyncIterable` | `AsyncIterable`\<`From`\>                       |
 
 #### Returns
 
-`AsyncIterable`<`To`\>
+`AsyncIterable`\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    mapAsync(string => string.length),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 5, 10, 15 ]
+```
 
 #### Defined in
 
-[operations/transform.d.ts:67](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L67)
+[operations/transform.d.ts:51](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L51)
 
 ---
 
 ### mapAsyncReducer
 
-▸ **mapAsyncReducer**<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`,
-`asyncReducer`): [`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`,
+▸ **mapAsyncReducer**\<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`,
+`asyncReducer`): [`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`,
 `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
@@ -8838,23 +8845,24 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name           | Type                                                                                                              |
-| :------------- | :---------------------------------------------------------------------------------------------------------------- |
-| `fn`           | (`value`: `From`) => `MaybePromiseLike`<`To`\>                                                                    |
-| `asyncReducer` | `Readonly`<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `From`, `This`\>\> |
+| Name           | Type                                                                                                                |
+| :------------- | :------------------------------------------------------------------------------------------------------------------ |
+| `fn`           | (`value`: `From`) => `MaybePromiseLike`\<`To`\>                                                                     |
+| `asyncReducer` | `Readonly`\<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `From`, `This`\>\> |
 
 #### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `To`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:315](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L315)
+[operations/reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L307)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, Acc, This\>(`asyncReducer`:
-`Readonly`<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`,
-`Acc`, `From`, `This`\>\>) => [`AsyncReducer`](modules.md#asyncreducer)<`Value`,
-`Acc`, `To`\>
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<Value, Acc,
+This\>(`asyncReducer`:
+`Readonly`\<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`,
+`Acc`, `From`, `This`\>\>) =>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -8868,16 +8876,16 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`, `Acc`, `This`\>(`asyncReducer`):
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `To`\>
+▸ \<`Value`, `Acc`, `This`\>(`asyncReducer`):
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `To`\>
 
 ##### Type parameters
 
@@ -8889,20 +8897,20 @@ except its final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name           | Type                                                                                                              |
-| :------------- | :---------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | `Readonly`<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `From`, `This`\>\> |
+| Name           | Type                                                                                                                |
+| :------------- | :------------------------------------------------------------------------------------------------------------------ |
+| `asyncReducer` | `Readonly`\<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `To`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:319](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L319)
+[operations/reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L311)
 
-▸ **mapAsyncReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`, `To`\>
+▸ **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `To`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -8918,22 +8926,22 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name           | Type                                                                                                             |
-| :------------- | :--------------------------------------------------------------------------------------------------------------- |
-| `fn`           | (`value`: `From`) => `MaybePromiseLike`<`To`\>                                                                   |
-| `asyncReducer` | `Readonly`<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `From`, `This`\>\> |
+| Name           | Type                                                                                                               |
+| :------------- | :----------------------------------------------------------------------------------------------------------------- |
+| `fn`           | (`value`: `From`) => `MaybePromiseLike`\<`To`\>                                                                    |
+| `asyncReducer` | `Readonly`\<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `From`, `This`\>\> |
 
 #### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`, `To`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:323](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L323)
+[operations/reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L317)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, This\>(`asyncReducer`:
-`Readonly`<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`,
-`From`, `This`\>\>) => [`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`,
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<Value, This\>(`asyncReducer`:
+`Readonly`\<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`,
+`From`, `This`\>\>) => [`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `To`,
 `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
@@ -8948,16 +8956,16 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`, `This`\>(`asyncReducer`):
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`, `To`\>
+▸ \<`Value`, `This`\>(`asyncReducer`):
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `To`, `To`\>
 
 ##### Type parameters
 
@@ -8968,20 +8976,20 @@ except its final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name           | Type                                                                                                             |
-| :------------- | :--------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | `Readonly`<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `From`, `This`\>\> |
+| Name           | Type                                                                                                               |
+| :------------- | :----------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | `Readonly`\<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `To`, `To`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L327)
+[operations/reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L321)
 
-▸ **mapAsyncReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
+▸ **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -8997,23 +9005,23 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name           | Type                                                                                                                       |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| `fn`           | (`value`: `From`) => `MaybePromiseLike`<`To`\>                                                                             |
-| `asyncReducer` | `Readonly`<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `From`, `This`\>\> |
+| Name           | Type                                                                                                                         |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `fn`           | (`value`: `From`) => `MaybePromiseLike`\<`To`\>                                                                              |
+| `asyncReducer` | `Readonly`\<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `From`, `This`\>\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:331](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L331)
+[operations/reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L327)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <Value, This\>(`asyncReducer`:
-`Readonly`<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`,
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<Value, This\>(`asyncReducer`:
+`Readonly`\<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`,
 `From`, `This`\>\>) =>
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -9027,16 +9035,16 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`, `This`\>(`asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
+▸ \<`Value`, `This`\>(`asyncReducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `To`\>
 
 ##### Type parameters
 
@@ -9047,20 +9055,20 @@ except its final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name           | Type                                                                                                                       |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | `Readonly`<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `From`, `This`\>\> |
+| Name           | Type                                                                                                                         |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | `Readonly`\<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:337](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L337)
+[operations/reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L333)
 
-▸ **mapAsyncReducer**<`From`, `To`, `This`\>(`fn`, `asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+▸ **mapAsyncReducer**\<`From`, `To`, `This`\>(`fn`, `asyncReducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -9075,22 +9083,22 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name           | Type                                                                                                                    |
-| :------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `fn`           | (`value`: `From`) => `MaybePromiseLike`<`To`\>                                                                          |
-| `asyncReducer` | `Readonly`<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`From`, `This`\>\> |
+| Name           | Type                                                                                                                      |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `fn`           | (`value`: `From`) => `MaybePromiseLike`\<`To`\>                                                                           |
+| `asyncReducer` | `Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`From`, `This`\>\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:343](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L343)
+[operations/reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L341)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): <This\>(`asyncReducer`:
-`Readonly`<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`From`,
-`This`\>\>) => [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`,
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<This\>(`asyncReducer`:
+`Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`From`,
+`This`\>\>) => [`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`,
 `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
@@ -9105,16 +9113,16 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`This`\>(`asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+▸ \<`This`\>(`asyncReducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 ##### Type parameters
 
@@ -9124,20 +9132,20 @@ except its final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name           | Type                                                                                                                    |
-| :------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | `Readonly`<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`From`, `This`\>\> |
+| Name           | Type                                                                                                                      |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------ |
+| `asyncReducer` | `Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`From`, `This`\>\> |
 
 ##### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:347](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L347)
+[operations/reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L345)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`, `asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`, `asyncReducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -9151,22 +9159,22 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name           | Type                                                               |
-| :------------- | :----------------------------------------------------------------- |
-| `fn`           | (`value`: `From`) => `MaybePromiseLike`<`To`\>                     |
-| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`From`\> |
+| Name           | Type                                                                |
+| :------------- | :------------------------------------------------------------------ |
+| `fn`           | (`value`: `From`) => `MaybePromiseLike`\<`To`\>                     |
+| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`From`\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L351)
+[operations/reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L351)
 
-▸ **mapAsyncReducer**<`From`, `To`\>(`fn`): (`asyncReducer`:
-[`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`From`\>) =>
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+▸ **mapAsyncReducer**\<`From`, `To`\>(`fn`): (`asyncReducer`:
+[`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`From`\>) =>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 Returns an [AsyncReducer](modules.md#asyncreducer) equivalent to `reducer`
 except its final value is transformed using `fn`.
@@ -9180,56 +9188,43 @@ except its final value is transformed using `fn`.
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
 ▸ (`asyncReducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 ##### Parameters
 
-| Name           | Type                                                               |
-| :------------- | :----------------------------------------------------------------- |
-| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`From`\> |
+| Name           | Type                                                                |
+| :------------- | :------------------------------------------------------------------ |
+| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`From`\> |
 
 ##### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`To`, `To`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L355)
+[operations/reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L355)
 
 ---
 
 ### mapConcur
 
-▸ **mapConcur**<`From`, `To`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`From`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+▸ **mapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`From`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 Returns a concur iterable containing the values of `concurIterable` transformed
 by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for concur iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    mapConcur(string => string.length),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 5, 10, 15 ]
-```
 
 #### Type parameters
 
@@ -9240,37 +9235,25 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                           |
-| :--- | :--------------------------------------------- |
-| `fn` | (`value`: `From`) => `MaybePromiseLike`<`To`\> |
+| Name | Type                                            |
+| :--- | :---------------------------------------------- |
+| `fn` | (`value`: `From`) => `MaybePromiseLike`\<`To`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`To`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 ##### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-#### Defined in
-
-[operations/transform.d.ts:92](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L92)
-
-▸ **mapConcur**<`From`, `To`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
-
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` in iteration order.
-
-Like `Array.prototype.map`, but for concur iterables.
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
 
 **`Example`**
 
@@ -9285,6 +9268,18 @@ console.log(
 //=> [ 5, 10, 15 ]
 ```
 
+#### Defined in
+
+[operations/transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L76)
+
+▸ **mapConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+Returns a concur iterable containing the values of `concurIterable` transformed
+by `fn` in iteration order.
+
+Like `Array.prototype.map`, but for concur iterables.
+
 #### Type parameters
 
 | Name   |
@@ -9294,25 +9289,38 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                   |
-| :--------------- | :----------------------------------------------------- |
-| `fn`             | (`value`: `From`) => `MaybePromiseLike`<`To`\>         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`From`\> |
+| Name             | Type                                                    |
+| :--------------- | :------------------------------------------------------ |
+| `fn`             | (`value`: `From`) => `MaybePromiseLike`\<`To`\>         |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`From`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`To`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`To`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    mapConcur(string => string.length),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 5, 10, 15 ]
+```
 
 #### Defined in
 
-[operations/transform.d.ts:95](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/transform.d.ts#L95)
+[operations/transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/transform.d.ts#L79)
 
 ---
 
 ### mapReducer
 
-▸ **mapReducer**<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`, `reducer`):
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `To`\>
+▸ **mapReducer**\<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`, `reducer`):
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9330,22 +9338,22 @@ final value is transformed using `fn`.
 
 #### Parameters
 
-| Name      | Type                                                                                                    |
-| :-------- | :------------------------------------------------------------------------------------------------------ |
-| `fn`      | (`value`: `From`) => `To`                                                                               |
-| `reducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `From`, `This`\>\> |
+| Name      | Type                                                                                                      |
+| :-------- | :-------------------------------------------------------------------------------------------------------- |
+| `fn`      | (`value`: `From`) => `To`                                                                                 |
+| `reducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `From`, `This`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `To`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:269](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L269)
+[operations/reducer.d.ts:253](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L253)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, Acc, This\>(`reducer`:
-`Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`,
-`Acc`, `From`, `This`\>\>) => [`Reducer`](modules.md#reducer)<`Value`, `Acc`,
+▸ **mapReducer**\<`From`, `To`\>(`fn`): \<Value, Acc, This\>(`reducer`:
+`Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`,
+`Acc`, `From`, `This`\>\>) => [`Reducer`](modules.md#reducer)\<`Value`, `Acc`,
 `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
@@ -9369,8 +9377,8 @@ final value is transformed using `fn`.
 
 `fn`
 
-▸ <`Value`, `Acc`, `This`\>(`reducer`): [`Reducer`](modules.md#reducer)<`Value`,
-`Acc`, `To`\>
+▸ \<`Value`, `Acc`, `This`\>(`reducer`):
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `To`\>
 
 ##### Type parameters
 
@@ -9382,20 +9390,20 @@ final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name      | Type                                                                                                    |
-| :-------- | :------------------------------------------------------------------------------------------------------ |
-| `reducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `From`, `This`\>\> |
+| Name      | Type                                                                                                      |
+| :-------- | :-------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `To`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:273](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L273)
+[operations/reducer.d.ts:257](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L257)
 
-▸ **mapReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
-[`Reducer`](modules.md#reducer)<`Value`, `To`, `To`\>
+▸ **mapReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
+[`Reducer`](modules.md#reducer)\<`Value`, `To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9412,22 +9420,22 @@ final value is transformed using `fn`.
 
 #### Parameters
 
-| Name      | Type                                                                                                   |
-| :-------- | :----------------------------------------------------------------------------------------------------- |
-| `fn`      | (`value`: `From`) => `To`                                                                              |
-| `reducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `From`, `This`\>\> |
+| Name      | Type                                                                                                     |
+| :-------- | :------------------------------------------------------------------------------------------------------- |
+| `fn`      | (`value`: `From`) => `To`                                                                                |
+| `reducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `From`, `This`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `To`, `To`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:277](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L277)
+[operations/reducer.d.ts:263](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L263)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, This\>(`reducer`:
-`Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`,
-`From`, `This`\>\>) => [`Reducer`](modules.md#reducer)<`Value`, `To`, `To`\>
+▸ **mapReducer**\<`From`, `To`\>(`fn`): \<Value, This\>(`reducer`:
+`Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`,
+`From`, `This`\>\>) => [`Reducer`](modules.md#reducer)\<`Value`, `To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9450,8 +9458,8 @@ final value is transformed using `fn`.
 
 `fn`
 
-▸ <`Value`, `This`\>(`reducer`): [`Reducer`](modules.md#reducer)<`Value`, `To`,
-`To`\>
+▸ \<`Value`, `This`\>(`reducer`): [`Reducer`](modules.md#reducer)\<`Value`,
+`To`, `To`\>
 
 ##### Type parameters
 
@@ -9462,20 +9470,20 @@ final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name      | Type                                                                                                   |
-| :-------- | :----------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `From`, `This`\>\> |
+| Name      | Type                                                                                                     |
+| :-------- | :------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `To`, `To`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:281](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L281)
+[operations/reducer.d.ts:267](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L267)
 
-▸ **mapReducer**<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `To`\>
+▸ **mapReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9492,22 +9500,22 @@ final value is transformed using `fn`.
 
 #### Parameters
 
-| Name      | Type                                                                                                             |
-| :-------- | :--------------------------------------------------------------------------------------------------------------- |
-| `fn`      | (`value`: `From`) => `To`                                                                                        |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `From`, `This`\>\> |
+| Name      | Type                                                                                                               |
+| :-------- | :----------------------------------------------------------------------------------------------------------------- |
+| `fn`      | (`value`: `From`) => `To`                                                                                          |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `From`, `This`\>\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:285](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L285)
+[operations/reducer.d.ts:273](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L273)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`): <Value, This\>(`reducer`:
-`Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`,
-`From`, `This`\>\>) => [`OptionalReducer`](modules.md#optionalreducer)<`Value`,
+▸ **mapReducer**\<`From`, `To`\>(`fn`): \<Value, This\>(`reducer`:
+`Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`,
+`From`, `This`\>\>) => [`OptionalReducer`](modules.md#optionalreducer)\<`Value`,
 `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
@@ -9531,8 +9539,8 @@ final value is transformed using `fn`.
 
 `fn`
 
-▸ <`Value`, `This`\>(`reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `To`\>
+▸ \<`Value`, `This`\>(`reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `To`\>
 
 ##### Type parameters
 
@@ -9543,20 +9551,20 @@ final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name      | Type                                                                                                             |
-| :-------- | :--------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `From`, `This`\>\> |
+| Name      | Type                                                                                                               |
+| :-------- | :----------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `From`, `This`\>\> |
 
 ##### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:289](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L289)
+[operations/reducer.d.ts:277](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L277)
 
-▸ **mapReducer**<`From`, `To`, `This`\>(`fn`, `reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+▸ **mapReducer**\<`From`, `To`, `This`\>(`fn`, `reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9572,22 +9580,22 @@ final value is transformed using `fn`.
 
 #### Parameters
 
-| Name      | Type                                                                                                          |
-| :-------- | :------------------------------------------------------------------------------------------------------------ |
-| `fn`      | (`value`: `From`) => `To`                                                                                     |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`From`, `This`\>\> |
+| Name      | Type                                                                                                            |
+| :-------- | :-------------------------------------------------------------------------------------------------------------- |
+| `fn`      | (`value`: `From`) => `To`                                                                                       |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`From`, `This`\>\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:293](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L293)
+[operations/reducer.d.ts:283](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L283)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`): <This\>(`reducer`:
-`Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`From`,
-`This`\>\>) => [`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+▸ **mapReducer**\<`From`, `To`\>(`fn`): \<This\>(`reducer`:
+`Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`From`,
+`This`\>\>) => [`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9610,7 +9618,7 @@ final value is transformed using `fn`.
 
 `fn`
 
-▸ <`This`\>(`reducer`): [`OptionalReducer`](modules.md#optionalreducer)<`To`,
+▸ \<`This`\>(`reducer`): [`OptionalReducer`](modules.md#optionalreducer)\<`To`,
 `To`\>
 
 ##### Type parameters
@@ -9621,20 +9629,20 @@ final value is transformed using `fn`.
 
 ##### Parameters
 
-| Name      | Type                                                                                                          |
-| :-------- | :------------------------------------------------------------------------------------------------------------ |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`From`, `This`\>\> |
+| Name      | Type                                                                                                            |
+| :-------- | :-------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`From`, `This`\>\> |
 
 ##### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:297](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L297)
+[operations/reducer.d.ts:287](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L287)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`, `reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+▸ **mapReducer**\<`From`, `To`\>(`fn`, `reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9649,22 +9657,22 @@ final value is transformed using `fn`.
 
 #### Parameters
 
-| Name      | Type                                                     |
-| :-------- | :------------------------------------------------------- |
-| `fn`      | (`value`: `From`) => `To`                                |
-| `reducer` | [`FunctionReducer`](modules.md#functionreducer)<`From`\> |
+| Name      | Type                                                      |
+| :-------- | :-------------------------------------------------------- |
+| `fn`      | (`value`: `From`) => `To`                                 |
+| `reducer` | [`FunctionReducer`](modules.md#functionreducer)\<`From`\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:301](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L301)
+[operations/reducer.d.ts:293](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L293)
 
-▸ **mapReducer**<`From`, `To`\>(`fn`): (`reducer`:
-[`FunctionReducer`](modules.md#functionreducer)<`From`\>) =>
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+▸ **mapReducer**\<`From`, `To`\>(`fn`): (`reducer`:
+[`FunctionReducer`](modules.md#functionreducer)\<`From`\>) =>
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) equivalent to `reducer` except its
@@ -9687,30 +9695,40 @@ final value is transformed using `fn`.
 
 `fn`
 
-▸ (`reducer`): [`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+▸ (`reducer`): [`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 ##### Parameters
 
-| Name      | Type                                                     |
-| :-------- | :------------------------------------------------------- |
-| `reducer` | [`FunctionReducer`](modules.md#functionreducer)<`From`\> |
+| Name      | Type                                                      |
+| :-------- | :-------------------------------------------------------- |
+| `reducer` | [`FunctionReducer`](modules.md#functionreducer)\<`From`\> |
 
 ##### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`To`, `To`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`To`, `To`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:305](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L305)
+[operations/reducer.d.ts:297](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L297)
 
 ---
 
 ### max
 
-▸ **max**(`iterable`): `Iterable`<`number`\>
+▸ **max**(`iterable`): `Iterable`\<`number`\>
 
 Returns an iterable containing a maximum value of `iterable` if `iterable`
 contains at least one value. Otherwise, returns an empty iterable.
+
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `iterable` | `Iterable`\<`number`\> |
+
+#### Returns
+
+`Iterable`\<`number`\>
 
 **`Example`**
 
@@ -9719,29 +9737,29 @@ console.log(pipe([4, 1, 5, -3], max, get))
 //=> 5
 ```
 
-#### Parameters
-
-| Name       | Type                  |
-| :--------- | :-------------------- |
-| `iterable` | `Iterable`<`number`\> |
-
-#### Returns
-
-`Iterable`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:939](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L939)
+[operations/statistics.d.ts:925](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L925)
 
 ---
 
 ### maxAsync
 
-▸ **maxAsync**(`asyncIterable`): `AsyncIterable`<`number`\>
+▸ **maxAsync**(`asyncIterable`): `AsyncIterable`\<`number`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
 iterable.
+
+#### Parameters
+
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`number`\> |
+
+#### Returns
+
+`AsyncIterable`\<`number`\>
 
 **`Example`**
 
@@ -9750,42 +9768,19 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), maxAsync, getAsync))
 //=> 5
 ```
 
-#### Parameters
-
-| Name            | Type                       |
-| :-------------- | :------------------------- |
-| `asyncIterable` | `AsyncIterable`<`number`\> |
-
-#### Returns
-
-`AsyncIterable`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:952](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L952)
+[operations/statistics.d.ts:938](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L938)
 
 ---
 
 ### maxBy
 
-▸ **maxBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
+▸ **maxBy**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
 value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    maxBy((a, b) => a.length - b.length),
-    get,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -9795,25 +9790,14 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                      |
-| :--------- | :---------------------------------------- |
-| `fn`       | [`Compare`](modules.md#compare)<`Value`\> |
-| `iterable` | `Iterable`<`Value`\>                      |
+| Name       | Type                                       |
+| :--------- | :----------------------------------------- |
+| `fn`       | [`Compare`](modules.md#compare)\<`Value`\> |
+| `iterable` | `Iterable`\<`Value`\>                      |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:179](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L179)
-
-▸ **maxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing a maximum value of `iterable` based on the `fn`
-[Compare](modules.md#compare) function if `iterable` contains at least one
-value. Otherwise, returns an empty iterable.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -9828,6 +9812,17 @@ console.log(
 //=> sleeping
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:319](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L319)
+
+▸ **maxBy**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing a maximum value of `iterable` based on the `fn`
+[Compare](modules.md#compare) function if `iterable` contains at least one
+value. Otherwise, returns an empty iterable.
+
 #### Type parameters
 
 | Name    |
@@ -9836,52 +9831,52 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                      |
-| :--- | :---------------------------------------- |
-| `fn` | [`Compare`](modules.md#compare)<`Value`\> |
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    maxBy((a, b) => a.length - b.length),
+    get,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:180](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L180)
+[operations/statistics.d.ts:319](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L319)
 
 ---
 
 ### maxByAsync
 
-▸ **maxByAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **maxByAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
 contains at least one value. Otherwise, returns an empty async iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    maxByAsync((a, b) => a.length - b.length),
-    getAsync,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -9891,25 +9886,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:190](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L190)
-
-▸ **maxByAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing a maximum value of `asyncIterable` based on
-the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
-contains at least one value. Otherwise, returns an empty async iterable.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -9924,6 +9908,17 @@ console.log(
 //=> sleeping
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:347](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L347)
+
+▸ **maxByAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing a maximum value of `asyncIterable` based on
+the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
+contains at least one value. Otherwise, returns an empty async iterable.
+
 #### Type parameters
 
 | Name    |
@@ -9932,53 +9927,53 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    maxByAsync((a, b) => a.length - b.length),
+    getAsync,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:194](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L194)
+[operations/statistics.d.ts:347](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L347)
 
 ---
 
 ### maxByConcur
 
-▸ **maxByConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **maxByConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
 contains at least one value. Otherwise, returns an empty concur iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    maxByConcur((a, b) => a.length - b.length),
-    getConcur,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -9988,26 +9983,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | [`AsyncCompare`](modules.md#asynccompare)<`Value`\>     |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:201](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L201)
-
-▸ **maxByConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing a maximum value of `concurIterable` based
-on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
-contains at least one value. Otherwise, returns an empty concur iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -10022,6 +10005,18 @@ console.log(
 //=> sleeping
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:366](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L366)
+
+▸ **maxByConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing a maximum value of `concurIterable` based
+on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
+contains at least one value. Otherwise, returns an empty concur iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10030,40 +10025,63 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    maxByConcur((a, b) => a.length - b.length),
+    getConcur,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:205](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L205)
+[operations/statistics.d.ts:366](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L366)
 
 ---
 
 ### maxConcur
 
 ▸ **maxConcur**(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`number`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`number`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
 iterable.
+
+#### Parameters
+
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`number`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`number`\>
 
 **`Example`**
 
@@ -10072,42 +10090,19 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), maxConcur, getConcur))
 //=> 5
 ```
 
-#### Parameters
-
-| Name             | Type                                                     |
-| :--------------- | :------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:967](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L967)
+[operations/statistics.d.ts:953](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L953)
 
 ---
 
 ### maxWith
 
-▸ **maxWith**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
+▸ **maxWith**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing a maximum value of `iterable` by comparing the
 numerical values of each value, as defined by `fn`, if `iterable` contains at
 least one value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    maxWith(value => value.length),
-    get,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -10120,22 +10115,11 @@ console.log(
 | Name       | Type                           |
 | :--------- | :----------------------------- |
 | `fn`       | (`value`: `Value`) => `number` |
-| `iterable` | `Iterable`<`Value`\>           |
+| `iterable` | `Iterable`\<`Value`\>          |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:510](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L510)
-
-▸ **maxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing a maximum value of `iterable` by comparing the
-numerical values of each value, as defined by `fn`, if `iterable` contains at
-least one value. Otherwise, returns an empty iterable.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -10149,6 +10133,17 @@ console.log(
 )
 //=> sleeping
 ```
+
+#### Defined in
+
+[operations/statistics.d.ts:659](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L659)
+
+▸ **maxWith**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing a maximum value of `iterable` by comparing the
+numerical values of each value, as defined by `fn`, if `iterable` contains at
+least one value. Otherwise, returns an empty iterable.
 
 #### Type parameters
 
@@ -10166,45 +10161,45 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    maxWith(value => value.length),
+    get,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:514](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L514)
+[operations/statistics.d.ts:659](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L659)
 
 ---
 
 ### maxWithAsync
 
-▸ **maxWithAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **maxWithAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing a maximum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
 iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    maxWithAsync(value => value.length),
-    getAsync,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -10214,26 +10209,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:526](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L526)
-
-▸ **maxWithAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing a maximum value of `asyncIterable` by
-comparing the numerical values of each value, as defined by `fn`, if
-`asyncIterable` contains at least one value. Otherwise, returns an empty async
-iterable.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -10248,6 +10231,18 @@ console.log(
 //=> sleeping
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:689](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L689)
+
+▸ **maxWithAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing a maximum value of `asyncIterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`asyncIterable` contains at least one value. Otherwise, returns an empty async
+iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10256,54 +10251,54 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    maxWithAsync(value => value.length),
+    getAsync,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:530](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L530)
+[operations/statistics.d.ts:689](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L689)
 
 ---
 
 ### maxWithConcur
 
-▸ **maxWithConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **maxWithConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing a maximum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
 iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    maxWithConcur(value => value.length),
-    getConcur,
-  ),
-)
-//=> sleeping
-```
 
 #### Type parameters
 
@@ -10313,27 +10308,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`\<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:537](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L537)
-
-▸ **maxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing a maximum value of `concurIterable` by
-comparing the numerical values of each value, as defined by `fn`, if
-`concurIterable` contains at least one value. Otherwise, returns an empty concur
-iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -10348,6 +10330,19 @@ console.log(
 //=> sleeping
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:709](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L709)
+
+▸ **maxWithConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing a maximum value of `concurIterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`concurIterable` contains at least one value. Otherwise, returns an empty concur
+iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10356,38 +10351,61 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    maxWithConcur(value => value.length),
+    getConcur,
+  ),
+)
+//=> sleeping
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:541](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L541)
+[operations/statistics.d.ts:709](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L709)
 
 ---
 
 ### min
 
-▸ **min**(`iterable`): `Iterable`<`number`\>
+▸ **min**(`iterable`): `Iterable`\<`number`\>
 
 Returns an iterable containing a minimum value of `iterable` if `iterable`
 contains at least one value. Otherwise, returns an empty iterable.
+
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `iterable` | `Iterable`\<`number`\> |
+
+#### Returns
+
+`Iterable`\<`number`\>
 
 **`Example`**
 
@@ -10396,29 +10414,29 @@ console.log(pipe([4, 1, 5, -3], min, get))
 //=> -3
 ```
 
-#### Parameters
-
-| Name       | Type                  |
-| :--------- | :-------------------- |
-| `iterable` | `Iterable`<`number`\> |
-
-#### Returns
-
-`Iterable`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:877](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L877)
+[operations/statistics.d.ts:863](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L863)
 
 ---
 
 ### minAsync
 
-▸ **minAsync**(`asyncIterable`): `AsyncIterable`<`number`\>
+▸ **minAsync**(`asyncIterable`): `AsyncIterable`\<`number`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
 iterable.
+
+#### Parameters
+
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`number`\> |
+
+#### Returns
+
+`AsyncIterable`\<`number`\>
 
 **`Example`**
 
@@ -10427,42 +10445,19 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), minAsync, getAsync))
 //=> -3
 ```
 
-#### Parameters
-
-| Name            | Type                       |
-| :-------------- | :------------------------- |
-| `asyncIterable` | `AsyncIterable`<`number`\> |
-
-#### Returns
-
-`AsyncIterable`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:890](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L890)
+[operations/statistics.d.ts:876](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L876)
 
 ---
 
 ### minBy
 
-▸ **minBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
+▸ **minBy**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing a minimum value of `iterable` based on the `fn`
 [Compare](modules.md#compare) function if `iterable` contains at least one
 value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    minBy((a, b) => a.length - b.length),
-    get,
-  ),
-)
-//=> eating
-```
 
 #### Type parameters
 
@@ -10472,25 +10467,14 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                      |
-| :--------- | :---------------------------------------- |
-| `fn`       | [`Compare`](modules.md#compare)<`Value`\> |
-| `iterable` | `Iterable`<`Value`\>                      |
+| Name       | Type                                       |
+| :--------- | :----------------------------------------- |
+| `fn`       | [`Compare`](modules.md#compare)\<`Value`\> |
+| `iterable` | `Iterable`\<`Value`\>                      |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:179](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L179)
-
-▸ **minBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing a minimum value of `iterable` based on the `fn`
-[Compare](modules.md#compare) function if `iterable` contains at least one
-value. Otherwise, returns an empty iterable.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -10505,6 +10489,17 @@ console.log(
 //=> eating
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:232](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L232)
+
+▸ **minBy**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing a minimum value of `iterable` based on the `fn`
+[Compare](modules.md#compare) function if `iterable` contains at least one
+value. Otherwise, returns an empty iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10513,52 +10508,52 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                      |
-| :--- | :---------------------------------------- |
-| `fn` | [`Compare`](modules.md#compare)<`Value`\> |
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    minBy((a, b) => a.length - b.length),
+    get,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:180](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L180)
+[operations/statistics.d.ts:232](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L232)
 
 ---
 
 ### minByAsync
 
-▸ **minByAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **minByAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` based on
 the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
 contains at least one value. Otherwise, returns an empty async iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    minByAsync((a, b) => a.length - b.length),
-    getAsync,
-  ),
-)
-//=> eating
-```
 
 #### Type parameters
 
@@ -10568,25 +10563,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:190](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L190)
-
-▸ **minByAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing a minimum value of `asyncIterable` based on
-the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
-contains at least one value. Otherwise, returns an empty async iterable.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -10601,6 +10585,17 @@ console.log(
 //=> eating
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:260](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L260)
+
+▸ **minByAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing a minimum value of `asyncIterable` based on
+the `fn` [AsyncCompare](modules.md#asynccompare) function if `asyncIterable`
+contains at least one value. Otherwise, returns an empty async iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10609,53 +10604,53 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    minByAsync((a, b) => a.length - b.length),
+    getAsync,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:194](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L194)
+[operations/statistics.d.ts:260](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L260)
 
 ---
 
 ### minByConcur
 
-▸ **minByConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **minByConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` based
 on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
 contains at least one value. Otherwise, returns an empty concur iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    minByConcur((a, b) => a.length - b.length),
-    getConcur,
-  ),
-)
-//=> eating
-```
 
 #### Type parameters
 
@@ -10665,26 +10660,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | [`AsyncCompare`](modules.md#asynccompare)<`Value`\>     |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:201](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L201)
-
-▸ **minByConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing a minimum value of `concurIterable` based
-on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
-contains at least one value. Otherwise, returns an empty concur iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -10699,6 +10682,18 @@ console.log(
 //=> eating
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:279](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L279)
+
+▸ **minByConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing a minimum value of `concurIterable` based
+on the `fn` [AsyncCompare](modules.md#asynccompare) function if `concurIterable`
+contains at least one value. Otherwise, returns an empty concur iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10707,40 +10702,63 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    minByConcur((a, b) => a.length - b.length),
+    getConcur,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:205](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L205)
+[operations/statistics.d.ts:279](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L279)
 
 ---
 
 ### minConcur
 
 ▸ **minConcur**(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`number`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`number`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
 iterable.
+
+#### Parameters
+
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`number`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`number`\>
 
 **`Example`**
 
@@ -10749,28 +10767,29 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), minConcur, getConcur))
 //=> -3
 ```
 
-#### Parameters
-
-| Name             | Type                                                     |
-| :--------------- | :------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:905](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L905)
+[operations/statistics.d.ts:891](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L891)
 
 ---
 
 ### minMax
 
-▸ **minMax**(`iterable`): `Iterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
+▸ **minMax**(`iterable`):
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 if `iterable` contains at least one value. Otherwise, returns an empty iterable.
+
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `iterable` | `Iterable`\<`number`\> |
+
+#### Returns
+
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 **`Example`**
 
@@ -10779,30 +10798,30 @@ console.log(pipe([4, 1, 5, -3], minMax, get))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters
-
-| Name       | Type                  |
-| :--------- | :-------------------- |
-| `iterable` | `Iterable`<`number`\> |
-
-#### Returns
-
-`Iterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:1002](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L1002)
+[operations/statistics.d.ts:988](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L988)
 
 ---
 
 ### minMaxAsync
 
 ▸ **minMaxAsync**(`asyncIterable`):
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` if `asyncIterable` contains at least one value. Otherwise,
 returns an empty async iterable.
+
+#### Parameters
+
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`number`\> |
+
+#### Returns
+
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 **`Example`**
 
@@ -10811,43 +10830,20 @@ console.log(await pipe(asAsync([4, 1, 5, -3]), minMaxAsync, getAsync))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters
-
-| Name            | Type                       |
-| :-------------- | :------------------------- |
-| `asyncIterable` | `AsyncIterable`<`number`\> |
-
-#### Returns
-
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`number`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:1015](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L1015)
+[operations/statistics.d.ts:1001](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L1001)
 
 ---
 
 ### minMaxBy
 
-▸ **minMaxBy**<`Value`\>(`fn`, `iterable`):
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxBy**\<`Value`\>(`fn`, `iterable`):
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 based on the `fn` [Compare](modules.md#compare) function if `iterable` contains
 at least one value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    minMaxBy((a, b) => a.length - b.length),
-    get,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -10857,25 +10853,14 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                      |
-| :--------- | :---------------------------------------- |
-| `fn`       | [`Compare`](modules.md#compare)<`Value`\> |
-| `iterable` | `Iterable`<`Value`\>                      |
+| Name       | Type                                       |
+| :--------- | :----------------------------------------- |
+| `fn`       | [`Compare`](modules.md#compare)\<`Value`\> |
+| `iterable` | `Iterable`\<`Value`\>                      |
 
 #### Returns
 
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:428](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L428)
-
-▸ **minMaxBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
-based on the `fn` [Compare](modules.md#compare) function if `iterable` contains
-at least one value. Otherwise, returns an empty iterable.
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -10890,6 +10875,17 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:412](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L412)
+
+▸ **minMaxBy**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
+based on the `fn` [Compare](modules.md#compare) function if `iterable` contains
+at least one value. Otherwise, returns an empty iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10898,54 +10894,54 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                      |
-| :--- | :---------------------------------------- |
-| `fn` | [`Compare`](modules.md#compare)<`Value`\> |
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ (`iterable`): `Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    minMaxBy((a, b) => a.length - b.length),
+    get,
+  ),
+)
+//=> { min: 'eating', max: 'sleeping' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:431](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L431)
+[operations/statistics.d.ts:416](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L416)
 
 ---
 
 ### minMaxByAsync
 
-▸ **minMaxByAsync**<`Value`\>(`fn`, `asyncIterable`):
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxByAsync**\<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
 function if `asyncIterable` contains at least one value. Otherwise, returns an
 empty async iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    minMaxByAsync((a, b) => a.length - b.length),
-    getAsync,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -10955,27 +10951,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:466](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L466)
-
-▸ **minMaxByAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) =>
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns an async iterable containing a [MinMax](modules.md#minmax) value of
-`asyncIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
-function if `asyncIterable` contains at least one value. Otherwise, returns an
-empty async iterable.
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -10990,6 +10973,19 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:451](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L451)
+
+▸ **minMaxByAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) =>
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns an async iterable containing a [MinMax](modules.md#minmax) value of
+`asyncIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
+function if `asyncIterable` contains at least one value. Otherwise, returns an
+empty async iterable.
+
 #### Type parameters
 
 | Name    |
@@ -10998,54 +10994,54 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ (`asyncIterable`): `AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    minMaxByAsync((a, b) => a.length - b.length),
+    getAsync,
+  ),
+)
+//=> { min: 'eating', max: 'sleeping' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:470](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L470)
+[operations/statistics.d.ts:455](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L455)
 
 ---
 
 ### minMaxByConcur
 
-▸ **minMaxByConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxByConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
 function if `concurIterable` contains at least one value. Otherwise, returns an
 empty concur iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    minMaxByConcur((a, b) => a.length - b.length),
-    getConcur,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -11055,27 +11051,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                 |
-| :--------------- | :------------------------------------------------------------------- |
-| `fn`             | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>              |
+| Name             | Type                                                                  |
+| :--------------- | :-------------------------------------------------------------------- |
+| `fn`             | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`\<`number`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>              |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:494](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L494)
-
-▸ **minMaxByConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
-`concurIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
-function if `concurIterable` contains at least one value. Otherwise, returns an
-empty concur iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -11090,6 +11073,19 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:479](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L479)
+
+▸ **minMaxByConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
+`concurIterable` based on the `fn` [AsyncCompare](modules.md#asynccompare)
+function if `concurIterable` contains at least one value. Otherwise, returns an
+empty concur iterable.
+
 #### Type parameters
 
 | Name    |
@@ -11098,41 +11094,64 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                                 |
-| :--- | :------------------------------------------------------------------- |
-| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                                  |
+| :--- | :-------------------------------------------------------------------- |
+| `fn` | (`left`: `Value`, `right`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
 ▸ (`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    minMaxByConcur((a, b) => a.length - b.length),
+    getConcur,
+  ),
+)
+//=> { min: 'eating', max: 'sleeping' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:498](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L498)
+[operations/statistics.d.ts:483](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L483)
 
 ---
 
 ### minMaxConcur
 
 ▸ **minMaxConcur**(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`number`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` if `concurIterable` contains at least one value. Otherwise,
 returns an empty concur iterable.
+
+#### Parameters
+
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`number`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 **`Example`**
 
@@ -11141,43 +11160,20 @@ console.log(await pipe(asConcur([4, 1, 5, -3]), minMaxConcur, getConcur))
 //=> { min: -3, max: 5 }
 ```
 
-#### Parameters
-
-| Name             | Type                                                     |
-| :--------------- | :------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`number`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:1030](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L1030)
+[operations/statistics.d.ts:1016](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L1016)
 
 ---
 
 ### minMaxWith
 
-▸ **minMaxWith**<`Value`\>(`fn`, `iterable`):
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxWith**\<`Value`\>(`fn`, `iterable`):
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
 by comparing the numerical values of each value, as defined by `fn`, if
 `iterable` contains at least one value. Otherwise, returns an empty iterable.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    minMaxWith(value => value.length),
-    get,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -11190,22 +11186,11 @@ console.log(
 | Name       | Type                           |
 | :--------- | :----------------------------- |
 | `fn`       | (`value`: `Value`) => `number` |
-| `iterable` | `Iterable`<`Value`\>           |
+| `iterable` | `Iterable`\<`Value`\>          |
 
 #### Returns
 
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:771](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L771)
-
-▸ **minMaxWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
-by comparing the numerical values of each value, as defined by `fn`, if
-`iterable` contains at least one value. Otherwise, returns an empty iterable.
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -11219,6 +11204,17 @@ console.log(
 )
 //=> { min: 'eating', max: 'sleeping' }
 ```
+
+#### Defined in
+
+[operations/statistics.d.ts:756](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L756)
+
+▸ **minMaxWith**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns an iterable containing a [MinMax](modules.md#minmax) value of `iterable`
+by comparing the numerical values of each value, as defined by `fn`, if
+`iterable` contains at least one value. Otherwise, returns an empty iterable.
 
 #### Type parameters
 
@@ -11236,46 +11232,46 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ (`iterable`): `Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+`Iterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    minMaxWith(value => value.length),
+    get,
+  ),
+)
+//=> { min: 'eating', max: 'sleeping' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:774](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L774)
+[operations/statistics.d.ts:760](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L760)
 
 ---
 
 ### minMaxWithAsync
 
-▸ **minMaxWithAsync**<`Value`\>(`fn`, `asyncIterable`):
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxWithAsync**\<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an async iterable containing a [MinMax](modules.md#minmax) value of
 `asyncIterable` by comparing the numerical values of each value, as defined by
 `fn`, if `asyncIterable` contains at least one value. Otherwise, returns an
 empty async iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    minMaxWithAsync(value => value.length),
-    getAsync,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -11285,27 +11281,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:810](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L810)
-
-▸ **minMaxWithAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) =>
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns an async iterable containing a [MinMax](modules.md#minmax) value of
-`asyncIterable` by comparing the numerical values of each value, as defined by
-`fn`, if `asyncIterable` contains at least one value. Otherwise, returns an
-empty async iterable.
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -11320,6 +11303,19 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:796](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L796)
+
+▸ **minMaxWithAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) =>
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns an async iterable containing a [MinMax](modules.md#minmax) value of
+`asyncIterable` by comparing the numerical values of each value, as defined by
+`fn`, if `asyncIterable` contains at least one value. Otherwise, returns an
+empty async iterable.
+
 #### Type parameters
 
 | Name    |
@@ -11328,54 +11324,54 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ (`asyncIterable`): `AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<[`MinMax`](modules.md#minmax)<`Value`\>\>
+`AsyncIterable`\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    minMaxWithAsync(value => value.length),
+    getAsync,
+  ),
+)
+//=> { min: 'eating', max: 'sleeping' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:814](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L814)
+[operations/statistics.d.ts:800](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L800)
 
 ---
 
 ### minMaxWithConcur
 
-▸ **minMaxWithConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **minMaxWithConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
 `concurIterable` by comparing the numerical values of each value, as defined by
 `fn`, if `concurIterable` contains at least one value. Otherwise, returns an
 empty concur iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    minMaxWithConcur(value => value.length),
-    getConcur,
-  ),
-)
-//=> { min: 'eating', max: 'sleeping' }
-```
 
 #### Type parameters
 
@@ -11385,27 +11381,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`\<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:838](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L838)
-
-▸ **minMaxWithConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
-`concurIterable` by comparing the numerical values of each value, as defined by
-`fn`, if `concurIterable` contains at least one value. Otherwise, returns an
-empty concur iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -11420,6 +11403,19 @@ console.log(
 //=> { min: 'eating', max: 'sleeping' }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:824](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L824)
+
+▸ **minMaxWithConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
+
+Returns a concur iterable containing a [MinMax](modules.md#minmax) value of
+`concurIterable` by comparing the numerical values of each value, as defined by
+`fn`, if `concurIterable` contains at least one value. Otherwise, returns an
+empty concur iterable.
+
 #### Type parameters
 
 | Name    |
@@ -11428,53 +11424,53 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
 ▸ (`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
-#### Defined in
-
-[operations/statistics.d.ts:842](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L842)
-
----
-
-### minWith
-
-▸ **minWith**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing a minimum value of `iterable` by comparing the
-numerical values of each value, as defined by `fn`, if `iterable` contains at
-least one value. Otherwise, returns an empty iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [`eating`, `sleeping`, `yawning`],
-    minWith(value => value.length),
-    get,
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    minMaxWithConcur(value => value.length),
+    getConcur,
   ),
 )
-//=> eating
+//=> { min: 'eating', max: 'sleeping' }
 ```
+
+#### Defined in
+
+[operations/statistics.d.ts:828](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L828)
+
+---
+
+### minWith
+
+▸ **minWith**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing a minimum value of `iterable` by comparing the
+numerical values of each value, as defined by `fn`, if `iterable` contains at
+least one value. Otherwise, returns an empty iterable.
 
 #### Type parameters
 
@@ -11487,22 +11483,11 @@ console.log(
 | Name       | Type                           |
 | :--------- | :----------------------------- |
 | `fn`       | (`value`: `Value`) => `number` |
-| `iterable` | `Iterable`<`Value`\>           |
+| `iterable` | `Iterable`\<`Value`\>          |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:510](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L510)
-
-▸ **minWith**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing a minimum value of `iterable` by comparing the
-numerical values of each value, as defined by `fn`, if `iterable` contains at
-least one value. Otherwise, returns an empty iterable.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -11516,6 +11501,17 @@ console.log(
 )
 //=> eating
 ```
+
+#### Defined in
+
+[operations/statistics.d.ts:569](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L569)
+
+▸ **minWith**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing a minimum value of `iterable` by comparing the
+numerical values of each value, as defined by `fn`, if `iterable` contains at
+least one value. Otherwise, returns an empty iterable.
 
 #### Type parameters
 
@@ -11533,45 +11529,45 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`eating`, `sleeping`, `yawning`],
+    minWith(value => value.length),
+    get,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:514](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L514)
+[operations/statistics.d.ts:569](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L569)
 
 ---
 
 ### minWithAsync
 
-▸ **minWithAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **minWithAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing a minimum value of `asyncIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
 `asyncIterable` contains at least one value. Otherwise, returns an empty async
 iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`eating`, `sleeping`, `yawning`]),
-    minWithAsync(value => value.length),
-    getAsync,
-  ),
-)
-//=> eating
-```
 
 #### Type parameters
 
@@ -11581,26 +11577,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                |
-| :-------------- | :-------------------------------------------------- |
-| `fn`            | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                           |
+| Name            | Type                                                 |
+| :-------------- | :--------------------------------------------------- |
+| `fn`            | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                           |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:526](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L526)
-
-▸ **minWithAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>)
-=> `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing a minimum value of `asyncIterable` by
-comparing the numerical values of each value, as defined by `fn`, if
-`asyncIterable` contains at least one value. Otherwise, returns an empty async
-iterable.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -11615,6 +11599,18 @@ console.log(
 //=> eating
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:599](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L599)
+
+▸ **minWithAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing a minimum value of `asyncIterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`asyncIterable` contains at least one value. Otherwise, returns an empty async
+iterable.
+
 #### Type parameters
 
 | Name    |
@@ -11623,54 +11619,54 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`eating`, `sleeping`, `yawning`]),
+    minWithAsync(value => value.length),
+    getAsync,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:530](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L530)
+[operations/statistics.d.ts:599](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L599)
 
 ---
 
 ### minWithConcur
 
-▸ **minWithConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **minWithConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing a minimum value of `concurIterable` by
 comparing the numerical values of each value, as defined by `fn`, if
 `concurIterable` contains at least one value. Otherwise, returns an empty concur
 iterable.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`eating`, `sleeping`, `yawning`]),
-    minWithConcur(value => value.length),
-    getConcur,
-  ),
-)
-//=> eating
-```
 
 #### Type parameters
 
@@ -11680,27 +11676,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `MaybePromiseLike`<`number`\>     |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `MaybePromiseLike`\<`number`\>     |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/statistics.d.ts:537](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L537)
-
-▸ **minWithConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing a minimum value of `concurIterable` by
-comparing the numerical values of each value, as defined by `fn`, if
-`concurIterable` contains at least one value. Otherwise, returns an empty concur
-iterable.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -11715,6 +11698,19 @@ console.log(
 //=> eating
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:619](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L619)
+
+▸ **minWithConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing a minimum value of `concurIterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`concurIterable` contains at least one value. Otherwise, returns an empty concur
+iterable.
+
 #### Type parameters
 
 | Name    |
@@ -11723,41 +11719,70 @@ console.log(
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`eating`, `sleeping`, `yawning`]),
+    minWithConcur(value => value.length),
+    getConcur,
+  ),
+)
+//=> eating
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:541](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L541)
+[operations/statistics.d.ts:619](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L619)
 
 ---
 
 ### next
 
-▸ **next**<`Value`\>(`iterable`): [[`Optional`](modules.md#optional)<`Value`\>,
-`Iterable`<`Value`\>]
+▸ **next**\<`Value`\>(`iterable`):
+[[`Optional`](modules.md#optional)\<`Value`\>, `Iterable`\<`Value`\>]
 
 Returns a pair of iterables. If `iterable` is empty, then both of the returned
 iterables are empty. Otherwise, the first iterable contains the first value of
 `iterable` and the second iterable contains the rest of the values of
 `iterable`. The second iterable can only be iterated once.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
+
+#### Returns
+
+[[`Optional`](modules.md#optional)\<`Value`\>, `Iterable`\<`Value`\>]
 
 **`Example`**
 
@@ -11781,6 +11806,24 @@ console.log(count(rest2))
 //=> 0
 ```
 
+#### Defined in
+
+[operations/optional.d.ts:207](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L207)
+
+---
+
+### nextAsync
+
+▸ **nextAsync**\<`Value`\>(`asyncIterable`):
+`Promise`\<[[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>,
+`AsyncIterable`\<`Value`\>]\>
+
+Returns a promise that resolves to a pair of async iterables. If `asyncIterable`
+is empty, then both of the returned async iterables are empty. Otherwise, the
+first async iterable contains the first value of `asyncIterable` and the second
+async iterable contains the rest of the values of `asyncIterable`. The second
+async iterable can only be iterated once.
+
 #### Type parameters
 
 | Name    |
@@ -11789,31 +11832,14 @@ console.log(count(rest2))
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-[[`Optional`](modules.md#optional)<`Value`\>, `Iterable`<`Value`\>]
-
-#### Defined in
-
-[operations/optional.d.ts:223](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L223)
-
----
-
-### nextAsync
-
-▸ **nextAsync**<`Value`\>(`asyncIterable`):
-`Promise`<[[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>,
-`AsyncIterable`<`Value`\>]\>
-
-Returns a promise that resolves to a pair of async iterables. If `asyncIterable`
-is empty, then both of the returned async iterables are empty. Otherwise, the
-first async iterable contains the first value of `asyncIterable` and the second
-async iterable contains the rest of the values of `asyncIterable`. The second
-async iterable can only be iterated once.
+`Promise`\<[[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>,
+`AsyncIterable`\<`Value`\>]\>
 
 **`Example`**
 
@@ -11837,47 +11863,18 @@ console.log(await countAsync(rest2))
 //=> 0
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
-
-#### Returns
-
-`Promise`<[[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>,
-`AsyncIterable`<`Value`\>]\>
-
 #### Defined in
 
-[operations/optional.d.ts:255](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L255)
+[operations/optional.d.ts:239](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L239)
 
 ---
 
 ### none
 
-▸ **none**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `boolean`
+▸ **none**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) => `boolean`
 
 Returns `true` if `fn` returns a falsy value for all values of `iterable`.
 Otherwise returns `false`.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `more sloth`, `even more sloth`],
-    none(string => string.length > 8),
-  ),
-)
-//=> false
-```
 
 #### Type parameters
 
@@ -11899,22 +11896,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `boolean`
-
-#### Defined in
-
-[operations/predicate.d.ts:22](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L22)
-
-▸ **none**<`Value`\>(`fn`, `iterable`): `boolean`
-
-Returns `true` if `fn` returns a falsy value for all values of `iterable`.
-Otherwise returns `false`.
 
 **`Example`**
 
@@ -11928,6 +11916,15 @@ console.log(
 //=> false
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:165](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L165)
+
+▸ **none**\<`Value`\>(`fn`, `iterable`): `boolean`
+
+Returns `true` if `fn` returns a falsy value for all values of `iterable`.
+Otherwise returns `false`.
+
 #### Type parameters
 
 | Name    |
@@ -11939,38 +11936,38 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
 `boolean`
 
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    none(string => string.length > 8),
+  ),
+)
+//=> false
+```
+
 #### Defined in
 
-[operations/predicate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L25)
+[operations/predicate.d.ts:165](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L165)
 
 ---
 
 ### noneAsync
 
-▸ **noneAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-`Promise`<`boolean`\>
+▸ **noneAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>)
+=> `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if `fn` returns a falsy value or a
 promise that resolves to a falsy value for all values of `asyncIterable`.
 Otherwise returns a promise that resolves to `false`.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `more sloth`, `even more sloth`]),
-    noneAsync(string => string.length > 8),
-  ),
-)
-//=> false
-```
 
 #### Type parameters
 
@@ -11988,27 +11985,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`boolean`\>
+▸ (`asyncIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:33](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L33)
-
-▸ **noneAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a falsy value or a
-promise that resolves to a falsy value for all values of `asyncIterable`.
-Otherwise returns a promise that resolves to `false`.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -12021,6 +12008,16 @@ console.log(
 )
 //=> false
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L183)
+
+▸ **noneAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a falsy value or a
+promise that resolves to a falsy value for all values of `asyncIterable`.
+Otherwise returns a promise that resolves to `false`.
 
 #### Type parameters
 
@@ -12033,39 +12030,39 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:36](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L36)
-
----
-
-### noneConcur
-
-▸ **noneConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-`Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a falsy value or a
-promise that resolves to a falsy value for all values of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([`sloth`, `more sloth`, `even more sloth`]),
-    noneConcur(string => string.length > 8),
+    asAsync([`sloth`, `more sloth`, `even more sloth`]),
+    noneAsync(string => string.length > 8),
   ),
 )
 //=> false
 ```
+
+#### Defined in
+
+[operations/predicate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L183)
+
+---
+
+### noneConcur
+
+▸ **noneConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a falsy value or a
+promise that resolves to a falsy value for all values of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
 
 #### Type parameters
 
@@ -12083,27 +12080,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`boolean`\>
+▸ (`concurIterable`): `Promise`\<`boolean`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`boolean`\>
-
-#### Defined in
-
-[operations/predicate.d.ts:44](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L44)
-
-▸ **noneConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`boolean`\>
-
-Returns a promise that resolves to `true` if `fn` returns a falsy value or a
-promise that resolves to a falsy value for all values of `concurIterable`.
-Otherwise returns a promise that resolves to `false`.
+`Promise`\<`boolean`\>
 
 **`Example`**
 
@@ -12117,6 +12104,16 @@ console.log(
 //=> false
 ```
 
+#### Defined in
+
+[operations/predicate.d.ts:201](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L201)
+
+▸ **noneConcur**\<`Value`\>(`fn`, `concurIterable`): `Promise`\<`boolean`\>
+
+Returns a promise that resolves to `true` if `fn` returns a falsy value or a
+promise that resolves to a falsy value for all values of `concurIterable`.
+Otherwise returns a promise that resolves to `false`.
+
 #### Type parameters
 
 | Name    |
@@ -12125,25 +12122,37 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-`Promise`<`boolean`\>
+`Promise`\<`boolean`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `more sloth`, `even more sloth`]),
+    noneConcur(string => string.length > 8),
+  ),
+)
+//=> false
+```
 
 #### Defined in
 
-[operations/predicate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/predicate.d.ts#L47)
+[operations/predicate.d.ts:201](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/predicate.d.ts#L201)
 
 ---
 
 ### normalizeReducer
 
-▸ **normalizeReducer**<`Key`, `Value`, `Acc`, `This`\>(`reducer`):
-[`KeyedReducer`](modules.md#keyedreducer)<`Key`, `Value`, `Acc`\>
+▸ **normalizeReducer**\<`Key`, `Value`, `Acc`, `This`\>(`reducer`):
+[`KeyedReducer`](modules.md#keyedreducer)\<`Key`, `Value`, `Acc`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12158,20 +12167,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                         |
-| :-------- | :------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Acc`, `This`\>\> |
+| Name      | Type                                                                                           |
+| :-------- | :--------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `Acc`, `This`\>\> |
 
 #### Returns
 
-[`KeyedReducer`](modules.md#keyedreducer)<`Key`, `Value`, `Acc`\>
+[`KeyedReducer`](modules.md#keyedreducer)\<`Key`, `Value`, `Acc`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:362](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L362)
+[operations/reducer.d.ts:362](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L362)
 
-▸ **normalizeReducer**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Finished`\>
+▸ **normalizeReducer**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `Finished`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12186,20 +12195,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                        |
-| :-------- | :---------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                          |
+| :-------- | :------------------------------------------------------------------------------------------------------------ |
+| `reducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Finished`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `Finished`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:365](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L365)
+[operations/reducer.d.ts:365](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L365)
 
-▸ **normalizeReducer**<`Value`, `Acc`, `This`\>(`reducer`):
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Acc`\>
+▸ **normalizeReducer**\<`Value`, `Acc`, `This`\>(`reducer`):
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `Acc`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12213,20 +12222,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                  |
-| :-------- | :---------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\>\> |
+| Name      | Type                                                                                                    |
+| :-------- | :------------------------------------------------------------------------------------------------------ |
+| `reducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Acc`, `Acc`\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Acc`, `Acc`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:368](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L368)
+[operations/reducer.d.ts:368](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L368)
 
-▸ **normalizeReducer**<`Value`, `Finished`, `This`\>(`reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Finished`\>
+▸ **normalizeReducer**\<`Value`, `Finished`, `This`\>(`reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Finished`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12240,20 +12249,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                                 |
-| :-------- | :------------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                                   |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\>\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Finished`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Finished`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:371](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L371)
+[operations/reducer.d.ts:371](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L371)
 
-▸ **normalizeReducer**<`Value`, `This`\>(`reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
+▸ **normalizeReducer**\<`Value`, `This`\>(`reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Value`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12266,20 +12275,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                           |
-| :-------- | :------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\>\> |
+| Name      | Type                                                                                                             |
+| :-------- | :--------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\>\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Value`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:374](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L374)
+[operations/reducer.d.ts:374](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L374)
 
-▸ **normalizeReducer**<`Value`\>(`reducer`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
+▸ **normalizeReducer**\<`Value`\>(`reducer`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Value`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12291,20 +12300,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                      |
-| :-------- | :-------------------------------------------------------- |
-| `reducer` | [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
+| Name      | Type                                                       |
+| :-------- | :--------------------------------------------------------- |
+| `reducer` | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
 
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, `Value`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, `Value`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:377](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L377)
+[operations/reducer.d.ts:377](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L377)
 
-▸ **normalizeReducer**<`Key`, `Value`, `Acc`, `This`\>(`reducer`):
-[`AsyncKeyedReducer`](modules.md#asynckeyedreducer)<`Key`, `Value`, `Acc`\>
+▸ **normalizeReducer**\<`Key`, `Value`, `Acc`, `This`\>(`reducer`):
+[`AsyncKeyedReducer`](modules.md#asynckeyedreducer)\<`Key`, `Value`, `Acc`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12319,20 +12328,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                   |
-| :-------- | :----------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawAsyncKeyedReducer`](modules.md#rawasynckeyedreducer)<`Key`, `Value`, `Acc`, `This`\>\> |
+| Name      | Type                                                                                                     |
+| :-------- | :------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawAsyncKeyedReducer`](modules.md#rawasynckeyedreducer)\<`Key`, `Value`, `Acc`, `This`\>\> |
 
 #### Returns
 
-[`AsyncKeyedReducer`](modules.md#asynckeyedreducer)<`Key`, `Value`, `Acc`\>
+[`AsyncKeyedReducer`](modules.md#asynckeyedreducer)\<`Key`, `Value`, `Acc`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:379](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L379)
+[operations/reducer.d.ts:379](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L379)
 
-▸ **normalizeReducer**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Finished`\>
+▸ **normalizeReducer**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`):
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `Finished`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12347,20 +12356,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                                  |
-| :-------- | :-------------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                                    |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\>\> |
 
 #### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Finished`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `Finished`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:382](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L382)
+[operations/reducer.d.ts:382](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L382)
 
-▸ **normalizeReducer**<`Value`, `Acc`, `This`\>(`reducer`):
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Acc`\>
+▸ **normalizeReducer**\<`Value`, `Acc`, `This`\>(`reducer`):
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `Acc`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12374,20 +12383,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                            |
-| :-------- | :-------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `Acc`, `This`\>\> |
+| Name      | Type                                                                                                              |
+| :-------- | :---------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `Acc`, `This`\>\> |
 
 #### Returns
 
-[`AsyncReducer`](modules.md#asyncreducer)<`Value`, `Acc`, `Acc`\>
+[`AsyncReducer`](modules.md#asyncreducer)\<`Value`, `Acc`, `Acc`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:385](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L385)
+[operations/reducer.d.ts:385](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L385)
 
-▸ **normalizeReducer**<`Value`, `Finished`, `This`\>(`reducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Finished`\>
+▸ **normalizeReducer**\<`Value`, `Finished`, `This`\>(`reducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Finished`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12401,20 +12410,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                                           |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                                             |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\>\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Finished`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Finished`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:388](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L388)
+[operations/reducer.d.ts:388](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L388)
 
-▸ **normalizeReducer**<`Value`, `This`\>(`reducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
+▸ **normalizeReducer**\<`Value`, `This`\>(`reducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Value`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12427,20 +12436,20 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                                                                     |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`, `This`\>\> |
+| Name      | Type                                                                                                                       |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`, `This`\>\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Value`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:391](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L391)
+[operations/reducer.d.ts:391](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L391)
 
-▸ **normalizeReducer**<`Value`\>(`reducer`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
+▸ **normalizeReducer**\<`Value`\>(`reducer`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Value`\>
 
 Returns a non-raw version of `reducer`.
 
@@ -12452,23 +12461,23 @@ Returns a non-raw version of `reducer`.
 
 #### Parameters
 
-| Name      | Type                                                                |
-| :-------- | :------------------------------------------------------------------ |
-| `reducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`Value`\> |
+| Name      | Type                                                                 |
+| :-------- | :------------------------------------------------------------------- |
+| `reducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`Value`\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<`Value`, `Value`\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`, `Value`\>
 
 #### Defined in
 
-[operations/reducer.d.ts:394](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reducer.d.ts#L394)
+[operations/reducer.d.ts:394](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reducer.d.ts#L394)
 
 ---
 
 ### opaque
 
-▸ **opaque**<`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ **opaque**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable equivalent, but not referentially equal, to `iterable`.
 
@@ -12480,23 +12489,23 @@ Returns an iterable equivalent, but not referentially equal, to `iterable`.
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
 
 #### Defined in
 
-[operations/opaque.d.ts:22](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/opaque.d.ts#L22)
+[operations/opaque.d.ts:6](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/opaque.d.ts#L6)
 
 ---
 
 ### opaqueAsync
 
-▸ **opaqueAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **opaqueAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable equivalent, but not referentially equal, to
 `asyncIterable`.
@@ -12509,24 +12518,24 @@ Returns an async iterable equivalent, but not referentially equal, to
 
 #### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
 
 #### Defined in
 
-[operations/opaque.d.ts:28](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/opaque.d.ts#L28)
+[operations/opaque.d.ts:12](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/opaque.d.ts#L12)
 
 ---
 
 ### opaqueConcur
 
-▸ **opaqueConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **opaqueConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns an concur iterable equivalent, but not referentially equal, to
 `concurIterable`.
@@ -12539,54 +12548,26 @@ Returns an concur iterable equivalent, but not referentially equal, to
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 #### Defined in
 
-[operations/opaque.d.ts:36](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/opaque.d.ts#L36)
+[operations/opaque.d.ts:20](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/opaque.d.ts#L20)
 
 ---
 
 ### or
 
-▸ **or**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) => `Value`
+▸ **or**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) => `Value`
 
 Returns the only value in `iterable` if it contains exactly one value.
 Otherwise, returns the result of invoking `fn`.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`],
-    or(() => `Never called`),
-  ),
-)
-//=> sloth
-
-console.log(
-  pipe(
-    [],
-    or(() => `I get called!`),
-  ),
-)
-//=> I get called!
-
-console.log(
-  pipe(
-    [1, `sloth`, 3],
-    or(() => `I also get called!`),
-  ),
-)
-//=> I also get called!
-```
 
 #### Type parameters
 
@@ -12608,22 +12589,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `Value`
-
-#### Defined in
-
-[operations/optional.d.ts:46](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L46)
-
-▸ **or**<`Value`\>(`fn`, `iterable`): `Value`
-
-Returns the only value in `iterable` if it contains exactly one value.
-Otherwise, returns the result of invoking `fn`.
 
 **`Example`**
 
@@ -12653,6 +12625,15 @@ console.log(
 //=> I also get called!
 ```
 
+#### Defined in
+
+[operations/optional.d.ts:30](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L30)
+
+▸ **or**\<`Value`\>(`fn`, `iterable`): `Value`
+
+Returns the only value in `iterable` if it contains exactly one value.
+Otherwise, returns the result of invoking `fn`.
+
 #### Type parameters
 
 | Name    |
@@ -12661,292 +12642,307 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `fn`       | () => `Value`        |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `fn`       | () => `Value`         |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
 `Value`
-
-#### Defined in
-
-[operations/optional.d.ts:47](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L47)
-
----
-
-### orAsync
-
-▸ **orAsync**<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-`Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`]),
-    orAsync(() => `Never called`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    emptyAsync,
-    orAsync(() => `I get called!`),
-  ),
-)
-//=> I get called!
-
-console.log(
-  await pipe(
-    asAsync([1, `sloth`, 3]),
-    orAsync(() => `I also get called!`),
-  ),
-)
-//=> I also get called!
-```
-
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name | Type                               |
-| :--- | :--------------------------------- |
-| `fn` | () => `MaybePromiseLike`<`Value`\> |
-
-#### Returns
-
-`fn`
-
-▸ (`asyncIterable`): `Promise`<`Value`\>
-
-##### Parameters
-
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
-
-##### Returns
-
-`Promise`<`Value`\>
-
-#### Defined in
-
-[operations/optional.d.ts:73](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L73)
-
-▸ **orAsync**<`Value`\>(`fn`, `asyncIterable`): `Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`]),
-    orAsync(() => `Never called`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    emptyAsync,
-    orAsync(() => `I get called!`),
-  ),
-)
-//=> I get called!
-
-console.log(
-  await pipe(
-    asAsync([1, `sloth`, 3]),
-    orAsync(() => `I also get called!`),
-  ),
-)
-//=> I also get called!
-```
-
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                               |
-| :-------------- | :--------------------------------- |
-| `fn`            | () => `MaybePromiseLike`<`Value`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>          |
-
-#### Returns
-
-`Promise`<`Value`\>
-
-#### Defined in
-
-[operations/optional.d.ts:76](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L76)
-
----
-
-### orConcur
-
-▸ **orConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `concurIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`]),
-    orConcur(() => `Never called`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    emptyConcur,
-    orConcur(() => `I get called!`),
-  ),
-)
-//=> I get called!
-
-console.log(
-  await pipe(
-    asConcur([1, `sloth`, 3]),
-    orConcur(() => `I also get called!`),
-  ),
-)
-//=> I also get called!
-```
-
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name | Type                               |
-| :--- | :--------------------------------- |
-| `fn` | () => `MaybePromiseLike`<`Value`\> |
-
-#### Returns
-
-`fn`
-
-▸ (`concurIterable`): `Promise`<`Value`\>
-
-##### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-##### Returns
-
-`Promise`<`Value`\>
-
-#### Defined in
-
-[operations/optional.d.ts:105](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L105)
-
-▸ **orConcur**<`Value`\>(`fn`, `concurIterable`): `Promise`<`Value`\>
-
-Returns a promise that resolves to the only value in `concurIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([`sloth`]),
-    orConcur(() => `Never called`),
-  ),
-)
-//=> sloth
-
-console.log(
-  await pipe(
-    emptyConcur,
-    orConcur(() => `I get called!`),
-  ),
-)
-//=> I get called!
-
-console.log(
-  await pipe(
-    asConcur([1, `sloth`, 3]),
-    orConcur(() => `I also get called!`),
-  ),
-)
-//=> I also get called!
-```
-
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | () => `MaybePromiseLike`<`Value`\>                      |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-`Promise`<`Value`\>
-
-#### Defined in
-
-[operations/optional.d.ts:108](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/optional.d.ts#L108)
-
----
-
-### pipe
-
-▸ **pipe**<`Value`\>(`value`): `Value`
-
-Returns the result of piping `value` through the given functions.
 
 **`Example`**
 
 ```js
 console.log(
   pipe(
-    `sloth`,
-    name => `${name.toUpperCase()}!`,
-    text => [text, text, text],
-    array => array.join(` `),
+    [`sloth`],
+    or(() => `Never called`),
   ),
 )
-// => SLOTH! SLOTH! SLOTH!
+//=> sloth
+
+console.log(
+  pipe(
+    [],
+    or(() => `I get called!`),
+  ),
+)
+//=> I get called!
+
+console.log(
+  pipe(
+    [1, `sloth`, 3],
+    or(() => `I also get called!`),
+  ),
+)
+//=> I also get called!
 ```
+
+#### Defined in
+
+[operations/optional.d.ts:31](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L31)
+
+---
+
+### orAsync
+
+▸ **orAsync**\<`Value`\>(`fn`): (`asyncIterable`: `AsyncIterable`\<`Value`\>) =>
+`Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `asyncIterable` if it
+contains exactly one value. Otherwise, returns a promise that resolves to the
+awaited result of invoking `fn`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                |
+| :--- | :---------------------------------- |
+| `fn` | () => `MaybePromiseLike`\<`Value`\> |
+
+#### Returns
+
+`fn`
+
+▸ (`asyncIterable`): `Promise`\<`Value`\>
+
+##### Parameters
+
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
+
+##### Returns
+
+`Promise`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`]),
+    orAsync(() => `Never called`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    emptyAsync,
+    orAsync(() => `I get called!`),
+  ),
+)
+//=> I get called!
+
+console.log(
+  await pipe(
+    asAsync([1, `sloth`, 3]),
+    orAsync(() => `I also get called!`),
+  ),
+)
+//=> I also get called!
+```
+
+#### Defined in
+
+[operations/optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L57)
+
+▸ **orAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `asyncIterable` if it
+contains exactly one value. Otherwise, returns a promise that resolves to the
+awaited result of invoking `fn`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                                |
+| :-------------- | :---------------------------------- |
+| `fn`            | () => `MaybePromiseLike`\<`Value`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>          |
+
+#### Returns
+
+`Promise`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`sloth`]),
+    orAsync(() => `Never called`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    emptyAsync,
+    orAsync(() => `I get called!`),
+  ),
+)
+//=> I get called!
+
+console.log(
+  await pipe(
+    asAsync([1, `sloth`, 3]),
+    orAsync(() => `I also get called!`),
+  ),
+)
+//=> I also get called!
+```
+
+#### Defined in
+
+[operations/optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L60)
+
+---
+
+### orConcur
+
+▸ **orConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `concurIterable` if it
+contains exactly one value. Otherwise, returns a promise that resolves to the
+awaited result of invoking `fn`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                |
+| :--- | :---------------------------------- |
+| `fn` | () => `MaybePromiseLike`\<`Value`\> |
+
+#### Returns
+
+`fn`
+
+▸ (`concurIterable`): `Promise`\<`Value`\>
+
+##### Parameters
+
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
+
+##### Returns
+
+`Promise`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`]),
+    orConcur(() => `Never called`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    emptyConcur,
+    orConcur(() => `I get called!`),
+  ),
+)
+//=> I get called!
+
+console.log(
+  await pipe(
+    asConcur([1, `sloth`, 3]),
+    orConcur(() => `I also get called!`),
+  ),
+)
+//=> I also get called!
+```
+
+#### Defined in
+
+[operations/optional.d.ts:89](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L89)
+
+▸ **orConcur**\<`Value`\>(`fn`, `concurIterable`): `Promise`\<`Value`\>
+
+Returns a promise that resolves to the only value in `concurIterable` if it
+contains exactly one value. Otherwise, returns a promise that resolves to the
+awaited result of invoking `fn`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | () => `MaybePromiseLike`\<`Value`\>                      |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
+
+#### Returns
+
+`Promise`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`]),
+    orConcur(() => `Never called`),
+  ),
+)
+//=> sloth
+
+console.log(
+  await pipe(
+    emptyConcur,
+    orConcur(() => `I get called!`),
+  ),
+)
+//=> I get called!
+
+console.log(
+  await pipe(
+    asConcur([1, `sloth`, 3]),
+    orConcur(() => `I also get called!`),
+  ),
+)
+//=> I also get called!
+```
+
+#### Defined in
+
+[operations/optional.d.ts:92](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/optional.d.ts#L92)
+
+---
+
+### pipe
+
+▸ **pipe**\<`Value`\>(`value`): `Value`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -12964,14 +12960,6 @@ console.log(
 
 `Value`
 
-#### Defined in
-
-[operations/fn.d.ts:89](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L89)
-
-▸ **pipe**<`A`, `B`\>(`value`, `fn`): `B`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -12985,6 +12973,14 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:73](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L73)
+
+▸ **pipe**\<`A`, `B`\>(`value`, `fn`): `B`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13004,14 +13000,6 @@ console.log(
 
 `B`
 
-#### Defined in
-
-[operations/fn.d.ts:90](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L90)
-
-▸ **pipe**<`A`, `B`, `C`\>(`value`, `fn1`, `fn2`): `C`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13025,6 +13013,14 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:74](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L74)
+
+▸ **pipe**\<`A`, `B`, `C`\>(`value`, `fn1`, `fn2`): `C`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13046,14 +13042,6 @@ console.log(
 
 `C`
 
-#### Defined in
-
-[operations/fn.d.ts:91](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L91)
-
-▸ **pipe**<`A`, `B`, `C`, `D`\>(`value`, `fn1`, `fn2`, `fn3`): `D`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13067,6 +13055,14 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:75](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L75)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`\>(`value`, `fn1`, `fn2`, `fn3`): `D`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13090,14 +13086,6 @@ console.log(
 
 `D`
 
-#### Defined in
-
-[operations/fn.d.ts:92](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L92)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`): `E`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13111,6 +13099,14 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:76](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L76)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`): `E`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13136,15 +13132,6 @@ console.log(
 
 `E`
 
-#### Defined in
-
-[operations/fn.d.ts:98](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L98)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`,
-`fn5`): `F`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13158,6 +13145,15 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:82](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L82)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`, `F`\>(`value`, `fn1`, `fn2`, `fn3`, `fn4`,
+`fn5`): `F`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13185,15 +13181,6 @@ console.log(
 
 `F`
 
-#### Defined in
-
-[operations/fn.d.ts:105](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L105)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`value`, `fn1`, `fn2`, `fn3`,
-`fn4`, `fn5`, `fn6`): `G`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13207,6 +13194,15 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:89](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L89)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`value`, `fn1`, `fn2`, `fn3`,
+`fn4`, `fn5`, `fn6`): `G`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13236,15 +13232,6 @@ console.log(
 
 `G`
 
-#### Defined in
-
-[operations/fn.d.ts:113](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L113)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`value`, `fn1`, `fn2`,
-`fn3`, `fn4`, `fn5`, `fn6`, `fn7`): `H`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13258,6 +13245,15 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:97](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L97)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`value`, `fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`, `fn7`): `H`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13289,15 +13285,6 @@ console.log(
 
 `H`
 
-#### Defined in
-
-[operations/fn.d.ts:122](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L122)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`value`, `fn1`, `fn2`,
-`fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): `I`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13311,6 +13298,15 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:106](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L106)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`value`, `fn1`, `fn2`,
+`fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): `I`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13344,15 +13340,6 @@ console.log(
 
 `I`
 
-#### Defined in
-
-[operations/fn.d.ts:132](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L132)
-
-▸ **pipe**<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`value`, `fn1`,
-`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): `J`
-
-Returns the result of piping `value` through the given functions.
-
 **`Example`**
 
 ```js
@@ -13366,6 +13353,15 @@ console.log(
 )
 // => SLOTH! SLOTH! SLOTH!
 ```
+
+#### Defined in
+
+[operations/fn.d.ts:116](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L116)
+
+▸ **pipe**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`value`, `fn1`,
+`fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): `J`
+
+Returns the result of piping `value` through the given functions.
 
 #### Type parameters
 
@@ -13401,33 +13397,33 @@ console.log(
 
 `J`
 
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    `sloth`,
+    name => `${name.toUpperCase()}!`,
+    text => [text, text, text],
+    array => array.join(` `),
+  ),
+)
+// => SLOTH! SLOTH! SLOTH!
+```
+
 #### Defined in
 
-[operations/fn.d.ts:143](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/fn.d.ts#L143)
+[operations/fn.d.ts:127](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/fn.d.ts#L127)
 
 ---
 
 ### rangeTo
 
-▸ **rangeTo**<`Start`\>(`start`): <End\>(`end`: `Integer`<`End`\>) =>
+▸ **rangeTo**\<`Start`\>(`start`): \<End\>(`end`: `Integer`\<`End`\>) =>
 [`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` including `start` and `end`.
-
-**`Throws`**
-
-if either `start` or `end` is not an integer.
-
-**`Example`**
-
-```js
-console.log([...rangeTo(0, 6)])
-//=> [ 0, 1, 2, 3, 4, 5, 6 ]
-
-console.log([...rangeTo(0, 6).step(2)])
-//=> [ 0, 2, 4, 6 ]
-```
 
 #### Type parameters
 
@@ -13437,15 +13433,15 @@ console.log([...rangeTo(0, 6).step(2)])
 
 #### Parameters
 
-| Name    | Type                |
-| :------ | :------------------ |
-| `start` | `Integer`<`Start`\> |
+| Name    | Type                 |
+| :------ | :------------------- |
+| `start` | `Integer`\<`Start`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`End`\>(`end`): [`RangeIterable`](modules.md#rangeiterable)
+▸ \<`End`\>(`end`): [`RangeIterable`](modules.md#rangeiterable)
 
 ##### Type parameters
 
@@ -13455,23 +13451,13 @@ console.log([...rangeTo(0, 6).step(2)])
 
 ##### Parameters
 
-| Name  | Type              |
-| :---- | :---------------- |
-| `end` | `Integer`<`End`\> |
+| Name  | Type               |
+| :---- | :----------------- |
+| `end` | `Integer`\<`End`\> |
 
 ##### Returns
 
 [`RangeIterable`](modules.md#rangeiterable)
-
-#### Defined in
-
-[operations/generate.d.ts:144](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L144)
-
-▸ **rangeTo**<`Start`, `End`\>(`start`, `end`):
-[`RangeIterable`](modules.md#rangeiterable)
-
-Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
-between `start` and `end` including `start` and `end`.
 
 **`Throws`**
 
@@ -13486,6 +13472,16 @@ console.log([...rangeTo(0, 6)])
 console.log([...rangeTo(0, 6).step(2)])
 //=> [ 0, 2, 4, 6 ]
 ```
+
+#### Defined in
+
+[operations/generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L152)
+
+▸ **rangeTo**\<`Start`, `End`\>(`start`, `end`):
+[`RangeIterable`](modules.md#rangeiterable)
+
+Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
+between `start` and `end` including `start` and `end`.
 
 #### Type parameters
 
@@ -13496,42 +13492,42 @@ console.log([...rangeTo(0, 6).step(2)])
 
 #### Parameters
 
-| Name    | Type                |
-| :------ | :------------------ |
-| `start` | `Integer`<`Start`\> |
-| `end`   | `Integer`<`End`\>   |
+| Name    | Type                 |
+| :------ | :------------------- |
+| `start` | `Integer`\<`Start`\> |
+| `end`   | `Integer`\<`End`\>   |
 
 #### Returns
 
 [`RangeIterable`](modules.md#rangeiterable)
 
+**`Throws`**
+
+if either `start` or `end` is not an integer.
+
+**`Example`**
+
+```js
+console.log([...rangeTo(0, 6)])
+//=> [ 0, 1, 2, 3, 4, 5, 6 ]
+
+console.log([...rangeTo(0, 6).step(2)])
+//=> [ 0, 2, 4, 6 ]
+```
+
 #### Defined in
 
-[operations/generate.d.ts:147](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L147)
+[operations/generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L152)
 
 ---
 
 ### rangeUntil
 
-▸ **rangeUntil**<`Start`\>(`start`): <End\>(`end`: `Integer`<`End`\>) =>
+▸ **rangeUntil**\<`Start`\>(`start`): \<End\>(`end`: `Integer`\<`End`\>) =>
 [`RangeIterable`](modules.md#rangeiterable)
 
 Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
 between `start` and `end` including `start`, but excluding `end`.
-
-**`Throws`**
-
-if either `start` or `end` is not an integer.
-
-**`Example`**
-
-```js
-console.log([...rangeUntil(0, 6)])
-//=> [ 0, 1, 2, 3, 4, 5 ]
-
-console.log([...rangeUntil(0, 6).step(2)])
-//=> [ 0, 2, 4 ]
-```
 
 #### Type parameters
 
@@ -13541,15 +13537,15 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 #### Parameters
 
-| Name    | Type                |
-| :------ | :------------------ |
-| `start` | `Integer`<`Start`\> |
+| Name    | Type                 |
+| :------ | :------------------- |
+| `start` | `Integer`\<`Start`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`End`\>(`end`): [`RangeIterable`](modules.md#rangeiterable)
+▸ \<`End`\>(`end`): [`RangeIterable`](modules.md#rangeiterable)
 
 ##### Type parameters
 
@@ -13559,23 +13555,13 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 ##### Parameters
 
-| Name  | Type              |
-| :---- | :---------------- |
-| `end` | `Integer`<`End`\> |
+| Name  | Type               |
+| :---- | :----------------- |
+| `end` | `Integer`\<`End`\> |
 
 ##### Returns
 
 [`RangeIterable`](modules.md#rangeiterable)
-
-#### Defined in
-
-[operations/generate.d.ts:144](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L144)
-
-▸ **rangeUntil**<`Start`, `End`\>(`start`, `end`):
-[`RangeIterable`](modules.md#rangeiterable)
-
-Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
-between `start` and `end` including `start`, but excluding `end`.
 
 **`Throws`**
 
@@ -13590,6 +13576,16 @@ console.log([...rangeUntil(0, 6)])
 console.log([...rangeUntil(0, 6).step(2)])
 //=> [ 0, 2, 4 ]
 ```
+
+#### Defined in
+
+[operations/generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L169)
+
+▸ **rangeUntil**\<`Start`, `End`\>(`start`, `end`):
+[`RangeIterable`](modules.md#rangeiterable)
+
+Returns a [RangeIterable](modules.md#rangeiterable) that yields the integers
+between `start` and `end` including `start`, but excluding `end`.
 
 #### Type parameters
 
@@ -13600,24 +13596,38 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 #### Parameters
 
-| Name    | Type                |
-| :------ | :------------------ |
-| `start` | `Integer`<`Start`\> |
-| `end`   | `Integer`<`End`\>   |
+| Name    | Type                 |
+| :------ | :------------------- |
+| `start` | `Integer`\<`Start`\> |
+| `end`   | `Integer`\<`End`\>   |
 
 #### Returns
 
 [`RangeIterable`](modules.md#rangeiterable)
 
+**`Throws`**
+
+if either `start` or `end` is not an integer.
+
+**`Example`**
+
+```js
+console.log([...rangeUntil(0, 6)])
+//=> [ 0, 1, 2, 3, 4, 5 ]
+
+console.log([...rangeUntil(0, 6).step(2)])
+//=> [ 0, 2, 4 ]
+```
+
 #### Defined in
 
-[operations/generate.d.ts:147](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L147)
+[operations/generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L169)
 
 ---
 
 ### reduce
 
-▸ **reduce**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`, `iterable`):
+▸ **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`, `iterable`):
 `Finished`
 
 Returns the result of reducing `iterable` using `reducer`.
@@ -13634,27 +13644,6 @@ accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
-    reduce((a, b) => `${a} ${b}`),
-    get,
-  ),
-)
-//=> Hello Sloth! What an interesting program!
-
-console.log(
-  pipe(
-    [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
-    reduce({ create: () => ``, add: (a, b) => `${a} ${b}` }),
-  ),
-)
-//=> Hello Sloth! What an interesting program!
-```
-
 #### Type parameters
 
 | Name       |
@@ -13666,36 +13655,15 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                                                                                        |
-| :--------- | :---------------------------------------------------------------------------------------------------------- |
-| `reducer`  | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\>\> |
-| `iterable` | `Iterable`<`Value`\>                                                                                        |
+| Name       | Type                                                                                                          |
+| :--------- | :------------------------------------------------------------------------------------------------------------ |
+| `reducer`  | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\>\> |
+| `iterable` | `Iterable`\<`Value`\>                                                                                         |
 
 #### Returns
 
 `Finished`
 
-#### Defined in
-
-[operations/reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L68)
-
-▸ **reduce**<`Value`, `Acc`, `Finished`, `This`\>(`reducer`): (`iterable`:
-`Iterable`<`Value`\>) => `Finished`
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
-
 **`Example`**
 
 ```js
@@ -13717,6 +13685,27 @@ console.log(
 //=> Hello Sloth! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:52](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L52)
+
+▸ **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`): (`iterable`:
+`Iterable`\<`Value`\>) => `Finished`
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
+
 #### Type parameters
 
 | Name       |
@@ -13728,9 +13717,9 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                                                                        |
-| :-------- | :---------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                          |
+| :-------- | :------------------------------------------------------------------------------------------------------------ |
+| `reducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\>\> |
 
 #### Returns
 
@@ -13740,34 +13729,14 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `Finished`
 
-#### Defined in
-
-[operations/reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L72)
-
-▸ **reduce**<`Value`, `Acc`, `This`\>(`reducer`, `iterable`): `Acc`
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
-
 **`Example`**
 
 ```js
@@ -13789,6 +13758,26 @@ console.log(
 //=> Hello Sloth! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:56](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L56)
+
+▸ **reduce**\<`Value`, `Acc`, `This`\>(`reducer`, `iterable`): `Acc`
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -13799,36 +13788,15 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                                                                                  |
-| :--------- | :---------------------------------------------------------------------------------------------------- |
-| `reducer`  | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\>\> |
-| `iterable` | `Iterable`<`Value`\>                                                                                  |
+| Name       | Type                                                                                                    |
+| :--------- | :------------------------------------------------------------------------------------------------------ |
+| `reducer`  | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\>\> |
+| `iterable` | `Iterable`\<`Value`\>                                                                                   |
 
 #### Returns
 
 `Acc`
 
-#### Defined in
-
-[operations/reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L76)
-
-▸ **reduce**<`Value`, `Acc`, `This`\>(`reducer`): (`iterable`:
-`Iterable`<`Value`\>) => `Acc`
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
-
 **`Example`**
 
 ```js
@@ -13850,6 +13818,27 @@ console.log(
 //=> Hello Sloth! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:60](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L60)
+
+▸ **reduce**\<`Value`, `Acc`, `This`\>(`reducer`): (`iterable`:
+`Iterable`\<`Value`\>) => `Acc`
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -13860,9 +13849,9 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                                                                  |
-| :-------- | :---------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\>\> |
+| Name      | Type                                                                                                    |
+| :-------- | :------------------------------------------------------------------------------------------------------ |
+| `reducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\>\> |
 
 #### Returns
 
@@ -13872,35 +13861,14 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
 `Acc`
 
-#### Defined in
-
-[operations/reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L80)
-
-▸ **reduce**<`Value`, `Finished`, `This`\>(`reducer`, `iterable`):
-[`Optional`](modules.md#optional)<`Finished`\>
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
-
 **`Example`**
 
 ```js
@@ -13921,6 +13889,27 @@ console.log(
 )
 //=> Hello Sloth! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:64](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L64)
+
+▸ **reduce**\<`Value`, `Finished`, `This`\>(`reducer`, `iterable`):
+[`Optional`](modules.md#optional)\<`Finished`\>
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
 
 #### Type parameters
 
@@ -13932,35 +13921,14 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                                                                                                 |
-| :--------- | :------------------------------------------------------------------------------------------------------------------- |
-| `reducer`  | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\>\> |
-| `iterable` | `Iterable`<`Value`\>                                                                                                 |
+| Name       | Type                                                                                                                   |
+| :--------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `reducer`  | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\>\> |
+| `iterable` | `Iterable`\<`Value`\>                                                                                                  |
 
 #### Returns
 
-[`Optional`](modules.md#optional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L84)
-
-▸ **reduce**<`Value`, `Finished`, `This`\>(`reducer`): (`iterable`:
-`Iterable`<`Value`\>) => [`Optional`](modules.md#optional)<`Finished`\>
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
+[`Optional`](modules.md#optional)\<`Finished`\>
 
 **`Example`**
 
@@ -13982,6 +13950,27 @@ console.log(
 )
 //=> Hello Sloth! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L68)
+
+▸ **reduce**\<`Value`, `Finished`, `This`\>(`reducer`): (`iterable`:
+`Iterable`\<`Value`\>) => [`Optional`](modules.md#optional)\<`Finished`\>
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
 
 #### Type parameters
 
@@ -13993,46 +13982,25 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                                                                                 |
-| :-------- | :------------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\>\> |
+| Name      | Type                                                                                                                   |
+| :-------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\>\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): [`Optional`](modules.md#optional)<`Finished`\>
+▸ (`iterable`): [`Optional`](modules.md#optional)\<`Finished`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-[`Optional`](modules.md#optional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L88)
-
-▸ **reduce**<`Value`, `This`\>(`reducer`, `iterable`):
-[`Optional`](modules.md#optional)<`Value`\>
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
+[`Optional`](modules.md#optional)\<`Finished`\>
 
 **`Example`**
 
@@ -14054,6 +14022,27 @@ console.log(
 )
 //=> Hello Sloth! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L72)
+
+▸ **reduce**\<`Value`, `This`\>(`reducer`, `iterable`):
+[`Optional`](modules.md#optional)\<`Value`\>
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
 
 #### Type parameters
 
@@ -14064,35 +14053,14 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                                                                                           |
-| :--------- | :------------------------------------------------------------------------------------------------------------- |
-| `reducer`  | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\>\> |
-| `iterable` | `Iterable`<`Value`\>                                                                                           |
+| Name       | Type                                                                                                             |
+| :--------- | :--------------------------------------------------------------------------------------------------------------- |
+| `reducer`  | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\>\> |
+| `iterable` | `Iterable`\<`Value`\>                                                                                            |
 
 #### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:92](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L92)
-
-▸ **reduce**<`Value`, `This`\>(`reducer`): (`iterable`: `Iterable`<`Value`\>) =>
-[`Optional`](modules.md#optional)<`Value`\>
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
@@ -14114,6 +14082,27 @@ console.log(
 )
 //=> Hello Sloth! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L76)
+
+▸ **reduce**\<`Value`, `This`\>(`reducer`): (`iterable`: `Iterable`\<`Value`\>)
+=> [`Optional`](modules.md#optional)\<`Value`\>
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
 
 #### Type parameters
 
@@ -14124,46 +14113,25 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                                                                           |
-| :-------- | :------------------------------------------------------------------------------------------------------------- |
-| `reducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\>\> |
+| Name      | Type                                                                                                             |
+| :-------- | :--------------------------------------------------------------------------------------------------------------- |
+| `reducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\>\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): [`Optional`](modules.md#optional)<`Value`\>
+▸ (`iterable`): [`Optional`](modules.md#optional)\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:96](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L96)
-
-▸ **reduce**<`Value`\>(`reducer`, `iterable`):
-[`Optional`](modules.md#optional)<`Value`\>
-
-Returns the result of reducing `iterable` using `reducer`.
-
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
-
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
-
-Like `Array.prototype.reduce`, but for iterables.
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
@@ -14186,29 +14154,12 @@ console.log(
 //=> Hello Sloth! What an interesting program!
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name       | Type                                                      |
-| :--------- | :-------------------------------------------------------- |
-| `reducer`  | [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
-| `iterable` | `Iterable`<`Value`\>                                      |
-
-#### Returns
-
-[`Optional`](modules.md#optional)<`Value`\>
-
 #### Defined in
 
-[operations/reduce.d.ts:100](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L100)
+[operations/reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L80)
 
-▸ **reduce**<`Value`\>(`reducer`): (`iterable`: `Iterable`<`Value`\>) =>
-[`Optional`](modules.md#optional)<`Value`\>
+▸ **reduce**\<`Value`\>(`reducer`, `iterable`):
+[`Optional`](modules.md#optional)\<`Value`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
@@ -14223,6 +14174,23 @@ the result of reducing using the first value of the iterable as the initial
 accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name       | Type                                                       |
+| :--------- | :--------------------------------------------------------- |
+| `reducer`  | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
+| `iterable` | `Iterable`\<`Value`\>                                      |
+
+#### Returns
+
+[`Optional`](modules.md#optional)\<`Value`\>
 
 **`Example`**
 
@@ -14245,6 +14213,27 @@ console.log(
 //=> Hello Sloth! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L84)
+
+▸ **reduce**\<`Value`\>(`reducer`): (`iterable`: `Iterable`\<`Value`\>) =>
+[`Optional`](modules.md#optional)\<`Value`\>
+
+Returns the result of reducing `iterable` using `reducer`.
+
+An initial accumulator is created using Reducer.create. Then each value in
+`iterable` is added to the accumulator and the current accumulator is updated
+using Reducer.add. Finally, the resulting accumulator is transformed using
+Reducer.finish if specified.
+
+If `reducer` is an optional reducer (no Reducer.create method), then an empty
+iterable is returned if `iterable` is empty. Otherwise, an iterable containing
+the result of reducing using the first value of the iterable as the initial
+accumulator is returned.
+
+Like `Array.prototype.reduce`, but for iterables.
+
 #### Type parameters
 
 | Name    |
@@ -14253,36 +14242,57 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                      |
-| :-------- | :-------------------------------------------------------- |
-| `reducer` | [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
+| Name      | Type                                                       |
+| :-------- | :--------------------------------------------------------- |
+| `reducer` | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`iterable`): [`Optional`](modules.md#optional)<`Value`\>
+▸ (`iterable`): [`Optional`](modules.md#optional)\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-[`Optional`](modules.md#optional)<`Value`\>
+[`Optional`](modules.md#optional)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
+    reduce((a, b) => `${a} ${b}`),
+    get,
+  ),
+)
+//=> Hello Sloth! What an interesting program!
+
+console.log(
+  pipe(
+    [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
+    reduce({ create: () => ``, add: (a, b) => `${a} ${b}` }),
+  ),
+)
+//=> Hello Sloth! What an interesting program!
+```
 
 #### Defined in
 
-[operations/reduce.d.ts:104](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L104)
+[operations/reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L88)
 
 ---
 
 ### reduceAsync
 
-▸ **reduceAsync**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`,
-`asyncIterable`): `Promise`<`Finished`\>
+▸ **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`,
+`asyncIterable`): `Promise`\<`Finished`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
@@ -14300,27 +14310,6 @@ an async iterable containing the result of reducing using the first value of the
 async iterable as the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
-    reduceAsync((a, b) => `${a} ${b}`),
-    getAsync,
-  ),
-)
-//=> Hello World! What an interesting program!
-
-console.log(
-  await pipe(
-    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
-    reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
-  ),
-)
-//=> Hello World! What an interesting program!
-```
 
 #### Type parameters
 
@@ -14333,38 +14322,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                                                                                                                                                                       |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`  | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                                                                                                                                                                                  |
+| Name            | Type                                                                                                                                                                                                         |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`  | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                                                                                                                                                                                   |
 
 #### Returns
 
-`Promise`<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:150](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L150)
-
-▸ **reduceAsync**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
-(`asyncIterable`: `AsyncIterable`<`Value`\>) => `Promise`<`Finished`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+`Promise`\<`Finished`\>
 
 **`Example`**
 
@@ -14386,6 +14351,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:134](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L134)
+
+▸ **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
+(`asyncIterable`: `AsyncIterable`\<`Value`\>) => `Promise`\<`Finished`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14398,49 +14387,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                       |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> |
+| Name           | Type                                                                                                                                                                                                         |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`Finished`\>
+▸ (`asyncIterable`): `Promise`\<`Finished`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:156](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L156)
-
-▸ **reduceAsync**<`Value`, `Acc`, `This`\>(`asyncReducer`, `asyncIterable`):
-`Promise`<`Acc`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+`Promise`\<`Finished`\>
 
 **`Example`**
 
@@ -14462,6 +14427,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:140](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L140)
+
+▸ **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`, `asyncIterable`):
+`Promise`\<`Acc`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14473,38 +14462,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                                                                                                                                                           |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`  | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                                                                                                                                                                      |
+| Name            | Type                                                                                                                                                                                             |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`  | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                                                                                                                                                                       |
 
 #### Returns
 
-`Promise`<`Acc`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:162](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L162)
-
-▸ **reduceAsync**<`Value`, `Acc`, `This`\>(`asyncReducer`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `Promise`<`Acc`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+`Promise`\<`Acc`\>
 
 **`Example`**
 
@@ -14526,6 +14491,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:146](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L146)
+
+▸ **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `Promise`\<`Acc`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14537,49 +14526,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                           |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\> |
+| Name           | Type                                                                                                                                                                                             |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): `Promise`<`Acc`\>
+▸ (`asyncIterable`): `Promise`\<`Acc`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`Acc`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:168](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L168)
-
-▸ **reduceAsync**<`Value`, `Finished`, `This`\>(`asyncReducer`,
-`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+`Promise`\<`Acc`\>
 
 **`Example`**
 
@@ -14601,6 +14566,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:152](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L152)
+
+▸ **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`,
+`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Finished`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14612,39 +14601,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                                                                                                                                                                                         |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`  | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                                                                                                                                                                                                    |
+| Name            | Type                                                                                                                                                                                                                           |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`  | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                                                                                                                                                                                                     |
 
 #### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:174](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L174)
-
-▸ **reduceAsync**<`Value`, `Finished`, `This`\>(`asyncReducer`):
-(`asyncIterable`: `AsyncIterable`<`Value`\>) =>
-[`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Finished`\>
 
 **`Example`**
 
@@ -14666,6 +14630,31 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:158](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L158)
+
+▸ **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`):
+(`asyncIterable`: `AsyncIterable`\<`Value`\>) =>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Finished`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14677,49 +14666,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                                         |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> |
+| Name           | Type                                                                                                                                                                                                                           |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
+▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Finished`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:180](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L180)
-
-▸ **reduceAsync**<`Value`, `This`\>(`asyncReducer`, `asyncIterable`):
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Finished`\>
 
 **`Example`**
 
@@ -14741,6 +14706,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:164](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L164)
+
+▸ **reduceAsync**\<`Value`, `This`\>(`asyncReducer`, `asyncIterable`):
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14751,39 +14740,14 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                                                                                                                                                                             |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`  | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                                                                                                                                                                                        |
+| Name            | Type                                                                                                                                                                                                               |
+| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`  | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                                                                                                                                                                                         |
 
 #### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:186](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L186)
-
-▸ **reduceAsync**<`Value`, `This`\>(`asyncReducer`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) =>
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
@@ -14805,6 +14769,31 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:170](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L170)
+
+▸ **reduceAsync**\<`Value`, `This`\>(`asyncReducer`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) =>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
 
 #### Type parameters
 
@@ -14815,49 +14804,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                             |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\> |
+| Name           | Type                                                                                                                                                                                                               |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:192](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L192)
-
-▸ **reduceAsync**<`Value`\>(`asyncReducer`, `asyncIterable`):
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
-Returns the result of reducing the `asyncIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for async iterables.
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
@@ -14880,30 +14845,12 @@ console.log(
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                                                                                                                             |
-| :-------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`  | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                                                                                                        |
-
-#### Returns
-
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
-
 #### Defined in
 
-[operations/reduce.d.ts:198](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L198)
+[operations/reduce.d.ts:176](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L176)
 
-▸ **reduceAsync**<`Value`\>(`asyncReducer`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) =>
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ **reduceAsync**\<`Value`\>(`asyncReducer`, `asyncIterable`):
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
@@ -14921,6 +14868,23 @@ an async iterable containing the result of reducing using the first value of the
 async iterable as the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                                                                                                                               |
+| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`  | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                                                                                                         |
+
+#### Returns
+
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 **`Example`**
 
@@ -14943,6 +14907,31 @@ console.log(
 //=> Hello World! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:182](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L182)
+
+▸ **reduceAsync**\<`Value`\>(`asyncReducer`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) =>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+Returns the result of reducing the `asyncIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `asyncIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
+an async iterable containing the result of reducing using the first value of the
+async iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for async iterables.
+
 #### Type parameters
 
 | Name    |
@@ -14951,36 +14940,57 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                             |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
+| Name           | Type                                                                                                                               |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+▸ (`asyncIterable`): [`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-[`AsyncOptional`](modules.md#asyncoptional)<`Value`\>
+[`AsyncOptional`](modules.md#asyncoptional)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
+    reduceAsync((a, b) => `${a} ${b}`),
+    getAsync,
+  ),
+)
+//=> Hello World! What an interesting program!
+
+console.log(
+  await pipe(
+    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
+    reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
+  ),
+)
+//=> Hello World! What an interesting program!
+```
 
 #### Defined in
 
-[operations/reduce.d.ts:202](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L202)
+[operations/reduce.d.ts:186](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L186)
 
 ---
 
 ### reduceConcur
 
-▸ **reduceConcur**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`,
-`concurIterable`): `Promise`<`Finished`\>
+▸ **reduceConcur**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`,
+`concurIterable`): `Promise`\<`Finished`\>
 
 Returns the result of reducing the `concurIterable` using `asyncReducer`.
 
@@ -14998,27 +15008,6 @@ Otherwise, an concur iterable containing the result of reducing using the first
 value of the concur iterable as the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for concur iterables.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
-    reduceAsync((a, b) => `${a} ${b}`),
-    getAsync,
-  ),
-)
-//=> Hello World! What an interesting program!
-
-console.log(
-  await pipe(
-    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
-    reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
-  ),
-)
-//=> Hello World! What an interesting program!
-```
 
 #### Type parameters
 
@@ -15031,39 +15020,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                                                                                                                                                       |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`   | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                                                                                                                                                    |
+| Name             | Type                                                                                                                                                                                                         |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`   | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>                                                                                                                                                     |
 
 #### Returns
 
-`Promise`<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:248](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L248)
-
-▸ **reduceConcur**<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
-(`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-`Promise`<`Finished`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+`Promise`\<`Finished`\>
 
 **`Example`**
 
@@ -15085,6 +15049,31 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:232](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L232)
+
+▸ **reduceConcur**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
+(`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+`Promise`\<`Finished`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15097,49 +15086,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                       |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `Acc`, `Finished`, `This`\> |
+| Name           | Type                                                                                                                                                                                                         |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncReducerWithFinish`](modules.md#rawasyncreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `Acc`, `Finished`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`Finished`\>
+▸ (`concurIterable`): `Promise`\<`Finished`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:254](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L254)
-
-▸ **reduceConcur**<`Value`, `Acc`, `This`\>(`asyncReducer`, `concurIterable`):
-`Promise`<`Acc`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+`Promise`\<`Finished`\>
 
 **`Example`**
 
@@ -15161,6 +15126,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:238](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L238)
+
+▸ **reduceConcur**\<`Value`, `Acc`, `This`\>(`asyncReducer`, `concurIterable`):
+`Promise`\<`Acc`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15172,38 +15161,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                                                                                                                                           |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`   | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                                                                                                                                        |
+| Name             | Type                                                                                                                                                                                             |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`   | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>                                                                                                                                         |
 
 #### Returns
 
-`Promise`<`Acc`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:260](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L260)
-
-▸ **reduceConcur**<`Value`, `Acc`, `This`\>(`asyncReducer`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) => `Promise`<`Acc`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+`Promise`\<`Acc`\>
 
 **`Example`**
 
@@ -15225,6 +15190,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:244](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L244)
+
+▸ **reduceConcur**\<`Value`, `Acc`, `This`\>(`asyncReducer`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) => `Promise`\<`Acc`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15236,49 +15225,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                           |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `Acc`, `This`\> |
+| Name           | Type                                                                                                                                                                                             |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncReducerWithoutFinish`](modules.md#rawasyncreducerwithoutfinish)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `Acc`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): `Promise`<`Acc`\>
+▸ (`concurIterable`): `Promise`\<`Acc`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-`Promise`<`Acc`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:266](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L266)
-
-▸ **reduceConcur**<`Value`, `Finished`, `This`\>(`asyncReducer`,
-`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+`Promise`\<`Acc`\>
 
 **`Example`**
 
@@ -15300,6 +15265,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:250](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L250)
+
+▸ **reduceConcur**\<`Value`, `Finished`, `This`\>(`asyncReducer`,
+`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)\<`Finished`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15311,39 +15300,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                                                                                                                                                                         |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`   | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                                                                                                                                                                      |
+| Name             | Type                                                                                                                                                                                                                           |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`   | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>                                                                                                                                                                       |
 
 #### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:272](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L272)
-
-▸ **reduceConcur**<`Value`, `Finished`, `This`\>(`asyncReducer`):
-(`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+[`ConcurOptional`](modules.md#concuroptional)\<`Finished`\>
 
 **`Example`**
 
@@ -15365,6 +15329,31 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:256](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L256)
+
+▸ **reduceConcur**\<`Value`, `Finished`, `This`\>(`asyncReducer`):
+(`concurIterable`: [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurOptional`](modules.md#concuroptional)\<`Finished`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15376,49 +15365,26 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                                         |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `Finished`, `This`\> |
+| Name           | Type                                                                                                                                                                                                                           |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncOptionalReducerWithFinish`](modules.md#rawasyncoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `Finished`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
+▸ (`concurIterable`):
+[`ConcurOptional`](modules.md#concuroptional)\<`Finished`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Finished`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:278](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L278)
-
-▸ **reduceConcur**<`Value`, `This`\>(`asyncReducer`, `concurIterable`):
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+[`ConcurOptional`](modules.md#concuroptional)\<`Finished`\>
 
 **`Example`**
 
@@ -15440,6 +15406,30 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:262](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L262)
+
+▸ **reduceConcur**\<`Value`, `This`\>(`asyncReducer`, `concurIterable`):
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15450,39 +15440,14 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                                                                                                                                                                             |
-| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`   | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                                                                                                                                                          |
+| Name             | Type                                                                                                                                                                                                               |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`   | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>                                                                                                                                                           |
 
 #### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:284](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L284)
-
-▸ **reduceConcur**<`Value`, `This`\>(`asyncReducer`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 **`Example`**
 
@@ -15504,6 +15469,31 @@ console.log(
 )
 //=> Hello World! What an interesting program!
 ```
+
+#### Defined in
+
+[operations/reduce.d.ts:268](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L268)
+
+▸ **reduceConcur**\<`Value`, `This`\>(`asyncReducer`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
 
 #### Type parameters
 
@@ -15514,49 +15504,25 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                                                                                                             |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `This`\> |
+| Name           | Type                                                                                                                                                                                                               |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`RawAsyncOptionalReducerWithoutFinish`](modules.md#rawasyncoptionalreducerwithoutfinish)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `This`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-#### Defined in
-
-[operations/reduce.d.ts:290](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L290)
-
-▸ **reduceConcur**<`Value`\>(`asyncReducer`, `concurIterable`):
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
-Returns the result of reducing the `concurIterable` using `asyncReducer`.
-
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `concurIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `concurIterable` is ready before
-promises from AsyncReducer.add resolve.
-
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty concur iterable is returned if `concurIterable` is empty.
-Otherwise, an concur iterable containing the result of reducing using the first
-value of the concur iterable as the initial accumulator is returned.
-
-Like `Array.prototype.reduce`, but for concur iterables.
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 **`Example`**
 
@@ -15579,30 +15545,12 @@ console.log(
 //=> Hello World! What an interesting program!
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                                                                                             |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer`   | [`FunctionReducer`](modules.md#functionreducer)<`Value`\> \| [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`Value`\> |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\>                                                                          |
-
-#### Returns
-
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
-
 #### Defined in
 
-[operations/reduce.d.ts:296](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L296)
+[operations/reduce.d.ts:274](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L274)
 
-▸ **reduceConcur**<`Value`\>(`asyncReducer`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ **reduceConcur**\<`Value`\>(`asyncReducer`, `concurIterable`):
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 Returns the result of reducing the `concurIterable` using `asyncReducer`.
 
@@ -15620,6 +15568,23 @@ Otherwise, an concur iterable containing the result of reducing using the first
 value of the concur iterable as the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for concur iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                                                                                               |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer`   | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> \| [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`Value`\> |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>                                                                           |
+
+#### Returns
+
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 **`Example`**
 
@@ -15642,6 +15607,31 @@ console.log(
 //=> Hello World! What an interesting program!
 ```
 
+#### Defined in
+
+[operations/reduce.d.ts:280](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L280)
+
+▸ **reduceConcur**\<`Value`\>(`asyncReducer`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+Returns the result of reducing the `concurIterable` using `asyncReducer`.
+
+Informally, an initial accumulator is created using AsyncReducer.create. Then
+each value in `concurIterable` is added to the accumulator and the current
+accumulator is updated using AsyncReducer.add. Finally, the resulting
+accumulator is transformed using AsyncReducer.finish if specified. Multiple
+accumulators may be created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `concurIterable` is ready before
+promises from AsyncReducer.add resolve.
+
+If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
+then an empty concur iterable is returned if `concurIterable` is empty.
+Otherwise, an concur iterable containing the result of reducing using the first
+value of the concur iterable as the initial accumulator is returned.
+
+Like `Array.prototype.reduce`, but for concur iterables.
+
 #### Type parameters
 
 | Name    |
@@ -15650,44 +15640,58 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                             |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------- |
-| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
+| Name           | Type                                                                                                                               |
+| :------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+| `asyncReducer` | [`AsyncFunctionReducer`](modules.md#asyncfunctionreducer)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+▸ (`concurIterable`): [`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurOptional`](modules.md#concuroptional)<`Value`\>
+[`ConcurOptional`](modules.md#concuroptional)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
+    reduceAsync((a, b) => `${a} ${b}`),
+    getAsync,
+  ),
+)
+//=> Hello World! What an interesting program!
+
+console.log(
+  await pipe(
+    asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
+    reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
+  ),
+)
+//=> Hello World! What an interesting program!
+```
 
 #### Defined in
 
-[operations/reduce.d.ts:300](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/reduce.d.ts#L300)
+[operations/reduce.d.ts:284](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/reduce.d.ts#L284)
 
 ---
 
 ### repeat
 
-▸ **repeat**<`Value`\>(`value`): `Iterable`<`Value`\>
+▸ **repeat**\<`Value`\>(`value`): `Iterable`\<`Value`\>
 
 Returns an infinite iterable that repeatedly yields `value`.
-
-**`Example`**
-
-```js
-console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
-//=> sloth, sloth, sloth
-```
 
 #### Type parameters
 
@@ -15703,11 +15707,18 @@ console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
+//=> sloth, sloth, sloth
+```
 
 #### Defined in
 
-[operations/generate.d.ts:87](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/generate.d.ts#L87)
+[operations/generate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/generate.d.ts#L71)
 
 ---
 
@@ -15717,6 +15728,16 @@ console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
 
 Returns the sum of the numbers of `iterable`.
 
+#### Parameters
+
+| Name       | Type                   |
+| :--------- | :--------------------- |
+| `iterable` | `Iterable`\<`number`\> |
+
+#### Returns
+
+`number`
+
 **`Example`**
 
 ```js
@@ -15724,27 +15745,27 @@ console.log(sum([1, 4, 6, 2]))
 //=> 13
 ```
 
-#### Parameters
-
-| Name       | Type                  |
-| :--------- | :-------------------- |
-| `iterable` | `Iterable`<`number`\> |
-
-#### Returns
-
-`number`
-
 #### Defined in
 
-[operations/statistics.d.ts:121](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L121)
+[operations/statistics.d.ts:105](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L105)
 
 ---
 
 ### sumAsync
 
-▸ **sumAsync**(`asyncIterable`): `Promise`<`number`\>
+▸ **sumAsync**(`asyncIterable`): `Promise`\<`number`\>
 
 Returns a promise that resolves to the sum of the numbers of `asyncIterable`.
+
+#### Parameters
+
+| Name            | Type                        |
+| :-------------- | :-------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`number`\> |
+
+#### Returns
+
+`Promise`\<`number`\>
 
 **`Example`**
 
@@ -15753,27 +15774,27 @@ console.log(await sumAsync(asAsync([1, 4, 6, 2])))
 //=> 3
 ```
 
-#### Parameters
-
-| Name            | Type                       |
-| :-------------- | :------------------------- |
-| `asyncIterable` | `AsyncIterable`<`number`\> |
-
-#### Returns
-
-`Promise`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:132](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L132)
+[operations/statistics.d.ts:116](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L116)
 
 ---
 
 ### sumConcur
 
-▸ **sumConcur**(`concurIterable`): `Promise`<`number`\>
+▸ **sumConcur**(`concurIterable`): `Promise`\<`number`\>
 
 Returns a promise that resolves to the sum of the numbers of `concurIterable`.
+
+#### Parameters
+
+| Name             | Type                                                      |
+| :--------------- | :-------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`number`\> |
+
+#### Returns
+
+`Promise`\<`number`\>
 
 **`Example`**
 
@@ -15782,43 +15803,22 @@ console.log(await sumConcur(asConcur([1, 4, 6, 2])))
 //=> 3
 ```
 
-#### Parameters
-
-| Name             | Type                                                     |
-| :--------------- | :------------------------------------------------------- |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`number`\> |
-
-#### Returns
-
-`Promise`<`number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:144](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L144)
+[operations/statistics.d.ts:128](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L128)
 
 ---
 
 ### take
 
-▸ **take**<`Count`\>(`count`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
+▸ **take**\<`Count`\>(`count`): \<Value\>(`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
 
 Returns an iterable containing the first `count` values of `iterable` in
 iteration order.
 
 If the `count` is greater than the number of values in `iterable`, then an
 iterable equivalent `iterable` is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
-//=> [ 1, 2, 3 ]
-```
 
 #### Type parameters
 
@@ -15828,15 +15828,15 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ \<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -15846,25 +15846,13 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:310](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L310)
-
-▸ **take**<`Count`, `Value`\>(`count`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the first `count` values of `iterable` in
-iteration order.
-
-If the `count` is greater than the number of values in `iterable`, then an
-iterable equivalent `iterable` is returned.
+`Iterable`\<`Value`\>
 
 **`Throws`**
 
@@ -15876,6 +15864,18 @@ if `count` isn't a non-negative integer.
 console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 //=> [ 1, 2, 3 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:244](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L244)
+
+▸ **take**\<`Count`, `Value`\>(`count`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the first `count` values of `iterable` in
+iteration order.
+
+If the `count` is greater than the number of values in `iterable`, then an
+iterable equivalent `iterable` is returned.
 
 #### Type parameters
 
@@ -15886,48 +15886,42 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
 
 #### Parameters
 
-| Name       | Type                           |
-| :--------- | :----------------------------- |
-| `count`    | `NonNegativeInteger`<`Count`\> |
-| `iterable` | `Iterable`<`Value`\>           |
+| Name       | Type                            |
+| :--------- | :------------------------------ |
+| `count`    | `NonNegativeInteger`\<`Count`\> |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Throws`**
+
+if `count` isn't a non-negative integer.
+
+**`Example`**
+
+```js
+console.log(pipe([1, 2, 3, 4, 5, `sloth`], take(3), reduce(toArray())))
+//=> [ 1, 2, 3 ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:313](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L313)
+[operations/slice.d.ts:244](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L244)
 
 ---
 
 ### takeAsync
 
-▸ **takeAsync**<`Count`\>(`count`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
+▸ **takeAsync**\<`Count`\>(`count`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing the first `count` values of `asyncIterable`
 in iteration order.
 
 If the `count` is greater than the number of values in `asyncIterable`, then an
 async iterable equivalent `asyncIterable` is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, `sloth`]),
-    takeAsync(3),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 1, 2, 3 ]
-```
 
 #### Type parameters
 
@@ -15937,15 +15931,15 @@ console.log(
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ \<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Type parameters
 
@@ -15955,26 +15949,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:321](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L321)
-
-▸ **takeAsync**<`Count`, `Value`\>(`count`, `asyncIterable`):
-`AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the first `count` values of `asyncIterable`
-in iteration order.
-
-If the `count` is greater than the number of values in `asyncIterable`, then an
-async iterable equivalent `asyncIterable` is returned.
+`AsyncIterable`\<`Value`\>
 
 **`Throws`**
 
@@ -15992,6 +15973,19 @@ console.log(
 )
 //=> [ 1, 2, 3 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L267)
+
+▸ **takeAsync**\<`Count`, `Value`\>(`count`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the first `count` values of `asyncIterable`
+in iteration order.
+
+If the `count` is greater than the number of values in `asyncIterable`, then an
+async iterable equivalent `asyncIterable` is returned.
 
 #### Type parameters
 
@@ -16002,49 +15996,49 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                           |
-| :-------------- | :----------------------------- |
-| `count`         | `NonNegativeInteger`<`Count`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>      |
+| Name            | Type                            |
+| :-------------- | :------------------------------ |
+| `count`         | `NonNegativeInteger`\<`Count`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
+`AsyncIterable`\<`Value`\>
+
+**`Throws`**
+
+if `count` isn't a non-negative integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, `sloth`]),
+    takeAsync(3),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ 1, 2, 3 ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:324](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L324)
+[operations/slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L267)
 
 ---
 
 ### takeConcur
 
-▸ **takeConcur**<`Count`\>(`count`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **takeConcur**\<`Count`\>(`count`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing the first `count` values of
 `concurIterable` in iteration order.
 
 If the `count` is greater than the number of values in `concurIterable`, then a
 concur iterable equivalent `concurIterable` is returned.
-
-**`Throws`**
-
-if `count` isn't a non-negative integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, `sloth`]),
-    takeConcur(3),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ 1, 2, 3 ]
-```
 
 #### Type parameters
 
@@ -16054,16 +16048,16 @@ console.log(
 
 #### Parameters
 
-| Name    | Type                           |
-| :------ | :----------------------------- |
-| `count` | `NonNegativeInteger`<`Count`\> |
+| Name    | Type                            |
+| :------ | :------------------------------ |
+| `count` | `NonNegativeInteger`\<`Count`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ \<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Type parameters
 
@@ -16073,26 +16067,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:332](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L332)
-
-▸ **takeConcur**<`Count`, `Value`\>(`count`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the first `count` values of
-`concurIterable` in iteration order.
-
-If the `count` is greater than the number of values in `concurIterable`, then a
-concur iterable equivalent `concurIterable` is returned.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Throws`**
 
@@ -16110,6 +16091,19 @@ console.log(
 )
 //=> [ 1, 2, 3 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:290](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L290)
+
+▸ **takeConcur**\<`Count`, `Value`\>(`count`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the first `count` values of
+`concurIterable` in iteration order.
+
+If the `count` is greater than the number of values in `concurIterable`, then a
+concur iterable equivalent `concurIterable` is returned.
 
 #### Type parameters
 
@@ -16120,41 +16114,45 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `count`          | `NonNegativeInteger`<`Count`\>                          |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `count`          | `NonNegativeInteger`\<`Count`\>                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
-#### Defined in
+**`Throws`**
 
-[operations/slice.d.ts:335](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L335)
-
----
-
-### takeWhile
-
-▸ **takeWhile**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order up
-until but not including the first value for which `fn` returns a falsy value.
+if `count` isn't a non-negative integer.
 
 **`Example`**
 
 ```js
 console.log(
-  pipe(
-    [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
-    takeWhile(value => value < 5),
-    reduce(toArray()),
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, `sloth`]),
+    takeConcur(3),
+    reduceConcur(toArray()),
   ),
 )
-//=> [ 1, 2, 3, 4 ]
+//=> [ 1, 2, 3 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:290](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L290)
+
+---
+
+### takeWhile
+
+▸ **takeWhile**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order up
+until but not including the first value for which `fn` returns a falsy value.
 
 #### Type parameters
 
@@ -16172,26 +16170,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:139](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L139)
-
-▸ **takeWhile**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order up
-until but not including the first value for which `fn` returns a falsy value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -16205,6 +16194,15 @@ console.log(
 )
 //=> [ 1, 2, 3, 4 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:81](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L81)
+
+▸ **takeWhile**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order up
+until but not including the first value for which `fn` returns a falsy value.
 
 #### Type parameters
 
@@ -16217,39 +16215,39 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:142](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L142)
-
----
-
-### takeWhileAsync
-
-▸ **takeWhileAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
-    takeWhileAsync(value => value < 5),
-    reduceAsync(toArray()),
+  pipe(
+    [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
+    takeWhile(value => value < 5),
+    reduce(toArray()),
   ),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:81](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L81)
+
+---
+
+### takeWhileAsync
+
+▸ **takeWhileAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order up until but not including the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 #### Type parameters
 
@@ -16267,27 +16265,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:150](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L150)
-
-▸ **takeWhileAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -16301,6 +16289,17 @@ console.log(
 )
 //=> [ 1, 2, 3, 4 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:100](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L100)
+
+▸ **takeWhileAsync**\<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order up until but not including the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 #### Type parameters
 
@@ -16313,40 +16312,40 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:153](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L153)
-
----
-
-### takeWhileConcur
-
-▸ **takeWhileConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
-    takeWhileConcur(value => value < 5),
-    reduceConcur(toArray()),
+    asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
+    takeWhileAsync(value => value < 5),
+    reduceAsync(toArray()),
   ),
 )
 //=> [ 1, 2, 3, 4 ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:100](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L100)
+
+---
+
+### takeWhileConcur
+
+▸ **takeWhileConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order up until but not including the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 #### Type parameters
 
@@ -16364,28 +16363,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/slice.d.ts:161](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L161)
-
-▸ **takeWhileConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -16400,6 +16388,17 @@ console.log(
 //=> [ 1, 2, 3, 4 ]
 ```
 
+#### Defined in
+
+[operations/slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L119)
+
+▸ **takeWhileConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable` in iteration
+order up until but not including the first value for which `fn` returns a value
+awaitable to a falsy value.
+
 #### Type parameters
 
 | Name    |
@@ -16408,33 +16407,40 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
+    takeWhileConcur(value => value < 5),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 1, 2, 3, 4 ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:164](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L164)
+[operations/slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L119)
 
 ---
 
 ### toArray
 
-▸ **toArray**<`Value`\>(): [`Reducer`](modules.md#reducer)<`Value`, `Value`[]\>
+▸ **toArray**\<`Value`\>(): [`Reducer`](modules.md#reducer)\<`Value`,
+`Value`[]\>
 
 Returns a [Reducer](modules.md#reducer) that collects values to an `Array`.
-
-**`Example`**
-
-```js
-console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
-//=> [ 'sloth', 'more sloth', 'sloth', 'more sloth' ]
-```
 
 #### Type parameters
 
@@ -16444,17 +16450,24 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Value`[]\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Value`[]\>
+
+**`Example`**
+
+```js
+console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
+//=> [ 'sloth', 'more sloth', 'sloth', 'more sloth' ]
+```
 
 #### Defined in
 
-[operations/collect.d.ts:44](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L44)
+[operations/collect.d.ts:28](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L28)
 
 ---
 
 ### toCount
 
-▸ **toCount**(): [`Reducer`](modules.md#reducer)<`unknown`, `number`\>
+▸ **toCount**(): [`Reducer`](modules.md#reducer)\<`unknown`, `number`\>
 
 Returns a [Reducer](modules.md#reducer) that counts the number of values it
 receives.
@@ -16462,6 +16475,10 @@ receives.
 Use when composing reducers. Prefer [count](modules.md#count),
 [countAsync](modules.md#countasync), and [countConcur](modules.md#countconcur)
 for direct use on iterables.
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<`unknown`, `number`\>
 
 **`Example`**
 
@@ -16476,41 +16493,21 @@ console.log(
 //=> Map(2) { 5 => 2, 10 => 2 }
 ```
 
-#### Returns
-
-[`Reducer`](modules.md#reducer)<`unknown`, `number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:43](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L43)
+[operations/statistics.d.ts:27](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L27)
 
 ---
 
 ### toGrouped
 
-▸ **toGrouped**<`Key`, `Value`, `InnerAcc`, `InnerFinished`, `InnerThis`,
+▸ **toGrouped**\<`Key`, `Value`, `InnerAcc`, `InnerFinished`, `InnerThis`,
 `OuterAcc`, `OuterThis`\>(`innerReducer`, `outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
 `outerReducer` and reduces values with the same key using `innerReducer`.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
-    map(string => [string.length, string]),
-    reduce(toGrouped(toArray(), toMap())),
-  ),
-)
-//=> Map(3) {
-//=>   5 => [ 'sloth', 'sleep' ],
-//=>   10 => [ 'some sloth', 'more sloth' ],
-//=>   15 => [ 'even more sloth' ]
-//=> }
-```
 
 #### Type parameters
 
@@ -16526,27 +16523,15 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                         |
-| :------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `InnerAcc`, `InnerFinished`, `InnerThis`\>\>   |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
+| Name           | Type                                                                                                                           |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `InnerAcc`, `InnerFinished`, `InnerThis`\>\>   |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:174](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L174)
-
-▸ **toGrouped**<`Value`, `InnerAcc`, `InnerFinished`,
-`InnerThis`\>(`innerReducer`): <Key, OuterAcc, OuterThis\>(`outerReducer`:
-`Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc` \|
-`InnerFinished`, `OuterAcc`, `OuterThis`\>\>) =>
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -16564,6 +16549,20 @@ console.log(
 //=>   15 => [ 'even more sloth' ]
 //=> }
 ```
+
+#### Defined in
+
+[operations/collect.d.ts:158](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L158)
+
+▸ **toGrouped**\<`Value`, `InnerAcc`, `InnerFinished`,
+`InnerThis`\>(`innerReducer`): \<Key, OuterAcc, OuterThis\>(`outerReducer`:
+`Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc`
+\| `InnerFinished`, `OuterAcc`, `OuterThis`\>\>) =>
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
 
 #### Type parameters
 
@@ -16576,135 +16575,17 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                       |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)<`Value`, `InnerAcc`, `InnerFinished`, `InnerThis`\>\> |
-
-#### Returns
-
-`fn`
-
-▸ <`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-##### Type parameters
-
-| Name        |
-| :---------- |
-| `Key`       |
-| `OuterAcc`  |
-| `OuterThis` |
-
-##### Parameters
-
 | Name           | Type                                                                                                                         |
 | :------------- | :--------------------------------------------------------------------------------------------------------------------------- |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
-
-##### Returns
-
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:182](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L182)
-
-▸ **toGrouped**<`Key`, `Value`, `InnerAcc`, `InnerThis`, `OuterAcc`,
-`OuterThis`\>(`innerReducer`, `outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
-    map(string => [string.length, string]),
-    reduce(toGrouped(toArray(), toMap())),
-  ),
-)
-//=> Map(3) {
-//=>   5 => [ 'sloth', 'sleep' ],
-//=>   10 => [ 'some sloth', 'more sloth' ],
-//=>   15 => [ 'even more sloth' ]
-//=> }
-```
-
-#### Type parameters
-
-| Name        |
-| :---------- |
-| `Key`       |
-| `Value`     |
-| `InnerAcc`  |
-| `InnerThis` |
-| `OuterAcc`  |
-| `OuterThis` |
-
-#### Parameters
-
-| Name           | Type                                                                                                            |
-| :------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `InnerAcc`, `InnerThis`\>\> |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc`, `OuterAcc`, `OuterThis`\>\>       |
-
-#### Returns
-
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:192](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L192)
-
-▸ **toGrouped**<`Value`, `InnerAcc`, `InnerThis`\>(`innerReducer`): <Key,
-OuterAcc, OuterThis\>(`outerReducer`:
-`Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc`,
-`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)<readonly [`Key`,
-`Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
-    map(string => [string.length, string]),
-    reduce(toGrouped(toArray(), toMap())),
-  ),
-)
-//=> Map(3) {
-//=>   5 => [ 'sloth', 'sleep' ],
-//=>   10 => [ 'some sloth', 'more sloth' ],
-//=>   15 => [ 'even more sloth' ]
-//=> }
-```
-
-#### Type parameters
-
-| Name        |
-| :---------- |
-| `Value`     |
-| `InnerAcc`  |
-| `InnerThis` |
-
-#### Parameters
-
-| Name           | Type                                                                                                            |
-| :------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `InnerAcc`, `InnerThis`\>\> |
+| `innerReducer` | `Readonly`\<[`RawReducerWithFinish`](modules.md#rawreducerwithfinish)\<`Value`, `InnerAcc`, `InnerFinished`, `InnerThis`\>\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+▸ \<`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 ##### Type parameters
 
@@ -16716,24 +16597,14 @@ console.log(
 
 ##### Parameters
 
-| Name           | Type                                                                                                      |
-| :------------- | :-------------------------------------------------------------------------------------------------------- |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `InnerAcc`, `OuterAcc`, `OuterThis`\>\> |
+| Name           | Type                                                                                                                           |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
 
 ##### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:196](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L196)
-
-▸ **toGrouped**<`Key`, `Value`, `InnerFinished`, `InnerThis`, `OuterAcc`,
-`OuterThis`\>(`innerReducer`, `outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -16751,6 +16622,141 @@ console.log(
 //=>   15 => [ 'even more sloth' ]
 //=> }
 ```
+
+#### Defined in
+
+[operations/collect.d.ts:166](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L166)
+
+▸ **toGrouped**\<`Key`, `Value`, `InnerAcc`, `InnerThis`, `OuterAcc`,
+`OuterThis`\>(`innerReducer`, `outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
+
+#### Type parameters
+
+| Name        |
+| :---------- |
+| `Key`       |
+| `Value`     |
+| `InnerAcc`  |
+| `InnerThis` |
+| `OuterAcc`  |
+| `OuterThis` |
+
+#### Parameters
+
+| Name           | Type                                                                                                              |
+| :------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `InnerAcc`, `InnerThis`\>\> |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc`, `OuterAcc`, `OuterThis`\>\>       |
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(3) {
+//=>   5 => [ 'sloth', 'sleep' ],
+//=>   10 => [ 'some sloth', 'more sloth' ],
+//=>   15 => [ 'even more sloth' ]
+//=> }
+```
+
+#### Defined in
+
+[operations/collect.d.ts:176](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L176)
+
+▸ **toGrouped**\<`Value`, `InnerAcc`, `InnerThis`\>(`innerReducer`): \<Key,
+OuterAcc, OuterThis\>(`outerReducer`:
+`Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc`,
+`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)\<readonly
+[`Key`, `Value`], `never`, `OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
+
+#### Type parameters
+
+| Name        |
+| :---------- |
+| `Value`     |
+| `InnerAcc`  |
+| `InnerThis` |
+
+#### Parameters
+
+| Name           | Type                                                                                                              |
+| :------------- | :---------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `InnerAcc`, `InnerThis`\>\> |
+
+#### Returns
+
+`fn`
+
+▸ \<`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+##### Type parameters
+
+| Name        |
+| :---------- |
+| `Key`       |
+| `OuterAcc`  |
+| `OuterThis` |
+
+##### Parameters
+
+| Name           | Type                                                                                                        |
+| :------------- | :---------------------------------------------------------------------------------------------------------- |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `InnerAcc`, `OuterAcc`, `OuterThis`\>\> |
+
+##### Returns
+
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(3) {
+//=>   5 => [ 'sloth', 'sleep' ],
+//=>   10 => [ 'some sloth', 'more sloth' ],
+//=>   15 => [ 'even more sloth' ]
+//=> }
+```
+
+#### Defined in
+
+[operations/collect.d.ts:180](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L180)
+
+▸ **toGrouped**\<`Key`, `Value`, `InnerFinished`, `InnerThis`, `OuterAcc`,
+`OuterThis`\>(`innerReducer`, `outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
 
 #### Type parameters
 
@@ -16765,27 +16771,15 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                           |
-| :------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `InnerFinished`, `InnerThis`\>\> |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\>      |
+| Name           | Type                                                                                                                             |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `InnerFinished`, `InnerThis`\>\> |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\>      |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:202](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L202)
-
-▸ **toGrouped**<`Value`, `InnerFinished`, `InnerThis`\>(`innerReducer`): <Key,
-OuterAcc, OuterThis\>(`outerReducer`:
-`Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value` \|
-`InnerFinished`, `OuterAcc`, `OuterThis`\>\>) =>
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -16803,6 +16797,20 @@ console.log(
 //=>   15 => [ 'even more sloth' ]
 //=> }
 ```
+
+#### Defined in
+
+[operations/collect.d.ts:186](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L186)
+
+▸ **toGrouped**\<`Value`, `InnerFinished`, `InnerThis`\>(`innerReducer`): \<Key,
+OuterAcc, OuterThis\>(`outerReducer`:
+`Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value` \|
+`InnerFinished`, `OuterAcc`, `OuterThis`\>\>) =>
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
 
 #### Type parameters
 
@@ -16814,16 +16822,17 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                           |
-| :------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| `innerReducer` | `Readonly`<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)<`Value`, `InnerFinished`, `InnerThis`\>\> |
+| Name           | Type                                                                                                                             |
+| :------------- | :------------------------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawOptionalReducerWithFinish`](modules.md#rawoptionalreducerwithfinish)\<`Value`, `InnerFinished`, `InnerThis`\>\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+▸ \<`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 ##### Type parameters
 
@@ -16835,24 +16844,14 @@ console.log(
 
 ##### Parameters
 
-| Name           | Type                                                                                                                      |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------ |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
+| Name           | Type                                                                                                                        |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value` \| `InnerFinished`, `OuterAcc`, `OuterThis`\>\> |
 
 ##### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:210](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L210)
-
-▸ **toGrouped**<`Key`, `Value`, `InnerThis`, `OuterAcc`,
-`OuterThis`\>(`innerReducer`, `outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -16870,6 +16869,18 @@ console.log(
 //=>   15 => [ 'even more sloth' ]
 //=> }
 ```
+
+#### Defined in
+
+[operations/collect.d.ts:194](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L194)
+
+▸ **toGrouped**\<`Key`, `Value`, `InnerThis`, `OuterAcc`,
+`OuterThis`\>(`innerReducer`, `outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
 
 #### Type parameters
 
@@ -16883,27 +16894,85 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                                |
-| :------------- | :------------------------------------------------------------------------------------------------------------------ |
-| `innerReducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `InnerThis`\>\> |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\>              |
+| Name           | Type                                                                                                                  |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `InnerThis`\>\> |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\>              |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(3) {
+//=>   5 => [ 'sloth', 'sleep' ],
+//=>   10 => [ 'some sloth', 'more sloth' ],
+//=>   15 => [ 'even more sloth' ]
+//=> }
+```
 
 #### Defined in
 
-[operations/collect.d.ts:220](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L220)
+[operations/collect.d.ts:204](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L204)
 
-▸ **toGrouped**<`Value`, `InnerThis`\>(`innerReducer`): <Key, OuterAcc,
+▸ **toGrouped**\<`Value`, `InnerThis`\>(`innerReducer`): \<Key, OuterAcc,
 OuterThis\>(`outerReducer`:
-`Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`,
-`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)<readonly [`Key`,
-`Value`], `never`, `OuterAcc`\>
+`Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)\<readonly
+[`Key`, `Value`], `never`, `OuterAcc`\>
 
 Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
 `outerReducer` and reduces values with the same key using `innerReducer`.
+
+#### Type parameters
+
+| Name        |
+| :---------- |
+| `Value`     |
+| `InnerThis` |
+
+#### Parameters
+
+| Name           | Type                                                                                                                  |
+| :------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | `Readonly`\<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`, `InnerThis`\>\> |
+
+#### Returns
+
+`fn`
+
+▸ \<`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+##### Type parameters
+
+| Name        |
+| :---------- |
+| `Key`       |
+| `OuterAcc`  |
+| `OuterThis` |
+
+##### Parameters
+
+| Name           | Type                                                                                                     |
+| :------------- | :------------------------------------------------------------------------------------------------------- |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
+
+##### Returns
+
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -16922,72 +16991,17 @@ console.log(
 //=> }
 ```
 
-#### Type parameters
-
-| Name        |
-| :---------- |
-| `Value`     |
-| `InnerThis` |
-
-#### Parameters
-
-| Name           | Type                                                                                                                |
-| :------------- | :------------------------------------------------------------------------------------------------------------------ |
-| `innerReducer` | `Readonly`<[`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`, `InnerThis`\>\> |
-
-#### Returns
-
-`fn`
-
-▸ <`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-##### Type parameters
-
-| Name        |
-| :---------- |
-| `Key`       |
-| `OuterAcc`  |
-| `OuterThis` |
-
-##### Parameters
-
-| Name           | Type                                                                                                   |
-| :------------- | :----------------------------------------------------------------------------------------------------- |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
-
-##### Returns
-
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
 #### Defined in
 
-[operations/collect.d.ts:224](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L224)
+[operations/collect.d.ts:208](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L208)
 
-▸ **toGrouped**<`Key`, `Value`, `OuterAcc`, `OuterThis`\>(`innerReducer`,
-`outerReducer`): [`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`],
+▸ **toGrouped**\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>(`innerReducer`,
+`outerReducer`): [`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`],
 `never`, `OuterAcc`\>
 
 Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
 `outerReducer` and reduces values with the same key using `innerReducer`.
 
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
-    map(string => [string.length, string]),
-    reduce(toGrouped(toArray(), toMap())),
-  ),
-)
-//=> Map(3) {
-//=>   5 => [ 'sloth', 'sleep' ],
-//=>   10 => [ 'some sloth', 'more sloth' ],
-//=>   15 => [ 'even more sloth' ]
-//=> }
-```
-
 #### Type parameters
 
 | Name        |
@@ -16999,27 +17013,15 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                                                                   |
-| :------------- | :----------------------------------------------------------------------------------------------------- |
-| `innerReducer` | [`FunctionReducer`](modules.md#functionreducer)<`Value`\>                                              |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
+| Name           | Type                                                                                                     |
+| :------------- | :------------------------------------------------------------------------------------------------------- |
+| `innerReducer` | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\>                                               |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
-
-#### Defined in
-
-[operations/collect.d.ts:230](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L230)
-
-▸ **toGrouped**<`Value`\>(`innerReducer`): <Key, OuterAcc,
-OuterThis\>(`outerReducer`:
-`Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`,
-`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)<readonly [`Key`,
-`Value`], `never`, `OuterAcc`\>
-
-Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
-`outerReducer` and reduces values with the same key using `innerReducer`.
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 **`Example`**
 
@@ -17037,6 +17039,19 @@ console.log(
 //=>   15 => [ 'even more sloth' ]
 //=> }
 ```
+
+#### Defined in
+
+[operations/collect.d.ts:214](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L214)
+
+▸ **toGrouped**\<`Value`\>(`innerReducer`): \<Key, OuterAcc,
+OuterThis\>(`outerReducer`:
+`Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`OuterAcc`, `OuterThis`\>\>) => [`Reducer`](modules.md#reducer)\<readonly
+[`Key`, `Value`], `never`, `OuterAcc`\>
+
+Returns a [Reducer](modules.md#reducer) that reduces key-value pairs using
+`outerReducer` and reduces values with the same key using `innerReducer`.
 
 #### Type parameters
 
@@ -17046,16 +17061,17 @@ console.log(
 
 #### Parameters
 
-| Name           | Type                                                      |
-| :------------- | :-------------------------------------------------------- |
-| `innerReducer` | [`FunctionReducer`](modules.md#functionreducer)<`Value`\> |
+| Name           | Type                                                       |
+| :------------- | :--------------------------------------------------------- |
+| `innerReducer` | [`FunctionReducer`](modules.md#functionreducer)\<`Value`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+▸ \<`Key`, `OuterAcc`, `OuterThis`\>(`outerReducer`):
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
 
 ##### Type parameters
 
@@ -17067,24 +17083,42 @@ console.log(
 
 ##### Parameters
 
-| Name           | Type                                                                                                   |
-| :------------- | :----------------------------------------------------------------------------------------------------- |
-| `outerReducer` | `Readonly`<[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
+| Name           | Type                                                                                                     |
+| :------------- | :------------------------------------------------------------------------------------------------------- |
+| `outerReducer` | `Readonly`\<[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>\> |
 
 ##### Returns
 
-[`Reducer`](modules.md#reducer)<readonly [`Key`, `Value`], `never`, `OuterAcc`\>
+[`Reducer`](modules.md#reducer)\<readonly [`Key`, `Value`], `never`,
+`OuterAcc`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(3) {
+//=>   5 => [ 'sloth', 'sleep' ],
+//=>   10 => [ 'some sloth', 'more sloth' ],
+//=>   15 => [ 'even more sloth' ]
+//=> }
+```
 
 #### Defined in
 
-[operations/collect.d.ts:234](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L234)
+[operations/collect.d.ts:218](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L218)
 
 ---
 
 ### toJoin
 
-▸ **toJoin**(`separator`): [`Reducer`](modules.md#reducer)<`unknown`, `unknown`,
-`string`\>
+▸ **toJoin**(`separator`): [`Reducer`](modules.md#reducer)\<`unknown`,
+`unknown`, `string`\>
 
 Returns a [Reducer](modules.md#reducer) that concatenates values to a string
 where values are separated by `separator`.
@@ -17095,6 +17129,16 @@ Joins like `Array.prototype.join`, but does not treat `null`, `undefined`, or
 Use when composing reducers. Prefer [join](modules.md#join),
 [joinAsync](modules.md#joinasync), and [joinConcur](modules.md#joinconcur) for
 direct use on iterables.
+
+#### Parameters
+
+| Name        | Type     |
+| :---------- | :------- |
+| `separator` | `string` |
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<`unknown`, `unknown`, `string`\>
 
 **`Example`**
 
@@ -17109,32 +17153,34 @@ console.log(
 //=> Map(2) { 5 => 'sloth,sleep', 10 => 'more sloth,some sloth' }
 ```
 
-#### Parameters
-
-| Name        | Type     |
-| :---------- | :------- |
-| `separator` | `string` |
-
-#### Returns
-
-[`Reducer`](modules.md#reducer)<`unknown`, `unknown`, `string`\>
-
 #### Defined in
 
-[operations/collect.d.ts:372](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L372)
+[operations/collect.d.ts:358](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L358)
 
 ---
 
 ### toMap
 
-▸ **toMap**<`Key`, `Value`\>():
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Map`<`Key`,
+▸ **toMap**\<`Key`, `Value`\>():
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `Map`\<`Key`,
 `Value`\>\>
 
 Returns a [KeyedReducer](modules.md#keyedreducer) that collects key-value pairs
 to a `Map`.
 
 In the case of pairs with duplicate keys, the value of the last one wins.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Key`   |
+| `Value` |
+
+#### Returns
+
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`, `Map`\<`Key`,
+`Value`\>\>
 
 **`Example`**
 
@@ -17149,33 +17195,25 @@ console.log(
 //=> Map(3) { 'sloth' => 5, 'more sloth' => 10, 'even more sloth' => 15 }
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Key`   |
-| `Value` |
-
-#### Returns
-
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Map`<`Key`,
-`Value`\>\>
-
 #### Defined in
 
-[operations/collect.d.ts:124](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L124)
+[operations/collect.d.ts:108](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L108)
 
 ---
 
 ### toMax
 
-▸ **toMax**(): [`OptionalReducer`](modules.md#optionalreducer)<`number`\>
+▸ **toMax**(): [`OptionalReducer`](modules.md#optionalreducer)\<`number`\>
 
 Returns an optional reducer that finds the maximum value of the values it
 receives.
 
 Use when composing reducers. Prefer [max](modules.md#max) for direct use on
 iterables.
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<`number`\>
 
 **`Example`**
 
@@ -17190,25 +17228,183 @@ console.log(
 //=> Map(2) { 5 => 115, 10 => 115 }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:913](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L913)
+
+---
+
+### toMaxBy
+
+▸ **toMaxBy**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+Returns an optional reducer that finds the maximum value of the values it
+receives based on the `fn` [Compare](modules.md#compare) function.
+
+Use when composing reducers. Prefer [maxBy](modules.md#maxby) for direct use on
+iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
+
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`number`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+**`Example`**
+
+```
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `sleep`, `some sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toMaxBy((s1, s2) => s1.localeCompare(s2)), toMap())),
+  ),
+)
+//=> Map(2) { 5 => 'sloth', 10 => 'some sloth' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:927](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L927)
+[operations/statistics.d.ts:300](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L300)
+
+---
+
+### toMaxByAsync
+
+▸ **toMaxByAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+Returns an async optional reducer that finds the maximum value of the values it
+receives based on the `fn` [AsyncCompare](modules.md#asynccompare) function.
+
+Use when composing reducers. Prefer [maxByAsync](modules.md#maxbyasync) and
+[maxByConcur](modules.md#maxbyconcur) for direct use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
+
+#### Returns
+
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+#### Defined in
+
+[operations/statistics.d.ts:328](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L328)
+
+---
+
+### toMaxWith
+
+▸ **toMaxWith**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+Returns an optional reducer that finds the maximum value of the values it
+receives by comparing the numerical values of each value, as defined by `fn`.
+
+Use when composing reducers. Prefer [maxWith](modules.md#maxwith) for direct use
+on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+**`Example`**
+
+```
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `sleep`, `some sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toMaxWith(string => string.codePointAt(0)), toMap())),
+  ),
+)
+//=> Map(2) { 5 => 'sloth', 10 => 'some sloth' }
+```
+
+#### Defined in
+
+[operations/statistics.d.ts:640](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L640)
+
+---
+
+### toMaxWithAsync
+
+▸ **toMaxWithAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+Returns an async optional reducer that finds the maximum value of the values it
+receives by comparing the numerical values of each value, as defined by `fn`.
+
+Use when composing reducers. Prefer [maxWithAsync](modules.md#maxwithasync) and
+[maxWithConcur](modules.md#maxwithconcur) for direct use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
+
+#### Returns
+
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+#### Defined in
+
+[operations/statistics.d.ts:669](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L669)
 
 ---
 
 ### toMin
 
-▸ **toMin**(): [`OptionalReducer`](modules.md#optionalreducer)<`number`\>
+▸ **toMin**(): [`OptionalReducer`](modules.md#optionalreducer)\<`number`\>
 
 Returns an optional reducer that finds the minimum value of the values it
 receives.
 
 Use when composing reducers. Prefer [min](modules.md#min) for direct use on
 iterables.
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<`number`\>
 
 **`Example`**
 
@@ -17223,26 +17419,105 @@ console.log(
 //=> Map(2) { 5 => 115, 10 => 109 }
 ```
 
+#### Defined in
+
+[operations/statistics.d.ts:851](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L851)
+
+---
+
+### toMinBy
+
+▸ **toMinBy**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+Returns an optional reducer that finds the minimum value of the values it
+receives based on the `fn` [Compare](modules.md#compare) function.
+
+Use when composing reducers. Prefer [minBy](modules.md#minby) for direct use on
+iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
+
 #### Returns
 
-[`OptionalReducer`](modules.md#optionalreducer)<`number`\>
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+**`Example`**
+
+```
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `sleep`, `some sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toMinBy((s1, s2) => s1.localeCompare(s2)), toMap())),
+  ),
+)
+//=> Map(2) { 5 => 'sleep', 10 => 'more sloth' }
+```
 
 #### Defined in
 
-[operations/statistics.d.ts:865](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L865)
+[operations/statistics.d.ts:213](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L213)
+
+---
+
+### toMinByAsync
+
+▸ **toMinByAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+Returns an async optional reducer that finds the minimum value of the values it
+receives based on the `fn` [AsyncCompare](modules.md#asynccompare) function.
+
+Use when composing reducers. Prefer [minByAsync](modules.md#minbyasync) and
+[minByConcur](modules.md#minbyconcur) for direct use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
+
+#### Returns
+
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+#### Defined in
+
+[operations/statistics.d.ts:241](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L241)
 
 ---
 
 ### toMinMax
 
 ▸ **toMinMax**():
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`number`\>\>
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 Returns an optional reducer that finds the [MinMax](modules.md#minmax) value of
 the values it receives.
 
 Use when composing reducers. Prefer [minMax](modules.md#minmax-1) for direct use
 on iterables.
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`number`\>\>
 
 **`Example`**
 
@@ -17257,26 +17532,38 @@ console.log(
 //=> Map(2) { 5 => { min: 115, max: 115 }, 10 => { min: 109, max: 115 } }
 ```
 
-#### Returns
-
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`number`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:990](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L990)
+[operations/statistics.d.ts:976](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L976)
 
 ---
 
 ### toMinMaxBy
 
-▸ **toMinMaxBy**<`Value`\>(`fn`):
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **toMinMaxBy**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an optional reducer that finds the [MinMax](modules.md#minmax) value of
 the values it receives based on the `fn` [Compare](modules.md#compare) function.
 
 Use when composing reducers. Prefer [minMaxBy](modules.md#minmaxby) for direct
 use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                       |
+| :--- | :----------------------------------------- |
+| `fn` | [`Compare`](modules.md#compare)\<`Value`\> |
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -17294,32 +17581,16 @@ console.log(
 //=> }
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name | Type                                      |
-| :--- | :---------------------------------------- |
-| `fn` | [`Compare`](modules.md#compare)<`Value`\> |
-
-#### Returns
-
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:406](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L406)
+[operations/statistics.d.ts:390](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L390)
 
 ---
 
 ### toMinMaxByAsync
 
-▸ **toMinMaxByAsync**<`Value`\>(`fn`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **toMinMaxByAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an async optional reducer that finds the [MinMax](modules.md#minmax)
 value of the values it receives based on the `fn`
@@ -17336,24 +17607,24 @@ and [minMaxByConcur](modules.md#minmaxbyconcur) for direct use on iterables.
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | [`AsyncCompare`](modules.md#asynccompare)<`Value`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | [`AsyncCompare`](modules.md#asynccompare)\<`Value`\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 #### Defined in
 
-[operations/statistics.d.ts:443](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L443)
+[operations/statistics.d.ts:428](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L428)
 
 ---
 
 ### toMinMaxWith
 
-▸ **toMinMaxWith**<`Value`\>(`fn`):
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **toMinMaxWith**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an optional reducer that finds the [MinMax](modules.md#minmax) value of
 the values it receives by comparing the numerical values of each value, as
@@ -17361,6 +17632,22 @@ defined by `fn`.
 
 Use when composing reducers. Prefer [minMaxWith](modules.md#minmaxwith) for
 direct use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 **`Example`**
 
@@ -17378,32 +17665,16 @@ console.log(
 //=> }
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name | Type                           |
-| :--- | :----------------------------- |
-| `fn` | (`value`: `Value`) => `number` |
-
-#### Returns
-
-[`OptionalReducer`](modules.md#optionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
-
 #### Defined in
 
-[operations/statistics.d.ts:749](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L749)
+[operations/statistics.d.ts:734](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L734)
 
 ---
 
 ### toMinMaxWithAsync
 
-▸ **toMinMaxWithAsync**<`Value`\>(`fn`):
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+▸ **toMinMaxWithAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 Returns an async optional reducer that finds the [MinMax](modules.md#minmax)
 value of the values it receives by comparing the numerical values of each value,
@@ -17421,28 +17692,107 @@ Use when composing reducers. Prefer
 
 #### Parameters
 
-| Name | Type                                                |
-| :--- | :-------------------------------------------------- |
-| `fn` | (`value`: `Value`) => `MaybePromiseLike`<`number`\> |
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
 
 #### Returns
 
-[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)<[`MinMax`](modules.md#minmax)<`Value`\>\>
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<[`MinMax`](modules.md#minmax)\<`Value`\>\>
 
 #### Defined in
 
-[operations/statistics.d.ts:787](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L787)
+[operations/statistics.d.ts:773](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L773)
+
+---
+
+### toMinWith
+
+▸ **toMinWith**\<`Value`\>(`fn`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+Returns an optional reducer that finds the minimum value of the values it
+receives by comparing the numerical values of each value, as defined by `fn`.
+
+Use when composing reducers. Prefer [minWith](modules.md#minwith) for direct use
+on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                           |
+| :--- | :----------------------------- |
+| `fn` | (`value`: `Value`) => `number` |
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`\>
+
+**`Example`**
+
+```
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `sleep`, `some sloth`],
+    map(string => [string.length, string]),
+    reduce(toGrouped(toMinWith(string => string.codePointAt(0)), toMap())),
+  ),
+)
+//=> Map(2) { 5 => 'sloth', 10 => 'more sloth' }
+```
+
+#### Defined in
+
+[operations/statistics.d.ts:550](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L550)
+
+---
+
+### toMinWithAsync
+
+▸ **toMinWithAsync**\<`Value`\>(`fn`):
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+Returns an async optional reducer that finds the minimum value of the values it
+receives by comparing the numerical values of each value, as defined by `fn`.
+
+Use when composing reducers. Prefer [minWithAsync](modules.md#minwithasync) and
+[minWithConcur](modules.md#minwithconcur) for direct use on iterables.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name | Type                                                 |
+| :--- | :--------------------------------------------------- |
+| `fn` | (`value`: `Value`) => `MaybePromiseLike`\<`number`\> |
+
+#### Returns
+
+[`AsyncOptionalReducer`](modules.md#asyncoptionalreducer)\<`Value`\>
+
+#### Defined in
+
+[operations/statistics.d.ts:579](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L579)
 
 ---
 
 ### toMultiple
 
-▸ **toMultiple**<`Value`, `Reducers`\>(`reducers`):
-[`Reducer`](modules.md#reducer)<`Value`, { -readonly [Key in string \| number \|
-symbol]: Reducers[Key] extends RawReducerWithoutFinish<Value, Acc\> ? Acc :
-never }, { -readonly [Key in string \| number \| symbol]: Reducers[Key] extends
-RawReducerWithFinish<Value, any, Finished\> ? Finished : Reducers[Key] extends
-RawReducerWithoutFinish<Value, Acc\> ? Acc : never }\>
+▸ **toMultiple**\<`Value`, `Reducers`\>(`reducers`):
+[`Reducer`](modules.md#reducer)\<`Value`, \{ -readonly [Key in string \| number
+\| symbol]: Reducers[Key] extends RawReducerWithoutFinish\<Value, Acc\> ? Acc :
+never }, \{ -readonly [Key in string \| number \| symbol]: Reducers[Key] extends
+RawReducerWithFinish\<Value, any, Finished\> ? Finished : Reducers[Key] extends
+RawReducerWithoutFinish\<Value, Acc\> ? Acc : never }\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) that reduces values to an object
@@ -17452,6 +17802,27 @@ or array of the same shape as `reducers` using all of the reducers in
 Returns an [OptionalReducer](modules.md#optionalreducer) if at least one of the
 input reducers is an [OptionalReducer](modules.md#optionalreducer). Otherwise,
 returns a [Reducer](modules.md#reducer).
+
+#### Type parameters
+
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                  |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Value`    | `Value`                                                                                                                                                                                                                                                                                                                                               |
+| `Reducers` | extends readonly [[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\>] \| readonly [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\>[] \| `Readonly`\<`Record`\<`string` \| `number` \| `symbol`, [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\>\>\> |
+
+#### Parameters
+
+| Name       | Type       |
+| :--------- | :--------- |
+| `reducers` | `Reducers` |
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<`Value`, \{ -readonly [Key in string \| number
+\| symbol]: Reducers[Key] extends RawReducerWithoutFinish\<Value, Acc\> ? Acc :
+never }, \{ -readonly [Key in string \| number \| symbol]: Reducers[Key] extends
+RawReducerWithFinish\<Value, any, Finished\> ? Finished : Reducers[Key] extends
+RawReducerWithoutFinish\<Value, Acc\> ? Acc : never }\>
 
 **`Example`**
 
@@ -17481,36 +17852,15 @@ console.log(
 //=> { set: Set(3) { 5, 10, 15 }, count: 5, string: '5,10,5,10,15' }
 ```
 
-#### Type parameters
-
-| Name       | Type                                                                                                                                                                                                                                                                                                                                             |
-| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Value`    | `Value`                                                                                                                                                                                                                                                                                                                                          |
-| `Reducers` | extends readonly [[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\>] \| readonly [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\>[] \| `Readonly`<`Record`<`string` \| `number` \| `symbol`, [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\>\>\> |
-
-#### Parameters
-
-| Name       | Type       |
-| :--------- | :--------- |
-| `reducers` | `Reducers` |
-
-#### Returns
-
-[`Reducer`](modules.md#reducer)<`Value`, { -readonly [Key in string \| number \|
-symbol]: Reducers[Key] extends RawReducerWithoutFinish<Value, Acc\> ? Acc :
-never }, { -readonly [Key in string \| number \| symbol]: Reducers[Key] extends
-RawReducerWithFinish<Value, any, Finished\> ? Finished : Reducers[Key] extends
-RawReducerWithoutFinish<Value, Acc\> ? Acc : never }\>
-
 #### Defined in
 
-[operations/collect.d.ts:276](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L276)
+[operations/collect.d.ts:262](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L262)
 
-▸ **toMultiple**<`Value`, `Reducers`\>(`reducers`):
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, { -readonly [Key in
-string \| number \| symbol]: Reducers[Key] extends RawReducerWithFinish<Value,
+▸ **toMultiple**\<`Value`, `Reducers`\>(`reducers`):
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, \{ -readonly [Key in
+string \| number \| symbol]: Reducers[Key] extends RawReducerWithFinish\<Value,
 any, Finished\> ? Finished : Reducers[Key] extends
-RawOptionalReducerWithFinish<Value, Finished\> ? Finished : Value }\>
+RawOptionalReducerWithFinish\<Value, Finished\> ? Finished : Value }\>
 
 Returns a [Reducer](modules.md#reducer) or
 [OptionalReducer](modules.md#optionalreducer) that reduces values to an object
@@ -17520,6 +17870,26 @@ or array of the same shape as `reducers` using all of the reducers in
 Returns an [OptionalReducer](modules.md#optionalreducer) if at least one of the
 input reducers is an [OptionalReducer](modules.md#optionalreducer). Otherwise,
 returns a [Reducer](modules.md#reducer).
+
+#### Type parameters
+
+| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Value`    | `Value`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `Reducers` | extends readonly [[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\>] \| readonly ([`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\>)[] \| `Readonly`\<`Record`\<`string` \| `number` \| `symbol`, [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)\<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)\<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)\<`Value`\>\>\> |
+
+#### Parameters
+
+| Name       | Type       |
+| :--------- | :--------- |
+| `reducers` | `Reducers` |
+
+#### Returns
+
+[`OptionalReducer`](modules.md#optionalreducer)\<`Value`, \{ -readonly [Key in
+string \| number \| symbol]: Reducers[Key] extends RawReducerWithFinish\<Value,
+any, Finished\> ? Finished : Reducers[Key] extends
+RawOptionalReducerWithFinish\<Value, Finished\> ? Finished : Value }\>
 
 **`Example`**
 
@@ -17549,42 +17919,34 @@ console.log(
 //=> { set: Set(3) { 5, 10, 15 }, count: 5, string: '5,10,5,10,15' }
 ```
 
-#### Type parameters
-
-| Name       | Type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Value`    | `Value`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `Reducers` | extends readonly [[`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\>] \| readonly ([`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\>)[] \| `Readonly`<`Record`<`string` \| `number` \| `symbol`, [`RawReducerWithoutFinish`](modules.md#rawreducerwithoutfinish)<`Value`, `any`\> \| [`RawOptionalReducerWithoutFinish`](modules.md#rawoptionalreducerwithoutfinish)<`Value`\> \| [`FunctionReducer`](modules.md#functionreducer)<`Value`\>\>\> |
-
-#### Parameters
-
-| Name       | Type       |
-| :--------- | :--------- |
-| `reducers` | `Reducers` |
-
-#### Returns
-
-[`OptionalReducer`](modules.md#optionalreducer)<`Value`, { -readonly [Key in
-string \| number \| symbol]: Reducers[Key] extends RawReducerWithFinish<Value,
-any, Finished\> ? Finished : Reducers[Key] extends
-RawOptionalReducerWithFinish<Value, Finished\> ? Finished : Value }\>
-
 #### Defined in
 
-[operations/collect.d.ts:307](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L307)
+[operations/collect.d.ts:293](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L293)
 
 ---
 
 ### toObject
 
-▸ **toObject**<`Key`, `Value`\>():
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Record`<`Key`,
-`Value`\>\>
+▸ **toObject**\<`Key`, `Value`\>():
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`Record`\<`Key`, `Value`\>\>
 
 Returns a [KeyedReducer](modules.md#keyedreducer) that collects key-value pairs
 to an object.
 
 In the case of pairs with duplicate keys, the value of the last one wins.
+
+#### Type parameters
+
+| Name    | Type                                     |
+| :------ | :--------------------------------------- |
+| `Key`   | extends `string` \| `number` \| `symbol` |
+| `Value` | `Value`                                  |
+
+#### Returns
+
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`Record`\<`Key`, `Value`\>\>
 
 **`Example`**
 
@@ -17599,37 +17961,18 @@ console.log(
 //=> { sloth: 5, 'more sloth': 10, 'even more sloth': 15 }
 ```
 
-#### Type parameters
-
-| Name    | Type                                     |
-| :------ | :--------------------------------------- |
-| `Key`   | extends `string` \| `number` \| `symbol` |
-| `Value` | `Value`                                  |
-
-#### Returns
-
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `Record`<`Key`,
-`Value`\>\>
-
 #### Defined in
 
-[operations/collect.d.ts:101](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L101)
+[operations/collect.d.ts:85](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L85)
 
 ---
 
 ### toSet
 
-▸ **toSet**<`Value`\>(): [`Reducer`](modules.md#reducer)<`Value`,
-`Set`<`Value`\>\>
+▸ **toSet**\<`Value`\>(): [`Reducer`](modules.md#reducer)\<`Value`,
+`Set`\<`Value`\>\>
 
 Returns a [Reducer](modules.md#reducer) that collects values to a `Set`.
-
-**`Example`**
-
-```js
-console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
-//=> Set(2) { 'sloth', 'more sloth' }
-```
 
 #### Type parameters
 
@@ -17639,23 +17982,34 @@ console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
 
 #### Returns
 
-[`Reducer`](modules.md#reducer)<`Value`, `Set`<`Value`\>\>
+[`Reducer`](modules.md#reducer)\<`Value`, `Set`\<`Value`\>\>
+
+**`Example`**
+
+```js
+console.log(pipe(cycle([`sloth`, `more sloth`]), take(4), reduce(toArray())))
+//=> Set(2) { 'sloth', 'more sloth' }
+```
 
 #### Defined in
 
-[operations/collect.d.ts:61](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L61)
+[operations/collect.d.ts:45](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L45)
 
 ---
 
 ### toSum
 
-▸ **toSum**(): [`Reducer`](modules.md#reducer)<`number`, `number`\>
+▸ **toSum**(): [`Reducer`](modules.md#reducer)\<`number`, `number`\>
 
 Returns a [Reducer](modules.md#reducer) that sums the numbers it receives.
 
 Use when composing reducers. Prefer [sum](modules.md#sum),
 [sumAsync](modules.md#sumasync), and [sumConcur](modules.md#sumconcur) for
 direct use on iterables.
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<`number`, `number`\>
 
 **`Example`**
 
@@ -17670,26 +18024,34 @@ console.log(
 //=> Map(2) { 5 => 10, 10 => 20 }
 ```
 
-#### Returns
-
-[`Reducer`](modules.md#reducer)<`number`, `number`\>
-
 #### Defined in
 
-[operations/statistics.d.ts:110](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/statistics.d.ts#L110)
+[operations/statistics.d.ts:94](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/statistics.d.ts#L94)
 
 ---
 
 ### toWeakMap
 
-▸ **toWeakMap**<`Key`, `Value`\>():
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `WeakMap`<`Key`,
-`Value`\>\>
+▸ **toWeakMap**\<`Key`, `Value`\>():
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`WeakMap`\<`Key`, `Value`\>\>
 
 Returns a [KeyedReducer](modules.md#keyedreducer) that collects key-value pairs
 to a `WeakMap`.
 
 In the case of pairs with duplicate keys, the value of the last one wins.
+
+#### Type parameters
+
+| Name    | Type             |
+| :------ | :--------------- |
+| `Key`   | extends `object` |
+| `Value` | `Value`          |
+
+#### Returns
+
+[`RawKeyedReducer`](modules.md#rawkeyedreducer)\<`Key`, `Value`,
+`WeakMap`\<`Key`, `Value`\>\>
 
 **`Example`**
 
@@ -17704,30 +18066,28 @@ console.log(
 //=> WeakMap { <items unknown> }
 ```
 
-#### Type parameters
-
-| Name    | Type             |
-| :------ | :--------------- |
-| `Key`   | extends `object` |
-| `Value` | `Value`          |
-
-#### Returns
-
-[`RawKeyedReducer`](modules.md#rawkeyedreducer)<`Key`, `Value`, `WeakMap`<`Key`,
-`Value`\>\>
-
 #### Defined in
 
-[operations/collect.d.ts:147](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L147)
+[operations/collect.d.ts:131](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L131)
 
 ---
 
 ### toWeakSet
 
-▸ **toWeakSet**<`Value`\>(): [`Reducer`](modules.md#reducer)<`Value`,
-`WeakSet`<`Value`\>\>
+▸ **toWeakSet**\<`Value`\>(): [`Reducer`](modules.md#reducer)\<`Value`,
+`WeakSet`\<`Value`\>\>
 
 Returns a [Reducer](modules.md#reducer) that collects objects to a `WeakSet`.
+
+#### Type parameters
+
+| Name    | Type             |
+| :------ | :--------------- |
+| `Value` | extends `object` |
+
+#### Returns
+
+[`Reducer`](modules.md#reducer)\<`Value`, `WeakSet`\<`Value`\>\>
 
 **`Example`**
 
@@ -17743,35 +18103,18 @@ console.log(
 //=> WeakSet { <items unknown> }
 ```
 
-#### Type parameters
-
-| Name    | Type             |
-| :------ | :--------------- |
-| `Value` | extends `object` |
-
-#### Returns
-
-[`Reducer`](modules.md#reducer)<`Value`, `WeakSet`<`Value`\>\>
-
 #### Defined in
 
-[operations/collect.d.ts:79](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/collect.d.ts#L79)
+[operations/collect.d.ts:63](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/collect.d.ts#L63)
 
 ---
 
 ### unique
 
-▸ **unique**<`Value`\>(`iterable`): `Iterable`<`Value`\>
+▸ **unique**\<`Value`\>(`iterable`): `Iterable`\<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order,
 except values are deduplicated if they are equal using `Object.is`.
-
-**`Example`**
-
-```js
-console.log(pipe([`sloth`, `not sloth`, `sloth`], unique, reduce(toArray())))
-//=> [ 'sloth', 'not sloth' ]
-```
 
 #### Type parameters
 
@@ -17781,26 +18124,49 @@ console.log(pipe([`sloth`, `not sloth`, `sloth`], unique, reduce(toArray())))
 
 #### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(pipe([`sloth`, `not sloth`, `sloth`], unique, reduce(toArray())))
+//=> [ 'sloth', 'not sloth' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:406](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L406)
+[operations/exclude.d.ts:390](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L390)
 
 ---
 
 ### uniqueAsync
 
-▸ **uniqueAsync**<`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ **uniqueAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order, except values are deduplicated if they are equal using `Object.is`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
+
+#### Returns
+
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -17815,50 +18181,21 @@ console.log(
 //=> [ 'sloth', 'not sloth' ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
-
-#### Returns
-
-`AsyncIterable`<`Value`\>
-
 #### Defined in
 
-[operations/exclude.d.ts:425](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L425)
+[operations/exclude.d.ts:409](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L409)
 
 ---
 
 ### uniqueBy
 
-▸ **uniqueBy**<`Value`\>(`fn`): (`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`\>
+▸ **uniqueBy**\<`Value`\>(`fn`): (`iterable`: `Iterable`\<`Value`\>) =>
+`Iterable`\<`Value`\>
 
 Returns an iterable containing the values of `iterable` in iteration order,
 except values for which `fn` returns the same value are deduplicated.
 
 When values are deduplicated, the value earlier in iteration order wins.
-
-**`Example`**
-
-```js
-console.log(
-  pipe(
-    [`sloth`, `sleep`, `fast`, `slow`, `mean`],
-    uniqueBy(word => word.length),
-    reduce(toArray()),
-  ),
-)
-//=> [ 'sloth', 'fast' ]
-```
 
 #### Type parameters
 
@@ -17876,28 +18213,17 @@ console.log(
 
 `fn`
 
-▸ (`iterable`): `Iterable`<`Value`\>
+▸ (`iterable`): `Iterable`\<`Value`\>
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:323](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L323)
-
-▸ **uniqueBy**<`Value`\>(`fn`, `iterable`): `Iterable`<`Value`\>
-
-Returns an iterable containing the values of `iterable` in iteration order,
-except values for which `fn` returns the same value are deduplicated.
-
-When values are deduplicated, the value earlier in iteration order wins.
+`Iterable`\<`Value`\>
 
 **`Example`**
 
@@ -17911,6 +18237,17 @@ console.log(
 )
 //=> [ 'sloth', 'fast' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:307](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L307)
+
+▸ **uniqueBy**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`\>
+
+Returns an iterable containing the values of `iterable` in iteration order,
+except values for which `fn` returns the same value are deduplicated.
+
+When values are deduplicated, the value earlier in iteration order wins.
 
 #### Type parameters
 
@@ -17923,41 +18260,41 @@ console.log(
 | Name       | Type                            |
 | :--------- | :------------------------------ |
 | `fn`       | (`value`: `Value`) => `unknown` |
-| `iterable` | `Iterable`<`Value`\>            |
+| `iterable` | `Iterable`\<`Value`\>           |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  pipe(
+    [`sloth`, `sleep`, `fast`, `slow`, `mean`],
+    uniqueBy(word => word.length),
+    reduce(toArray()),
+  ),
+)
+//=> [ 'sloth', 'fast' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:326](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L326)
+[operations/exclude.d.ts:310](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L310)
 
 ---
 
 ### uniqueByAsync
 
-▸ **uniqueByAsync**<`Value`\>(`fn`): (`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`\>
+▸ **uniqueByAsync**\<`Value`\>(`fn`): (`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`\>
 
 Returns an async iterable containing the values of `asyncIterable` in iteration
 order, except values for which `fn` returns a value awaitable to the same value
 are deduplicated.
 
 When values are deduplicated, the value earlier in iteration order wins.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
-    uniqueByAsync(word => word.length),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ 'sloth', 'fast' ]
-```
 
 #### Type parameters
 
@@ -17975,29 +18312,17 @@ console.log(
 
 `fn`
 
-▸ (`asyncIterable`): `AsyncIterable`<`Value`\>
+▸ (`asyncIterable`): `AsyncIterable`\<`Value`\>
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:352](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L352)
-
-▸ **uniqueByAsync**<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`<`Value`\>
-
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order, except values for which `fn` returns a value awaitable to the same value
-are deduplicated.
-
-When values are deduplicated, the value earlier in iteration order wins.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
@@ -18011,6 +18336,19 @@ console.log(
 )
 //=> [ 'sloth', 'fast' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:336](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L336)
+
+▸ **uniqueByAsync**\<`Value`\>(`fn`, `asyncIterable`):
+`AsyncIterable`\<`Value`\>
+
+Returns an async iterable containing the values of `asyncIterable` in iteration
+order, except values for which `fn` returns a value awaitable to the same value
+are deduplicated.
+
+When values are deduplicated, the value earlier in iteration order wins.
 
 #### Type parameters
 
@@ -18023,42 +18361,42 @@ console.log(
 | Name            | Type                            |
 | :-------------- | :------------------------------ |
 | `fn`            | (`value`: `Value`) => `unknown` |
-| `asyncIterable` | `AsyncIterable`<`Value`\>       |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>      |
 
 #### Returns
 
-`AsyncIterable`<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:355](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L355)
-
----
-
-### uniqueByConcur
-
-▸ **uniqueByConcur**<`Value`\>(`fn`): (`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable`, except
-values for which `fn` returns a value awaitable to the same value are
-deduplicated.
-
-When values are deduplicated, the value earlier in iteration order wins.
+`AsyncIterable`\<`Value`\>
 
 **`Example`**
 
 ```js
 console.log(
   await pipe(
-    asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
-    uniqueByConcur(word => word.length),
-    reduceConcur(toArray()),
+    asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
+    uniqueByAsync(word => word.length),
+    reduceAsync(toArray()),
   ),
 )
 //=> [ 'sloth', 'fast' ]
 ```
+
+#### Defined in
+
+[operations/exclude.d.ts:339](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L339)
+
+---
+
+### uniqueByConcur
+
+▸ **uniqueByConcur**\<`Value`\>(`fn`): (`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable`, except
+values for which `fn` returns a value awaitable to the same value are
+deduplicated.
+
+When values are deduplicated, the value earlier in iteration order wins.
 
 #### Type parameters
 
@@ -18076,30 +18414,17 @@ console.log(
 
 `fn`
 
-▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ (`concurIterable`): [`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-#### Defined in
-
-[operations/exclude.d.ts:381](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L381)
-
-▸ **uniqueByConcur**<`Value`\>(`fn`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
-Returns a concur iterable containing the values of `concurIterable`, except
-values for which `fn` returns a value awaitable to the same value are
-deduplicated.
-
-When values are deduplicated, the value earlier in iteration order wins.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -18114,6 +18439,19 @@ console.log(
 //=> [ 'sloth', 'fast' ]
 ```
 
+#### Defined in
+
+[operations/exclude.d.ts:365](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L365)
+
+▸ **uniqueByConcur**\<`Value`\>(`fn`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+Returns a concur iterable containing the values of `concurIterable`, except
+values for which `fn` returns a value awaitable to the same value are
+deduplicated.
+
+When values are deduplicated, the value earlier in iteration order wins.
+
 #### Type parameters
 
 | Name    |
@@ -18122,28 +18460,57 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `fn`             | (`value`: `Value`) => `unknown`                         |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `fn`             | (`value`: `Value`) => `unknown`                          |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
+    uniqueByConcur(word => word.length),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 'sloth', 'fast' ]
+```
 
 #### Defined in
 
-[operations/exclude.d.ts:384](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L384)
+[operations/exclude.d.ts:368](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L368)
 
 ---
 
 ### uniqueConcur
 
-▸ **uniqueConcur**<`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
+▸ **uniqueConcur**\<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 Returns a concur iterable containing the values of `concurIterable` in iteration
 order, except values are deduplicated if they are equal using `Object.is`.
+
+#### Type parameters
+
+| Name    |
+| :------ |
+| `Value` |
+
+#### Parameters
+
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
+
+#### Returns
+
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>
 
 **`Example`**
 
@@ -18158,31 +18525,15 @@ console.log(
 //=> [ 'sloth', 'not sloth' ]
 ```
 
-#### Type parameters
-
-| Name    |
-| :------ |
-| `Value` |
-
-#### Parameters
-
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
-
-#### Returns
-
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>
-
 #### Defined in
 
-[operations/exclude.d.ts:446](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/exclude.d.ts#L446)
+[operations/exclude.d.ts:430](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/exclude.d.ts#L430)
 
 ---
 
 ### values
 
-▸ **values**<`Value`\>(`object`): `Iterable`<`Value`\>
+▸ **values**\<`Value`\>(`object`): `Iterable`\<`Value`\>
 
 Returns an iterable containing the values of `object`.
 
@@ -18198,56 +18549,27 @@ returned iterable can be iterated multiple times and differs from
 
 #### Parameters
 
-| Name     | Type                                                                                                                               |
-| :------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `object` | `ReadonlyMap`<`unknown`, `Value`\> \| `ReadonlySet`<`Value`\> \| `Readonly`<`Record`<`string` \| `number` \| `symbol`, `Value`\>\> |
+| Name     | Type                                                                                                                                   |
+| :------- | :------------------------------------------------------------------------------------------------------------------------------------- |
+| `object` | `ReadonlyMap`\<`unknown`, `Value`\> \| `ReadonlySet`\<`Value`\> \| `Readonly`\<`Record`\<`string` \| `number` \| `symbol`, `Value`\>\> |
 
 #### Returns
 
-`Iterable`<`Value`\>
+`Iterable`\<`Value`\>
 
 #### Defined in
 
-[operations/from.d.ts:38](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/from.d.ts#L38)
+[operations/from.d.ts:22](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/from.d.ts#L22)
 
 ---
 
 ### window
 
-▸ **window**<`Size`\>(`options`): <Value\>(`iterable`: `Iterable`<`Value`\>) =>
-`Iterable`<`Value`[]\>
+▸ **window**\<`Size`\>(`options`): \<Value\>(`iterable`: `Iterable`\<`Value`\>)
+=> `Iterable`\<`Value`[]\>
 
 Returns an iterable containing a rolling window of the values of `iterable` as
 arrays of length `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(pipe([1, 2, 3, 4, 5, 6, `sloth`], window(3), reduce(toArray())))
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  pipe(
-    [1, 2, 3, 4, 5, 6, `sloth`],
-    window({ size: 3, partialStart: true }),
-    reduce(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  pipe(
-    [1, 2, 3, 4, 5, 6, `sloth`],
-    window({ size: 3, partialStart: true, partialEnd: true }),
-    reduce(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
-```
 
 #### Type parameters
 
@@ -18257,15 +18579,15 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                 |
-| :-------- | :--------------------------------------------------- |
-| `options` | [`WindowOptions`](modules.md#windowoptions)<`Size`\> |
+| Name      | Type                                                  |
+| :-------- | :---------------------------------------------------- |
+| `options` | [`WindowOptions`](modules.md#windowoptions)\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`iterable`): `Iterable`<`Value`[]\>
+▸ \<`Value`\>(`iterable`): `Iterable`\<`Value`[]\>
 
 ##### Type parameters
 
@@ -18275,22 +18597,13 @@ console.log(
 
 ##### Parameters
 
-| Name       | Type                 |
-| :--------- | :------------------- |
-| `iterable` | `Iterable`<`Value`\> |
+| Name       | Type                  |
+| :--------- | :-------------------- |
+| `iterable` | `Iterable`\<`Value`\> |
 
 ##### Returns
 
-`Iterable`<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:617](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L617)
-
-▸ **window**<`Size`, `Value`\>(`options`, `iterable`): `Iterable`<`Value`[]\>
-
-Returns an iterable containing a rolling window of the values of `iterable` as
-arrays of length `size`.
+`Iterable`\<`Value`[]\>
 
 **`Throws`**
 
@@ -18320,6 +18633,15 @@ console.log(
 )
 //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:601](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L601)
+
+▸ **window**\<`Size`, `Value`\>(`options`, `iterable`): `Iterable`\<`Value`[]\>
+
+Returns an iterable containing a rolling window of the values of `iterable` as
+arrays of length `size`.
 
 #### Type parameters
 
@@ -18330,63 +18652,57 @@ console.log(
 
 #### Parameters
 
-| Name       | Type                                                 |
-| :--------- | :--------------------------------------------------- |
-| `options`  | [`WindowOptions`](modules.md#windowoptions)<`Size`\> |
-| `iterable` | `Iterable`<`Value`\>                                 |
+| Name       | Type                                                  |
+| :--------- | :---------------------------------------------------- |
+| `options`  | [`WindowOptions`](modules.md#windowoptions)\<`Size`\> |
+| `iterable` | `Iterable`\<`Value`\>                                 |
 
 #### Returns
 
-`Iterable`<`Value`[]\>
+`Iterable`\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(pipe([1, 2, 3, 4, 5, 6, `sloth`], window(3), reduce(toArray())))
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, `sloth`],
+    window({ size: 3, partialStart: true }),
+    reduce(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, `sloth`],
+    window({ size: 3, partialStart: true, partialEnd: true }),
+    reduce(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:620](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L620)
+[operations/slice.d.ts:604](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L604)
 
 ---
 
 ### windowAsync
 
-▸ **windowAsync**<`Size`\>(`options`): <Value\>(`asyncIterable`:
-`AsyncIterable`<`Value`\>) => `AsyncIterable`<`Value`[]\>
+▸ **windowAsync**\<`Size`\>(`options`): \<Value\>(`asyncIterable`:
+`AsyncIterable`\<`Value`\>) => `AsyncIterable`\<`Value`[]\>
 
 Returns an async iterable containing a rolling window of the values of
 `asyncIterable` as arrays of length `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowAsync(3),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowAsync({ size: 3, partialStart: true }),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  await pipe(
-    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowAsync({ size: 3, partialStart: true, partialEnd: true }),
-    reduceAsync(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
-```
 
 #### Type parameters
 
@@ -18396,15 +18712,15 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                 |
-| :-------- | :--------------------------------------------------- |
-| `options` | [`WindowOptions`](modules.md#windowoptions)<`Size`\> |
+| Name      | Type                                                  |
+| :-------- | :---------------------------------------------------- |
+| `options` | [`WindowOptions`](modules.md#windowoptions)\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`asyncIterable`): `AsyncIterable`<`Value`[]\>
+▸ \<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`[]\>
 
 ##### Type parameters
 
@@ -18414,23 +18730,13 @@ console.log(
 
 ##### Parameters
 
-| Name            | Type                      |
-| :-------------- | :------------------------ |
-| `asyncIterable` | `AsyncIterable`<`Value`\> |
+| Name            | Type                       |
+| :-------------- | :------------------------- |
+| `asyncIterable` | `AsyncIterable`\<`Value`\> |
 
 ##### Returns
 
-`AsyncIterable`<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:663](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L663)
-
-▸ **windowAsync**<`Size`, `Value`\>(`options`, `asyncIterable`):
-`AsyncIterable`<`Value`[]\>
-
-Returns an async iterable containing a rolling window of the values of
-`asyncIterable` as arrays of length `size`.
+`AsyncIterable`\<`Value`[]\>
 
 **`Throws`**
 
@@ -18466,6 +18772,16 @@ console.log(
 )
 //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:647](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L647)
+
+▸ **windowAsync**\<`Size`, `Value`\>(`options`, `asyncIterable`):
+`AsyncIterable`\<`Value`[]\>
+
+Returns an async iterable containing a rolling window of the values of
+`asyncIterable` as arrays of length `size`.
 
 #### Type parameters
 
@@ -18476,64 +18792,64 @@ console.log(
 
 #### Parameters
 
-| Name            | Type                                                 |
-| :-------------- | :--------------------------------------------------- |
-| `options`       | [`WindowOptions`](modules.md#windowoptions)<`Size`\> |
-| `asyncIterable` | `AsyncIterable`<`Value`\>                            |
+| Name            | Type                                                  |
+| :-------------- | :---------------------------------------------------- |
+| `options`       | [`WindowOptions`](modules.md#windowoptions)\<`Size`\> |
+| `asyncIterable` | `AsyncIterable`\<`Value`\>                            |
 
 #### Returns
 
-`AsyncIterable`<`Value`[]\>
+`AsyncIterable`\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowAsync(3),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowAsync({ size: 3, partialStart: true }),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  await pipe(
+    asAsync([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowAsync({ size: 3, partialStart: true, partialEnd: true }),
+    reduceAsync(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:666](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L666)
+[operations/slice.d.ts:650](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L650)
 
 ---
 
 ### windowConcur
 
-▸ **windowConcur**<`Size`\>(`options`): <Value\>(`concurIterable`:
-[`ConcurIterable`](modules.md#concuriterable)<`Value`\>) =>
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+▸ **windowConcur**\<`Size`\>(`options`): \<Value\>(`concurIterable`:
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`\>) =>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 Returns a concur iterable containing a rolling window of the values of
 `concurIterable` as arrays of length `size`.
-
-**`Throws`**
-
-if `size` is not a positive integer.
-
-**`Example`**
-
-```js
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowConcur(3),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowConcur({ size: 3, partialStart: true }),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
-
-console.log(
-  await pipe(
-    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
-    windowConcur({ size: 3, partialStart: true, partialEnd: true }),
-    reduceConcur(toArray()),
-  ),
-)
-//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
-```
 
 #### Type parameters
 
@@ -18543,16 +18859,16 @@ console.log(
 
 #### Parameters
 
-| Name      | Type                                                 |
-| :-------- | :--------------------------------------------------- |
-| `options` | [`WindowOptions`](modules.md#windowoptions)<`Size`\> |
+| Name      | Type                                                  |
+| :-------- | :---------------------------------------------------- |
+| `options` | [`WindowOptions`](modules.md#windowoptions)\<`Size`\> |
 
 #### Returns
 
 `fn`
 
-▸ <`Value`\>(`concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+▸ \<`Value`\>(`concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 ##### Type parameters
 
@@ -18562,23 +18878,13 @@ console.log(
 
 ##### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 ##### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
-
-#### Defined in
-
-[operations/slice.d.ts:709](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L709)
-
-▸ **windowConcur**<`Size`, `Value`\>(`options`, `concurIterable`):
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
-
-Returns a concur iterable containing a rolling window of the values of
-`concurIterable` as arrays of length `size`.
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
 
 **`Throws`**
 
@@ -18614,6 +18920,16 @@ console.log(
 )
 //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
 ```
+
+#### Defined in
+
+[operations/slice.d.ts:693](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L693)
+
+▸ **windowConcur**\<`Size`, `Value`\>(`options`, `concurIterable`):
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
+
+Returns a concur iterable containing a rolling window of the values of
+`concurIterable` as arrays of length `size`.
 
 #### Type parameters
 
@@ -18624,15 +18940,50 @@ console.log(
 
 #### Parameters
 
-| Name             | Type                                                    |
-| :--------------- | :------------------------------------------------------ |
-| `options`        | [`WindowOptions`](modules.md#windowoptions)<`Size`\>    |
-| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)<`Value`\> |
+| Name             | Type                                                     |
+| :--------------- | :------------------------------------------------------- |
+| `options`        | [`WindowOptions`](modules.md#windowoptions)\<`Size`\>    |
+| `concurIterable` | [`ConcurIterable`](modules.md#concuriterable)\<`Value`\> |
 
 #### Returns
 
-[`ConcurIterable`](modules.md#concuriterable)<`Value`[]\>
+[`ConcurIterable`](modules.md#concuriterable)\<`Value`[]\>
+
+**`Throws`**
+
+if `size` is not a positive integer.
+
+**`Example`**
+
+```js
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowConcur(3),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowConcur({ size: 3, partialStart: true }),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
+
+console.log(
+  await pipe(
+    asConcur([1, 2, 3, 4, 5, 6, `sloth`]),
+    windowConcur({ size: 3, partialStart: true, partialEnd: true }),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
+```
 
 #### Defined in
 
-[operations/slice.d.ts:712](https://github.com/TomerAberbach/lfi/blob/ffbf394/src/operations/slice.d.ts#L712)
+[operations/slice.d.ts:696](https://github.com/TomerAberbach/lfi/blob/edb862d/src/operations/slice.d.ts#L696)

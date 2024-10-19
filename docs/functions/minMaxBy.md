@@ -61,7 +61,7 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:412](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/statistics.d.ts#L412)
+[statistics.d.ts:486](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L486)
 
 ## minMaxBy(fn)
 
@@ -107,4 +107,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:416](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/statistics.d.ts#L416)
+[statistics.d.ts:490](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L490)

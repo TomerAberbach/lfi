@@ -71,7 +71,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L23)
+[exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L23)
 
 ## filter(fn, iterable)
 
@@ -113,7 +113,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L26)
+[exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L26)
 
 ## filter(fn)
 
@@ -160,7 +160,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L31)
+[exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L31)
 
 ## filter(fn, iterable)
 
@@ -200,4 +200,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L34)
+[exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L34)

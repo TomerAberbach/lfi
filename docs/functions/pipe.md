@@ -56,7 +56,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:71](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L71)
+[fn.d.ts:71](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L71)
 
 ## pipe(value, fn)
 
@@ -96,7 +96,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:72](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L72)
+[fn.d.ts:72](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L72)
 
 ## pipe(value, fn1, fn2)
 
@@ -140,7 +140,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:73](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L73)
+[fn.d.ts:73](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L73)
 
 ## pipe(value, fn1, fn2, fn3)
 
@@ -188,7 +188,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:74](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L74)
+[fn.d.ts:74](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L74)
 
 ## pipe(value, fn1, fn2, fn3, fn4)
 
@@ -240,7 +240,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:80](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L80)
+[fn.d.ts:80](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L80)
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5)
 
@@ -297,7 +297,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:87](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L87)
+[fn.d.ts:87](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L87)
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6)
 
@@ -358,7 +358,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:95](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L95)
+[fn.d.ts:95](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L95)
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7)
 
@@ -423,7 +423,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:104](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L104)
+[fn.d.ts:104](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L104)
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8)
 
@@ -492,7 +492,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:114](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L114)
+[fn.d.ts:114](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L114)
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8, fn9)
 
@@ -565,4 +565,4 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:125](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L125)
+[fn.d.ts:125](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L125)

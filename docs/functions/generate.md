@@ -66,7 +66,7 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/generate.d.ts#L25)
+[generate.d.ts:25](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L25)
 
 ## generate(fn, seed)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:26](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/generate.d.ts#L26)
+[generate.d.ts:26](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L26)

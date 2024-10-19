@@ -104,7 +104,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:555](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L555)
+[slice.d.ts:555](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L555)
 
 ## chunkConcur(size, concurIterable)
 
@@ -163,4 +163,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:558](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L558)
+[slice.d.ts:558](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L558)

@@ -71,7 +71,7 @@ console.log([...rangeTo(0, 6).step(2)])
 
 ### Defined in
 
-[generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/generate.d.ts#L152)
+[generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L152)
 
 ## rangeTo(start, end)
 
@@ -113,4 +113,4 @@ console.log([...rangeTo(0, 6).step(2)])
 
 ### Defined in
 
-[generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/generate.d.ts#L152)
+[generate.d.ts:152](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L152)

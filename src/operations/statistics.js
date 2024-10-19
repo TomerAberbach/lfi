@@ -1,4 +1,5 @@
 import { identity, thunk } from '../internal/helpers.js'
+import { toMultiple } from './collect.js'
 import { curry } from './fn.js'
 import { reduce, reduceAsync, reduceConcur } from './reduce.js'
 import { mapAsyncReducer, mapReducer, normalizeReducer } from './reducer.js'
@@ -15,6 +16,16 @@ export const toSum = thunk({
 export const sum = reduce(toSum())
 export const sumAsync = reduceAsync(toSum())
 export const sumConcur = reduceConcur(toSum())
+
+export const toMean = thunk(
+  mapReducer(
+    ([sum, count]) => (count === 0 ? NaN : sum / count),
+    toMultiple([toSum(), toCount()]),
+  ),
+)
+export const mean = reduce(toMean())
+export const meanAsync = reduceAsync(toMean())
+export const meanConcur = reduceConcur(toMean())
 
 const minMaxSet = new WeakSet()
 const asMinMax = value => {

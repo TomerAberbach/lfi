@@ -72,7 +72,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:97](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L97)
+[exclude.d.ts:97](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L97)
 
 ## filterConcur(fn, concurIterable)
 
@@ -116,7 +116,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:100](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L100)
+[exclude.d.ts:100](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L100)
 
 ## filterConcur(fn)
 
@@ -164,7 +164,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:105](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L105)
+[exclude.d.ts:105](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L105)
 
 ## filterConcur(fn, concurIterable)
 
@@ -206,4 +206,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:108](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/exclude.d.ts#L108)
+[exclude.d.ts:108](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L108)

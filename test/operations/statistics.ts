@@ -6,6 +6,7 @@ import {
   count,
   countAsync,
   countConcur,
+  empty,
   emptyAsync,
   emptyConcur,
   get,
@@ -20,6 +21,9 @@ import {
   maxWith,
   maxWithAsync,
   maxWithConcur,
+  mean,
+  meanAsync,
+  meanConcur,
   min,
   minAsync,
   minBy,
@@ -1295,6 +1299,69 @@ test.prop([getConcurIterableArb(fc.double())])(
       (await scheduler.report())
         .values()
         .reduce((a, b) => Number(a) + Number(b), 0),
+    )
+  },
+)
+
+test.skip(`mean types are correct`, () => {
+  expectTypeOf(mean([1, 2, 3])).toMatchTypeOf<number>()
+})
+
+test(`mean returns NaN for an empty iterable`, () => {
+  // eslint-disable-next-line typescript/no-unsafe-argument
+  const iterableMean = mean(empty)
+
+  expect(iterableMean).toBeNaN()
+})
+
+test.prop([getIterableArb(fc.double(), { minLength: 1 })])(
+  `mean returns the mean of all numbers in the given iterable`,
+  ({ iterable, values }) => {
+    const iterableMean = mean(iterable)
+
+    expect(iterableMean).toBe(values.reduce((a, b) => a + b, 0) / values.length)
+  },
+)
+
+test.skip(`meanAsync types are correct`, () => {
+  expectTypeOf(meanAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+})
+
+test(`meanAsync returns NaN for an empty async iterable`, async () => {
+  // eslint-disable-next-line typescript/no-unsafe-argument
+  const mean = await meanAsync(emptyAsync)
+
+  expect(mean).toBeNaN()
+})
+
+test.prop([getAsyncIterableArb(fc.double(), { minLength: 1 })])(
+  `meanAsync returns the mean of all numbers in the given async iterable`,
+  async ({ iterable, values }) => {
+    const mean = await meanAsync(iterable)
+
+    expect(mean).toBe(values.reduce((a, b) => a + b, 0) / values.length)
+  },
+)
+
+test.skip(`meanConcur types are correct`, () => {
+  expectTypeOf(meanConcur(asConcur([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+})
+
+test(`meanConcur returns NaN for an empty concur iterable`, async () => {
+  const mean = await meanConcur(emptyConcur)
+
+  expect(mean).toBeNaN()
+})
+
+test.prop([getConcurIterableArb(fc.double(), { minLength: 1 })])(
+  `meanConcur returns the mean of all numbers in the given concur iterable`,
+  async ({ iterable, values }, scheduler) => {
+    const mean = await meanConcur(iterable)
+
+    expect(mean).toBe(
+      (await scheduler.report())
+        .values()
+        .reduce<number>((a, b) => Number(a) + Number(b), 0) / values.length,
     )
   },
 )

@@ -130,6 +130,80 @@ export const sumConcur: (
 ) => Promise<number>
 
 /**
+ * Returns a {@link Reducer} that computes the mean of the numbers it receives.
+ *
+ * Use when composing reducers. Prefer {@link mean}, {@link meanAsync}, and
+ * {@link meanConcur} for direct use on iterables.
+ *
+ * @example
+ * ```
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
+ *     map(string => [string.length, [...string].filter(c => c === `o`).length]),
+ *     reduce(toGrouped(toMean(), toMap())),
+ *   ),
+ * )
+ * //=> Map(2) { 5 => 0.5, 10 => 2 }
+ * ```
+ */
+export const toMean: () => Reducer<number, number>
+
+/**
+ * Returns the mean of the numbers of `iterable`.
+ *
+ * Returns `NaN` for an empty iterable.
+ *
+ * @example
+ * ```js
+ * console.log(mean([1, 4, 6, 2]))
+ * //=> 3.25
+ *
+ * console.log(mean([]))
+ * //=> NaN
+ * ```
+ */
+export const mean: (iterable: Iterable<number>) => number
+
+/**
+ * Returns a promise that resolves to the mean of the numbers of
+ * `asyncIterable`.
+ *
+ * Returns a promise that resolves to `NaN` for an empty async iterable.
+ *
+ * @example
+ * ```js
+ * console.log(await meanAsync(asAsync([1, 4, 6, 2])))
+ * //=> 3.25
+ *
+ * console.log(await meanAsync(emptyAsync))
+ * //=> NaN
+ * ```
+ */
+export const meanAsync: (
+  asyncIterable: AsyncIterable<number>,
+) => Promise<number>
+
+/**
+ * Returns a promise that resolves to the mean of the numbers of
+ * `concurIterable`.
+ *
+ * Returns a promise that resolves to `NaN` for an empty concur iterable.
+ *
+ * @example
+ * ```js
+ * console.log(await meanConcur(asConcur([1, 4, 6, 2])))
+ * //=> 3.25
+ *
+ * console.log(await meanConcur(emptyConcur))
+ * //=> NaN
+ * ```
+ */
+export const meanConcur: (
+  concurIterable: ConcurIterable<number>,
+) => Promise<number>
+
+/**
  * A function that compares two values of type `Value`.
  *
  * A return value:

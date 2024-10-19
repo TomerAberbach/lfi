@@ -54,7 +54,7 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 
 ### Defined in
 
-[collect.d.ts:378](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L378)
+[collect.d.ts:378](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/collect.d.ts#L378)
 
 ## join(separator, iterable)
 
@@ -85,4 +85,4 @@ console.log(pipe([`sloth`, `more sloth`, `even more sloth`], join(`, `)))
 
 ### Defined in
 
-[collect.d.ts:379](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L379)
+[collect.d.ts:379](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/collect.d.ts#L379)

@@ -67,7 +67,7 @@ await forEachConcur(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L183)
+[iterate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L183)
 
 ## forEachConcur(fn, concurIterable)
 
@@ -107,4 +107,4 @@ await forEachConcur(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:186](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L186)
+[iterate.d.ts:186](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L186)

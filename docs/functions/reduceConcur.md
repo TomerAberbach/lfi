@@ -114,7 +114,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:232](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L232)
+[reduce.d.ts:232](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L232)
 
 ## reduceConcur(asyncReducer)
 
@@ -192,7 +192,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:238](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L238)
+[reduce.d.ts:238](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L238)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -262,7 +262,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:244](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L244)
+[reduce.d.ts:244](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L244)
 
 ## reduceConcur(asyncReducer)
 
@@ -338,7 +338,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:250](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L250)
+[reduce.d.ts:250](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L250)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -409,7 +409,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:256](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L256)
+[reduce.d.ts:256](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L256)
 
 ## reduceConcur(asyncReducer)
 
@@ -486,7 +486,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:262](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L262)
+[reduce.d.ts:262](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L262)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -554,7 +554,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:268](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L268)
+[reduce.d.ts:268](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L268)
 
 ## reduceConcur(asyncReducer)
 
@@ -628,7 +628,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:274](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L274)
+[reduce.d.ts:274](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L274)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -692,7 +692,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:280](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L280)
+[reduce.d.ts:280](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L280)
 
 ## reduceConcur(asyncReducer)
 
@@ -762,4 +762,4 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:284](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reduce.d.ts#L284)
+[reduce.d.ts:284](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reduce.d.ts#L284)

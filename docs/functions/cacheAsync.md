@@ -44,4 +44,4 @@ console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
 
 ## Defined in
 
-[cache.d.ts:47](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/cache.d.ts#L47)
+[cache.d.ts:47](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/cache.d.ts#L47)

@@ -77,7 +77,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:60](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L60)
+[iterate.d.ts:60](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L60)
 
 ## eachAsync(fn, asyncIterable)
 
@@ -122,7 +122,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:63](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L63)
+[iterate.d.ts:63](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L63)
 
 ## eachAsync(fn)
 
@@ -175,7 +175,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:68](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L68)
+[iterate.d.ts:68](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L68)
 
 ## eachAsync(fn, asyncIterable)
 
@@ -222,4 +222,4 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/iterate.d.ts#L71)
+[iterate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/iterate.d.ts#L71)

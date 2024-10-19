@@ -60,7 +60,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:156](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L156)
+[fn.d.ts:156](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L156)
 
 ## compose(fn)
 
@@ -106,7 +106,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:157](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L157)
+[fn.d.ts:157](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L157)
 
 ## compose(fn1, fn2)
 
@@ -156,7 +156,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:158](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L158)
+[fn.d.ts:158](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L158)
 
 ## compose(fn1, fn2, fn3)
 
@@ -210,7 +210,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:159](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L159)
+[fn.d.ts:159](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L159)
 
 ## compose(fn1, fn2, fn3, fn4)
 
@@ -269,7 +269,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:164](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L164)
+[fn.d.ts:164](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L164)
 
 ## compose(fn1, fn2, fn3, fn4, fn5)
 
@@ -332,7 +332,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:170](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L170)
+[fn.d.ts:170](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L170)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6)
 
@@ -399,7 +399,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L177)
+[fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L177)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7)
 
@@ -470,7 +470,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:185](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L185)
+[fn.d.ts:185](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L185)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8)
 
@@ -545,7 +545,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:194](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L194)
+[fn.d.ts:194](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L194)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8, fn9)
 
@@ -624,4 +624,4 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:204](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/fn.d.ts#L204)
+[fn.d.ts:204](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/fn.d.ts#L204)

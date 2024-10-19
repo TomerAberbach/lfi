@@ -84,7 +84,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:158](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L158)
+[collect.d.ts:158](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L158)
 
 ## toGrouped(innerReducer)
 
@@ -153,7 +153,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:166](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L166)
+[collect.d.ts:166](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L166)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -211,7 +211,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:176](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L176)
+[collect.d.ts:176](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L176)
 
 ## toGrouped(innerReducer)
 
@@ -277,7 +277,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:180](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L180)
+[collect.d.ts:180](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L180)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -335,7 +335,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:186](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L186)
+[collect.d.ts:186](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L186)
 
 ## toGrouped(innerReducer)
 
@@ -401,7 +401,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:194](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L194)
+[collect.d.ts:194](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L194)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -457,7 +457,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:204](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L204)
+[collect.d.ts:204](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L204)
 
 ## toGrouped(innerReducer)
 
@@ -521,13 +521,13 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:208](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L208)
+[collect.d.ts:208](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L208)
 
 ## toGrouped(innerReducer, outerReducer)
 
 > **toGrouped**\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>(`innerReducer`,
 > `outerReducer`): [`Reducer`](../type-aliases/Reducer.md)\<readonly [`Key`,
-> > `Value`], `never`, `OuterAcc`\>
+> `Value`], `never`, `OuterAcc`\>
 
 Returns a [Reducer](../type-aliases/Reducer.md) that reduces key-value pairs
 using `outerReducer` and reduces values with the same key using `innerReducer`.
@@ -574,7 +574,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:214](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L214)
+[collect.d.ts:214](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L214)
 
 ## toGrouped(innerReducer)
 
@@ -635,4 +635,4 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:218](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L218)
+[collect.d.ts:218](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L218)

@@ -97,7 +97,7 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:89](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/optional.d.ts#L89)
+[optional.d.ts:89](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/optional.d.ts#L89)
 
 ## orConcur(fn, concurIterable)
 
@@ -152,4 +152,4 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:92](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/optional.d.ts#L92)
+[optional.d.ts:92](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/optional.d.ts#L92)

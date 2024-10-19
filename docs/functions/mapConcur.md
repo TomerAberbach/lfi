@@ -70,7 +70,7 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L76)
+[transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/transform.d.ts#L76)
 
 ## mapConcur(fn, concurIterable)
 
@@ -112,4 +112,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L79)
+[transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/transform.d.ts#L79)

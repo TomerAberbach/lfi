@@ -68,7 +68,7 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L89)
+[predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/predicate.d.ts#L89)
 
 ## allConcur(fn, concurIterable)
 
@@ -108,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L89)
+[predicate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/predicate.d.ts#L89)

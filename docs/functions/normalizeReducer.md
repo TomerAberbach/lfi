@@ -34,7 +34,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:362](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L362)
+[reducer.d.ts:362](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L362)
 
 ## normalizeReducer(reducer)
 
@@ -62,7 +62,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:365](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L365)
+[reducer.d.ts:365](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L365)
 
 ## normalizeReducer(reducer)
 
@@ -88,7 +88,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:368](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L368)
+[reducer.d.ts:368](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L368)
 
 ## normalizeReducer(reducer)
 
@@ -114,7 +114,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:371](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L371)
+[reducer.d.ts:371](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L371)
 
 ## normalizeReducer(reducer)
 
@@ -138,7 +138,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:374](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L374)
+[reducer.d.ts:374](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L374)
 
 ## normalizeReducer(reducer)
 
@@ -160,7 +160,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:377](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L377)
+[reducer.d.ts:377](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L377)
 
 ## normalizeReducer(reducer)
 
@@ -188,7 +188,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:379](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L379)
+[reducer.d.ts:379](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L379)
 
 ## normalizeReducer(reducer)
 
@@ -216,7 +216,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:382](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L382)
+[reducer.d.ts:382](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L382)
 
 ## normalizeReducer(reducer)
 
@@ -242,7 +242,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:385](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L385)
+[reducer.d.ts:385](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L385)
 
 ## normalizeReducer(reducer)
 
@@ -268,7 +268,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:388](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L388)
+[reducer.d.ts:388](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L388)
 
 ## normalizeReducer(reducer)
 
@@ -292,7 +292,7 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:391](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L391)
+[reducer.d.ts:391](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L391)
 
 ## normalizeReducer(reducer)
 
@@ -314,4 +314,4 @@ Returns a non-raw version of `reducer`.
 
 ### Defined in
 
-[reducer.d.ts:394](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L394)
+[reducer.d.ts:394](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/reducer.d.ts#L394)

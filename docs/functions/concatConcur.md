@@ -39,4 +39,4 @@ console.log(
 
 ## Defined in
 
-[collect.d.ts:491](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/collect.d.ts#L491)
+[collect.d.ts:491](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/collect.d.ts#L491)

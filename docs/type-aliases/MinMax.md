@@ -26,4 +26,4 @@ An object containing a minimum and maximum value.
 
 ## Defined in
 
-[statistics.d.ts:230](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L230)
+[statistics.d.ts:230](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/statistics.d.ts#L230)

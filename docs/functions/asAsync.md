@@ -46,4 +46,4 @@ for await (const value of asyncIterable) {
 
 ## Defined in
 
-[as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/as.d.ts#L27)
+[as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/as.d.ts#L27)

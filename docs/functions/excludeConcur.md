@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:279](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L279)
+[exclude.d.ts:279](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/exclude.d.ts#L279)
 
 ## excludeConcur(excluded, concurIterable)
 
@@ -102,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:282](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L282)
+[exclude.d.ts:282](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/exclude.d.ts#L282)

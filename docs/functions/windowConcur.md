@@ -112,7 +112,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:693](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L693)
+[slice.d.ts:693](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L693)
 
 ## windowConcur(options, concurIterable)
 
@@ -174,4 +174,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:696](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L696)
+[slice.d.ts:696](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L696)

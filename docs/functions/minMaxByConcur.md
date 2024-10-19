@@ -62,7 +62,7 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:553](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L553)
+[statistics.d.ts:553](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/statistics.d.ts#L553)
 
 ## minMaxByConcur(fn)
 
@@ -108,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:557](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L557)
+[statistics.d.ts:557](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/statistics.d.ts#L557)

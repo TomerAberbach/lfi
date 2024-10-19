@@ -1,4 +1,4 @@
-import { fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
 import { getScheduler } from './test-prop.js'
 
 export const fnArb = fc.func(fc.anything())

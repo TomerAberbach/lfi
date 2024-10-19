@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -44,7 +45,7 @@ import {
   nonEmptyIterableArb,
   uniqueConcurIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 
 test.skip(`filter types are correct`, () => {
@@ -63,9 +64,8 @@ test.skip(`filter types are correct`, () => {
   ).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `filter returns a pure iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable }) => {
     const filteredIterable = filter(fn, iterable)
 
@@ -73,9 +73,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `filter returns an iterable containing the same values in the same order as the given iterable for which the given predicate returns a truthy value`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const filteredIterable = filter(fn, iterable)
 
@@ -85,7 +84,7 @@ testProp(
   },
 )
 
-testProp(`filter is lazy`, [iterableArb], ({ iterable, values }) => {
+test.prop([iterableArb])(`filter is lazy`, ({ iterable, values }) => {
   let count = 0
   const iterator = filter(() => {
     count++
@@ -120,9 +119,8 @@ test.skip(`filterAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `filterAsync returns a pure async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const filteredIterable = filterAsync(asyncFn, iterable)
 
@@ -130,21 +128,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `filterAsync returns an async iterable containing the same values in the same order as the given async iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filteredIterable = filterAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), filteredIterable)).toStrictEqual(
-      values.filter(value => syncFn(value)),
-    )
+    await expect(
+      reduceAsync(toArray(), filteredIterable),
+    ).resolves.toStrictEqual(values.filter(value => syncFn(value)))
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `filterAsync is lazy`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     let count = 0
     const asyncIterator = filterAsync(() => {
@@ -181,9 +177,8 @@ test.skip(`filterConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `filterConcur returns a pure concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const filteredIterable = filterConcur(asyncFn, iterable)
 
@@ -191,19 +186,18 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, getConcurIterableArb(fc.integer())])(
   `filterConcur returns an concur iterable containing the same values in the same order as the given concur iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, getConcurIterableArb(fc.integer())],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filteredIterable = filterConcur(asyncFn, iterable)
 
-    expect(
-      await reduceConcur(toArray(), filteredIterable),
-    ).toIncludeSameMembers(values.filter(value => syncFn(value)))
+    await expect(
+      reduceConcur(toArray(), filteredIterable),
+    ).resolves.toIncludeSameMembers(values.filter(value => syncFn(value)))
   },
 )
 
-testProp(`filterConcur is lazy`, [concurIterableArb], ({ iterable }) => {
+test.prop([concurIterableArb])(`filterConcur is lazy`, ({ iterable }) => {
   let count = 0
   filterConcur(() => {
     count++
@@ -213,9 +207,8 @@ testProp(`filterConcur is lazy`, [concurIterableArb], ({ iterable }) => {
   expect(count).toBe(0)
 })
 
-testProp(
+test.prop([asyncPredicateArb, uniqueConcurIterableArb])(
   `filterConcur returns a concur iterable as concurrent as the given predicate and concur iterable`,
-  [asyncPredicateArb, uniqueConcurIterableArb],
   async ({ asyncFn }, { iterable, values }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(filterConcur(asyncFn, iterable)),
@@ -241,25 +234,20 @@ test.skip(`filterMap types are correct`, () => {
   ).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
-  `filterMap returns a pure iterable`,
-  [
-    fc.func(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    iterableArb,
-  ],
-  (fn, { iterable }) => {
-    const filterMappedIterable = filterMap(fn, iterable)
+test.prop([
+  fc.func(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  iterableArb,
+])(`filterMap returns a pure iterable`, (fn, { iterable }) => {
+  const filterMappedIterable = filterMap(fn, iterable)
 
-    expect(filterMappedIterable).toBeIterable()
-  },
-)
+  expect(filterMappedIterable).toBeIterable()
+})
 
-testProp(
+test.prop([
+  fc.func(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  iterableArb,
+])(
   `filterMap returns an iterable containing the same values in the same order as the given iterable, but transformed using the given callback and excluding the values transformed to null or undefined`,
-  [
-    fc.func(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    iterableArb,
-  ],
   (fn, { iterable, values }) => {
     const filterMappedIterable = filterMap(fn, iterable)
 
@@ -284,12 +272,11 @@ test.skip(`filterMapAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  asyncIterableArb,
+])(
   `filterMapAsync returns a pure async iterable`,
-  [
-    getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    asyncIterableArb,
-  ],
   async ({ asyncFn }, { iterable }) => {
     const filterMappedIterable = filterMapAsync(asyncFn, iterable)
 
@@ -297,16 +284,17 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  asyncIterableArb,
+])(
   `filterMapAsync returns an async iterable containing the same values in the same order as the given async iterable, but transformed using the given callback and excluding the values transformed to null or undefined`,
-  [
-    getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    asyncIterableArb,
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filterMappedIterable = filterMapAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), filterMappedIterable)).toStrictEqual(
+    await expect(
+      reduceAsync(toArray(), filterMappedIterable),
+    ).resolves.toStrictEqual(
       values.map(value => syncFn(value)).filter(value => value != null),
     )
   },
@@ -327,12 +315,11 @@ test.skip(`filterMapConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  concurIterableArb,
+])(
   `filterMapConcur returns a pure concur iterable`,
-  [
-    getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    concurIterableArb,
-  ],
   async ({ asyncFn }, { iterable }) => {
     const filterMappedIterable = filterMapConcur(asyncFn, iterable)
 
@@ -340,18 +327,17 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  concurIterableArb,
+])(
   `filterMapConcur returns a concur iterable containing the same values as the given conru iterable, but transformed using the given callback and excluding the values transformed to null or undefined`,
-  [
-    getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
-    concurIterableArb,
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filterMappedIterable = filterMapConcur(asyncFn, iterable)
 
-    expect(
-      await reduceConcur(toArray(), filterMappedIterable),
-    ).toIncludeSameMembers(
+    await expect(
+      reduceConcur(toArray(), filterMappedIterable),
+    ).resolves.toIncludeSameMembers(
       values.map(value => syncFn(value)).filter(value => value != null),
     )
   },
@@ -366,9 +352,8 @@ test.skip(`exclude types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([iterableArb, iterableArb])(
   `exclude returns a pure iterable`,
-  [iterableArb, iterableArb],
   ({ iterable: excludedIterable }, { iterable }) => {
     const filteredIterable = exclude(excludedIterable, iterable)
 
@@ -376,9 +361,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb, iterableArb])(
   `exclude returns an iterable containing the same values in the same order as the latter given iterable, but excluding the former given iterable`,
-  [iterableArb, iterableArb],
   (
     { iterable: excludedIterable, values: excludedValues },
     { iterable, values },
@@ -400,9 +384,8 @@ test.skip(`excludeAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([iterableArb, asyncIterableArb])(
   `excludeAsync returns a pure async iterable`,
-  [iterableArb, asyncIterableArb],
   async ({ iterable: excludedIterable }, { iterable }) => {
     const filteredIterable = excludeAsync(excludedIterable, iterable)
 
@@ -410,16 +393,17 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb, asyncIterableArb])(
   `excludeAsync returns an async iterable containing the same values in the same order as the given async iterable, but excluding the given iterable`,
-  [iterableArb, asyncIterableArb],
   async (
     { iterable: excludedIterable, values: excludedValues },
     { iterable, values },
   ) => {
     const filteredIterable = excludeAsync(excludedIterable, iterable)
 
-    expect(await reduceAsync(toArray(), filteredIterable)).toStrictEqual(
+    await expect(
+      reduceAsync(toArray(), filteredIterable),
+    ).resolves.toStrictEqual(
       values.filter(value => !excludedValues.includes(value)),
     )
   },
@@ -434,9 +418,8 @@ test.skip(`excludeConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
+test.prop([iterableArb, concurIterableArb])(
   `excludeConcur returns a pure concur iterable`,
-  [iterableArb, concurIterableArb],
   async ({ iterable: excludedIterable }, { iterable }) => {
     const filteredIterable = excludeConcur(excludedIterable, iterable)
 
@@ -444,26 +427,24 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb, concurIterableArb])(
   `excludeConcur returns an concur iterable containing the same values in the same order as the given concur iterable, but excluding the given iterable`,
-  [iterableArb, concurIterableArb],
   async (
     { iterable: excludedIterable, values: excludedValues },
     { iterable, values },
   ) => {
     const filteredIterable = excludeConcur(excludedIterable, iterable)
 
-    expect(
-      await reduceConcur(toArray(), filteredIterable),
-    ).toIncludeSameMembers(
+    await expect(
+      reduceConcur(toArray(), filteredIterable),
+    ).resolves.toIncludeSameMembers(
       values.filter(value => !excludedValues.includes(value)),
     )
   },
 )
 
-testProp(
+test.prop([iterableArb, concurIterableArb])(
   `excludeConcur returns a concur iterable as concurrent as the given concur iterable`,
-  [iterableArb, concurIterableArb],
   async ({ iterable: excludedIterable }, { iterable }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(excludeConcur(excludedIterable, iterable)),
@@ -482,9 +463,8 @@ test.skip(`uniqueBy types are correct`, () => {
   ).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `uniqueBy returns a pure iterable`,
-  [fnArb, iterableArb],
   (fn, { iterable }) => {
     const uniqueIterable = uniqueBy(fn, iterable)
 
@@ -492,9 +472,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, nonEmptyIterableArb])(
   `uniqueBy returns an iterable containing at least one element for a non-empty iterable and only elements from the given iterable`,
-  [fnArb, nonEmptyIterableArb],
   (fn, { iterable, values }) => {
     const uniqueIterable = uniqueBy(fn, iterable)
 
@@ -504,9 +483,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `uniqueBy returns a deduplicated iterable based on the given function and iterable`,
-  [fnArb, iterableArb],
   (fn, { iterable, values }) => {
     const uniqueIterable = uniqueBy(fn, iterable)
 
@@ -537,9 +515,8 @@ test.skip(`uniqueByAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `uniqueByAsync returns a pure async iterable`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const uniqueIterable = uniqueByAsync(asyncFn, iterable)
 
@@ -547,9 +524,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, nonEmptyAsyncIterableArb])(
   `uniqueByAsync returns an async iterable containing at least one element for a non-empty async iterable and only elements from the given async iterable`,
-  [asyncFnArb, nonEmptyAsyncIterableArb],
   async ({ asyncFn }, { iterable, values }) => {
     const uniqueIterable = uniqueByAsync(asyncFn, iterable)
 
@@ -559,9 +535,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `uniqueByAsync returns a deduplicated async iterable based on the given function and async iterable`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const uniqueIterable = uniqueByAsync(asyncFn, iterable)
 
@@ -573,7 +548,7 @@ testProp(
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
       .map(({ value }) => value)
-    expect(await reduceAsync(toArray(), uniqueIterable)).toStrictEqual(
+    await expect(reduceAsync(toArray(), uniqueIterable)).resolves.toStrictEqual(
       expectedValues,
     )
   },
@@ -594,9 +569,8 @@ test.skip(`uniqueByConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `uniqueByConcur returns a concur iterable`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const uniqueIterable = uniqueByConcur(asyncFn, iterable)
 
@@ -604,9 +578,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, nonEmptyConcurIterableArb])(
   `uniqueByConcur returns a deduplicated concur iterable based on the given function and concur iterable`,
-  [asyncFnArb, nonEmptyConcurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const uniqueIterable = uniqueByConcur(asyncFn, iterable)
 
@@ -622,15 +595,14 @@ test.skip(`unique types are correct`, () => {
   expectTypeOf(pipe([1, 1, 2, 3], unique)).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(`unique returns a pure iterable`, [iterableArb], ({ iterable }) => {
+test.prop([iterableArb])(`unique returns a pure iterable`, ({ iterable }) => {
   const uniqueIterable = unique(iterable)
 
   expect(uniqueIterable).toBeIterable()
 })
 
-testProp(
+test.prop([nonEmptyIterableArb])(
   `unique returns an iterable containing at least one element for a non-empty iterable and only elements from the given iterable`,
-  [nonEmptyIterableArb],
   ({ iterable, values }) => {
     const uniqueIterable = unique(iterable)
 
@@ -640,9 +612,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb])(
   `unique returns a deduplicated iterable based on the given iterable`,
-  [iterableArb],
   ({ iterable, values }) => {
     const uniqueIterable = unique(iterable)
 
@@ -664,9 +635,8 @@ test.skip(`uniqueAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `uniqueAsync returns a pure async iterable`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const uniqueIterable = uniqueAsync(iterable)
 
@@ -674,9 +644,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonEmptyAsyncIterableArb])(
   `uniqueAsync returns an async iterable containing at least one element for a non-empty async iterable and only elements from the given async iterable`,
-  [nonEmptyAsyncIterableArb],
   async ({ iterable, values }) => {
     const uniqueIterable = uniqueAsync(iterable)
 
@@ -686,9 +655,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `uniqueAsync returns a deduplicated async iterable based on the given async iterable`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const uniqueIterable = uniqueAsync(iterable)
 
@@ -700,7 +668,7 @@ testProp(
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
       .map(({ value }) => value)
-    expect(await reduceAsync(toArray(), uniqueIterable)).toStrictEqual(
+    await expect(reduceAsync(toArray(), uniqueIterable)).resolves.toStrictEqual(
       expectedValues,
     )
   },
@@ -712,9 +680,8 @@ test.skip(`uniqueConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([concurIterableArb])(
   `uniqueConcur returns a pure concur iterable`,
-  [concurIterableArb],
   async ({ iterable }) => {
     const uniqueIterable = uniqueConcur(iterable)
 
@@ -722,9 +689,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonEmptyConcurIterableArb])(
   `uniqueConcur returns a deduplicated concur iterable based on the given concur iterable`,
-  [nonEmptyConcurIterableArb],
   async ({ iterable, values }) => {
     const uniqueIterable = uniqueConcur(iterable)
 

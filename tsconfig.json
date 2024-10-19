@@ -3,7 +3,7 @@
   "include": ["**/*"],
   "typedocOptions": {
     "entryPoints": "./src/index.d.ts",
-    "entryDocument": "readme.md",
+    "entryFileName": "readme.md",
     "excludeInternal": true,
     "exclude": "./test",
     "intentionallyNotExported": [

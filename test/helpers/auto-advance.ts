@@ -1,4 +1,4 @@
-import { jest } from 'tomer'
+import { vitest } from 'vitest'
 import { getScheduler } from './fast-check/test-prop.js'
 
 const autoAdvance =
@@ -13,10 +13,10 @@ const autoAdvance =
       () => (done = true),
     )
 
-    // eslint-disable-next-line no-unmodified-loop-condition, typescript/no-unnecessary-condition
+    // eslint-disable-next-line typescript/no-unnecessary-condition
     while (!done) {
       await getScheduler()?.waitAll()
-      jest.advanceTimersToNextTimer()
+      vitest.advanceTimersToNextTimer()
       await Promise.resolve()
     }
 

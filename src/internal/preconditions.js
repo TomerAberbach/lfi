@@ -28,7 +28,6 @@ export const assertPositiveInteger = createAssert({
 
 export const assertPureIterable = createAssert({
   _predicate: (_, { _value: value, _symbol: symbol }) =>
-    // eslint-disable-next-line no-self-compare
     value[symbol]() !== value[symbol](),
   _message: `a pure iterable`,
 })

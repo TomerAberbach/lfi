@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import {
   asAsync,
   asConcur,
@@ -52,7 +53,7 @@ import {
   rawOptionalReducerArb,
   rawReducerArb,
 } from '../helpers/fast-check/reducer.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import { sameValueZero } from '../helpers/same-value-zero.js'
 import withElapsed from '../helpers/with-elapsed.js'
 
@@ -288,9 +289,8 @@ test.each(groupedReducerTestCases)(
   },
 )
 
-testProp(
+test.prop([iterableArb])(
   `toArray reduces to an array`,
-  [iterableArb],
   ({ iterable, values }) => {
     const array = reduce(toArray(), iterable)
 
@@ -298,15 +298,14 @@ testProp(
   },
 )
 
-testProp(`toSet reduces to a set`, [iterableArb], ({ iterable, values }) => {
+test.prop([iterableArb])(`toSet reduces to a set`, ({ iterable, values }) => {
   const set = reduce(toSet(), iterable)
 
   expect(set).toStrictEqual(new Set(values))
 })
 
-testProp(
+test.prop([getIterableArb(fc.object())])(
   `toWeakSet reduces to a weak set`,
-  [getIterableArb(fc.object())],
   ({ iterable, values }) => {
     const weakSet = reduce(toWeakSet(), iterable)
 
@@ -316,9 +315,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.string(), fc.anything()))])(
   `toObject reduces to an object`,
-  [getIterableArb(fc.tuple(fc.string(), fc.anything()))],
   ({ iterable, values }) => {
     const object = reduce(toObject(), iterable)
 
@@ -326,9 +324,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.anything(), fc.anything()))])(
   `toMap reduces to a map`,
-  [getIterableArb(fc.tuple(fc.anything(), fc.anything()))],
   ({ iterable, values }) => {
     const map = reduce(toMap(), iterable)
 
@@ -336,9 +333,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.object(), fc.anything()))])(
   `toWeakMap reduces to a weak map`,
-  [getIterableArb(fc.tuple(fc.object(), fc.anything()))],
   ({ iterable, values }) => {
     const weakMap = reduce(toWeakMap(), iterable)
 
@@ -348,9 +344,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.string(), fc.anything()))])(
   `toGrouped(toArray(), toObject()) reduces using the outer reducer and reduces values with the same key using the inner reducer`,
-  [getIterableArb(fc.tuple(fc.string(), fc.anything()))],
   ({ iterable, values }) => {
     const object = reduce(toGrouped(toArray(), toObject()), iterable)
 
@@ -364,9 +359,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.anything(), fc.anything()))])(
   `toGrouped(toArray(), toMap()) reduces using the outer reducer and reduces values with the same key using the inner reducer`,
-  [getIterableArb(fc.tuple(fc.anything(), fc.anything()))],
   ({ iterable, values }) => {
     const map = reduce(toGrouped(toArray(), toMap()), iterable)
 
@@ -382,9 +376,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.anything(), stringifiableArb))])(
   `toGrouped(toJoin(), toMap()) reduces using the outer reducer and reduces values with the same key using the inner reducer`,
-  [getIterableArb(fc.tuple(fc.anything(), stringifiableArb))],
   ({ iterable, values }) => {
     const map = reduce(toGrouped(toJoin(`,`), toMap()), iterable)
 
@@ -398,9 +391,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(fc.tuple(fc.anything(), stringifiableArb))])(
   `toGrouped(toConcat(), toMap()) reduces using the outer reducer and reduces values with the same key using the optional inner reducer`,
-  [getIterableArb(fc.tuple(fc.anything(), stringifiableArb))],
   ({ iterable, values }) => {
     const map = reduce(toGrouped(toConcat(), toMap()), iterable)
 
@@ -458,9 +450,8 @@ test.skip(`toMultiple types are correct`, () => {
   ).toMatchTypeOf<{ set: Set<number>; sum: number }>()
 })
 
-testProp(
+test.prop([fc.array(rawReducerArb)])(
   `toMultiple returns a reducer for an array of reducers`,
-  [fc.array(rawReducerArb)],
   reducers => {
     const reducer = toMultiple(reducers)
 
@@ -468,9 +459,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.dictionary(fc.string(), rawReducerArb)])(
   `toMultiple returns a reducer for an object of reducers`,
-  [fc.dictionary(fc.string(), rawReducerArb)],
   reducers => {
     const reducer = toMultiple(reducers)
 
@@ -482,9 +472,8 @@ const arrayWithAtLeastOneOptionalReducerArb = fc
   .array(fc.oneof(rawReducerArb, rawOptionalReducerArb))
   .filter(reducers => reducers.some(reducer => !(`create` in reducer)))
 
-testProp(
+test.prop([arrayWithAtLeastOneOptionalReducerArb])(
   `toMultiple returns an optional reducer for an array of reducers where at least one is optional`,
-  [arrayWithAtLeastOneOptionalReducerArb],
   reducers => {
     const reducer = toMultiple(reducers)
 
@@ -498,9 +487,8 @@ const objectWithAtLeastOneOptionalReducerArb = fc
     Object.values(reducers).some(reducer => !(`create` in reducer)),
   )
 
-testProp(
+test.prop([objectWithAtLeastOneOptionalReducerArb])(
   `toMultiple returns an optional reducer for an object of reducers where at least one is optional`,
-  [objectWithAtLeastOneOptionalReducerArb],
   reducers => {
     const reducer = toMultiple(reducers)
 
@@ -508,9 +496,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.array(rawReducerArb), iterableArb])(
   `toMultiple reduces to an array tuple using the given array of reducers`,
-  [fc.array(rawReducerArb), iterableArb],
   (reducers, { iterable }) => {
     const values = reduce(toMultiple(reducers), iterable)
 
@@ -520,9 +507,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.dictionary(fc.string(), rawReducerArb), iterableArb])(
   `toMultiple reduces to an object using the given object of reducers`,
-  [fc.dictionary(fc.string(), rawReducerArb), iterableArb],
   (reducers, { iterable }) => {
     const values = reduce(toMultiple(reducers), iterable)
 
@@ -536,9 +522,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([arrayWithAtLeastOneOptionalReducerArb])(
   `toMultiple reduces to an empty optional for an array of reducers where at least one is optional and an empty iterable`,
-  [arrayWithAtLeastOneOptionalReducerArb],
   reducers => {
     const values = reduce(toMultiple(reducers), [])
 
@@ -546,9 +531,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([arrayWithAtLeastOneOptionalReducerArb, nonEmptyIterableArb])(
   `toMultiple reduces to an array tuple for an array of reducers where at least one is optional and a non-empty iterable`,
-  [arrayWithAtLeastOneOptionalReducerArb, nonEmptyIterableArb],
   (reducers, { iterable }) => {
     const values = reduce(toMultiple(reducers), iterable)
 
@@ -561,9 +545,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([objectWithAtLeastOneOptionalReducerArb])(
   `toMultiple reduces to an empty optional for an object of reducers where at least one is optional and an empty iterable`,
-  [objectWithAtLeastOneOptionalReducerArb],
   reducers => {
     const values = reduce(toMultiple(reducers), [])
 
@@ -571,9 +554,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([objectWithAtLeastOneOptionalReducerArb, nonEmptyIterableArb])(
   `toMultiple reduces to an object for an object of reducers where at least one is optional and a non-empty iterable`,
-  [objectWithAtLeastOneOptionalReducerArb, nonEmptyIterableArb],
   (reducers, { iterable }) => {
     const values = reduce(toMultiple(reducers), iterable)
 
@@ -595,15 +577,14 @@ test.skip(`toJoin types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], reduce(toJoin(`,`)))).toMatchTypeOf<string>()
 })
 
-testProp(`toJoin returns a reducer`, [fc.string()], separator => {
+test.prop([fc.string()])(`toJoin returns a reducer`, separator => {
   const reducer = toJoin(separator)
 
   expect(reducer).toBeReducer()
 })
 
-testProp(
+test.prop([fc.string(), getIterableArb(stringifiableArb)])(
   `toJoin reduces to a string`,
-  [fc.string(), getIterableArb(stringifiableArb)],
   (separator, { iterable, values }) => {
     const string = reduce(toJoin(separator), iterable)
 
@@ -615,9 +596,8 @@ test.skip(`join types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], join(`,`))).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.string(), getIterableArb(stringifiableArb)])(
   `join returns a string containing the string representations of same values in the same order as the given iterable separated by the given separator`,
-  [fc.string(), getIterableArb(stringifiableArb)],
   (separator, { iterable, values }) => {
     const joined = join(separator, iterable)
 
@@ -631,9 +611,8 @@ test.skip(`joinAsync types are correct`, async () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.string(), getAsyncIterableArb(stringifiableArb)])(
   `joinAsync returns a string containing the string representations of same values in the same order as the given async iterable separated by the given separator`,
-  [fc.string(), getAsyncIterableArb(stringifiableArb)],
   async (separator, { iterable, values }) => {
     const joined = await joinAsync(separator, iterable)
 
@@ -647,9 +626,8 @@ test.skip(`joinConcur types are correct`, async () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.string(), getConcurIterableArb(stringifiableArb)])(
   `joinConcur returns a string containing the string representations of same values as the given concur iterable separated by the given separator`,
-  [fc.string(), getConcurIterableArb(stringifiableArb)],
   async (separator, { iterable, values }) => {
     const joined = await joinConcur(separator, iterable)
 
@@ -697,9 +675,8 @@ test.skip(`concat types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([fc.array(iterableArb)])(
   `concat returns a pure iterable`,
-  [fc.array(iterableArb)],
   iterables => {
     const concatenatedIterable = concat(
       ...iterables.map(({ iterable }) => iterable),
@@ -709,9 +686,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.array(iterableArb)])(
   `concat returns an iterable concatenated from the given iterables`,
-  [fc.array(iterableArb)],
   iterables => {
     const concatenatedIterable = concat(
       ...iterables.map(({ iterable }) => iterable),
@@ -735,9 +711,8 @@ test.skip(`concatAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
   `concatAsync returns a pure async iterable`,
-  [fc.array(fc.oneof(iterableArb, asyncIterableArb))],
   async iterables => {
     const concatenatedIterable = concatAsync(
       ...iterables.map(({ iterable }) => iterable),
@@ -747,17 +722,16 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
   `concatAsync returns an async iterable concatenated from the given iterables`,
-  [fc.array(fc.oneof(iterableArb, asyncIterableArb))],
   async iterables => {
     const concatenatedIterable = concatAsync(
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    expect(await reduceAsync(toArray(), concatenatedIterable)).toStrictEqual(
-      iterables.flatMap(({ values }) => values),
-    )
+    await expect(
+      reduceAsync(toArray(), concatenatedIterable),
+    ).resolves.toStrictEqual(iterables.flatMap(({ values }) => values))
   },
 )
 
@@ -766,7 +740,7 @@ test(
   autoAdvance(async () => {
     const asyncIterable = concatAsync()
 
-    expect(await reduceAsync(toArray(), asyncIterable)).toBeEmpty()
+    await expect(reduceAsync(toArray(), asyncIterable)).resolves.toBeEmpty()
   }),
 )
 
@@ -776,29 +750,28 @@ test.skip(`concatConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
-  `concatConcur returns a pure concur iterable`,
-  [fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb))],
-  async iterables => {
-    const concatenatedIterable = concatConcur(
-      ...iterables.map(({ iterable }) => iterable),
-    )
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+])(`concatConcur returns a pure concur iterable`, async iterables => {
+  const concatenatedIterable = concatConcur(
+    ...iterables.map(({ iterable }) => iterable),
+  )
 
-    await expect(concatenatedIterable).toBeConcurIterable()
-  },
-)
+  await expect(concatenatedIterable).toBeConcurIterable()
+})
 
-testProp(
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+])(
   `concatConcur returns a concur iterable concatenated from the given iterables`,
-  [fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb))],
   async iterables => {
     const concatenatedIterable = concatConcur(
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    expect(
-      await reduceConcur(toArray(), concatenatedIterable),
-    ).toIncludeSameMembers(iterables.flatMap(({ values }) => values))
+    await expect(
+      reduceConcur(toArray(), concatenatedIterable),
+    ).resolves.toIncludeSameMembers(iterables.flatMap(({ values }) => values))
   },
 )
 
@@ -807,13 +780,14 @@ test(
   autoAdvance(async () => {
     const concurIterable = concatConcur()
 
-    expect(await reduceConcur(toArray(), concurIterable)).toBeEmpty()
+    await expect(reduceConcur(toArray(), concurIterable)).resolves.toBeEmpty()
   }),
 )
 
-testProp(
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+])(
   `concatConcur returns a concur iterable as concurrent as the given iterables`,
-  [fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb))],
   async (iterables, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(concatConcur(...iterables.map(({ iterable }) => iterable))),

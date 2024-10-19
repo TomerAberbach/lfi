@@ -1,8 +1,8 @@
-/* eslint-disable require-atomic-updates, no-restricted-syntax, jest/no-standalone-expect */
-import { fc, jest } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, vitest } from 'vitest'
 import delay from './helpers/delay.js'
 
-jest.useFakeTimers()
+vitest.useFakeTimers()
 fc.configureGlobal({ numRuns: 250 })
 
 expect.extend({
@@ -105,6 +105,7 @@ expect.extend({
           },
         )
       } catch {
+        // eslint-disable-next-line require-atomic-updates
         pass = false
       }
     }
@@ -117,8 +118,10 @@ expect.extend({
           values2.push(value),
         )
         expect(values1).toIncludeSameMembers(values2)
+        // eslint-disable-next-line require-atomic-updates
         pass = true
       } catch {
+        // eslint-disable-next-line require-atomic-updates
         pass = false
       }
     }
@@ -138,7 +141,6 @@ expect.extend({
       received != null &&
       [`add`, `finish`].every(
         methodName =>
-          // eslint-disable-next-line typescript/no-unsafe-member-access
           typeof (received as Record<keyof never, unknown>)[methodName] ===
           `function`,
       ) &&
@@ -180,12 +182,10 @@ type CustomMatchers<Returned = unknown> = {
 
 type IterableOptions = { pure?: boolean }
 
-declare global {
-  /* eslint-disable typescript/no-namespace, typescript/consistent-type-definitions */
-  namespace jest {
-    interface Expect extends CustomMatchers {}
-    interface Matchers<R> extends CustomMatchers<R> {}
-    interface InverseAsymmetricMatchers extends CustomMatchers {}
-  }
-  /* eslint-enable */
+declare module 'vitest' {
+  /* eslint-disable typescript/no-empty-object-type, typescript/consistent-type-definitions */
+  interface Assertion<T = any> extends CustomMatchers<T> {}
+  interface AsymmetricMatchersContaining<T = any> extends CustomMatchers<T> {}
+  interface ExpectStatic extends CustomMatchers {}
+  /* eslint-enable typescript/no-empty-object-type, typescript/consistent-type-definitions */
 }

@@ -1,4 +1,4 @@
-import { fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
 
 export const stringifiableArb = fc.anything().filter(value => {
   try {

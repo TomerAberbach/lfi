@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import {
   asAsync,
   asConcur,
@@ -57,16 +58,15 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 
 test.skip(`count types are correct`, () => {
   expectTypeOf(count([1, 2, 3])).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([iterableArb])(
   `count returns the number of values in the given iterable`,
-  [iterableArb],
   ({ iterable, values }) => {
     const numberOfValues = count(iterable)
 
@@ -78,9 +78,8 @@ test.skip(`countAsync types are correct`, () => {
   expectTypeOf(countAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `countAsync returns the number of values in the given async iterable`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const numberOfValues = await countAsync(iterable)
 
@@ -94,9 +93,8 @@ test.skip(`countConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([concurIterableArb])(
   `countConcur returns the number of values in the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const numberOfValues = await countConcur(iterable)
 
@@ -104,9 +102,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `countConcur is as concurrent as the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable }, scheduler) => {
     const { elapsed } = await withElapsed(() => countConcur(iterable))
 
@@ -124,9 +121,8 @@ test.skip(`minBy types are correct`, () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.compareFunc(), iterableArb])(
   `minBy returns a pure iterable`,
-  [fc.compareFunc(), iterableArb],
   (fn, { iterable }) => {
     const minimum = minBy(fn, iterable)
 
@@ -134,9 +130,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.compareFunc()])(
   `minBy returns an empty iterable for an empty iterable`,
-  [fc.compareFunc()],
   fn => {
     const minimum = minBy(fn, [])
 
@@ -144,12 +139,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.compareFunc(),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minBy returns the minimum element based on the comparison function for a non-empty iterable`,
-  [
-    fc.compareFunc(),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable, values }) => {
     const minimum = minBy(fn, iterable)
 
@@ -174,9 +168,8 @@ test.skip(`minByAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, asyncIterableArb])(
   `minByAsync returns an async iterable`,
-  [asyncCompareFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimum = minByAsync(asyncFn, iterable)
 
@@ -184,24 +177,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `minByAsync returns an empty async iterable for an empty async iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const minimum = minByAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minByAsync returns the minimum element based on the comparison function for a non-empty async iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const minimum = minByAsync(asyncFn, iterable)
 
@@ -226,9 +215,8 @@ test.skip(`minByConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, concurIterableArb])(
   `minByConcur returns a concur iterable`,
-  [asyncCompareFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimum = minByConcur(asyncFn, iterable)
 
@@ -236,24 +224,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `minByConcur returns an empty concur iterable for an empty concur iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const minimum = minByConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minByConcur returns the minimum element based on the comparison function for a non-empty concur iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const minimum = minByConcur(asyncFn, iterable)
 
@@ -273,9 +257,8 @@ test.skip(`maxBy types are correct`, () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.compareFunc(), iterableArb])(
   `maxBy returns a pure iterable`,
-  [fc.compareFunc(), iterableArb],
   (fn, { iterable }) => {
     const maximum = maxBy(fn, iterable)
 
@@ -283,9 +266,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.compareFunc()])(
   `maxBy returns an empty iterable for an empty iterable`,
-  [fc.compareFunc()],
   fn => {
     const maximum = maxBy(fn, [])
 
@@ -293,12 +275,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.compareFunc(),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxBy returns the maximum element based on the comparison function for a non-empty iterable`,
-  [
-    fc.compareFunc(),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable, values }) => {
     const maximum = maxBy(fn, iterable)
 
@@ -323,9 +304,8 @@ test.skip(`maxByAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, asyncIterableArb])(
   `maxByAsync returns an async iterable`,
-  [asyncCompareFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const maximum = maxByAsync(asyncFn, iterable)
 
@@ -333,24 +313,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `maxByAsync returns an empty async iterable for an empty async iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const maximum = maxByAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxByAsync returns the maximum element based on the comparison function for a non-empty async iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const maximum = maxByAsync(asyncFn, iterable)
 
@@ -380,9 +356,8 @@ test.skip(`maxByConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, concurIterableArb])(
   `maxByConcur returns a concur iterable`,
-  [asyncCompareFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const maximum = maxByConcur(asyncFn, iterable)
 
@@ -390,24 +365,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `maxByConcur returns an empty concur iterable for an empty concur iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const maximum = maxByConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxByConcur returns the maximum element based on the comparison function for a non-empty concur iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const maximum = maxByConcur(asyncFn, iterable)
 
@@ -430,9 +401,8 @@ test.skip(`minMaxBy types are correct`, () => {
   ).toMatchTypeOf<{ min: string; max: string }>()
 })
 
-testProp(
+test.prop([fc.compareFunc(), iterableArb])(
   `minMaxBy returns a pure iterable`,
-  [fc.compareFunc(), iterableArb],
   (fn, { iterable }) => {
     const minimumMaximum = minMaxBy(fn, iterable)
 
@@ -440,9 +410,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.compareFunc()])(
   `minMaxBy returns an empty iterable for an empty iterable`,
-  [fc.compareFunc()],
   fn => {
     const minimumMaximum = minMaxBy(fn, [])
 
@@ -450,12 +419,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.compareFunc(),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxBy returns the minimum and maximum elements based on the comparison function for a non-empty iterable`,
-  [
-    fc.compareFunc(),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable }) => {
     const minimumMaximum = minMaxBy(fn, iterable)
 
@@ -483,9 +451,8 @@ test.skip(`minMaxByAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, asyncIterableArb])(
   `minMaxByAsync returns an async iterable`,
-  [asyncCompareFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimumMaximum = minMaxByAsync(asyncFn, iterable)
 
@@ -493,24 +460,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `minMaxByAsync returns an empty async iterable for an empty async iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxByAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxByAsync returns the minimum and maximum elements based on the comparison function for a non-empty async iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const minimumMaximum = await getAsync(minMaxByAsync(asyncFn, iterable))
 
@@ -540,9 +503,8 @@ test.skip(`minMaxByConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
 })
 
-testProp(
+test.prop([asyncCompareFnArb, concurIterableArb])(
   `minMaxByConcur returns a concur iterable`,
-  [asyncCompareFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimumMaximum = minMaxByConcur(asyncFn, iterable)
 
@@ -550,24 +512,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncCompareFnArb])(
   `minMaxByConcur returns an empty concur iterable for an empty concur iterable`,
-  [asyncCompareFnArb],
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxByConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  asyncCompareFnArb,
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxByConcur returns the minimum and maximum elements based on the comparison function for a non-empty concur iterable`,
-  [
-    asyncCompareFnArb,
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const minimumMaximum = await getConcur(minMaxByConcur(asyncFn, iterable))
 
@@ -596,9 +554,8 @@ test.skip(`minWith types are correct`, () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.func(fc.integer()), iterableArb])(
   `minWith returns a pure iterable`,
-  [fc.func(fc.integer()), iterableArb],
   (fn, { iterable }) => {
     const minimum = minWith(fn, iterable)
 
@@ -606,9 +563,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.func(fc.integer())])(
   `minWith returns an empty iterable for an empty iterable`,
-  [fc.func(fc.integer())],
   fn => {
     const minimum = minWith(fn, [])
 
@@ -616,12 +572,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.func(fc.integer()),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minWith returns the minimum element based on the selector function for a non-empty iterable`,
-  [
-    fc.func(fc.integer()),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable, values }) => {
     const minimum = minWith(fn, iterable)
 
@@ -648,9 +603,8 @@ test.skip(`minWithAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
   `minWithAsync returns an async iterable`,
-  [getAsyncFnArb(fc.integer()), asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimum = minWithAsync(asyncFn, iterable)
 
@@ -658,24 +612,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `minWithAsync returns an empty async iterable for an empty async iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const minimum = minWithAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minWithAsync returns the minimum element based on the selector function for a non-empty async iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const minimum = minWithAsync(asyncFn, iterable)
 
@@ -702,9 +652,8 @@ test.skip(`minWithConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
   `minWithConcur returns a concur iterable`,
-  [getAsyncFnArb(fc.integer()), concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimum = minWithConcur(asyncFn, iterable)
 
@@ -712,24 +661,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `minWithConcur returns an empty concur iterable for an empty concur iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const minimum = minWithConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minWithConcur returns the minimum element based on the selector function for a non-empty concur iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const minimum = minWithConcur(asyncFn, iterable)
 
@@ -749,9 +694,8 @@ test.skip(`maxWith types are correct`, () => {
   ).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fc.func(fc.integer()), iterableArb])(
   `maxWith returns a pure iterable`,
-  [fc.func(fc.integer()), iterableArb],
   (fn, { iterable }) => {
     const maximum = maxWith(fn, iterable)
 
@@ -759,9 +703,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.func(fc.integer())])(
   `maxWith returns an empty iterable for an empty iterable`,
-  [fc.func(fc.integer())],
   fn => {
     const maximum = maxWith(fn, [])
 
@@ -769,12 +712,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.func(fc.integer()),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxWith returns the maximum element based on the selector function for a non-empty iterable`,
-  [
-    fc.func(fc.integer()),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable, values }) => {
     const maximum = maxWith(fn, iterable)
 
@@ -801,9 +743,8 @@ test.skip(`maxWithAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
   `maxWithAsync returns an async iterable`,
-  [getAsyncFnArb(fc.integer()), asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const maximum = maxWithAsync(asyncFn, iterable)
 
@@ -811,24 +752,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `maxWithAsync returns an empty async iterable for an empty async iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const maximum = maxWithAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxWithAsync returns the maximum element based on the selector function for a non-empty async iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const maximum = maxWithAsync(asyncFn, iterable)
 
@@ -855,9 +792,8 @@ test.skip(`maxWithConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<string>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
   `maxWithConcur returns a concur iterable`,
-  [getAsyncFnArb(fc.integer()), concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const maximum = maxWithConcur(asyncFn, iterable)
 
@@ -865,24 +801,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `maxWithConcur returns an empty concur iterable for an empty concur iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const maximum = maxWithConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `maxWithConcur returns the maximum element based on the selector function for a non-empty concur iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const maximum = maxWithConcur(asyncFn, iterable)
 
@@ -902,9 +834,8 @@ test.skip(`minMaxWith types are correct`, () => {
   ).toMatchTypeOf<{ min: string; max: string }>()
 })
 
-testProp(
+test.prop([fc.func(fc.integer()), iterableArb])(
   `minMaxWith returns a pure iterable`,
-  [fc.func(fc.integer()), iterableArb],
   (fn, { iterable }) => {
     const minimumMaximum = minMaxWith(fn, iterable)
 
@@ -912,9 +843,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.func(fc.integer())])(
   `minMaxWith returns an empty iterable for an empty iterable`,
-  [fc.func(fc.integer())],
   fn => {
     const minimumMaximum = minMaxWith(fn, [])
 
@@ -922,12 +852,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fc.func(fc.integer()),
+  nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxWith returns the minimum and maximum elements based on the selector function for a non-empty iterable`,
-  [
-    fc.func(fc.integer()),
-    nonEmptyIterableArb.filter(({ values }) => !values.includes(undefined)),
-  ],
   (fn, { iterable }) => {
     const minimumMaximum = minMaxWith(fn, iterable)
 
@@ -955,9 +884,8 @@ test.skip(`minMaxWithAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
   `minMaxWithAsync returns an async iterable`,
-  [getAsyncFnArb(fc.integer()), asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimumMaximum = minMaxWithAsync(asyncFn, iterable)
 
@@ -965,24 +893,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `minMaxWithAsync returns an empty async iterable for an empty async iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxWithAsync(asyncFn, emptyAsync)
 
-    expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
+    await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyAsyncIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxWithAsync returns the minimum and maximum elements based on the selector function for a non-empty async iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyAsyncIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const minimumMaximum = await getAsync(minMaxWithAsync(asyncFn, iterable))
 
@@ -1012,9 +936,8 @@ test.skip(`minMaxWithConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
 })
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
   `minMaxWithConcur returns a concur iterable`,
-  [getAsyncFnArb(fc.integer()), concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const minimumMaximum = minMaxWithConcur(asyncFn, iterable)
 
@@ -1022,24 +945,20 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncFnArb(fc.integer())])(
   `minMaxWithConcur returns an empty concur iterable for an empty concur iterable`,
-  [getAsyncFnArb(fc.integer())],
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxWithConcur(asyncFn, emptyConcur)
 
-    expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
+    await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.integer()),
+  nonEmptyConcurIterableArb.filter(({ values }) => !values.includes(undefined)),
+])(
   `minMaxWithConcur returns the minimum and maximum elements based on the selector function for a non-empty concur iterable`,
-  [
-    getAsyncFnArb(fc.integer()),
-    nonEmptyConcurIterableArb.filter(
-      ({ values }) => !values.includes(undefined),
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const minimumMaximum = await getConcur(minMaxWithConcur(asyncFn, iterable))
 
@@ -1056,9 +975,8 @@ test.skip(`min types are correct`, () => {
   expectTypeOf(get(min([1, 2, 3]))).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer())])(
   `min returns a pure iterable`,
-  [getIterableArb(fc.integer())],
   ({ iterable }) => {
     const minimum = min(iterable)
 
@@ -1072,9 +990,8 @@ test(`min returns an empty iterable for an empty iterable`, () => {
   expect([...minimum]).toBeEmpty()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
   `min returns the minimum element based on the selector function for a non-empty iterable`,
-  [getIterableArb(fc.integer(), { minLength: 1 })],
   ({ iterable, values }) => {
     const minimum = min(iterable)
 
@@ -1088,9 +1005,8 @@ test.skip(`minAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer())])(
   `minAsync returns a pure async iterable`,
-  [getAsyncIterableArb(fc.integer())],
   async ({ iterable }) => {
     const minimum = minAsync(iterable)
 
@@ -1102,16 +1018,15 @@ test(`minAsync returns an empty async iterable for an empty async iterable`, asy
   // eslint-disable-next-line typescript/no-unsafe-argument
   const minimum = minAsync(emptyAsync)
 
-  expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
+  await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   `minAsync returns the minimum element for a non-empty async iterable`,
-  [getAsyncIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable, values }) => {
     const minimum = minAsync(iterable)
 
-    expect(await getAsync(minimum)).toBe(Math.min(...values))
+    await expect(getAsync(minimum)).resolves.toBe(Math.min(...values))
   },
 )
 
@@ -1121,9 +1036,8 @@ test.skip(`minConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer())])(
   `minConcur returns a pure concur iterable`,
-  [getConcurIterableArb(fc.integer())],
   async ({ iterable }) => {
     const minimum = minConcur(iterable)
 
@@ -1134,16 +1048,15 @@ testProp(
 test(`minConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const minimum = minConcur(emptyConcur)
 
-  expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
+  await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   `minConcur returns the minimum element for a non-empty concur iterable`,
-  [getConcurIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable, values }) => {
     const minimum = minConcur(iterable)
 
-    expect(await getConcur(minimum)).toBe(Math.min(...values))
+    await expect(getConcur(minimum)).resolves.toBe(Math.min(...values))
   },
 )
 
@@ -1151,9 +1064,8 @@ test.skip(`max types are correct`, () => {
   expectTypeOf(get(max([1, 2, 3]))).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer())])(
   `max returns a pure iterable`,
-  [getIterableArb(fc.integer())],
   ({ iterable }) => {
     const maximum = max(iterable)
 
@@ -1167,9 +1079,8 @@ test(`max returns an empty iterable for an empty iterable`, () => {
   expect([...maximum]).toBeEmpty()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
   `max returns the maximum element for a non-empty iterable`,
-  [getIterableArb(fc.integer(), { minLength: 1 })],
   ({ iterable, values }) => {
     const maximum = max(iterable)
 
@@ -1183,9 +1094,8 @@ test.skip(`maxAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer())])(
   `maxAsync returns a pure async iterable`,
-  [getAsyncIterableArb(fc.integer())],
   async ({ iterable }) => {
     const maximum = maxAsync(iterable)
 
@@ -1197,16 +1107,15 @@ test(`maxAsync returns an empty async iterable for an empty async iterable`, asy
   // eslint-disable-next-line typescript/no-unsafe-argument
   const maximum = maxAsync(emptyAsync)
 
-  expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
+  await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   `maxAsync returns the maximum element for a non-empty async iterable`,
-  [getAsyncIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable, values }) => {
     const maximum = maxAsync(iterable)
 
-    expect(await getAsync(maximum)).toBe(Math.max(...values))
+    await expect(getAsync(maximum)).resolves.toBe(Math.max(...values))
   },
 )
 
@@ -1216,9 +1125,8 @@ test.skip(`maxConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer())])(
   `maxConcur returns a pure concur iterable`,
-  [getConcurIterableArb(fc.integer())],
   async ({ iterable }) => {
     const maximum = maxConcur(iterable)
 
@@ -1229,16 +1137,15 @@ testProp(
 test(`maxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const maximum = maxConcur(emptyConcur)
 
-  expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
+  await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   `maxConcur returns the maximum element for a non-empty concur iterable`,
-  [getConcurIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable, values }) => {
     const maximum = maxConcur(iterable)
 
-    expect(await getConcur(maximum)).toBe(Math.max(...values))
+    await expect(getConcur(maximum)).resolves.toBe(Math.max(...values))
   },
 )
 
@@ -1249,9 +1156,8 @@ test.skip(`minMax types are correct`, () => {
   }>()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer())])(
   `minMax returns a pure iterable`,
-  [getIterableArb(fc.integer())],
   ({ iterable }) => {
     const minimumMaximum = minMax(iterable)
 
@@ -1265,9 +1171,8 @@ test(`minMax returns an empty iterable for an empty iterable`, () => {
   expect([...minimumMaximum]).toBeEmpty()
 })
 
-testProp(
+test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
   `minMax returns the minimum and maximum elements for a non-empty iterable`,
-  [getIterableArb(fc.integer(), { minLength: 1 })],
   ({ iterable }) => {
     const minimumMaximum = minMax(iterable)
 
@@ -1287,9 +1192,8 @@ test.skip(`minMaxAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer())])(
   `minMaxAsync returns a pure async iterable`,
-  [getAsyncIterableArb(fc.integer())],
   async ({ iterable }) => {
     const minimumMaximum = minMaxAsync(iterable)
 
@@ -1301,16 +1205,15 @@ test(`minMaxAsync returns an empty async iterable for an empty async iterable`, 
   // eslint-disable-next-line typescript/no-unsafe-argument
   const minimumMaximum = minMaxAsync(emptyAsync)
 
-  expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
+  await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   `minMaxAsync returns the minimum and maximum elements for a non-empty async iterable`,
-  [getAsyncIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable }) => {
     const minimumMaximum = minMaxAsync(iterable)
 
-    expect(await getAsync(minimumMaximum)).toStrictEqual({
+    await expect(getAsync(minimumMaximum)).resolves.toStrictEqual({
       min: await getAsync(minAsync(iterable)),
       max: await getAsync(maxAsync(iterable)),
     })
@@ -1326,9 +1229,8 @@ test.skip(`minMaxConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer())])(
   `minMaxConcur returns a pure concur iterable`,
-  [getConcurIterableArb(fc.integer())],
   async ({ iterable }) => {
     const minimumMaximum = minMaxConcur(iterable)
 
@@ -1339,16 +1241,15 @@ testProp(
 test(`minMaxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const minimumMaximum = minMaxConcur(emptyConcur)
 
-  expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
+  await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   `minMaxConcur returns the minimum and maximum elements for a non-empty concur iterable`,
-  [getConcurIterableArb(fc.integer(), { minLength: 1 })],
   async ({ iterable }) => {
     const minimumMaximum = minMaxConcur(iterable)
 
-    expect(await getConcur(minimumMaximum)).toStrictEqual({
+    await expect(getConcur(minimumMaximum)).resolves.toStrictEqual({
       min: await getConcur(minConcur(iterable)),
       max: await getConcur(maxConcur(iterable)),
     })
@@ -1359,9 +1260,8 @@ test.skip(`sum types are correct`, () => {
   expectTypeOf(sum([1, 2, 3])).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([getIterableArb(fc.double())])(
   `sum returns the sum of all numbers in the given iterable`,
-  [getIterableArb(fc.double())],
   ({ iterable, values }) => {
     const iterableSum = sum(iterable)
 
@@ -1373,9 +1273,8 @@ test.skip(`sumAsync types are correct`, () => {
   expectTypeOf(sumAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.double())])(
   `sumAsync returns the sum of all numbers in the given async iterable`,
-  [getAsyncIterableArb(fc.double())],
   async ({ iterable, values }) => {
     const sum = await sumAsync(iterable)
 
@@ -1387,9 +1286,8 @@ test.skip(`sumConcur types are correct`, () => {
   expectTypeOf(sumConcur(asConcur([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([getConcurIterableArb(fc.double())])(
   `sumConcur returns the sum of all numbers in the given concur iterable`,
-  [getConcurIterableArb(fc.double())],
   async ({ iterable }, scheduler) => {
     const sum = await sumConcur(iterable)
 

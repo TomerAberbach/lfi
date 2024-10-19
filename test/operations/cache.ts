@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -30,22 +31,21 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 
 test.skip(`cache types are correct`, () => {
   expectTypeOf(cache([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(`cache returns a pure iterable`, [iterableArb], ({ iterable }) => {
+test.prop([iterableArb])(`cache returns a pure iterable`, ({ iterable }) => {
   const cachedIterable = cache(iterable)
 
   expect(cachedIterable).toBeIterable()
 })
 
-testProp(
+test.prop([iterableArb])(
   `cache returns an iterable containing the same values in the same order as the given iterable`,
-  [iterableArb],
   ({ iterable, values }) => {
     const cachedIterable = cache(iterable)
 
@@ -53,13 +53,12 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  nonEmptyIterableArb,
+  fc.integer({ min: 1, max: 100 }),
+  fc.infiniteStream(fc.nat()),
+])(
   `cache ensures the underlying iterable is iterated at most once`,
-  [
-    nonEmptyIterableArb,
-    fc.integer({ min: 1, max: 100 }),
-    fc.infiniteStream(fc.nat()),
-  ],
   ({ iterable, values }, iteratorCount, iteratorIndices) => {
     const iterated = values.map(() => false)
     const expectingIterable = pipe(
@@ -91,9 +90,8 @@ test(`cacheAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `cacheAsync returns a pure async iterable`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const cachedIterable = cacheAsync(iterable)
 
@@ -101,23 +99,23 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `cacheAsync returns an async iterable containing the same values in the same order as the given async iterable`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const cachedIterable = cacheAsync(iterable)
 
-    expect(await reduceAsync(toArray(), cachedIterable)).toStrictEqual(values)
+    await expect(reduceAsync(toArray(), cachedIterable)).resolves.toStrictEqual(
+      values,
+    )
   },
 )
 
-testProp(
+test.prop([
+  nonEmptyAsyncIterableArb,
+  fc.integer({ min: 1, max: 100 }),
+  fc.infiniteStream(fc.nat()),
+])(
   `cacheAsync ensures the underlying async iterable is iterated at most once`,
-  [
-    nonEmptyAsyncIterableArb,
-    fc.integer({ min: 1, max: 100 }),
-    fc.infiniteStream(fc.nat()),
-  ],
   async ({ iterable, values }, iteratorCount, iteratorIndices) => {
     const iterated = values.map(() => false)
     const expectngIterable = pipe(
@@ -149,9 +147,8 @@ test(`cacheConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([concurIterableArb])(
   `cacheConcur returns a pure concur iterable`,
-  [concurIterableArb],
   async ({ iterable }) => {
     const cachedIterable = cacheConcur(iterable)
 
@@ -159,21 +156,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `cacheConcur returns a concur iterable containing the same values as the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const cachedIterable = cacheConcur(iterable)
 
-    expect(await reduceConcur(toArray(), cachedIterable)).toIncludeSameMembers(
-      values,
-    )
+    await expect(
+      reduceConcur(toArray(), cachedIterable),
+    ).resolves.toIncludeSameMembers(values)
   },
 )
 
-testProp(
+test.prop([nonEmptyConcurIterableArb])(
   `cacheConcur ensures the underlying concur iterable is iterated at most once`,
-  [nonEmptyConcurIterableArb],
   async ({ iterable, values }, scheduler) => {
     const iterated = pipe(
       values,
@@ -196,9 +191,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `cacheConcur returns a concur iterable as concurrent as the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(cacheConcur(iterable)),

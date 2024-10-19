@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import {
   all,
   allAsync,
@@ -22,7 +23,7 @@ import {
   concurIterableArb,
   iterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`all types are correct`, () => {
   expectTypeOf(
@@ -33,9 +34,8 @@ test.skip(`all types are correct`, () => {
   ).toMatchTypeOf<boolean>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `all returns whether the given function returns a truthy value for all values of the given iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const result = all(fn, iterable)
 
@@ -58,9 +58,8 @@ test.skip(`allAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `allAsync returns whether the given function returns a truthy value for all values of the given async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await allAsync(asyncFn, iterable)
 
@@ -83,9 +82,8 @@ test.skip(`allConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `allConcur returns whether the given function returns a truthy value for all values of the given concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await allConcur(asyncFn, iterable)
 
@@ -102,9 +100,8 @@ test.skip(`any types are correct`, () => {
   ).toMatchTypeOf<boolean>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `any returns whether the given function returns a truthy value for any value of the given iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const result = any(fn, iterable)
 
@@ -127,9 +124,8 @@ test.skip(`anyAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `anyAsync returns whether the given function returns a truthy value for any value of the given async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await anyAsync(asyncFn, iterable)
 
@@ -152,9 +148,8 @@ test.skip(`anyConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `anyConcur returns whether the given function returns a truthy value for any value of the given concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await anyConcur(asyncFn, iterable)
 
@@ -171,9 +166,8 @@ test.skip(`none types are correct`, () => {
   ).toMatchTypeOf<boolean>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `none returns whether the given function returns a truthy value for no value of the given iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const result = none(fn, iterable)
 
@@ -196,9 +190,8 @@ test.skip(`noneAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `noneAsync returns whether the given function returns a truthy value for no value of the given async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await noneAsync(asyncFn, iterable)
 
@@ -221,9 +214,8 @@ test.skip(`noneConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<boolean>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `noneConcur returns whether the given function returns a truthy value for no value of the given concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const result = await noneConcur(asyncFn, iterable)
 
@@ -236,19 +228,18 @@ test.skip(`includes types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], includes(`sdfs`))).toMatchTypeOf<boolean>()
 })
 
-testProp(
+test.prop([
+  fc.oneof(
+    fc.tuple(fc.anything(), iterableArb),
+    fc
+      .tuple(fc.nat(), iterableArb)
+      .map(
+        ([n, { iterable, values }]) =>
+          [values[n % values.length], { iterable, values }] as const,
+      ),
+  ),
+])(
   `includes returns whether the given element is in the given iterable`,
-  [
-    fc.oneof(
-      fc.tuple(fc.anything(), iterableArb),
-      fc
-        .tuple(fc.nat(), iterableArb)
-        .map(
-          ([n, { iterable, values }]) =>
-            [values[n % values.length], { iterable, values }] as const,
-        ),
-    ),
-  ],
   ([searchElement, { iterable, values }]) => {
     const result = includes(searchElement, iterable)
 
@@ -265,19 +256,18 @@ test.skip(`includesAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([
+  fc.oneof(
+    fc.tuple(fc.anything(), asyncIterableArb),
+    fc
+      .tuple(fc.nat(), asyncIterableArb)
+      .map(
+        ([n, { iterable, values }]) =>
+          [values[n % values.length], { iterable, values }] as const,
+      ),
+  ),
+])(
   `includesAsync returns whether the given element is in the given async iterable`,
-  [
-    fc.oneof(
-      fc.tuple(fc.anything(), asyncIterableArb),
-      fc
-        .tuple(fc.nat(), asyncIterableArb)
-        .map(
-          ([n, { iterable, values }]) =>
-            [values[n % values.length], { iterable, values }] as const,
-        ),
-    ),
-  ],
   async ([searchElement, { iterable, values }]) => {
     const result = await includesAsync(searchElement, iterable)
 
@@ -294,19 +284,18 @@ test.skip(`includesConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([
+  fc.oneof(
+    fc.tuple(fc.anything(), concurIterableArb),
+    fc
+      .tuple(fc.nat(), concurIterableArb)
+      .map(
+        ([n, { iterable, values }]) =>
+          [values[n % values.length], { iterable, values }] as const,
+      ),
+  ),
+])(
   `includesConcur returns whether the given element is in the given async iterable`,
-  [
-    fc.oneof(
-      fc.tuple(fc.anything(), concurIterableArb),
-      fc
-        .tuple(fc.nat(), concurIterableArb)
-        .map(
-          ([n, { iterable, values }]) =>
-            [values[n % values.length], { iterable, values }] as const,
-        ),
-    ),
-  ],
   async ([searchElement, { iterable, values }]) => {
     const result = await includesConcur(searchElement, iterable)
 

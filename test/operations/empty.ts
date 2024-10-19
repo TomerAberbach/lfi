@@ -1,5 +1,4 @@
-/* eslint-disable typescript/no-explicit-any */
-import { expectTypeOf } from 'tomer'
+import { expect, expectTypeOf, test } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   empty,
@@ -30,7 +29,7 @@ test.skip(`emptyAsync types are correct`, () => {
 test(
   `the emptyAsync iterable is empty`,
   autoAdvance(async () => {
-    expect(await reduceAsync(toArray(), emptyAsync)).toBeEmpty()
+    await expect(reduceAsync(toArray(), emptyAsync)).resolves.toBeEmpty()
   }),
 )
 
@@ -43,6 +42,6 @@ test.skip(`emptyConcur types are correct`, () => {
 test(
   `the emptyConcur iterable is empty`,
   autoAdvance(async () => {
-    expect(await reduceConcur(toArray(), emptyConcur)).toBeEmpty()
+    await expect(reduceConcur(toArray(), emptyConcur)).resolves.toBeEmpty()
   }),
 )

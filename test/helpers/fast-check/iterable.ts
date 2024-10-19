@@ -1,4 +1,4 @@
-import { fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
 import type { ConcurIterable } from '../../../src/index.js'
 import type { MaybePromiseLike } from '../../../src/internal/types.js'
 import { getIterableIndex, getScheduler } from './test-prop.js'
@@ -79,7 +79,6 @@ class AsyncIterableWithPrivateFields<Value> {
     this.#index = getIterableIndex()
   }
 
-  // eslint-disable-next-line typescript/require-await
   public async *[Symbol.asyncIterator](): AsyncIterator<Value> {
     yield* this.#values.map(value => getScheduler()!.schedule(value))
   }

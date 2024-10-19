@@ -1,5 +1,6 @@
 import { AsyncBetterator, Betterator } from 'betterator'
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -30,15 +31,14 @@ import {
   getIterableArb,
   iterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`map types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], map(String))).toMatchTypeOf<Iterable<string>>()
 })
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `map returns a pure iterable`,
-  [fnArb, iterableArb],
   (fn, { iterable }) => {
     const mappedIterable = map(fn, iterable)
 
@@ -46,9 +46,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `map returns an iterable containing the same values in the same order as the given iterable, but transformed using the given callback`,
-  [fnArb, iterableArb],
   (fn, { iterable, values }) => {
     const mappedIterable = map(fn, iterable)
 
@@ -56,7 +55,7 @@ testProp(
   },
 )
 
-testProp(`map is lazy`, [fnArb, iterableArb], (fn, { iterable, values }) => {
+test.prop([fnArb, iterableArb])(`map is lazy`, (fn, { iterable, values }) => {
   let count = 0
   const iterator = map(value => {
     count++
@@ -82,9 +81,8 @@ test.skip(`mapAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<string>>()
 })
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `mapAsync returns a pure async iterable`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const mappedIterable = mapAsync(asyncFn, iterable)
 
@@ -92,21 +90,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `mapAsync returns an async iterable containing the same values in the same order as the given async iterable, but transformed using the given callback`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), mappedIterable)).toStrictEqual(
+    await expect(reduceAsync(toArray(), mappedIterable)).resolves.toStrictEqual(
       values.map(value => syncFn(value)),
     )
   },
 )
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `mapAsync is lazy`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable, values }) => {
     let count = 0
     const asyncIterator = mapAsync(value => {
@@ -134,9 +130,8 @@ test.skip(`mapConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<string>>()
 })
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `mapConcur returns a concur iterable containing the same values in the same order as the given concur iterable, but transformed using the given callback`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 
@@ -144,15 +139,14 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `mapConcur maps concurrently`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 
-    expect(await reduceConcur(toArray(), mappedIterable)).toIncludeSameMembers(
-      values.map(value => syncFn(value)),
-    )
+    await expect(
+      reduceConcur(toArray(), mappedIterable),
+    ).resolves.toIncludeSameMembers(values.map(value => syncFn(value)))
   },
 )
 
@@ -165,9 +159,8 @@ test.skip(`flatMap types are correct`, () => {
   ).toMatchTypeOf<Iterable<string>>()
 })
 
-testProp(
+test.prop([fc.func(iterableArb), iterableArb])(
   `flatMap returns a pure iterable`,
-  [fc.func(iterableArb), iterableArb],
   (fn, { iterable }) => {
     const flatMappedIterable = flatMap(value => fn(value).iterable, iterable)
 
@@ -175,9 +168,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.func(iterableArb), iterableArb])(
   `flatMap returns an iterable containing the flattened iterables from applying the given function to each value in the given iterable`,
-  [fc.func(iterableArb), iterableArb],
   (fn, { iterable, values }) => {
     const flatMappedIterable = flatMap(value => fn(value).iterable, iterable)
 
@@ -187,9 +179,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.func(iterableArb), iterableArb])(
   `flatMap is lazy`,
-  [fc.func(iterableArb), iterableArb],
   (fn, { iterable }) => {
     let count = 0
 
@@ -243,9 +234,11 @@ test.skip(`flatMapAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<string>>()
 })
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)),
+  asyncIterableArb,
+])(
   `flatMapAsync returns a pure async iterable`,
-  [getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)), asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const flatMappedIterable = flatMapAsync(
       async value => (await asyncFn(value)).iterable,
@@ -256,52 +249,53 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)),
+  asyncIterableArb,
+])(
   `flatMapAsync returns an async iterable containing the flattened iterables from applying the given function to each value in the given async iterable`,
-  [getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)), asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const flatMappedIterable = flatMapAsync(
       async value => (await asyncFn(value)).iterable,
       iterable,
     )
 
-    expect(await reduceAsync(toArray(), flatMappedIterable)).toStrictEqual(
-      values.flatMap(value => syncFn(value).values),
-    )
+    await expect(
+      reduceAsync(toArray(), flatMappedIterable),
+    ).resolves.toStrictEqual(values.flatMap(value => syncFn(value).values))
   },
 )
 
-testProp(
-  `flatMapAsync is lazy`,
-  [getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)), asyncIterableArb],
-  async ({ asyncFn }, { iterable }) => {
-    let count = 0
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb)),
+  asyncIterableArb,
+])(`flatMapAsync is lazy`, async ({ asyncFn }, { iterable }) => {
+  let count = 0
 
-    const asyncIterator = AsyncBetterator.fromAsyncIterable(
-      flatMapAsync(
-        async value =>
-          mapAsync(
-            innerValue => {
-              count++
-              return innerValue
-            },
-            asAsync((await asyncFn(value)).iterable),
-          ),
-        iterable,
-      ),
-    )
+  const asyncIterator = AsyncBetterator.fromAsyncIterable(
+    flatMapAsync(
+      async value =>
+        mapAsync(
+          innerValue => {
+            count++
+            return innerValue
+          },
+          asAsync((await asyncFn(value)).iterable),
+        ),
+      iterable,
+    ),
+  )
 
-    expect(count).toBe(0)
-    let i = 0
-    while (await asyncIterator.hasNext()) {
-      await asyncIterator.getNext()
+  expect(count).toBe(0)
+  let i = 0
+  while (await asyncIterator.hasNext()) {
+    await asyncIterator.getNext()
 
-      expect(count).toBe(i + 1)
+    expect(count).toBe(i + 1)
 
-      i++
-    }
-  },
-)
+    i++
+  }
+})
 
 test.skip(`flatMapConcur types are correct`, () => {
   expectTypeOf(
@@ -342,12 +336,11 @@ test.skip(`flatMapConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<string>>()
 })
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+  concurIterableArb,
+])(
   `flatMapConcur returns a pure concur iterable`,
-  [
-    getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
-    concurIterableArb,
-  ],
   async ({ asyncFn }, { iterable }) => {
     const flatMappedIterable = flatMapConcur(
       async value => (await asyncFn(value)).iterable,
@@ -358,21 +351,22 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+  concurIterableArb,
+])(
   `flatMapConcur returns a concur iterable containing the flattened iterables from applying the given function to each value in the given concur iterable`,
-  [
-    getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
-    concurIterableArb,
-  ],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const flatMappedIterable = flatMapConcur(
       async value => (await asyncFn(value)).iterable,
       iterable,
     )
 
-    expect(
-      await reduceConcur(toArray(), flatMappedIterable),
-    ).toIncludeSameMembers(values.flatMap(value => syncFn(value).values))
+    await expect(
+      reduceConcur(toArray(), flatMappedIterable),
+    ).resolves.toIncludeSameMembers(
+      values.flatMap(value => syncFn(value).values),
+    )
   },
 )
 
@@ -386,9 +380,8 @@ test.skip(`flatten types are correct`, () => {
   ).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([getIterableArb(iterableArb)])(
   `flatten returns a pure iterable`,
-  [getIterableArb(iterableArb)],
   ({ iterable }) => {
     const flattenedIterable = flatten(map(({ iterable }) => iterable, iterable))
 
@@ -396,9 +389,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getIterableArb(iterableArb)])(
   `flatten returns a flattened version of the given iterable`,
-  [getIterableArb(iterableArb)],
   ({ iterable, values }) => {
     const flattenedIterable = flatten(map(({ iterable }) => iterable, iterable))
 
@@ -414,9 +406,8 @@ test.skip(`flattenAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))])(
   `flattenAsync returns a pure async iterable`,
-  [getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))],
   async ({ iterable }) => {
     const flattenedIterable = flattenAsync(
       mapAsync(({ iterable }) => iterable, iterable),
@@ -426,17 +417,16 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))])(
   `flattenAsync returns a flattened version of the given async iterable`,
-  [getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))],
   async ({ iterable, values }) => {
     const flattenedIterable = flattenAsync(
       mapAsync(({ iterable }) => iterable, iterable),
     )
 
-    expect(await reduceAsync(toArray(), flattenedIterable)).toStrictEqual(
-      values.flatMap(({ values }) => values),
-    )
+    await expect(
+      reduceAsync(toArray(), flattenedIterable),
+    ).resolves.toStrictEqual(values.flatMap(({ values }) => values))
   },
 )
 
@@ -446,37 +436,32 @@ test.skip(`flattenConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
-  `flattenConcur returns a pure concur iterable`,
-  [
-    getConcurIterableArb(
-      fc.oneof(iterableArb, asyncIterableArb, concurIterableArb),
-    ),
-  ],
-  async ({ iterable }) => {
-    const flattenedIterable = flattenConcur(
-      mapConcur(({ iterable }) => iterable, iterable),
-    )
+test.prop([
+  getConcurIterableArb(
+    fc.oneof(iterableArb, asyncIterableArb, concurIterableArb),
+  ),
+])(`flattenConcur returns a pure concur iterable`, async ({ iterable }) => {
+  const flattenedIterable = flattenConcur(
+    mapConcur(({ iterable }) => iterable, iterable),
+  )
 
-    await expect(flattenedIterable).toBeConcurIterable()
-  },
-)
+  await expect(flattenedIterable).toBeConcurIterable()
+})
 
-testProp(
+test.prop([
+  getConcurIterableArb(
+    fc.oneof(iterableArb, asyncIterableArb, concurIterableArb),
+  ),
+])(
   `flattenConcur returns a flattened version of the given concur iterable`,
-  [
-    getConcurIterableArb(
-      fc.oneof(iterableArb, asyncIterableArb, concurIterableArb),
-    ),
-  ],
   async ({ iterable, values }) => {
     const flattenedIterable = flattenConcur(
       mapConcur(({ iterable }) => iterable, iterable),
     )
 
-    expect(
-      await reduceConcur(toArray(), flattenedIterable),
-    ).toIncludeSameMembers(values.flatMap(({ values }) => values))
+    await expect(
+      reduceConcur(toArray(), flattenedIterable),
+    ).resolves.toIncludeSameMembers(values.flatMap(({ values }) => values))
   },
 )
 
@@ -486,15 +471,14 @@ test.skip(`index types are correct`, () => {
   >()
 })
 
-testProp(`index returns a pure iterable`, [iterableArb], ({ iterable }) => {
+test.prop([iterableArb])(`index returns a pure iterable`, ({ iterable }) => {
   const indexedIterable = index(iterable)
 
   expect(indexedIterable).toBeIterable()
 })
 
-testProp(
+test.prop([iterableArb])(
   `index returns an iterable containing the values of the given iterable in pairs with their indices`,
-  [iterableArb],
   ({ iterable, values }) => {
     const indexedIterable = index(iterable)
 
@@ -510,9 +494,8 @@ test.skip(`indexAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `indexAsync returns a pure async iterable`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const indexedIterable = indexAsync(iterable)
 
@@ -520,15 +503,14 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `indexAsync returns an async iterable containing the values of the given async iterable in pairs with their indices`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const indexedIterable = indexAsync(iterable)
 
-    expect(await reduceAsync(toArray(), indexedIterable)).toStrictEqual(
-      values.map((value, index) => [index, value]),
-    )
+    await expect(
+      reduceAsync(toArray(), indexedIterable),
+    ).resolves.toStrictEqual(values.map((value, index) => [index, value]))
   },
 )
 
@@ -538,9 +520,8 @@ test.skip(`indexConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([concurIterableArb])(
   `indexConcur returns a concur iterable`,
-  [concurIterableArb],
   async ({ iterable }) => {
     const indexedIterable = indexConcur(iterable)
 
@@ -548,9 +529,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `indexConcur returns a concur iterable containing the values of the given concur iterable in pairs with their indices`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const indexedIterable = indexConcur(iterable)
 

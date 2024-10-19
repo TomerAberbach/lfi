@@ -1,5 +1,5 @@
 /* eslint-disable typescript/no-confusing-void-expression */
-import { expectTypeOf } from 'tomer'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -28,7 +28,7 @@ import {
   iterableArb,
   uniqueConcurIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 
 test.skip(`each types are correct`, () => {
@@ -43,7 +43,6 @@ test.skip(`each types are correct`, () => {
     pipe(
       [1, 2, null],
       each((a): asserts a is number => {
-        // eslint-disable-next-line jest/no-conditional-in-test
         if (a == null) {
           throw new Error(`null`)
         }
@@ -52,9 +51,8 @@ test.skip(`each types are correct`, () => {
   ).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `each returns a pure iterable`,
-  [fnArb, iterableArb],
   (fn, { iterable }) => {
     const iteratedIterable = each(fn, iterable)
 
@@ -62,9 +60,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `each returns an iterable containing the same values in the same order as the given iterable`,
-  [fnArb, iterableArb],
   (fn, { iterable, values }) => {
     const iteratedIterable = each(fn, iterable)
 
@@ -72,9 +69,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb])(
   `each calls the given function for each value in the given iterable in iteration order`,
-  [iterableArb],
   ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -84,7 +80,7 @@ testProp(
   },
 )
 
-testProp(`each is lazy`, [iterableArb], ({ iterable, values }) => {
+test.prop([iterableArb])(`each is lazy`, ({ iterable, values }) => {
   let count = 0
   const iterator = each(() => count++, iterable)[Symbol.iterator]()
 
@@ -113,7 +109,6 @@ test.skip(`eachAsync types are correct`, () => {
     pipe(
       asAsync([1, 2, null]),
       eachAsync((a): asserts a is number => {
-        // eslint-disable-next-line jest/no-conditional-in-test
         if (a == null) {
           throw new Error(`null`)
         }
@@ -122,9 +117,8 @@ test.skip(`eachAsync types are correct`, () => {
   ).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `eachAsync returns a pure async iterable`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const iteratedIterable = eachAsync(asyncFn, iterable)
 
@@ -132,19 +126,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `eachAsync returns an async iterable containing the same values in the same order as the given async iterable`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable, values }) => {
     const iteratedIterable = eachAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), iteratedIterable)).toStrictEqual(values)
+    await expect(
+      reduceAsync(toArray(), iteratedIterable),
+    ).resolves.toStrictEqual(values)
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `eachAsync calls the given function for each value in the given async iterable in iteration order`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -154,9 +148,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `eachAsync is lazy`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     let count = 0
     const iterator = eachAsync(() => count++, iterable)[Symbol.asyncIterator]()
@@ -187,7 +180,6 @@ test.skip(`eachConcur types are correct`, () => {
     pipe(
       asConcur([1, 2, null]),
       eachConcur((a): asserts a is number => {
-        // eslint-disable-next-line jest/no-conditional-in-test
         if (a == null) {
           throw new Error(`null`)
         }
@@ -196,9 +188,8 @@ test.skip(`eachConcur types are correct`, () => {
   ).toMatchTypeOf<ConcurIterable<number>>()
 })
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `eachConcur returns a pure concur iterable`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const iteratedIterable = eachConcur(asyncFn, iterable)
 
@@ -206,21 +197,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `eachConcur returns a concur iterable containing the same values as the given concur iterable`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable, values }) => {
     const iteratedIterable = eachConcur(asyncFn, iterable)
 
-    expect(
-      await reduceConcur(toArray(), iteratedIterable),
-    ).toIncludeSameMembers(values)
+    await expect(
+      reduceConcur(toArray(), iteratedIterable),
+    ).resolves.toIncludeSameMembers(values)
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `eachConcur calls the given function for each value in the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -230,7 +219,7 @@ testProp(
   },
 )
 
-testProp(`eachConcur is lazy`, [concurIterableArb], ({ iterable }) => {
+test.prop([concurIterableArb])(`eachConcur is lazy`, ({ iterable }) => {
   let count = 0
 
   eachConcur(() => count++, iterable)
@@ -238,9 +227,8 @@ testProp(`eachConcur is lazy`, [concurIterableArb], ({ iterable }) => {
   expect(count).toBe(0)
 })
 
-testProp(
+test.prop([asyncFnArb, uniqueConcurIterableArb])(
   `eachConcur returns a concur iterable as concurrent as the given function and concur iterable`,
-  [asyncFnArb, uniqueConcurIterableArb],
   async ({ asyncFn }, { iterable, values }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(eachConcur(asyncFn, iterable)),
@@ -268,9 +256,8 @@ test.skip(`forEach types are correct`, () => {
     .toMatchTypeOf<void>()
 })
 
-testProp(
+test.prop([fnArb, iterableArb])(
   `forEach returns undefined`,
-  [fnArb, iterableArb],
   (fn, { iterable }) => {
     const value = forEach(fn, iterable)
 
@@ -278,9 +265,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([iterableArb])(
   `forEach is eager and calls the given function for each value in the given iterable in iteration order`,
-  [iterableArb],
   ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -305,9 +291,8 @@ test.skip(`forEachAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<void>>()
 })
 
-testProp(
+test.prop([asyncFnArb, asyncIterableArb])(
   `forEachAsync returns undefined`,
-  [asyncFnArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const value = await forEachAsync(asyncFn, iterable)
 
@@ -315,9 +300,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `forEachAsync is eager and calls the given function for each value in the given async iterable in iteration order`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -342,9 +326,8 @@ test.skip(`forEachConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<void>>()
 })
 
-testProp(
+test.prop([asyncFnArb, concurIterableArb])(
   `forEachConcur returns undefined`,
-  [asyncFnArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const value = await forEachConcur(asyncFn, iterable)
 
@@ -352,9 +335,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `forEachConcur is eager and calls the given function for each value in the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const parameters: unknown[] = []
 
@@ -364,9 +346,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, uniqueConcurIterableArb])(
   `forEachConcur is as concurrent as the given function and concur iterable`,
-  [asyncFnArb, uniqueConcurIterableArb],
   async ({ asyncFn }, { iterable, values }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       forEachConcur(asyncFn, iterable),

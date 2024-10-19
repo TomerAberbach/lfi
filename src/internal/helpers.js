@@ -19,7 +19,12 @@ export const promiseWithEarlyResolve = fn => {
 
 export const deferred = () => {
   let resolve
-  return { _promise: new Promise(r => (resolve = r)), _resolve: resolve }
+  return {
+    _promise: new Promise(r => {
+      resolve = r
+    }),
+    _resolve: resolve,
+  }
 }
 
 export const isPromise = value =>

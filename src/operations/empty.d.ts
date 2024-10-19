@@ -1,4 +1,3 @@
-/* eslint-disable typescript/no-explicit-any */
 import type { ConcurIterable } from './as.js'
 
 /**

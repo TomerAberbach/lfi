@@ -1,13 +1,12 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / concatConcur
 
 # Function: concatConcur()
 
-> **concatConcur**\<`Value`\>(...`iterables`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **concatConcur**\<`Value`\>(...`iterables`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 Returns a concur iterable that contains the values of each iterable in
 `iterables`.
@@ -20,10 +19,7 @@ Like `Array.prototype.concat`, but for concur iterables.
 
 ## Parameters
 
-• ...**iterables**: readonly
-([`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\> \|
-`Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`, `any`,
-`any`\>)[]
+• ...**iterables**: readonly ([`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\> \| `Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`, `any`, `any`\>)[]
 
 ## Returns
 
@@ -43,4 +39,4 @@ console.log(
 
 ## Defined in
 
-[collect.d.ts:491](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/collect.d.ts#L491)
+[collect.d.ts:491](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/collect.d.ts#L491)

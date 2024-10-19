@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / RangeIterable
 
@@ -18,12 +18,12 @@ iterable that skips numbers in steps.
 > **step**: \<`Step`\>(`step`) => `Iterable`\<`number`\>
 
 Returns an iterable that yields integers in the same range as the original
-[RangeIterable](RangeIterable.md), but steps through the range in increments of
-`step` instead of 1.
+[RangeIterable](RangeIterable.md), but steps through the range in increments of `step`
+instead of 1.
 
 #### Type Parameters
 
-• **Step** _extends_ `number`
+• **Step** *extends* `number`
 
 #### Parameters
 
@@ -39,4 +39,4 @@ if `step` is not a positive integer.
 
 ## Defined in
 
-[generate.d.ts:115](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L115)
+[generate.d.ts:115](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L115)

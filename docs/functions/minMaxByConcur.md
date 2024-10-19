@@ -1,15 +1,15 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / minMaxByConcur
 
 # Function: minMaxByConcur()
 
-Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `concurIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `concurIterable`
-contains at least one value. Otherwise, returns an empty concur iterable.
+Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`concurIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`concurIterable` contains at least one value. Otherwise, returns an empty
+concur iterable.
 
 ## Example
 
@@ -26,13 +26,12 @@ console.log(
 
 ## minMaxByConcur(fn, concurIterable)
 
-> **minMaxByConcur**\<`Value`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
+> **minMaxByConcur**\<`Value`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
 
-Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `concurIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `concurIterable`
-contains at least one value. Otherwise, returns an empty concur iterable.
+Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`concurIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`concurIterable` contains at least one value. Otherwise, returns an empty
+concur iterable.
 
 ### Type Parameters
 
@@ -42,8 +41,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -64,17 +62,16 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:553](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L553)
+[statistics.d.ts:553](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L553)
 
 ## minMaxByConcur(fn)
 
-> **minMaxByConcur**\<`Value`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
+> **minMaxByConcur**\<`Value`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
 
-Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `concurIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `concurIterable`
-contains at least one value. Otherwise, returns an empty concur iterable.
+Returns a concur iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`concurIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`concurIterable` contains at least one value. Otherwise, returns an empty
+concur iterable.
 
 ### Type Parameters
 
@@ -90,8 +87,7 @@ contains at least one value. Otherwise, returns an empty concur iterable.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -112,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:557](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L557)
+[statistics.d.ts:557](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L557)

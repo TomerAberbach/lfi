@@ -1,17 +1,16 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toMinMaxWithAsync
 
 # Function: toMinMaxWithAsync()
 
-> **toMinMaxWithAsync**\<`Value`\>(`fn`):
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
+> **toMinMaxWithAsync**\<`Value`\>(`fn`): [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
 
-Returns an async optional reducer that finds the
-[MinMax](../type-aliases/MinMax.md) value of the values it receives by comparing
-the numerical values of each value, as defined by `fn`.
+Returns an async optional reducer that finds the [MinMax](../type-aliases/MinMax.md) value of the
+values it receives by comparing the numerical values of each value, as
+defined by `fn`.
 
 Use when composing reducers. Prefer [minMaxWithAsync](minMaxWithAsync.md) and
 [minMaxWithConcur](minMaxWithConcur.md) for direct use on iterables.
@@ -30,4 +29,4 @@ Use when composing reducers. Prefer [minMaxWithAsync](minMaxWithAsync.md) and
 
 ## Defined in
 
-[statistics.d.ts:847](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L847)
+[statistics.d.ts:847](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L847)

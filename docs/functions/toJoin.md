@@ -1,22 +1,21 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toJoin
 
 # Function: toJoin()
 
-> **toJoin**(`separator`): [`Reducer`](../type-aliases/Reducer.md)\<`unknown`,
-> `unknown`, `string`\>
+> **toJoin**(`separator`): [`Reducer`](../type-aliases/Reducer.md)\<`unknown`, `unknown`, `string`\>
 
-Returns a [Reducer](../type-aliases/Reducer.md) that concatenates values to a
-string where values are separated by `separator`.
+Returns a [Reducer](../type-aliases/Reducer.md) that concatenates values to a string where values
+are separated by `separator`.
 
-Joins like `Array.prototype.join`, but does not treat `null`, `undefined`, or
-`[]` specially.
+Joins like `Array.prototype.join`, but does not treat `null`, `undefined`,
+or `[]` specially.
 
-Use when composing reducers. Prefer [join](join.md), [joinAsync](joinAsync.md),
-and [joinConcur](joinConcur.md) for direct use on iterables.
+Use when composing reducers. Prefer [join](join.md), [joinAsync](joinAsync.md), and
+[joinConcur](joinConcur.md) for direct use on iterables.
 
 ## Parameters
 
@@ -41,4 +40,4 @@ console.log(
 
 ## Defined in
 
-[collect.d.ts:357](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/collect.d.ts#L357)
+[collect.d.ts:357](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/collect.d.ts#L357)

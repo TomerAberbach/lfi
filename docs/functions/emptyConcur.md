@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / emptyConcur
 
@@ -16,8 +16,7 @@ Like `[]`, but for concur iterables.
 
 ## Parameters
 
-• **apply**:
-[`ConcurIterableApply`](../type-aliases/ConcurIterableApply.md)\<`any`\>
+• **apply**: [`ConcurIterableApply`](../type-aliases/ConcurIterableApply.md)\<`any`\>
 
 ## Returns
 
@@ -32,4 +31,4 @@ console.log(await pipe(emptyConcur, reduceConcur(toArray())))
 
 ## Defined in
 
-[empty.d.ts:46](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/empty.d.ts#L46)
+[empty.d.ts:46](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/empty.d.ts#L46)

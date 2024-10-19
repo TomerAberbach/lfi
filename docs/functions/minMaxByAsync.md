@@ -1,15 +1,15 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / minMaxByAsync
 
 # Function: minMaxByAsync()
 
-Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `asyncIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `asyncIterable`
-contains at least one value. Otherwise, returns an empty async iterable.
+Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`asyncIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`asyncIterable` contains at least one value. Otherwise, returns an empty
+async iterable.
 
 ## Example
 
@@ -26,14 +26,12 @@ console.log(
 
 ## minMaxByAsync(fn, asyncIterable)
 
-> **minMaxByAsync**\<`Value`\>(`fn`, `asyncIterable`):
-> `AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`,
-> `any`\>
+> **minMaxByAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
-Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `asyncIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `asyncIterable`
-contains at least one value. Otherwise, returns an empty async iterable.
+Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`asyncIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`asyncIterable` contains at least one value. Otherwise, returns an empty
+async iterable.
 
 ### Type Parameters
 
@@ -47,8 +45,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 
 ### Returns
 
-`AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`,
-`any`\>
+`AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
 ### Example
 
@@ -65,18 +62,16 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:525](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L525)
+[statistics.d.ts:525](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L525)
 
 ## minMaxByAsync(fn)
 
-> **minMaxByAsync**\<`Value`\>(`fn`): (`asyncIterable`) =>
-> `AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`,
-> `any`\>
+> **minMaxByAsync**\<`Value`\>(`fn`): (`asyncIterable`) => `AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
-Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value
-of `asyncIterable` based on the `fn`
-[AsyncCompare](../type-aliases/AsyncCompare.md) function if `asyncIterable`
-contains at least one value. Otherwise, returns an empty async iterable.
+Returns an async iterable containing a [MinMax](../type-aliases/MinMax.md) value of
+`asyncIterable` based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function if
+`asyncIterable` contains at least one value. Otherwise, returns an empty
+async iterable.
 
 ### Type Parameters
 
@@ -96,8 +91,7 @@ contains at least one value. Otherwise, returns an empty async iterable.
 
 #### Returns
 
-`AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`,
-`any`\>
+`AsyncIterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
 ### Example
 
@@ -114,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:529](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L529)
+[statistics.d.ts:529](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L529)

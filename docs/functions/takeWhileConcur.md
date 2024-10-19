@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / takeWhileConcur
 
 # Function: takeWhileConcur()
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order up until but not including the first value for which `fn`
+returns a value awaitable to a falsy value.
 
 ## Example
 
@@ -25,12 +25,11 @@ console.log(
 
 ## takeWhileConcur(fn)
 
-> **takeWhileConcur**\<`Value`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **takeWhileConcur**\<`Value`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order up until but not including the first value for which `fn`
+returns a value awaitable to a falsy value.
 
 ### Type Parameters
 
@@ -46,8 +45,7 @@ awaitable to a falsy value.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -68,16 +66,15 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L119)
+[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L119)
 
 ## takeWhileConcur(fn, concurIterable)
 
-> **takeWhileConcur**\<`Value`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **takeWhileConcur**\<`Value`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order up until but not including the first value for which `fn` returns a value
-awaitable to a falsy value.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order up until but not including the first value for which `fn`
+returns a value awaitable to a falsy value.
 
 ### Type Parameters
 
@@ -87,8 +84,7 @@ awaitable to a falsy value.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -109,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L119)
+[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L119)

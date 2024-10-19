@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / uniqueByAsync
 
 # Function: uniqueByAsync()
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order, except values for which `fn` returns a value awaitable to the same value
-are deduplicated.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order, except values for which `fn` returns a value awaitable to
+the same value are deduplicated.
 
 When values are deduplicated, the value earlier in iteration order wins.
 
@@ -27,12 +27,11 @@ console.log(
 
 ## uniqueByAsync(fn)
 
-> **uniqueByAsync**\<`Value`\>(`fn`): (`asyncIterable`) =>
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **uniqueByAsync**\<`Value`\>(`fn`): (`asyncIterable`) => `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order, except values for which `fn` returns a value awaitable to the same value
-are deduplicated.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order, except values for which `fn` returns a value awaitable to
+the same value are deduplicated.
 
 When values are deduplicated, the value earlier in iteration order wins.
 
@@ -71,16 +70,15 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:336](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L336)
+[exclude.d.ts:336](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L336)
 
 ## uniqueByAsync(fn, asyncIterable)
 
-> **uniqueByAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`,
-> `any`, `any`\>
+> **uniqueByAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order, except values for which `fn` returns a value awaitable to the same value
-are deduplicated.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order, except values for which `fn` returns a value awaitable to
+the same value are deduplicated.
 
 When values are deduplicated, the value earlier in iteration order wins.
 
@@ -113,4 +111,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:339](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L339)
+[exclude.d.ts:339](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L339)

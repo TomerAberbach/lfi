@@ -1,32 +1,22 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / orAsync
 
 # Function: orAsync()
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
+contains exactly one value. Otherwise, returns a promise that resolves to
+the awaited result of invoking `fn`.
 
 ## Example
 
 ```js
-console.log(
-  await pipe(
-    asAsync([`sloth`]),
-    orAsync(() => `Never called`),
-  ),
-)
+console.log(await pipe(asAsync([`sloth`]), orAsync(() => `Never called`)))
 //=> sloth
 
-console.log(
-  await pipe(
-    emptyAsync,
-    orAsync(() => `I get called!`),
-  ),
-)
+console.log(await pipe(emptyAsync, orAsync(() => `I get called!`)))
 //=> I get called!
 
 console.log(
@@ -43,8 +33,8 @@ console.log(
 > **orAsync**\<`Value`\>(`fn`): (`asyncIterable`) => `Promise`\<`Value`\>
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
+contains exactly one value. Otherwise, returns a promise that resolves to
+the awaited result of invoking `fn`.
 
 ### Type Parameters
 
@@ -69,20 +59,10 @@ awaited result of invoking `fn`.
 ### Example
 
 ```js
-console.log(
-  await pipe(
-    asAsync([`sloth`]),
-    orAsync(() => `Never called`),
-  ),
-)
+console.log(await pipe(asAsync([`sloth`]), orAsync(() => `Never called`)))
 //=> sloth
 
-console.log(
-  await pipe(
-    emptyAsync,
-    orAsync(() => `I get called!`),
-  ),
-)
+console.log(await pipe(emptyAsync, orAsync(() => `I get called!`)))
 //=> I get called!
 
 console.log(
@@ -96,15 +76,15 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/optional.d.ts#L57)
+[optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/optional.d.ts#L57)
 
 ## orAsync(fn, asyncIterable)
 
 > **orAsync**\<`Value`\>(`fn`, `asyncIterable`): `Promise`\<`Value`\>
 
 Returns a promise that resolves to the only value in `asyncIterable` if it
-contains exactly one value. Otherwise, returns a promise that resolves to the
-awaited result of invoking `fn`.
+contains exactly one value. Otherwise, returns a promise that resolves to
+the awaited result of invoking `fn`.
 
 ### Type Parameters
 
@@ -123,20 +103,10 @@ awaited result of invoking `fn`.
 ### Example
 
 ```js
-console.log(
-  await pipe(
-    asAsync([`sloth`]),
-    orAsync(() => `Never called`),
-  ),
-)
+console.log(await pipe(asAsync([`sloth`]), orAsync(() => `Never called`)))
 //=> sloth
 
-console.log(
-  await pipe(
-    emptyAsync,
-    orAsync(() => `I get called!`),
-  ),
-)
+console.log(await pipe(emptyAsync, orAsync(() => `I get called!`)))
 //=> I get called!
 
 console.log(
@@ -150,4 +120,4 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/optional.d.ts#L60)
+[optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/optional.d.ts#L60)

@@ -1,20 +1,18 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / nextAsync
 
 # Function: nextAsync()
 
-> **nextAsync**\<`Value`\>(`asyncIterable`):
-> `Promise`\<[[`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>,
-> `AsyncIterable`\<`Value`, `any`, `any`\>]\>
+> **nextAsync**\<`Value`\>(`asyncIterable`): `Promise`\<[[`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>, `AsyncIterable`\<`Value`, `any`, `any`\>]\>
 
-Returns a promise that resolves to a pair of async iterables. If `asyncIterable`
-is empty, then both of the returned async iterables are empty. Otherwise, the
-first async iterable contains the first value of `asyncIterable` and the second
-async iterable contains the rest of the values of `asyncIterable`. The second
-async iterable can only be iterated once.
+Returns a promise that resolves to a pair of async iterables. If
+`asyncIterable` is empty, then both of the returned async iterables are
+empty. Otherwise, the first async iterable contains the first value of
+`asyncIterable` and the second async iterable contains the rest of the values
+of `asyncIterable`. The second async iterable can only be iterated once.
 
 ## Type Parameters
 
@@ -26,8 +24,7 @@ async iterable can only be iterated once.
 
 ## Returns
 
-`Promise`\<[[`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>,
-`AsyncIterable`\<`Value`, `any`, `any`\>]\>
+`Promise`\<[[`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>, `AsyncIterable`\<`Value`, `any`, `any`\>]\>
 
 ## Example
 
@@ -53,4 +50,4 @@ console.log(await countAsync(rest2))
 
 ## Defined in
 
-[optional.d.ts:239](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/optional.d.ts#L239)
+[optional.d.ts:239](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/optional.d.ts#L239)

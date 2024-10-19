@@ -1,21 +1,20 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / flattenConcur
 
 # Function: flattenConcur()
 
-> **flattenConcur**\<`Value`\>(`concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **flattenConcur**\<`Value`\>(`concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 Returns a concur iterable that contains the values of each iterable in
 `concurIterable`.
 
 Like `Array.prototype.flat`, but for concur iterables.
 
-Unlike [concat](concat.md) and [concatAsync](concatAsync.md), this function does
-not necessarily iterate over each iterable in sequence.
+Unlike [concat](concat.md) and [concatAsync](concatAsync.md), this function does not
+necessarily iterate over each iterable in sequence.
 
 ## Type Parameters
 
@@ -23,10 +22,7 @@ not necessarily iterate over each iterable in sequence.
 
 ## Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Iterable`\<`Value`,
-`any`, `any`\> \| `AsyncIterable`\<`Value`, `any`, `any`\> \|
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`, `any`, `any`\> \| [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>\>
 
 ## Returns
 
@@ -47,4 +43,4 @@ console.log(
 
 ## Defined in
 
-[transform.d.ts:244](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L244)
+[transform.d.ts:244](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L244)

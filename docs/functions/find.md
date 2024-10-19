@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / find
 
@@ -21,7 +21,7 @@ console.log(
     iterable,
     find(value => typeof value === `string`),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -30,15 +30,14 @@ console.log(
     iterable,
     find(value => Array.isArray(value)),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ## find(fn)
 
-> **find**\<`Value`\>(`fn`): (`iterable`) =>
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **find**\<`Value`\>(`fn`): (`iterable`) => [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns an iterable containing the first value of `iterable` for which `fn`
 returns a truthy value. Otherwise, returns an empty iterable.
@@ -75,7 +74,7 @@ console.log(
     iterable,
     find(value => typeof value === `string`),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -84,19 +83,18 @@ console.log(
     iterable,
     find(value => Array.isArray(value)),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ### Defined in
 
-[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L67)
+[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L67)
 
 ## find(fn, iterable)
 
-> **find**\<`Value`\>(`fn`, `iterable`):
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **find**\<`Value`\>(`fn`, `iterable`): [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns an iterable containing the first value of `iterable` for which `fn`
 returns a truthy value. Otherwise, returns an empty iterable.
@@ -127,7 +125,7 @@ console.log(
     iterable,
     find(value => typeof value === `string`),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -136,11 +134,11 @@ console.log(
     iterable,
     find(value => Array.isArray(value)),
     or(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ### Defined in
 
-[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L67)
+[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L67)

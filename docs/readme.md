@@ -1,6 +1,6 @@
 **lfi** • [**Docs**](globals.md)
 
----
+***
 
 <div align="center">
   <img src="https://github.com/TomerAberbach/lfi/blob/main/sloth.svg" alt="Sloth juggling office supplies" width="400" />

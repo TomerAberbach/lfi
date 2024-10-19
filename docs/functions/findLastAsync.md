@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / findLastAsync
 
 # Function: findLastAsync()
 
-Returns an async iterable containing the last value of `asyncIterable` for which
-`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
-async iterable.
+Returns an async iterable containing the last value of `asyncIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty async iterable.
 
 ## Example
 
@@ -36,12 +36,11 @@ console.log(
 
 ## findLastAsync(fn)
 
-> **findLastAsync**\<`Value`\>(`fn`): (`asyncIterable`) =>
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **findLastAsync**\<`Value`\>(`fn`): (`asyncIterable`) => [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
-Returns an async iterable containing the last value of `asyncIterable` for which
-`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
-async iterable.
+Returns an async iterable containing the last value of `asyncIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty async iterable.
 
 ### Type Parameters
 
@@ -89,16 +88,15 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L190)
+[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L190)
 
 ## findLastAsync(fn, asyncIterable)
 
-> **findLastAsync**\<`Value`\>(`fn`, `asyncIterable`):
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **findLastAsync**\<`Value`\>(`fn`, `asyncIterable`): [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
-Returns an async iterable containing the last value of `asyncIterable` for which
-`fn` returns a value awaitable to a truthy value. Otherwise, returns an empty
-async iterable.
+Returns an async iterable containing the last value of `asyncIterable` for
+which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
+empty async iterable.
 
 ### Type Parameters
 
@@ -140,4 +138,4 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L190)
+[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L190)

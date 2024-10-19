@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / mapConcur
 
 # Function: mapConcur()
 
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` in iteration order.
+Returns a concur iterable containing the values of `concurIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for concur iterables.
 
@@ -26,11 +26,10 @@ console.log(
 
 ## mapConcur(fn)
 
-> **mapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **mapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` in iteration order.
+Returns a concur iterable containing the values of `concurIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for concur iterables.
 
@@ -50,8 +49,7 @@ Like `Array.prototype.map`, but for concur iterables.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 #### Returns
 
@@ -72,15 +70,14 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L76)
+[transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L76)
 
 ## mapConcur(fn, concurIterable)
 
-> **mapConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **mapConcur**\<`From`, `To`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
-Returns a concur iterable containing the values of `concurIterable` transformed
-by `fn` in iteration order.
+Returns a concur iterable containing the values of `concurIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for concur iterables.
 
@@ -94,8 +91,7 @@ Like `Array.prototype.map`, but for concur iterables.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 ### Returns
 
@@ -116,4 +112,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L79)
+[transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L79)

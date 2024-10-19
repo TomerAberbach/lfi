@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / compose
 
 # Function: compose()
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ## Example
 
@@ -26,8 +26,8 @@ console.log(screamify(`sloth`))
 
 > **compose**(): \<`Value`\>(`value`) => `Value`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Returns
 
@@ -60,14 +60,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:156](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L156)
+[fn.d.ts:156](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L156)
 
 ## compose(fn)
 
 > **compose**\<`A`, `B`\>(`fn`): (`value`) => `B`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -106,14 +106,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:157](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L157)
+[fn.d.ts:157](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L157)
 
 ## compose(fn1, fn2)
 
 > **compose**\<`A`, `B`, `C`\>(`fn1`, `fn2`): (`value`) => `C`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -156,14 +156,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:158](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L158)
+[fn.d.ts:158](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L158)
 
 ## compose(fn1, fn2, fn3)
 
 > **compose**\<`A`, `B`, `C`, `D`\>(`fn1`, `fn2`, `fn3`): (`value`) => `D`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -210,15 +210,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:159](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L159)
+[fn.d.ts:159](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L159)
 
 ## compose(fn1, fn2, fn3, fn4)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`): (`value`)
-> => `E`
+> **compose**\<`A`, `B`, `C`, `D`, `E`\>(`fn1`, `fn2`, `fn3`, `fn4`): (`value`) => `E`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -269,15 +268,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:164](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L164)
+[fn.d.ts:164](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L164)
 
 ## compose(fn1, fn2, fn3, fn4, fn5)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`,
-> `fn5`): (`value`) => `F`
+> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`): (`value`) => `F`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -332,15 +330,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:170](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L170)
+[fn.d.ts:170](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L170)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`, `fn4`,
-> `fn5`, `fn6`): (`value`) => `G`
+> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `fn6`): (`value`) => `G`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -399,15 +396,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L177)
+[fn.d.ts:177](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L177)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`, `fn3`,
-> `fn4`, `fn5`, `fn6`, `fn7`): (`value`) => `H`
+> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`): (`value`) => `H`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -470,15 +466,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:185](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L185)
+[fn.d.ts:185](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L185)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`, `fn2`,
-> `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`) => `I`
+> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`): (`value`) => `I`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -545,15 +540,14 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:194](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L194)
+[fn.d.ts:194](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L194)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8, fn9)
 
-> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`, `fn2`,
-> `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`) => `J`
+> **compose**\<`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`\>(`fn1`, `fn2`, `fn3`, `fn4`, `fn5`, `fn6`, `fn7`, `fn8`, `fn9`): (`value`) => `J`
 
-Returns a function that takes a single parameter and pipes it through the given
-functions.
+Returns a function that takes a single parameter and pipes it through the
+given functions.
 
 ### Type Parameters
 
@@ -624,4 +618,4 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-[fn.d.ts:204](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/fn.d.ts#L204)
+[fn.d.ts:204](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/fn.d.ts#L204)

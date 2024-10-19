@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / chunk
 
 # Function: chunk()
 
-Returns an iterable equivalent to `iterable` except its values are grouped into
-arrays that each contain `size` values.
+Returns an iterable equivalent to `iterable` except its values are grouped
+into arrays that each contain `size` values.
 
 The last array in the returned iterable will contain fewer than `size` values
 (but at least one) if the number of values in `iterable` is not divisible by
@@ -20,20 +20,31 @@ if `size` is not a positive integer.
 ## Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    chunk(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 
-console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
+console.log(
+  pipe(
+    [`S`, `L`, `O`, `T`, `H`],
+    chunk(2),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
 
 ## chunk(size)
 
-> **chunk**\<`Size`\>(`size`): \<`Value`\>(`iterable`) => `Iterable`\<`Value`[],
-> `any`, `any`\>
+> **chunk**\<`Size`\>(`size`): \<`Value`\>(`iterable`) => `Iterable`\<`Value`[], `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` except its values are grouped into
-arrays that each contain `size` values.
+Returns an iterable equivalent to `iterable` except its values are grouped
+into arrays that each contain `size` values.
 
 The last array in the returned iterable will contain fewer than `size` values
 (but at least one) if the number of values in `iterable` is not divisible by
@@ -41,7 +52,7 @@ The last array in the returned iterable will contain fewer than `size` values
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 ### Parameters
 
@@ -70,24 +81,35 @@ if `size` is not a positive integer.
 ### Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    chunk(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 
-console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
+console.log(
+  pipe(
+    [`S`, `L`, `O`, `T`, `H`],
+    chunk(2),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
 
 ### Defined in
 
-[slice.d.ts:473](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L473)
+[slice.d.ts:473](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L473)
 
 ## chunk(size, iterable)
 
-> **chunk**\<`Size`, `Value`\>(`size`, `iterable`): `Iterable`\<`Value`[],
-> `any`, `any`\>
+> **chunk**\<`Size`, `Value`\>(`size`, `iterable`): `Iterable`\<`Value`[], `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` except its values are grouped into
-arrays that each contain `size` values.
+Returns an iterable equivalent to `iterable` except its values are grouped
+into arrays that each contain `size` values.
 
 The last array in the returned iterable will contain fewer than `size` values
 (but at least one) if the number of values in `iterable` is not divisible by
@@ -95,7 +117,7 @@ The last array in the returned iterable will contain fewer than `size` values
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 • **Value**
 
@@ -116,13 +138,25 @@ if `size` is not a positive integer.
 ### Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, 7, 8, 9], chunk(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    chunk(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
 
-console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
+console.log(
+  pipe(
+    [`S`, `L`, `O`, `T`, `H`],
+    chunk(2),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
 ```
 
 ### Defined in
 
-[slice.d.ts:476](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L476)
+[slice.d.ts:476](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L476)

@@ -1,22 +1,20 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / mapAsyncReducer
 
 # Function: mapAsyncReducer()
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ## mapAsyncReducer(fn, asyncReducer)
 
-> **mapAsyncReducer**\<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`,
-> `asyncReducer`): [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`,
-> `Acc`, `To`\>
+> **mapAsyncReducer**\<`Value`, `Acc`, `From`, `To`, `This`\>(`fn`, `asyncReducer`): [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `Acc`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -34,9 +32,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 • **fn**
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`,
-`Acc`, `From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`, `Acc`, `From`, `This`\>\>
 
 ### Returns
 
@@ -44,16 +40,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L307)
+[reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L307)
 
 ## mapAsyncReducer(fn)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `Acc`,
-> `This`\>(`asyncReducer`) =>
-> [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `Acc`, `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `Acc`, `This`\>(`asyncReducer`) => [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `Acc`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -79,9 +73,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 #### Parameters
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`,
-`Acc`, `From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`, `Acc`, `From`, `This`\>\>
 
 #### Returns
 
@@ -89,15 +81,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L311)
+[reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L311)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
-> **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
-> [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `To`, `To`\>
+> **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`): [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -113,9 +104,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 • **fn**
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`,
-`From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`, `From`, `This`\>\>
 
 ### Returns
 
@@ -123,15 +112,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L317)
+[reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L317)
 
 ## mapAsyncReducer(fn)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `This`\>(`asyncReducer`)
-> => [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `To`, `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `This`\>(`asyncReducer`) => [`AsyncReducer`](../type-aliases/AsyncReducer.md)\<`Value`, `To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -155,9 +143,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 #### Parameters
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`,
-`From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`, `From`, `This`\>\>
 
 #### Returns
 
@@ -165,16 +151,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L321)
+[reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L321)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
-> **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`):
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`,
-> `To`\>
+> **mapAsyncReducer**\<`Value`, `From`, `To`, `This`\>(`fn`, `asyncReducer`): [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -190,27 +174,22 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 • **fn**
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`,
-`From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`, `From`, `This`\>\>
 
 ### Returns
 
-[`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`,
-`To`\>
+[`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`, `To`\>
 
 ### Defined in
 
-[reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L327)
+[reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L327)
 
 ## mapAsyncReducer(fn)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `This`\>(`asyncReducer`)
-> => [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`,
-> `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`Value`, `This`\>(`asyncReducer`) => [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -234,27 +213,22 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 #### Parameters
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`,
-`From`, `This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`, `From`, `This`\>\>
 
 #### Returns
 
-[`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`,
-`To`\>
+[`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`, `To`\>
 
 ### Defined in
 
-[reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L333)
+[reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L333)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
-> **mapAsyncReducer**\<`From`, `To`, `This`\>(`fn`, `asyncReducer`):
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`,
-> `To`\>
+> **mapAsyncReducer**\<`From`, `To`, `This`\>(`fn`, `asyncReducer`): [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -268,9 +242,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 • **fn**
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`From`,
-`This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`From`, `This`\>\>
 
 ### Returns
 
@@ -278,16 +250,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L341)
+[reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L341)
 
 ## mapAsyncReducer(fn)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`This`\>(`asyncReducer`) =>
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`,
-> `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`): \<`This`\>(`asyncReducer`) => [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -309,9 +279,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 #### Parameters
 
-• **asyncReducer**:
-`Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`From`,
-`This`\>\>
+• **asyncReducer**: `Readonly`\<[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`From`, `This`\>\>
 
 #### Returns
 
@@ -319,16 +287,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L345)
+[reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L345)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`, `asyncReducer`):
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`,
-> `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`, `asyncReducer`): [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -340,8 +306,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 • **fn**
 
-• **asyncReducer**:
-[`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`From`\>
+• **asyncReducer**: [`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`From`\>
 
 ### Returns
 
@@ -349,16 +314,14 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L351)
+[reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L351)
 
 ## mapAsyncReducer(fn)
 
-> **mapAsyncReducer**\<`From`, `To`\>(`fn`): (`asyncReducer`) =>
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`,
-> `To`\>
+> **mapAsyncReducer**\<`From`, `To`\>(`fn`): (`asyncReducer`) => [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`To`, `To`\>
 
-Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
-`reducer` except its final value is transformed using `fn`.
+Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to `reducer` except its final
+value is transformed using `fn`.
 
 ### Type Parameters
 
@@ -376,8 +339,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 #### Parameters
 
-• **asyncReducer**:
-[`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`From`\>
+• **asyncReducer**: [`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`From`\>
 
 #### Returns
 
@@ -385,4 +347,4 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L355)
+[reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L355)

@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / dropWhileAsync
 
 # Function: dropWhileAsync()
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order starting with the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 ## Example
 
@@ -25,12 +25,11 @@ console.log(
 
 ## dropWhileAsync(fn)
 
-> **dropWhileAsync**\<`Value`\>(`fn`): (`asyncIterable`) =>
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **dropWhileAsync**\<`Value`\>(`fn`): (`asyncIterable`) => `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order starting with the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 ### Type Parameters
 
@@ -67,16 +66,15 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L43)
+[slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L43)
 
 ## dropWhileAsync(fn, asyncIterable)
 
-> **dropWhileAsync**\<`Value`\>(`fn`, `asyncIterable`):
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **dropWhileAsync**\<`Value`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order starting with the first value for which `fn` returns a value awaitable to
-a falsy value.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order starting with the first value for which `fn` returns a value
+awaitable to a falsy value.
 
 ### Type Parameters
 
@@ -107,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L43)
+[slice.d.ts:43](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L43)

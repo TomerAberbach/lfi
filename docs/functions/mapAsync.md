@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / mapAsync
 
 # Function: mapAsync()
 
-Returns an async iterable containing the values of `asyncIterable` transformed
-by `fn` in iteration order.
+Returns an async iterable containing the values of `asyncIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for async iterables.
 
@@ -26,11 +26,10 @@ console.log(
 
 ## mapAsync(fn)
 
-> **mapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`) =>
-> `AsyncIterable`\<`To`, `any`, `any`\>
+> **mapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`) => `AsyncIterable`\<`To`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` transformed
-by `fn` in iteration order.
+Returns an async iterable containing the values of `asyncIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for async iterables.
 
@@ -71,15 +70,14 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:48](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L48)
+[transform.d.ts:48](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L48)
 
 ## mapAsync(fn, asyncIterable)
 
-> **mapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`To`,
-> `any`, `any`\>
+> **mapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`To`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` transformed
-by `fn` in iteration order.
+Returns an async iterable containing the values of `asyncIterable`
+transformed by `fn` in iteration order.
 
 Like `Array.prototype.map`, but for async iterables.
 
@@ -114,4 +112,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:51](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L51)
+[transform.d.ts:51](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L51)

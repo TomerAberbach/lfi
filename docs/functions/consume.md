@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / consume
 
@@ -21,7 +21,10 @@ Iterates through `iterable` causing lazy operations to run.
 ## Example
 
 ```js
-const iterable = pipe([`sloth`, 2, 3], each(console.log))
+const iterable = pipe(
+  [`sloth`, 2, 3],
+  each(console.log),
+)
 // No output
 
 consume(iterable)
@@ -32,4 +35,4 @@ consume(iterable)
 
 ## Defined in
 
-[iterate.d.ts:209](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L209)
+[iterate.d.ts:209](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L209)

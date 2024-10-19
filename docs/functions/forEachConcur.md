@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / forEachConcur
 
@@ -46,8 +46,7 @@ Like `Array.prototype.forEach`, but for concur iterables.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -67,7 +66,7 @@ await forEachConcur(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L183)
+[iterate.d.ts:183](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L183)
 
 ## forEachConcur(fn, concurIterable)
 
@@ -86,8 +85,7 @@ Like `Array.prototype.forEach`, but for concur iterables.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -107,4 +105,4 @@ await forEachConcur(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:186](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L186)
+[iterate.d.ts:186](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L186)

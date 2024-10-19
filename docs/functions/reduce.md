@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / reduce
 
@@ -8,15 +8,15 @@
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -43,20 +43,19 @@ console.log(
 
 ## reduce(reducer, iterable)
 
-> **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`, `iterable`):
-> `Finished`
+> **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`, `iterable`): `Finished`
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -72,9 +71,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\>\>
 
 • **iterable**: `Iterable`\<`Value`, `any`, `any`\>
 
@@ -105,24 +102,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:52](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L52)
+[reduce.d.ts:52](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L52)
 
 ## reduce(reducer)
 
-> **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`): (`iterable`) =>
-> `Finished`
+> **reduce**\<`Value`, `Acc`, `Finished`, `This`\>(`reducer`): (`iterable`) => `Finished`
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -138,9 +134,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\>\>
 
 ### Returns
 
@@ -177,7 +171,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:56](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L56)
+[reduce.d.ts:56](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L56)
 
 ## reduce(reducer, iterable)
 
@@ -185,15 +179,15 @@ console.log(
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -207,9 +201,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\>\>
 
 • **iterable**: `Iterable`\<`Value`, `any`, `any`\>
 
@@ -240,7 +232,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:60](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L60)
+[reduce.d.ts:60](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L60)
 
 ## reduce(reducer)
 
@@ -248,15 +240,15 @@ console.log(
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -270,9 +262,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\>\>
 
 ### Returns
 
@@ -309,24 +299,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:64](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L64)
+[reduce.d.ts:64](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L64)
 
 ## reduce(reducer, iterable)
 
-> **reduce**\<`Value`, `Finished`, `This`\>(`reducer`, `iterable`):
-> [`Optional`](../type-aliases/Optional.md)\<`Finished`\>
+> **reduce**\<`Value`, `Finished`, `This`\>(`reducer`, `iterable`): [`Optional`](../type-aliases/Optional.md)\<`Finished`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -340,9 +329,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\>\>
 
 • **iterable**: `Iterable`\<`Value`, `any`, `any`\>
 
@@ -373,24 +360,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L68)
+[reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L68)
 
 ## reduce(reducer)
 
-> **reduce**\<`Value`, `Finished`, `This`\>(`reducer`): (`iterable`) =>
-> [`Optional`](../type-aliases/Optional.md)\<`Finished`\>
+> **reduce**\<`Value`, `Finished`, `This`\>(`reducer`): (`iterable`) => [`Optional`](../type-aliases/Optional.md)\<`Finished`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -404,9 +390,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\>\>
+• **reducer**: `Readonly`\<[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\>\>
 
 ### Returns
 
@@ -443,24 +427,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L72)
+[reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L72)
 
 ## reduce(reducer, iterable)
 
-> **reduce**\<`Value`, `This`\>(`reducer`, `iterable`):
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **reduce**\<`Value`, `This`\>(`reducer`, `iterable`): [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -472,9 +455,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\>\>
+• **reducer**: `Readonly`\<[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`, `This`\>\>
 
 • **iterable**: `Iterable`\<`Value`, `any`, `any`\>
 
@@ -505,24 +486,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L76)
+[reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L76)
 
 ## reduce(reducer)
 
-> **reduce**\<`Value`, `This`\>(`reducer`): (`iterable`) =>
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **reduce**\<`Value`, `This`\>(`reducer`): (`iterable`) => [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -534,9 +514,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-`Readonly`\<[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\>\>
+• **reducer**: `Readonly`\<[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`, `This`\>\>
 
 ### Returns
 
@@ -573,24 +551,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L80)
+[reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L80)
 
 ## reduce(reducer, iterable)
 
-> **reduce**\<`Value`\>(`reducer`, `iterable`):
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **reduce**\<`Value`\>(`reducer`, `iterable`): [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -600,8 +577,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-[`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
+• **reducer**: [`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
 
 • **iterable**: `Iterable`\<`Value`, `any`, `any`\>
 
@@ -632,24 +608,23 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L84)
+[reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L84)
 
 ## reduce(reducer)
 
-> **reduce**\<`Value`\>(`reducer`): (`iterable`) =>
-> [`Optional`](../type-aliases/Optional.md)\<`Value`\>
+> **reduce**\<`Value`\>(`reducer`): (`iterable`) => [`Optional`](../type-aliases/Optional.md)\<`Value`\>
 
 Returns the result of reducing `iterable` using `reducer`.
 
-An initial accumulator is created using Reducer.create. Then each value in
-`iterable` is added to the accumulator and the current accumulator is updated
-using Reducer.add. Finally, the resulting accumulator is transformed using
-Reducer.finish if specified.
+An initial accumulator is created using Reducer.create. Then each
+value in `iterable` is added to the accumulator and the current accumulator
+is updated using Reducer.add. Finally, the resulting accumulator is
+transformed using Reducer.finish if specified.
 
-If `reducer` is an optional reducer (no Reducer.create method), then an empty
-iterable is returned if `iterable` is empty. Otherwise, an iterable containing
-the result of reducing using the first value of the iterable as the initial
-accumulator is returned.
+If `reducer` is an optional reducer (no Reducer.create method), then
+an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
+containing the result of reducing using the first value of the iterable as
+the initial accumulator is returned.
 
 Like `Array.prototype.reduce`, but for iterables.
 
@@ -659,8 +634,7 @@ Like `Array.prototype.reduce`, but for iterables.
 
 ### Parameters
 
-• **reducer**:
-[`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
+• **reducer**: [`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
 
 ### Returns
 
@@ -697,4 +671,4 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L88)
+[reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L88)

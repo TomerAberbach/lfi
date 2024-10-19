@@ -1,16 +1,16 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / takeAsync
 
 # Function: takeAsync()
 
-Returns an async iterable containing the first `count` values of `asyncIterable`
-in iteration order.
+Returns an async iterable containing the first `count` values of
+`asyncIterable` in iteration order.
 
-If the `count` is greater than the number of values in `asyncIterable`, then an
-async iterable equivalent `asyncIterable` is returned.
+If the `count` is greater than the number of values in `asyncIterable`, then
+an async iterable equivalent `asyncIterable` is returned.
 
 ## Throws
 
@@ -31,18 +31,17 @@ console.log(
 
 ## takeAsync(count)
 
-> **takeAsync**\<`Count`\>(`count`): \<`Value`\>(`asyncIterable`) =>
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **takeAsync**\<`Count`\>(`count`): \<`Value`\>(`asyncIterable`) => `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the first `count` values of `asyncIterable`
-in iteration order.
+Returns an async iterable containing the first `count` values of
+`asyncIterable` in iteration order.
 
-If the `count` is greater than the number of values in `asyncIterable`, then an
-async iterable equivalent `asyncIterable` is returned.
+If the `count` is greater than the number of values in `asyncIterable`, then
+an async iterable equivalent `asyncIterable` is returned.
 
 ### Type Parameters
 
-• **Count** _extends_ `number`
+• **Count** *extends* `number`
 
 ### Parameters
 
@@ -83,22 +82,21 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L267)
+[slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L267)
 
 ## takeAsync(count, asyncIterable)
 
-> **takeAsync**\<`Count`, `Value`\>(`count`, `asyncIterable`):
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **takeAsync**\<`Count`, `Value`\>(`count`, `asyncIterable`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the first `count` values of `asyncIterable`
-in iteration order.
+Returns an async iterable containing the first `count` values of
+`asyncIterable` in iteration order.
 
-If the `count` is greater than the number of values in `asyncIterable`, then an
-async iterable equivalent `asyncIterable` is returned.
+If the `count` is greater than the number of values in `asyncIterable`, then
+an async iterable equivalent `asyncIterable` is returned.
 
 ### Type Parameters
 
-• **Count** _extends_ `number`
+• **Count** *extends* `number`
 
 • **Value**
 
@@ -131,4 +129,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L267)
+[slice.d.ts:267](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L267)

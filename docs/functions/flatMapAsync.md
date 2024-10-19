@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / flatMapAsync
 
 # Function: flatMapAsync()
 
-Returns an async iterable containing the values of the async iterables returned,
-or resolving from promises returned, from applying `fn` to each value of
-`asyncIterable` in iteration order.
+Returns an async iterable containing the values of the async iterables
+returned, or resolving from promises returned, from applying `fn` to each
+value of `asyncIterable` in iteration order.
 
 Like `Array.prototype.flatMap`, but for async iterables.
 
@@ -27,12 +27,11 @@ console.log(
 
 ## flatMapAsync(fn)
 
-> **flatMapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`) =>
-> `AsyncIterable`\<`To`, `any`, `any`\>
+> **flatMapAsync**\<`From`, `To`\>(`fn`): (`asyncIterable`) => `AsyncIterable`\<`To`, `any`, `any`\>
 
-Returns an async iterable containing the values of the async iterables returned,
-or resolving from promises returned, from applying `fn` to each value of
-`asyncIterable` in iteration order.
+Returns an async iterable containing the values of the async iterables
+returned, or resolving from promises returned, from applying `fn` to each
+value of `asyncIterable` in iteration order.
 
 Like `Array.prototype.flatMap`, but for async iterables.
 
@@ -73,16 +72,15 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:133](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L133)
+[transform.d.ts:133](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L133)
 
 ## flatMapAsync(fn, asyncIterable)
 
-> **flatMapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`):
-> `AsyncIterable`\<`To`, `any`, `any`\>
+> **flatMapAsync**\<`From`, `To`\>(`fn`, `asyncIterable`): `AsyncIterable`\<`To`, `any`, `any`\>
 
-Returns an async iterable containing the values of the async iterables returned,
-or resolving from promises returned, from applying `fn` to each value of
-`asyncIterable` in iteration order.
+Returns an async iterable containing the values of the async iterables
+returned, or resolving from promises returned, from applying `fn` to each
+value of `asyncIterable` in iteration order.
 
 Like `Array.prototype.flatMap`, but for async iterables.
 
@@ -117,4 +115,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:136](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L136)
+[transform.d.ts:136](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L136)

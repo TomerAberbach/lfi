@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / filter
 
@@ -26,8 +26,7 @@ console.log(
 
 ## filter(fn)
 
-> **filter**\<`From`, `To`\>(`fn`): (`iterable`) => `Iterable`\<`To`, `any`,
-> `any`\>
+> **filter**\<`From`, `To`\>(`fn`): (`iterable`) => `Iterable`\<`To`, `any`, `any`\>
 
 Returns an iterable that contains the values of `iterable` in iteration order
 excluding the values for which `fn` returns a falsy value.
@@ -71,7 +70,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L23)
+[exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L23)
 
 ## filter(fn, iterable)
 
@@ -113,12 +112,11 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L26)
+[exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L26)
 
 ## filter(fn)
 
-> **filter**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<`Value`, `any`,
-> `any`\>
+> **filter**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<`Value`, `any`, `any`\>
 
 Returns an iterable that contains the values of `iterable` in iteration order
 excluding the values for which `fn` returns a falsy value.
@@ -160,7 +158,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L31)
+[exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L31)
 
 ## filter(fn, iterable)
 
@@ -200,4 +198,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L34)
+[exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L34)

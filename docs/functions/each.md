@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / each
 
 # Function: each()
 
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+Returns an iterable equivalent to `iterable` that applies `fn` to each value
+of `iterable` as it is iterated.
 
 ## Example
 
@@ -23,11 +23,10 @@ console.log([...each(console.log, sloths)])
 
 ## each(fn)
 
-> **each**\<`From`, `To`\>(`fn`): (`iterable`) => `Iterable`\<`To`, `any`,
-> `any`\>
+> **each**\<`From`, `To`\>(`fn`): (`iterable`) => `Iterable`\<`To`, `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+Returns an iterable equivalent to `iterable` that applies `fn` to each value
+of `iterable` as it is iterated.
 
 ### Type Parameters
 
@@ -65,14 +64,14 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-[iterate.d.ts:20](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L20)
+[iterate.d.ts:20](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L20)
 
 ## each(fn, iterable)
 
 > **each**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`To`, `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+Returns an iterable equivalent to `iterable` that applies `fn` to each value
+of `iterable` as it is iterated.
 
 ### Type Parameters
 
@@ -104,14 +103,14 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-[iterate.d.ts:23](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L23)
+[iterate.d.ts:23](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L23)
 
 ## each(fn)
 
 > **each**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<`Value`, `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+Returns an iterable equivalent to `iterable` that applies `fn` to each value
+of `iterable` as it is iterated.
 
 ### Type Parameters
 
@@ -147,14 +146,14 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-[iterate.d.ts:28](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L28)
+[iterate.d.ts:28](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L28)
 
 ## each(fn, iterable)
 
 > **each**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`, `any`, `any`\>
 
-Returns an iterable equivalent to `iterable` that applies `fn` to each value of
-`iterable` as it is iterated.
+Returns an iterable equivalent to `iterable` that applies `fn` to each value
+of `iterable` as it is iterated.
 
 ### Type Parameters
 
@@ -184,4 +183,4 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-[iterate.d.ts:31](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L31)
+[iterate.d.ts:31](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L31)

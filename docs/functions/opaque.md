@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / opaque
 
@@ -24,4 +24,4 @@ Returns an iterable equivalent, but not referentially equal, to `iterable`.
 
 ## Defined in
 
-[opaque.d.ts:6](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/opaque.d.ts#L6)
+[opaque.d.ts:6](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/opaque.d.ts#L6)

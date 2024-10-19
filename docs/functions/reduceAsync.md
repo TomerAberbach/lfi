@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / reduceAsync
 
@@ -8,18 +8,20 @@
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -46,23 +48,24 @@ console.log(
 
 ## reduceAsync(asyncReducer, asyncIterable)
 
-> **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`,
-> `asyncIterable`): `Promise`\<`Finished`\>
+> **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`, `asyncIterable`): `Promise`\<`Finished`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -78,11 +81,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\> \|
-[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\>
+• **asyncReducer**: [`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\>
 
 • **asyncIterable**: `AsyncIterable`\<`Value`, `any`, `any`\>
 
@@ -113,27 +112,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:134](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L134)
+[reduce.d.ts:134](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L134)
 
 ## reduceAsync(asyncReducer)
 
-> **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`):
-> (`asyncIterable`) => `Promise`\<`Finished`\>
+> **reduceAsync**\<`Value`, `Acc`, `Finished`, `This`\>(`asyncReducer`): (`asyncIterable`) => `Promise`\<`Finished`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -149,11 +149,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\> \|
-[`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`,
-`Acc`, `Finished`, `This`\>
+• **asyncReducer**: [`RawAsyncReducerWithFinish`](../type-aliases/RawAsyncReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\> \| [`RawReducerWithFinish`](../type-aliases/RawReducerWithFinish.md)\<`Value`, `Acc`, `Finished`, `This`\>
 
 ### Returns
 
@@ -190,27 +186,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:140](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L140)
+[reduce.d.ts:140](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L140)
 
 ## reduceAsync(asyncReducer, asyncIterable)
 
-> **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`, `asyncIterable`):
-> `Promise`\<`Acc`\>
+> **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`, `asyncIterable`): `Promise`\<`Acc`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -224,11 +221,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\> \|
-[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\>
+• **asyncReducer**: [`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\>
 
 • **asyncIterable**: `AsyncIterable`\<`Value`, `any`, `any`\>
 
@@ -259,27 +252,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:146](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L146)
+[reduce.d.ts:146](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L146)
 
 ## reduceAsync(asyncReducer)
 
-> **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`): (`asyncIterable`)
-> => `Promise`\<`Acc`\>
+> **reduceAsync**\<`Value`, `Acc`, `This`\>(`asyncReducer`): (`asyncIterable`) => `Promise`\<`Acc`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -293,11 +287,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\> \|
-[`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`,
-`Acc`, `This`\>
+• **asyncReducer**: [`RawAsyncReducerWithoutFinish`](../type-aliases/RawAsyncReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\> \| [`RawReducerWithoutFinish`](../type-aliases/RawReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\>
 
 ### Returns
 
@@ -334,28 +324,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:152](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L152)
+[reduce.d.ts:152](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L152)
 
 ## reduceAsync(asyncReducer, asyncIterable)
 
-> **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`,
-> `asyncIterable`):
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Finished`\>
+> **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`, `asyncIterable`): [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Finished`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -369,11 +359,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\> \|
-[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\>
+• **asyncReducer**: [`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\>
 
 • **asyncIterable**: `AsyncIterable`\<`Value`, `any`, `any`\>
 
@@ -404,28 +390,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:158](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L158)
+[reduce.d.ts:158](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L158)
 
 ## reduceAsync(asyncReducer)
 
-> **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`):
-> (`asyncIterable`) =>
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Finished`\>
+> **reduceAsync**\<`Value`, `Finished`, `This`\>(`asyncReducer`): (`asyncIterable`) => [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Finished`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -439,11 +425,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\> \|
-[`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`,
-`Finished`, `This`\>
+• **asyncReducer**: [`RawAsyncOptionalReducerWithFinish`](../type-aliases/RawAsyncOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\> \| [`RawOptionalReducerWithFinish`](../type-aliases/RawOptionalReducerWithFinish.md)\<`Value`, `Finished`, `This`\>
 
 ### Returns
 
@@ -480,27 +462,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:164](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L164)
+[reduce.d.ts:164](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L164)
 
 ## reduceAsync(asyncReducer, asyncIterable)
 
-> **reduceAsync**\<`Value`, `This`\>(`asyncReducer`, `asyncIterable`):
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **reduceAsync**\<`Value`, `This`\>(`asyncReducer`, `asyncIterable`): [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -512,11 +495,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\> \|
-[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\>
+• **asyncReducer**: [`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`, `This`\>
 
 • **asyncIterable**: `AsyncIterable`\<`Value`, `any`, `any`\>
 
@@ -547,27 +526,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:170](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L170)
+[reduce.d.ts:170](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L170)
 
 ## reduceAsync(asyncReducer)
 
-> **reduceAsync**\<`Value`, `This`\>(`asyncReducer`): (`asyncIterable`) =>
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **reduceAsync**\<`Value`, `This`\>(`asyncReducer`): (`asyncIterable`) => [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -579,11 +559,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\> \|
-[`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`,
-`This`\>
+• **asyncReducer**: [`RawAsyncOptionalReducerWithoutFinish`](../type-aliases/RawAsyncOptionalReducerWithoutFinish.md)\<`Value`, `This`\> \| [`RawOptionalReducerWithoutFinish`](../type-aliases/RawOptionalReducerWithoutFinish.md)\<`Value`, `This`\>
 
 ### Returns
 
@@ -620,27 +596,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:176](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L176)
+[reduce.d.ts:176](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L176)
 
 ## reduceAsync(asyncReducer, asyncIterable)
 
-> **reduceAsync**\<`Value`\>(`asyncReducer`, `asyncIterable`):
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **reduceAsync**\<`Value`\>(`asyncReducer`, `asyncIterable`): [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -650,9 +627,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`Value`\> \|
-[`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
+• **asyncReducer**: [`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`Value`\> \| [`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
 
 • **asyncIterable**: `AsyncIterable`\<`Value`, `any`, `any`\>
 
@@ -683,27 +658,28 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:182](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L182)
+[reduce.d.ts:182](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L182)
 
 ## reduceAsync(asyncReducer)
 
-> **reduceAsync**\<`Value`\>(`asyncReducer`): (`asyncIterable`) =>
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **reduceAsync**\<`Value`\>(`asyncReducer`): (`asyncIterable`) => [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns the result of reducing the `asyncIterable` using `asyncReducer`.
 
-Informally, an initial accumulator is created using AsyncReducer.create. Then
-each value in `asyncIterable` is added to the accumulator and the current
-accumulator is updated using AsyncReducer.add. Finally, the resulting
-accumulator is transformed using AsyncReducer.finish if specified. Multiple
-accumulators may be created, added to, and then combined if supported via
-AsyncReducer.combine and the next value of `asyncIterable` is ready before
-promises from AsyncReducer.add resolve.
+Informally, an initial accumulator is created using
+AsyncReducer.create. Then each value in `asyncIterable` is added to
+the accumulator and the current accumulator is updated using
+AsyncReducer.add. Finally, the resulting accumulator is transformed
+using AsyncReducer.finish if specified. Multiple accumulators may be
+created, added to, and then combined if supported via
+AsyncReducer.combine and the next value of `asyncIterable` is ready
+before promises from AsyncReducer.add resolve.
 
-If `asyncReducer` is an async optional reducer (no AsyncReducer.create method),
-then an empty async iterable is returned if `asyncIterable` is empty. Otherwise,
-an async iterable containing the result of reducing using the first value of the
-async iterable as the initial accumulator is returned.
+If `asyncReducer` is an async optional reducer (no
+AsyncReducer.create method), then an empty async iterable is returned
+if `asyncIterable` is empty. Otherwise, an async iterable containing the
+result of reducing using the first value of the async iterable as the initial
+accumulator is returned.
 
 Like `Array.prototype.reduce`, but for async iterables.
 
@@ -713,9 +689,7 @@ Like `Array.prototype.reduce`, but for async iterables.
 
 ### Parameters
 
-• **asyncReducer**:
-[`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`Value`\> \|
-[`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
+• **asyncReducer**: [`AsyncFunctionReducer`](../type-aliases/AsyncFunctionReducer.md)\<`Value`\> \| [`FunctionReducer`](../type-aliases/FunctionReducer.md)\<`Value`\>
 
 ### Returns
 
@@ -752,4 +726,4 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:186](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reduce.d.ts#L186)
+[reduce.d.ts:186](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reduce.d.ts#L186)

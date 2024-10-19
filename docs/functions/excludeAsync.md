@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / excludeAsync
 
 # Function: excludeAsync()
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order excluding the values of `excluded`.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order excluding the values of `excluded`.
 
 ## Example
 
@@ -24,11 +24,10 @@ console.log(
 
 ## excludeAsync(excluded)
 
-> **excludeAsync**(`excluded`): \<`Value`\>(`asyncIterable`) =>
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **excludeAsync**(`excluded`): \<`Value`\>(`asyncIterable`) => `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order excluding the values of `excluded`.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order excluding the values of `excluded`.
 
 ### Parameters
 
@@ -65,15 +64,14 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:253](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L253)
+[exclude.d.ts:253](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L253)
 
 ## excludeAsync(excluded, asyncIterable)
 
-> **excludeAsync**\<`Value`\>(`excluded`, `asyncIterable`):
-> `AsyncIterable`\<`Value`, `any`, `any`\>
+> **excludeAsync**\<`Value`\>(`excluded`, `asyncIterable`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
-Returns an async iterable containing the values of `asyncIterable` in iteration
-order excluding the values of `excluded`.
+Returns an async iterable containing the values of `asyncIterable` in
+iteration order excluding the values of `excluded`.
 
 ### Type Parameters
 
@@ -104,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:256](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L256)
+[exclude.d.ts:256](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L256)

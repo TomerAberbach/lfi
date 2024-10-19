@@ -1,17 +1,15 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toMinMaxBy
 
 # Function: toMinMaxBy()
 
-> **toMinMaxBy**\<`Value`\>(`fn`):
-> [`OptionalReducer`](../type-aliases/OptionalReducer.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
+> **toMinMaxBy**\<`Value`\>(`fn`): [`OptionalReducer`](../type-aliases/OptionalReducer.md)\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>\>
 
-Returns an optional reducer that finds the [MinMax](../type-aliases/MinMax.md)
-value of the values it receives based on the `fn`
-[Compare](../type-aliases/Compare.md) function.
+Returns an optional reducer that finds the [MinMax](../type-aliases/MinMax.md) value of the values
+it receives based on the `fn` [Compare](../type-aliases/Compare.md) function.
 
 Use when composing reducers. Prefer [minMaxBy](minMaxBy.md) for direct use on
 iterables.
@@ -46,4 +44,4 @@ console.log(
 
 ## Defined in
 
-[statistics.d.ts:464](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L464)
+[statistics.d.ts:464](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L464)

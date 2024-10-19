@@ -1,13 +1,12 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / cacheAsync
 
 # Function: cacheAsync()
 
-> **cacheAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`, `any`,
-> `any`\>
+> **cacheAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
 Returns an async iterable equivalent to `asyncIterable` that iterates over
 `asyncIterable` at most once.
@@ -44,4 +43,4 @@ console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
 
 ## Defined in
 
-[cache.d.ts:47](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/cache.d.ts#L47)
+[cache.d.ts:47](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/cache.d.ts#L47)

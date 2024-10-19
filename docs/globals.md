@@ -1,6 +1,6 @@
 [**lfi**](readme.md) • **Docs**
 
----
+***
 
 # lfi
 
@@ -39,7 +39,7 @@
 
 - [empty](variables/empty.md)
 - [emptyAsync](variables/emptyAsync.md)
-- [NO_ENTRY](variables/NO_ENTRY.md)
+- [NO\_ENTRY](variables/NO_ENTRY.md)
 
 ## Functions
 

@@ -43,4 +43,4 @@ console.log([...cachedIterable])
 
 ## Defined in
 
-[cache.d.ts:24](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/cache.d.ts#L24)
+[cache.d.ts:24](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/cache.d.ts#L24)

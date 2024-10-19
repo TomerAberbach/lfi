@@ -13,7 +13,7 @@ import type {
  * {@link countConcur} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -80,7 +80,7 @@ export const countConcur: <Value>(
  * {@link sumConcur} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -136,7 +136,7 @@ export const sumConcur: (
  * {@link meanConcur} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -273,7 +273,7 @@ type MinOrMaxByConcur = {
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -360,7 +360,7 @@ export const minByConcur: MinOrMaxByConcur
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -447,7 +447,7 @@ export const maxByConcur: MinOrMaxByConcur
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -610,7 +610,7 @@ type MinOrMaxWithConcur = {
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -700,7 +700,7 @@ export const minWithConcur: MinOrMaxWithConcur
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -791,7 +791,7 @@ export const maxWithConcur: MinOrMaxWithConcur
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -911,7 +911,7 @@ export const minMaxWithConcur: {
  * Use when composing reducers. Prefer {@link min} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -973,7 +973,7 @@ export const minConcur: (
  * Use when composing reducers. Prefer {@link max} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
@@ -1036,7 +1036,7 @@ export const maxConcur: (
  * iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],

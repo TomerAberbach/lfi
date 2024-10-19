@@ -343,7 +343,7 @@ export const toMultiple: {
  * {@link joinConcur} for direct use on iterables.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `sleep`, `some sloth`],

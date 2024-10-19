@@ -28,4 +28,4 @@ the returned iterable can be iterated multiple times and differs from
 
 ## Defined in
 
-[from.d.ts:22](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/from.d.ts#L22)
+[from.d.ts:22](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/from.d.ts#L22)

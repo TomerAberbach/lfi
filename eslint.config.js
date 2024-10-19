@@ -1,3 +1,3 @@
 import config from 'tomer/eslint'
 
-export default [...config, { ignores: [`docs/**/*`] }]
+export default [...config, { ignores: [`playground.js`, `docs/**/*`] }]

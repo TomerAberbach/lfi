@@ -66,7 +66,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L119)
+[slice.d.ts:120](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L120)
 
 ## takeWhileConcur(fn, concurIterable)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:119](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L119)
+[slice.d.ts:120](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L120)

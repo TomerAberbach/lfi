@@ -31,3 +31,8 @@ export const assertPureIterable = createAssert({
     value[symbol]() !== value[symbol](),
   _message: `a pure iterable`,
 })
+
+export const assertRange = createAssert({
+  _predicate: (_, [start, end]) => start <= end,
+  _message: `a range`,
+})

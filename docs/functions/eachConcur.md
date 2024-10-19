@@ -74,7 +74,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/iterate.d.ts#L99)
+[iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L99)
 
 ## eachConcur(fn, concurIterable)
 
@@ -117,7 +117,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/iterate.d.ts#L102)
+[iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L102)
 
 ## eachConcur(fn)
 
@@ -168,7 +168,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/iterate.d.ts#L107)
+[iterate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L107)
 
 ## eachConcur(fn, concurIterable)
 
@@ -213,4 +213,4 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:110](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/iterate.d.ts#L110)
+[iterate.d.ts:110](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L110)

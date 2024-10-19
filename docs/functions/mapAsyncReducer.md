@@ -44,7 +44,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L307)
+[reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L307)
 
 ## mapAsyncReducer(fn)
 
@@ -89,7 +89,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L311)
+[reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L311)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -123,7 +123,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L317)
+[reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L317)
 
 ## mapAsyncReducer(fn)
 
@@ -165,7 +165,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L321)
+[reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L321)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -201,7 +201,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L327)
+[reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L327)
 
 ## mapAsyncReducer(fn)
 
@@ -245,7 +245,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L333)
+[reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L333)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -278,7 +278,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L341)
+[reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L341)
 
 ## mapAsyncReducer(fn)
 
@@ -319,7 +319,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L345)
+[reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L345)
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -349,7 +349,7 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L351)
+[reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L351)
 
 ## mapAsyncReducer(fn)
 
@@ -385,4 +385,4 @@ Returns an [AsyncReducer](../type-aliases/AsyncReducer.md) equivalent to
 
 ### Defined in
 
-[reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/reducer.d.ts#L355)
+[reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/reducer.d.ts#L355)

@@ -23,4 +23,4 @@ console.log(await pipe(emptyAsync, reduceAsync(toArray())))
 
 ## Defined in
 
-[empty.d.ts:31](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/empty.d.ts#L31)
+[empty.d.ts:31](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/empty.d.ts#L31)

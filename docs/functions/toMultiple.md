@@ -119,7 +119,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:261](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L261)
+[collect.d.ts:261](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L261)
 
 ## toMultiple(reducers)
 
@@ -201,4 +201,4 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:292](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/collect.d.ts#L292)
+[collect.d.ts:292](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/collect.d.ts#L292)

@@ -71,7 +71,7 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 ### Defined in
 
-[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/slice.d.ts#L175)
+[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L175)
 
 ## drop(count, iterable)
 
@@ -113,4 +113,4 @@ console.log(pipe([1, 2, 3, 4, 5, `sloth`], drop(3), reduce(toArray())))
 
 ### Defined in
 
-[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/slice.d.ts#L175)
+[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L175)

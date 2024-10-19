@@ -176,7 +176,7 @@ await pipe(
 ## API
 
 See the
-[documentation](https://github.com/TomerAberbach/lfi/blob/main/docs/modules.md)
+[documentation](https://github.com/TomerAberbach/lfi/blob/main/docs/global.md)
 for the full list of available functions and classes.
 
 All non-variadic functions are curried.

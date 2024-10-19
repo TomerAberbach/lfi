@@ -40,7 +40,7 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/from.d.ts#L37)
+[from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/from.d.ts#L37)
 
 ## entries(object)
 
@@ -68,4 +68,4 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/from.d.ts#L40)
+[from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/from.d.ts#L40)

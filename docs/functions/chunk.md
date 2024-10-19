@@ -79,7 +79,7 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 ### Defined in
 
-[slice.d.ts:473](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/slice.d.ts#L473)
+[slice.d.ts:473](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L473)
 
 ## chunk(size, iterable)
 
@@ -125,4 +125,4 @@ console.log(pipe([`S`, `L`, `O`, `T`, `H`], chunk(2), reduce(toArray())))
 
 ### Defined in
 
-[slice.d.ts:476](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/slice.d.ts#L476)
+[slice.d.ts:476](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/slice.d.ts#L476)

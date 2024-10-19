@@ -96,7 +96,7 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/optional.d.ts#L57)
+[optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/optional.d.ts#L57)
 
 ## orAsync(fn, asyncIterable)
 
@@ -150,4 +150,4 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/85d6360ac7d8f71c70f308d2ace5bc2aa99ab03d/src/operations/optional.d.ts#L60)
+[optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/dd796c78d3ff68ae7bf4a0272b3cbeca688438e7/src/operations/optional.d.ts#L60)

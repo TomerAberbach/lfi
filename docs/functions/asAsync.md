@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / asAsync
 
@@ -10,11 +10,11 @@
 
 Returns an async iterable wrapper around `iterable`.
 
-Note that when passing a concur iterable the returned async iterable may have to
-buffer the values produced by the concur iterable because values may not be read
-from the async iterable as quickly as they are produced by the concur iterable.
-This is a fundamental problem because concur iterables are "push" based while
-async iterables are "pull" based, which creates backpressure.
+Note that when passing a concur iterable the returned async iterable may have
+to buffer the values produced by the concur iterable because values may not
+be read from the async iterable as quickly as they are produced by the concur
+iterable. This is a fundamental problem because concur iterables are "push"
+based while async iterables are "pull" based, which creates backpressure.
 
 ## Type Parameters
 
@@ -22,9 +22,7 @@ async iterables are "pull" based, which creates backpressure.
 
 ## Parameters
 
-• **iterable**: `AsyncIterable`\<`Value`, `any`, `any`\> \| `Iterable`\<`Value`,
-`any`, `any`\> \|
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **iterable**: `AsyncIterable`\<`Value`, `any`, `any`\> \| `Iterable`\<`Value`, `any`, `any`\> \| [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ## Returns
 
@@ -48,4 +46,4 @@ for await (const value of asyncIterable) {
 
 ## Defined in
 
-[as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/as.d.ts#L27)
+[as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/as.d.ts#L27)

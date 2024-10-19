@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / flatten
 
@@ -8,8 +8,8 @@
 
 > **flatten**\<`Value`\>(`iterable`): `Iterable`\<`Value`, `any`, `any`\>
 
-Returns an iterable that contains the values of each iterable in `iterable` in
-iteration order.
+Returns an iterable that contains the values of each iterable in `iterable`
+in iteration order.
 
 Like `Array.prototype.flat`, but for iterables.
 
@@ -30,11 +30,7 @@ Like `Array.prototype.flat`, but for iterables.
 ```js
 console.log(
   pipe(
-    [
-      [1, 2],
-      [3, `sloth`, 5],
-      [6, 7],
-    ],
+    [[1, 2], [3, `sloth`, 5], [6, 7]],
     flatten,
     reduce(toArray()),
   ),
@@ -44,4 +40,4 @@ console.log(
 
 ## Defined in
 
-[transform.d.ts:197](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L197)
+[transform.d.ts:197](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L197)

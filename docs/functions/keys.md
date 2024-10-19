@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / keys
 
@@ -36,7 +36,7 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:9](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/from.d.ts#L9)
+[from.d.ts:9](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/from.d.ts#L9)
 
 ## keys(object)
 
@@ -50,7 +50,7 @@ iterable is opaque.
 
 ### Type Parameters
 
-• **Key** _extends_ `string` \| `number` \| `symbol`
+• **Key** *extends* `string` \| `number` \| `symbol`
 
 ### Parameters
 
@@ -62,4 +62,4 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:10](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/from.d.ts#L10)
+[from.d.ts:10](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/from.d.ts#L10)

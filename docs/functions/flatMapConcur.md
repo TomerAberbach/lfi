@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / flatMapConcur
 
 # Function: flatMapConcur()
 
 Returns an concur iterable containing the values of the concur iterables
-returned, or resolving from promises returned, from applying `fn` to each value
-of `concurIterable`.
+returned, or resolving from promises returned, from applying `fn` to each
+value of `concurIterable`.
 
 Like `Array.prototype.flatMap`, but for concur iterables.
 
@@ -27,12 +27,11 @@ console.log(
 
 ## flatMapConcur(fn)
 
-> **flatMapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **flatMapConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
 Returns an concur iterable containing the values of the concur iterables
-returned, or resolving from promises returned, from applying `fn` to each value
-of `concurIterable`.
+returned, or resolving from promises returned, from applying `fn` to each
+value of `concurIterable`.
 
 Like `Array.prototype.flatMap`, but for concur iterables.
 
@@ -52,8 +51,7 @@ Like `Array.prototype.flatMap`, but for concur iterables.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 #### Returns
 
@@ -74,16 +72,15 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:162](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L162)
+[transform.d.ts:162](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L162)
 
 ## flatMapConcur(fn, concurIterable)
 
-> **flatMapConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **flatMapConcur**\<`From`, `To`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
 Returns an concur iterable containing the values of the concur iterables
-returned, or resolving from promises returned, from applying `fn` to each value
-of `concurIterable`.
+returned, or resolving from promises returned, from applying `fn` to each
+value of `concurIterable`.
 
 Like `Array.prototype.flatMap`, but for concur iterables.
 
@@ -97,8 +94,7 @@ Like `Array.prototype.flatMap`, but for concur iterables.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 ### Returns
 
@@ -119,4 +115,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:169](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L169)
+[transform.d.ts:169](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L169)

@@ -1,13 +1,12 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / asConcur
 
 # Function: asConcur()
 
-> **asConcur**\<`Value`\>(`iterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **asConcur**\<`Value`\>(`iterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 Returns a concur iterable wrapper around `iterable`.
 
@@ -17,9 +16,7 @@ Returns a concur iterable wrapper around `iterable`.
 
 ## Parameters
 
-• **iterable**: `Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`,
-`any`, `any`\> \|
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **iterable**: `Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`, `any`, `any`\> \| [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ## Returns
 
@@ -38,4 +35,4 @@ await forEachConcur(console.log, concurIterable)
 
 ## Defined in
 
-[as.d.ts:77](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/as.d.ts#L77)
+[as.d.ts:77](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/as.d.ts#L77)

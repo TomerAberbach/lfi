@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / chunkAsync
 
@@ -41,8 +41,7 @@ console.log(
 
 ## chunkAsync(size)
 
-> **chunkAsync**\<`Size`\>(`size`): \<`Value`\>(`asyncIterable`) =>
-> `AsyncIterable`\<`Value`[], `any`, `any`\>
+> **chunkAsync**\<`Size`\>(`size`): \<`Value`\>(`asyncIterable`) => `AsyncIterable`\<`Value`[], `any`, `any`\>
 
 Returns an async iterable equivalent to `asyncIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -53,7 +52,7 @@ divisible by `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 ### Parameters
 
@@ -103,12 +102,11 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:514](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L514)
+[slice.d.ts:514](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L514)
 
 ## chunkAsync(size, asyncIterable)
 
-> **chunkAsync**\<`Size`, `Value`\>(`size`, `asyncIterable`):
-> `AsyncIterable`\<`Value`[], `any`, `any`\>
+> **chunkAsync**\<`Size`, `Value`\>(`size`, `asyncIterable`): `AsyncIterable`\<`Value`[], `any`, `any`\>
 
 Returns an async iterable equivalent to `asyncIterable` except its values are
 grouped into arrays that each contain `size` values.
@@ -119,7 +117,7 @@ divisible by `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 • **Value**
 
@@ -161,4 +159,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:517](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L517)
+[slice.d.ts:517](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L517)

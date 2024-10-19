@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / rangeUntil
 
 # Function: rangeUntil()
 
-Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the
-integers between `start` and `end` including `start`, but excluding `end`.
+Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the integers between `start` and
+`end` including `start`, but excluding `end`.
 
 ## Throws
 
@@ -25,15 +25,14 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 ## rangeUntil(start)
 
-> **rangeUntil**\<`Start`\>(`start`): \<`End`\>(`end`) =>
-> [`RangeIterable`](../type-aliases/RangeIterable.md)
+> **rangeUntil**\<`Start`\>(`start`): \<`End`\>(`end`) => [`RangeIterable`](../type-aliases/RangeIterable.md)
 
-Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the
-integers between `start` and `end` including `start`, but excluding `end`.
+Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the integers between `start` and
+`end` including `start`, but excluding `end`.
 
 ### Type Parameters
 
-• **Start** _extends_ `number`
+• **Start** *extends* `number`
 
 ### Parameters
 
@@ -45,7 +44,7 @@ integers between `start` and `end` including `start`, but excluding `end`.
 
 #### Type Parameters
 
-• **End** _extends_ `number`
+• **End** *extends* `number`
 
 #### Parameters
 
@@ -71,21 +70,20 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 ### Defined in
 
-[generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L169)
+[generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L169)
 
 ## rangeUntil(start, end)
 
-> **rangeUntil**\<`Start`, `End`\>(`start`, `end`):
-> [`RangeIterable`](../type-aliases/RangeIterable.md)
+> **rangeUntil**\<`Start`, `End`\>(`start`, `end`): [`RangeIterable`](../type-aliases/RangeIterable.md)
 
-Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the
-integers between `start` and `end` including `start`, but excluding `end`.
+Returns a [RangeIterable](../type-aliases/RangeIterable.md) that yields the integers between `start` and
+`end` including `start`, but excluding `end`.
 
 ### Type Parameters
 
-• **Start** _extends_ `number`
+• **Start** *extends* `number`
 
-• **End** _extends_ `number`
+• **End** *extends* `number`
 
 ### Parameters
 
@@ -113,4 +111,4 @@ console.log([...rangeUntil(0, 6).step(2)])
 
 ### Defined in
 
-[generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L169)
+[generate.d.ts:169](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L169)

@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toSum
 
@@ -8,8 +8,7 @@
 
 > **toSum**(): [`Reducer`](../type-aliases/Reducer.md)\<`number`, `number`\>
 
-Returns a [Reducer](../type-aliases/Reducer.md) that sums the numbers it
-receives.
+Returns a [Reducer](../type-aliases/Reducer.md) that sums the numbers it receives.
 
 Use when composing reducers. Prefer [sum](sum.md), [sumAsync](sumAsync.md), and
 [sumConcur](sumConcur.md) for direct use on iterables.
@@ -33,4 +32,4 @@ console.log(
 
 ## Defined in
 
-[statistics.d.ts:94](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L94)
+[statistics.d.ts:94](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L94)

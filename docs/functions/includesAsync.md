@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / includesAsync
 
@@ -26,8 +26,7 @@ console.log(
 
 ## includesAsync(searchElement)
 
-> **includesAsync**(`searchElement`): \<`Value`\>(`asyncIterable`) =>
-> `Promise`\<`boolean`\>
+> **includesAsync**(`searchElement`): \<`Value`\>(`asyncIterable`) => `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `asyncIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -69,12 +68,11 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:244](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L244)
+[predicate.d.ts:244](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L244)
 
 ## includesAsync(searchElement, asyncIterable)
 
-> **includesAsync**\<`Value`\>(`searchElement`, `asyncIterable`):
-> `Promise`\<`boolean`\>
+> **includesAsync**\<`Value`\>(`searchElement`, `asyncIterable`): `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `asyncIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -110,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:247](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L247)
+[predicate.d.ts:247](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L247)

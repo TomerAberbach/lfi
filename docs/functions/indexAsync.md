@@ -1,13 +1,12 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / indexAsync
 
 # Function: indexAsync()
 
-> **indexAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<[`number`,
-> > `Value`], `any`, `any`\>
+> **indexAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<[`number`, `Value`], `any`, `any`\>
 
 Returns an async iterable equivalent to `asyncIterable` except each value of
 `asyncIterable` is placed in an entry containing the value's 0-based index in
@@ -40,4 +39,4 @@ console.log(
 
 ## Defined in
 
-[transform.d.ts:288](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/transform.d.ts#L288)
+[transform.d.ts:288](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/transform.d.ts#L288)

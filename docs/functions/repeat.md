@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / repeat
 
@@ -25,10 +25,16 @@ Returns an infinite iterable that repeatedly yields `value`.
 ## Example
 
 ```js
-console.log(pipe(repeat(`sloth`), take(3), join(`, `)))
+console.log(
+  pipe(
+    repeat(`sloth`),
+    take(3),
+    join(`, `),
+  ),
+)
 //=> sloth, sloth, sloth
 ```
 
 ## Defined in
 
-[generate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L71)
+[generate.d.ts:71](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L71)

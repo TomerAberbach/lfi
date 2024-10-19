@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / sumConcur
 
@@ -8,12 +8,12 @@
 
 > **sumConcur**(`concurIterable`): `Promise`\<`number`\>
 
-Returns a promise that resolves to the sum of the numbers of `concurIterable`.
+Returns a promise that resolves to the sum of the numbers of
+`concurIterable`.
 
 ## Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`number`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`number`\>
 
 ## Returns
 
@@ -28,4 +28,4 @@ console.log(await sumConcur(asConcur([1, 4, 6, 2])))
 
 ## Defined in
 
-[statistics.d.ts:128](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L128)
+[statistics.d.ts:128](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L128)

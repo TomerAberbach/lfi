@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / filterMap
 
 # Function: filterMap()
 
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order excluding the values for which `fn` returns `null` or
+Returns an iterable containing the values of `iterable` transformed by `fn`
+in iteration order excluding the values for which `fn` returns `null` or
 `undefined`.
 
 ## Example
@@ -30,11 +30,10 @@ console.log(
 
 ## filterMap(fn)
 
-> **filterMap**\<`From`, `To`\>(`fn`): (`iterable`) =>
-> `Iterable`\<`NonNullable`\<`To`\>, `any`, `any`\>
+> **filterMap**\<`From`, `To`\>(`fn`): (`iterable`) => `Iterable`\<`NonNullable`\<`To`\>, `any`, `any`\>
 
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order excluding the values for which `fn` returns `null` or
+Returns an iterable containing the values of `iterable` transformed by `fn`
+in iteration order excluding the values for which `fn` returns `null` or
 `undefined`.
 
 ### Type Parameters
@@ -79,15 +78,14 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:137](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L137)
+[exclude.d.ts:137](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L137)
 
 ## filterMap(fn, iterable)
 
-> **filterMap**\<`From`, `To`\>(`fn`, `iterable`):
-> `Iterable`\<`NonNullable`\<`To`\>, `any`, `any`\>
+> **filterMap**\<`From`, `To`\>(`fn`, `iterable`): `Iterable`\<`NonNullable`\<`To`\>, `any`, `any`\>
 
-Returns an iterable containing the values of `iterable` transformed by `fn` in
-iteration order excluding the values for which `fn` returns `null` or
+Returns an iterable containing the values of `iterable` transformed by `fn`
+in iteration order excluding the values for which `fn` returns `null` or
 `undefined`.
 
 ### Type Parameters
@@ -126,4 +124,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:140](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L140)
+[exclude.d.ts:140](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L140)

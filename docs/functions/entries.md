@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / entries
 
@@ -8,9 +8,9 @@
 
 Returns an iterable containing the entries of `object`.
 
-This differs from `Map.prototype.entries` in that the returned iterable can be
-iterated multiple times and differs from `Object.entries` in that the returned
-iterable is opaque.
+This differs from `Map.prototype.entries` in that the returned iterable can
+be iterated multiple times and differs from `Object.entries` in that the
+returned iterable is opaque.
 
 ## entries(object)
 
@@ -18,9 +18,9 @@ iterable is opaque.
 
 Returns an iterable containing the entries of `object`.
 
-This differs from `Map.prototype.entries` in that the returned iterable can be
-iterated multiple times and differs from `Object.entries` in that the returned
-iterable is opaque.
+This differs from `Map.prototype.entries` in that the returned iterable can
+be iterated multiple times and differs from `Object.entries` in that the
+returned iterable is opaque.
 
 ### Type Parameters
 
@@ -40,7 +40,7 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/from.d.ts#L37)
+[from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/from.d.ts#L37)
 
 ## entries(object)
 
@@ -48,13 +48,13 @@ iterable is opaque.
 
 Returns an iterable containing the entries of `object`.
 
-This differs from `Map.prototype.entries` in that the returned iterable can be
-iterated multiple times and differs from `Object.entries` in that the returned
-iterable is opaque.
+This differs from `Map.prototype.entries` in that the returned iterable can
+be iterated multiple times and differs from `Object.entries` in that the
+returned iterable is opaque.
 
 ### Type Parameters
 
-• **Key** _extends_ `string` \| `number` \| `symbol`
+• **Key** *extends* `string` \| `number` \| `symbol`
 
 • **Value**
 
@@ -68,4 +68,4 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/from.d.ts#L40)
+[from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/from.d.ts#L40)

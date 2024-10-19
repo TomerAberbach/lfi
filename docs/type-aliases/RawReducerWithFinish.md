@@ -1,19 +1,17 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / RawReducerWithFinish
 
 # Type Alias: RawReducerWithFinish\<Value, Acc, Finished, This\>
 
-> **RawReducerWithFinish**\<`Value`, `Acc`, `Finished`, `This`\>:
-> [`RawReducerWithoutFinish`](RawReducerWithoutFinish.md)\<`Value`, `Acc`,
-> `This`\> & `object`
+> **RawReducerWithFinish**\<`Value`, `Acc`, `Finished`, `This`\>: [`RawReducerWithoutFinish`](RawReducerWithoutFinish.md)\<`Value`, `Acc`, `This`\> & `object`
 
 A reducer that reduces by creating an initial accumulator using
-RawReducerWithFinish.create, then adding values to the accumulator values using
-RawReducerWithFinish.add, and then tranforming the final accumulator using
-RawReducerWithFinish.finish.
+RawReducerWithFinish.create, then adding values to the accumulator
+values using RawReducerWithFinish.add, and then tranforming the final
+accumulator using RawReducerWithFinish.finish.
 
 ## Type declaration
 
@@ -43,4 +41,4 @@ RawReducerWithFinish.finish.
 
 ## Defined in
 
-[reducer.d.ts:63](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L63)
+[reducer.d.ts:63](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L63)

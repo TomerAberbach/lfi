@@ -1,17 +1,15 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toMinByAsync
 
 # Function: toMinByAsync()
 
-> **toMinByAsync**\<`Value`\>(`fn`):
-> [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`\>
+> **toMinByAsync**\<`Value`\>(`fn`): [`AsyncOptionalReducer`](../type-aliases/AsyncOptionalReducer.md)\<`Value`\>
 
-Returns an async optional reducer that finds the minimum value of the values it
-receives based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md)
-function.
+Returns an async optional reducer that finds the minimum value of the values
+it receives based on the `fn` [AsyncCompare](../type-aliases/AsyncCompare.md) function.
 
 Use when composing reducers. Prefer [minByAsync](minByAsync.md) and
 [minByConcur](minByConcur.md) for direct use on iterables.
@@ -30,4 +28,4 @@ Use when composing reducers. Prefer [minByAsync](minByAsync.md) and
 
 ## Defined in
 
-[statistics.d.ts:315](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L315)
+[statistics.d.ts:315](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L315)

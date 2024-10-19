@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / eachConcur
 
 # Function: eachConcur()
 
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
+Returns an concur iterable equivalent to `concurIterable` that applies `fn`
+to each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
 
@@ -29,11 +29,10 @@ console.log(eachedSloths)
 
 ## eachConcur(fn)
 
-> **eachConcur**\<`Value`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **eachConcur**\<`Value`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
+Returns an concur iterable equivalent to `concurIterable` that applies `fn`
+to each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
 
@@ -51,8 +50,7 @@ The result of applying `fn` to a value is awaited before yielding.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -76,15 +74,14 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L99)
+[iterate.d.ts:99](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L99)
 
 ## eachConcur(fn, concurIterable)
 
-> **eachConcur**\<`Value`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **eachConcur**\<`Value`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
+Returns an concur iterable equivalent to `concurIterable` that applies `fn`
+to each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
 
@@ -96,8 +93,7 @@ The result of applying `fn` to a value is awaited before yielding.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -121,15 +117,14 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L102)
+[iterate.d.ts:102](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L102)
 
 ## eachConcur(fn)
 
-> **eachConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **eachConcur**\<`From`, `To`\>(`fn`): (`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
+Returns an concur iterable equivalent to `concurIterable` that applies `fn`
+to each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
 
@@ -149,8 +144,7 @@ The result of applying `fn` to a value is awaited before yielding.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 #### Returns
 
@@ -174,15 +168,14 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L107)
+[iterate.d.ts:107](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L107)
 
 ## eachConcur(fn, concurIterable)
 
-> **eachConcur**\<`From`, `To`\>(`fn`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
+> **eachConcur**\<`From`, `To`\>(`fn`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`To`\>
 
-Returns an concur iterable equivalent to `concurIterable` that applies `fn` to
-each value of `concurIterable` as it is iterated.
+Returns an concur iterable equivalent to `concurIterable` that applies `fn`
+to each value of `concurIterable` as it is iterated.
 
 The result of applying `fn` to a value is awaited before yielding.
 
@@ -196,8 +189,7 @@ The result of applying `fn` to a value is awaited before yielding.
 
 • **fn**
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`From`\>
 
 ### Returns
 
@@ -221,4 +213,4 @@ console.log(eachedSloths)
 
 ### Defined in
 
-[iterate.d.ts:110](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L110)
+[iterate.d.ts:110](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L110)

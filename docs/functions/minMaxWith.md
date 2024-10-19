@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / minMaxWith
 
 # Function: minMaxWith()
 
-Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of
-`iterable` by comparing the numerical values of each value, as defined by `fn`,
-if `iterable` contains at least one value. Otherwise, returns an empty iterable.
+Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of `iterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`iterable` contains at least one value. Otherwise, returns an empty iterable.
 
 ## Example
 
@@ -25,12 +25,11 @@ console.log(
 
 ## minMaxWith(fn, iterable)
 
-> **minMaxWith**\<`Value`\>(`fn`, `iterable`):
-> `Iterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
+> **minMaxWith**\<`Value`\>(`fn`, `iterable`): `Iterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
-Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of
-`iterable` by comparing the numerical values of each value, as defined by `fn`,
-if `iterable` contains at least one value. Otherwise, returns an empty iterable.
+Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of `iterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`iterable` contains at least one value. Otherwise, returns an empty iterable.
 
 ### Type Parameters
 
@@ -61,16 +60,15 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:830](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L830)
+[statistics.d.ts:830](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L830)
 
 ## minMaxWith(fn)
 
-> **minMaxWith**\<`Value`\>(`fn`): (`iterable`) =>
-> `Iterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
+> **minMaxWith**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<[`MinMax`](../type-aliases/MinMax.md)\<`Value`\>, `any`, `any`\>
 
-Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of
-`iterable` by comparing the numerical values of each value, as defined by `fn`,
-if `iterable` contains at least one value. Otherwise, returns an empty iterable.
+Returns an iterable containing a [MinMax](../type-aliases/MinMax.md) value of `iterable` by
+comparing the numerical values of each value, as defined by `fn`, if
+`iterable` contains at least one value. Otherwise, returns an empty iterable.
 
 ### Type Parameters
 
@@ -107,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:834](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L834)
+[statistics.d.ts:834](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L834)

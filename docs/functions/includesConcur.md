@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / includesConcur
 
@@ -26,8 +26,7 @@ console.log(
 
 ## includesConcur(searchElement)
 
-> **includesConcur**(`searchElement`): \<`Value`\>(`concurIterable`) =>
-> `Promise`\<`boolean`\>
+> **includesConcur**(`searchElement`): \<`Value`\>(`concurIterable`) => `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `concurIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -49,8 +48,7 @@ Like `Array.prototype.includes`, but for concur iterables.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -70,12 +68,11 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:272](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L272)
+[predicate.d.ts:272](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L272)
 
 ## includesConcur(searchElement, concurIterable)
 
-> **includesConcur**\<`Value`\>(`searchElement`, `concurIterable`):
-> `Promise`\<`boolean`\>
+> **includesConcur**\<`Value`\>(`searchElement`, `concurIterable`): `Promise`\<`boolean`\>
 
 Returns a promise that resolves to `true` if any value of `concurIterable` is
 equal to `searchElement` using `Object.is`. Otherwise returns a promise that
@@ -91,8 +88,7 @@ Like `Array.prototype.includes`, but for concur iterables.
 
 • **searchElement**: `unknown`
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -112,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:275](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L275)
+[predicate.d.ts:275](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L275)

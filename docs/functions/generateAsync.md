@@ -1,14 +1,14 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / generateAsync
 
 # Function: generateAsync()
 
 Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded value
-for every subsequent value.
+then yields the awaited result of applying `fn` to its previously yielded
+value for every subsequent value.
 
 ## Example
 
@@ -25,12 +25,11 @@ console.log(
 
 ## generateAsync(fn)
 
-> **generateAsync**\<`Value`\>(`fn`): (`seed`) => `AsyncIterable`\<`Value`,
-> `any`, `any`\>
+> **generateAsync**\<`Value`\>(`fn`): (`seed`) => `AsyncIterable`\<`Value`, `any`, `any`\>
 
 Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded value
-for every subsequent value.
+then yields the awaited result of applying `fn` to its previously yielded
+value for every subsequent value.
 
 ### Type Parameters
 
@@ -67,16 +66,15 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L47)
+[generate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L47)
 
 ## generateAsync(fn, seed)
 
-> **generateAsync**\<`Value`\>(`fn`, `seed`): `AsyncIterable`\<`Value`, `any`,
-> `any`\>
+> **generateAsync**\<`Value`\>(`fn`, `seed`): `AsyncIterable`\<`Value`, `any`, `any`\>
 
 Returns an infinite async iterable that yields `seed` for its first value and
-then yields the awaited result of applying `fn` to its previously yielded value
-for every subsequent value.
+then yields the awaited result of applying `fn` to its previously yielded
+value for every subsequent value.
 
 ### Type Parameters
 
@@ -107,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:50](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/generate.d.ts#L50)
+[generate.d.ts:50](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/generate.d.ts#L50)

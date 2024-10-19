@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / windowConcur
 
@@ -46,15 +46,14 @@ console.log(
 
 ## windowConcur(options)
 
-> **windowConcur**\<`Size`\>(`options`): \<`Value`\>(`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`[]\>
+> **windowConcur**\<`Size`\>(`options`): \<`Value`\>(`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`[]\>
 
 Returns a concur iterable containing a rolling window of the values of
 `concurIterable` as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 ### Parameters
 
@@ -70,8 +69,7 @@ Returns a concur iterable containing a rolling window of the values of
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -114,19 +112,18 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:693](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L693)
+[slice.d.ts:693](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L693)
 
 ## windowConcur(options, concurIterable)
 
-> **windowConcur**\<`Size`, `Value`\>(`options`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`[]\>
+> **windowConcur**\<`Size`, `Value`\>(`options`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`[]\>
 
 Returns a concur iterable containing a rolling window of the values of
 `concurIterable` as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 • **Value**
 
@@ -134,8 +131,7 @@ Returns a concur iterable containing a rolling window of the values of
 
 • **options**: [`WindowOptions`](../type-aliases/WindowOptions.md)\<`Size`\>
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -178,4 +174,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:696](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L696)
+[slice.d.ts:696](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L696)

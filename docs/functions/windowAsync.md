@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / windowAsync
 
@@ -46,15 +46,14 @@ console.log(
 
 ## windowAsync(options)
 
-> **windowAsync**\<`Size`\>(`options`): \<`Value`\>(`asyncIterable`) =>
-> `AsyncIterable`\<`Value`[], `any`, `any`\>
+> **windowAsync**\<`Size`\>(`options`): \<`Value`\>(`asyncIterable`) => `AsyncIterable`\<`Value`[], `any`, `any`\>
 
 Returns an async iterable containing a rolling window of the values of
 `asyncIterable` as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 ### Parameters
 
@@ -113,19 +112,18 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:647](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L647)
+[slice.d.ts:647](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L647)
 
 ## windowAsync(options, asyncIterable)
 
-> **windowAsync**\<`Size`, `Value`\>(`options`, `asyncIterable`):
-> `AsyncIterable`\<`Value`[], `any`, `any`\>
+> **windowAsync**\<`Size`, `Value`\>(`options`, `asyncIterable`): `AsyncIterable`\<`Value`[], `any`, `any`\>
 
 Returns an async iterable containing a rolling window of the values of
 `asyncIterable` as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 • **Value**
 
@@ -176,4 +174,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:650](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L650)
+[slice.d.ts:650](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L650)

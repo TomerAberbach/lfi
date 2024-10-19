@@ -1,16 +1,16 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / dropConcur
 
 # Function: dropConcur()
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order except for the first `count` values.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order except for the first `count` values.
 
-If the `count` is greater than the number of values in `concurIterable`, then an
-empty concur iterable is returned.
+If the `count` is greater than the number of values in `concurIterable`, then
+an empty concur iterable is returned.
 
 ## Throws
 
@@ -31,18 +31,17 @@ console.log(
 
 ## dropConcur(count)
 
-> **dropConcur**\<`Count`\>(`count`): \<`Value`\>(`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **dropConcur**\<`Count`\>(`count`): \<`Value`\>(`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order except for the first `count` values.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order except for the first `count` values.
 
-If the `count` is greater than the number of values in `concurIterable`, then an
-empty concur iterable is returned.
+If the `count` is greater than the number of values in `concurIterable`, then
+an empty concur iterable is returned.
 
 ### Type Parameters
 
-• **Count** _extends_ `number`
+• **Count** *extends* `number`
 
 ### Parameters
 
@@ -58,8 +57,7 @@ empty concur iterable is returned.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -84,22 +82,21 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L221)
+[slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L221)
 
 ## dropConcur(count, concurIterable)
 
-> **dropConcur**\<`Count`, `Value`\>(`count`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **dropConcur**\<`Count`, `Value`\>(`count`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order except for the first `count` values.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order except for the first `count` values.
 
-If the `count` is greater than the number of values in `concurIterable`, then an
-empty concur iterable is returned.
+If the `count` is greater than the number of values in `concurIterable`, then
+an empty concur iterable is returned.
 
 ### Type Parameters
 
-• **Count** _extends_ `number`
+• **Count** *extends* `number`
 
 • **Value**
 
@@ -107,8 +104,7 @@ empty concur iterable is returned.
 
 • **count**: `NonNegativeInteger`\<`Count`\>
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -133,4 +129,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L221)
+[slice.d.ts:221](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L221)

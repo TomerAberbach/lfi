@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / includes
 
@@ -14,7 +14,12 @@ Like `Array.prototype.includes`, but for iterables.
 ## Example
 
 ```js
-console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    includes(3),
+  ),
+)
 //=> true
 ```
 
@@ -50,13 +55,18 @@ Like `Array.prototype.includes`, but for iterables.
 ### Example
 
 ```js
-console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    includes(3),
+  ),
+)
 //=> true
 ```
 
 ### Defined in
 
-[predicate.d.ts:221](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L221)
+[predicate.d.ts:221](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L221)
 
 ## includes(searchElement, iterable)
 
@@ -84,10 +94,15 @@ Like `Array.prototype.includes`, but for iterables.
 ### Example
 
 ```js
-console.log(pipe([`sloth`, `more sloth`, `even more sloth`], includes(3)))
+console.log(
+  pipe(
+    [`sloth`, `more sloth`, `even more sloth`],
+    includes(3),
+  ),
+)
 //=> true
 ```
 
 ### Defined in
 
-[predicate.d.ts:222](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/predicate.d.ts#L222)
+[predicate.d.ts:222](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/predicate.d.ts#L222)

@@ -1,30 +1,26 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / toWeakMap
 
 # Function: toWeakMap()
 
-> **toWeakMap**\<`Key`, `Value`\>():
-> [`RawKeyedReducer`](../type-aliases/RawKeyedReducer.md)\<`Key`, `Value`,
-> `WeakMap`\<`Key`, `Value`\>\>
+> **toWeakMap**\<`Key`, `Value`\>(): [`RawKeyedReducer`](../type-aliases/RawKeyedReducer.md)\<`Key`, `Value`, `WeakMap`\<`Key`, `Value`\>\>
 
-Returns a [KeyedReducer](../type-aliases/KeyedReducer.md) that collects
-key-value pairs to a `WeakMap`.
+Returns a [KeyedReducer](../type-aliases/KeyedReducer.md) that collects key-value pairs to a `WeakMap`.
 
 In the case of pairs with duplicate keys, the value of the last one wins.
 
 ## Type Parameters
 
-• **Key** _extends_ `object`
+• **Key** *extends* `object`
 
 • **Value**
 
 ## Returns
 
-[`RawKeyedReducer`](../type-aliases/RawKeyedReducer.md)\<`Key`, `Value`,
-`WeakMap`\<`Key`, `Value`\>\>
+[`RawKeyedReducer`](../type-aliases/RawKeyedReducer.md)\<`Key`, `Value`, `WeakMap`\<`Key`, `Value`\>\>
 
 ## Example
 
@@ -41,4 +37,4 @@ console.log(
 
 ## Defined in
 
-[collect.d.ts:131](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/collect.d.ts#L131)
+[collect.d.ts:131](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/collect.d.ts#L131)

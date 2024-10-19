@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / forEachAsync
 
@@ -9,8 +9,8 @@
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
 
-The result of applying `fn` to a value is awaited before moving on to the next
-value.
+The result of applying `fn` to a value is awaited before moving on to the
+next value.
 
 Like `Array.prototype.forEach`, but for async iterables.
 
@@ -32,8 +32,8 @@ await forEachAsync(console.log, sloths)
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
 
-The result of applying `fn` to a value is awaited before moving on to the next
-value.
+The result of applying `fn` to a value is awaited before moving on to the
+next value.
 
 Like `Array.prototype.forEach`, but for async iterables.
 
@@ -70,7 +70,7 @@ await forEachAsync(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:156](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L156)
+[iterate.d.ts:156](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L156)
 
 ## forEachAsync(fn, asyncIterable)
 
@@ -79,8 +79,8 @@ await forEachAsync(console.log, sloths)
 Returns a promise that resolves when `fn` has been applied to each value of
 `asyncIterable` and the result of each application has been awaited.
 
-The result of applying `fn` to a value is awaited before moving on to the next
-value.
+The result of applying `fn` to a value is awaited before moving on to the
+next value.
 
 Like `Array.prototype.forEach`, but for async iterables.
 
@@ -111,4 +111,4 @@ await forEachAsync(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:159](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/iterate.d.ts#L159)
+[iterate.d.ts:159](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/iterate.d.ts#L159)

@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / findAsync
 
@@ -22,7 +22,7 @@ console.log(
     asyncIterable,
     findAsync(value => typeof value === `string`),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -31,15 +31,14 @@ console.log(
     asyncIterable,
     findAsync(value => Array.isArray(value)),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ## findAsync(fn)
 
-> **findAsync**\<`Value`\>(`fn`): (`asyncIterable`) =>
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **findAsync**\<`Value`\>(`fn`): (`asyncIterable`) => [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns an async iterable containing the first value of `asyncIterable` for
 which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
@@ -77,7 +76,7 @@ console.log(
     asyncIterable,
     findAsync(value => typeof value === `string`),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -86,19 +85,18 @@ console.log(
     asyncIterable,
     findAsync(value => Array.isArray(value)),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ### Defined in
 
-[find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L99)
+[find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L99)
 
 ## findAsync(fn, asyncIterable)
 
-> **findAsync**\<`Value`\>(`fn`, `asyncIterable`):
-> [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
+> **findAsync**\<`Value`\>(`fn`, `asyncIterable`): [`AsyncOptional`](../type-aliases/AsyncOptional.md)\<`Value`\>
 
 Returns an async iterable containing the first value of `asyncIterable` for
 which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
@@ -130,7 +128,7 @@ console.log(
     asyncIterable,
     findAsync(value => typeof value === `string`),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> sloth
 
@@ -139,11 +137,11 @@ console.log(
     asyncIterable,
     findAsync(value => Array.isArray(value)),
     orAsync(() => `yawn!`),
-  ),
+  )
 )
 //=> yawn!
 ```
 
 ### Defined in
 
-[find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/find.d.ts#L99)
+[find.d.ts:99](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/find.d.ts#L99)

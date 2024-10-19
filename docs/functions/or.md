@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / or
 
@@ -12,28 +12,13 @@ Otherwise, returns the result of invoking `fn`.
 ## Example
 
 ```js
-console.log(
-  pipe(
-    [`sloth`],
-    or(() => `Never called`),
-  ),
-)
+console.log(pipe([`sloth`], or(() => `Never called`)))
 //=> sloth
 
-console.log(
-  pipe(
-    [],
-    or(() => `I get called!`),
-  ),
-)
+console.log(pipe([], or(() => `I get called!`)))
 //=> I get called!
 
-console.log(
-  pipe(
-    [1, `sloth`, 3],
-    or(() => `I also get called!`),
-  ),
-)
+console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
 //=> I also get called!
 ```
 
@@ -67,34 +52,19 @@ Otherwise, returns the result of invoking `fn`.
 ### Example
 
 ```js
-console.log(
-  pipe(
-    [`sloth`],
-    or(() => `Never called`),
-  ),
-)
+console.log(pipe([`sloth`], or(() => `Never called`)))
 //=> sloth
 
-console.log(
-  pipe(
-    [],
-    or(() => `I get called!`),
-  ),
-)
+console.log(pipe([], or(() => `I get called!`)))
 //=> I get called!
 
-console.log(
-  pipe(
-    [1, `sloth`, 3],
-    or(() => `I also get called!`),
-  ),
-)
+console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
 //=> I also get called!
 ```
 
 ### Defined in
 
-[optional.d.ts:30](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/optional.d.ts#L30)
+[optional.d.ts:30](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/optional.d.ts#L30)
 
 ## or(fn, iterable)
 
@@ -120,31 +90,16 @@ Otherwise, returns the result of invoking `fn`.
 ### Example
 
 ```js
-console.log(
-  pipe(
-    [`sloth`],
-    or(() => `Never called`),
-  ),
-)
+console.log(pipe([`sloth`], or(() => `Never called`)))
 //=> sloth
 
-console.log(
-  pipe(
-    [],
-    or(() => `I get called!`),
-  ),
-)
+console.log(pipe([], or(() => `I get called!`)))
 //=> I get called!
 
-console.log(
-  pipe(
-    [1, `sloth`, 3],
-    or(() => `I also get called!`),
-  ),
-)
+console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
 //=> I also get called!
 ```
 
 ### Defined in
 
-[optional.d.ts:31](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/optional.d.ts#L31)
+[optional.d.ts:31](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/optional.d.ts#L31)

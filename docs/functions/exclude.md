@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / exclude
 
@@ -24,8 +24,7 @@ console.log(
 
 ## exclude(excluded)
 
-> **exclude**(`excluded`): \<`Value`\>(`iterable`) => `Iterable`\<`Value`,
-> `any`, `any`\>
+> **exclude**(`excluded`): \<`Value`\>(`iterable`) => `Iterable`\<`Value`, `any`, `any`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 excluding the values of `excluded`.
@@ -65,12 +64,11 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:227](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L227)
+[exclude.d.ts:227](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L227)
 
 ## exclude(excluded, iterable)
 
-> **exclude**\<`Value`\>(`excluded`, `iterable`): `Iterable`\<`Value`, `any`,
-> `any`\>
+> **exclude**\<`Value`\>(`excluded`, `iterable`): `Iterable`\<`Value`, `any`, `any`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 excluding the values of `excluded`.
@@ -104,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:230](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L230)
+[exclude.d.ts:230](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L230)

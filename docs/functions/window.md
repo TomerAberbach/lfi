@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / window
 
 # Function: window()
 
-Returns an iterable containing a rolling window of the values of `iterable` as
-arrays of length `size`.
+Returns an iterable containing a rolling window of the values of `iterable`
+as arrays of length `size`.
 
 ## Throws
 
@@ -16,7 +16,13 @@ if `size` is not a positive integer.
 ## Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, `sloth`], window(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, `sloth`],
+    window(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
 
 console.log(
@@ -40,15 +46,14 @@ console.log(
 
 ## window(options)
 
-> **window**\<`Size`\>(`options`): \<`Value`\>(`iterable`) =>
-> `Iterable`\<`Value`[], `any`, `any`\>
+> **window**\<`Size`\>(`options`): \<`Value`\>(`iterable`) => `Iterable`\<`Value`[], `any`, `any`\>
 
-Returns an iterable containing a rolling window of the values of `iterable` as
-arrays of length `size`.
+Returns an iterable containing a rolling window of the values of `iterable`
+as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 ### Parameters
 
@@ -77,7 +82,13 @@ if `size` is not a positive integer.
 ### Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, `sloth`], window(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, `sloth`],
+    window(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
 
 console.log(
@@ -101,19 +112,18 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:601](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L601)
+[slice.d.ts:601](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L601)
 
 ## window(options, iterable)
 
-> **window**\<`Size`, `Value`\>(`options`, `iterable`): `Iterable`\<`Value`[],
-> `any`, `any`\>
+> **window**\<`Size`, `Value`\>(`options`, `iterable`): `Iterable`\<`Value`[], `any`, `any`\>
 
-Returns an iterable containing a rolling window of the values of `iterable` as
-arrays of length `size`.
+Returns an iterable containing a rolling window of the values of `iterable`
+as arrays of length `size`.
 
 ### Type Parameters
 
-• **Size** _extends_ `number`
+• **Size** *extends* `number`
 
 • **Value**
 
@@ -134,7 +144,13 @@ if `size` is not a positive integer.
 ### Example
 
 ```js
-console.log(pipe([1, 2, 3, 4, 5, 6, `sloth`], window(3), reduce(toArray())))
+console.log(
+  pipe(
+    [1, 2, 3, 4, 5, 6, `sloth`],
+    window(3),
+    reduce(toArray()),
+  ),
+)
 //=> [ [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ] ]
 
 console.log(
@@ -158,4 +174,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:604](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L604)
+[slice.d.ts:604](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L604)

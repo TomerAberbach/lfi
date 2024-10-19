@@ -1,18 +1,16 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / AsyncCompare
 
 # Type Alias: AsyncCompare()\<Value\>
 
-> **AsyncCompare**\<`Value`\>: (`left`, `right`) =>
-> `MaybePromiseLike`\<`number`\>
+> **AsyncCompare**\<`Value`\>: (`left`, `right`) => `MaybePromiseLike`\<`number`\>
 
 A function that compares two values of type `Value` possibly asynchronously.
 
 A return value that awaits to:
-
 - Less than zero implies `left < right`
 - Equal to zero implies `left === right`
 - Greater than zero implies `left > right`
@@ -33,4 +31,4 @@ A return value that awaits to:
 
 ## Defined in
 
-[statistics.d.ts:224](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/statistics.d.ts#L224)
+[statistics.d.ts:224](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/statistics.d.ts#L224)

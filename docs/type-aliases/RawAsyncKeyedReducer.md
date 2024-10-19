@@ -1,27 +1,25 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / RawAsyncKeyedReducer
 
 # Type Alias: RawAsyncKeyedReducer\<Key, Value, Acc, This\>
 
-> **RawAsyncKeyedReducer**\<`Key`, `Value`, `Acc`, `This`\>:
-> [`RawAsyncReducerWithoutFinish`](RawAsyncReducerWithoutFinish.md)\<readonly
-> [`Key`, `Value`], `Acc`, `This`\> & `object`
+> **RawAsyncKeyedReducer**\<`Key`, `Value`, `Acc`, `This`\>: [`RawAsyncReducerWithoutFinish`](RawAsyncReducerWithoutFinish.md)\<readonly [`Key`, `Value`], `Acc`, `This`\> & `object`
 
 An async keyed reducer that reduces by creating an initial accumulator using
-RawAsyncKeyedReducer.create and then adding key-value pairs to the accumulator
-values using RawAsyncKeyedReducer.add. The async keyed reducer is optionally
-able to combine pairs of accumulators using RawAsyncKeyedReducer.combine. The
-accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
+RawAsyncKeyedReducer.create and then adding key-value pairs to the
+accumulator values using RawAsyncKeyedReducer.add. The async keyed
+reducer is optionally able to combine pairs of accumulators using
+RawAsyncKeyedReducer.combine. The accumulator can be queried for
+values by key using RawAsyncKeyedReducer.get.
 
 ## Type declaration
 
 ### get()
 
-> **get**: (`this`, `acc`, `key`) => `MaybePromiseLike`\<`Value` \| _typeof_ >
-> [`NO_ENTRY`](../variables/NO_ENTRY.md)\>
+> **get**: (`this`, `acc`, `key`) => `MaybePromiseLike`\<`Value` \| *typeof* [`NO_ENTRY`](../variables/NO_ENTRY.md)\>
 
 #### Parameters
 
@@ -33,7 +31,7 @@ accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
 
 #### Returns
 
-`MaybePromiseLike`\<`Value` \| _typeof_ [`NO_ENTRY`](../variables/NO_ENTRY.md)\>
+`MaybePromiseLike`\<`Value` \| *typeof* [`NO_ENTRY`](../variables/NO_ENTRY.md)\>
 
 ## Type Parameters
 
@@ -47,4 +45,4 @@ accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
 
 ## Defined in
 
-[reducer.d.ts:210](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L210)
+[reducer.d.ts:210](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L210)

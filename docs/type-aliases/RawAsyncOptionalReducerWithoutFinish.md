@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / RawAsyncOptionalReducerWithoutFinish
 
@@ -37,4 +37,4 @@ RawAsyncOptionalReducerWithoutFinish.add.
 
 ## Defined in
 
-[reducer.d.ts:124](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/reducer.d.ts#L124)
+[reducer.d.ts:124](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/reducer.d.ts#L124)

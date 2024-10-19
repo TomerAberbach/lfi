@@ -1,13 +1,13 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / excludeConcur
 
 # Function: excludeConcur()
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order excluding the values of `excluded`.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order excluding the values of `excluded`.
 
 ## Example
 
@@ -24,11 +24,10 @@ console.log(
 
 ## excludeConcur(excluded)
 
-> **excludeConcur**(`excluded`): \<`Value`\>(`concurIterable`) =>
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **excludeConcur**(`excluded`): \<`Value`\>(`concurIterable`) => [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order excluding the values of `excluded`.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order excluding the values of `excluded`.
 
 ### Parameters
 
@@ -44,8 +43,7 @@ order excluding the values of `excluded`.
 
 #### Parameters
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 #### Returns
 
@@ -66,15 +64,14 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:279](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L279)
+[exclude.d.ts:279](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L279)
 
 ## excludeConcur(excluded, concurIterable)
 
-> **excludeConcur**\<`Value`\>(`excluded`, `concurIterable`):
-> [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+> **excludeConcur**\<`Value`\>(`excluded`, `concurIterable`): [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
-Returns a concur iterable containing the values of `concurIterable` in iteration
-order excluding the values of `excluded`.
+Returns a concur iterable containing the values of `concurIterable` in
+iteration order excluding the values of `excluded`.
 
 ### Type Parameters
 
@@ -84,8 +81,7 @@ order excluding the values of `excluded`.
 
 • **excluded**: `Iterable`\<`unknown`, `any`, `any`\>
 
-• **concurIterable**:
-[`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **concurIterable**: [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ### Returns
 
@@ -106,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:282](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/exclude.d.ts#L282)
+[exclude.d.ts:282](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/exclude.d.ts#L282)

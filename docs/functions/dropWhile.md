@@ -1,6 +1,6 @@
 [**lfi**](../readme.md) • **Docs**
 
----
+***
 
 [lfi](../globals.md) / dropWhile
 
@@ -24,8 +24,7 @@ console.log(
 
 ## dropWhile(fn)
 
-> **dropWhile**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<`Value`, `any`,
-> `any`\>
+> **dropWhile**\<`Value`\>(`fn`): (`iterable`) => `Iterable`\<`Value`, `any`, `any`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 starting with the first value for which `fn` returns a falsy value.
@@ -65,12 +64,11 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L24)
+[slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L24)
 
 ## dropWhile(fn, iterable)
 
-> **dropWhile**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`, `any`,
-> `any`\>
+> **dropWhile**\<`Value`\>(`fn`, `iterable`): `Iterable`\<`Value`, `any`, `any`\>
 
 Returns an iterable containing the values of `iterable` in iteration order
 starting with the first value for which `fn` returns a falsy value.
@@ -104,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/c9ef1bf4d1040d7f49c52b70b358c019e55f524d/src/operations/slice.d.ts#L24)
+[slice.d.ts:24](https://github.com/TomerAberbach/lfi/blob/d7a0f90dd72245d6efd6bd97c58a78b3f3028f25/src/operations/slice.d.ts#L24)

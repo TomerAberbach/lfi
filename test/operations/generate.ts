@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import {
   asAsync,
   cycle,
@@ -27,15 +28,14 @@ import {
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`generate types are correct`, () => {
   expectTypeOf(generate(a => a + 1, 0)).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([fnArb, fc.anything()])(
   `generate returns a pure iterable`,
-  [fnArb, fc.anything()],
   (fn, seed) => {
     const iterable = generate(fn, seed)
 
@@ -58,9 +58,8 @@ test.skip(`generateAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([fnArb, fc.anything()])(
   `generateAsync returns an pure async iterable`,
-  [fnArb, fc.anything()],
   async (fn, seed) => {
     const asyncIterable = generateAsync(fn, seed)
 
@@ -76,9 +75,9 @@ test(
       return value + 1
     }, 0)
 
-    expect(
-      await pipe(asyncIterable, takeAsync(10), reduceAsync(toArray())),
-    ).toStrictEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    await expect(
+      pipe(asyncIterable, takeAsync(10), reduceAsync(toArray())),
+    ).resolves.toStrictEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
   }),
 )
 
@@ -86,15 +85,14 @@ test.skip(`repeat types are correct`, () => {
   expectTypeOf(repeat(2)).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(`repeat returns a pure iterable`, [fc.anything()], value => {
+test.prop([fc.anything()])(`repeat returns a pure iterable`, value => {
   const iterable = repeat(value)
 
   expect(take(10, iterable)).toBeIterable()
 })
 
-testProp(
+test.prop([fc.anything()])(
   `repeat returns an iterable that repeats the same value forever`,
-  [fc.anything()],
   value => {
     const iterable = repeat(value)
 
@@ -114,15 +112,14 @@ test.skip(`cycle types are correct`, () => {
   expectTypeOf(cycle([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(`cycle returns an iterable`, [iterableArb], ({ iterable }) => {
+test.prop([iterableArb])(`cycle returns an iterable`, ({ iterable }) => {
   const cyclingIterable = cycle(iterable)
 
   expect(take(10, cyclingIterable)).toBeIterable()
 })
 
-testProp(
+test.prop([iterableArb])(
   `cycle throws for an impure iterable`,
-  [iterableArb],
   ({ iterable }) => {
     const iterator = iterable[Symbol.iterator]()
     const impureIterable = {
@@ -136,9 +133,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonEmptyIterableArb])(
   `cycle returns an iterable that repeats the given iterable`,
-  [nonEmptyIterableArb],
   ({ iterable, values }) => {
     const cyclingIterable = cycle(iterable)
 
@@ -168,9 +164,8 @@ test.skip(`cycleAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `cycleAsync returns a pure async iterable`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const cyclingIterable = cycleAsync(iterable)
 
@@ -178,9 +173,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `cycleAsync throws for an impure async iterable`,
-  [asyncIterableArb],
   ({ iterable }) => {
     const iterator = iterable[Symbol.asyncIterator]()
     const impureIterable = {
@@ -194,15 +188,14 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonEmptyAsyncIterableArb])(
   `cycleAsync returns an async iterable that repeats the given async iterable`,
-  [nonEmptyAsyncIterableArb],
   async ({ iterable, values }) => {
     const cyclingIterable = cycleAsync(iterable)
 
-    expect(
-      await pipe(cyclingIterable, takeAsync(100), reduceAsync(toArray())),
-    ).toStrictEqual([
+    await expect(
+      pipe(cyclingIterable, takeAsync(100), reduceAsync(toArray())),
+    ).resolves.toStrictEqual([
       ...Array.from(
         { length: Math.trunc(100 / values.length) },
         () => values,
@@ -219,9 +212,9 @@ test(
 
     const cyclingIterable = cycleAsync(asyncIterable)
 
-    expect(
-      await pipe(cyclingIterable, takeAsync(10), reduceAsync(toArray())),
-    ).toStrictEqual([1, 2, 3, 1, 2, 3, 1, 2, 3, 1])
+    await expect(
+      pipe(cyclingIterable, takeAsync(10), reduceAsync(toArray())),
+    ).resolves.toStrictEqual([1, 2, 3, 1, 2, 3, 1, 2, 3, 1])
   }),
 )
 
@@ -254,9 +247,8 @@ test.skip(`rangeUntil types are correct`, () => {
   expectTypeOf(rangeUntil(decimal, 5)).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb])(
   `rangeUntil returns a pure iterable`,
-  [reasonableIntegerArb, reasonableIntegerArb],
   (start, end) => {
     const range = rangeUntil(start, end)
 
@@ -264,9 +256,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
   `rangeUntil throws for a non-integer start`,
-  [nonSafeIntegerDoubleArb, reasonableIntegerArb],
   (start, end) => {
     expect(() => rangeUntil(start, end)).toThrowWithMessage(
       Error,
@@ -275,9 +266,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, nonSafeIntegerDoubleArb])(
   `rangeUntil throws for a non-integer end`,
-  [reasonableIntegerArb, nonSafeIntegerDoubleArb],
   (start, end) => {
     expect(() => rangeUntil(start, end)).toThrowWithMessage(
       Error,
@@ -286,9 +276,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([ascendingIntervalArb])(
   `rangeUntil returns an iterable that iterates from the given start (inclusive) to the given end (exclusive) for start <= end`,
-  [ascendingIntervalArb],
   ([start, end]) => {
     const range = rangeUntil(start, end)
 
@@ -298,9 +287,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([descendingIntervalArb])(
   `rangeUntil returns an iterable that iterates from the given start (inclusive) to the given end (exclusive) for start >= end`,
-  [descendingIntervalArb],
   ([start, end]) => {
     const range = rangeUntil(start, end)
 
@@ -310,9 +298,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb])(
   `rangeUntil's step function returns a pure iterable`,
-  [reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb],
   (start, end, step) => {
     const range = rangeUntil(start, end).step(step)
 
@@ -320,9 +307,12 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  reasonableIntegerArb,
+  reasonableIntegerArb,
+  nonSafeIntegerDoubleArb,
+])(
   `rangeUntil's step function throws for a non-integer step`,
-  [reasonableIntegerArb, reasonableIntegerArb, nonSafeIntegerDoubleArb],
   (start, end, step) => {
     const range = rangeUntil(start, end)
 
@@ -333,9 +323,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, nonPositiveIntegerArb])(
   `rangeUntil's step function throws for a non-positive integer step`,
-  [reasonableIntegerArb, reasonableIntegerArb, nonPositiveIntegerArb],
   (start, end, step) => {
     const range = rangeUntil(start, end)
 
@@ -346,9 +335,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([ascendingIntervalArb, stepIntegerArb])(
   `rangeUntil's step function returns a new rangeUntil iterable that iterates with the given step for start <= end`,
-  [ascendingIntervalArb, stepIntegerArb],
   ([start, end], step) => {
     const range = rangeUntil(start, end).step(step)
 
@@ -361,9 +349,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([descendingIntervalArb, stepIntegerArb])(
   `rangeUntil's step function returns a new rangeUntil iterable that iterates with the given step for start >= end`,
-  [descendingIntervalArb, stepIntegerArb],
   ([start, end], step) => {
     const range = rangeUntil(start, end).step(step)
 
@@ -395,9 +382,8 @@ test.skip(`rangeTo types are correct`, () => {
   expectTypeOf(rangeTo(decimal, 5)).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb])(
   `rangeTo returns a pure iterable`,
-  [reasonableIntegerArb, reasonableIntegerArb],
   (start, end) => {
     const range = rangeTo(start, end)
 
@@ -405,9 +391,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
   `rangeTo throws for a non-integer start`,
-  [nonSafeIntegerDoubleArb, reasonableIntegerArb],
   (start, end) => {
     expect(() => rangeTo(start, end)).toThrowWithMessage(
       Error,
@@ -416,9 +401,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, nonSafeIntegerDoubleArb])(
   `rangeTo throws for a non-integer end`,
-  [reasonableIntegerArb, nonSafeIntegerDoubleArb],
   (start, end) => {
     expect(() => rangeTo(start, end)).toThrowWithMessage(
       Error,
@@ -427,9 +411,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([ascendingIntervalArb])(
   `rangeTo returns an iterable that iterates from the given start (inclusive) to the given end (inclusive) for start <= end`,
-  [ascendingIntervalArb],
   ([start, end]) => {
     const range = rangeTo(start, end)
 
@@ -439,9 +422,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([descendingIntervalArb])(
   `rangeTo returns an iterable that iterates from the given start (inclusive) to the given end (inclusive) for start >= end`,
-  [descendingIntervalArb],
   ([start, end]) => {
     const range = rangeTo(start, end)
 
@@ -451,9 +433,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb])(
   `rangeTo's step function returns a pure iterable`,
-  [reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb],
   (start, end, step) => {
     const range = rangeTo(start, end).step(step)
 
@@ -461,9 +442,12 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  reasonableIntegerArb,
+  reasonableIntegerArb,
+  nonSafeIntegerDoubleArb,
+])(
   `rangeTo's step function throws for a non-integer step`,
-  [reasonableIntegerArb, reasonableIntegerArb, nonSafeIntegerDoubleArb],
   (start, end, step) => {
     const range = rangeTo(start, end)
 
@@ -474,9 +458,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, nonPositiveIntegerArb])(
   `rangeTo's step function throws for a non-positive integer step`,
-  [reasonableIntegerArb, reasonableIntegerArb, nonPositiveIntegerArb],
   (start, end, step) => {
     const range = rangeTo(start, end)
 
@@ -487,9 +470,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([ascendingIntervalArb, stepIntegerArb])(
   `rangeTo's step function returns a new rangeTo iterable that iterates with the given step for start <= end`,
-  [ascendingIntervalArb, stepIntegerArb],
   ([start, end], step) => {
     const range = rangeTo(start, end).step(step)
 
@@ -502,9 +484,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([descendingIntervalArb, stepIntegerArb])(
   `rangeTo's step function returns a new rangeTo iterable that iterates with the given step for start >= end`,
-  [descendingIntervalArb, stepIntegerArb],
   ([start, end], step) => {
     const range = rangeTo(start, end).step(step)
 

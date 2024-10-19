@@ -1,4 +1,5 @@
-import { expectTypeOf, fc, testProp } from 'tomer'
+import { fc, test } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import { compose, curry, pipe } from '../../src/index.js'
 import { fnArb } from '../helpers/fast-check/fn.js'
 
@@ -20,7 +21,6 @@ const fnAndArgsArb = fc
   )
 
 test.skip(`curry types are correct`, () => {
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const fn = (a: number, b: string, c: boolean): string => `${a}${b}${c}`
   const curriedFn = curry(fn)
 
@@ -30,9 +30,8 @@ test.skip(`curry types are correct`, () => {
   expectTypeOf(curriedFn(1)(``, true)).toMatchTypeOf<string>()
 })
 
-testProp(
+test.prop([fnAndArgsArb])(
   `curry does not modify the given function`,
-  [fnAndArgsArb],
   ([fn, args]) => {
     const resultBeforeCurry = fn(...args)
 
@@ -43,9 +42,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnAndArgsArb])(
   `curry returns a curried version of the given function if its length is greater than zero`,
-  [fnAndArgsArb],
   ([fn, inputs]) => {
     const curried = curry(fn)
 
@@ -78,22 +76,21 @@ const partitions = <Value>(array: Value[]): Iterable<Value[][]> => ({
   },
 })
 
-testProp(
+test.prop([
+  fc
+    .tuple(
+      fc.func(fc.anything()),
+      fc.nat().map(n => -n),
+    )
+    .map(([fn, length]) =>
+      Object.defineProperty(fn, `length`, {
+        value: length,
+        enumerable: false,
+        writable: false,
+      }),
+    ),
+])(
   `curry returns the original function if its length is less than or equal to zero`,
-  [
-    fc
-      .tuple(
-        fc.func(fc.anything()),
-        fc.nat().map(n => -n),
-      )
-      .map(([fn, length]) =>
-        Object.defineProperty(fn, `length`, {
-          value: length,
-          enumerable: false,
-          writable: false,
-        }),
-      ),
-  ],
   fn => {
     const curried = curry(fn)
 
@@ -101,23 +98,22 @@ testProp(
   },
 )
 
-testProp(`curry is idempotent`, [fnAndArgsArb], ([fn, inputs]) => {
+test.prop([fnAndArgsArb])(`curry is idempotent`, ([fn, inputs]) => {
   const curried = curry(fn)
   const doubleCurried = curry(curried)
 
   expect(curried(...inputs)).toStrictEqual(doubleCurried(...inputs))
 })
 
-testProp(
+test.prop([
+  fc.tuple(fnArb, fc.string(), fc.nat()).map(([fn, name, length]) =>
+    Object.defineProperties(fn, {
+      name: { value: name, enumerable: false, writable: false },
+      length: { value: length, enumerable: false, writable: false },
+    }),
+  ),
+])(
   `curry returns a function with the same name and length as the given function`,
-  [
-    fc.tuple(fnArb, fc.string(), fc.nat()).map(([fn, name, length]) =>
-      Object.defineProperties(fn, {
-        name: { value: name, enumerable: false, writable: false },
-        length: { value: length, enumerable: false, writable: false },
-      }),
-    ),
-  ],
   fn => {
     const curried = curry(fn)
 
@@ -132,9 +128,8 @@ test.skip(`pipe types are correct`, () => {
   expectTypeOf(pipe(2, String, Boolean)).toMatchTypeOf<boolean>()
 })
 
-testProp(
+test.prop([fc.anything()])(
   `pipe returns the given value for a single argument`,
-  [fc.anything()],
   value => {
     const piped = pipe(value)
 
@@ -142,9 +137,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `pipe pipes`,
-  [fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })],
   (value, [firstFn, ...otherFns]) => {
     expect(
       (pipe as (...args: unknown[]) => unknown)(value, firstFn, ...otherFns),
@@ -155,16 +149,12 @@ testProp(
 )
 
 test.skip(`compose types are correct`, () => {
-  // eslint-disable-next-line typescript/no-explicit-any
   expectTypeOf(compose(String)).toMatchTypeOf<(a: any) => string>()
-
-  // eslint-disable-next-line typescript/no-explicit-any
   expectTypeOf(compose(String, Boolean)).toMatchTypeOf<(a: any) => boolean>()
 })
 
-testProp(
+test.prop([fc.anything()])(
   `compose returns the identity function for no arguments`,
-  [fc.anything()],
   value => {
     const fn = compose()
 
@@ -172,9 +162,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `compose composes`,
-  [fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })],
   (value, [firstFn, ...otherFns]) => {
     expect(
       (compose as (...args: unknown[]) => (arg: unknown) => unknown)(

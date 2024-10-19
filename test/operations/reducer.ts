@@ -1,4 +1,5 @@
-import { fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect } from 'vitest'
 import {
   mapAsyncReducer,
   mapReducer,
@@ -14,11 +15,10 @@ import {
   rawReducerWithFinishArb,
   rawReducerWithoutFinishArb,
 } from '../helpers/fast-check/reducer.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
-testProp(
+test.prop([functionReducerArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a function reducer`,
-  [functionReducerArb, fc.anything(), fc.anything()],
   (reducer, value1, value2) => {
     const { add, finish } = normalizeReducer(reducer)
 
@@ -27,9 +27,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithoutFinishArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a raw optional reducer without finish`,
-  [rawOptionalReducerWithoutFinishArb, fc.anything(), fc.anything()],
   (reducer, value1, value2) => {
     const { add, finish } = normalizeReducer(reducer)
 
@@ -39,9 +38,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithFinishArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a raw optional reducer with finish`,
-  [rawOptionalReducerWithFinishArb, fc.anything(), fc.anything()],
   (reducer, value1, value2) => {
     const { add, finish } = normalizeReducer(reducer)
 
@@ -51,9 +49,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawReducerWithoutFinishArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a raw reducer without finish`,
-  [rawReducerWithoutFinishArb, fc.anything(), fc.anything()],
   (reducer, value1, value2) => {
     const { create, add, finish } = normalizeReducer(reducer)
 
@@ -64,9 +61,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawReducerWithFinishArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a raw reducer with finish`,
-  [rawReducerWithFinishArb, fc.anything(), fc.anything()],
   (reducer, value1, value2) => {
     const { create, add, finish } = normalizeReducer(reducer)
 
@@ -77,9 +73,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, functionReducerArb, fc.anything()])(
   `mapReducer maps the given function reducer using the finish method`,
-  [fnArb, functionReducerArb, fc.anything()],
   (fn, reducer, value) => {
     const { finish } = mapReducer(fn, reducer)
 
@@ -87,9 +82,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fnArb, rawReducerWithFinishArb, fc.anything()])(
   `mapReducer maps the given reducer with finish using the finish method`,
-  [fnArb, rawReducerWithFinishArb, fc.anything()],
   (fn, reducer, value) => {
     const { finish } = mapReducer(fn, reducer)
 
@@ -97,23 +91,21 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFnArb, asyncFunctionReducerArb, fc.anything()])(
   `mapAsyncReducer maps the given async function reducer using the finish method`,
-  [asyncFnArb, asyncFunctionReducerArb, fc.anything()],
   async ({ asyncFn, syncFn }, { asyncFunctionReducer }, value) => {
     const { finish } = mapAsyncReducer(asyncFn, asyncFunctionReducer)
 
-    expect(await finish(value)).toBe(syncFn(value))
+    await expect(finish(value)).resolves.toBe(syncFn(value))
   },
 )
 
-testProp(
+test.prop([asyncFnArb, rawAsyncReducerWithFinishArb, fc.anything()])(
   `mapAsyncReducer maps the given async reducer with finish using the finish method`,
-  [asyncFnArb, rawAsyncReducerWithFinishArb, fc.anything()],
   async ({ asyncFn, syncFn }, { asyncReducer, syncReducer }, value) => {
     const mappedReducer = mapAsyncReducer(asyncFn, asyncReducer)
 
-    expect(await mappedReducer.finish(value)).toBe(
+    await expect(mappedReducer.finish(value)).resolves.toBe(
       syncFn(syncReducer.finish(value)),
     )
   },

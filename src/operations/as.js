@@ -36,7 +36,6 @@ export const asAsync = iterable => {
               nonEmptyBufferDeferred?._resolve()
             })
 
-          // eslint-disable-next-line no-unmodified-loop-condition
           while (!done) {
             if (deferredError) {
               yield* buffer

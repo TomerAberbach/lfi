@@ -1,5 +1,3 @@
-/* eslint-disable typescript/no-explicit-any */
-
 /** @internal */
 type Curried<Parameters extends readonly any[], Return> = <
   PartialParameters extends Partial<Parameters>,

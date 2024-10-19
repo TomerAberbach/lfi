@@ -307,7 +307,10 @@ They are different!
   import pFilter from 'p-filter'
   import pMap from 'p-map'
 
-  const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout))
+  const delay = timeout =>
+    new Promise(resolve => {
+      setTimeout(resolve, timeout)
+    })
   const mapDelays = [10, 1, 1]
   const filterDelays = [1, 1, 10]
 
@@ -354,4 +357,5 @@ For bugs and feature requests,
 
 [MIT](https://github.com/TomerAberbach/lfi/blob/main/license) ©
 [Tomer Aberbach](https://github.com/TomerAberbach) \
-[Apache 2.0](https://github.com/TomerAberbach/lfi/blob/main/license-apache) © [Google](https://github.com/TomerAberbach/lfi/blob/main/notice-apache)
+[Apache 2.0](https://github.com/TomerAberbach/lfi/blob/main/license-apache) ©
+[Google](https://github.com/TomerAberbach/lfi/blob/main/notice-apache)

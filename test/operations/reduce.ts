@@ -1,4 +1,5 @@
-import { fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect } from 'vitest'
 import {
   emptyAsync,
   emptyConcur,
@@ -31,11 +32,10 @@ import {
   rawReducerWithFinishArb,
   rawReducerWithoutFinishArb,
 } from '../helpers/fast-check/reducer.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
-testProp(
+test.prop([functionReducerArb, iterableArb])(
   `reduce returns a pure iterable for a function reducer`,
-  [functionReducerArb, iterableArb],
   (fn, { iterable }) => {
     const reduced = reduce(fn, iterable)
 
@@ -43,9 +43,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([functionReducerArb])(
   `reduce returns an empty iterable for a function reducer and empty iterable`,
-  [functionReducerArb],
   fn => {
     const reduced = reduce(fn, [])
 
@@ -53,9 +52,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([functionReducerArb, nonEmptyIterableArb])(
   `reduce reduces the given non-empty iterable using the given function reducer`,
-  [functionReducerArb, nonEmptyIterableArb],
   (fn, { iterable, values }) => {
     const reduced = reduce(fn, iterable)
 
@@ -63,9 +61,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithoutFinishArb, iterableArb])(
   `reduce returns a pure iterable for an optional reducer without finish`,
-  [rawOptionalReducerWithoutFinishArb, iterableArb],
   (reducer, { iterable }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -73,9 +70,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithoutFinishArb])(
   `reduce returns an empty iterable for a optional reducer without finish and empty iterable`,
-  [rawOptionalReducerWithoutFinishArb],
   reducer => {
     const reduced = reduce(reducer, [])
 
@@ -83,9 +79,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithoutFinishArb, nonEmptyIterableArb])(
   `reduce reduces the given non-empty iterable using the given optional reducer without finish`,
-  [rawOptionalReducerWithoutFinishArb, nonEmptyIterableArb],
   (reducer, { iterable, values }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -95,9 +90,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithFinishArb, iterableArb])(
   `reduce returns a pure iterable for an optional reducer with finish`,
-  [rawOptionalReducerWithFinishArb, iterableArb],
   (reducer, { iterable }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -105,9 +99,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithFinishArb])(
   `reduce returns an empty iterable for a optional reducer with finish and empty iterable`,
-  [rawOptionalReducerWithFinishArb],
   reducer => {
     const reduced = reduce(reducer, [])
 
@@ -115,9 +108,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawOptionalReducerWithFinishArb, nonEmptyIterableArb])(
   `reduce reduces the given non-empty iterable using the given optional reducer with finish`,
-  [rawOptionalReducerWithFinishArb, nonEmptyIterableArb],
   (reducer, { iterable, values }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -127,9 +119,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawReducerWithoutFinishArb, iterableArb])(
   `reduce reduces the given iterable using the given reducer without finish`,
-  [rawReducerWithoutFinishArb, iterableArb],
   (reducer, { iterable, values }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -139,9 +130,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawReducerWithFinishArb, iterableArb])(
   `reduce reduces the given iterable using the given reducer with finish`,
-  [rawReducerWithFinishArb, iterableArb],
   (reducer, { iterable, values }) => {
     const reduced = reduce(reducer, iterable)
 
@@ -153,9 +143,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFunctionReducerArb, asyncIterableArb])(
   `reduceAsync returns an async iterable for an async function reducer`,
-  [asyncFunctionReducerArb, asyncIterableArb],
   async ({ asyncFunctionReducer }, { iterable }) => {
     const reduced = reduceAsync(asyncFunctionReducer, iterable)
 
@@ -163,37 +152,34 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFunctionReducerArb])(
   `reduceAsync returns an empty async iterable for an async function reducer and empty async iterable`,
-  [asyncFunctionReducerArb],
   async ({ asyncFunctionReducer }) => {
     const reduced = reduceAsync(asyncFunctionReducer, emptyAsync)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFunctionReducerArb(asyncAbelianGroupFnArb),
+  getAsyncIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceAsync reduces the given non-empty async iterable using the given async abelian group function reducer`,
-  [
-    getAsyncFunctionReducerArb(asyncAbelianGroupFnArb),
-    getAsyncIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async (
     { asyncFunctionReducer, syncFunctionReducer },
     { iterable, values },
   ) => {
     const reduced = reduceAsync(asyncFunctionReducer, iterable)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
       values.reduce(syncFunctionReducer),
     ])
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithoutFinishArb, asyncIterableArb])(
   `reduceAsync returns an async iterable for an async optional reducer without finish`,
-  [rawAsyncOptionalReducerWithoutFinishArb, asyncIterableArb],
   async ({ asyncReducer }, { iterable }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
@@ -201,34 +187,31 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   `reduceAsync returns an empty async iterable for an async optional reducer without finish and empty async iterable`,
-  [rawAsyncOptionalReducerWithoutFinishArb],
   async ({ asyncReducer }) => {
     const reduced = reduceAsync(asyncReducer, emptyAsync)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncOptionalReducerWithoutFinishArb(asyncAbelianGroupFnArb),
+  getAsyncIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceAsync reduces the given non-empty async iterable using the given abelian group async optional reducer without finish`,
-  [
-    getRawAsyncOptionalReducerWithoutFinishArb(asyncAbelianGroupFnArb),
-    getAsyncIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
       values.reduce((a, b) => Number(syncReducer.add(a, b))),
     ])
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithFinishArb, asyncIterableArb])(
   `reduceAsync returns an async iterable for an async optional reducer with finish`,
-  [rawAsyncOptionalReducerWithFinishArb, asyncIterableArb],
   async ({ asyncReducer }, { iterable }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
@@ -236,26 +219,24 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithFinishArb])(
   `reduceAsync returns an empty async iterable for an async optional reducer with finish and empty async iterable`,
-  [rawAsyncOptionalReducerWithFinishArb],
   async ({ asyncReducer }) => {
     const reduced = reduceAsync(asyncReducer, emptyAsync)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncOptionalReducerWithFinishArb(asyncAbelianGroupFnArb),
+  getAsyncIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceAsync reduces the given non-empty async iterable using the given abelian group async optional reducer with finish`,
-  [
-    getRawAsyncOptionalReducerWithFinishArb(asyncAbelianGroupFnArb),
-    getAsyncIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
-    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
+    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
       syncReducer.finish(
         values.reduce((a, b) => Number(syncReducer.add(a, b))),
       ),
@@ -263,12 +244,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncReducerWithoutFinishArb(asyncAbelianGroupFnArb),
+  getAsyncIterableArb(fc.integer()),
+])(
   `reduceAsync reduces the given async iterable using the given abelian group async reducer without finish`,
-  [
-    getRawAsyncReducerWithoutFinishArb(asyncAbelianGroupFnArb),
-    getAsyncIterableArb(fc.integer()),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = await reduceAsync(asyncReducer, iterable)
 
@@ -278,9 +258,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `reduceAsync reduces the given async iterable using the given async reducer with combine and without finish`,
-  [asyncIterableArb],
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
@@ -314,12 +293,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncReducerWithFinishArb(asyncAbelianGroupFnArb),
+  getAsyncIterableArb(fc.integer()),
+])(
   `reduceAsync reduces the given async iterable using the given abelian group async reducer with finish`,
-  [
-    getRawAsyncReducerWithFinishArb(asyncAbelianGroupFnArb),
-    getAsyncIterableArb(fc.integer()),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = await reduceAsync(asyncReducer, iterable)
 
@@ -331,9 +309,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `reduceAsync reduces the given async iterable using the given async reducer with combine and finish`,
-  [asyncIterableArb],
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
@@ -371,9 +348,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFunctionReducerArb, concurIterableArb])(
   `reduceConcur returns an concur iterable for an async function reducer`,
-  [asyncFunctionReducerArb, concurIterableArb],
   async ({ asyncFunctionReducer }, { iterable }) => {
     const reduced = reduceConcur(asyncFunctionReducer, iterable)
 
@@ -381,37 +357,34 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncFunctionReducerArb])(
   `reduceConcur returns an empty concur iterable for an async function reducer and empty concur iterable`,
-  [asyncFunctionReducerArb],
   async ({ asyncFunctionReducer }) => {
     const reduced = reduceConcur(asyncFunctionReducer, emptyConcur)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getAsyncFunctionReducerArb(asyncAbelianGroupFnArb),
+  getConcurIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceConcur reduces the given non-empty concur iterable using the given async abelian group function reducer`,
-  [
-    getAsyncFunctionReducerArb(asyncAbelianGroupFnArb),
-    getConcurIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async (
     { asyncFunctionReducer, syncFunctionReducer },
     { iterable, values },
   ) => {
     const reduced = reduceConcur(asyncFunctionReducer, iterable)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
       values.reduce(syncFunctionReducer),
     ])
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithoutFinishArb, concurIterableArb])(
   `reduceConcur returns an concur iterable for an async optional reducer without finish`,
-  [rawAsyncOptionalReducerWithoutFinishArb, concurIterableArb],
   async ({ asyncReducer }, { iterable }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
@@ -419,34 +392,31 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   `reduceConcur returns an empty concur iterable for an async optional reducer without finish and empty concur iterable`,
-  [rawAsyncOptionalReducerWithoutFinishArb],
   async ({ asyncReducer }) => {
     const reduced = reduceConcur(asyncReducer, emptyConcur)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncOptionalReducerWithoutFinishArb(asyncAbelianGroupFnArb),
+  getConcurIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceConcur reduces the given non-empty concur iterable using the given abelian group async optional reducer without finish`,
-  [
-    getRawAsyncOptionalReducerWithoutFinishArb(asyncAbelianGroupFnArb),
-    getConcurIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
       values.reduce((a, b) => Number(syncReducer.add(a, b))),
     ])
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithFinishArb, concurIterableArb])(
   `reduceConcur returns an concur iterable for an async optional reducer with finish`,
-  [rawAsyncOptionalReducerWithFinishArb, concurIterableArb],
   async ({ asyncReducer }, { iterable }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
@@ -454,26 +424,24 @@ testProp(
   },
 )
 
-testProp(
+test.prop([rawAsyncOptionalReducerWithFinishArb])(
   `reduceConcur returns an empty concur iterable for an async optional reducer with finish and empty concur iterable`,
-  [rawAsyncOptionalReducerWithFinishArb],
   async ({ asyncReducer }) => {
     const reduced = reduceConcur(asyncReducer, emptyConcur)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncOptionalReducerWithFinishArb(asyncAbelianGroupFnArb),
+  getConcurIterableArb(fc.integer(), { minLength: 1 }),
+])(
   `reduceConcur reduces the given non-empty concur iterable using the given abelian group async optional reducer with finish`,
-  [
-    getRawAsyncOptionalReducerWithFinishArb(asyncAbelianGroupFnArb),
-    getConcurIterableArb(fc.integer(), { minLength: 1 }),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
-    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
+    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
       syncReducer.finish(
         values.reduce((a, b) => Number(syncReducer.add(a, b))),
       ),
@@ -481,12 +449,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncReducerWithoutFinishArb(asyncAbelianGroupFnArb),
+  getConcurIterableArb(fc.integer()),
+])(
   `reduceConcur reduces the given concur iterable using the given abelian group async reducer without finish`,
-  [
-    getRawAsyncReducerWithoutFinishArb(asyncAbelianGroupFnArb),
-    getConcurIterableArb(fc.integer()),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = await reduceConcur(asyncReducer, iterable)
 
@@ -496,9 +463,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `reduceConcur reduces the given concur iterable using the given async reducer with combine and without finish`,
-  [concurIterableArb],
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],
@@ -532,12 +498,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getRawAsyncReducerWithFinishArb(asyncAbelianGroupFnArb),
+  getConcurIterableArb(fc.integer()),
+])(
   `reduceConcur reduces the given concur iterable using the given abelian group async reducer with finish`,
-  [
-    getRawAsyncReducerWithFinishArb(asyncAbelianGroupFnArb),
-    getConcurIterableArb(fc.integer()),
-  ],
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = await reduceConcur(asyncReducer, iterable)
 
@@ -549,9 +514,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `reduceConcur reduces the given async iterable using the given concur reducer with combine and finish`,
-  [concurIterableArb],
   async ({ iterable, values }, scheduler) => {
     const syncReducer = {
       create: () => [] as unknown[],

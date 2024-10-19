@@ -1,4 +1,4 @@
-import { expectTypeOf } from 'tomer'
+import { expect, expectTypeOf } from 'vitest'
 import {
   asAsync,
   asConcur,
@@ -22,7 +22,7 @@ import {
   concurIterableArb,
   iterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`find types are correct`, () => {
   expectTypeOf(
@@ -34,9 +34,8 @@ test.skip(`find types are correct`, () => {
   ).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `find returns a pure iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable }) => {
     const found = find(fn, iterable)
 
@@ -44,9 +43,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `find returns an optional corresponding to the first value in the given iterable for which the given predicate returns a truthy value`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const index = values.findIndex(value => fn(value))
     const expected = index === -1 ? [] : [values[index]]
@@ -74,9 +72,8 @@ test.skip(`findAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `findAsync returns a pure async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const found = findAsync(asyncFn, iterable)
 
@@ -84,16 +81,15 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `findAsync returns an optional corresponding to the first value in the given async iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const index = values.findIndex(value => syncFn(value))
     const expected = index === -1 ? [] : [values[index]]
 
     const found = findAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), found)).toStrictEqual(expected)
+    await expect(reduceAsync(toArray(), found)).resolves.toStrictEqual(expected)
   },
 )
 
@@ -114,9 +110,8 @@ test.skip(`findConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `findConcur returns a concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const found = findConcur(asyncFn, iterable)
 
@@ -124,9 +119,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `findConcur returns an optional corresponding to the first value in the given concur iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const expected = values.filter(value => syncFn(value))
 
@@ -148,9 +142,8 @@ test.skip(`findLast types are correct`, () => {
   ).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `findLast returns a pure iterable`,
-  [predicateArb, iterableArb],
   (fn, { iterable }) => {
     const found = findLast(fn, iterable)
 
@@ -158,9 +151,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([predicateArb, iterableArb])(
   `findLast returns an optional corresponding to the last value in the given iterable for which the given predicate returns a truthy value`,
-  [predicateArb, iterableArb],
   (fn, { iterable, values }) => {
     const reversedValues = [...values].reverse()
     const index = reversedValues.findIndex(value => fn(value))
@@ -189,9 +181,8 @@ test.skip(`findLastAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `findLastAsync returns a pure async iterable`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const found = findLastAsync(asyncFn, iterable)
 
@@ -199,9 +190,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, asyncIterableArb])(
   `findLastAsync returns an optional corresponding to the last value in the given async iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, asyncIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const reversedValues = [...values].reverse()
     const index = reversedValues.findIndex(value => syncFn(value))
@@ -209,7 +199,7 @@ testProp(
 
     const found = findLastAsync(asyncFn, iterable)
 
-    expect(await reduceAsync(toArray(), found)).toStrictEqual(expected)
+    await expect(reduceAsync(toArray(), found)).resolves.toStrictEqual(expected)
   },
 )
 
@@ -230,9 +220,8 @@ test.skip(`findLastConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `findLastConcur returns a concur iterable`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn }, { iterable }) => {
     const found = findLastConcur(asyncFn, iterable)
 
@@ -240,9 +229,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncPredicateArb, concurIterableArb])(
   `findLastConcur returns an optional corresponding to the last value in the given concur iterable for which the given predicate returns a truthy value`,
-  [asyncPredicateArb, concurIterableArb],
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const expected = values.filter(value => syncFn(value))
 

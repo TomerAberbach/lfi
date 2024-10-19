@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import {
   asAsync,
   asConcur,
@@ -25,7 +26,7 @@ import {
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`or types are correct`, () => {
   expectTypeOf(
@@ -36,12 +37,11 @@ test.skip(`or types are correct`, () => {
   ).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([
+  fnArb,
+  getIterableArb(fc.anything()).filter(({ values }) => values.length !== 1),
+])(
   `or calls the given function and returns its output for an iterable not containing exactly one value`,
-  [
-    fnArb,
-    getIterableArb(fc.anything()).filter(({ values }) => values.length !== 1),
-  ],
   (fn, { iterable }) => {
     const value = or(fn, iterable)
 
@@ -49,9 +49,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  fnArb,
+  getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
+])(
   `or returns the iterable's only value for an iterable containing one value`,
-  [fnArb, getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })],
   (fn, { iterable, values }) => {
     const value = or(fn, iterable)
 
@@ -74,14 +76,13 @@ test.skip(`orAsync types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([
+  asyncFnArb,
+  getAsyncIterableArb(fc.anything()).filter(
+    ({ values }) => values.length !== 1,
+  ),
+])(
   `orAsync calls the given function and returns its output for an async iterable not containing exactly one value`,
-  [
-    asyncFnArb,
-    getAsyncIterableArb(fc.anything()).filter(
-      ({ values }) => values.length !== 1,
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const value = await orAsync(asyncFn, iterable)
 
@@ -89,12 +90,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  asyncFnArb,
+  getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
+])(
   `orAsync returns the async iterable's only value for an async iterable containing one value`,
-  [
-    asyncFnArb,
-    getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
-  ],
   async ({ asyncFn }, { iterable, values }) => {
     const value = await orAsync(asyncFn, iterable)
 
@@ -117,14 +117,13 @@ test.skip(`orConcur types are correct`, () => {
   ).toMatchTypeOf<Promise<number>>()
 })
 
-testProp(
+test.prop([
+  asyncFnArb,
+  getConcurIterableArb(fc.anything()).filter(
+    ({ values }) => values.length !== 1,
+  ),
+])(
   `orConcur calls the given function and returns its output for a concur iterable not containing exactly one value`,
-  [
-    asyncFnArb,
-    getConcurIterableArb(fc.anything()).filter(
-      ({ values }) => values.length !== 1,
-    ),
-  ],
   async ({ asyncFn, syncFn }, { iterable }) => {
     const value = await orConcur(asyncFn, iterable)
 
@@ -132,12 +131,11 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  asyncFnArb,
+  getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
+])(
   `orConcur returns the concur iterable's only value for a concur iterable containing one value`,
-  [
-    asyncFnArb,
-    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
-  ],
   async ({ asyncFn }, { iterable, values }) => {
     const value = await orConcur(asyncFn, iterable)
 
@@ -145,9 +143,10 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getIterableArb(fc.anything()).filter(({ values }) => values.length !== 1),
+])(
   `get throws an error for an iterable not containing exactly one value`,
-  [getIterableArb(fc.anything()).filter(({ values }) => values.length !== 1)],
   ({ iterable }) => {
     expect(() => get(iterable)).toThrowWithMessage(
       Error,
@@ -160,9 +159,8 @@ test.skip(`get types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], get)).toMatchTypeOf<number>()
 })
 
-testProp(
+test.prop([getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })])(
   `get returns the iterable's only value for an iterable containing one value`,
-  [getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })],
   ({ iterable, values }) => {
     const value = get(iterable)
 
@@ -176,13 +174,12 @@ test.skip(`getAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([
+  getAsyncIterableArb(fc.anything()).filter(
+    ({ values }) => values.length !== 1,
+  ),
+])(
   `getAsync throws an error for an async iterable not containing exactly one value`,
-  [
-    getAsyncIterableArb(fc.anything()).filter(
-      ({ values }) => values.length !== 1,
-    ),
-  ],
   async ({ iterable }) => {
     await expect(() => getAsync(iterable)).rejects.toThrowWithMessage(
       Error,
@@ -191,9 +188,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })])(
   `getAsync returns the async iterable's only value for an async iterable containing one value`,
-  [getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })],
   async ({ iterable, values }) => {
     const value = await getAsync(iterable)
 
@@ -207,13 +203,12 @@ test.skip(`getConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([
+  getConcurIterableArb(fc.anything()).filter(
+    ({ values }) => values.length !== 1,
+  ),
+])(
   `getConcur throws an error for a concur iterable not containing exactly one value`,
-  [
-    getConcurIterableArb(fc.anything()).filter(
-      ({ values }) => values.length !== 1,
-    ),
-  ],
   async ({ iterable }) => {
     await expect(() => getConcur(iterable)).rejects.toThrowWithMessage(
       Error,
@@ -222,9 +217,10 @@ testProp(
   },
 )
 
-testProp(
+test.prop([
+  getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
+])(
   `getConcur returns the concur iterable's only value for a concur iterable containing one value`,
-  [getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })],
   async ({ iterable, values }) => {
     const value = await getConcur(iterable)
 
@@ -238,9 +234,8 @@ test.skip(`next types are correct`, () => {
   expectTypeOf(array[1]).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(
+test.prop([iterableArb])(
   `next returns a pair of iterables, the second of which isn't pure`,
-  [iterableArb],
   ({ iterable }) => {
     const pair = next(iterable)
 
@@ -260,9 +255,8 @@ test(`next returns a pair containing two empty iterables for an empty iterable`,
   expect([...iterable2]).toBeEmpty()
 })
 
-testProp(
+test.prop([nonEmptyIterableArb])(
   `next returns a pair containing an iterable containing the first value of the given iterable followed by an iterable containing the rest of the given iterable, for a nonempty iterable`,
-  [nonEmptyIterableArb],
   ({ iterable, values }) => {
     const [iterable1, iterable2] = next(iterable)
 
@@ -277,9 +271,8 @@ test.skip(`nextAsync types are correct`, async () => {
   expectTypeOf(array[1]).toMatchTypeOf<AsyncIterable<number>>()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `nextAsync returns a pair of async iterables, the second of which isn't pure`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const pair = await nextAsync(iterable)
 
@@ -295,20 +288,19 @@ testProp(
 test(`nextAsync returns a pair containing two empty async iterables for an empty async iterable`, async () => {
   const [asyncIterable1, asyncIterable2] = await nextAsync(emptyAsync)
 
-  expect(await reduceAsync(toArray(), asyncIterable1)).toBeEmpty()
-  expect(await reduceAsync(toArray(), asyncIterable2)).toBeEmpty()
+  await expect(reduceAsync(toArray(), asyncIterable1)).resolves.toBeEmpty()
+  await expect(reduceAsync(toArray(), asyncIterable2)).resolves.toBeEmpty()
 })
 
-testProp(
+test.prop([nonEmptyAsyncIterableArb])(
   `nextAsync returns a pair containing an async iterable containing the first value of the given async iterable followed by an async iterable containing the rest of the given async iterable, for a nonempty async iterable`,
-  [nonEmptyAsyncIterableArb],
   async ({ iterable, values }) => {
     const [asyncIterable1, asyncIterable2] = await nextAsync(iterable)
 
-    expect(await reduceAsync(toArray(), asyncIterable1)).toStrictEqual([
-      values[0],
-    ])
-    expect(await reduceAsync(toArray(), asyncIterable2)).toStrictEqual(
+    await expect(reduceAsync(toArray(), asyncIterable1)).resolves.toStrictEqual(
+      [values[0]],
+    )
+    await expect(reduceAsync(toArray(), asyncIterable2)).resolves.toStrictEqual(
       values.slice(1),
     )
   },

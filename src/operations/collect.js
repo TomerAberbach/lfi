@@ -142,7 +142,6 @@ const asMultiple = (value, mapReducers) => {
 }
 
 export const toJoin = separator => ({
-  // eslint-disable-next-line no-empty-function
   create: () => {},
   add: (acc, value) =>
     acc === undefined ? String(value) : String(acc) + separator + String(value),

@@ -33,7 +33,6 @@ export const forEachAsync = curry(async (fn, asyncIterable) => {
 
 export const forEachConcur = curry((fn, concurIterable) => concurIterable(fn))
 
-// eslint-disable-next-line no-empty-function
 const createConsume = forEach => iterable => forEach(() => {}, iterable)
 
 export const consume = createConsume(forEach)

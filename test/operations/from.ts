@@ -1,4 +1,5 @@
-import { expectTypeOf, fc, testProp } from 'tomer'
+import { fc, test } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import { entries, keys, values } from '../../src/index.js'
 
 const objectArb = fc.dictionary(fc.string(), fc.anything())
@@ -24,15 +25,14 @@ test.skip(`keys types are correct`, () => {
   ]).toMatchTypeOf<number[]>()
 })
 
-testProp(`keys returns a pure iterable for an object`, [objectArb], object => {
+test.prop([objectArb])(`keys returns a pure iterable for an object`, object => {
   const iterable = keys(object)
 
   expect(iterable).toBeIterable()
 })
 
-testProp(
+test.prop([objectArb])(
   `keys returns an iterable containing the keys of the given object`,
-  [objectArb],
   object => {
     const iterable = keys(object)
 
@@ -40,15 +40,14 @@ testProp(
   },
 )
 
-testProp(`keys returns a pure iterable for a map`, [mapArb], map => {
+test.prop([mapArb])(`keys returns a pure iterable for a map`, map => {
   const iterable = keys(map)
 
   expect(iterable).toBeIterable()
 })
 
-testProp(
+test.prop([mapArb])(
   `keys returns an iterable containing the keys of the given map`,
-  [mapArb],
   map => {
     const iterable = keys(map)
 
@@ -71,9 +70,8 @@ test.skip(`values types are correct`, () => {
   expectTypeOf([...values(new Set([1, 2]))]).toMatchTypeOf<number[]>()
 })
 
-testProp(
+test.prop([objectArb])(
   `values returns a pure iterable for an object`,
-  [objectArb],
   object => {
     const iterable = values(object)
 
@@ -81,9 +79,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([objectArb])(
   `values returns an iterable containing the values of the given object`,
-  [objectArb],
   object => {
     const iterable = values(object)
 
@@ -91,9 +88,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.oneof(mapArb, setArb)])(
   `values returns a pure iterable for a map or set`,
-  [fc.oneof(mapArb, setArb)],
   object => {
     const iterable = values(object)
 
@@ -101,9 +97,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.oneof(mapArb, setArb)])(
   `values returns an iterable containing the values of the given map or set`,
-  [fc.oneof(mapArb, setArb)],
   object => {
     const iterable = values(object)
 
@@ -132,9 +127,8 @@ test.skip(`entries types are correct`, () => {
   ]).toMatchTypeOf<[number, number][]>()
 })
 
-testProp(
+test.prop([objectArb])(
   `entries returns a pure iterable for an object`,
-  [objectArb],
   object => {
     const iterable = entries(object)
 
@@ -142,9 +136,8 @@ testProp(
   },
 )
 
-testProp(
+test.prop([objectArb])(
   `entries returns an iterable containing the entries of the given object`,
-  [objectArb],
   object => {
     const iterable = entries(object)
 
@@ -152,15 +145,14 @@ testProp(
   },
 )
 
-testProp(`entries returns a pure iterable for a map`, [mapArb], map => {
+test.prop([mapArb])(`entries returns a pure iterable for a map`, map => {
   const iterable = entries(map)
 
   expect(iterable).toBeIterable()
 })
 
-testProp(
+test.prop([mapArb])(
   `entries returns an iterable containing the entries of the given map`,
-  [mapArb],
   map => {
     const iterable = entries(map)
 

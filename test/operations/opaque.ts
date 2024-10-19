@@ -1,4 +1,4 @@
-import { expectTypeOf } from 'tomer'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -15,21 +15,20 @@ import {
   concurIterableArb,
   iterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 
 test.skip(`opaque types are correct`, () => {
   expectTypeOf(opaque([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
 })
 
-testProp(`opaque returns a pure iterable`, [iterableArb], ({ iterable }) => {
+test.prop([iterableArb])(`opaque returns a pure iterable`, ({ iterable }) => {
   const opaqueIterable = opaque(iterable)
 
   expect(opaqueIterable).toBeIterable()
 })
 
-testProp(
+test.prop([iterableArb])(
   `opaque returns an iterable deeply equal, but not referentially equal, to the given iterable`,
-  [iterableArb],
   ({ iterable, values }) => {
     const opaqueIterable = opaque(iterable)
 
@@ -44,9 +43,8 @@ test.skip(`opaqueAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([asyncIterableArb])(
   `opaqueAsync returns a pure async iterable`,
-  [asyncIterableArb],
   async ({ iterable }) => {
     const opaqueIterable = opaqueAsync(iterable)
 
@@ -54,13 +52,14 @@ testProp(
   },
 )
 
-testProp(
+test.prop([asyncIterableArb])(
   `opaqueAsync returns an async iterable deeply equal, but not referentially equal, to the given async iterable`,
-  [asyncIterableArb],
   async ({ iterable, values }) => {
     const opaqueIterable = opaqueAsync(iterable)
 
-    expect(await reduceAsync(toArray(), opaqueIterable)).toStrictEqual(values)
+    await expect(reduceAsync(toArray(), opaqueIterable)).resolves.toStrictEqual(
+      values,
+    )
     expect(opaqueIterable).not.toBe(iterable)
   },
 )
@@ -71,9 +70,8 @@ test.skip(`opaqueConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([concurIterableArb])(
   `opaqueConcur returns a pure concur iterable`,
-  [concurIterableArb],
   async ({ iterable }) => {
     const opaqueIterable = opaqueConcur(iterable)
 
@@ -81,15 +79,14 @@ testProp(
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `opaqueConcur returns a concur iterable deeply equal, but not referentially equal, to the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const opaqueIterable = opaqueConcur(iterable)
 
-    expect(await reduceConcur(toArray(), opaqueIterable)).toIncludeSameMembers(
-      values,
-    )
+    await expect(
+      reduceConcur(toArray(), opaqueIterable),
+    ).resolves.toIncludeSameMembers(values)
     expect(opaqueIterable).not.toBe(iterable)
   },
 )

@@ -1,4 +1,5 @@
-import { expectTypeOf, fc } from 'tomer'
+import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import type { ConcurIterable } from '../../src/index.js'
 import {
   asAsync,
@@ -13,7 +14,7 @@ import {
   concurIterableArb,
   iterableArb,
 } from '../helpers/fast-check/iterable.js'
-import { testProp } from '../helpers/fast-check/test-prop.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 import delay from '../helpers/delay.js'
 import autoAdvance from '../helpers/auto-advance.js'
@@ -31,9 +32,8 @@ test.skip(`asAsync types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
   `asAsync returns a pure async iterable for non-concur iterables`,
-  [fc.oneof(iterableArb, asyncIterableArb)],
   async ({ iterable }) => {
     const asyncIterable = asAsync(iterable)
 
@@ -41,25 +41,25 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
   `asAsync returns an async iterable containing the same values in the same order as the given iterable or async iterable`,
-  [fc.oneof(iterableArb, asyncIterableArb)],
   async ({ iterable, values }) => {
     const asyncIterable = asAsync(iterable)
 
-    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(values)
+    await expect(reduceAsync(toArray(), asyncIterable)).resolves.toStrictEqual(
+      values,
+    )
   },
 )
 
-testProp(
+test.prop([concurIterableArb])(
   `asAsync returns an async iterable containing the same values as the given concur iterable`,
-  [concurIterableArb],
   async ({ iterable, values }) => {
     const asyncIterable = asAsync(iterable)
 
-    expect(await reduceAsync(toArray(), asyncIterable)).toIncludeSameMembers(
-      values,
-    )
+    await expect(
+      reduceAsync(toArray(), asyncIterable),
+    ).resolves.toIncludeSameMembers(values)
   },
 )
 
@@ -104,9 +104,8 @@ test.skip(`asConcur types are correct`, () => {
   >()
 })
 
-testProp(
+test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
   `asConcur returns a pure concur iterable`,
-  [fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)],
   async ({ iterable }) => {
     const concurIterable = asConcur(iterable)
 
@@ -114,21 +113,19 @@ testProp(
   },
 )
 
-testProp(
+test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
   `asConcur returns a concur iterable containing the same values as the given iterable`,
-  [fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)],
   async ({ iterable, values }) => {
     const concurIterable = asConcur(iterable)
 
-    expect(await reduceConcur(toArray(), concurIterable)).toIncludeSameMembers(
-      values,
-    )
+    await expect(
+      reduceConcur(toArray(), concurIterable),
+    ).resolves.toIncludeSameMembers(values)
   },
 )
 
-testProp(
+test.prop([fc.oneof(asyncIterableArb, concurIterableArb)])(
   `asConcur returns a concur iterable as concurrent as the given iterable`,
-  [fc.oneof(asyncIterableArb, concurIterableArb)],
   async ({ iterable }, scheduler) => {
     const { elapsed } = await withElapsed(() =>
       consumeConcur(asConcur(iterable)),

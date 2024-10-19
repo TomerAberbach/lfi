@@ -1,4 +1,6 @@
 import { fc } from '@fast-check/vitest'
+import type { GeneratedAsyncFn } from './fn.js'
+import { asyncFnArb, fnArb } from './fn.js'
 import type {
   AsyncFunctionReducer,
   FunctionReducer,
@@ -10,10 +12,8 @@ import type {
   RawOptionalReducerWithoutFinish,
   RawReducerWithFinish,
   RawReducerWithoutFinish,
-} from '../../../src/index.js'
-import { NO_ENTRY } from '../../../src/index.js'
-import type { GeneratedAsyncFn } from './fn.js'
-import { asyncFnArb, fnArb } from './fn.js'
+} from '~/index.js'
+import { NO_ENTRY } from '~/index.js'
 
 export const functionReducerArb = fnArb.map(
   fn =>

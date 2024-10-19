@@ -1,10 +1,5 @@
 import { fc } from '@fast-check/vitest'
 import { expect } from 'vitest'
-import {
-  mapAsyncReducer,
-  mapReducer,
-  normalizeReducer,
-} from '../../src/index.js'
 import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
 import {
   asyncFunctionReducerArb,
@@ -16,6 +11,7 @@ import {
   rawReducerWithoutFinishArb,
 } from '../helpers/fast-check/reducer.js'
 import { test } from '../helpers/fast-check/test-prop.js'
+import { mapAsyncReducer, mapReducer, normalizeReducer } from '~/index.js'
 
 test.prop([functionReducerArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a function reducer`,

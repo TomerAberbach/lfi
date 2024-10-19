@@ -1,7 +1,7 @@
 import { fc } from '@fast-check/vitest'
-import type { ConcurIterable } from '../../../src/index.js'
-import type { MaybePromiseLike } from '../../../src/internal/types.js'
 import { getIterableIndex, getScheduler } from './test-prop.js'
+import type { ConcurIterable } from '~/index.js'
+import type { MaybePromiseLike } from '~/internal/types.js'
 
 const getArrayArb = <Value>(
   arb: fc.Arbitrary<Value>,

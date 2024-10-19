@@ -1,6 +1,14 @@
 /* eslint-disable typescript/no-confusing-void-expression */
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  iterableArb,
+  uniqueConcurIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
@@ -20,16 +28,8 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../../src/index.js'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  iterableArb,
-  uniqueConcurIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
+import type { ConcurIterable } from '~/index.js'
 
 test.skip(`each types are correct`, () => {
   expectTypeOf(

@@ -1,6 +1,24 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable, WindowOptions } from '../../src/index.js'
+import autoAdvance from '../helpers/auto-advance.js'
+import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
+import {
+  negativeIntegerArb,
+  nonNegativeIntegerArb,
+  nonPositiveIntegerArb,
+  nonSafeIntegerDoubleArb,
+  positiveIntegerArb,
+} from '../helpers/fast-check/integer.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyConcurIterableArb,
+  nonEmptyIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
@@ -46,26 +64,8 @@ import {
   window,
   windowAsync,
   windowConcur,
-} from '../../src/index.js'
-import autoAdvance from '../helpers/auto-advance.js'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
-import {
-  negativeIntegerArb,
-  nonNegativeIntegerArb,
-  nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb,
-  positiveIntegerArb,
-} from '../helpers/fast-check/integer.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  iterableArb,
-  nonEmptyAsyncIterableArb,
-  nonEmptyConcurIterableArb,
-  nonEmptyIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
+import type { ConcurIterable, WindowOptions } from '~/index.js'
 
 test.skip(`dropWhile types are correct`, () => {
   expectTypeOf(

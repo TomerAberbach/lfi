@@ -1,5 +1,16 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
+import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  getAsyncIterableArb,
+  getConcurIterableArb,
+  getIterableArb,
+  iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import {
   asAsync,
   asConcur,
@@ -15,18 +26,7 @@ import {
   pipe,
   reduceAsync,
   toArray,
-} from '../../src/index.js'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  getAsyncIterableArb,
-  getConcurIterableArb,
-  getIterableArb,
-  iterableArb,
-  nonEmptyAsyncIterableArb,
-  nonEmptyIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from '~/index.js'
 
 test.skip(`or types are correct`, () => {
   expectTypeOf(

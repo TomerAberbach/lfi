@@ -20,7 +20,7 @@ accumulator can be queried for values by key using RawAsyncKeyedReducer.get.
 
 ### get()
 
-> **get**: (`this`, `acc`, `key`) => `MaybePromiseLike`\<`Value` \| _typeof_
+> **get**: (`this`, `acc`, `key`) => `MaybePromiseLike`\<`Value` \| _typeof_ >
 > [`NO_ENTRY`](../variables/NO_ENTRY.md)\>
 
 #### Parameters

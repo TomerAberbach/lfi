@@ -1,5 +1,6 @@
 import { expect, expectTypeOf, test } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import autoAdvance from '../helpers/auto-advance.js'
+import type { ConcurIterable } from '~/index.js'
 import {
   empty,
   emptyAsync,
@@ -7,8 +8,7 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../../src/index.js'
-import autoAdvance from '../helpers/auto-advance.js'
+} from '~/index.js'
 
 test.skip(`empty types are correct`, () => {
   expectTypeOf(empty).toMatchTypeOf<Iterable<any>>()

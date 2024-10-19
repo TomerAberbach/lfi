@@ -1,6 +1,24 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import {
+  asyncFnArb,
+  asyncPredicateArb,
+  fnArb,
+  getAsyncFnArb,
+  predicateArb,
+} from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  getConcurIterableArb,
+  iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyConcurIterableArb,
+  nonEmptyIterableArb,
+  uniqueConcurIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
@@ -27,26 +45,8 @@ import {
   uniqueByAsync,
   uniqueByConcur,
   uniqueConcur,
-} from '../../src/index.js'
-import {
-  asyncFnArb,
-  asyncPredicateArb,
-  fnArb,
-  getAsyncFnArb,
-  predicateArb,
-} from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  getConcurIterableArb,
-  iterableArb,
-  nonEmptyAsyncIterableArb,
-  nonEmptyConcurIterableArb,
-  nonEmptyIterableArb,
-  uniqueConcurIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
+import type { ConcurIterable } from '~/index.js'
 
 test.skip(`filter types are correct`, () => {
   expectTypeOf(

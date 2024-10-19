@@ -527,7 +527,7 @@ console.log(
 
 > **toGrouped**\<`Key`, `Value`, `OuterAcc`, `OuterThis`\>(`innerReducer`,
 > `outerReducer`): [`Reducer`](../type-aliases/Reducer.md)\<readonly [`Key`,
-> `Value`], `never`, `OuterAcc`\>
+> > `Value`], `never`, `OuterAcc`\>
 
 Returns a [Reducer](../type-aliases/Reducer.md) that reduces key-value pairs
 using `outerReducer` and reduces values with the same key using `innerReducer`.

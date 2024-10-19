@@ -6,7 +6,7 @@
 
 # Type Alias: WindowOptions\<Size\>
 
-> **WindowOptions**\<`Size`\>: `PositiveInteger`\<`Size`\> \|
+> **WindowOptions**\<`Size`\>: `PositiveInteger`\<`Size`\> \| >
 > `Readonly`\<`object`\>
 
 Options for [window](../functions/window.md),

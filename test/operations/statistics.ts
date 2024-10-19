@@ -1,5 +1,19 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
+import { asyncCompareFnArb, getAsyncFnArb } from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  getAsyncIterableArb,
+  getConcurIterableArb,
+  getIterableArb,
+  iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyConcurIterableArb,
+  nonEmptyIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
@@ -49,21 +63,7 @@ import {
   sumAsync,
   sumConcur,
   toArray,
-} from '../../src/index.js'
-import { asyncCompareFnArb, getAsyncFnArb } from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  getAsyncIterableArb,
-  getConcurIterableArb,
-  getIterableArb,
-  iterableArb,
-  nonEmptyAsyncIterableArb,
-  nonEmptyConcurIterableArb,
-  nonEmptyIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
 
 test.skip(`count types are correct`, () => {
   expectTypeOf(count([1, 2, 3])).toMatchTypeOf<number>()

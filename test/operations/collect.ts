@@ -1,5 +1,30 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
+import autoAdvance from '../helpers/auto-advance.js'
+import { stringifiableArb } from '../helpers/fast-check/anything.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  getAsyncIterableArb,
+  getConcurIterableArb,
+  getIterableArb,
+  iterableArb,
+  nonEmptyIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import {
+  rawOptionalReducerArb,
+  rawReducerArb,
+} from '../helpers/fast-check/reducer.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import { sameValueZero } from '../helpers/same-value-zero.js'
+import withElapsed from '../helpers/with-elapsed.js'
+import type {
+  ConcurIterable,
+  KeyedReducer,
+  OptionalReducer,
+  RawKeyedReducer,
+  Reducer,
+} from '~/index.js'
 import {
   asAsync,
   asConcur,
@@ -30,32 +55,7 @@ import {
   toSet,
   toWeakMap,
   toWeakSet,
-} from '../../src/index.js'
-import type {
-  ConcurIterable,
-  KeyedReducer,
-  OptionalReducer,
-  RawKeyedReducer,
-  Reducer,
-} from '../../src/index.js'
-import autoAdvance from '../helpers/auto-advance.js'
-import { stringifiableArb } from '../helpers/fast-check/anything.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  getAsyncIterableArb,
-  getConcurIterableArb,
-  getIterableArb,
-  iterableArb,
-  nonEmptyIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import {
-  rawOptionalReducerArb,
-  rawReducerArb,
-} from '../helpers/fast-check/reducer.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import { sameValueZero } from '../helpers/same-value-zero.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
 
 test.skip(`toArray types are correct`, () => {
   expectTypeOf(toArray<string>()).toMatchTypeOf<Reducer<string, string[]>>()

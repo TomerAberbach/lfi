@@ -1,6 +1,15 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyConcurIterableArb,
+  nonEmptyIterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
@@ -22,17 +31,8 @@ import {
   toCount,
   toGrouped,
   toMap,
-} from '../../src/index.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  iterableArb,
-  nonEmptyAsyncIterableArb,
-  nonEmptyConcurIterableArb,
-  nonEmptyIterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from '~/index.js'
+import type { ConcurIterable } from '~/index.js'
 
 test.skip(`cache types are correct`, () => {
   expectTypeOf(cache([1, 2, 3])).toMatchTypeOf<Iterable<number>>()

@@ -1,7 +1,16 @@
 import { AsyncBetterator, Betterator } from 'betterator'
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import { asyncFnArb, fnArb, getAsyncFnArb } from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  getAsyncIterableArb,
+  getConcurIterableArb,
+  getIterableArb,
+  iterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import {
   asAsync,
   asConcur,
@@ -21,17 +30,8 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../../src/index.js'
-import { asyncFnArb, fnArb, getAsyncFnArb } from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  getAsyncIterableArb,
-  getConcurIterableArb,
-  getIterableArb,
-  iterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from '~/index.js'
+import type { ConcurIterable } from '~/index.js'
 
 test.skip(`map types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], map(String))).toMatchTypeOf<Iterable<string>>()

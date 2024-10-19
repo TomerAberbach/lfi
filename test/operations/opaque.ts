@@ -1,5 +1,11 @@
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  iterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
+import type { ConcurIterable } from '~/index.js'
 import {
   asAsync,
   asConcur,
@@ -9,13 +15,7 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../../src/index.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  iterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from '~/index.js'
 
 test.skip(`opaque types are correct`, () => {
   expectTypeOf(opaque([1, 2, 3])).toMatchTypeOf<Iterable<number>>()

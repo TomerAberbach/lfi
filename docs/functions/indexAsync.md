@@ -7,7 +7,7 @@
 # Function: indexAsync()
 
 > **indexAsync**\<`Value`\>(`asyncIterable`): `AsyncIterable`\<[`number`,
-> `Value`], `any`, `any`\>
+> > `Value`], `any`, `any`\>
 
 Returns an async iterable equivalent to `asyncIterable` except each value of
 `asyncIterable` is placed in an entry containing the value's 0-based index in

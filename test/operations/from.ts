@@ -1,6 +1,6 @@
 import { fc, test } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { entries, keys, values } from '../../src/index.js'
+import { entries, keys, values } from '~/index.js'
 
 const objectArb = fc.dictionary(fc.string(), fc.anything())
 const mapArb = fc

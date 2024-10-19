@@ -1,6 +1,12 @@
 {
   "extends": "tomer/tsconfig",
   "include": ["**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
+  },
   "typedocOptions": {
     "entryPoints": "./src/index.d.ts",
     "entryFileName": "readme.md",

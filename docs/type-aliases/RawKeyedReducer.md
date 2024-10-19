@@ -8,7 +8,7 @@
 
 > **RawKeyedReducer**\<`Key`, `Value`, `Acc`, `This`\>:
 > [`RawReducerWithoutFinish`](RawReducerWithoutFinish.md)\<readonly [`Key`,
-> `Value`], `Acc`, `This`\> & `object`
+> > `Value`], `Acc`, `This`\> & `object`
 
 A keyed reducer that reduces by creating an initial accumulator using
 RawKeyedReducer.create and then adding key-value pairs to the accumulator values
@@ -19,7 +19,7 @@ using RawKeyedReducer.get.
 
 ### get()
 
-> **get**: (`this`, `acc`, `key`) => `Value` \| _typeof_
+> **get**: (`this`, `acc`, `key`) => `Value` \| _typeof_ >
 > [`NO_ENTRY`](../variables/NO_ENTRY.md)
 
 #### Parameters

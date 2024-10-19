@@ -1,7 +1,7 @@
 import { fc, test } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { compose, curry, pipe } from '../../src/index.js'
 import { fnArb } from '../helpers/fast-check/fn.js'
+import { compose, curry, pipe } from '~/index.js'
 
 const fnAndArgsArb = fc
   .tuple(

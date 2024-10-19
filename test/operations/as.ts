@@ -1,14 +1,5 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import type { ConcurIterable } from '../../src/index.js'
-import {
-  asAsync,
-  asConcur,
-  consumeConcur,
-  reduceAsync,
-  reduceConcur,
-  toArray,
-} from '../../src/index.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -18,6 +9,15 @@ import { test } from '../helpers/fast-check/test-prop.js'
 import withElapsed from '../helpers/with-elapsed.js'
 import delay from '../helpers/delay.js'
 import autoAdvance from '../helpers/auto-advance.js'
+import {
+  asAsync,
+  asConcur,
+  consumeConcur,
+  reduceAsync,
+  reduceConcur,
+  toArray,
+} from '~/index.js'
+import type { ConcurIterable } from '~/index.js'
 
 test.skip(`asAsync types are correct`, () => {
   expectTypeOf(asAsync([1, 2, 3])).toMatchTypeOf<AsyncIterable<number>>()

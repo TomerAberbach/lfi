@@ -1,20 +1,5 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import {
-  asAsync,
-  cycle,
-  cycleAsync,
-  generate,
-  generateAsync,
-  pipe,
-  rangeTo,
-  rangeUntil,
-  reduceAsync,
-  repeat,
-  take,
-  takeAsync,
-  toArray,
-} from '../../src/index.js'
 import autoAdvance from '../helpers/auto-advance.js'
 import delay from '../helpers/delay.js'
 import { fnArb } from '../helpers/fast-check/fn.js'
@@ -29,6 +14,21 @@ import {
   nonEmptyIterableArb,
 } from '../helpers/fast-check/iterable.js'
 import { test } from '../helpers/fast-check/test-prop.js'
+import {
+  asAsync,
+  cycle,
+  cycleAsync,
+  generate,
+  generateAsync,
+  pipe,
+  rangeTo,
+  rangeUntil,
+  reduceAsync,
+  repeat,
+  take,
+  takeAsync,
+  toArray,
+} from '~/index.js'
 
 test.skip(`generate types are correct`, () => {
   expectTypeOf(generate(a => a + 1, 0)).toMatchTypeOf<Iterable<number>>()

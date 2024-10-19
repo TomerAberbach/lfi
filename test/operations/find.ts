@@ -1,4 +1,11 @@
 import { expect, expectTypeOf } from 'vitest'
+import { asyncPredicateArb, predicateArb } from '../helpers/fast-check/fn.js'
+import {
+  asyncIterableArb,
+  concurIterableArb,
+  iterableArb,
+} from '../helpers/fast-check/iterable.js'
+import { test } from '../helpers/fast-check/test-prop.js'
 import {
   asAsync,
   asConcur,
@@ -15,14 +22,7 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../../src/index.js'
-import { asyncPredicateArb, predicateArb } from '../helpers/fast-check/fn.js'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  iterableArb,
-} from '../helpers/fast-check/iterable.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from '~/index.js'
 
 test.skip(`find types are correct`, () => {
   expectTypeOf(

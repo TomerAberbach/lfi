@@ -1,13 +1,5 @@
 import { fc } from '@fast-check/vitest'
 import { expect } from 'vitest'
-import {
-  emptyAsync,
-  emptyConcur,
-  reduce,
-  reduceAsync,
-  reduceConcur,
-  toArray,
-} from '../../src/index.js'
 import { asyncAbelianGroupFnArb } from '../helpers/fast-check/fn.js'
 import {
   asyncIterableArb,
@@ -33,6 +25,14 @@ import {
   rawReducerWithoutFinishArb,
 } from '../helpers/fast-check/reducer.js'
 import { test } from '../helpers/fast-check/test-prop.js'
+import {
+  emptyAsync,
+  emptyConcur,
+  reduce,
+  reduceAsync,
+  reduceConcur,
+  toArray,
+} from '~/index.js'
 
 test.prop([functionReducerArb, iterableArb])(
   `reduce returns a pure iterable for a function reducer`,

@@ -59,7 +59,6 @@
     "test": "tomer test",
     "build": "tomer build",
     "clean": "tomer clean dist",
-    "docs": "typedoc --plugin typedoc-plugin-markdown --githubPages false",
     "prepublishOnly": "tomer build"
   },
   "prettier": "tomer/prettier",
@@ -77,8 +76,9 @@
     "eslint": "^8.57.1",
     "jest-extended": "^4.0.2",
     "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "svkc": "^1.0.0",
-    "tomer": "^4.4.1",
+    "tomer": "^4.4.2",
     "typedoc": "^0.26.11",
     "typedoc-plugin-markdown": "^4.2.10",
     "typescript": "^5.6.3",

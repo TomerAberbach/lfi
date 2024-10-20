@@ -1,0 +1,72 @@
+{
+  "name": "website",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build:docs": "docusaurus generate-typedoc",
+    "build:website": "docusaurus build",
+    "build": "run-s build:*",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
+  },
+  "engines": {
+    "node": ">= 18"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.6.1",
+    "@docusaurus/preset-classic": "^3.6.1",
+    "@docusaurus/theme-classic": "^3.6.1",
+    "@docusaurus/theme-common": "^3.6.1",
+    "@mdx-js/react": "^3.1.0",
+    "@monaco-editor/react": "^4.6.0",
+    "@rollup/browser": "^4.26.0",
+    "@tomer/prettier-config": "^2.1.0",
+    "dedent": "^1.5.3",
+    "docusaurus-plugin-typedoc": "^1.0.5",
+    "lfi": "link:..",
+    "monaco-editor": "^0.52.0",
+    "object-inspect": "^1.13.3",
+    "p-filter": "^4.1.0",
+    "p-map": "^7.0.2",
+    "prettier": "^3.3.3",
+    "prism-react-renderer": "^2.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "spin-delay": "^2.0.1",
+    "typedoc": "^0.26.11",
+    "typedoc-plugin-markdown": "^4.2.10",
+    "workerboxjs": "github:TomerAberbach/workerbox"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "^3.6.1",
+    "@docusaurus/tsconfig": "^3.6.1",
+    "@docusaurus/types": "^3.6.1",
+    "@types/node": "^22.9.0",
+    "@types/object-inspect": "^1.13.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.49",
+    "raw-loader": "^4.0.2",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3"
+  }
+}

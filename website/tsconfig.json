@@ -1,0 +1,7 @@
+{
+  "extends": ["tomer/tsconfig", "@docusaurus/tsconfig"],
+  "include": ["**/*"],
+  "compilerOptions": {
+    "baseUrl": "."
+  }
+}

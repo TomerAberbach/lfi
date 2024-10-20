@@ -1,0 +1,106 @@
+---
+sidebar_position: 1
+---
+
+# Currying
+
+This is an in-depth explanation of currying. For simple usage examples, check
+out the ["Getting started" page](/docs/getting-started).
+
+## What is it?
+
+[Currying](https://en.wikipedia.org/wiki/Currying) is the technique of
+transforming a regular function into one that can be called with a prefix of its
+parameters, in which case the function doesn't return its usual result. Instead
+it returns _another_ curried function that accepts the remaining parameters.
+
+For example, consider the following function:
+
+```js
+const sum = (a, b, c) => a + b + c
+```
+
+Without currying, the only way to call it would be with three arguments, like
+`sum(1, 2, 3)`, but with currying it could be called in any of the following
+ways:
+
+```js
+sum(1, 2, 3)
+sum(1, 2)(3)
+sum(1)(2, 3)
+sum(1)(2)(3)
+```
+
+## How is it used in `lfi`?
+
+`lfi`'s functions are automatically curried where applicable[^1] and their
+parameters are perfectly arranged for use in the `pipe` function, which provides
+a syntax similar to
+[method chaining](https://en.wikipedia.org/wiki/Method_chaining) without giving
+up
+[tree shaking](https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking)[^2].
+
+For example, consider the following code:
+
+```js playground
+import {
+  filter,
+  flatMap,
+  map,
+  pipe,
+  reduce,
+  toGrouped,
+  toMap,
+  toSet,
+} from 'lfi'
+import zoo from 'zoo'
+
+const getSlothNamesByAgeWithCurrying = () =>
+  pipe(
+    zoo.exhibits,
+    flatMap(exhibit => exhibit.animals),
+    filter(animal => animal.species === `sloth`),
+    map(sloth => [sloth.age, sloth.name]),
+    reduce(toGrouped(toSet(), toMap())),
+  )
+console.log(getSlothNamesByAgeWithCurrying())
+
+const getSlothNamesByAgeWithoutCurrying = () =>
+  reduce(
+    toGrouped(toSet(), toMap()),
+    map(
+      sloth => [sloth.age, sloth.name],
+      filter(
+        animal => animal.species === `sloth`,
+        flatMap(exhibit => exhibit.animals, zoo.exhibits),
+      ),
+    ),
+  )
+console.log(getSlothNamesByAgeWithoutCurrying())
+```
+
+`getSlothNamesByAgeWithCurrying` is easier to read because the operation order
+matches the reading order. It works because:
+
+1. Each function call returns a function that accepts an iterable.
+
+   For example, `filter` accepts two parameters: a predicate function and an
+   iterable, but in ``filter(animal => animal.species === `sloth`)`` it's called
+   with one argument. Thus, the expression evaluates to a function that accepts
+   only the second parameter, an iterable.
+
+2. `pipe` passes its first argument, an iterable, through each function argument
+   in order, and then returns the last operation's result.
+
+The result? Readable code that tree shakes perfectly. The functions imported in
+the code above bundle to just
+[790 B gzipped](https://bundlejs.com/?text=export%20{%20filter,%20flatMap,%20map,%20pipe,%20reduce,%20toGrouped,%20toMap,%20toSet%20}%20from%20%27lfi%27&bundle)!
+
+[^1]:
+    `lfi` has many zero or one parameter functions, which are pointless to
+    curry, and a few [variadic](https://en.wikipedia.org/wiki/Variadic_function)
+    functions, which are impossible to curry.
+
+[^2]:
+    Tree shaking class and object literal methods is
+    [really hard](https://github.com/rollup/rollup/issues/349).

@@ -1,0 +1,239 @@
+---
+sidebar_position: 1
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Getting started
+
+## Install
+
+Run the following command to install `lfi` from
+[npm](https://www.npmjs.com/package/lfi):
+
+<Tabs>
+<TabItem value='npm' label='npm'>
+
+```sh
+npm install lfi
+```
+
+</TabItem>
+<TabItem value='yarn' label='Yarn'>
+
+```sh
+yarn add lfi
+```
+
+</TabItem>
+<TabItem value='pnpm' label='pnpm'>
+
+```sh
+pnpm add lfi
+```
+
+</TabItem>
+</Tabs>
+
+Or import `lfi` directly from a
+[CDN](https://www.cloudflare.com/learning/cdn/what-is-a-cdn/):
+
+<Tabs>
+<TabItem value='html' label='HTML'>
+
+```html
+<script type="module">
+  import { filter, map, pipe, reduce, toSet } from 'https://cdn.skypack.dev/lfi'
+
+  // Your code...
+</script>
+```
+
+</TabItem>
+<TabItem value='deno' label='Deno'>
+
+```js
+import { filter, map, pipe, reduce, toSet } from 'https://cdn.skypack.dev/lfi'
+
+// Your code...
+```
+
+</TabItem>
+</Tabs>
+
+## Examples
+
+### Sync iterables
+
+`lfi` exports functions for processing sync iterables. Here we show how to:
+
+1. Take an iterable, in this case an array
+2. Map and filter its elements
+3. Collect the elements into a data structure, in this case an array
+
+```js playground
+import { filter, map, pipe, reduce, toArray } from 'lfi'
+
+const messySlothDiaryEntries = [
+  [`Strawberry`, `slept`],
+  [`max`, `ate  `],
+  [`max`, ``],
+  [`STRAWBERRY`, `climbed`],
+  [`Bitsy`, `ate`],
+  [`bitsy`, `strolled`],
+  [`strawberry`, `Slept`],
+  [`Bitsy`, `  `],
+]
+
+const cleanSlothDiaryEntries =
+  // Pass the entries through each operation in order, and then return the last
+  // operation's result
+  pipe(
+    messySlothDiaryEntries,
+    // Transform each entry by trimming and lowercasing strings
+    map(([sloth, activity]) => [
+      sloth.toLowerCase(),
+      activity.trim().toLowerCase(),
+    ]),
+    // Remove each entry that has an empty activity
+    filter(([, activity]) => activity.length > 0),
+    // Collect the clean entries into an array
+    reduce(toArray()),
+  )
+
+console.log(cleanSlothDiaryEntries)
+//=> [
+//=>   [ 'strawbery', 'slept' ],
+//=>   [ 'max', 'ate' ],
+//=>   [ 'strawbery', 'climbed' ],
+//=>   [ 'bitsy', 'ate' ],
+//=>   [ 'bitsy', 'strolled' ],
+//=>   [ 'strawbery', 'slept' ],
+//=> ]
+```
+
+### Async iterables
+
+`lfi` also exports functions for processing async iterables. Here we show how
+to:
+
+1. Take an async iterable, in this case one that reads a file line by line
+2. Group and map its elements asynchronously
+3. Collect the elements into a promise that resolves to a data structure, in
+   this case an array
+
+```js playground
+import {
+  chunkAsync,
+  flatMapAsync,
+  mapAsync,
+  pipe,
+  reduceAsync,
+  toArray,
+} from 'lfi'
+
+// The file has one sloth name per line
+const filename = `every-sloth-name.txt`
+
+const slothSquadStatementsPromise = pipe(
+  // Create an async iterable over the file lines, in this case sloth names
+  (await fetch(new URL(`https://lfi.dev/${filename}`))).body,
+  flatMapAsync(chunk => new TextDecoder().decode(chunk).split(`\n`)),
+  // Chunk the sloth names into array groups of 4, also known as a sloth squad
+  chunkAsync(4),
+  // Transform each sloth squad into a statement by asynchronously querying an
+  // API for an adjective to describe the squad
+  mapAsync(async slothSquad => {
+    const [adjective] = await (
+      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
+    ).json()
+    const leadingSloths = slothSquad.slice(0, 3)
+    const trailingSloth = slothSquad.at(-1)
+    return `${leadingSloths.join(`, `)}, and ${trailingSloth} are ${adjective}!`
+  }),
+  // Collect the statements into a promise that resolves to an array
+  reduceAsync(toArray()),
+)
+
+console.log(await slothSquadStatementsPromise)
+//=> [
+//=>   'strawberry, max, bitsy, and tommy jolly!',
+//=>   'penny, millie, coco, and polly are kindhearted!',
+//=>   'betty, bubbles, pearl, and sid are stylish!',
+//=>   'ava, brooke, lottie, and jeremiah are beloved!',
+//=> ]
+```
+
+### Concurrent iterables
+
+You may have noticed that the previous example queries the API sequentially.
+Each sloth squad has to wait for the previous squad's query to finish before it
+can make its own query.
+
+Sloths may be slow, but that doesn't mean we have to be!
+
+`lfi` also exports functions for its own custom
+[concurrent iterable](/docs/concepts/concurrent-iterable) protocol. Here we show
+how to:
+
+1. Take an async iterable, in this case the one from the previous example
+2. Convert it to a concurrent iterable, also known as a "concur iterable"
+3. Map its elements concurrently
+4. Collect the elements into a promise that resolves to a data structure, in
+   this case an array, concurrently
+
+```js playground
+import {
+  asConcur,
+  chunkAsync,
+  flatMapAsync,
+  mapConcur,
+  pipe,
+  reduceConcur,
+  toArray,
+} from 'lfi'
+
+// The file has one sloth name per line
+const filename = `every-sloth-name.txt`
+
+const slothSquadStatementsPromise = pipe(
+  // Create an async iterable over the file lines, in this case sloth names
+  (await fetch(new URL(`https://lfi.dev/${filename}`))).body,
+  flatMapAsync(chunk => new TextDecoder().decode(chunk).split(`\n`)),
+  // Chunk the sloth names into array groups of 4, also known as a sloth squad
+  chunkAsync(4),
+  // Convert the async iterable into a concur iterable. Every subsequent
+  // operation will process the sloth squads concurrently without waiting on
+  // other squads
+  asConcur,
+  // Transform each sloth squad into a statement by asynchronously querying an
+  // API for an adjective to describe the squad, all concurrently with other
+  // squads
+  mapConcur(async slothSquad => {
+    const [adjective] = await (
+      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
+    ).json()
+    const leadingSloths = slothSquad.slice(0, 3)
+    const trailingSloth = slothSquad.at(-1)
+    return `${leadingSloths.join(`, `)}, and ${trailingSloth} are ${adjective}`
+  }),
+  // Collect the statements into a promise that resolves to an array. Note that
+  // the concurrency means that the order of statements in the array may not
+  // match the order of the sloths in the file
+  reduceConcur(toArray()),
+)
+
+console.log(await slothSquadStatementsPromise)
+//=> [
+//=>   'strawberry, max, bitsy, and tommy jolly!',
+//=>   'ava, brooke, lottie, and jeremiah are beloved!',
+//=>   'betty, bubbles, pearl, and sid are stylish!',
+//=>   'penny, millie, coco, and polly are kindhearted!',
+//=> ]
+```
+
+## What's next?
+
+Check out the [various `lfi` concepts](/docs/concepts/currying), the
+[full API docs](/docs/api), or the [playground](/playground).

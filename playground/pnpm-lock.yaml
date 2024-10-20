@@ -1,0 +1,26 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+  .:
+    dependencies:
+      '@faker-js/faker':
+        specifier: ^9.1.0
+        version: 9.1.0
+      lfi:
+        specifier: link:..
+        version: link:..
+
+packages:
+  '@faker-js/faker@9.1.0':
+    resolution:
+      {
+        integrity: sha512-GJvX9iM9PBtKScJVlXQ0tWpihK3i0pha/XAhzQa1hPK/ILLa1Wq3I63Ij7lRtqTwmdTxRCyrUhLC5Sly9SLbug==,
+      }
+    engines: { node: '>=18.0.0', npm: '>=9.0.0' }
+
+snapshots:
+  '@faker-js/faker@9.1.0': {}

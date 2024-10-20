@@ -4,6 +4,7 @@ import type {
   PositiveInteger,
 } from '../internal/types.js'
 import type { ConcurIterable } from './as.js'
+import type { AsyncOptional, ConcurOptional, Optional } from './optional.js'
 
 /**
  * Returns an iterable containing the values of `iterable` in iteration order
@@ -327,7 +328,7 @@ type SubConcur = {
  * iterable if `iterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `even more sloth`],
@@ -345,7 +346,7 @@ export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * an empty async iterable if `asyncIterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   await pipe(
  *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
@@ -365,7 +366,7 @@ export const firstAsync: <Value>(
  * an empty concur iterable if `concurIterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   await pipe(
  *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
@@ -385,7 +386,7 @@ export const firstConcur: <Value>(
  * iterable if `iterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `even more sloth`],
@@ -403,7 +404,7 @@ export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * an empty async iterable if `asyncIterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   await pipe(
  *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
@@ -423,7 +424,7 @@ export const lastAsync: <Value>(
  * an empty concur iterable if `concurIterable` is empty.
  *
  * @example
- * ```
+ * ```js
  * console.log(
  *   await pipe(
  *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
@@ -437,6 +438,346 @@ export const lastAsync: <Value>(
 export const lastConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
 ) => ConcurIterable<Value>
+
+/**
+ * Returns an iterable containing the values of `iterable` between `start` and
+ * `end` (exclusive) of `iterable`.
+ *
+ * If any part of the range between `start` and `end` is outside the bounds of
+ * the iterable, then that part is excluded from the returned iterable. Thus,
+ * the returned iterable may be empty.
+ *
+ * WARNING: This function linearly iterates up to `end` because iterables do
+ * not support random access.
+ *
+ * @throws if either `start` or `end` is not a non-negative integer, or if
+ * `start` is greater than `end`.
+ *
+ * @example
+ * ```js
+ * const iterable = [`sloth`, `more sloth`, `even more sloth`]
+ *
+ * console.log(
+ *   pipe(
+ *     iterable,
+ *     slice(0, 3),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   pipe(
+ *     iterable,
+ *     slice(0, 42),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   pipe(
+ *     iterable,
+ *     slice(1, 3),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   pipe(
+ *     iterable,
+ *     slice(3, 5),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> []
+ * ```
+ */
+export const slice: {
+  <Start extends number>(
+    start: NonNegativeInteger<Start>,
+  ): {
+    <End extends number>(
+      End: NonNegativeInteger<End>,
+    ): <Value>(iterable: Iterable<Value>) => Iterable<Value>
+    <End extends number, Value>(
+      End: NonNegativeInteger<End>,
+      iterable: Iterable<Value>,
+    ): Iterable<Value>
+  }
+
+  <Start extends number, End extends number>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+  ): <Value>(iterable: Iterable<Value>) => Iterable<Value>
+
+  <Start extends number, End extends number, Value>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+    iterable: Iterable<Value>,
+  ): Iterable<Value>
+}
+
+/**
+ * Returns an async iterable containing the values of `asyncIterable` between
+ * `start` and `end` (exclusive) of `asyncIterable`.
+ *
+ * If any part of the range between `start` and `end` is outside the bounds of
+ * the async iterable, then that part is excluded from the returned async
+ * iterable. Thus, the returned async iterable may be empty.
+ *
+ * WARNING: This function linearly iterates up to `end` because async iterables
+ * do not support random access.
+ *
+ * @throws if either `start` or `end` is not a non-negative integer, or if
+ * `start` is greater than `end`.
+ *
+ * @example
+ * ```js
+ * const asyncIterable = asAsync([`sloth`, `more sloth`, `even more sloth`])
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     sliceAsync(0, 3),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     sliceAsync(0, 42),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     sliceAsync(1, 3),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     sliceAsync(3, 5),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> []
+ * ```
+ */
+export const sliceAsync: {
+  <Start extends number>(
+    start: NonNegativeInteger<Start>,
+  ): {
+    <End extends number>(
+      End: NonNegativeInteger<End>,
+    ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+    <End extends number, Value>(
+      End: NonNegativeInteger<End>,
+      asyncIterable: AsyncIterable<Value>,
+    ): AsyncIterable<Value>
+  }
+
+  <Start extends number, End extends number>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+
+  <Start extends number, End extends number, Value>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+    asyncIterable: AsyncIterable<Value>,
+  ): AsyncIterable<Value>
+}
+
+/**
+ * Returns a concur iterable containing the values of `concurIterable` between
+ * `start` and `end` (exclusive) of `concurIterable` in iteration order.
+ *
+ * If any part of the range between `start` and `end` is outside the bounds of
+ * the concur iterable, then that part is excluded from the returned concur
+ * iterable. Thus, the returned concur iterable may be empty.
+ *
+ * WARNING: This function linearly iterates up to `end` because concur iterables
+ * do not support random access.
+ *
+ * @throws if either `start` or `end` is not a non-negative integer, or if
+ * `start` is greater than `end`.
+ *
+ * @example
+ * ```js
+ * const concurIterable = asConcur([`sloth`, `more sloth`, `even more sloth`])
+ *
+ * console.log(
+ *   await pipe(
+ *     concurIterable,
+ *     sliceConcur(0, 3),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     concurIterable,
+ *     sliceConcur(0, 42),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     concurIterable,
+ *     sliceConcur(1, 3),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> [ 'more sloth', 'even more sloth' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     concurIterable,
+ *     sliceConcur(3, 5),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> []
+ * ```
+ */
+export const sliceConcur: {
+  <Start extends number>(
+    start: NonNegativeInteger<Start>,
+  ): {
+    <End extends number>(
+      End: NonNegativeInteger<End>,
+    ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+    <End extends number, Value>(
+      End: NonNegativeInteger<End>,
+      concurIterable: ConcurIterable<Value>,
+    ): ConcurIterable<Value>
+  }
+
+  <Start extends number, End extends number>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+
+  <Start extends number, End extends number, Value>(
+    start: NonNegativeInteger<Start>,
+    End: NonNegativeInteger<End>,
+    concurIterable: ConcurIterable<Value>,
+  ): ConcurIterable<Value>
+}
+
+/**
+ * Returns an iterable containing the value at the given `index` of `iterable`
+ * or an empty iterable if `index` is out of bounds.
+ *
+ * WARNING: This function linearly iterates up to `index` because iterables do
+ * not support random access.
+ *
+ * @throws if `index` is not a non-negative integer.
+ *
+ * @example
+ * ```js
+ * const iterable = [`sloth`, `more sloth`, `even more sloth`]
+ *
+ * console.log(
+ *   pipe(
+ *     iterable,
+ *     at(1),
+ *     get,
+ *   ),
+ * )
+ * //=> 'more sloth'
+ * ```
+ */
+export const at: {
+  <Index extends number>(
+    index: NonNegativeInteger<Index>,
+  ): <Value>(iterable: Iterable<Value>) => Optional<Value>
+  <Index extends number, Value>(
+    index: NonNegativeInteger<Index>,
+    iterable: Iterable<Value>,
+  ): Optional<Value>
+}
+
+/**
+ * Returns an async iterable containing the value at the given `index` of
+ * `asyncIterable` or an empty async iterable if `index` is out of bounds.
+ *
+ * WARNING: This function linearly iterates up to `index` because async
+ * iterables do not support random access.
+ *
+ * @throws if `index` is not a non-negative integer.
+ *
+ * @example
+ * ```js
+ * const asyncIterable = asAsync([`sloth`, `more sloth`, `even more sloth`])
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     atAsync(1),
+ *     getAsync,
+ *   ),
+ * )
+ * //=> 'more sloth'
+ * ```
+ */
+export const atAsync: {
+  <Index extends number>(
+    index: NonNegativeInteger<Index>,
+  ): <Value>(asyncIterable: AsyncIterable<Value>) => AsyncOptional<Value>
+  <Index extends number, Value>(
+    index: NonNegativeInteger<Index>,
+    asyncIterable: AsyncIterable<Value>,
+  ): AsyncOptional<Value>
+}
+
+/**
+ * Returns a concur iterable containing the value at the given `index` of
+ * `concurIterable` in iteration order, or an empty concur iterable if `index`
+ * is out of bounds.
+ *
+ * WARNING: This function linearly iterates up to `index` because concur
+ * iterables do not support random access.
+ *
+ * @throws if `index` is not a non-negative integer.
+ *
+ * @example
+ * ```js
+ * const concurIterable = asConcur([`sloth`, `more sloth`, `even more sloth`])
+ *
+ * console.log(
+ *   await pipe(
+ *     concurIterable,
+ *     atConcur(1),
+ *     getConcur,
+ *   ),
+ * )
+ * //=> 'more sloth'
+ * ```
+ */
+export const atConcur: {
+  <Index extends number>(
+    index: NonNegativeInteger<Index>,
+  ): <Value>(concurIterable: ConcurIterable<Value>) => ConcurOptional<Value>
+  <Index extends number, Value>(
+    index: NonNegativeInteger<Index>,
+    concurIterable: ConcurIterable<Value>,
+  ): ConcurOptional<Value>
+}
 
 /**
  * Returns an iterable equivalent to `iterable` except its values are grouped

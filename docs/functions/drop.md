@@ -82,7 +82,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L175)
+[slice.d.ts:176](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L176)
 
 ## drop(count, iterable)
 
@@ -129,4 +129,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:175](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L175)
+[slice.d.ts:176](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L176)

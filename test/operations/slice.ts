@@ -3,12 +3,13 @@ import { expect, expectTypeOf } from 'vitest'
 import autoAdvance from '../helpers/auto-advance.js'
 import { asyncFnArb, fnArb } from '../helpers/fast-check/fn.js'
 import {
+  getIntervalArb,
   negativeIntegerArb,
+  nonIntegerDoubleArb,
   nonNegativeIntegerArb,
   nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb,
   positiveIntegerArb,
-} from '../helpers/fast-check/integer.js'
+} from '../helpers/fast-check/number.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -22,6 +23,9 @@ import withElapsed from '../helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
+  at,
+  atAsync,
+  atConcur,
   chunk,
   chunkAsync,
   chunkConcur,
@@ -54,6 +58,9 @@ import {
   reduceAsync,
   reduceConcur,
   repeat,
+  slice,
+  sliceAsync,
+  sliceConcur,
   take,
   takeAsync,
   takeConcur,
@@ -65,7 +72,13 @@ import {
   windowAsync,
   windowConcur,
 } from '~/index.js'
-import type { ConcurIterable, WindowOptions } from '~/index.js'
+import type {
+  AsyncOptional,
+  ConcurIterable,
+  ConcurOptional,
+  Optional,
+  WindowOptions,
+} from '~/index.js'
 
 test.skip(`dropWhile types are correct`, () => {
   expectTypeOf(
@@ -456,7 +469,7 @@ test.prop([nonNegativeIntegerArb, iterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, iterableArb])(
+test.prop([nonIntegerDoubleArb, iterableArb])(
   `drop throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => drop(count, iterable)).toThrowWithMessage(
@@ -538,7 +551,7 @@ test.prop([nonNegativeIntegerArb, asyncIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, asyncIterableArb])(
+test.prop([nonIntegerDoubleArb, asyncIterableArb])(
   `dropAsync throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => dropAsync(count, iterable)).toThrowWithMessage(
@@ -624,7 +637,7 @@ test.prop([nonNegativeIntegerArb, concurIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, concurIterableArb])(
+test.prop([nonIntegerDoubleArb, concurIterableArb])(
   `dropConcur throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => dropConcur(count, iterable)).toThrowWithMessage(
@@ -708,7 +721,7 @@ test.prop([nonNegativeIntegerArb, iterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, iterableArb])(
+test.prop([nonIntegerDoubleArb, iterableArb])(
   `take throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => take(count, iterable)).toThrowWithMessage(
@@ -790,7 +803,7 @@ test.prop([nonNegativeIntegerArb, asyncIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, asyncIterableArb])(
+test.prop([nonIntegerDoubleArb, asyncIterableArb])(
   `takeAsync throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => takeAsync(count, iterable)).toThrowWithMessage(
@@ -876,7 +889,7 @@ test.prop([nonNegativeIntegerArb, concurIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, concurIterableArb])(
+test.prop([nonIntegerDoubleArb, concurIterableArb])(
   `takeConcur throws for a non-integer count`,
   (count, { iterable }) => {
     expect(() => takeConcur(count, iterable)).toThrowWithMessage(
@@ -1128,6 +1141,458 @@ test.prop([nonEmptyConcurIterableArb])(
   },
 )
 
+const reasonableNonNegativeIntegerArb = fc.integer({ min: 0, max: 200 })
+const intervalArb = getIntervalArb(reasonableNonNegativeIntegerArb)
+const invertedIntervalArb = intervalArb
+  .filter(([start, end]) => start !== end)
+  .map(([start, end]): [number, number] => [end, start])
+
+test.skip(`slice types are correct`, () => {
+  expectTypeOf(slice(1)(2, [1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(slice(1)(2)([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(slice(1, 2)([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(slice(1, 2, [1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+
+  // @ts-expect-error Not an integer literal.
+  slice(1.2)
+  slice(
+    1,
+    // @ts-expect-error Not an integer literal.
+    1.2,
+  )
+  // @ts-expect-error Not a non-negative integer.
+  slice(-1)
+  slice(
+    1,
+    // @ts-expect-error Not a non-negative integer.
+    -1,
+  )
+})
+
+test.prop([intervalArb, iterableArb])(
+  `slice returns a pure iterable`,
+  ([start, end], { iterable }) => {
+    const slicedIterable = slice(start, end, iterable)
+
+    expect(slicedIterable).toBeIterable()
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), iterableArb])(
+  `slice throws for a non-integer start`,
+  (start, { iterable }) => {
+    expect(() => slice(start, Math.ceil(start), iterable)).toThrowWithMessage(
+      Error,
+      `\`start\` must be an integer: ${start}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, iterableArb])(
+  `slice throws for a negative integer start`,
+  (start, { iterable }) => {
+    expect(() => slice(start, 1, iterable)).toThrowWithMessage(
+      Error,
+      `\`start\` must be a non-negative integer: ${start}`,
+    )
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), iterableArb])(
+  `slice throws for a non-integer end`,
+  (end, { iterable }) => {
+    expect(() => slice(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be an integer: ${end}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, iterableArb])(
+  `slice throws for a negative integer end`,
+  (end, { iterable }) => {
+    expect(() => slice(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be a non-negative integer: ${end}`,
+    )
+  },
+)
+
+test.prop([invertedIntervalArb, iterableArb])(
+  `slice throws for an inverted range`,
+  ([start, end], { iterable }) => {
+    expect(() => slice(start, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`start,end\` must be a range: ${start},${end}`,
+    )
+  },
+)
+
+test.prop([intervalArb, iterableArb])(
+  `slice returns an iterable containing the values between start and end`,
+  ([start, end], { iterable, values }) => {
+    const slicedIterable = slice(start, end, iterable)
+
+    expect([...slicedIterable]).toStrictEqual(values.slice(start, end))
+  },
+)
+
+test.skip(`sliceAsync types are correct`, () => {
+  expectTypeOf(sliceAsync(1)(2, asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncIterable<number>
+  >()
+  expectTypeOf(sliceAsync(1)(2)(asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncIterable<number>
+  >()
+  expectTypeOf(sliceAsync(1, 2)(asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncIterable<number>
+  >()
+  expectTypeOf(sliceAsync(1, 2, asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncIterable<number>
+  >()
+
+  // @ts-expect-error Not an integer literal.
+  sliceAsync(1.2)
+  sliceAsync(
+    1,
+    // @ts-expect-error Not an integer literal.
+    1.2,
+  )
+  // @ts-expect-error Not a non-negative integer.
+  sliceAsync(-1)
+  sliceAsync(
+    1,
+    // @ts-expect-error Not a non-negative integer.
+    -1,
+  )
+})
+
+test.prop([intervalArb, asyncIterableArb])(
+  `sliceAsync returns a pure async iterable`,
+  async ([start, end], { iterable }) => {
+    const slicedIterable = sliceAsync(start, end, iterable)
+
+    await expect(slicedIterable).toBeAsyncIterable()
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), asyncIterableArb])(
+  `sliceAsync throws for a non-integer start`,
+  (start, { iterable }) => {
+    expect(() =>
+      sliceAsync(start, Math.ceil(start), iterable),
+    ).toThrowWithMessage(Error, `\`start\` must be an integer: ${start}`)
+  },
+)
+
+test.prop([negativeIntegerArb, asyncIterableArb])(
+  `sliceAsync throws for a negative integer start`,
+  (start, { iterable }) => {
+    expect(() => sliceAsync(start, 1, iterable)).toThrowWithMessage(
+      Error,
+      `\`start\` must be a non-negative integer: ${start}`,
+    )
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), asyncIterableArb])(
+  `sliceAsync throws for a non-integer end`,
+  (end, { iterable }) => {
+    expect(() => sliceAsync(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be an integer: ${end}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, asyncIterableArb])(
+  `sliceAsync throws for a negative integer end`,
+  (end, { iterable }) => {
+    expect(() => sliceAsync(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be a non-negative integer: ${end}`,
+    )
+  },
+)
+
+test.prop([invertedIntervalArb, asyncIterableArb])(
+  `sliceAsync throws for an inverted range`,
+  ([start, end], { iterable }) => {
+    expect(() => sliceAsync(start, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`start,end\` must be a range: ${start},${end}`,
+    )
+  },
+)
+
+test.prop([intervalArb, asyncIterableArb])(
+  `sliceAsync returns an async iterable containing the values between start and end`,
+  async ([start, end], { iterable, values }) => {
+    const slicedIterable = sliceAsync(start, end, iterable)
+
+    await expect(reduceAsync(toArray(), slicedIterable)).resolves.toStrictEqual(
+      values.slice(start, end),
+    )
+  },
+)
+
+test.skip(`sliceConcur types are correct`, () => {
+  expectTypeOf(sliceConcur(1)(2, asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurIterable<number>
+  >()
+  expectTypeOf(sliceConcur(1)(2)(asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurIterable<number>
+  >()
+  expectTypeOf(sliceConcur(1, 2)(asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurIterable<number>
+  >()
+  expectTypeOf(sliceConcur(1, 2, asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurIterable<number>
+  >()
+
+  // @ts-expect-error Not an integer literal.
+  sliceConcur(1.2)
+  sliceConcur(
+    1,
+    // @ts-expect-error Not an integer literal.
+    1.2,
+  )
+  // @ts-expect-error Not a non-negative integer.
+  sliceConcur(-1)
+  sliceConcur(
+    1,
+    // @ts-expect-error Not a non-negative integer.
+    -1,
+  )
+})
+
+test.prop([intervalArb, concurIterableArb])(
+  `sliceConcur returns a concur iterable`,
+  async ([start, end], { iterable }) => {
+    const slicedIterable = sliceConcur(start, end, iterable)
+
+    await expect(slicedIterable).toBeConcurIterable({ pure: false })
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), concurIterableArb])(
+  `sliceConcur throws for a non-integer start`,
+  (start, { iterable }) => {
+    expect(() =>
+      sliceConcur(start, Math.ceil(start), iterable),
+    ).toThrowWithMessage(Error, `\`start\` must be an integer: ${start}`)
+  },
+)
+
+test.prop([negativeIntegerArb, concurIterableArb])(
+  `sliceConcur throws for a negative integer start`,
+  (start, { iterable }) => {
+    expect(() => sliceConcur(start, 1, iterable)).toThrowWithMessage(
+      Error,
+      `\`start\` must be a non-negative integer: ${start}`,
+    )
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), concurIterableArb])(
+  `sliceConcur throws for a non-integer end`,
+  (end, { iterable }) => {
+    expect(() => sliceConcur(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be an integer: ${end}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, concurIterableArb])(
+  `sliceConcur throws for a negative integer end`,
+  (end, { iterable }) => {
+    expect(() => sliceConcur(0, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`end\` must be a non-negative integer: ${end}`,
+    )
+  },
+)
+
+test.prop([invertedIntervalArb, concurIterableArb])(
+  `sliceConcur throws for an inverted range`,
+  ([start, end], { iterable }) => {
+    expect(() => sliceConcur(start, end, iterable)).toThrowWithMessage(
+      Error,
+      `\`start,end\` must be a range: ${start},${end}`,
+    )
+  },
+)
+
+test.prop([intervalArb, concurIterableArb])(
+  `sliceConcur returns a concur iterable containing the values between start and end in iteration order`,
+  async ([start, end], { iterable }, scheduler) => {
+    const slicedIterable = sliceConcur(start, end, iterable)
+
+    await expect(
+      reduceConcur(toArray(), slicedIterable),
+    ).resolves.toStrictEqual(
+      (await scheduler.report()).values().slice(start, end),
+    )
+  },
+)
+
+test.skip(`at types are correct`, () => {
+  expectTypeOf(at(1)([1, 2, 3])).toMatchTypeOf<Optional<number>>()
+  expectTypeOf(at(1, [1, 2, 3])).toMatchTypeOf<Optional<number>>()
+
+  // @ts-expect-error Not an integer literal.
+  at(1.2)
+  // @ts-expect-error Not a non-negative integer.
+  at(-1)
+})
+
+test.prop([reasonableNonNegativeIntegerArb, iterableArb])(
+  `at returns a pure iterable`,
+  (index, { iterable }) => {
+    const atIterable = at(index, iterable)
+
+    expect(atIterable).toBeIterable()
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), iterableArb])(
+  `at throws for a non-integer index`,
+  (index, { iterable }) => {
+    expect(() => at(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be an integer: ${index}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, iterableArb])(
+  `at throws for a negative integer start`,
+  (index, { iterable }) => {
+    expect(() => at(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be a non-negative integer: ${index}`,
+    )
+  },
+)
+
+test.prop([reasonableNonNegativeIntegerArb, iterableArb])(
+  `at returns an iterable containing the value at index`,
+  (index, { iterable, values }) => {
+    const atIterable = at(index, iterable)
+
+    expect([...atIterable]).toStrictEqual(values.slice(index, index + 1))
+  },
+)
+
+test.skip(`atAsync types are correct`, () => {
+  expectTypeOf(atAsync(1)(asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncOptional<number>
+  >()
+  expectTypeOf(atAsync(1, asAsync([1, 2, 3]))).toMatchTypeOf<
+    AsyncIterable<number>
+  >()
+
+  // @ts-expect-error Not an integer literal.
+  atAsync(1.2)
+  // @ts-expect-error Not a non-negative integer.
+  atAsync(-1)
+})
+
+test.prop([reasonableNonNegativeIntegerArb, asyncIterableArb])(
+  `atAsync returns a pure async iterable`,
+  async (index, { iterable }) => {
+    const atIterable = atAsync(index, iterable)
+
+    await expect(atIterable).toBeAsyncIterable()
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), asyncIterableArb])(
+  `atAsync throws for a non-integer index`,
+  (index, { iterable }) => {
+    expect(() => atAsync(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be an integer: ${index}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, asyncIterableArb])(
+  `atAsync throws for a negative integer index`,
+  (index, { iterable }) => {
+    expect(() => atAsync(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be a non-negative integer: ${index}`,
+    )
+  },
+)
+
+test.prop([reasonableNonNegativeIntegerArb, asyncIterableArb])(
+  `atAsync returns an async iterable containing the value at index`,
+  async (index, { iterable, values }) => {
+    const atIterable = atAsync(index, iterable)
+
+    await expect(reduceAsync(toArray(), atIterable)).resolves.toStrictEqual(
+      values.slice(index, index + 1),
+    )
+  },
+)
+
+test.skip(`atConcur types are correct`, () => {
+  expectTypeOf(atConcur(1)(asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurOptional<number>
+  >()
+  expectTypeOf(atConcur(1, asConcur([1, 2, 3]))).toMatchTypeOf<
+    ConcurOptional<number>
+  >()
+
+  // @ts-expect-error Not an integer literal.
+  atConcur(1.2)
+  // @ts-expect-error Not a non-negative integer.
+  atConcur(-1)
+})
+
+test.prop([reasonableNonNegativeIntegerArb, concurIterableArb])(
+  `atConcur returns a concur iterable`,
+  async (index, { iterable }) => {
+    const atIterable = atConcur(index, iterable)
+
+    await expect(atIterable).toBeConcurIterable({ pure: false })
+  },
+)
+
+test.prop([fc.double({ min: 0, noInteger: true }), concurIterableArb])(
+  `atConcur throws for a non-integer index`,
+  (index, { iterable }) => {
+    expect(() => atConcur(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be an integer: ${index}`,
+    )
+  },
+)
+
+test.prop([negativeIntegerArb, concurIterableArb])(
+  `atConcur throws for a negative integer start`,
+  (index, { iterable }) => {
+    expect(() => atConcur(index, iterable)).toThrowWithMessage(
+      Error,
+      `\`index\` must be a non-negative integer: ${index}`,
+    )
+  },
+)
+
+test.prop([reasonableNonNegativeIntegerArb, concurIterableArb])(
+  `atConcur returns a concur iterable containing the value at index in iteration order`,
+  async (index, { iterable }, scheduler) => {
+    const atIterable = atConcur(index, iterable)
+
+    await expect(reduceConcur(toArray(), atIterable)).resolves.toStrictEqual(
+      (await scheduler.report()).values().slice(index, index + 1),
+    )
+  },
+)
+
 test.skip(`chunk types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], chunk(2))).toMatchTypeOf<Iterable<number[]>>()
 
@@ -1147,7 +1612,7 @@ test.prop([positiveIntegerArb, iterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, iterableArb])(
+test.prop([nonIntegerDoubleArb, iterableArb])(
   `chunk throws for a non-integer size`,
   (size, { iterable }) => {
     expect(() => chunk(size, iterable)).toThrowWithMessage(
@@ -1249,7 +1714,7 @@ test.prop([positiveIntegerArb, asyncIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, asyncIterableArb])(
+test.prop([nonIntegerDoubleArb, asyncIterableArb])(
   `chunkAsync throws for a non-integer size`,
   (size, { iterable }) => {
     expect(() => chunkAsync(size, iterable)).toThrowWithMessage(
@@ -1353,7 +1818,7 @@ test.prop([positiveIntegerArb, concurIterableArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, concurIterableArb])(
+test.prop([nonIntegerDoubleArb, concurIterableArb])(
   `chunkConcur throws for a non-integer size`,
   (size, { iterable }) => {
     expect(() => chunkConcur(size, iterable)).toThrowWithMessage(
@@ -1532,7 +1997,7 @@ const getWindowOptionsArb = (
       .map(options => ({ size: options.size, options })),
   )
 
-test.prop([getWindowOptionsArb(nonSafeIntegerDoubleArb), iterableArb])(
+test.prop([getWindowOptionsArb(nonIntegerDoubleArb), iterableArb])(
   `window throws for a non-integer size`,
   ({ size, options }, { iterable }) => {
     expect(() => window(options, iterable)).toThrowWithMessage(
@@ -1677,7 +2142,7 @@ test.prop([smallPositiveIntegerArb, asyncIterableArb])(
   },
 )
 
-test.prop([getWindowOptionsArb(nonSafeIntegerDoubleArb), asyncIterableArb])(
+test.prop([getWindowOptionsArb(nonIntegerDoubleArb), asyncIterableArb])(
   `windowAsync throws for a non-integer size`,
   ({ size, options }, { iterable }) => {
     expect(() => windowAsync(options, iterable)).toThrowWithMessage(
@@ -1829,7 +2294,7 @@ test.prop([smallPositiveIntegerArb, concurIterableArb])(
   },
 )
 
-test.prop([getWindowOptionsArb(nonSafeIntegerDoubleArb), concurIterableArb])(
+test.prop([getWindowOptionsArb(nonIntegerDoubleArb), concurIterableArb])(
   `windowConcur throws for a non-integer size`,
   ({ size, options }, { iterable }) => {
     expect(() => windowConcur(options, iterable)).toThrowWithMessage(

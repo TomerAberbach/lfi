@@ -25,7 +25,7 @@ iterable if `iterable` is empty.
 
 ## Example
 
-```
+```js
 console.log(
   pipe(
     [`sloth`, `more sloth`, `even more sloth`],
@@ -38,4 +38,4 @@ console.log(
 
 ## Defined in
 
-[slice.d.ts:399](https://github.com/TomerAberbach/lfi/blob/e98b31ea37c84de0758cf58c8fcf28193f36b533/src/operations/slice.d.ts#L399)
+[slice.d.ts:400](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L400)

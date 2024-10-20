@@ -4,9 +4,9 @@ import autoAdvance from '../helpers/auto-advance.js'
 import delay from '../helpers/delay.js'
 import { fnArb } from '../helpers/fast-check/fn.js'
 import {
+  nonIntegerDoubleArb,
   nonPositiveIntegerArb,
-  nonSafeIntegerDoubleArb,
-} from '../helpers/fast-check/integer.js'
+} from '../helpers/fast-check/number.js'
 import {
   asyncIterableArb,
   iterableArb,
@@ -256,7 +256,7 @@ test.prop([reasonableIntegerArb, reasonableIntegerArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
+test.prop([nonIntegerDoubleArb, reasonableIntegerArb])(
   `rangeUntil throws for a non-integer start`,
   (start, end) => {
     expect(() => rangeUntil(start, end)).toThrowWithMessage(
@@ -266,7 +266,7 @@ test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
   },
 )
 
-test.prop([reasonableIntegerArb, nonSafeIntegerDoubleArb])(
+test.prop([reasonableIntegerArb, nonIntegerDoubleArb])(
   `rangeUntil throws for a non-integer end`,
   (start, end) => {
     expect(() => rangeUntil(start, end)).toThrowWithMessage(
@@ -307,11 +307,7 @@ test.prop([reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb])(
   },
 )
 
-test.prop([
-  reasonableIntegerArb,
-  reasonableIntegerArb,
-  nonSafeIntegerDoubleArb,
-])(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, nonIntegerDoubleArb])(
   `rangeUntil's step function throws for a non-integer step`,
   (start, end, step) => {
     const range = rangeUntil(start, end)
@@ -391,7 +387,7 @@ test.prop([reasonableIntegerArb, reasonableIntegerArb])(
   },
 )
 
-test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
+test.prop([nonIntegerDoubleArb, reasonableIntegerArb])(
   `rangeTo throws for a non-integer start`,
   (start, end) => {
     expect(() => rangeTo(start, end)).toThrowWithMessage(
@@ -401,7 +397,7 @@ test.prop([nonSafeIntegerDoubleArb, reasonableIntegerArb])(
   },
 )
 
-test.prop([reasonableIntegerArb, nonSafeIntegerDoubleArb])(
+test.prop([reasonableIntegerArb, nonIntegerDoubleArb])(
   `rangeTo throws for a non-integer end`,
   (start, end) => {
     expect(() => rangeTo(start, end)).toThrowWithMessage(
@@ -442,11 +438,7 @@ test.prop([reasonableIntegerArb, reasonableIntegerArb, stepIntegerArb])(
   },
 )
 
-test.prop([
-  reasonableIntegerArb,
-  reasonableIntegerArb,
-  nonSafeIntegerDoubleArb,
-])(
+test.prop([reasonableIntegerArb, reasonableIntegerArb, nonIntegerDoubleArb])(
   `rangeTo's step function throws for a non-integer step`,
   (start, end, step) => {
     const range = rangeTo(start, end)

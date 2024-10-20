@@ -24,7 +24,7 @@ type TupleOfSameLength<Tuple extends readonly any[]> = Extract<
  * Returns a curried version of `fn`.
  *
  * @example
- * ```
+ * ```js
  * function slothLog(a, b, c) {
  *   console.log(`${a} Sloth ${b} Sloth ${c}`)
  * }

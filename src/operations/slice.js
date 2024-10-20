@@ -6,7 +6,9 @@ import {
 import {
   assertNonNegativeInteger,
   assertPositiveInteger,
+  assertRange,
 } from '../internal/preconditions.js'
+import { empty, emptyAsync, emptyConcur } from './empty.js'
 import { findLast, findLastAsync, findLastConcur } from './find.js'
 import { curry, pipe } from './fn.js'
 import {
@@ -126,6 +128,28 @@ export const firstConcur = takeConcur(1)
 export const last = findLast(() => true)
 export const lastAsync = findLastAsync(() => true)
 export const lastConcur = findLastConcur(() => true)
+
+const createSlice = (empty, drop, take) =>
+  curry((start, end, iterable) => {
+    assertNonNegativeInteger({ start })
+    assertNonNegativeInteger({ end })
+    assertRange({ [`start,end`]: [start, end] })
+    return start === end
+      ? empty
+      : pipe(iterable, drop(start), take(end - start))
+  })
+export const slice = createSlice(empty, drop, take)
+export const sliceAsync = createSlice(emptyAsync, dropAsync, takeAsync)
+export const sliceConcur = createSlice(emptyConcur, dropConcur, takeConcur)
+
+const createAt = slice =>
+  curry((index, iterable) => {
+    assertNonNegativeInteger({ index })
+    return slice(index, index + 1, iterable)
+  })
+export const at = createAt(slice)
+export const atAsync = createAt(sliceAsync)
+export const atConcur = createAt(sliceConcur)
 
 export const chunk = curry((size, iterable) => {
   assertPositiveInteger({ size })

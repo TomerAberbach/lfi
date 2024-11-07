@@ -36,7 +36,7 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:9](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/from.d.ts#L9)
+generators.d.ts:15
 
 ## keys(object)
 
@@ -62,4 +62,4 @@ iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:10](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/from.d.ts#L10)
+generators.d.ts:16

@@ -31,4 +31,4 @@ console.log(await pipe(emptyConcur, reduceConcur(toArray())))
 
 ## Defined in
 
-[empty.d.ts:46](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/empty.d.ts#L46)
+core.d.ts:340

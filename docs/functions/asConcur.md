@@ -35,4 +35,4 @@ await forEachConcur(console.log, concurIterable)
 
 ## Defined in
 
-[as.d.ts:77](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/as.d.ts#L77)
+core.d.ts:293

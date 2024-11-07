@@ -1,10 +1,10 @@
 import type { MaybePromiseLike } from '../internal/types.js'
-import type { ConcurIterable } from './as.js'
+import type { ConcurIterable } from './core.js'
 import type {
   AsyncOptionalReducer,
   OptionalReducer,
   Reducer,
-} from './reducer.js'
+} from './reducers.js'
 
 /**
  * Returns a {@link Reducer} that counts the number of values it receives.

@@ -60,7 +60,7 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:393](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/statistics.d.ts#L393)
+[statistics.d.ts:393](https://github.com/TomerAberbach/lfi/blob/95b3b82a9fc32cec65089cf86d003d7620dc44fc/src/operations/statistics.d.ts#L393)
 
 ## maxBy(fn)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:393](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/statistics.d.ts#L393)
+[statistics.d.ts:393](https://github.com/TomerAberbach/lfi/blob/95b3b82a9fc32cec65089cf86d003d7620dc44fc/src/operations/statistics.d.ts#L393)

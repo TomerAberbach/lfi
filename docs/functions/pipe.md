@@ -56,7 +56,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:71](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L71)
+core.d.ts:73
 
 ## pipe(value, fn)
 
@@ -96,7 +96,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:72](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L72)
+core.d.ts:74
 
 ## pipe(value, fn1, fn2)
 
@@ -140,7 +140,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:73](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L73)
+core.d.ts:75
 
 ## pipe(value, fn1, fn2, fn3)
 
@@ -188,7 +188,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:74](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L74)
+core.d.ts:76
 
 ## pipe(value, fn1, fn2, fn3, fn4)
 
@@ -240,7 +240,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:80](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L80)
+core.d.ts:82
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5)
 
@@ -296,7 +296,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:87](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L87)
+core.d.ts:89
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6)
 
@@ -356,7 +356,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:95](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L95)
+core.d.ts:97
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7)
 
@@ -420,7 +420,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:104](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L104)
+core.d.ts:106
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8)
 
@@ -488,7 +488,7 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:114](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L114)
+core.d.ts:116
 
 ## pipe(value, fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8, fn9)
 
@@ -560,4 +560,4 @@ console.log(
 
 ### Defined in
 
-[fn.d.ts:125](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/fn.d.ts#L125)
+core.d.ts:127

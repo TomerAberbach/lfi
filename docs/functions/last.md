@@ -38,4 +38,4 @@ console.log(
 
 ## Defined in
 
-[slice.d.ts:400](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L400)
+splices.d.ts:400

@@ -68,7 +68,7 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:244](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/predicate.d.ts#L244)
+predicates.d.ts:244
 
 ## includesAsync(searchElement, asyncIterable)
 
@@ -108,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:247](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/predicate.d.ts#L247)
+predicates.d.ts:247

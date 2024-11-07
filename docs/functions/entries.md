@@ -40,7 +40,7 @@ returned iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:37](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/from.d.ts#L37)
+generators.d.ts:43
 
 ## entries(object)
 
@@ -68,4 +68,4 @@ returned iterable is opaque.
 
 ### Defined in
 
-[from.d.ts:40](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/from.d.ts#L40)
+generators.d.ts:46

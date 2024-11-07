@@ -76,7 +76,7 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:57](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/optional.d.ts#L57)
+optionals.d.ts:57
 
 ## orAsync(fn, asyncIterable)
 
@@ -120,4 +120,4 @@ console.log(
 
 ### Defined in
 
-[optional.d.ts:60](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/optional.d.ts#L60)
+optionals.d.ts:60

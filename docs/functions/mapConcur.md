@@ -70,7 +70,7 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:76](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/transform.d.ts#L76)
+transforms.d.ts:76
 
 ## mapConcur(fn, concurIterable)
 
@@ -112,4 +112,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:79](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/transform.d.ts#L79)
+transforms.d.ts:79

@@ -68,7 +68,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:307](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L307)
+filters.d.ts:308
 
 ## uniqueBy(fn, iterable)
 
@@ -108,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:310](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L310)
+filters.d.ts:311

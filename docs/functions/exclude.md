@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:227](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L227)
+filters.d.ts:228
 
 ## exclude(excluded, iterable)
 
@@ -102,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:230](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L230)
+filters.d.ts:231

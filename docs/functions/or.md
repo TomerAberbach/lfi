@@ -64,7 +64,7 @@ console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
 
 ### Defined in
 
-[optional.d.ts:30](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/optional.d.ts#L30)
+optionals.d.ts:30
 
 ## or(fn, iterable)
 
@@ -102,4 +102,4 @@ console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
 
 ### Defined in
 
-[optional.d.ts:31](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/optional.d.ts#L31)
+optionals.d.ts:31

@@ -25,4 +25,4 @@ Returns an async iterable equivalent, but not referentially equal, to
 
 ## Defined in
 
-[opaque.d.ts:12](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/opaque.d.ts#L12)
+core.d.ts:351

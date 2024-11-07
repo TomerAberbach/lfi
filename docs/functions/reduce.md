@@ -102,7 +102,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:52](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L52)
+reducers.d.ts:435
 
 ## reduce(reducer)
 
@@ -171,7 +171,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:56](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L56)
+reducers.d.ts:439
 
 ## reduce(reducer, iterable)
 
@@ -232,7 +232,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:60](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L60)
+reducers.d.ts:443
 
 ## reduce(reducer)
 
@@ -299,7 +299,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:64](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L64)
+reducers.d.ts:447
 
 ## reduce(reducer, iterable)
 
@@ -360,7 +360,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:68](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L68)
+reducers.d.ts:451
 
 ## reduce(reducer)
 
@@ -427,7 +427,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:72](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L72)
+reducers.d.ts:455
 
 ## reduce(reducer, iterable)
 
@@ -486,7 +486,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:76](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L76)
+reducers.d.ts:459
 
 ## reduce(reducer)
 
@@ -551,7 +551,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:80](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L80)
+reducers.d.ts:463
 
 ## reduce(reducer, iterable)
 
@@ -608,7 +608,7 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:84](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L84)
+reducers.d.ts:467
 
 ## reduce(reducer)
 
@@ -671,4 +671,4 @@ console.log(
 
 ### Defined in
 
-[reduce.d.ts:88](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reduce.d.ts#L88)
+reducers.d.ts:471

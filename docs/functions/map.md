@@ -70,7 +70,7 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:23](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/transform.d.ts#L23)
+transforms.d.ts:23
 
 ## map(fn, iterable)
 
@@ -112,4 +112,4 @@ console.log(
 
 ### Defined in
 
-[transform.d.ts:26](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/transform.d.ts#L26)
+transforms.d.ts:26

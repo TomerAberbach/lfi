@@ -178,7 +178,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:498](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L498)
+splices.d.ts:498
 
 ## slice(start, End)
 
@@ -271,7 +271,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:510](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L510)
+splices.d.ts:510
 
 ## slice(start, End, iterable)
 
@@ -356,4 +356,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:515](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L515)
+splices.d.ts:515

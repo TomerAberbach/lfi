@@ -70,7 +70,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:23](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L23)
+filters.d.ts:24
 
 ## filter(fn, iterable)
 
@@ -112,7 +112,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:26](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L26)
+filters.d.ts:27
 
 ## filter(fn)
 
@@ -158,7 +158,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:31](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L31)
+filters.d.ts:32
 
 ## filter(fn, iterable)
 
@@ -198,4 +198,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:34](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L34)
+filters.d.ts:35

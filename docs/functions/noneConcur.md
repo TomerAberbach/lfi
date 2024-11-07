@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:201](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/predicate.d.ts#L201)
+predicates.d.ts:201
 
 ## noneConcur(fn, concurIterable)
 
@@ -102,4 +102,4 @@ console.log(
 
 ### Defined in
 
-[predicate.d.ts:201](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/predicate.d.ts#L201)
+predicates.d.ts:201

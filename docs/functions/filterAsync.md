@@ -72,7 +72,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:60](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L60)
+filters.d.ts:61
 
 ## filterAsync(fn, asyncIterable)
 
@@ -115,7 +115,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:63](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L63)
+filters.d.ts:64
 
 ## filterAsync(fn)
 
@@ -162,7 +162,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:68](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L68)
+filters.d.ts:69
 
 ## filterAsync(fn, asyncIterable)
 
@@ -203,4 +203,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:71](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L71)
+filters.d.ts:72

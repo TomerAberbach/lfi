@@ -78,7 +78,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:169](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L169)
+filters.d.ts:170
 
 ## filterMapAsync(fn, asyncIterable)
 
@@ -124,4 +124,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:172](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L172)
+filters.d.ts:173

@@ -19,12 +19,12 @@ const wrapTestProp =
     ) as (
       testName: string,
       prop: Prop<[fc.ContextValue, ...Values, fc.Scheduler]>,
-      timeout?: number | undefined,
+      timeout?: number,
     ) => void
     return (
       testName: string,
       prop: Prop<[...Values, Scheduler]>,
-      timeout?: number | undefined,
+      timeout?: number,
     ) =>
       fn(
         testName,
@@ -61,7 +61,7 @@ export const test: typeof testInternal & {
   ) => (
     testName: string,
     prop: Prop<[...Values, Scheduler]>,
-    timeout?: number | undefined,
+    timeout?: number,
   ) => void
 } = Object.assign(fcTestInternal, { prop: wrapTestProp(fcTestInternal.prop) })
 

@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:401](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L401)
+collections.d.ts:401
 
 ## joinAsync(separator, asyncIterable)
 
@@ -100,4 +100,4 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:404](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L404)
+collections.d.ts:404

@@ -38,4 +38,4 @@ console.log(
 
 ## Defined in
 
-[generate.d.ts:89](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/generate.d.ts#L89)
+generators.d.ts:133

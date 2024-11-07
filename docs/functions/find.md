@@ -90,7 +90,7 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/find.d.ts#L67)
+filters.d.ts:497
 
 ## find(fn, iterable)
 
@@ -141,4 +141,4 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:67](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/find.d.ts#L67)
+filters.d.ts:497

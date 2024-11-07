@@ -88,7 +88,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:773](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L773)
+splices.d.ts:773
 
 ## atConcur(index, concurIterable)
 
@@ -138,4 +138,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:776](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L776)
+splices.d.ts:776

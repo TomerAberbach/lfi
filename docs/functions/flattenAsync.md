@@ -40,4 +40,4 @@ console.log(
 
 ## Defined in
 
-[transform.d.ts:219](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/transform.d.ts#L219)
+transforms.d.ts:219

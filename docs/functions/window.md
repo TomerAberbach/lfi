@@ -112,7 +112,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:942](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L942)
+splices.d.ts:942
 
 ## window(options, iterable)
 
@@ -174,4 +174,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:945](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L945)
+splices.d.ts:945

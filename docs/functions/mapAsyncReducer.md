@@ -40,7 +40,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:307](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L307)
+reducers.d.ts:309
 
 ## mapAsyncReducer(fn)
 
@@ -81,7 +81,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:311](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L311)
+reducers.d.ts:313
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -112,7 +112,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:317](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L317)
+reducers.d.ts:319
 
 ## mapAsyncReducer(fn)
 
@@ -151,7 +151,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:321](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L321)
+reducers.d.ts:323
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -182,7 +182,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:327](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L327)
+reducers.d.ts:329
 
 ## mapAsyncReducer(fn)
 
@@ -221,7 +221,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:333](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L333)
+reducers.d.ts:335
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -250,7 +250,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:341](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L341)
+reducers.d.ts:343
 
 ## mapAsyncReducer(fn)
 
@@ -287,7 +287,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:345](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L345)
+reducers.d.ts:347
 
 ## mapAsyncReducer(fn, asyncReducer)
 
@@ -314,7 +314,7 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:351](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L351)
+reducers.d.ts:353
 
 ## mapAsyncReducer(fn)
 
@@ -347,4 +347,4 @@ value is transformed using `fn`.
 
 ### Defined in
 
-[reducer.d.ts:355](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/reducer.d.ts#L355)
+reducers.d.ts:357

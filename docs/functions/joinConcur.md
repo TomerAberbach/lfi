@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:426](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L426)
+collections.d.ts:426
 
 ## joinConcur(separator, concurIterable)
 
@@ -100,4 +100,4 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:429](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L429)
+collections.d.ts:429

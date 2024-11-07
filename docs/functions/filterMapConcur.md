@@ -78,7 +78,7 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:201](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L201)
+filters.d.ts:202
 
 ## filterMapConcur(fn, concurIterable)
 
@@ -124,4 +124,4 @@ console.log(
 
 ### Defined in
 
-[exclude.d.ts:204](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/exclude.d.ts#L204)
+filters.d.ts:205

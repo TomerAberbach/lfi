@@ -1,8 +1,13 @@
-import { identity, thunk } from '../internal/helpers.js'
-import { toMultiple } from './collect.js'
-import { curry } from './fn.js'
-import { reduce, reduceAsync, reduceConcur } from './reduce.js'
-import { mapAsyncReducer, mapReducer, normalizeReducer } from './reducer.js'
+import { curry, identity, thunk } from '../internal/helpers.js'
+import {
+  mapAsyncReducer,
+  mapReducer,
+  normalizeReducer,
+  reduce,
+  reduceAsync,
+  reduceConcur,
+} from './reducers.js'
+import { toMultiple } from './collections.js'
 
 export const toCount = thunk({ create: () => 0, add: acc => acc + 1 })
 export const count = reduce(toCount())

@@ -102,7 +102,7 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:855](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L855)
+splices.d.ts:855
 
 ## chunkAsync(size, asyncIterable)
 
@@ -159,4 +159,4 @@ console.log(
 
 ### Defined in
 
-[slice.d.ts:858](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/slice.d.ts#L858)
+splices.d.ts:858

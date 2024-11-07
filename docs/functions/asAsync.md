@@ -22,7 +22,7 @@ based while async iterables are "pull" based, which creates backpressure.
 
 ## Parameters
 
-• **iterable**: `AsyncIterable`\<`Value`, `any`, `any`\> \| `Iterable`\<`Value`, `any`, `any`\> \| [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
+• **iterable**: `Iterable`\<`Value`, `any`, `any`\> \| `AsyncIterable`\<`Value`, `any`, `any`\> \| [`ConcurIterable`](../type-aliases/ConcurIterable.md)\<`Value`\>
 
 ## Returns
 
@@ -46,4 +46,4 @@ for await (const value of asyncIterable) {
 
 ## Defined in
 
-[as.d.ts:27](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/as.d.ts#L27)
+core.d.ts:243

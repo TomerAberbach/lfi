@@ -70,7 +70,7 @@ await forEachAsync(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:156](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L156)
+side-effects.d.ts:156
 
 ## forEachAsync(fn, asyncIterable)
 
@@ -111,4 +111,4 @@ await forEachAsync(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:159](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L159)
+side-effects.d.ts:159

@@ -78,7 +78,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:158](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L158)
+collections.d.ts:158
 
 ## toGrouped(innerReducer)
 
@@ -140,7 +140,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:166](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L166)
+collections.d.ts:166
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -192,7 +192,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:176](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L176)
+collections.d.ts:176
 
 ## toGrouped(innerReducer)
 
@@ -252,7 +252,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:180](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L180)
+collections.d.ts:180
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -304,7 +304,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:186](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L186)
+collections.d.ts:186
 
 ## toGrouped(innerReducer)
 
@@ -364,7 +364,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:194](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L194)
+collections.d.ts:194
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -414,7 +414,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:204](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L204)
+collections.d.ts:204
 
 ## toGrouped(innerReducer)
 
@@ -472,7 +472,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:208](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L208)
+collections.d.ts:208
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -520,7 +520,7 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:214](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L214)
+collections.d.ts:214
 
 ## toGrouped(innerReducer)
 
@@ -576,4 +576,4 @@ console.log(
 
 ### Defined in
 
-[collect.d.ts:218](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/collect.d.ts#L218)
+collections.d.ts:218

@@ -62,7 +62,7 @@ forEach(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:132](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L132)
+side-effects.d.ts:132
 
 ## forEach(fn, iterable)
 
@@ -99,4 +99,4 @@ forEach(console.log, sloths)
 
 ### Defined in
 
-[iterate.d.ts:133](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L133)
+side-effects.d.ts:133

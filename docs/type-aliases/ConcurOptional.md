@@ -16,4 +16,4 @@ A concur iterable containing exactly zero or one values.
 
 ## Defined in
 
-[optional.d.ts:11](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/optional.d.ts#L11)
+optionals.d.ts:11

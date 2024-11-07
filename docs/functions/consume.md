@@ -35,4 +35,4 @@ consume(iterable)
 
 ## Defined in
 
-[iterate.d.ts:209](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/iterate.d.ts#L209)
+side-effects.d.ts:209

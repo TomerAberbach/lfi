@@ -66,7 +66,7 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:47](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/generate.d.ts#L47)
+generators.d.ts:91
 
 ## generateAsync(fn, seed)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-[generate.d.ts:50](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/generate.d.ts#L50)
+generators.d.ts:94

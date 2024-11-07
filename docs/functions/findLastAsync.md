@@ -88,7 +88,7 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/find.d.ts#L190)
+filters.d.ts:620
 
 ## findLastAsync(fn, asyncIterable)
 
@@ -138,4 +138,4 @@ console.log(
 
 ### Defined in
 
-[find.d.ts:190](https://github.com/TomerAberbach/lfi/blob/fd6e1ff9d7b7d249090f89ead6d0a30e26aba2e4/src/operations/find.d.ts#L190)
+filters.d.ts:620

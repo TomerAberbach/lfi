@@ -102,7 +102,7 @@ console.log(
 
 ### Defined in
 
-splices.d.ts:814
+[splices.d.ts:814](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/splices.d.ts#L814)
 
 ## chunk(size, iterable)
 
@@ -159,4 +159,4 @@ console.log(
 
 ### Defined in
 
-splices.d.ts:817
+[splices.d.ts:817](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/splices.d.ts#L817)

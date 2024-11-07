@@ -64,7 +64,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:378
+[collections.d.ts:378](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L378)
 
 ## join(separator, iterable)
 
@@ -100,4 +100,4 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:379
+[collections.d.ts:379](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L379)

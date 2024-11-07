@@ -78,7 +78,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:158
+[collections.d.ts:158](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L158)
 
 ## toGrouped(innerReducer)
 
@@ -140,7 +140,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:166
+[collections.d.ts:166](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L166)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -192,7 +192,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:176
+[collections.d.ts:176](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L176)
 
 ## toGrouped(innerReducer)
 
@@ -252,7 +252,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:180
+[collections.d.ts:180](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L180)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -304,7 +304,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:186
+[collections.d.ts:186](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L186)
 
 ## toGrouped(innerReducer)
 
@@ -364,7 +364,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:194
+[collections.d.ts:194](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L194)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -414,7 +414,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:204
+[collections.d.ts:204](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L204)
 
 ## toGrouped(innerReducer)
 
@@ -472,7 +472,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:208
+[collections.d.ts:208](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L208)
 
 ## toGrouped(innerReducer, outerReducer)
 
@@ -520,7 +520,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:214
+[collections.d.ts:214](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L214)
 
 ## toGrouped(innerReducer)
 
@@ -576,4 +576,4 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:218
+[collections.d.ts:218](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L218)

@@ -31,4 +31,4 @@ A return value that awaits to:
 
 ## Defined in
 
-[statistics.d.ts:224](https://github.com/TomerAberbach/lfi/blob/95b3b82a9fc32cec65089cf86d003d7620dc44fc/src/operations/statistics.d.ts#L224)
+[statistics.d.ts:224](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/statistics.d.ts#L224)

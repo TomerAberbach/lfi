@@ -78,7 +78,7 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:202
+[filters.d.ts:202](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L202)
 
 ## filterMapConcur(fn, concurIterable)
 
@@ -124,4 +124,4 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:205
+[filters.d.ts:205](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L205)

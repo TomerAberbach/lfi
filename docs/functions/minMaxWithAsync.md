@@ -62,7 +62,7 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:870](https://github.com/TomerAberbach/lfi/blob/95b3b82a9fc32cec65089cf86d003d7620dc44fc/src/operations/statistics.d.ts#L870)
+[statistics.d.ts:870](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/statistics.d.ts#L870)
 
 ## minMaxWithAsync(fn)
 
@@ -108,4 +108,4 @@ console.log(
 
 ### Defined in
 
-[statistics.d.ts:874](https://github.com/TomerAberbach/lfi/blob/95b3b82a9fc32cec65089cf86d003d7620dc44fc/src/operations/statistics.d.ts#L874)
+[statistics.d.ts:874](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/statistics.d.ts#L874)

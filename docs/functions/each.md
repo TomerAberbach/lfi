@@ -64,7 +64,7 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-side-effects.d.ts:20
+[side-effects.d.ts:20](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L20)
 
 ## each(fn, iterable)
 
@@ -103,7 +103,7 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-side-effects.d.ts:23
+[side-effects.d.ts:23](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L23)
 
 ## each(fn)
 
@@ -146,7 +146,7 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-side-effects.d.ts:28
+[side-effects.d.ts:28](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L28)
 
 ## each(fn, iterable)
 
@@ -183,4 +183,4 @@ console.log([...each(console.log, sloths)])
 
 ### Defined in
 
-side-effects.d.ts:31
+[side-effects.d.ts:31](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L31)

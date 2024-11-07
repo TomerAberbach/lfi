@@ -76,7 +76,7 @@ console.log(
 
 ### Defined in
 
-optionals.d.ts:89
+[optionals.d.ts:89](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/optionals.d.ts#L89)
 
 ## orConcur(fn, concurIterable)
 
@@ -120,4 +120,4 @@ console.log(
 
 ### Defined in
 
-optionals.d.ts:92
+[optionals.d.ts:92](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/optionals.d.ts#L92)

@@ -96,7 +96,7 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:261
+[collections.d.ts:261](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L261)
 
 ## toMultiple(reducers)
 
@@ -153,4 +153,4 @@ console.log(
 
 ### Defined in
 
-collections.d.ts:292
+[collections.d.ts:292](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/collections.d.ts#L292)

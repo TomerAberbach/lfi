@@ -62,7 +62,7 @@ console.log(
 
 ### Defined in
 
-predicates.d.ts:165
+[predicates.d.ts:165](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/predicates.d.ts#L165)
 
 ## none(fn, iterable)
 
@@ -99,4 +99,4 @@ console.log(
 
 ### Defined in
 
-predicates.d.ts:165
+[predicates.d.ts:165](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/predicates.d.ts#L165)

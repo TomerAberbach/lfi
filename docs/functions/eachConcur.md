@@ -74,7 +74,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-side-effects.d.ts:99
+[side-effects.d.ts:99](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L99)
 
 ## eachConcur(fn, concurIterable)
 
@@ -117,7 +117,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-side-effects.d.ts:102
+[side-effects.d.ts:102](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L102)
 
 ## eachConcur(fn)
 
@@ -168,7 +168,7 @@ console.log(eachedSloths)
 
 ### Defined in
 
-side-effects.d.ts:107
+[side-effects.d.ts:107](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L107)
 
 ## eachConcur(fn, concurIterable)
 
@@ -213,4 +213,4 @@ console.log(eachedSloths)
 
 ### Defined in
 
-side-effects.d.ts:110
+[side-effects.d.ts:110](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/side-effects.d.ts#L110)

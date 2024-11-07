@@ -66,7 +66,7 @@ console.log(
 
 ### Defined in
 
-predicates.d.ts:49
+[predicates.d.ts:49](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/predicates.d.ts#L49)
 
 ## all(fn, iterable)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-predicates.d.ts:49
+[predicates.d.ts:49](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/predicates.d.ts#L49)

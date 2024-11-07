@@ -40,7 +40,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:255
+[reducers.d.ts:255](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L255)
 
 ## mapReducer(fn)
 
@@ -81,7 +81,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:259
+[reducers.d.ts:259](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L259)
 
 ## mapReducer(fn, reducer)
 
@@ -112,7 +112,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:265
+[reducers.d.ts:265](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L265)
 
 ## mapReducer(fn)
 
@@ -151,7 +151,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:269
+[reducers.d.ts:269](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L269)
 
 ## mapReducer(fn, reducer)
 
@@ -182,7 +182,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:275
+[reducers.d.ts:275](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L275)
 
 ## mapReducer(fn)
 
@@ -221,7 +221,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:279
+[reducers.d.ts:279](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L279)
 
 ## mapReducer(fn, reducer)
 
@@ -250,7 +250,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:285
+[reducers.d.ts:285](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L285)
 
 ## mapReducer(fn)
 
@@ -287,7 +287,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:289
+[reducers.d.ts:289](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L289)
 
 ## mapReducer(fn, reducer)
 
@@ -314,7 +314,7 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:295
+[reducers.d.ts:295](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L295)
 
 ## mapReducer(fn)
 
@@ -347,4 +347,4 @@ except its final value is transformed using `fn`.
 
 ### Defined in
 
-reducers.d.ts:299
+[reducers.d.ts:299](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L299)

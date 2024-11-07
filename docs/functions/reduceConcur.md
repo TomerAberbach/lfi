@@ -112,7 +112,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:615
+[reducers.d.ts:615](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L615)
 
 ## reduceConcur(asyncReducer)
 
@@ -186,7 +186,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:621
+[reducers.d.ts:621](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L621)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -252,7 +252,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:627
+[reducers.d.ts:627](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L627)
 
 ## reduceConcur(asyncReducer)
 
@@ -324,7 +324,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:633
+[reducers.d.ts:633](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L633)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -390,7 +390,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:639
+[reducers.d.ts:639](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L639)
 
 ## reduceConcur(asyncReducer)
 
@@ -462,7 +462,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:645
+[reducers.d.ts:645](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L645)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -526,7 +526,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:651
+[reducers.d.ts:651](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L651)
 
 ## reduceConcur(asyncReducer)
 
@@ -596,7 +596,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:657
+[reducers.d.ts:657](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L657)
 
 ## reduceConcur(asyncReducer, concurIterable)
 
@@ -658,7 +658,7 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:663
+[reducers.d.ts:663](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L663)
 
 ## reduceConcur(asyncReducer)
 
@@ -726,4 +726,4 @@ console.log(
 
 ### Defined in
 
-reducers.d.ts:667
+[reducers.d.ts:667](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/reducers.d.ts#L667)

@@ -28,4 +28,4 @@ the returned iterable can be iterated multiple times and differs from
 
 ## Defined in
 
-generators.d.ts:28
+[generators.d.ts:28](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/generators.d.ts#L28)

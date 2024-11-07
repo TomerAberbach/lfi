@@ -72,7 +72,7 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:98
+[filters.d.ts:98](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L98)
 
 ## filterConcur(fn, concurIterable)
 
@@ -115,7 +115,7 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:101
+[filters.d.ts:101](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L101)
 
 ## filterConcur(fn)
 
@@ -162,7 +162,7 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:106
+[filters.d.ts:106](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L106)
 
 ## filterConcur(fn, concurIterable)
 
@@ -203,4 +203,4 @@ console.log(
 
 ### Defined in
 
-filters.d.ts:109
+[filters.d.ts:109](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/filters.d.ts#L109)

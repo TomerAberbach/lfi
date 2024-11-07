@@ -66,7 +66,7 @@ console.log(
 
 ### Defined in
 
-splices.d.ts:120
+[splices.d.ts:120](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/splices.d.ts#L120)
 
 ## takeWhileConcur(fn, concurIterable)
 
@@ -105,4 +105,4 @@ console.log(
 
 ### Defined in
 
-splices.d.ts:120
+[splices.d.ts:120](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/splices.d.ts#L120)

@@ -60,7 +60,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:158
+[core.d.ts:158](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L158)
 
 ## compose(fn)
 
@@ -106,7 +106,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:159
+[core.d.ts:159](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L159)
 
 ## compose(fn1, fn2)
 
@@ -156,7 +156,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:160
+[core.d.ts:160](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L160)
 
 ## compose(fn1, fn2, fn3)
 
@@ -210,7 +210,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:161
+[core.d.ts:161](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L161)
 
 ## compose(fn1, fn2, fn3, fn4)
 
@@ -268,7 +268,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:166
+[core.d.ts:166](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L166)
 
 ## compose(fn1, fn2, fn3, fn4, fn5)
 
@@ -330,7 +330,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:172
+[core.d.ts:172](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L172)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6)
 
@@ -396,7 +396,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:179
+[core.d.ts:179](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L179)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7)
 
@@ -466,7 +466,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:187
+[core.d.ts:187](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L187)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8)
 
@@ -540,7 +540,7 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:196
+[core.d.ts:196](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L196)
 
 ## compose(fn1, fn2, fn3, fn4, fn5, fn6, fn7, fn8, fn9)
 
@@ -618,4 +618,4 @@ console.log(screamify(`sloth`))
 
 ### Defined in
 
-core.d.ts:206
+[core.d.ts:206](https://github.com/TomerAberbach/lfi/blob/a3eb3a94b2928b5200a7bcd0a14fdc70f0cb5947/src/operations/core.d.ts#L206)

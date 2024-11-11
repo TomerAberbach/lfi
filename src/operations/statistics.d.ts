@@ -254,7 +254,11 @@ export type AsyncCompare<Value> = (
   right: Value,
 ) => MaybePromiseLike<number>
 
-/** An object containing a minimum and maximum value. */
+/**
+ * An object containing a minimum and maximum value.
+ *
+ * @category Statistics
+ */
 export type MinMax<Value> = { min: Value; max: Value }
 
 /** @internal */

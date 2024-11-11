@@ -45,6 +45,8 @@ type PredicateConcur = {
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const all: Predicate
 
@@ -65,6 +67,8 @@ export const all: Predicate
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const allAsync: PredicateAsync
 
@@ -85,6 +89,8 @@ export const allAsync: PredicateAsync
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const allConcur: PredicateConcur
 
@@ -104,6 +110,8 @@ export const allConcur: PredicateConcur
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const any: Predicate
 
@@ -124,6 +132,8 @@ export const any: Predicate
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const anyAsync: PredicateAsync
 
@@ -144,6 +154,8 @@ export const anyAsync: PredicateAsync
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const anyConcur: PredicateConcur
 
@@ -161,6 +173,8 @@ export const anyConcur: PredicateConcur
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const none: Predicate
 
@@ -179,6 +193,8 @@ export const none: Predicate
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const noneAsync: PredicateAsync
 
@@ -197,6 +213,8 @@ export const noneAsync: PredicateAsync
  * )
  * //=> false
  * ```
+ *
+ * @category Predicates
  */
 export const noneConcur: PredicateConcur
 
@@ -216,6 +234,8 @@ export const noneConcur: PredicateConcur
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const includes: {
   (searchElement: unknown): <Value>(iterable: Iterable<Value>) => boolean
@@ -239,6 +259,8 @@ export const includes: {
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const includesAsync: {
   (
@@ -267,6 +289,8 @@ export const includesAsync: {
  * )
  * //=> true
  * ```
+ *
+ * @category Predicates
  */
 export const includesConcur: {
   (

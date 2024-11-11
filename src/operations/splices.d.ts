@@ -21,6 +21,8 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * )
  * //=> [ 5, 6, 7, 8, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const dropWhile: SubWhile
 
@@ -40,6 +42,8 @@ export const dropWhile: SubWhile
  * )
  * //=> [ 5, 6, 7, 8, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const dropWhileAsync: SubWhileAsync
 
@@ -59,6 +63,8 @@ export const dropWhileAsync: SubWhileAsync
  * )
  * //=> [ 5, 6, 7, 8, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const dropWhileConcur: SubWhileConcur
 
@@ -78,6 +84,8 @@ export const dropWhileConcur: SubWhileConcur
  * )
  * //=> [ 1, 2, 3, 4 ]
  * ```
+ *
+ * @category Splices
  */
 export const takeWhile: SubWhile
 
@@ -97,6 +105,8 @@ export const takeWhile: SubWhile
  * )
  * //=> [ 1, 2, 3, 4 ]
  * ```
+ *
+ * @category Splices
  */
 export const takeWhileAsync: SubWhileAsync
 
@@ -116,6 +126,8 @@ export const takeWhileAsync: SubWhileAsync
  * )
  * //=> [ 1, 2, 3, 4 ]
  * ```
+ *
+ * @category Splices
  */
 export const takeWhileConcur: SubWhileConcur
 
@@ -172,6 +184,8 @@ type SubWhileConcur = {
  * )
  * //=> [ 4, 5, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const drop: Sub
 
@@ -195,6 +209,8 @@ export const drop: Sub
  * )
  * //=> [ 4, 5, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const dropAsync: SubAsync
 
@@ -218,6 +234,8 @@ export const dropAsync: SubAsync
  * )
  * //=> [ 4, 5, 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const dropConcur: SubConcur
 
@@ -241,6 +259,8 @@ export const dropConcur: SubConcur
  * )
  * //=> [ 1, 2, 3 ]
  * ```
+ *
+ * @category Splices
  */
 export const take: Sub
 
@@ -264,6 +284,8 @@ export const take: Sub
  * )
  * //=> [ 1, 2, 3 ]
  * ```
+ *
+ * @category Splices
  */
 export const takeAsync: SubAsync
 
@@ -287,6 +309,8 @@ export const takeAsync: SubAsync
  * )
  * //=> [ 1, 2, 3 ]
  * ```
+ *
+ * @category Splices
  */
 export const takeConcur: SubConcur
 
@@ -338,6 +362,8 @@ type SubConcur = {
  * )
  * //=> [ 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -356,6 +382,8 @@ export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * )
  * //=> [ 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const firstAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -376,6 +404,8 @@ export const firstAsync: <Value>(
  * )
  * //=> [ 'sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const firstConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -396,6 +426,8 @@ export const firstConcur: <Value>(
  * )
  * //=> [ 'even more sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -414,6 +446,8 @@ export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * )
  * //=> [ 'even more sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const lastAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -434,6 +468,8 @@ export const lastAsync: <Value>(
  * )
  * //=> [ 'even more sloth' ]
  * ```
+ *
+ * @category Splices
  */
 export const lastConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -493,6 +529,8 @@ export const lastConcur: <Value>(
  * )
  * //=> []
  * ```
+ *
+ * @category Splices
  */
 export const slice: {
   <Start extends number>(
@@ -573,6 +611,8 @@ export const slice: {
  * )
  * //=> []
  * ```
+ *
+ * @category Splices
  */
 export const sliceAsync: {
   <Start extends number>(
@@ -653,6 +693,8 @@ export const sliceAsync: {
  * )
  * //=> []
  * ```
+ *
+ * @category Splices
  */
 export const sliceConcur: {
   <Start extends number>(
@@ -701,6 +743,8 @@ export const sliceConcur: {
  * )
  * //=> 'more sloth'
  * ```
+ *
+ * @category Splices
  */
 export const at: {
   <Index extends number>(
@@ -734,6 +778,8 @@ export const at: {
  * )
  * //=> 'more sloth'
  * ```
+ *
+ * @category Splices
  */
 export const atAsync: {
   <Index extends number>(
@@ -768,6 +814,8 @@ export const atAsync: {
  * )
  * //=> 'more sloth'
  * ```
+ *
+ * @category Splices
  */
 export const atConcur: {
   <Index extends number>(
@@ -809,6 +857,8 @@ export const atConcur: {
  * )
  * //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const chunk: {
   <Size extends number>(
@@ -850,6 +900,8 @@ export const chunk: {
  * )
  * //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const chunkAsync: {
   <Size extends number>(
@@ -891,6 +943,8 @@ export const chunkAsync: {
  * )
  * //=> [ [ 'S', 'L' ], [ 'O', 'T' ], [ 'H' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const chunkConcur: {
   <Size extends number>(
@@ -937,6 +991,8 @@ export const chunkConcur: {
  * )
  * //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const window: {
   <Size extends number>(
@@ -983,6 +1039,8 @@ export const window: {
  * )
  * //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const windowAsync: {
   <Size extends number>(
@@ -1029,6 +1087,8 @@ export const windowAsync: {
  * )
  * //=> [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 2, 3, 4 ], [ 3, 4, 5 ], [ 4, 5, 6 ], [ 5, 6, 'sloth' ], [ 6, 'sloth' ], [ 'sloth' ] ]
  * ```
+ *
+ * @category Splices
  */
 export const windowConcur: {
   <Size extends number>(
@@ -1042,6 +1102,8 @@ export const windowConcur: {
 
 /**
  * Options for {@link window}, {@link windowAsync}, and {@link windowConcur}.
+ *
+ * @category Splices
  */
 export type WindowOptions<Size extends number = number> =
   | PositiveInteger<Size>
@@ -1078,6 +1140,8 @@ export type WindowOptions<Size extends number = number> =
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Splices
  */
 export const concat: <Value>(
   ...iterables: readonly Iterable<Value>[]
@@ -1099,6 +1163,8 @@ export const concat: <Value>(
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Splices
  */
 export const concatAsync: <Value>(
   ...iterables: readonly (Iterable<Value> | AsyncIterable<Value>)[]
@@ -1120,6 +1186,8 @@ export const concatAsync: <Value>(
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Splices
  */
 export const concatConcur: <Value>(
   ...iterables: readonly (

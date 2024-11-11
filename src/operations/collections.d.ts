@@ -24,6 +24,8 @@ import type {
  * )
  * //=> [ 'sloth', 'more sloth', 'sloth', 'more sloth' ]
  * ```
+ *
+ * @category Collections
  */
 export const toArray: <Value>() => Reducer<Value, Value[]>
 
@@ -41,6 +43,8 @@ export const toArray: <Value>() => Reducer<Value, Value[]>
  * )
  * //=> Set(2) { 'sloth', 'more sloth' }
  * ```
+ *
+ * @category Collections
  */
 export const toSet: <Value>() => Reducer<Value, Set<Value>>
 
@@ -59,6 +63,8 @@ export const toSet: <Value>() => Reducer<Value, Set<Value>>
  * )
  * //=> WeakSet { <items unknown> }
  * ```
+ *
+ * @category Collections
  */
 export const toWeakSet: <Value extends object>() => Reducer<
   Value,
@@ -81,6 +87,8 @@ export const toWeakSet: <Value extends object>() => Reducer<
  * )
  * //=> { sloth: 5, 'more sloth': 10, 'even more sloth': 15 }
  * ```
+ *
+ * @category Collections
  */
 export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
   Key,
@@ -104,6 +112,8 @@ export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
  * )
  * //=> Map(3) { 'sloth' => 5, 'more sloth' => 10, 'even more sloth' => 15 }
  * ```
+ *
+ * @category Collections
  */
 export const toMap: <Key, Value>() => RawKeyedReducer<
   Key,
@@ -127,6 +137,8 @@ export const toMap: <Key, Value>() => RawKeyedReducer<
  * )
  * //=> WeakMap { <items unknown> }
  * ```
+ *
+ * @category Collections
  */
 export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
   Key,
@@ -153,6 +165,8 @@ export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
  * //=>   15 => [ 'even more sloth' ]
  * //=> }
  * ```
+ *
+ * @category Collections
  */
 export const toGrouped: {
   <Key, Value, InnerAcc, InnerFinished, InnerThis, OuterAcc, OuterThis>(
@@ -256,6 +270,8 @@ export const toGrouped: {
  * )
  * //=> { set: Set(3) { 5, 10, 15 }, count: 5, string: '5,10,5,10,15' }
  * ```
+ *
+ * @category Collections
  */
 export const toMultiple: {
   <
@@ -353,6 +369,8 @@ export const toMultiple: {
  * )
  * //=> Map(2) { 5 => 'sloth,sleep', 10 => 'more sloth,some sloth' }
  * ```
+ *
+ * @category Collections
  */
 export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
 
@@ -373,6 +391,8 @@ export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
  * )
  * //=> sloth, more sloth, even more sloth
  * ```
+ *
+ * @category Collections
  */
 export const join: {
   (separator: string): (iterable: Iterable<unknown>) => string
@@ -396,6 +416,8 @@ export const join: {
  * )
  * //=> sloth, more sloth, even more sloth
  * ```
+ *
+ * @category Collections
  */
 export const joinAsync: {
   (
@@ -421,6 +443,8 @@ export const joinAsync: {
  * )
  * //=> sloth, more sloth, even more sloth
  * ```
+ *
+ * @category Collections
  */
 export const joinConcur: {
   (

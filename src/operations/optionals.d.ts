@@ -1,13 +1,25 @@
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './core.js'
 
-/** An iterable containing exactly zero or one values. */
+/**
+ * An iterable containing exactly zero or one values.
+ *
+ * @category Optionals
+ */
 export type Optional<Value> = Iterable<Value>
 
-/** An async iterable containing exactly zero or one values. */
+/**
+ * An async iterable containing exactly zero or one values.
+ *
+ * @category Optionals
+ */
 export type AsyncOptional<Value> = AsyncIterable<Value>
 
-/** A concur iterable containing exactly zero or one values. */
+/**
+ * A concur iterable containing exactly zero or one values.
+ *
+ * @category Optionals
+ */
 export type ConcurOptional<Value> = ConcurIterable<Value>
 
 /**
@@ -25,6 +37,8 @@ export type ConcurOptional<Value> = ConcurIterable<Value>
  * console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
  * //=> I also get called!
  * ```
+ *
+ * @category Optionals
  */
 export const or: {
   <Value>(fn: () => Value): (iterable: Iterable<Value>) => Value
@@ -52,6 +66,8 @@ export const or: {
  * )
  * //=> I also get called!
  * ```
+ *
+ * @category Optionals
  */
 export const orAsync: {
   <Value>(
@@ -84,6 +100,8 @@ export const orAsync: {
  * )
  * //=> I also get called!
  * ```
+ *
+ * @category Optionals
  */
 export const orConcur: {
   <Value>(
@@ -118,6 +136,8 @@ export const orConcur: {
  * }
  * //=> Oh no! It had more than one value...
  * ```
+ *
+ * @category Optionals
  */
 export const get: <Value>(iterable: Iterable<Value>) => Value
 
@@ -144,6 +164,8 @@ export const get: <Value>(iterable: Iterable<Value>) => Value
  * }
  * //=> Oh no! It had more than one value...
  * ```
+ *
+ * @category Optionals
  */
 export const getAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -172,6 +194,8 @@ export const getAsync: <Value>(
  * }
  * //=> Oh no! It had more than one value...
  * ```
+ *
+ * @category Optionals
  */
 export const getConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -203,6 +227,8 @@ export const getConcur: <Value>(
  * console.log(count(rest2))
  * //=> 0
  * ```
+ *
+ * @category Optionals
  */
 export const next: <Value>(
   iterable: Iterable<Value>,
@@ -235,6 +261,8 @@ export const next: <Value>(
  * console.log(await countAsync(rest2))
  * //=> 0
  * ```
+ *
+ * @category Optionals
  */
 export const nextAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,

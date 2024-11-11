@@ -10,6 +10,8 @@ import type {
  * This differs from `Map.prototype.keys` in that the returned iterable can be
  * iterated multiple times and differs from `Object.keys` in that the returned
  * iterable is opaque.
+ *
+ * @category Generators
  */
 export const keys: {
   <Key>(object: ReadonlyMap<Key, unknown>): Iterable<Key>
@@ -24,6 +26,8 @@ export const keys: {
  * This differs from `Map.prototype.values` and `Set.prototype.values` in that
  * the returned iterable can be iterated multiple times and differs from
  * `Object.values` in that the returned iterable is opaque.
+ *
+ * @category Generators
  */
 export const values: <Value>(
   object:
@@ -38,6 +42,8 @@ export const values: <Value>(
  * This differs from `Map.prototype.entries` in that the returned iterable can
  * be iterated multiple times and differs from `Object.entries` in that the
  * returned iterable is opaque.
+ *
+ * @category Generators
  */
 export const entries: {
   <Key, Value>(object: {
@@ -64,6 +70,8 @@ export const entries: {
  * )
  * //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
  * ```
+ *
+ * @category Generators
  */
 export const generate: {
   <Value>(fn: (previousValue: Value) => Value): (seed: Value) => Iterable<Value>
@@ -86,6 +94,8 @@ export const generate: {
  * )
  * //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
  * ```
+ *
+ * @category Generators
  */
 export const generateAsync: {
   <Value>(
@@ -111,6 +121,8 @@ export const generateAsync: {
  * )
  * //=> sloth, sloth, sloth
  * ```
+ *
+ * @category Generators
  */
 export const repeat: <Value>(value: Value) => Iterable<Value>
 
@@ -129,6 +141,8 @@ export const repeat: <Value>(value: Value) => Iterable<Value>
  * )
  * //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
  * ```
+ *
+ * @category Generators
  */
 export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -147,6 +161,8 @@ export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * )
  * //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
  * ```
+ *
+ * @category Generators
  */
 export const cycleAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -155,6 +171,8 @@ export const cycleAsync: <Value>(
 /**
  * An iterable that yields integers in a range. Has a method for obtaining a new
  * iterable that skips numbers in steps.
+ *
+ * @category Generators
  */
 export type RangeIterable = Iterable<number> & {
   /**
@@ -192,6 +210,8 @@ type Range = {
  * console.log([...rangeTo(0, 6).step(2)])
  * //=> [ 0, 2, 4, 6 ]
  * ```
+ *
+ * @category Generators
  */
 export const rangeTo: Range
 
@@ -209,5 +229,7 @@ export const rangeTo: Range
  * console.log([...rangeUntil(0, 6).step(2)])
  * //=> [ 0, 2, 4 ]
  * ```
+ *
+ * @category Generators
  */
 export const rangeUntil: Range

@@ -5,6 +5,8 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
 /**
  * A reducer that reduces by combining pairs of values using function
  * application.
+ *
+ * @category Reducers
  */
 export type FunctionReducer<Value = unknown> = (
   acc: Value,
@@ -14,6 +16,8 @@ export type FunctionReducer<Value = unknown> = (
 /**
  * A reducer that reduces by combining pairs of values using
  * {@link RawOptionalReducerWithoutFinish.add}.
+ *
+ * @category Reducers
  */
 export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
   add: (this: This, acc: Value, value: Value) => Value
@@ -23,6 +27,8 @@ export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
  * A reducer that reduces by combining pairs of values using
  * {@link RawOptionalReducerWithFinish.add} and then tranforming the final value
  * using {@link RawOptionalReducerWithFinish.finish}.
+ *
+ * @category Reducers
  */
 export type RawOptionalReducerWithFinish<
   Value = unknown,
@@ -36,6 +42,8 @@ export type RawOptionalReducerWithFinish<
  * A reducer that reduces by combining pairs of values using
  * {@link OptionalReducer.add} and then tranforming the final value using
  * {@link OptionalReducer.finish}.
+ *
+ * @category Reducers
  */
 export type OptionalReducer<
   Value = unknown,
@@ -46,6 +54,8 @@ export type OptionalReducer<
  * A reducer that reduces by creating an initial accumulator using
  * {@link RawReducerWithoutFinish.create} and then adding values to the
  * accumulator values using {@link RawReducerWithoutFinish.add}.
+ *
+ * @category Reducers
  */
 export type RawReducerWithoutFinish<
   Value = unknown,
@@ -61,6 +71,8 @@ export type RawReducerWithoutFinish<
  * {@link RawReducerWithFinish.create}, then adding values to the accumulator
  * values using {@link RawReducerWithFinish.add}, and then tranforming the final
  * accumulator using {@link RawReducerWithFinish.finish}.
+ *
+ * @category Reducers
  */
 export type RawReducerWithFinish<
   Value = unknown,
@@ -76,6 +88,8 @@ export type RawReducerWithFinish<
  * {@link Reducer.create}, then adding values to the accumulator values using
  * {@link Reducer.add}, and then tranforming the final accumulator using
  * {@link Reducer.finish}.
+ *
+ * @category Reducers
  */
 export type Reducer<
   Value = unknown,
@@ -88,6 +102,8 @@ export type Reducer<
  * {@link RawKeyedReducer.create} and then adding key-value pairs to the
  * accumulator values using {@link RawKeyedReducer.add}. The accumulator can be
  * queried for values by key using {@link RawKeyedReducer.get}.
+ *
+ * @category Reducers
  */
 export type RawKeyedReducer<
   Key = unknown,
@@ -103,6 +119,8 @@ export type RawKeyedReducer<
  * {@link KeyedReducer.create} and then adding key-value pairs to the
  * accumulator values using {@link KeyedReducer.add}. The accumulator can be
  * queried for values by key using {@link KeyedReducer.get}.
+ *
+ * @category Reducers
  */
 export type KeyedReducer<
   Key = unknown,
@@ -113,6 +131,8 @@ export type KeyedReducer<
 /**
  * An async reducer that reduces by combining pairs of values using function
  * application.
+ *
+ * @category Reducers
  */
 export type AsyncFunctionReducer<Value = unknown> = (
   acc: Value,
@@ -122,6 +142,8 @@ export type AsyncFunctionReducer<Value = unknown> = (
 /**
  * An async reducer that reduces by combining pairs of values using
  * {@link RawAsyncOptionalReducerWithoutFinish.add}.
+ *
+ * @category Reducers
  */
 export type RawAsyncOptionalReducerWithoutFinish<
   Value = unknown,
@@ -134,6 +156,8 @@ export type RawAsyncOptionalReducerWithoutFinish<
  * An async reducer that reduces by combining pairs of values using
  * {@link RawAsyncOptionalReducerWithFinish.add} and then tranforming the final
  * value using {@link RawAsyncOptionalReducerWithFinish.finish}.
+ *
+ * @category Reducers
  */
 export type RawAsyncOptionalReducerWithFinish<
   Value = unknown,
@@ -147,6 +171,8 @@ export type RawAsyncOptionalReducerWithFinish<
  * An async reducer that reduces by combining pairs of values using
  * {@link AsyncOptionalReducer.add} and then tranforming the final value using
  * {@link AsyncOptionalReducer.finish}.
+ *
+ * @category Reducers
  */
 export type AsyncOptionalReducer<
   Value = unknown,
@@ -159,6 +185,8 @@ export type AsyncOptionalReducer<
  * accumulator values using {@link RawAsyncReducerWithoutFinish.add}. The async
  * reducer is optionally able to combine pairs of accumulators using
  * {@link RawAsyncReducerWithoutFinish.combine}.
+ *
+ * @category Reducers
  */
 export type RawAsyncReducerWithoutFinish<
   Value = unknown,
@@ -178,6 +206,8 @@ export type RawAsyncReducerWithoutFinish<
  * {@link RawAsyncReducerWithFinish.finish}. The async
  * reducer is optionally able to combine pairs of accumulators using
  * {@link RawAsyncReducerWithFinish.combine}.
+ *
+ * @category Reducers
  */
 export type RawAsyncReducerWithFinish<
   Value = unknown,
@@ -194,6 +224,8 @@ export type RawAsyncReducerWithFinish<
  * using {@link AsyncReducer.add}, and then tranforming the final accumulator
  * using {@link AsyncReducer.finish}. The async reducer is optionally able to
  * combine pairs of accumulators using {@link AsyncReducer.combine}.
+ *
+ * @category Reducers
  */
 export type AsyncReducer<
   Value = unknown,
@@ -208,6 +240,8 @@ export type AsyncReducer<
  * reducer is optionally able to combine pairs of accumulators using
  * {@link RawAsyncKeyedReducer.combine}. The accumulator can be queried for
  * values by key using {@link RawAsyncKeyedReducer.get}.
+ *
+ * @category Reducers
  */
 export type RawAsyncKeyedReducer<
   Key = unknown,
@@ -229,6 +263,8 @@ export type RawAsyncKeyedReducer<
  * reducer is optionally able to combine pairs of accumulators using
  * {@link AsyncKeyedReducer.combine}. The accumulator can be queried for values
  * by key using {@link AsyncKeyedReducer.get}.
+ *
+ * @category Reducers
  */
 export type AsyncKeyedReducer<
   Key = unknown,
@@ -244,12 +280,16 @@ export type AsyncKeyedReducer<
  * valid values. Furthermore, introducing a `has` method for the purpose of
  * disambiguation would be less performant due to the need to perform the lookup
  * twice when the entry exists: `has` followed by `get` for the same key.
+ *
+ * @category Reducers
  */
 export const NO_ENTRY: unique symbol
 
 /**
  * Returns a {@link Reducer} or {@link OptionalReducer} equivalent to `reducer`
  * except its final value is transformed using `fn`.
+ *
+ * @category Reducers
  */
 export const mapReducer: {
   <Value, Acc, From, To, This>(
@@ -304,6 +344,8 @@ export const mapReducer: {
 /**
  * Returns an {@link AsyncReducer} equivalent to `reducer` except its final
  * value is transformed using `fn`.
+ *
+ * @category Reducers
  */
 export const mapAsyncReducer: {
   <Value, Acc, From, To, This>(
@@ -359,7 +401,11 @@ export const mapAsyncReducer: {
   ): (asyncReducer: AsyncFunctionReducer<From>) => AsyncOptionalReducer<To>
 }
 
-/** Returns a non-raw version of `reducer`. */
+/**
+ * Returns a non-raw version of `reducer`.
+ *
+ * @category Reducers
+ */
 export const normalizeReducer: {
   <Key, Value, Acc, This>(
     reducer: Readonly<RawKeyedReducer<Key, Value, Acc, This>>,
@@ -430,6 +476,8 @@ export const normalizeReducer: {
  * )
  * //=> Hello Sloth! What an interesting program!
  * ```
+ *
+ * @category Reducers
  */
 export const reduce: {
   <Value, Acc, Finished, This>(
@@ -512,6 +560,8 @@ export const reduce: {
  * )
  * //=> Hello World! What an interesting program!
  * ```
+ *
+ * @category Reducers
  */
 export const reduceAsync: {
   <Value, Acc, Finished, This>(
@@ -610,6 +660,8 @@ export const reduceAsync: {
  * )
  * //=> Hello World! What an interesting program!
  * ```
+ *
+ * @category Reducers
  */
 export const reduceConcur: {
   <Value, Acc, Finished, This>(

@@ -48,6 +48,8 @@ type TupleOfSameLength<Tuple extends readonly any[]> = Extract<
  * //=> Hello Sloth World Sloth !
  * //=> Hello Sloth World Sloth !
  * ```
+ *
+ * @category Core
  */
 export const curry: <Parameters extends readonly any[], Return>(
   fn: (...args: Parameters) => Return,
@@ -68,6 +70,8 @@ export const curry: <Parameters extends readonly any[], Return>(
  * )
  * // => SLOTH! SLOTH! SLOTH!
  * ```
+ *
+ * @category Core
  */
 export const pipe: {
   <Value>(value: Value): Value
@@ -153,6 +157,8 @@ export const pipe: {
  * console.log(screamify(`sloth`))
  * // => SLOTH! SLOTH! SLOTH!
  * ```
+ *
+ * @category Core
  */
 export const compose: {
   (): <Value>(value: Value) => Value
@@ -239,6 +245,8 @@ export const compose: {
  * //=> more sloth
  * //=> even more sloth
  * ```
+ *
+ * @category Core
  */
 export const asAsync: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
@@ -267,12 +275,18 @@ export const asAsync: <Value>(
  *   flatMapConcur(content => content.split(`\n`)),
  * )
  * ```
+ *
+ * @category Core
  */
 export type ConcurIterable<Value> = (
   apply: ConcurIterableApply<Value>,
 ) => Promise<void>
 
-/** The callback invoked for each value of a {@link ConcurIterable}. */
+/**
+ * The callback invoked for each value of a {@link ConcurIterable}.
+ *
+ * @category Core
+ */
 export type ConcurIterableApply<Value> = (
   value: Value,
 ) => MaybePromiseLike<void>
@@ -289,6 +303,8 @@ export type ConcurIterableApply<Value> = (
  * //=> more sloth
  * //=> even more sloth
  * ```
+ *
+ * @category Core
  */
 export const asConcur: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
@@ -306,6 +322,8 @@ export const asConcur: <Value>(
  * console.log([...empty])
  * //=> []
  * ```
+ *
+ * @category Core
  */
 export const empty: Iterable<any>
 
@@ -321,6 +339,8 @@ export const empty: Iterable<any>
  * console.log(await pipe(emptyAsync, reduceAsync(toArray())))
  * //=> []
  * ```
+ *
+ * @category Core
  */
 export const emptyAsync: AsyncIterable<any>
 
@@ -336,17 +356,23 @@ export const emptyAsync: AsyncIterable<any>
  * console.log(await pipe(emptyConcur, reduceConcur(toArray())))
  * //=> []
  * ```
+ *
+ * @category Core
  */
 export const emptyConcur: ConcurIterable<any>
 
 /**
  * Returns an iterable equivalent, but not referentially equal, to `iterable`.
+ *
+ * @category Core
  */
 export const opaque: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
 /**
  * Returns an async iterable equivalent, but not referentially equal, to
  * `asyncIterable`.
+ *
+ * @category Core
  */
 export const opaqueAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -355,6 +381,8 @@ export const opaqueAsync: <Value>(
 /**
  * Returns an concur iterable equivalent, but not referentially equal, to
  * `concurIterable`.
+ *
+ * @category Core
  */
 export const opaqueConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

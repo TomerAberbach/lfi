@@ -19,6 +19,8 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filter: {
   <From, To>(
@@ -56,6 +58,8 @@ export const filter: {
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filterAsync: {
   <From, To>(
@@ -93,6 +97,8 @@ export const filterAsync: {
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filterConcur: {
   <From, To>(
@@ -133,6 +139,8 @@ export const filterConcur: {
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filterMap: {
   <From, To>(
@@ -165,6 +173,8 @@ export const filterMap: {
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filterMapAsync: {
   <From, To>(
@@ -197,6 +207,8 @@ export const filterMapAsync: {
  * )
  * //=> [ 'sloth party', 'sloths in trees' ]
  * ```
+ *
+ * @category Filters
  */
 export const filterMapConcur: {
   <From, To>(
@@ -223,6 +235,8 @@ export const filterMapConcur: {
  * )
  * //=> [ 'sloth', 'sleep', 'slow' ]
  * ```
+ *
+ * @category Filters
  */
 export const exclude: {
   (
@@ -249,6 +263,8 @@ export const exclude: {
  * )
  * //=> [ 'sloth', 'sleep', 'slow' ]
  * ```
+ *
+ * @category Filters
  */
 export const excludeAsync: {
   (
@@ -275,6 +291,8 @@ export const excludeAsync: {
  * )
  * //=> [ 'sloth', 'sleep', 'slow' ]
  * ```
+ *
+ * @category Filters
  */
 export const excludeConcur: {
   (
@@ -303,6 +321,8 @@ export const excludeConcur: {
  * )
  * //=> [ 'sloth', 'fast' ]
  * ```
+ *
+ * @category Filters
  */
 export const uniqueBy: {
   <Value>(
@@ -332,6 +352,8 @@ export const uniqueBy: {
  * )
  * //=> [ 'sloth', 'fast' ]
  * ```
+ *
+ * @category Filters
  */
 export const uniqueByAsync: {
   <Value>(
@@ -361,6 +383,8 @@ export const uniqueByAsync: {
  * )
  * //=> [ 'sloth', 'fast' ]
  * ```
+ *
+ * @category Filters
  */
 export const uniqueByConcur: {
   <Value>(
@@ -387,6 +411,8 @@ export const uniqueByConcur: {
  * )
  * //=> [ 'sloth', 'not sloth' ]
  * ```
+ *
+ * @category Filters
  */
 export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -406,6 +432,8 @@ export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * )
  * //=> [ 'sloth', 'not sloth' ]
  * ```
+ *
+ * @category Filters
  */
 export const uniqueAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -427,6 +455,8 @@ export const uniqueAsync: <Value>(
  * )
  * //=> [ 'sloth', 'not sloth' ]
  * ```
+ *
+ * @category Filters
  */
 export const uniqueConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -493,6 +523,8 @@ type FindConcur = {
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const find: Find
 
@@ -525,6 +557,8 @@ export const find: Find
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const findAsync: FindAsync
 
@@ -557,6 +591,8 @@ export const findAsync: FindAsync
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const findConcur: FindConcur
 
@@ -586,6 +622,8 @@ export const findConcur: FindConcur
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const findLast: Find
 
@@ -616,6 +654,8 @@ export const findLast: Find
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const findLastAsync: FindAsync
 
@@ -646,5 +686,7 @@ export const findLastAsync: FindAsync
  * )
  * //=> yawn!
  * ```
+ *
+ * @category Filters
  */
 export const findLastConcur: FindConcur

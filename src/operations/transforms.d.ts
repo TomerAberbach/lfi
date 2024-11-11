@@ -18,6 +18,8 @@ import type { ConcurIterable } from './core.js'
  * )
  * //=> [ 5, 10, 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const map: {
   <From, To>(
@@ -43,6 +45,8 @@ export const map: {
  * )
  * //=> [ 5, 10, 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const mapAsync: {
   <From, To>(
@@ -71,6 +75,8 @@ export const mapAsync: {
  * )
  * //=> [ 5, 10, 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const mapConcur: {
   <From, To>(
@@ -99,6 +105,8 @@ export const mapConcur: {
  * )
  * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flatMap: {
   <From, To>(
@@ -128,6 +136,8 @@ export const flatMap: {
  * )
  * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flatMapAsync: {
   <From, To>(
@@ -157,6 +167,8 @@ export const flatMapAsync: {
  * )
  * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flatMapConcur: {
   <From, To>(
@@ -193,6 +205,8 @@ export const flatMapConcur: {
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flatten: <Value>(
   iterable: Iterable<Iterable<Value>>,
@@ -215,6 +229,8 @@ export const flatten: <Value>(
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flattenAsync: <Value>(
   asyncIterable: AsyncIterable<Iterable<Value> | AsyncIterable<Value>>,
@@ -240,6 +256,8 @@ export const flattenAsync: <Value>(
  * )
  * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
  * ```
+ *
+ * @category Transforms
  */
 export const flattenConcur: <Value>(
   concurIterable: ConcurIterable<
@@ -263,6 +281,8 @@ export const flattenConcur: <Value>(
  * )
  * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
  * ```
+ *
+ * @category Transforms
  */
 export const index: <Value>(
   iterable: Iterable<Value>,
@@ -284,6 +304,8 @@ export const index: <Value>(
  * )
  * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
  * ```
+ *
+ * @category Transforms
  */
 export const indexAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -305,6 +327,8 @@ export const indexAsync: <Value>(
  * )
  * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
  * ```
+ *
+ * @category Transforms
  */
 export const indexConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

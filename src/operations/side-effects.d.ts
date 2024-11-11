@@ -15,6 +15,8 @@ import type { ConcurIterable } from './core.js'
  * //=> phil
  * //=> [ 'carl', 'frank', 'phil' ]
  * ```
+ *
+ * @category Side effects
  */
 export const each: {
   <From, To extends From>(
@@ -55,6 +57,8 @@ export const each: {
  * console.log(eachedSloths)
  * //=> [ 'carl', 'frank', 'phil' ]
  * ```
+ *
+ * @category Side effects
  */
 export const eachAsync: {
   <Value>(
@@ -94,6 +98,8 @@ export const eachAsync: {
  * console.log(eachedSloths)
  * //=> [ 'carl', 'frank', 'phil' ]
  * ```
+ *
+ * @category Side effects
  */
 export const eachConcur: {
   <Value>(
@@ -127,6 +133,8 @@ export const eachConcur: {
  * //=> frank
  * //=> phil
  * ```
+ *
+ * @category Side effects
  */
 export const forEach: {
   <Value>(fn: (value: Value) => unknown): (iterable: Iterable<Value>) => void
@@ -151,6 +159,8 @@ export const forEach: {
  * //=> frank
  * //=> phil
  * ```
+ *
+ * @category Side effects
  */
 export const forEachAsync: {
   <Value>(
@@ -178,6 +188,8 @@ export const forEachAsync: {
  * //=> phil
  * //
  * ```
+ *
+ * @category Side effects
  */
 export const forEachConcur: {
   <Value>(
@@ -205,6 +217,8 @@ export const forEachConcur: {
  * //=> 2
  * //=> 3
  * ```
+ *
+ * @category Side effects
  */
 export const consume: (iterable: Iterable<unknown>) => void
 
@@ -224,6 +238,8 @@ export const consume: (iterable: Iterable<unknown>) => void
  * //=> 2
  * //=> 3
  * ```
+ *
+ * @category Side effects
  */
 export const consumeAsync: (
   asyncIterable: AsyncIterable<unknown>,
@@ -245,6 +261,8 @@ export const consumeAsync: (
  * //=> 2
  * //=> 3
  * ```
+ *
+ * @category Side effects
  */
 export const consumeConcur: (
   concurIterable: ConcurIterable<unknown>,
@@ -270,6 +288,8 @@ export const consumeConcur: (
  * console.log([...cachedIterable])
  * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
  * ```
+ *
+ * @category Side effects
  */
 export const cache: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -293,6 +313,8 @@ export const cache: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
  * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
  * ```
+ *
+ * @category Side effects
  */
 export const cacheAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -318,6 +340,8 @@ export const cacheAsync: <Value>(
  * console.log(await pipe(cachedConcurIterable, reduceConcur(toArray())))
  * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
  * ```
+ *
+ * @category Side effects
  */
 export const cacheConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

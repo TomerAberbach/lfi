@@ -23,6 +23,8 @@ import type {
  * )
  * //=> Map(2) { 5 => 2, 10 => 2 }
  * ```
+ *
+ * @category Statistics
  */
 export const toCount: () => Reducer<unknown, number>
 
@@ -36,6 +38,8 @@ export const toCount: () => Reducer<unknown, number>
  * console.log(count([`sloth`, `more sloth`, `even more sloth`]))
  * //=> 3
  * ```
+ *
+ * @category Statistics
  */
 export const count: <Value>(iterable: Iterable<Value>) => number
 
@@ -51,6 +55,8 @@ export const count: <Value>(iterable: Iterable<Value>) => number
  * )
  * //=> 3
  * ```
+ *
+ * @category Statistics
  */
 export const countAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -68,6 +74,8 @@ export const countAsync: <Value>(
  * )
  * //=> 3
  * ```
+ *
+ * @category Statistics
  */
 export const countConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -90,6 +98,8 @@ export const countConcur: <Value>(
  * )
  * //=> Map(2) { 5 => 10, 10 => 20 }
  * ```
+ *
+ * @category Statistics
  */
 export const toSum: () => Reducer<number, number>
 
@@ -101,6 +111,8 @@ export const toSum: () => Reducer<number, number>
  * console.log(sum([1, 4, 6, 2]))
  * //=> 13
  * ```
+ *
+ * @category Statistics
  */
 export const sum: (iterable: Iterable<number>) => number
 
@@ -112,6 +124,8 @@ export const sum: (iterable: Iterable<number>) => number
  * console.log(await sumAsync(asAsync([1, 4, 6, 2])))
  * //=> 3
  * ```
+ *
+ * @category Statistics
  */
 export const sumAsync: (asyncIterable: AsyncIterable<number>) => Promise<number>
 
@@ -124,6 +138,8 @@ export const sumAsync: (asyncIterable: AsyncIterable<number>) => Promise<number>
  * console.log(await sumConcur(asConcur([1, 4, 6, 2])))
  * //=> 3
  * ```
+ *
+ * @category Statistics
  */
 export const sumConcur: (
   concurIterable: ConcurIterable<number>,
@@ -146,6 +162,8 @@ export const sumConcur: (
  * )
  * //=> Map(2) { 5 => 0.5, 10 => 2 }
  * ```
+ *
+ * @category Statistics
  */
 export const toMean: () => Reducer<number, number>
 
@@ -162,6 +180,8 @@ export const toMean: () => Reducer<number, number>
  * console.log(mean([]))
  * //=> NaN
  * ```
+ *
+ * @category Statistics
  */
 export const mean: (iterable: Iterable<number>) => number
 
@@ -179,6 +199,8 @@ export const mean: (iterable: Iterable<number>) => number
  * console.log(await meanAsync(emptyAsync))
  * //=> NaN
  * ```
+ *
+ * @category Statistics
  */
 export const meanAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -198,6 +220,8 @@ export const meanAsync: (
  * console.log(await meanConcur(emptyConcur))
  * //=> NaN
  * ```
+ *
+ * @category Statistics
  */
 export const meanConcur: (
   concurIterable: ConcurIterable<number>,
@@ -210,6 +234,8 @@ export const meanConcur: (
  * - Less than zero implies `left < right`
  * - Equal to zero implies `left === right`
  * - Greater than zero implies `left > right`
+ *
+ * @category Statistics
  */
 export type Compare<Value> = (left: Value, right: Value) => number
 
@@ -220,6 +246,8 @@ export type Compare<Value> = (left: Value, right: Value) => number
  * - Less than zero implies `left < right`
  * - Equal to zero implies `left === right`
  * - Greater than zero implies `left > right`
+ *
+ * @category Statistics
  */
 export type AsyncCompare<Value> = (
   left: Value,
@@ -283,6 +311,8 @@ type MinOrMaxByConcur = {
  * )
  * //=> Map(2) { 5 => 'sleep', 10 => 'more sloth' }
  * ```
+ *
+ * @category Statistics
  */
 export const toMinBy: ToMinOrMaxBy
 
@@ -302,6 +332,8 @@ export const toMinBy: ToMinOrMaxBy
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minBy: MinOrMaxBy
 
@@ -311,6 +343,8 @@ export const minBy: MinOrMaxBy
  *
  * Use when composing reducers. Prefer {@link minByAsync} and
  * {@link minByConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMinByAsync: ToMinOrMaxByAsync
 
@@ -330,6 +364,8 @@ export const toMinByAsync: ToMinOrMaxByAsync
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minByAsync: MinOrMaxByAsync
 
@@ -349,6 +385,8 @@ export const minByAsync: MinOrMaxByAsync
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minByConcur: MinOrMaxByConcur
 
@@ -370,6 +408,8 @@ export const minByConcur: MinOrMaxByConcur
  * )
  * //=> Map(2) { 5 => 'sloth', 10 => 'some sloth' }
  * ```
+ *
+ * @category Statistics
  */
 export const toMaxBy: ToMinOrMaxBy
 
@@ -389,6 +429,8 @@ export const toMaxBy: ToMinOrMaxBy
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxBy: MinOrMaxBy
 
@@ -398,6 +440,8 @@ export const maxBy: MinOrMaxBy
  *
  * Use when composing reducers. Prefer {@link maxByAsync} and
  * {@link maxByConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMaxByAsync: ToMinOrMaxByAsync
 
@@ -417,6 +461,8 @@ export const toMaxByAsync: ToMinOrMaxByAsync
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxByAsync: MinOrMaxByAsync
 
@@ -436,6 +482,8 @@ export const maxByAsync: MinOrMaxByAsync
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxByConcur: MinOrMaxByConcur
 
@@ -460,6 +508,8 @@ export const maxByConcur: MinOrMaxByConcur
  * //=>   10 => { min: 'more sloth', max: 'some sloth' }
  * //=> }
  * ```
+ *
+ * @category Statistics
  */
 export const toMinMaxBy: <Value>(
   fn: Compare<Value>,
@@ -481,6 +531,8 @@ export const toMinMaxBy: <Value>(
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxBy: {
   <Value>(
@@ -498,6 +550,8 @@ export const minMaxBy: {
  *
  * Use when composing reducers. Prefer {@link minMaxByAsync} and
  * {@link minMaxByConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMinMaxByAsync: <Value>(
   fn: AsyncCompare<Value>,
@@ -520,6 +574,8 @@ export const toMinMaxByAsync: <Value>(
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxByAsync: {
   <Value>(
@@ -548,6 +604,8 @@ export const minMaxByAsync: {
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxByConcur: {
   <Value>(
@@ -620,6 +678,8 @@ type MinOrMaxWithConcur = {
  * )
  * //=> Map(2) { 5 => 'sloth', 10 => 'more sloth' }
  * ```
+ *
+ * @category Statistics
  */
 export const toMinWith: ToMinOrMaxWith
 
@@ -639,6 +699,8 @@ export const toMinWith: ToMinOrMaxWith
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minWith: MinOrMaxWith
 
@@ -649,6 +711,8 @@ export const minWith: MinOrMaxWith
  *
  * Use when composing reducers. Prefer {@link minWithAsync} and
  * {@link minWithConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMinWithAsync: ToMinOrMaxWithAsync
 
@@ -669,6 +733,8 @@ export const toMinWithAsync: ToMinOrMaxWithAsync
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minWithAsync: MinOrMaxWithAsync
 
@@ -689,6 +755,8 @@ export const minWithAsync: MinOrMaxWithAsync
  * )
  * //=> eating
  * ```
+ *
+ * @category Statistics
  */
 export const minWithConcur: MinOrMaxWithConcur
 
@@ -710,6 +778,8 @@ export const minWithConcur: MinOrMaxWithConcur
  * )
  * //=> Map(2) { 5 => 'sloth', 10 => 'some sloth' }
  * ```
+ *
+ * @category Statistics
  */
 export const toMaxWith: ToMinOrMaxWith
 
@@ -729,6 +799,8 @@ export const toMaxWith: ToMinOrMaxWith
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxWith: MinOrMaxWith
 
@@ -739,6 +811,8 @@ export const maxWith: MinOrMaxWith
  *
  * Use when composing reducers. Prefer {@link maxWithAsync} and
  * {@link maxWithConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMaxWithAsync: ToMinOrMaxWithAsync
 
@@ -759,6 +833,8 @@ export const toMaxWithAsync: ToMinOrMaxWithAsync
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxWithAsync: MinOrMaxWithAsync
 
@@ -779,6 +855,8 @@ export const maxWithAsync: MinOrMaxWithAsync
  * )
  * //=> sleeping
  * ```
+ *
+ * @category Statistics
  */
 export const maxWithConcur: MinOrMaxWithConcur
 
@@ -804,6 +882,8 @@ export const maxWithConcur: MinOrMaxWithConcur
  * //=>   10 => { min: 'more sloth', max: 'some sloth' }
  * //=> }
  * ```
+ *
+ * @category Statistics
  */
 export const toMinMaxWith: <Value>(
   fn: (value: Value) => number,
@@ -825,6 +905,8 @@ export const toMinMaxWith: <Value>(
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxWith: {
   <Value>(
@@ -843,6 +925,8 @@ export const minMaxWith: {
  *
  * Use when composing reducers. Prefer {@link minMaxWithAsync} and
  * {@link minMaxWithConcur} for direct use on iterables.
+ *
+ * @category Statistics
  */
 export const toMinMaxWithAsync: <Value>(
   fn: (value: Value) => MaybePromiseLike<number>,
@@ -865,6 +949,8 @@ export const toMinMaxWithAsync: <Value>(
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxWithAsync: {
   <Value>(
@@ -893,6 +979,8 @@ export const minMaxWithAsync: {
  * )
  * //=> { min: 'eating', max: 'sleeping' }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxWithConcur: {
   <Value>(
@@ -921,6 +1009,8 @@ export const minMaxWithConcur: {
  * )
  * //=> Map(2) { 5 => 115, 10 => 109 }
  * ```
+ *
+ * @category Statistics
  */
 export const toMin: () => OptionalReducer<number>
 
@@ -933,6 +1023,8 @@ export const toMin: () => OptionalReducer<number>
  * console.log(pipe([4, 1, 5, -3], min, get))
  * //=> -3
  * ```
+ *
+ * @category Statistics
  */
 export const min: (iterable: Iterable<number>) => Iterable<number>
 
@@ -946,6 +1038,8 @@ export const min: (iterable: Iterable<number>) => Iterable<number>
  * console.log(await pipe(asAsync([4, 1, 5, -3]), minAsync, getAsync))
  * //=> -3
  * ```
+ *
+ * @category Statistics
  */
 export const minAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -961,6 +1055,8 @@ export const minAsync: (
  * console.log(await pipe(asConcur([4, 1, 5, -3]), minConcur, getConcur))
  * //=> -3
  * ```
+ *
+ * @category Statistics
  */
 export const minConcur: (
   concurIterable: ConcurIterable<number>,
@@ -983,6 +1079,8 @@ export const minConcur: (
  * )
  * //=> Map(2) { 5 => 115, 10 => 115 }
  * ```
+ *
+ * @category Statistics
  */
 export const toMax: () => OptionalReducer<number>
 
@@ -995,6 +1093,8 @@ export const toMax: () => OptionalReducer<number>
  * console.log(pipe([4, 1, 5, -3], max, get))
  * //=> 5
  * ```
+ *
+ * @category Statistics
  */
 export const max: (iterable: Iterable<number>) => Iterable<number>
 
@@ -1008,6 +1108,8 @@ export const max: (iterable: Iterable<number>) => Iterable<number>
  * console.log(await pipe(asAsync([4, 1, 5, -3]), maxAsync, getAsync))
  * //=> 5
  * ```
+ *
+ * @category Statistics
  */
 export const maxAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -1023,6 +1125,8 @@ export const maxAsync: (
  * console.log(await pipe(asConcur([4, 1, 5, -3]), maxConcur, getConcur))
  * //=> 5
  * ```
+ *
+ * @category Statistics
  */
 export const maxConcur: (
   concurIterable: ConcurIterable<number>,
@@ -1046,6 +1150,8 @@ export const maxConcur: (
  * )
  * //=> Map(2) { 5 => { min: 115, max: 115 }, 10 => { min: 109, max: 115 } }
  * ```
+ *
+ * @category Statistics
  */
 export const toMinMax: () => OptionalReducer<MinMax<number>>
 
@@ -1058,6 +1164,8 @@ export const toMinMax: () => OptionalReducer<MinMax<number>>
  * console.log(pipe([4, 1, 5, -3], minMax, get))
  * //=> { min: -3, max: 5 }
  * ```
+ *
+ * @category Statistics
  */
 export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
 
@@ -1071,6 +1179,8 @@ export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
  * console.log(await pipe(asAsync([4, 1, 5, -3]), minMaxAsync, getAsync))
  * //=> { min: -3, max: 5 }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -1086,6 +1196,8 @@ export const minMaxAsync: (
  * console.log(await pipe(asConcur([4, 1, 5, -3]), minMaxConcur, getConcur))
  * //=> { min: -3, max: 5 }
  * ```
+ *
+ * @category Statistics
  */
 export const minMaxConcur: (
   concurIterable: ConcurIterable<number>,

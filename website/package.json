@@ -34,6 +34,7 @@
     "@docusaurus/preset-classic": "^3.6.1",
     "@docusaurus/theme-classic": "^3.6.1",
     "@docusaurus/theme-common": "^3.6.1",
+    "@kareemkermad/monaco-auto-import": "^1.1.6",
     "@mdx-js/react": "^3.1.0",
     "@monaco-editor/react": "^4.6.0",
     "@rollup/browser": "^4.26.0",

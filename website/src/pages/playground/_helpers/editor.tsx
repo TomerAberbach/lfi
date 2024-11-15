@@ -1,6 +1,9 @@
 import { useColorMode } from '@docusaurus/theme-common'
 import MonacoEditor from '@monaco-editor/react'
 import type { editor } from 'monaco-editor'
+import * as lfi from 'lfi'
+import { map, pipe, reduce, toArray } from 'lfi'
+import AutoImport from '@kareemkermad/monaco-auto-import'
 import type { Monaco } from '@monaco-editor/react'
 // @ts-expect-error TypeScript is mad that we're importing a declaration file
 // without `import type`
@@ -47,8 +50,9 @@ const Editor = forwardRef<EditorRef, EditorProps>(
           scrollBeyondLastLine: false,
         }}
         beforeMount={configureMonaco}
-        onMount={editor => {
+        onMount={(editor, monaco) => {
           editorRef.current = editor
+          configureMonacoEditor(editor, monaco)
         }}
       />
     )
@@ -106,5 +110,31 @@ const configureMonaco = (monaco: Monaco) => {
     `zoo`,
   )
 }
+
+const configureMonacoEditor = (
+  editor: editor.IStandaloneCodeEditor,
+  monaco: Monaco,
+) =>
+  new AutoImport({
+    monaco,
+    editor,
+    spacesBetweenBraces: true,
+    doubleQuotes: false,
+    semiColon: false,
+    alwaysApply: true,
+  }).imports.saveFile({
+    path: `lfi`,
+    imports: pipe(
+      Object.entries(lfi),
+      map(([name, value]) => ({
+        type:
+          typeof value === `function`
+            ? (`function` as const)
+            : (`const` as const),
+        name,
+      })),
+      reduce(toArray()),
+    ),
+  })
 
 export default Editor

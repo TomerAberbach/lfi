@@ -175,9 +175,8 @@ await pipe(
 
 ## API
 
-See the
-[documentation](https://github.com/TomerAberbach/lfi/blob/main/docs/globals.md)
-for the full list of available functions and classes.
+See the [documentation](https://lfi.dev/docs/api) for the full list of available
+functions and classes.
 
 All non-variadic functions are curried.
 
@@ -186,8 +185,8 @@ All non-variadic functions are curried.
 ### What Is a Concurrent Iterable?
 
 A concurrent iterable (represented by the
-[`ConcurIterable` type](https://github.com/TomerAberbach/lfi/blob/main/docs/modules.md#concuriterable))
-is a collection of values that can be iterated concurrently.
+[`ConcurIterable` type](https://lfi.dev/docs/concepts/concurrent-iterable)) is a
+collection of values that can be iterated concurrently.
 
 It is implemented as a function that:
 
@@ -196,8 +195,7 @@ It is implemented as a function that:
 
 ### How Do Concurrent Iterables Work?
 
-The
-[`asConcur` function](https://github.com/TomerAberbach/lfi/blob/main/docs/modules.md#asconcur)
+The [`asConcur` function](https://lfi.dev/docs/api/functions/asConcur)
 constructs a concur iterable from a normal iterable. Here is a simplified
 implementation:
 

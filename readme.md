@@ -33,7 +33,7 @@
 - **Lazy:** delays applying operations until their results are needed
 - **Functional:** provides highly composable functions
 - **Iteration:** supports sync iterables, async iterables, and unique
-  _concurrent iterables_
+  [_concurrent iterables_](https://lfi.dev/docs/concepts/concurrent-iterable)
 - **Async & Concurrent:** apply async operations sequentially over async
   iterables or concurrently over
   [_concurrent iterables_](https://lfi.dev/docs/concepts/concurrent-iterable)

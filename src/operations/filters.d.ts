@@ -23,10 +23,10 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * @category Filters
  */
 export const filter: {
-  <From, To>(
+  <From, To extends From>(
     fn: (value: From) => value is To,
   ): (iterable: Iterable<From>) => Iterable<To>
-  <From, To>(
+  <From, To extends From>(
     fn: (value: From) => value is To,
     iterable: Iterable<From>,
   ): Iterable<To>
@@ -62,11 +62,11 @@ export const filter: {
  * @category Filters
  */
 export const filterAsync: {
-  <From, To>(
+  <From, To extends From>(
     fn: (value: From) => value is To,
   ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
-  <From, To>(
-    fn: (value: From) => Value is To,
+  <From, To extends From>(
+    fn: (value: From) => value is To,
     asyncIterable: AsyncIterable<From>,
   ): AsyncIterable<To>
 
@@ -101,10 +101,10 @@ export const filterAsync: {
  * @category Filters
  */
 export const filterConcur: {
-  <From, To>(
+  <From, To extends From>(
     fn: (value: From) => value is To,
   ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
-  <From, To>(
+  <From, To extends From>(
     fn: (value: From) => value is To,
     concurIterable: ConcurIterable<From>,
   ): ConcurIterable<To>

@@ -1,0 +1,215 @@
+---
+sidebar_position: 3
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Optional
+
+This is an in-depth explanation of optionals. For simple usage examples, check
+out the ["Getting started" page](/docs/getting-started).
+
+## What is it?
+
+An optional is a container of zero or one value. It is an incredibly common
+primitive[^1][^2][^3] that enables type-safe management of the possibility that
+a value is absent or failed to be produced.
+
+Such type-safe management is technically already possible in TypeScript using
+[nullable type unions](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#strictnullchecks-on),
+which prevent you from accessing a value without checking for `null` and/or
+`undefined`, but `lfi` introduces an additional concept. In `lfi`, an optional
+is simply an iterable that produces zero or one value.
+
+It is represented by the `Optional`, `AsyncOptional`, and `ConcurOptional`
+types, depending on the async work required to (potentially) produce a value.
+These types are actually just aliases for `Iterable`, `AsyncIterable`, and
+`ConcurIterable`, respectively. They don't have different runtime
+representations from the regular iterable types.
+
+## How do I use it?
+
+There are several `lfi` functions that:
+
+- Return optionals, such as `find`, `findAsync`, and `findConcur`
+- Accept optionals, such as `or`, `orAsync`, and `orConcur`
+
+For example, consider the following code:
+
+<Tabs groupId='protocol' queryString>
+<TabItem value='sync' label='Sync'>
+
+```js playground
+import { find, or, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    [`dog`, `cat`, `bunny`],
+    // Return an optional potentially containing the found animal
+    find(animal => animal === targetAnimal),
+    // Return the optional's value if it exists, or the result of the callback otherwise
+    or(() => `no ${targetAnimal}???`),
+  )
+
+console.log(getAnimal(`dog`))
+//=> dog
+console.log(getAnimal(`cat`))
+//=> cat
+console.log(getAnimal(`bunny`))
+//=> bunny
+console.log(getAnimal(`sloth`))
+//=> no sloth???
+```
+
+</TabItem>
+<TabItem value='async' label='Async'>
+
+```js playground
+import { asAsync, findAsync, orAsync, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    asAsync([`dog`, `cat`, `bunny`]),
+    // Return an async optional potentially containing the found animal
+    findAsync(animal => animal === targetAnimal),
+    // Return a promise that resolves to the async optional's value if it
+    // exists, or the result of the callback otherwise
+    orAsync(() => `no ${targetAnimal}???`),
+  )
+
+console.log(await getAnimal(`dog`))
+//=> dog
+console.log(await getAnimal(`cat`))
+//=> cat
+console.log(await getAnimal(`bunny`))
+//=> bunny
+console.log(await getAnimal(`sloth`))
+//=> no sloth???
+```
+
+</TabItem>
+<TabItem value='concur' label='Concur'>
+
+```js playground
+import { asConcur, findConcur, orConcur, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    asConcur([`dog`, `cat`, `bunny`]),
+    // Return a concur optional potentially containing the found animal
+    findConcur(animal => animal === targetAnimal),
+    // Return a promise that resolves to the concur optional's value if it
+    // exists, or the result of the callback otherwise
+    orConcur(() => `no ${targetAnimal}???`),
+  )
+
+console.log(await getAnimal(`dog`))
+//=> dog
+console.log(await getAnimal(`cat`))
+//=> cat
+console.log(await getAnimal(`bunny`))
+//=> bunny
+console.log(await getAnimal(`sloth`))
+//=> no sloth???
+```
+
+</TabItem>
+</Tabs>
+
+## Why use iterables to represent optionals?
+
+Optionals returned by `lfi` functions are just iterables, so they can be lazy
+and they can be passed to any function that expects a regular iterable, even
+functions from other libraries. Conversely, any iterable, including one not
+produced by `lfi`, can be passed to an `lfi` function that expects an
+optional[^4]. This is incredibly convenient for sharing logic, and keeping `lfi`
+simple and flexible.
+
+For example, consider the following code:
+
+<Tabs groupId='protocol' queryString>
+<TabItem value='sync' label='Sync'>
+
+```js playground
+import { find, map, or, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    [`dog`, `cat`, `bunny`],
+    find(animal => animal === targetAnimal),
+    // This works on the optional because it's just an iterable
+    map(animal => animal.toUpperCase()),
+    or(() => `no ${targetAnimal}???`),
+  )
+
+console.log(getAnimal(`dog`))
+console.log(getAnimal(`cat`))
+console.log(getAnimal(`bunny`))
+console.log(getAnimal(`sloth`))
+```
+
+We were trivially able to use our existing `map` logic on the optional value!
+
+</TabItem>
+<TabItem value='async' label='Async'>
+
+```js playground
+import { asAsync, findAsync, mapAsync, orAsync, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    asAsync([`dog`, `cat`, `bunny`]),
+    findAsync(animal => animal === targetAnimal),
+    // This works on the async optional because it's just an async iterable
+    mapAsync(animal => animal.toUpperCase()),
+    orAsync(() => `no ${targetAnimal}???`),
+  )
+
+console.log(await getAnimal(`dog`))
+console.log(await getAnimal(`cat`))
+console.log(await getAnimal(`bunny`))
+console.log(await getAnimal(`sloth`))
+```
+
+We were trivially able to use our existing `mapAsync` logic on the async
+optional value!
+
+</TabItem>
+<TabItem value='concur' label='Concur'>
+
+```js playground
+import { asConcur, findConcur, mapConcur, orConcur, pipe } from 'lfi'
+
+const getAnimal = targetAnimal =>
+  pipe(
+    asConcur([`dog`, `cat`, `bunny`]),
+    findConcur(animal => animal === targetAnimal),
+    // This works on the concur optional because it's just an concur iterable
+    mapConcur(animal => animal.toUpperCase()),
+    orConcur(() => `no ${targetAnimal}???`),
+  )
+
+console.log(await getAnimal(`dog`))
+console.log(await getAnimal(`cat`))
+console.log(await getAnimal(`bunny`))
+console.log(await getAnimal(`sloth`))
+```
+
+We were trivially able to use our existing `mapConcur` logic on the concur
+optional value!
+
+</TabItem>
+</Tabs>
+
+[^1]: [Rust's `Option` enum](https://doc.rust-lang.org/stable/std/option/)
+
+[^2]:
+    [Java's `Optional` class](https://docs.oracle.com/en/java/javase/13/docs/api/java.base/java/util/Optional.html)
+
+[^3]:
+    [Haskell's `Maybe` type](https://hackage.haskell.org/package/base-4.20.0.1/docs/Data-Maybe.html)
+
+[^4]:
+    All `lfi` functions intended for optionals treat iterables containing two or
+    more values as empty optionals.

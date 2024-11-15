@@ -1,0 +1,175 @@
+---
+sidebar_position: 2
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+# Recipes
+
+## How do I associate values by a key?
+
+<Tabs groupId='protocol' queryString>
+<TabItem value='sync' label='Sync'>
+
+```js playground
+import { map, pipe, reduce, toMap } from 'lfi'
+
+console.log(
+  pipe(
+    [`sloth`, `dog`],
+    // Create an iterable of key-value pairs
+    map(animal => [animal.length, animal]),
+    // Collect the key-value pairs into a map
+    reduce(toMap()),
+  ),
+)
+//=> Map(2) {
+//=>   5 => 'sloth',
+//=>   3 => 'dog'
+//=> }
+```
+
+</TabItem>
+<TabItem value='async' label='Async'>
+
+```js playground
+import { asAsync, mapAsync, pipe, reduceAsync, toMap } from 'lfi'
+
+console.log(
+  await pipe(
+    asAsync([`sloth`, `dog`]),
+    // Create an async iterable of key-value pairs
+    mapAsync(animal => [animal.length, animal]),
+    // Collect the key-value pairs into a map
+    reduceAsync(toMap()),
+  ),
+)
+//=> Map(2) {
+//=>   5 => 'sloth',
+//=>   3 => 'dog'
+//=> }
+```
+
+</TabItem>
+<TabItem value='concur' label='Concur'>
+
+```js playground
+import { asConcur, mapConcur, pipe, reduceConcur, toMap } from 'lfi'
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `dog`]),
+    // Create a concur iterable of key-value pairs
+    mapConcur(animal => [animal.length, animal]),
+    // Collect the key-value pairs into a map
+    reduceConcur(toMap()),
+  ),
+)
+//=> Map(2) {
+//=>   5 => 'sloth',
+//=>   3 => 'dog'
+//=> }
+```
+
+</TabItem>
+</Tabs>
+
+You can swap out `toMap` for another reducer to collect the key-value pairs into
+a different data structure. See the
+["Reducer" page](/docs/concepts/reducer#togrouped) for more details.
+
+:::warning
+
+If there are multiple key-value pairs with the same key, then only the last
+key-value pair is preserved.
+
+:::
+
+## How do I group values by a key?
+
+<Tabs groupId='protocol' queryString>
+<TabItem value='sync' label='Sync'>
+
+```js playground
+import { map, pipe, reduce, toArray, toGrouped, toMap } from 'lfi'
+
+console.log(
+  pipe(
+    [`sloth`, `cat`, `dog`, `bunny`],
+    // Create an iterable of key-value pairs
+    map(animal => [animal.length, animal]),
+    // Collect the values by key into a map where each group is an array
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(2) {
+//=>   5 => [ 'sloth', 'bunny' ],
+//=>   3 => [ 'cat', 'dog' ]
+//=> }
+```
+
+</TabItem>
+<TabItem value='async' label='Async'>
+
+```js playground
+import {
+  asAsync,
+  mapAsync,
+  pipe,
+  reduceAsync,
+  toArray,
+  toGrouped,
+  toMap,
+} from 'lfi'
+
+console.log(
+  await pipe(
+    asAsync([`sloth`, `cat`, `dog`, `bunny`]),
+    // Create an async iterable of key-value pairs
+    mapAsync(animal => [animal.length, animal]),
+    // Collect the values by key into a map where each group is an array
+    reduceAsync(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(2) {
+//=>   5 => [ 'sloth', 'bunny' ],
+//=>   3 => [ 'cat', 'dog' ]
+//=> }
+```
+
+</TabItem>
+<TabItem value='concur' label='Concur'>
+
+```js playground
+import {
+  asConcur,
+  mapConcur,
+  pipe,
+  reduceConcur,
+  toArray,
+  toGrouped,
+  toMap,
+} from 'lfi'
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `cat`, `dog`, `bunny`]),
+    // Create a concur iterable of key-value pairs
+    mapConcur(animal => [animal.length, animal]),
+    // Collect the values by key into a map where each group is an array
+    reduceConcur(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(2) {
+//=>   5 => [ 'sloth', 'bunny' ],
+//=>   3 => [ 'cat', 'dog' ]
+//=> }
+```
+
+</TabItem>
+</Tabs>
+
+You can swap out both `toArray` and `toMap` for other reducers to collect the
+key-value pairs into different data structures. See the
+["Reducer" page](/docs/concepts/reducer#togrouped) for more details.

@@ -1,24 +1,11 @@
 {
   "extends": "tomer/tsconfig",
   "include": ["**/*"],
+  "exclude": ["website"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
     }
-  },
-  "typedocOptions": {
-    "entryPoints": "./src/index.d.ts",
-    "entryFileName": "readme.md",
-    "excludeInternal": true,
-    "exclude": "./test",
-    "intentionallyNotExported": [
-      "CheckNumericLiteral",
-      "Curried",
-      "MaybePromiseLike",
-      "NonNegative",
-      "PositiveInteger",
-      "StrictInteger"
-    ]
   }
 }

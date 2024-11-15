@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ifm-color-primary-lightest: theme('colors.smores.400');
+  --ifm-color-primary-lighter: theme('colors.smores.500');
+  --ifm-color-primary-light: theme('colors.smores.600');
+  --ifm-color-primary: theme('colors.smores.700');
+  --ifm-color-primary-dark: theme('colors.smores.800');
+  --ifm-color-primary-darker: theme('colors.smores.900');
+  --ifm-color-primary-darkest: theme('colors.smores.950');
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary-lightest: theme('colors.mud.100');
+  --ifm-color-primary-lighter: theme('colors.mud.200');
+  --ifm-color-primary-light: theme('colors.mud.300');
+  --ifm-color-primary: theme('colors.mud.400');
+  --ifm-color-primary-dark: theme('colors.mud.500');
+  --ifm-color-primary-darker: theme('colors.mud.600');
+  --ifm-color-primary-darkest: theme('colors.mud.700');
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.footer--dark {
+  --ifm-footer-background-color: theme('colors.smores.200');
+  --ifm-footer-title-color: var(--ifm-heading-color);
+  --ifm-footer-color: var(--ifm-font-color-base);
+  --ifm-footer-link-color: var(--ifm-color-primary-dark);
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: theme('colors.mud.800');
+  --ifm-footer-link-color: theme('colors.mud.100');
+}
+
+.footer__links {
+  margin-bottom: 2rem;
+}

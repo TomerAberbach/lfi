@@ -25,16 +25,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Enter website directory
-        run: cd website
-
       - name: Build website
+        working-directory: website
         run: pnpm build
 
       - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: website/build
 
   deploy:
     name: Deploy to GitHub Pages

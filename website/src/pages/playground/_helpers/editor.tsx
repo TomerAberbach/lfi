@@ -97,6 +97,7 @@ const configureMonaco = (monaco: Monaco) => {
     noEmit: true,
   })
   monaco.languages.typescript.javascriptDefaults.addExtraLib(
+    // eslint-disable-next-line typescript/no-base-to-string
     `declare module 'lfi' { ${String(lfiTypeDeclarations)} }`,
     `lfi`,
   )

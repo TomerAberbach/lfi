@@ -289,6 +289,7 @@ test.prop([iterableArb])(
 
     expect(() => cycle(impureIterable)).toThrowWithMessage(
       Error,
+      // eslint-disable-next-line typescript/no-base-to-string
       `\`iterable\` must be a pure iterable: ${String(impureIterable)}`,
     )
   },
@@ -344,6 +345,7 @@ test.prop([asyncIterableArb])(
 
     expect(() => cycleAsync(impureIterable)).toThrowWithMessage(
       Error,
+      // eslint-disable-next-line typescript/no-base-to-string
       `\`asyncIterable\` must be a pure iterable: ${String(impureIterable)}`,
     )
   },

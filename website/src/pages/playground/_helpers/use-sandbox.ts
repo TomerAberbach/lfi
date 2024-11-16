@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 import { useEffect, useMemo, useState } from 'react'
 import type { WorkerBox } from 'workerboxjs'
 import createWorkerBox from 'workerboxjs'

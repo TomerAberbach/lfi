@@ -23,7 +23,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm -r install
 
       - name: Build library
         run: pnpm build

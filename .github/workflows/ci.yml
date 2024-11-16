@@ -31,7 +31,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm -r install
 
       - name: Format
         run: pnpm format --check

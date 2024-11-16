@@ -34,10 +34,10 @@ jobs:
         run: pnpm install
 
       - name: Format
-        run: pnpm format -- --no-write
+        run: pnpm format --no-write
 
       - name: Lint
-        run: pnpm lint -- --no-fix
+        run: pnpm lint --no-fix
 
       - name: Typecheck
         run: pnpm typecheck

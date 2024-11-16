@@ -7,6 +7,7 @@ import { useHistory } from '@docusaurus/router'
 import { useSpinDelay } from 'spin-delay'
 import { fromBase64, toBase64 } from '@site/src/helpers/base64.ts'
 import { ClipLoader } from 'react-spinners'
+import dedent from 'dedent'
 import useSandbox from './_helpers/use-sandbox.ts'
 import type { Sandbox } from './_helpers/use-sandbox.ts'
 import type { EditorRef } from './_helpers/editor.tsx'
@@ -70,7 +71,46 @@ const useDefaultCode = (): string => {
   }
 }
 
-const DEFAULT_CODE = `import { pipe } from 'lfi'\n`
+const DEFAULT_CODE = dedent`
+  import { filter, map, pipe, reduce, toArray } from 'lfi'
+
+  const messySlothDiaryEntries = [
+    [\`Strawberry\`, \`slept\`],
+    [\`max\`, \`ate  \`],
+    [\`max\`, \`\`],
+    [\`STRAWBERRY\`, \`climbed\`],
+    [\`Bitsy\`, \`ate\`],
+    [\`bitsy\`, \`strolled\`],
+    [\`strawberry\`, \`Slept\`],
+    [\`Bitsy\`, \`  \`],
+  ]
+
+  const cleanSlothDiaryEntries =
+    // Pass the entries through each operation in order, and then return the last
+    // operation's result
+    pipe(
+      messySlothDiaryEntries,
+      // Transform each entry by trimming and lowercasing strings
+      map(([sloth, activity]) => [
+        sloth.toLowerCase(),
+        activity.trim().toLowerCase(),
+      ]),
+      // Remove each entry that has an empty activity
+      filter(([, activity]) => activity.length > 0),
+      // Collect the clean entries into an array
+      reduce(toArray()),
+    )
+
+  console.log(cleanSlothDiaryEntries)
+  //=> [
+  //=>   [ 'strawbery', 'slept' ],
+  //=>   [ 'max', 'ate' ],
+  //=>   [ 'strawbery', 'climbed' ],
+  //=>   [ 'bitsy', 'ate' ],
+  //=>   [ 'bitsy', 'strolled' ],
+  //=>   [ 'strawbery', 'slept' ],
+  //=> ]
+`
 
 const EditorToolbar = ({
   editor,

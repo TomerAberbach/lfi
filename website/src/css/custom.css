@@ -40,3 +40,11 @@
 .footer__links {
   margin-bottom: 2rem;
 }
+
+.footer__copyright a {
+  color: var(--ifm-footer-color);
+}
+
+.footer__copyright a:hover {
+  color: var(--ifm-footer-link-hover-color);
+}

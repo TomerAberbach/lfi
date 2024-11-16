@@ -1,7 +1,10 @@
 import type { Config } from 'tailwindcss'
 
 const config = {
-  content: [`./src/**/*.{js,cjs,mjs,ts,cts,mts,jsx,tsx,html}`],
+  content: [
+    `./src/**/*.{js,cjs,mjs,ts,cts,mts,jsx,tsx,html}`,
+    `./docusaurus.config.ts`,
+  ],
   corePlugins: { preflight: false },
   darkMode: [`selector`, `[data-theme='dark']`],
   theme: {

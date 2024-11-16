@@ -134,9 +134,9 @@ const config: Config = {
       ],
       copyright: `
         Copyright © ${new Date().getFullYear()}
-        <a href="https://tomeraberba.ch" target="_blank" rel="noopener noreferrer" class="footer__link-item">Tomer Aberbach</a>.
+        <a href="https://tomeraberba.ch" target="_blank" rel="noopener noreferrer">Tomer Aberbach</a>.
         <br />
-        Sloth logo by <a href="https://jillmarbach.com" target="_blank" rel="noopener noreferrer" class="footer__link-item">Jill Marbach</a>.
+        Sloth logo by <a href="https://jillmarbach.com" target="_blank" rel="noopener noreferrer">Jill Marbach</a>.
       `,
     },
     prism: {

@@ -34,7 +34,7 @@ jobs:
         run: pnpm install
 
       - name: Format
-        run: pnpm format --no-write
+        run: pnpm format --check
 
       - name: Lint
         run: pnpm lint --no-fix

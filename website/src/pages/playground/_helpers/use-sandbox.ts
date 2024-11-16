@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { WorkerBox } from 'workerboxjs'
 import createWorkerBox from 'workerboxjs'
 import { map, pipe, reduce, toObject } from 'lfi'
@@ -75,12 +75,23 @@ const useSandbox = (): Sandbox => {
     }
   }, [workerBox])
 
-  return { isRunning, run, logs }
+  const cancel = useCallback(() => {
+    if (!workerBox) {
+      return
+    }
+
+    workerBox.destroy()
+    setWorkerBox(null)
+    setRunning(false)
+  }, [workerBox])
+
+  return { isRunning, run, cancel, logs }
 }
 
 export type Sandbox = {
   isRunning: boolean
   run: ((code: string) => Promise<void>) | null
+  cancel: () => void
   logs: Log[]
 }
 

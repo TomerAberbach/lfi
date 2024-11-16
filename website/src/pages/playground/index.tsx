@@ -35,8 +35,8 @@ const Playground = () => {
       <Heading as='h1' className='text-2xl m-4'>
         Playground
       </Heading>
-      <div className='flex flex-wrap w-full [&>*]:basis-[calc((1000px-100%)*999)] h-[700px] max-h-[700px]'>
-        <div className='flex flex-col flex-1 flex-grow-[3] min-w-0 h-full'>
+      <div className='flex flex-col lg:flex-row w-full'>
+        <div className='flex flex-col flex-1 lg:w-[60%] h-[700px]'>
           {editorRef.current ? (
             <EditorToolbar
               editor={editorRef.current}
@@ -44,11 +44,9 @@ const Playground = () => {
               isRunning={isRunning}
             />
           ) : null}
-          <div className='flex flex-col flex-1 [&>*]:flex-1'>
-            <Editor ref={editorRef} defaultCode={defaultCode} />
-          </div>
+          <Editor ref={editorRef} defaultCode={defaultCode} />
         </div>
-        <div className='flex-grow-[2] h-full'>
+        <div className='h-[700px] lg:w-[40%]'>
           <EditorConsole sandbox={sandbox} isRunning={isRunning} />
         </div>
       </div>

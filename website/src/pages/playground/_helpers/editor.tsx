@@ -37,6 +37,7 @@ const Editor = forwardRef<EditorRef, EditorProps>(
     return (
       <MonacoEditor
         className={className}
+        height={700}
         defaultLanguage='javascript'
         defaultValue={defaultCode}
         theme={`gruvbox-material-${colorMode}`}

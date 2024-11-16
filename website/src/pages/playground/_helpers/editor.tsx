@@ -49,6 +49,7 @@ const Editor = forwardRef<EditorRef, EditorProps>(
           minimap: { enabled: false },
           automaticLayout: true,
           scrollBeyondLastLine: false,
+          scrollbar: { alwaysConsumeMouseWheel: false },
         }}
         beforeMount={configureMonaco}
         onMount={(editor, monaco) => {

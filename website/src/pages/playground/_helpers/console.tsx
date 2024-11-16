@@ -83,7 +83,7 @@ const convertToMessages = (logs: Log[]): Message[] => {
       case `timeEnd`: {
         const label = extractLabel(args)
         if (timers.has(label)) {
-          const elapsed = timers.get(label)! - timestamp
+          const elapsed = timestamp - timers.get(label)!
           timers.delete(label)
           messages.push({
             type: `log`,

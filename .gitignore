@@ -1,9 +1,9 @@
-node_modules
-coverage
-dist
+**/node_modules
+**/coverage
+**/dist
 *.tsbuildinfo
 
-build
-.docusaurus
-.cache-loader
+**/build
+**/.docusaurus
+**/.cache-loader
 /website/docs/api/

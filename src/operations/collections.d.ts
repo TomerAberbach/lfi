@@ -346,7 +346,6 @@ export const toMultiple: {
     }
   >
 }
-/* eslint-enable typescript/no-explicit-any */
 
 /**
  * Returns a {@link Reducer} that concatenates values to a string where values

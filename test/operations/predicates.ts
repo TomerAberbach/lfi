@@ -1,12 +1,12 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { asyncPredicateArb, predicateArb } from '../helpers/fast-check/fns.js'
+import { asyncPredicateArb, predicateArb } from 'test/helpers/fast-check/fns.js'
 import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
 import {
   all,
   allAsync,

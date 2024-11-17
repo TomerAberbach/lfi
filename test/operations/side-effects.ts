@@ -1,7 +1,7 @@
 /* eslint-disable typescript/no-confusing-void-expression */
 import { expect, expectTypeOf } from 'vitest'
 import { fc } from '@fast-check/vitest'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fns.js'
+import { asyncFnArb, fnArb } from 'test/helpers/fast-check/fns.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -10,9 +10,9 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
   uniqueConcurIterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
+import withElapsed from 'test/helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,

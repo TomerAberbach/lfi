@@ -1,19 +1,19 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import autoAdvance from '../helpers/auto-advance.js'
-import delay from '../helpers/delay.js'
-import { fnArb } from '../helpers/fast-check/fns.js'
+import autoAdvance from 'test/helpers/auto-advance.js'
+import delay from 'test/helpers/delay.js'
+import { fnArb } from 'test/helpers/fast-check/fns.js'
 import {
   nonIntegerDoubleArb,
   nonPositiveIntegerArb,
-} from '../helpers/fast-check/numbers.js'
+} from 'test/helpers/fast-check/numbers.js'
 import {
   asyncIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
 import {
   asAsync,
   cycle,

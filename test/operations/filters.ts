@@ -6,7 +6,7 @@ import {
   fnArb,
   getAsyncFnArb,
   predicateArb,
-} from '../helpers/fast-check/fns.js'
+} from 'test/helpers/fast-check/fns.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -16,9 +16,9 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
   uniqueConcurIterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
+import withElapsed from 'test/helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,

@@ -2,18 +2,18 @@ import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
 import { sameValueZero } from 'test/helpers/same-value-zero.js'
 import { stringifiableArb } from 'test/helpers/fast-check/anything.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
 import {
   getAsyncIterableArb,
   getConcurIterableArb,
   getIterableArb,
   iterableArb,
   nonEmptyIterableArb,
-} from '../helpers/fast-check/iterables.js'
+} from 'test/helpers/fast-check/iterables.js'
 import {
   rawOptionalReducerArb,
   rawReducerArb,
-} from '../helpers/fast-check/reducers.js'
+} from 'test/helpers/fast-check/reducers.js'
 import {
   asAsync,
   asConcur,

@@ -1,6 +1,6 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fns.js'
+import { asyncFnArb, fnArb } from 'test/helpers/fast-check/fns.js'
 import {
   asyncIterableArb,
   getAsyncIterableArb,
@@ -9,8 +9,8 @@ import {
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
 import {
   asAsync,
   asConcur,

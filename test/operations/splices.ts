@@ -1,7 +1,7 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import autoAdvance from '../helpers/auto-advance.js'
-import { asyncFnArb, fnArb } from '../helpers/fast-check/fns.js'
+import autoAdvance from 'test/helpers/auto-advance.js'
+import { asyncFnArb, fnArb } from 'test/helpers/fast-check/fns.js'
 import {
   getIntervalArb,
   negativeIntegerArb,
@@ -9,7 +9,7 @@ import {
   nonNegativeIntegerArb,
   nonPositiveIntegerArb,
   positiveIntegerArb,
-} from '../helpers/fast-check/numbers.js'
+} from 'test/helpers/fast-check/numbers.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -17,9 +17,9 @@ import {
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
+import withElapsed from 'test/helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,

@@ -4,12 +4,12 @@ import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
-} from '../helpers/fast-check/iterables.js'
-import { test } from '../helpers/fast-check/test-prop.js'
-import withElapsed from '../helpers/with-elapsed.js'
-import delay from '../helpers/delay.js'
-import { fnArb } from '../helpers/fast-check/fns.js'
-import autoAdvance from '../helpers/auto-advance.js'
+} from 'test/helpers/fast-check/iterables.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
+import withElapsed from 'test/helpers/with-elapsed.js'
+import delay from 'test/helpers/delay.js'
+import { fnArb } from 'test/helpers/fast-check/fns.js'
+import autoAdvance from 'test/helpers/auto-advance.js'
 import {
   asAsync,
   asConcur,

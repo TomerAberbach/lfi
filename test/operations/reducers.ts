@@ -4,7 +4,7 @@ import {
   asyncAbelianGroupFnArb,
   asyncFnArb,
   fnArb,
-} from '../helpers/fast-check/fns.js'
+} from 'test/helpers/fast-check/fns.js'
 import {
   asyncFunctionReducerArb,
   functionReducerArb,
@@ -20,8 +20,8 @@ import {
   rawOptionalReducerWithoutFinishArb,
   rawReducerWithFinishArb,
   rawReducerWithoutFinishArb,
-} from '../helpers/fast-check/reducers.js'
-import { test } from '../helpers/fast-check/test-prop.js'
+} from 'test/helpers/fast-check/reducers.js'
+import { test } from 'test/helpers/fast-check/test-prop.js'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -29,7 +29,7 @@ import {
   getConcurIterableArb,
   iterableArb,
   nonEmptyIterableArb,
-} from '../helpers/fast-check/iterables.js'
+} from 'test/helpers/fast-check/iterables.js'
 import {
   emptyAsync,
   emptyConcur,

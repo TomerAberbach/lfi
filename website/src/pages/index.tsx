@@ -153,7 +153,7 @@ const FEATURES: readonly FeatureItem[] = [
           import { filter, flatMap, map, pipe, reduce, toGrouped, toMap, toSet } from 'lfi'
           import zoo from 'zoo'
 
-          const getSlothNamesByAge = zoo =>
+          const getSlothNamesByAge = () =>
             pipe(
               zoo.exhibits,
               flatMap(exhibit => exhibit.animals),
@@ -162,7 +162,7 @@ const FEATURES: readonly FeatureItem[] = [
               reduce(toGrouped(toSet(), toMap())),
             )
 
-          console.log(getSlothNamesByAge(zoo))
+          console.log(getSlothNamesByAge())
           //=> Map(3) {
           //=>   7 => Set(2) { 'strawberry', 'bitsy' },
           //=>   19 => Set(1) { 'max' },

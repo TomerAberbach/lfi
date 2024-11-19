@@ -42,6 +42,7 @@
     "dedent": "^1.5.3",
     "docusaurus-plugin-typedoc": "^1.0.5",
     "lfi": "link:..",
+    "limit-concur": "^3.0.0",
     "monaco-editor": "^0.52.0",
     "object-inspect": "^1.13.3",
     "p-filter": "^4.1.0",

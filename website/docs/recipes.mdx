@@ -173,3 +173,41 @@ console.log(
 You can swap out both `toArray` and `toMap` for other reducers to collect the
 key-value pairs into different data structures. See the
 ["Reducer" page](/docs/concepts/reducer#togrouped) for more details.
+
+## How do I limit the concurrency of a concur iterable?
+
+You can wrap the async callback you want to limit the concurrency of with
+[`limit-concur`](https://www.npmjs.com/package/limit-concur).
+
+```js playground
+import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+import limitConcur from 'limit-concur'
+
+let pendingRequests = 0
+console.log(
+  await pipe(
+    asConcur([`strawberry`, `max`, `bitsy`, `tommy`]),
+    mapConcur(
+      // At most 2 requests at a time
+      limitConcur(2, async sloth => {
+        console.log(++pendingRequests)
+        const [adjective] = await (
+          await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
+        ).json()
+        console.log(--pendingRequests)
+        return `${adjective} ${sloth}`
+      }),
+    ),
+    reduceConcur(toArray()),
+  ),
+)
+//=> 1
+//=> 2
+//=> 1
+//=> 2
+//=> 1
+//=> 2
+//=> 1
+//=> 0
+//=> [ 'kind strawberry', 'humble max', 'great bitsy', 'beautiful tommy' ]
+```

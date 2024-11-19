@@ -80,6 +80,9 @@ importers:
       lfi:
         specifier: link:..
         version: link:..
+      limit-concur:
+        specifier: ^3.0.0
+        version: 3.0.0
       monaco-editor:
         specifier: ^0.52.0
         version: 0.52.0
@@ -4329,6 +4332,10 @@ packages:
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
     engines: {node: '>=14'}
+
+  limit-concur@3.0.0:
+    resolution: {integrity: sha512-SISsOroIMfgdfXyD9ERqCR1+lPcjPen3/aZA8Idnvtp0IqX6Z66CE2yeMXWtKPqkeUj8XFUvKefZenrhXPeXAw==}
+    engines: {node: '>= 18'}
 
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
@@ -12498,6 +12505,8 @@ snapshots:
   lilconfig@2.1.0: {}
 
   lilconfig@3.1.2: {}
+
+  limit-concur@3.0.0: {}
 
   lines-and-columns@1.2.4: {}
 

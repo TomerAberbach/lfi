@@ -1,5 +1,6 @@
 import { rollup } from '@rollup/browser'
 import lfiSource from '!!raw-loader!lfi'
+import limitConcurSource from '!!raw-loader!limit-concur'
 import pFilterSource from '!!raw-loader!p-filter'
 import pMapSource from '!!raw-loader!p-map'
 import zooSource from '!!raw-loader!./zoo.js'
@@ -10,6 +11,7 @@ const bundleCode = async (code: string): Promise<string> => {
     [input, code],
     [`zoo`, zooSource],
     [`lfi`, lfiSource],
+    [`limit-concur`, limitConcurSource],
     [`p-filter`, pFilterSource],
     [`p-map`, pMapSource],
   ])

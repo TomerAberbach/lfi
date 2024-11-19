@@ -117,8 +117,8 @@ importers:
         specifier: ^4.2.10
         version: 4.2.10(typedoc@0.26.11(typescript@5.6.3))
       workerboxjs:
-        specifier: github:TomerAberbach/workerbox
-        version: https://codeload.github.com/TomerAberbach/workerbox/tar.gz/f9a6d399406c71d841c2a93901c5908e7212d496
+        specifier: ^6.4.0
+        version: 6.4.0
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: ^3.6.1
@@ -6881,9 +6881,8 @@ packages:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
 
-  workerboxjs@https://codeload.github.com/TomerAberbach/workerbox/tar.gz/f9a6d399406c71d841c2a93901c5908e7212d496:
-    resolution: {tarball: https://codeload.github.com/TomerAberbach/workerbox/tar.gz/f9a6d399406c71d841c2a93901c5908e7212d496}
-    version: 6.3.2
+  workerboxjs@6.4.0:
+    resolution: {integrity: sha512-q2lR9R21/OKS0eRXRovr5sYsjAU4gVim89vv9aydzdRAC30DL6FlWNf8NtY49vWqn1J/i+8zans/RsoCL6/dQw==}
 
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -15610,7 +15609,7 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
-  workerboxjs@https://codeload.github.com/TomerAberbach/workerbox/tar.gz/f9a6d399406c71d841c2a93901c5908e7212d496:
+  workerboxjs@6.4.0:
     dependencies:
       superjson: 2.2.1
 

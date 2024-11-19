@@ -54,7 +54,7 @@
     "spin-delay": "^2.0.1",
     "typedoc": "^0.26.11",
     "typedoc-plugin-markdown": "^4.2.10",
-    "workerboxjs": "github:TomerAberbach/workerbox"
+    "workerboxjs": "^6.4.0"
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.6.1",

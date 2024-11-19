@@ -80,7 +80,7 @@ const FEATURES: readonly FeatureItem[] = [
           import { filter, flatMap, map, pipe, reduce, toSet } from 'lfi'
           import zoo from 'zoo'
 
-          const getSlothNamesWithLfi = zoo =>
+          const getSlothNamesWithLfi = () =>
             pipe(
               zoo.exhibits,
               // No arrays created anywhere here
@@ -90,9 +90,9 @@ const FEATURES: readonly FeatureItem[] = [
               // And then a set is created here
               reduce(toSet()),
             )
-          console.log(getSlothNamesWithLfi(zoo))
+          console.log(getSlothNamesWithLfi())
 
-          const getSlothNamesWithoutLfi = zoo => {
+          const getSlothNamesWithoutLfi = () => {
             const slothNames = zoo.exhibits
               // An array is created here...
               .flatMap(exhibit => exhibit.animals)
@@ -103,7 +103,7 @@ const FEATURES: readonly FeatureItem[] = [
             // And then a set is created here
             return new Set(slothNames)
           }
-          console.log(getSlothNamesWithoutLfi(zoo))
+          console.log(getSlothNamesWithoutLfi())
         `}</CodeBlock>
       </>
     ),

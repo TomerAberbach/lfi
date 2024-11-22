@@ -71,6 +71,9 @@ importers:
       '@tomer/prettier-config':
         specifier: ^2.1.0
         version: 2.1.0(prettier@3.3.3)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       dedent:
         specifier: ^1.5.3
         version: 1.5.3
@@ -2654,6 +2657,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
 
   cross-spawn@6.0.5:
     resolution: {integrity: sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==}
@@ -10468,6 +10476,10 @@ snapshots:
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.6.3
+
+  cross-env@7.0.3:
+    dependencies:
+      cross-spawn: 7.0.5
 
   cross-spawn@6.0.5:
     dependencies:

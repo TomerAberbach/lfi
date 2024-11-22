@@ -144,6 +144,20 @@ const config: Config = {
       darkTheme: prismThemes.gruvboxMaterialDark,
     },
   } satisfies Preset.ThemeConfig,
+
+  headTags:
+    process.env.NODE_ENV === `production`
+      ? [
+          {
+            tagName: `script`,
+            attributes: {
+              src: `https://cdn.usefathom.com/script.js`,
+              'data-site': `AUHTRHDD`,
+              defer: true,
+            },
+          },
+        ]
+      : [],
 }
 
 export default config

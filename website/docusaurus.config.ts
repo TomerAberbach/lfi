@@ -97,7 +97,6 @@ const config: Config = {
           position: `left`,
         },
         { to: `/playground`, label: `Playground`, position: `left` },
-        // { to: `/blog`, label: `Blog`, position: `left` },
         { href: gitHubUrl, label: `GitHub`, position: `right` },
       ],
     },
@@ -126,10 +125,7 @@ const config: Config = {
         },
         {
           title: `More`,
-          items: [
-            // { label: `Blog`, to: `/blog` },
-            { label: `GitHub`, href: gitHubUrl },
-          ],
+          items: [{ label: `GitHub`, href: gitHubUrl }],
         },
       ],
       copyright: `

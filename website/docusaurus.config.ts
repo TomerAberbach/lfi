@@ -153,7 +153,7 @@ const config: Config = {
             attributes: {
               src: `https://cdn.usefathom.com/script.js`,
               'data-site': `AUHTRHDD`,
-              defer: true,
+              defer: `defer`,
             },
           },
         ]

@@ -69,6 +69,68 @@ type FeatureItem = {
 
 const FEATURES: readonly FeatureItem[] = [
   {
+    title: `🔀 Concurrent iteration`,
+    content: (
+      <>
+        <p>
+          <CodeInline>lfi</CodeInline>&rsquo;s
+          {` `}
+          <Link href='/docs/concepts/concurrent-iterable'>
+            concurrent iterables
+          </Link>
+          {` `}
+          offer superior performance over
+          {` `}
+          <Link href='https://github.com/sindresorhus/p-map'>
+            <CodeInline>p-map</CodeInline>
+          </Link>
+          ,{` `}
+          <Link href='https://github.com/sindresorhus/p-filter'>
+            <CodeInline>p-filter</CodeInline>
+          </Link>
+          , and others, because each item flows through the operations
+          independently of other items.
+        </p>
+        <CodeBlock language='js' metastring='playground'>{dedent`
+          import { asConcur, filterConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+          import pFilter from 'p-filter'
+          import pMap from 'p-map'
+
+          // Hypothetical delays for each item
+          const mapDelays = [5, 1, 1]
+          const filterDelays = [1, 1, 5]
+
+          const delay = ms =>
+            new Promise(resolve => setTimeout(resolve, ms))
+          const mapFn = i =>
+            delay(mapDelays[i] * 1000).then(() => i)
+          const filterFn = i =>
+            delay(filterDelays[i] * 1000).then(() => true)
+
+          // Takes 6 seconds! Each item flows through the
+          // operations independently of other items
+          console.time(\`with lfi\`)
+          const withLfi = await pipe(
+            asConcur([0, 1, 2]),
+            mapConcur(mapFn),
+            filterConcur(filterFn),
+            reduceConcur(toArray()),
+          )
+          console.timeEnd(\`with lfi\`)
+
+          // Takes 10 seconds! The first item is a bottleneck
+          // because \`p-map\` waits for all callbacks
+          console.time(\`without lfi\`)
+          const withoutLfi = await pFilter(
+            await pMap([0, 1, 2], mapFn),
+            filterFn,
+          )
+          console.timeEnd(\`without lfi\`)
+        `}</CodeBlock>
+      </>
+    ),
+  },
+  {
     title: `🦥 Lazy and memory efficient`,
     content: (
       <>
@@ -164,69 +226,17 @@ const FEATURES: readonly FeatureItem[] = [
 
           console.log(getSlothNamesByAge())
           //=> Map(3) {
-          //=>   7 => Set(2) { 'strawberry', 'bitsy' },
-          //=>   19 => Set(1) { 'max' },
-          //=>   24 => Set(1) { 'tommy' },
+          //=>   7 => Set(2) {
+          //=>     'strawberry',
+          //=>     'bitsy'
+          //=>   },
+          //=>   19 => Set(1) {
+          //=>     'max'
+          //=>   },
+          //=>   24 => Set(1) {
+          //=>     'tommy'
+          //=>   }
           //=> }
-        `}</CodeBlock>
-      </>
-    ),
-  },
-  {
-    title: `🔀 Concurrent iteration`,
-    content: (
-      <>
-        <p>
-          <CodeInline>lfi</CodeInline>&rsquo;s
-          {` `}
-          <Link href='/docs/concepts/concurrent-iterable'>
-            concurrent iterables
-          </Link>
-          {` `}
-          offer superior performance over
-          {` `}
-          <Link href='https://github.com/sindresorhus/p-map'>
-            <CodeInline>p-map</CodeInline>
-          </Link>
-          ,{` `}
-          <Link href='https://github.com/sindresorhus/p-filter'>
-            <CodeInline>p-filter</CodeInline>
-          </Link>
-          , and others, because each item flows through the operations
-          independently of other items.
-        </p>
-        <CodeBlock language='js' metastring='playground'>{dedent`
-          import { asConcur, filterConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
-          import pFilter from 'p-filter'
-          import pMap from 'p-map'
-
-          // Hypothetical delays for each item
-          const mapDelays = [5, 1, 1]
-          const filterDelays = [1, 1, 5]
-
-          const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
-          const mapFn = i => delay(mapDelays[i] * 1000).then(() => i)
-          const filterFn = i => delay(filterDelays[i] * 1000).then(() => true)
-
-          // Takes 6 seconds! Each item flows through the
-          // operations independently of other items
-          console.time(\`with lfi\`)
-          const withLfi = await pipe(
-            asConcur([0, 1, 2]),
-            mapConcur(mapFn),
-            filterConcur(filterFn),
-            reduceConcur(toArray()),
-          )
-          console.timeEnd(\`with lfi\`)
-
-          // Takes 10 seconds! The first item is a bottleneck
-          // because \`p-map\` waits for all callbacks
-          console.time(\`without lfi\`)
-          const withoutLfi = await pFilter(
-            await pMap([0, 1, 2], mapFn),
-            filterFn,
-          )
-          console.timeEnd(\`without lfi\`)
         `}</CodeBlock>
       </>
     ),

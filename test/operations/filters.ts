@@ -241,6 +241,32 @@ test.skip(`filterMap types are correct`, () => {
       filterMap(o => o.n),
     ),
   ).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(
+    filterMap(o => o.n, [{ n: 1 }, { n: 2 }, { m: 3 }]),
+  ).toMatchTypeOf<Iterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      [{ n: 1 }, { n: 2 }, { m: 3 }],
+      filterMap(o => (o.n ? Array.from({ length: o.n }, () => 42) : null)),
+    ),
+  ).toMatchTypeOf<Iterable<number[]>>()
+  expectTypeOf(
+    filterMap(
+      o => (o.n ? Array.from({ length: o.n }, () => 42) : null),
+      [{ n: 1 }, { n: 2 }, { m: 3 }],
+    ),
+  ).toMatchTypeOf<Iterable<number[]>>()
+
+  expectTypeOf(
+    pipe(
+      [{ n: 1 }, { n: 2 }, { m: 3 }],
+      filterMap(o => (o.n ? [o.n, 1] : null)),
+    ),
+  ).toMatchTypeOf<Iterable<[number, number]>>()
+  expectTypeOf(
+    filterMap(o => (o.n ? [o.n, 1] : null), [{ n: 1 }, { n: 2 }, { m: 3 }]),
+  ).toMatchTypeOf<Iterable<[number, number]>>()
 })
 
 test.prop([
@@ -274,11 +300,69 @@ test.skip(`filterMapAsync types are correct`, () => {
     ),
   ).toMatchTypeOf<AsyncIterable<number>>()
   expectTypeOf(
+    filterMapAsync(o => o.n, asAsync([{ n: 1 }, { n: 2 }, { m: 3 }])),
+  ).toMatchTypeOf<AsyncIterable<number>>()
+  expectTypeOf(
     pipe(
       asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
-      filterMapAsync(o => Promise.resolve(o.n)),
+      filterMapAsync(async o => o.n),
     ),
   ).toMatchTypeOf<AsyncIterable<number>>()
+  expectTypeOf(
+    filterMapAsync(async o => o.n, asAsync([{ n: 1 }, { n: 2 }, { m: 3 }])),
+  ).toMatchTypeOf<AsyncIterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapAsync(o => (o.n ? Array.from({ length: o.n }, () => 42) : null)),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  expectTypeOf(
+    filterMapAsync(
+      o => (o.n ? Array.from({ length: o.n }, () => 42) : null),
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  expectTypeOf(
+    pipe(
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapAsync(async o =>
+        o.n ? Array.from({ length: o.n }, () => 42) : null,
+      ),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  expectTypeOf(
+    filterMapAsync(
+      async o => (o.n ? Array.from({ length: o.n }, () => 42) : null),
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<AsyncIterable<number[]>>()
+
+  expectTypeOf(
+    pipe(
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapAsync(o => (o.n ? [o.n, 1] : null)),
+    ),
+  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  expectTypeOf(
+    filterMapAsync(
+      o => (o.n ? [o.n, 1] : null),
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  expectTypeOf(
+    pipe(
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapAsync(async o => (o.n ? [o.n, 1] : null)),
+    ),
+  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  expectTypeOf(
+    filterMapAsync(
+      async o => (o.n ? [o.n, 1] : null),
+      asAsync([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
 })
 
 test.prop([
@@ -317,11 +401,77 @@ test.skip(`filterMapConcur types are correct`, () => {
     ),
   ).toMatchTypeOf<ConcurIterable<number>>()
   expectTypeOf(
-    pipe(
-      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
-      filterMapConcur(o => Promise.resolve(o.n)),
+    filterMapConcur(
+      o => o.n,
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
     ),
   ).toMatchTypeOf<ConcurIterable<number>>()
+  expectTypeOf(
+    pipe(
+      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapConcur(async o => o.n),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number>>()
+  expectTypeOf(
+    filterMapConcur(
+      async o => o.n,
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number>>()
+
+  expectTypeOf(
+    pipe(
+      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapConcur(o =>
+        o.n ? Array.from({ length: o.n }, () => 42) : null,
+      ),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  expectTypeOf(
+    filterMapConcur(
+      o => (o.n ? Array.from({ length: o.n }, () => 42) : null),
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  expectTypeOf(
+    pipe(
+      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapConcur(async o =>
+        o.n ? Array.from({ length: o.n }, () => 42) : null,
+      ),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  expectTypeOf(
+    filterMapConcur(
+      async o => (o.n ? Array.from({ length: o.n }, () => 42) : null),
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<number[]>>()
+
+  expectTypeOf(
+    pipe(
+      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapConcur(o => (o.n ? [o.n, 1] : null)),
+    ),
+  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  expectTypeOf(
+    filterMapConcur(
+      o => (o.n ? [o.n, 1] : null),
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  expectTypeOf(
+    pipe(
+      asConcur([{ n: 1 }, { n: 2 }, { m: 3 }]),
+      filterMapConcur(async o => (o.n ? [o.n, 1] : null)),
+    ),
+  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  expectTypeOf(
+    filterMapConcur(
+      async o => (o.n ? [o.n, 1] : null),
+      asConcur<{ n?: number; m?: number }>([{ n: 1 }, { n: 2 }, { m: 3 }]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
 })
 
 test.prop([

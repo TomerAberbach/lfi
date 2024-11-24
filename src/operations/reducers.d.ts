@@ -7,6 +7,7 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * application.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type FunctionReducer<Value = unknown> = (
   acc: Value,
@@ -18,6 +19,7 @@ export type FunctionReducer<Value = unknown> = (
  * {@link RawOptionalReducerWithoutFinish.add}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
   add: (this: This, acc: Value, value: Value) => Value
@@ -29,6 +31,7 @@ export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
  * using {@link RawOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawOptionalReducerWithFinish<
   Value = unknown,
@@ -44,6 +47,7 @@ export type RawOptionalReducerWithFinish<
  * {@link OptionalReducer.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type OptionalReducer<
   Value = unknown,
@@ -56,6 +60,7 @@ export type OptionalReducer<
  * accumulator values using {@link RawReducerWithoutFinish.add}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawReducerWithoutFinish<
   Value = unknown,
@@ -73,6 +78,7 @@ export type RawReducerWithoutFinish<
  * accumulator using {@link RawReducerWithFinish.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawReducerWithFinish<
   Value = unknown,
@@ -90,6 +96,7 @@ export type RawReducerWithFinish<
  * {@link Reducer.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type Reducer<
   Value = unknown,
@@ -104,6 +111,7 @@ export type Reducer<
  * queried for values by key using {@link RawKeyedReducer.get}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawKeyedReducer<
   Key = unknown,
@@ -121,6 +129,7 @@ export type RawKeyedReducer<
  * queried for values by key using {@link KeyedReducer.get}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type KeyedReducer<
   Key = unknown,
@@ -133,6 +142,7 @@ export type KeyedReducer<
  * application.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type AsyncFunctionReducer<Value = unknown> = (
   acc: Value,
@@ -144,6 +154,7 @@ export type AsyncFunctionReducer<Value = unknown> = (
  * {@link RawAsyncOptionalReducerWithoutFinish.add}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawAsyncOptionalReducerWithoutFinish<
   Value = unknown,
@@ -158,6 +169,7 @@ export type RawAsyncOptionalReducerWithoutFinish<
  * value using {@link RawAsyncOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawAsyncOptionalReducerWithFinish<
   Value = unknown,
@@ -173,6 +185,7 @@ export type RawAsyncOptionalReducerWithFinish<
  * {@link AsyncOptionalReducer.finish}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type AsyncOptionalReducer<
   Value = unknown,
@@ -187,6 +200,7 @@ export type AsyncOptionalReducer<
  * {@link RawAsyncReducerWithoutFinish.combine}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawAsyncReducerWithoutFinish<
   Value = unknown,
@@ -208,6 +222,7 @@ export type RawAsyncReducerWithoutFinish<
  * {@link RawAsyncReducerWithFinish.combine}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawAsyncReducerWithFinish<
   Value = unknown,
@@ -226,6 +241,7 @@ export type RawAsyncReducerWithFinish<
  * combine pairs of accumulators using {@link AsyncReducer.combine}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type AsyncReducer<
   Value = unknown,
@@ -242,6 +258,7 @@ export type AsyncReducer<
  * values by key using {@link RawAsyncKeyedReducer.get}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type RawAsyncKeyedReducer<
   Key = unknown,
@@ -265,6 +282,7 @@ export type RawAsyncKeyedReducer<
  * by key using {@link AsyncKeyedReducer.get}.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export type AsyncKeyedReducer<
   Key = unknown,
@@ -282,6 +300,7 @@ export type AsyncKeyedReducer<
  * twice when the entry exists: `has` followed by `get` for the same key.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export const NO_ENTRY: unique symbol
 
@@ -290,6 +309,7 @@ export const NO_ENTRY: unique symbol
  * except its final value is transformed using `fn`.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export const mapReducer: {
   <Value, Acc, From, To, This>(
@@ -346,6 +366,7 @@ export const mapReducer: {
  * value is transformed using `fn`.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export const mapAsyncReducer: {
   <Value, Acc, From, To, This>(
@@ -405,6 +426,7 @@ export const mapAsyncReducer: {
  * Returns a non-raw version of `reducer`.
  *
  * @category Reducers
+ * @since v2.0.0
  */
 export const normalizeReducer: {
   <Key, Value, Acc, This>(
@@ -478,6 +500,7 @@ export const normalizeReducer: {
  * ```
  *
  * @category Reducers
+ * @since v0.0.1
  */
 export const reduce: {
   <Value, Acc, Finished, This>(
@@ -562,6 +585,7 @@ export const reduce: {
  * ```
  *
  * @category Reducers
+ * @since v0.0.1
  */
 export const reduceAsync: {
   <Value, Acc, Finished, This>(
@@ -662,6 +686,7 @@ export const reduceAsync: {
  * ```
  *
  * @category Reducers
+ * @since v0.0.1
  */
 export const reduceConcur: {
   <Value, Acc, Finished, This>(

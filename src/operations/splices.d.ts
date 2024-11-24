@@ -23,6 +23,7 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const dropWhile: SubWhile
 
@@ -44,6 +45,7 @@ export const dropWhile: SubWhile
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const dropWhileAsync: SubWhileAsync
 
@@ -65,6 +67,7 @@ export const dropWhileAsync: SubWhileAsync
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const dropWhileConcur: SubWhileConcur
 
@@ -86,6 +89,7 @@ export const dropWhileConcur: SubWhileConcur
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const takeWhile: SubWhile
 
@@ -107,6 +111,7 @@ export const takeWhile: SubWhile
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const takeWhileAsync: SubWhileAsync
 
@@ -128,6 +133,7 @@ export const takeWhileAsync: SubWhileAsync
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const takeWhileConcur: SubWhileConcur
 
@@ -186,6 +192,7 @@ type SubWhileConcur = {
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const drop: Sub
 
@@ -211,6 +218,7 @@ export const drop: Sub
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const dropAsync: SubAsync
 
@@ -236,6 +244,7 @@ export const dropAsync: SubAsync
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const dropConcur: SubConcur
 
@@ -261,6 +270,7 @@ export const dropConcur: SubConcur
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const take: Sub
 
@@ -286,6 +296,7 @@ export const take: Sub
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const takeAsync: SubAsync
 
@@ -311,6 +322,7 @@ export const takeAsync: SubAsync
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const takeConcur: SubConcur
 
@@ -364,6 +376,7 @@ type SubConcur = {
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -384,6 +397,7 @@ export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const firstAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -406,6 +420,7 @@ export const firstAsync: <Value>(
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const firstConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -428,6 +443,7 @@ export const firstConcur: <Value>(
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -448,6 +464,7 @@ export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const lastAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -470,6 +487,7 @@ export const lastAsync: <Value>(
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const lastConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -531,6 +549,7 @@ export const lastConcur: <Value>(
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const slice: {
   <Start extends number>(
@@ -613,6 +632,7 @@ export const slice: {
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const sliceAsync: {
   <Start extends number>(
@@ -695,6 +715,7 @@ export const sliceAsync: {
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const sliceConcur: {
   <Start extends number>(
@@ -745,6 +766,7 @@ export const sliceConcur: {
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const at: {
   <Index extends number>(
@@ -780,6 +802,7 @@ export const at: {
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const atAsync: {
   <Index extends number>(
@@ -816,6 +839,7 @@ export const atAsync: {
  * ```
  *
  * @category Splices
+ * @since v3.5.0
  */
 export const atConcur: {
   <Index extends number>(
@@ -859,6 +883,7 @@ export const atConcur: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const chunk: {
   <Size extends number>(
@@ -902,6 +927,7 @@ export const chunk: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const chunkAsync: {
   <Size extends number>(
@@ -945,6 +971,7 @@ export const chunkAsync: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const chunkConcur: {
   <Size extends number>(
@@ -993,6 +1020,7 @@ export const chunkConcur: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const window: {
   <Size extends number>(
@@ -1041,6 +1069,7 @@ export const window: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const windowAsync: {
   <Size extends number>(
@@ -1089,6 +1118,7 @@ export const windowAsync: {
  * ```
  *
  * @category Splices
+ * @since v2.0.0
  */
 export const windowConcur: {
   <Size extends number>(
@@ -1104,22 +1134,31 @@ export const windowConcur: {
  * Options for {@link window}, {@link windowAsync}, and {@link windowConcur}.
  *
  * @category Splices
+ * @since v2.0.0
  */
 export type WindowOptions<Size extends number = number> =
   | PositiveInteger<Size>
   | Readonly<{
-      /** The size of each window. Must be a positive integer. */
+      /**
+       * The size of each window. Must be a positive integer.
+       *
+       * @since v2.0.0
+       */
       size: PositiveInteger<Size>
 
       /**
        * Whether the returned iterable should have partial windows at the start.
        * Defaults to `false`.
+       *
+       * @since v2.0.0
        */
       partialStart?: boolean
 
       /**
        * Whether the returned iterable should have partial windows at the end.
        * Defaults to `false`.
+       *
+       * @since v2.0.0
        */
       partialEnd?: boolean
     }>
@@ -1142,6 +1181,7 @@ export type WindowOptions<Size extends number = number> =
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const concat: <Value>(
   ...iterables: readonly Iterable<Value>[]
@@ -1165,6 +1205,7 @@ export const concat: <Value>(
  * ```
  *
  * @category Splices
+ * @since v0.0.2
  */
 export const concatAsync: <Value>(
   ...iterables: readonly (Iterable<Value> | AsyncIterable<Value>)[]
@@ -1188,6 +1229,7 @@ export const concatAsync: <Value>(
  * ```
  *
  * @category Splices
+ * @since v0.0.1
  */
 export const concatConcur: <Value>(
   ...iterables: readonly (

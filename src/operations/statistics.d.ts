@@ -25,6 +25,7 @@ import type {
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toCount: () => Reducer<unknown, number>
 
@@ -40,6 +41,7 @@ export const toCount: () => Reducer<unknown, number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const count: <Value>(iterable: Iterable<Value>) => number
 
@@ -57,6 +59,7 @@ export const count: <Value>(iterable: Iterable<Value>) => number
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const countAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -76,6 +79,7 @@ export const countAsync: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const countConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -100,6 +104,7 @@ export const countConcur: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toSum: () => Reducer<number, number>
 
@@ -113,6 +118,7 @@ export const toSum: () => Reducer<number, number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const sum: (iterable: Iterable<number>) => number
 
@@ -126,6 +132,7 @@ export const sum: (iterable: Iterable<number>) => number
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const sumAsync: (asyncIterable: AsyncIterable<number>) => Promise<number>
 
@@ -140,6 +147,7 @@ export const sumAsync: (asyncIterable: AsyncIterable<number>) => Promise<number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const sumConcur: (
   concurIterable: ConcurIterable<number>,
@@ -164,6 +172,7 @@ export const sumConcur: (
  * ```
  *
  * @category Statistics
+ * @since v3.5.0
  */
 export const toMean: () => Reducer<number, number>
 
@@ -182,6 +191,7 @@ export const toMean: () => Reducer<number, number>
  * ```
  *
  * @category Statistics
+ * @since v3.5.0
  */
 export const mean: (iterable: Iterable<number>) => number
 
@@ -201,6 +211,7 @@ export const mean: (iterable: Iterable<number>) => number
  * ```
  *
  * @category Statistics
+ * @since v3.5.0
  */
 export const meanAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -222,6 +233,7 @@ export const meanAsync: (
  * ```
  *
  * @category Statistics
+ * @since v3.5.0
  */
 export const meanConcur: (
   concurIterable: ConcurIterable<number>,
@@ -236,6 +248,7 @@ export const meanConcur: (
  * - Greater than zero implies `left > right`
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export type Compare<Value> = (left: Value, right: Value) => number
 
@@ -248,6 +261,7 @@ export type Compare<Value> = (left: Value, right: Value) => number
  * - Greater than zero implies `left > right`
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export type AsyncCompare<Value> = (
   left: Value,
@@ -258,6 +272,7 @@ export type AsyncCompare<Value> = (
  * An object containing a minimum and maximum value.
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export type MinMax<Value> = { min: Value; max: Value }
 
@@ -317,6 +332,7 @@ type MinOrMaxByConcur = {
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinBy: ToMinOrMaxBy
 
@@ -338,6 +354,7 @@ export const toMinBy: ToMinOrMaxBy
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minBy: MinOrMaxBy
 
@@ -349,6 +366,7 @@ export const minBy: MinOrMaxBy
  * {@link minByConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinByAsync: ToMinOrMaxByAsync
 
@@ -370,6 +388,7 @@ export const toMinByAsync: ToMinOrMaxByAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minByAsync: MinOrMaxByAsync
 
@@ -391,6 +410,7 @@ export const minByAsync: MinOrMaxByAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minByConcur: MinOrMaxByConcur
 
@@ -414,6 +434,7 @@ export const minByConcur: MinOrMaxByConcur
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMaxBy: ToMinOrMaxBy
 
@@ -435,6 +456,7 @@ export const toMaxBy: ToMinOrMaxBy
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxBy: MinOrMaxBy
 
@@ -446,6 +468,7 @@ export const maxBy: MinOrMaxBy
  * {@link maxByConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMaxByAsync: ToMinOrMaxByAsync
 
@@ -467,6 +490,7 @@ export const toMaxByAsync: ToMinOrMaxByAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxByAsync: MinOrMaxByAsync
 
@@ -488,6 +512,7 @@ export const maxByAsync: MinOrMaxByAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxByConcur: MinOrMaxByConcur
 
@@ -514,6 +539,7 @@ export const maxByConcur: MinOrMaxByConcur
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinMaxBy: <Value>(
   fn: Compare<Value>,
@@ -537,6 +563,7 @@ export const toMinMaxBy: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxBy: {
   <Value>(
@@ -556,6 +583,7 @@ export const minMaxBy: {
  * {@link minMaxByConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinMaxByAsync: <Value>(
   fn: AsyncCompare<Value>,
@@ -580,6 +608,7 @@ export const toMinMaxByAsync: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxByAsync: {
   <Value>(
@@ -610,6 +639,7 @@ export const minMaxByAsync: {
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxByConcur: {
   <Value>(
@@ -684,6 +714,7 @@ type MinOrMaxWithConcur = {
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinWith: ToMinOrMaxWith
 
@@ -705,6 +736,7 @@ export const toMinWith: ToMinOrMaxWith
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minWith: MinOrMaxWith
 
@@ -717,6 +749,7 @@ export const minWith: MinOrMaxWith
  * {@link minWithConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinWithAsync: ToMinOrMaxWithAsync
 
@@ -739,6 +772,7 @@ export const toMinWithAsync: ToMinOrMaxWithAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minWithAsync: MinOrMaxWithAsync
 
@@ -761,6 +795,7 @@ export const minWithAsync: MinOrMaxWithAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minWithConcur: MinOrMaxWithConcur
 
@@ -784,6 +819,7 @@ export const minWithConcur: MinOrMaxWithConcur
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMaxWith: ToMinOrMaxWith
 
@@ -805,6 +841,7 @@ export const toMaxWith: ToMinOrMaxWith
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxWith: MinOrMaxWith
 
@@ -817,6 +854,7 @@ export const maxWith: MinOrMaxWith
  * {@link maxWithConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMaxWithAsync: ToMinOrMaxWithAsync
 
@@ -839,6 +877,7 @@ export const toMaxWithAsync: ToMinOrMaxWithAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxWithAsync: MinOrMaxWithAsync
 
@@ -861,6 +900,7 @@ export const maxWithAsync: MinOrMaxWithAsync
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxWithConcur: MinOrMaxWithConcur
 
@@ -888,6 +928,7 @@ export const maxWithConcur: MinOrMaxWithConcur
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinMaxWith: <Value>(
   fn: (value: Value) => number,
@@ -911,6 +952,7 @@ export const toMinMaxWith: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxWith: {
   <Value>(
@@ -931,6 +973,7 @@ export const minMaxWith: {
  * {@link minMaxWithConcur} for direct use on iterables.
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinMaxWithAsync: <Value>(
   fn: (value: Value) => MaybePromiseLike<number>,
@@ -955,6 +998,7 @@ export const toMinMaxWithAsync: <Value>(
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minMaxWithAsync: {
   <Value>(
@@ -985,6 +1029,7 @@ export const minMaxWithAsync: {
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxWithConcur: {
   <Value>(
@@ -1015,6 +1060,7 @@ export const minMaxWithConcur: {
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMin: () => OptionalReducer<number>
 
@@ -1029,6 +1075,7 @@ export const toMin: () => OptionalReducer<number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const min: (iterable: Iterable<number>) => Iterable<number>
 
@@ -1044,6 +1091,7 @@ export const min: (iterable: Iterable<number>) => Iterable<number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -1061,6 +1109,7 @@ export const minAsync: (
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const minConcur: (
   concurIterable: ConcurIterable<number>,
@@ -1085,6 +1134,7 @@ export const minConcur: (
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMax: () => OptionalReducer<number>
 
@@ -1099,6 +1149,7 @@ export const toMax: () => OptionalReducer<number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const max: (iterable: Iterable<number>) => Iterable<number>
 
@@ -1114,6 +1165,7 @@ export const max: (iterable: Iterable<number>) => Iterable<number>
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -1131,6 +1183,7 @@ export const maxAsync: (
  * ```
  *
  * @category Statistics
+ * @since v0.0.1
  */
 export const maxConcur: (
   concurIterable: ConcurIterable<number>,
@@ -1156,6 +1209,7 @@ export const maxConcur: (
  * ```
  *
  * @category Statistics
+ * @since v2.0.0
  */
 export const toMinMax: () => OptionalReducer<MinMax<number>>
 
@@ -1170,6 +1224,7 @@ export const toMinMax: () => OptionalReducer<MinMax<number>>
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
 
@@ -1185,6 +1240,7 @@ export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxAsync: (
   asyncIterable: AsyncIterable<number>,
@@ -1202,6 +1258,7 @@ export const minMaxAsync: (
  * ```
  *
  * @category Statistics
+ * @since v0.0.2
  */
 export const minMaxConcur: (
   concurIterable: ConcurIterable<number>,

@@ -20,6 +20,7 @@ import type { ConcurIterable } from './core.js'
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const map: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -56,6 +57,7 @@ export const map: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const mapAsync: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -95,6 +97,7 @@ export const mapAsync: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const mapConcur: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -134,6 +137,7 @@ export const mapConcur: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flatMap: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -174,6 +178,7 @@ export const flatMap: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flatMapAsync: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -214,6 +219,7 @@ export const flatMapAsync: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flatMapConcur: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -269,6 +275,7 @@ export const flatMapConcur: {
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flatten: <Value>(
   iterable: Iterable<Iterable<Value>>,
@@ -293,6 +300,7 @@ export const flatten: <Value>(
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flattenAsync: <Value>(
   asyncIterable: AsyncIterable<Iterable<Value> | AsyncIterable<Value>>,
@@ -320,6 +328,7 @@ export const flattenAsync: <Value>(
  * ```
  *
  * @category Transforms
+ * @since v0.0.1
  */
 export const flattenConcur: <Value>(
   concurIterable: ConcurIterable<
@@ -345,6 +354,7 @@ export const flattenConcur: <Value>(
  * ```
  *
  * @category Transforms
+ * @since v2.0.0
  */
 export const index: <Value>(
   iterable: Iterable<Value>,
@@ -368,6 +378,7 @@ export const index: <Value>(
  * ```
  *
  * @category Transforms
+ * @since v2.0.0
  */
 export const indexAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -391,6 +402,7 @@ export const indexAsync: <Value>(
  * ```
  *
  * @category Transforms
+ * @since v2.0.0
  */
 export const indexConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

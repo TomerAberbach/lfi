@@ -50,6 +50,7 @@ type TupleOfSameLength<Tuple extends readonly any[]> = Extract<
  * ```
  *
  * @category Core
+ * @since v0.0.1
  */
 export const curry: <Parameters extends readonly any[], Return>(
   fn: (...args: Parameters) => Return,
@@ -72,6 +73,7 @@ export const curry: <Parameters extends readonly any[], Return>(
  * ```
  *
  * @category Core
+ * @since v0.0.1
  */
 export const pipe: {
   <Value>(value: Value): Value
@@ -159,6 +161,7 @@ export const pipe: {
  * ```
  *
  * @category Core
+ * @since v0.0.2
  */
 export const compose: {
   (): <Value>(value: Value) => Value
@@ -247,6 +250,7 @@ export const compose: {
  * ```
  *
  * @category Core
+ * @since v0.0.2
  */
 export const asAsync: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
@@ -277,6 +281,7 @@ export const asAsync: <Value>(
  * ```
  *
  * @category Core
+ * @since v0.0.2
  */
 export type ConcurIterable<Value> = (
   apply: ConcurIterableApply<Value>,
@@ -286,6 +291,7 @@ export type ConcurIterable<Value> = (
  * The callback invoked for each value of a {@link ConcurIterable}.
  *
  * @category Core
+ * @since v2.0.0
  */
 export type ConcurIterableApply<Value> = (
   value: Value,
@@ -305,6 +311,7 @@ export type ConcurIterableApply<Value> = (
  * ```
  *
  * @category Core
+ * @since v0.0.2
  */
 export const asConcur: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
@@ -324,6 +331,7 @@ export const asConcur: <Value>(
  * ```
  *
  * @category Core
+ * @since v0.0.1
  */
 export const empty: Iterable<any>
 
@@ -341,6 +349,7 @@ export const empty: Iterable<any>
  * ```
  *
  * @category Core
+ * @since v0.0.1
  */
 export const emptyAsync: AsyncIterable<any>
 
@@ -358,6 +367,7 @@ export const emptyAsync: AsyncIterable<any>
  * ```
  *
  * @category Core
+ * @since v0.0.2
  */
 export const emptyConcur: ConcurIterable<any>
 
@@ -365,6 +375,7 @@ export const emptyConcur: ConcurIterable<any>
  * Returns an iterable equivalent, but not referentially equal, to `iterable`.
  *
  * @category Core
+ * @since v2.0.0
  */
 export const opaque: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -373,6 +384,7 @@ export const opaque: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * `asyncIterable`.
  *
  * @category Core
+ * @since v2.0.0
  */
 export const opaqueAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -383,6 +395,7 @@ export const opaqueAsync: <Value>(
  * `concurIterable`.
  *
  * @category Core
+ * @since v2.0.0
  */
 export const opaqueConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

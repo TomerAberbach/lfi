@@ -21,6 +21,7 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filter: {
   <From, To extends From>(
@@ -60,6 +61,7 @@ export const filter: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filterAsync: {
   <From, To extends From>(
@@ -99,6 +101,7 @@ export const filterAsync: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filterConcur: {
   <From, To extends From>(
@@ -141,6 +144,7 @@ export const filterConcur: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filterMap: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -184,6 +188,7 @@ export const filterMap: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filterMapAsync: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -227,6 +232,7 @@ export const filterMapAsync: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const filterMapConcur: {
   // These overloads help with inferring tuple types returned from the callback.
@@ -264,6 +270,7 @@ export const filterMapConcur: {
  * ```
  *
  * @category Filters
+ * @since v2.0.0
  */
 export const exclude: {
   (
@@ -292,6 +299,7 @@ export const exclude: {
  * ```
  *
  * @category Filters
+ * @since v2.0.0
  */
 export const excludeAsync: {
   (
@@ -320,6 +328,7 @@ export const excludeAsync: {
  * ```
  *
  * @category Filters
+ * @since v2.0.0
  */
 export const excludeConcur: {
   (
@@ -350,6 +359,7 @@ export const excludeConcur: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const uniqueBy: {
   <Value>(
@@ -381,6 +391,7 @@ export const uniqueBy: {
  * ```
  *
  * @category Filters
+ * @since v0.0.2
  */
 export const uniqueByAsync: {
   <Value>(
@@ -412,6 +423,7 @@ export const uniqueByAsync: {
  * ```
  *
  * @category Filters
+ * @since v0.0.2
  */
 export const uniqueByConcur: {
   <Value>(
@@ -440,6 +452,7 @@ export const uniqueByConcur: {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -461,6 +474,7 @@ export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  *
  * @category Filters
+ * @since v0.0.2
  */
 export const uniqueAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -484,6 +498,7 @@ export const uniqueAsync: <Value>(
  * ```
  *
  * @category Filters
+ * @since v0.0.2
  */
 export const uniqueConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -552,6 +567,7 @@ type FindConcur = {
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const find: Find
 
@@ -586,6 +602,7 @@ export const find: Find
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const findAsync: FindAsync
 
@@ -620,6 +637,7 @@ export const findAsync: FindAsync
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const findConcur: FindConcur
 
@@ -651,6 +669,7 @@ export const findConcur: FindConcur
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const findLast: Find
 
@@ -683,6 +702,7 @@ export const findLast: Find
  * ```
  *
  * @category Filters
+ * @since v0.0.1
  */
 export const findLastAsync: FindAsync
 
@@ -715,5 +735,6 @@ export const findLastAsync: FindAsync
  * ```
  *
  * @category Filters
+ * @since v0.0.2
  */
 export const findLastConcur: FindConcur

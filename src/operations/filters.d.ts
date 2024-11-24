@@ -143,6 +143,15 @@ export const filterConcur: {
  * @category Filters
  */
 export const filterMap: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => To | null | undefined,
+  ): (iterable: Iterable<From>) => Iterable<NonNullable<To>>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => To | null | undefined,
+    iterable: Iterable<From>,
+  ): Iterable<NonNullable<To>>
+
   <From, To>(
     fn: (value: From) => To | null | undefined,
   ): (iterable: Iterable<From>) => Iterable<NonNullable<To>>
@@ -177,6 +186,15 @@ export const filterMap: {
  * @category Filters
  */
 export const filterMapAsync: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<NonNullable<To>>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+    asyncIterable: AsyncIterable<From>,
+  ): AsyncIterable<NonNullable<To>>
+
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To | null | undefined>,
   ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<NonNullable<To>>
@@ -211,6 +229,15 @@ export const filterMapAsync: {
  * @category Filters
  */
 export const filterMapConcur: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<NonNullable<To>>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To | null | undefined>,
+    concurIterable: ConcurIterable<From>,
+  ): ConcurIterable<NonNullable<To>>
+
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To | null | undefined>,
   ): (concurIterable: ConcurIterable<From>) => ConcurIterable<NonNullable<To>>

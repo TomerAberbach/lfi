@@ -22,6 +22,15 @@ import type { ConcurIterable } from './core.js'
  * @category Transforms
  */
 export const map: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => To,
+  ): (iterable: Iterable<From>) => Iterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => To,
+    iterable: Iterable<From>,
+  ): Iterable<To>
+
   <From, To>(
     fn: (value: From) => To,
   ): (iterable: Iterable<From>) => Iterable<To>
@@ -49,6 +58,15 @@ export const map: {
  * @category Transforms
  */
 export const mapAsync: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To>,
+    asyncIterable: AsyncIterable<From>,
+  ): AsyncIterable<To>
+
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
   ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
@@ -79,6 +97,15 @@ export const mapAsync: {
  * @category Transforms
  */
 export const mapConcur: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To>,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<To>,
+    concurIterable: ConcurIterable<From>,
+  ): ConcurIterable<To>
+
   <From, To>(
     fn: (value: From) => MaybePromiseLike<To>,
   ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
@@ -109,6 +136,15 @@ export const mapConcur: {
  * @category Transforms
  */
 export const flatMap: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => Iterable<To>,
+  ): (iterable: Iterable<From>) => Iterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => Iterable<To>,
+    iterable: Iterable<From>,
+  ): Iterable<To>
+
   <From, To>(
     fn: (value: From) => Iterable<To>,
   ): (iterable: Iterable<From>) => Iterable<To>
@@ -140,6 +176,15 @@ export const flatMap: {
  * @category Transforms
  */
 export const flatMapAsync: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>,
+  ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>,
+    asyncIterable: AsyncIterable<From>,
+  ): AsyncIterable<To>
+
   <From, To>(
     fn: (value: From) => MaybePromiseLike<Iterable<To> | AsyncIterable<To>>,
   ): (asyncIterable: AsyncIterable<From>) => AsyncIterable<To>
@@ -171,6 +216,23 @@ export const flatMapAsync: {
  * @category Transforms
  */
 export const flatMapConcur: {
+  // These overloads help with inferring tuple types returned from the callback.
+  <From, To extends unknown[] | []>(
+    fn: (
+      value: From,
+    ) => MaybePromiseLike<
+      Iterable<To> | AsyncIterable<To> | ConcurIterable<To>
+    >,
+  ): (concurIterable: ConcurIterable<From>) => ConcurIterable<To>
+  <From, To extends unknown[] | []>(
+    fn: (
+      value: From,
+    ) => MaybePromiseLike<
+      Iterable<To> | AsyncIterable<To> | ConcurIterable<To>
+    >,
+    concurIterable: ConcurIterable<From>,
+  ): ConcurIterable<To>
+
   <From, To>(
     fn: (
       value: From,

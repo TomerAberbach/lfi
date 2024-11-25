@@ -92,6 +92,12 @@ const config: Config = {
         },
         {
           type: `doc`,
+          docId: `recipes`,
+          label: `Recipes`,
+          position: `left`,
+        },
+        {
+          type: `doc`,
           docId: `api/index`,
           label: `API`,
           position: `left`,
@@ -107,6 +113,7 @@ const config: Config = {
           title: `Docs`,
           items: [
             { label: `Getting started`, to: `/docs/getting-started` },
+            { label: `Recipes`, to: `/docs/recipes` },
             { label: `API`, to: `/docs/api` },
           ],
         },
@@ -125,7 +132,10 @@ const config: Config = {
         },
         {
           title: `More`,
-          items: [{ label: `GitHub`, href: gitHubUrl }],
+          items: [
+            { label: `Playground`, href: `/playground` },
+            { label: `GitHub`, href: gitHubUrl },
+          ],
         },
       ],
       copyright: `

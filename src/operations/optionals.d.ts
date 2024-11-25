@@ -5,6 +5,7 @@ import type { ConcurIterable } from './core.js'
  * An iterable containing exactly zero or one values.
  *
  * @category Optionals
+ * @since v2.0.0
  */
 export type Optional<Value> = Iterable<Value>
 
@@ -12,6 +13,7 @@ export type Optional<Value> = Iterable<Value>
  * An async iterable containing exactly zero or one values.
  *
  * @category Optionals
+ * @since v2.0.0
  */
 export type AsyncOptional<Value> = AsyncIterable<Value>
 
@@ -19,6 +21,7 @@ export type AsyncOptional<Value> = AsyncIterable<Value>
  * A concur iterable containing exactly zero or one values.
  *
  * @category Optionals
+ * @since v2.0.0
  */
 export type ConcurOptional<Value> = ConcurIterable<Value>
 
@@ -39,6 +42,7 @@ export type ConcurOptional<Value> = ConcurIterable<Value>
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const or: {
   <Value>(fn: () => Value): (iterable: Iterable<Value>) => Value
@@ -68,6 +72,7 @@ export const or: {
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const orAsync: {
   <Value>(
@@ -102,6 +107,7 @@ export const orAsync: {
  * ```
  *
  * @category Optionals
+ * @since v0.0.2
  */
 export const orConcur: {
   <Value>(
@@ -138,6 +144,7 @@ export const orConcur: {
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const get: <Value>(iterable: Iterable<Value>) => Value
 
@@ -166,6 +173,7 @@ export const get: <Value>(iterable: Iterable<Value>) => Value
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const getAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -196,6 +204,7 @@ export const getAsync: <Value>(
  * ```
  *
  * @category Optionals
+ * @since v0.0.2
  */
 export const getConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
@@ -229,6 +238,7 @@ export const getConcur: <Value>(
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const next: <Value>(
   iterable: Iterable<Value>,
@@ -263,6 +273,7 @@ export const next: <Value>(
  * ```
  *
  * @category Optionals
+ * @since v0.0.1
  */
 export const nextAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,

@@ -26,6 +26,7 @@ import type {
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toArray: <Value>() => Reducer<Value, Value[]>
 
@@ -45,6 +46,7 @@ export const toArray: <Value>() => Reducer<Value, Value[]>
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toSet: <Value>() => Reducer<Value, Set<Value>>
 
@@ -65,6 +67,7 @@ export const toSet: <Value>() => Reducer<Value, Set<Value>>
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toWeakSet: <Value extends object>() => Reducer<
   Value,
@@ -89,6 +92,7 @@ export const toWeakSet: <Value extends object>() => Reducer<
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
   Key,
@@ -114,6 +118,7 @@ export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toMap: <Key, Value>() => RawKeyedReducer<
   Key,
@@ -139,6 +144,7 @@ export const toMap: <Key, Value>() => RawKeyedReducer<
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
   Key,
@@ -167,6 +173,7 @@ export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
  * ```
  *
  * @category Collections
+ * @since v2.0.0
  */
 export const toGrouped: {
   <Key, Value, InnerAcc, InnerFinished, InnerThis, OuterAcc, OuterThis>(
@@ -272,6 +279,7 @@ export const toGrouped: {
  * ```
  *
  * @category Collections
+ * @since v2.0.0
  */
 export const toMultiple: {
   <
@@ -370,6 +378,7 @@ export const toMultiple: {
  * ```
  *
  * @category Collections
+ * @since v2.0.0
  */
 export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
 
@@ -392,6 +401,7 @@ export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const join: {
   (separator: string): (iterable: Iterable<unknown>) => string
@@ -417,6 +427,7 @@ export const join: {
  * ```
  *
  * @category Collections
+ * @since v0.0.1
  */
 export const joinAsync: {
   (
@@ -444,6 +455,7 @@ export const joinAsync: {
  * ```
  *
  * @category Collections
+ * @since v0.0.2
  */
 export const joinConcur: {
   (

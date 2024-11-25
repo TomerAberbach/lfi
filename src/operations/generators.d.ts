@@ -12,6 +12,7 @@ import type {
  * iterable is opaque.
  *
  * @category Generators
+ * @since v0.1.0
  */
 export const keys: {
   <Key>(object: ReadonlyMap<Key, unknown>): Iterable<Key>
@@ -28,6 +29,7 @@ export const keys: {
  * `Object.values` in that the returned iterable is opaque.
  *
  * @category Generators
+ * @since v0.1.0
  */
 export const values: <Value>(
   object:
@@ -44,6 +46,7 @@ export const values: <Value>(
  * returned iterable is opaque.
  *
  * @category Generators
+ * @since v0.1.0
  */
 export const entries: {
   <Key, Value>(object: {
@@ -72,6 +75,7 @@ export const entries: {
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const generate: {
   <Value>(fn: (previousValue: Value) => Value): (seed: Value) => Iterable<Value>
@@ -96,6 +100,7 @@ export const generate: {
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const generateAsync: {
   <Value>(
@@ -123,6 +128,7 @@ export const generateAsync: {
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const repeat: <Value>(value: Value) => Iterable<Value>
 
@@ -143,6 +149,7 @@ export const repeat: <Value>(value: Value) => Iterable<Value>
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -163,6 +170,7 @@ export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const cycleAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -173,6 +181,7 @@ export const cycleAsync: <Value>(
  * iterable that skips numbers in steps.
  *
  * @category Generators
+ * @since v2.0.0
  */
 export type RangeIterable = Iterable<number> & {
   /**
@@ -212,6 +221,7 @@ type Range = {
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const rangeTo: Range
 
@@ -231,5 +241,6 @@ export const rangeTo: Range
  * ```
  *
  * @category Generators
+ * @since v0.0.1
  */
 export const rangeUntil: Range

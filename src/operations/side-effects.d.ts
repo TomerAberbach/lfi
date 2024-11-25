@@ -17,6 +17,7 @@ import type { ConcurIterable } from './core.js'
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const each: {
   <From, To extends From>(
@@ -59,6 +60,7 @@ export const each: {
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const eachAsync: {
   <Value>(
@@ -100,6 +102,7 @@ export const eachAsync: {
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const eachConcur: {
   <Value>(
@@ -135,6 +138,7 @@ export const eachConcur: {
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const forEach: {
   <Value>(fn: (value: Value) => unknown): (iterable: Iterable<Value>) => void
@@ -161,6 +165,7 @@ export const forEach: {
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const forEachAsync: {
   <Value>(
@@ -190,6 +195,7 @@ export const forEachAsync: {
  * ```
  *
  * @category Side effects
+ * @since v0.0.1
  */
 export const forEachConcur: {
   <Value>(
@@ -219,6 +225,7 @@ export const forEachConcur: {
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const consume: (iterable: Iterable<unknown>) => void
 
@@ -240,6 +247,7 @@ export const consume: (iterable: Iterable<unknown>) => void
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const consumeAsync: (
   asyncIterable: AsyncIterable<unknown>,
@@ -263,6 +271,7 @@ export const consumeAsync: (
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const consumeConcur: (
   concurIterable: ConcurIterable<unknown>,
@@ -290,6 +299,7 @@ export const consumeConcur: (
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const cache: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
@@ -315,6 +325,7 @@ export const cache: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const cacheAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
@@ -342,6 +353,7 @@ export const cacheAsync: <Value>(
  * ```
  *
  * @category Side effects
+ * @since v2.0.0
  */
 export const cacheConcur: <Value>(
   concurIterable: ConcurIterable<Value>,

@@ -178,7 +178,7 @@ const FEATURES: readonly FeatureItem[] = [
           <CodeInline>lfi</CodeInline> is just
           {` `}
           <Link href='https://bundlejs.com/?text=export%20*%20from%20%27lfi%27&bundle'>
-            5.47 kB gzipped
+            5.71 kB gzipped
           </Link>
           , or even smaller when
           {` `}

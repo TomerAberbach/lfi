@@ -39,6 +39,8 @@ import {
   dropWhile,
   dropWhileAsync,
   dropWhileConcur,
+  each,
+  eachAsync,
   emptyAsync,
   emptyConcur,
   first,
@@ -47,6 +49,8 @@ import {
   flatMapConcur,
   flatten,
   flattenAsync,
+  forEach,
+  forEachAsync,
   get,
   getAsync,
   getConcur,
@@ -74,6 +78,9 @@ import {
   window,
   windowAsync,
   windowConcur,
+  zip,
+  zipAsync,
+  zipConcur,
 } from '~/index.js'
 import type {
   AsyncOptional,
@@ -2522,3 +2529,180 @@ test.prop([
     expect(elapsed).toBe((await scheduler.report()).max().elapsed)
   },
 )
+
+test.skip(`zip types are correct`, () => {
+  expectTypeOf(zip([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+    Iterable<[number, string, number]>
+  >()
+})
+
+test.prop([fc.array(iterableArb)])(`zip returns a pure iterable`, iterables => {
+  const zippedIterable = zip(...iterables.map(({ iterable }) => iterable))
+
+  expect(zippedIterable).toBeIterable()
+})
+
+test.prop([fc.array(iterableArb, { minLength: 1 })])(
+  `zip returns an iterable zipped from the given non-empty iterables`,
+  iterables => {
+    const zippedIterable = zip(...iterables.map(({ iterable }) => iterable))
+
+    expect([...zippedIterable]).toStrictEqual(
+      Array.from(
+        { length: Math.min(...iterables.map(({ values }) => values.length)) },
+        (_, index) => iterables.map(({ values }) => values[index]),
+      ),
+    )
+  },
+)
+
+test(`zip returns an empty iterable for zero arguments`, () => {
+  const iterable = zip()
+
+  expect([...iterable]).toBeEmpty()
+})
+
+test.prop([fc.array(iterableArb)])(`zip is lazy`, iterables => {
+  const counts = iterables.map(() => 0)
+
+  const zippedIterable = zip(
+    ...iterables.map(({ iterable }, index) =>
+      each(() => counts[index]!++, iterable),
+    ),
+  )
+
+  let expectedCount = 0
+  expect(counts).toStrictEqual(iterables.map(() => expectedCount))
+  forEach(() => {
+    expectedCount++
+    expect(counts).toStrictEqual(iterables.map(() => expectedCount))
+  }, zippedIterable)
+})
+
+test.skip(`zipAsync types are correct`, () => {
+  expectTypeOf(zipAsync([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+    AsyncIterable<[number, string, number]>
+  >()
+  expectTypeOf(
+    zipAsync(asAsync([1, 2, 3]), [`a`, `b`, `c`], [1, 2, 3]),
+  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+  expectTypeOf(
+    zipAsync(asAsync([1, 2, 3]), asAsync([`a`, `b`, `c`]), [1, 2, 3]),
+  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+  expectTypeOf(
+    zipAsync(asAsync([1, 2, 3]), asAsync([`a`, `b`, `c`]), asAsync([1, 2, 3])),
+  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+})
+
+test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
+  `zipAsync returns a pure async iterable`,
+  async iterables => {
+    const zippedIterable = zipAsync(
+      ...iterables.map(({ iterable }) => iterable),
+    )
+
+    await expect(zippedIterable).toBeAsyncIterable()
+  },
+)
+
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb), { minLength: 1 }),
+])(
+  `zipAsync returns an async iterable zipped from the given non-empty iterables`,
+  async iterables => {
+    const zippedIterable = zipAsync(
+      ...iterables.map(({ iterable }) => iterable),
+    )
+
+    await expect(reduceAsync(toArray(), zippedIterable)).resolves.toStrictEqual(
+      Array.from(
+        { length: Math.min(...iterables.map(({ values }) => values.length)) },
+        (_, index) => iterables.map(({ values }) => values[index]),
+      ),
+    )
+  },
+)
+
+test(`zipAsync returns an empty async iterable for zero arguments`, async () => {
+  const asyncIterable = zipAsync()
+
+  await expect(reduceAsync(toArray(), asyncIterable)).resolves.toBeEmpty()
+})
+
+test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
+  `zipAsync is lazy`,
+  async iterables => {
+    const counts = iterables.map(() => 0)
+
+    const zippedIterable = zipAsync(
+      ...iterables.map(({ iterable }, index) =>
+        eachAsync(() => counts[index]!++, asAsync(iterable)),
+      ),
+    )
+
+    let expectedCount = 0
+    expect(counts).toStrictEqual(iterables.map(() => expectedCount))
+    await forEachAsync(() => {
+      expectedCount++
+      expect(counts).toStrictEqual(iterables.map(() => expectedCount))
+    }, zippedIterable)
+  },
+)
+
+test.skip(`zipConcur types are correct`, () => {
+  expectTypeOf(zipConcur([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+    ConcurIterable<[number, string, number]>
+  >()
+  expectTypeOf(
+    zipConcur([1, 2, 3], asAsync([`a`, `b`, `c`]), [1, 2, 3]),
+  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  expectTypeOf(
+    zipConcur([1, 2, 3], asAsync([`a`, `b`, `c`]), asConcur([1, 2, 3])),
+  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  expectTypeOf(
+    zipConcur([1, 2, 3], asConcur([`a`, `b`, `c`]), asConcur([1, 2, 3])),
+  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  expectTypeOf(
+    zipConcur(
+      asAsync([1, 2, 3]),
+      asConcur([`a`, `b`, `c`]),
+      asConcur([1, 2, 3]),
+    ),
+  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+})
+
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+])(`zipConcur returns a concur iterable`, async iterables => {
+  const zippedIterable = zipConcur(...iterables.map(({ iterable }) => iterable))
+
+  await expect(zippedIterable).toBeConcurIterable({ pure: false })
+})
+
+test.prop([
+  fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb), {
+    minLength: 1,
+  }),
+])(
+  `zipConcur returns a concur iterable zipped from the given non-empty iterables`,
+  async iterables => {
+    const zippedIterable = zipConcur(
+      ...iterables.map(({ iterable }) => iterable),
+    )
+
+    const array = await reduceConcur(toArray(), zippedIterable)
+    expect(array).toStrictEqual(
+      Array.from(
+        { length: Math.min(...iterables.map(({ values }) => values.length)) },
+        (_, index) =>
+          iterables.map(({ iterationOrder }) => iterationOrder[index]),
+      ),
+    )
+  },
+)
+
+test(`zipConcur returns an empty async iterable for zero arguments`, async () => {
+  const concurIterable = zipConcur()
+
+  await expect(reduceConcur(toArray(), concurIterable)).resolves.toBeEmpty()
+})

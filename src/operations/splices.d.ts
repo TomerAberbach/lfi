@@ -1238,3 +1238,101 @@ export const concatConcur: <Value>(
     | ConcurIterable<Value>
   )[]
 ) => ConcurIterable<Value>
+
+/**
+ * Returns an iterable that pairs up same-index values from the given
+ * `iterables` into tuples.
+ *
+ * The `iterables` are iterated in parallel until the shortest one is done, at
+ * which point the returned iterable is done.
+ *
+ * @example
+ * ```js
+ * console.log(
+ *   pipe(
+ *     zip(
+ *      [1, 2, 3, 4],
+ *      [5, `sloth`, 7],
+ *      [8, 9, 10],
+ *     ),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ [ 1, 5, 8 ], [ 2, 'sloth', 9 ], [ 3, 7, 10 ] ]
+ * ```
+ *
+ * @category Splices
+ * @since v3.8.0
+ */
+export const zip: <Values extends unknown[] | []>(
+  ...iterables: Readonly<{ [Key in keyof Values]: Iterable<Values[Key]> }>
+) => Iterable<Values>
+
+/**
+ * Returns an async iterable that pairs up same-index values from the given
+ * `iterables` into tuples.
+ *
+ * The `iterables` are iterated in parallel until the shortest one is done, at
+ * which point the returned async iterable is done.
+ *
+ * @example
+ * ```js
+ * console.log(
+ *   await pipe(
+ *     zipAsync(
+ *      asAsync([1, 2, 3, 4]),
+ *      [5, `sloth`, 7],
+ *      asAsync([8, 9, 10]),
+ *     ),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ [ 1, 5, 8 ], [ 2, 'sloth', 9 ], [ 3, 7, 10 ] ]
+ * ```
+ *
+ * @category Splices
+ * @since v3.8.0
+ */
+export const zipAsync: <Values extends unknown[] | []>(
+  ...iterables: Readonly<{
+    [Key in keyof Values]: Iterable<Values[Key]> | AsyncIterable<Values[Key]>
+  }>
+) => AsyncIterable<Values>
+
+/**
+ * Returns a concur iterable that pairs up same-index values, in iteration
+ * order, from the given `iterables` into tuples.
+ *
+ * The `iterables` are iterated in parallel until the shortest one is done, at
+ * which point the returned concur iterable is done.
+ *
+ * WARNING: If one of the concur iterables yields values more quickly than
+ * others, then an unbounded number of its values will be buffered so that they
+ * can be yielded with the values of other concur iterables at the same index.
+ *
+ * @example
+ * ```js
+ * console.log(
+ *   await pipe(
+ *     zipConcur(
+ *      asAsync([1, 2, 3, 4]),
+ *      [5, `sloth`, 7],
+ *      asConcur([8, 9, 10]),
+ *     ),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> [ [ 1, 5, 8 ], [ 2, 'sloth', 9 ], [ 3, 7, 10 ] ]
+ * ```
+ *
+ * @category Splices
+ * @since v3.8.0
+ */
+export const zipConcur: <Values extends unknown[] | []>(
+  ...iterables: Readonly<{
+    [Key in keyof Values]:
+      | Iterable<Values[Key]>
+      | AsyncIterable<Values[Key]>
+      | ConcurIterable<Values[Key]>
+  }>
+) => ConcurIterable<Values>

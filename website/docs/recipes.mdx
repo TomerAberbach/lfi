@@ -7,7 +7,10 @@ import TabItem from '@theme/TabItem'
 
 # Recipes
 
-## How do I associate values by a key?
+## How do I group values by a key?
+
+If each key is associated with exactly one value, then you can use a
+[keyed reducer](/docs/concepts/reducer#keyedreducer-and-asynckeyedreducer):
 
 <Tabs groupId='protocol' queryString>
 <TabItem value='sync' label='Sync'>
@@ -75,10 +78,6 @@ console.log(
 </TabItem>
 </Tabs>
 
-You can swap out `toMap` for another reducer to collect the key-value pairs into
-a different data structure. See the
-["Reducer" page](/docs/concepts/reducer#togrouped) for more details.
-
 :::warning
 
 If there are multiple key-value pairs with the same key, then only the last
@@ -86,7 +85,8 @@ key-value pair is preserved.
 
 :::
 
-## How do I group values by a key?
+If each key is associated with one or more values, then you can use
+[`toGrouped`](/docs/concepts/reducer#togrouped):
 
 <Tabs groupId='protocol' queryString>
 <TabItem value='sync' label='Sync'>
@@ -170,14 +170,13 @@ console.log(
 </TabItem>
 </Tabs>
 
-You can swap out both `toArray` and `toMap` for other reducers to collect the
-key-value pairs into different data structures. See the
-["Reducer" page](/docs/concepts/reducer#togrouped) for more details.
+In both cases you can swap out both `toArray` and `toMap` for other reducers to
+collect the key-value pairs into different data structures.
 
 ## How do I limit the concurrency of a concur iterable?
 
 You can wrap the async callback you want to limit the concurrency of with
-[`limit-concur`](https://www.npmjs.com/package/limit-concur).
+[`limit-concur`](https://www.npmjs.com/package/limit-concur):
 
 ```js playground
 import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
@@ -211,3 +210,128 @@ console.log(
 //=> 0
 //=> [ 'kind strawberry', 'humble max', 'great bitsy', 'beautiful tommy' ]
 ```
+
+## How do I reduce an iterable to more than one result in one pass?
+
+You can use [`toMultiple`](/docs/concepts/reducer#tomultiple):
+
+<Tabs groupId='protocol' queryString>
+<TabItem value='sync' label='Sync'>
+
+```js playground
+import { pipe, reduce, toCount, toJoin, toMultiple, toSum } from 'lfi'
+
+const numbers = [1, 2, 3, 4, 5]
+
+console.log(
+  pipe(numbers, reduce(toMultiple([toCount(), toSum(), toJoin(` -> `)]))),
+)
+//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+
+console.log(
+  pipe(
+    numbers,
+    reduce(
+      toMultiple({
+        count: toCount(),
+        sum: toSum(),
+        string: toJoin(` -> `),
+      }),
+    ),
+  ),
+)
+//=> {
+//=>   count: 5,
+//=>   sum: 15,
+//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=> }
+```
+
+</TabItem>
+<TabItem value='async' label='Async'>
+
+```js playground
+import {
+  asAsync,
+  pipe,
+  reduceAsync,
+  toCount,
+  toJoin,
+  toMultiple,
+  toSum,
+} from 'lfi'
+
+const numbers = asAsync([1, 2, 3, 4, 5])
+
+console.log(
+  await pipe(
+    numbers,
+    reduceAsync(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+  ),
+)
+//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+
+console.log(
+  await pipe(
+    numbers,
+    reduceAsync(
+      toMultiple({
+        count: toCount(),
+        sum: toSum(),
+        string: toJoin(` -> `),
+      }),
+    ),
+  ),
+)
+//=> {
+//=>   count: 5,
+//=>   sum: 15,
+//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=> }
+```
+
+</TabItem>
+<TabItem value='concur' label='Concur'>
+
+```js playground
+import {
+  asConcur,
+  pipe,
+  reduceConcur,
+  toCount,
+  toJoin,
+  toMultiple,
+  toSum,
+} from 'lfi'
+
+const numbers = asConcur([1, 2, 3, 4, 5])
+
+console.log(
+  await pipe(
+    numbers,
+    reduceConcur(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+  ),
+)
+//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+
+console.log(
+  await pipe(
+    numbers,
+    reduceConcur(
+      toMultiple({
+        count: toCount(),
+        sum: toSum(),
+        string: toJoin(` -> `),
+      }),
+    ),
+  ),
+)
+//=> {
+//=>   count: 5,
+//=>   sum: 15,
+//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=> }
+```
+
+</TabItem>
+</Tabs>

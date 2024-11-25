@@ -149,6 +149,11 @@ const config: Config = {
       theme: prismThemes.gruvboxMaterialLight,
       darkTheme: prismThemes.gruvboxMaterialDark,
     },
+    algolia: {
+      appId: `7TUBJY7HWC`,
+      apiKey: `868e4d57ced7c758bc2275eac02deb37`,
+      indexName: `lfi`,
+    },
   } satisfies Preset.ThemeConfig,
 
   headTags:

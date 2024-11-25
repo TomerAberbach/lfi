@@ -24,11 +24,13 @@ export const getIterableArb = <Value>(
   getArrayArb(arb, constraints).map(values => ({
     iterable: new IterableWithPrivateFields(values),
     values,
+    iterationOrder: values,
   }))
 
 export type GeneratedIterable<Value> = {
   iterable: Iterable<Value>
   values: Value[]
+  iterationOrder: Value[]
 }
 
 // Used to ensure we call `Symbol.iterator` with the right `this`.
@@ -62,11 +64,13 @@ export const getAsyncIterableArb = <Value>(
   getArrayArb(arb, constraints).map(values => ({
     iterable: new AsyncIterableWithPrivateFields(values),
     values,
+    iterationOrder: values,
   }))
 
 export type GeneratedAsyncIterable<Value> = {
   iterable: AsyncIterable<Value>
   values: Value[]
+  iterationOrder: Value[]
 }
 
 // Used to ensure we call `Symbol.asyncIterator` with the right `this`.
@@ -102,24 +106,31 @@ export const getConcurIterableArb = <Value>(
 ): fc.Arbitrary<GeneratedConcurIterable<Value>> =>
   getArrayArb(arb, constraints).map(values => {
     const index = getIterableIndex()
+    const iterationOrder: Value[] = []
     return {
       iterable: Object.assign(
         async (apply: (value: Value) => MaybePromiseLike<void>) => {
           await Promise.all(
-            values.map(async value =>
-              apply(await getScheduler()!.schedule(value)),
-            ),
+            values.map(async value => {
+              const scheduledValue = await getScheduler()!.schedule(value)
+              iterationOrder.push(value)
+              await apply(scheduledValue)
+            }),
           )
         },
         { [fc.toStringMethod]: () => `ConcurIterable$${index}` },
       ),
       values,
+      get iterationOrder() {
+        return iterationOrder
+      },
     }
   })
 
 export type GeneratedConcurIterable<Value> = {
   iterable: ConcurIterable<Value>
   values: Value[]
+  iterationOrder: Value[]
 }
 
 export const concurIterableArb = getConcurIterableArb(fc.anything())

@@ -18,6 +18,7 @@ import {
   pipe,
 } from './core.js'
 import { findLast, findLastAsync, findLastConcur } from './filters.js'
+import { allConcur } from './predicates.js'
 import {
   flatten,
   flattenAsync,
@@ -338,3 +339,115 @@ const createWindow = size => {
 export const concat = (...iterables) => flatten(iterables)
 export const concatAsync = (...iterables) => flattenAsync(asAsync(iterables))
 export const concatConcur = (...iterables) => flattenConcur(asConcur(iterables))
+
+export const zip = (...iterables) =>
+  createIterable(function* () {
+    if (iterables.length === 0) {
+      return
+    }
+
+    const iterators = iterables.map(iterable => iterable[Symbol.iterator]())
+    const values = iterables.map(() => undefined)
+    while (
+      iterators.every((iterator, index) => {
+        const result = iterator.next()
+        values[index] = result.value
+        return !result.done
+      })
+    ) {
+      yield [...values]
+    }
+  })
+
+export const zipAsync = (...iterables) =>
+  createAsyncIterable(async function* () {
+    if (iterables.length === 0) {
+      return
+    }
+
+    const asyncIterators = iterables.map(iterable =>
+      asAsync(iterable)[Symbol.asyncIterator](),
+    )
+    const values = iterables.map(() => undefined)
+    while (
+      await allConcur(async ([index, asyncIterator]) => {
+        const result = await asyncIterator.next()
+        values[index] = result.value
+        return !result.done
+      }, asConcur(asyncIterators.entries()))
+    ) {
+      yield [...values]
+    }
+  })
+
+export const zipConcur =
+  (...iterables) =>
+  apply =>
+    promiseWithEarlyResolve(async resolve => {
+      if (iterables.length === 0) {
+        return
+      }
+
+      const valuesPerIterable = iterables.map(() => [])
+      const remainingValues = []
+      let remainingBatches = Infinity
+      let resolved = false
+
+      await Promise.all(
+        map(async ([index, iterable]) => {
+          const values = valuesPerIterable[index]
+
+          await asConcur(iterable)(async value => {
+            if (resolved) {
+              return
+            }
+
+            const valueIndex = values.length
+            if (valueIndex >= remainingBatches) {
+              // There's no point in processing this value because the length of
+              // the shortest known iterable, so it's not going to be part of
+              // any yielded batch.
+              return
+            }
+
+            // Queue this value for a future batch and track the remaining
+            // number of values we're waiting on to be able to yield that batch.
+            values.push(value)
+            if (valueIndex >= remainingValues.length) {
+              remainingValues.push(iterables.length)
+            }
+            remainingValues[valueIndex]--
+
+            const canYieldBatch = valueIndex === 0 && remainingValues[0] === 0
+            if (!canYieldBatch) {
+              return
+            }
+
+            // Dequeue and yield the next batch.
+            remainingValues.shift()
+            const batch = valuesPerIterable.map(values => values.shift())
+            remainingBatches--
+            await apply(batch)
+
+            if (!resolved && remainingBatches === 0) {
+              resolved = true
+              resolve()
+            }
+          })
+
+          if (values.length > 0) {
+            // The remaining number of batches can be no more than the remaining
+            // number of queued values for this resolved concur iterable. Track
+            // that number so we can resolve the zipped concur iterable as soon
+            // as possible (see above).
+            remainingBatches = Math.min(remainingBatches, values.length)
+          } else {
+            // We can resolve early because there aren't any queued values left
+            // for concur iterable, so we'll never complete and yield another
+            // batch.
+            resolved = true
+            resolve()
+          }
+        }, iterables.entries()),
+      )
+    })

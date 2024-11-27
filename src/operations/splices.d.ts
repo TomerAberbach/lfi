@@ -378,7 +378,7 @@ type SubConcur = {
  * @category Splices
  * @since v0.0.1
  */
-export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
+export const first: <Value>(iterable: Iterable<Value>) => Optional<Value>
 
 /**
  * Returns an async iterable containing the first value of `asyncIterable`, or
@@ -401,7 +401,7 @@ export const first: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  */
 export const firstAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
-) => AsyncIterable<Value>
+) => AsyncOptional<Value>
 
 /**
  * Returns a concur iterable containing the first value of `concurIterable`, or
@@ -424,7 +424,7 @@ export const firstAsync: <Value>(
  */
 export const firstConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
-) => ConcurIterable<Value>
+) => ConcurOptional<Value>
 
 /**
  * Returns an iterable containing the last value of `iterable`, or an empty
@@ -445,7 +445,7 @@ export const firstConcur: <Value>(
  * @category Splices
  * @since v0.0.1
  */
-export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
+export const last: <Value>(iterable: Iterable<Value>) => Optional<Value>
 
 /**
  * Returns an async iterable containing the last value of `asyncIterable`, or
@@ -468,7 +468,7 @@ export const last: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  */
 export const lastAsync: <Value>(
   asyncIterable: AsyncIterable<Value>,
-) => AsyncIterable<Value>
+) => AsyncOptional<Value>
 
 /**
  * Returns a concur iterable containing the last value of `concurIterable`, or
@@ -491,7 +491,7 @@ export const lastAsync: <Value>(
  */
 export const lastConcur: <Value>(
   concurIterable: ConcurIterable<Value>,
-) => ConcurIterable<Value>
+) => ConcurOptional<Value>
 
 /**
  * Returns an iterable containing the values of `iterable` between `start` and

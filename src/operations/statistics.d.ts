@@ -1,5 +1,6 @@
 import type { MaybePromiseLike } from '../internal/types.js'
 import type { ConcurIterable } from './core.js'
+import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
 import type {
   AsyncOptionalReducer,
   OptionalReducer,
@@ -281,8 +282,8 @@ type ToMinOrMaxBy = <Value>(fn: Compare<Value>) => OptionalReducer<Value>
 
 /** @internal */
 type MinOrMaxBy = {
-  <Value>(fn: Compare<Value>, iterable: Iterable<Value>): Iterable<Value>
-  <Value>(fn: Compare<Value>): (iterable: Iterable<Value>) => Iterable<Value>
+  <Value>(fn: Compare<Value>, iterable: Iterable<Value>): Optional<Value>
+  <Value>(fn: Compare<Value>): (iterable: Iterable<Value>) => Optional<Value>
 }
 
 /** @internal */
@@ -295,10 +296,10 @@ type MinOrMaxByAsync = {
   <Value>(
     fn: AsyncCompare<Value>,
     asyncIterable: AsyncIterable<Value>,
-  ): AsyncIterable<Value>
+  ): AsyncOptional<Value>
   <Value>(
     fn: AsyncCompare<Value>,
-  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<Value>
 }
 
 /** @internal */
@@ -306,10 +307,10 @@ type MinOrMaxByConcur = {
   <Value>(
     fn: AsyncCompare<Value>,
     concurIterable: ConcurIterable<Value>,
-  ): ConcurIterable<Value>
+  ): ConcurOptional<Value>
   <Value>(
     fn: AsyncCompare<Value>,
-  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<Value>
 }
 
 /**
@@ -569,10 +570,10 @@ export const minMaxBy: {
   <Value>(
     fn: Compare<Value>,
     iterable: Iterable<Value>,
-  ): Iterable<MinMax<Value>>
+  ): Optional<MinMax<Value>>
   <Value>(
     fn: Compare<Value>,
-  ): (iterable: Iterable<Value>) => Iterable<MinMax<Value>>
+  ): (iterable: Iterable<Value>) => Optional<MinMax<Value>>
 }
 
 /**
@@ -614,10 +615,10 @@ export const minMaxByAsync: {
   <Value>(
     fn: AsyncCompare<Value>,
     asyncIterable: AsyncIterable<Value>,
-  ): AsyncIterable<MinMax<Value>>
+  ): AsyncOptional<MinMax<Value>>
   <Value>(
     fn: AsyncCompare<Value>,
-  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<MinMax<Value>>
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<MinMax<Value>>
 }
 
 /**
@@ -645,10 +646,10 @@ export const minMaxByConcur: {
   <Value>(
     fn: (left: Value, right: Value) => MaybePromiseLike<number>,
     concurIterable: ConcurIterable<Value>,
-  ): ConcurIterable<MinMax<Value>>
+  ): ConcurOptional<MinMax<Value>>
   <Value>(
     fn: (left: Value, right: Value) => MaybePromiseLike<number>,
-  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<MinMax<Value>>
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<MinMax<Value>>
 }
 
 /** @internal */
@@ -661,10 +662,10 @@ type MinOrMaxWith = {
   <Value>(
     fn: (value: Value) => number,
     iterable: Iterable<Value>,
-  ): Iterable<Value>
+  ): Optional<Value>
   <Value>(
     fn: (value: Value) => number,
-  ): (iterable: Iterable<Value>) => Iterable<Value>
+  ): (iterable: Iterable<Value>) => Optional<Value>
 }
 
 /** @internal */
@@ -677,10 +678,10 @@ type MinOrMaxWithAsync = {
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
     asyncIterable: AsyncIterable<Value>,
-  ): AsyncIterable<Value>
+  ): AsyncOptional<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
-  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<Value>
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<Value>
 }
 
 /** @internal */
@@ -688,10 +689,10 @@ type MinOrMaxWithConcur = {
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
     concurIterable: ConcurIterable<Value>,
-  ): ConcurIterable<Value>
+  ): ConcurOptional<Value>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
-  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<Value>
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<Value>
 }
 
 /**
@@ -958,10 +959,10 @@ export const minMaxWith: {
   <Value>(
     fn: (value: Value) => number,
     iterable: Iterable<Value>,
-  ): Iterable<MinMax<Value>>
+  ): Optional<MinMax<Value>>
   <Value>(
     fn: (value: Value) => number,
-  ): (iterable: Iterable<Value>) => Iterable<MinMax<Value>>
+  ): (iterable: Iterable<Value>) => Optional<MinMax<Value>>
 }
 
 /**
@@ -1004,10 +1005,10 @@ export const minMaxWithAsync: {
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
     asyncIterable: AsyncIterable<Value>,
-  ): AsyncIterable<MinMax<Value>>
+  ): AsyncOptional<MinMax<Value>>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
-  ): (asyncIterable: AsyncIterable<Value>) => AsyncIterable<MinMax<Value>>
+  ): (asyncIterable: AsyncIterable<Value>) => AsyncOptional<MinMax<Value>>
 }
 
 /**
@@ -1035,10 +1036,10 @@ export const minMaxWithConcur: {
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
     concurIterable: ConcurIterable<Value>,
-  ): ConcurIterable<MinMax<Value>>
+  ): ConcurOptional<MinMax<Value>>
   <Value>(
     fn: (value: Value) => MaybePromiseLike<number>,
-  ): (concurIterable: ConcurIterable<Value>) => ConcurIterable<MinMax<Value>>
+  ): (concurIterable: ConcurIterable<Value>) => ConcurOptional<MinMax<Value>>
 }
 
 /**
@@ -1077,7 +1078,7 @@ export const toMin: () => OptionalReducer<number>
  * @category Statistics
  * @since v0.0.1
  */
-export const min: (iterable: Iterable<number>) => Iterable<number>
+export const min: (iterable: Iterable<number>) => Optional<number>
 
 /**
  * Returns an async iterable containing a minimum value of `asyncIterable` if
@@ -1095,7 +1096,7 @@ export const min: (iterable: Iterable<number>) => Iterable<number>
  */
 export const minAsync: (
   asyncIterable: AsyncIterable<number>,
-) => AsyncIterable<number>
+) => AsyncOptional<number>
 
 /**
  * Returns a concur iterable containing a minimum value of `concurIterable` if
@@ -1113,7 +1114,7 @@ export const minAsync: (
  */
 export const minConcur: (
   concurIterable: ConcurIterable<number>,
-) => ConcurIterable<number>
+) => ConcurOptional<number>
 
 /**
  * Returns an optional reducer that finds the maximum value of the values it
@@ -1151,7 +1152,7 @@ export const toMax: () => OptionalReducer<number>
  * @category Statistics
  * @since v0.0.1
  */
-export const max: (iterable: Iterable<number>) => Iterable<number>
+export const max: (iterable: Iterable<number>) => Optional<number>
 
 /**
  * Returns an async iterable containing a maximum value of `asyncIterable` if
@@ -1169,7 +1170,7 @@ export const max: (iterable: Iterable<number>) => Iterable<number>
  */
 export const maxAsync: (
   asyncIterable: AsyncIterable<number>,
-) => AsyncIterable<number>
+) => AsyncOptional<number>
 
 /**
  * Returns a concur iterable containing a maximum value of `concurIterable` if
@@ -1187,7 +1188,7 @@ export const maxAsync: (
  */
 export const maxConcur: (
   concurIterable: ConcurIterable<number>,
-) => ConcurIterable<number>
+) => ConcurOptional<number>
 
 /**
  * Returns an optional reducer that finds the {@link MinMax} value of the values
@@ -1226,7 +1227,7 @@ export const toMinMax: () => OptionalReducer<MinMax<number>>
  * @category Statistics
  * @since v0.0.2
  */
-export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
+export const minMax: (iterable: Iterable<number>) => Optional<MinMax<number>>
 
 /**
  * Returns an async iterable containing a {@link MinMax} value of
@@ -1244,7 +1245,7 @@ export const minMax: (iterable: Iterable<number>) => Iterable<MinMax<number>>
  */
 export const minMaxAsync: (
   asyncIterable: AsyncIterable<number>,
-) => AsyncIterable<MinMax<number>>
+) => AsyncOptional<MinMax<number>>
 
 /**
  * Returns a concur iterable containing a {@link MinMax} value of
@@ -1262,4 +1263,4 @@ export const minMaxAsync: (
  */
 export const minMaxConcur: (
   concurIterable: ConcurIterable<number>,
-) => ConcurIterable<MinMax<number>>
+) => ConcurOptional<MinMax<number>>

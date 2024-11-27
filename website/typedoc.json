@@ -6,12 +6,11 @@
   "readme": "none",
   "excludeInternal": true,
   "intentionallyNotExported": [
-    "CheckNumericLiteral",
     "Curried",
+    "Integer",
     "MaybePromiseLike",
-    "NonNegative",
-    "PositiveInteger",
-    "StrictInteger"
+    "NonNegativeInteger",
+    "PositiveInteger"
   ],
   "indexFormat": "htmlTable"
 }

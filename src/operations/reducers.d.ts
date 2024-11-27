@@ -27,8 +27,8 @@ export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
 
 /**
  * A reducer that reduces by combining pairs of values using
- * {@link RawOptionalReducerWithFinish.add} and then tranforming the final value
- * using {@link RawOptionalReducerWithFinish.finish}.
+ * {@link RawOptionalReducerWithoutFinish.add} and then transforming the final
+ * value using {@link RawOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -43,8 +43,8 @@ export type RawOptionalReducerWithFinish<
 
 /**
  * A reducer that reduces by combining pairs of values using
- * {@link OptionalReducer.add} and then tranforming the final value using
- * {@link OptionalReducer.finish}.
+ * {@link RawOptionalReducerWithoutFinish.add} and then transforming the final
+ * value using {@link RawOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -73,9 +73,9 @@ export type RawReducerWithoutFinish<
 
 /**
  * A reducer that reduces by creating an initial accumulator using
- * {@link RawReducerWithFinish.create}, then adding values to the accumulator
- * values using {@link RawReducerWithFinish.add}, and then tranforming the final
- * accumulator using {@link RawReducerWithFinish.finish}.
+ * {@link RawReducerWithoutFinish.create}, then adding values to the accumulator
+ * values using {@link RawReducerWithoutFinish.add}, and then transforming the
+ * final accumulator using {@link RawReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -91,9 +91,9 @@ export type RawReducerWithFinish<
 
 /**
  * A reducer that reduces by creating an initial accumulator using
- * {@link Reducer.create}, then adding values to the accumulator values using
- * {@link Reducer.add}, and then tranforming the final accumulator using
- * {@link Reducer.finish}.
+ * {@link RawReducerWithoutFinish.create}, then adding values to the accumulator
+ * values using {@link RawReducerWithoutFinish.add}, and then transforming the
+ * final accumulator using {@link RawReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -106,8 +106,8 @@ export type Reducer<
 
 /**
  * A keyed reducer that reduces by creating an initial accumulator using
- * {@link RawKeyedReducer.create} and then adding key-value pairs to the
- * accumulator values using {@link RawKeyedReducer.add}. The accumulator can be
+ * {@link RawReducerWithoutFinish.create} and then adding key-value pairs to the
+ * accumulator values using {@link RawReducerWithoutFinish.add}. The accumulator can be
  * queried for values by key using {@link RawKeyedReducer.get}.
  *
  * @category Reducers
@@ -124,9 +124,9 @@ export type RawKeyedReducer<
 
 /**
  * A keyed reducer that reduces by creating an initial accumulator using
- * {@link KeyedReducer.create} and then adding key-value pairs to the
- * accumulator values using {@link KeyedReducer.add}. The accumulator can be
- * queried for values by key using {@link KeyedReducer.get}.
+ * {@link RawReducerWithoutFinish.create} and then adding key-value pairs to the
+ * accumulator values using {@link RawReducerWithoutFinish.add}. The accumulator
+ * can be queried for values by key using {@link RawKeyedReducer.get}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -165,8 +165,8 @@ export type RawAsyncOptionalReducerWithoutFinish<
 
 /**
  * An async reducer that reduces by combining pairs of values using
- * {@link RawAsyncOptionalReducerWithFinish.add} and then tranforming the final
- * value using {@link RawAsyncOptionalReducerWithFinish.finish}.
+ * {@link RawAsyncOptionalReducerWithoutFinish.add} and then transforming the
+ * final value using {@link RawAsyncOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -181,8 +181,8 @@ export type RawAsyncOptionalReducerWithFinish<
 
 /**
  * An async reducer that reduces by combining pairs of values using
- * {@link AsyncOptionalReducer.add} and then tranforming the final value using
- * {@link AsyncOptionalReducer.finish}.
+ * {@link RawAsyncOptionalReducerWithoutFinish.add} and then transforming the
+ * final value using {@link RawAsyncOptionalReducerWithFinish.finish}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -214,12 +214,12 @@ export type RawAsyncReducerWithoutFinish<
 
 /**
  * An async reducer that reduces by creating an initial accumulator using
- * {@link RawAsyncReducerWithFinish.create}, then adding values to the
- * accumulator values using {@link RawAsyncReducerWithFinish.add}, and then
- * tranforming the final accumulator using
+ * {@link RawAsyncReducerWithoutFinish.create}, then adding values to the
+ * accumulator values using {@link RawAsyncReducerWithoutFinish.add}, and then
+ * transforming the final accumulator using
  * {@link RawAsyncReducerWithFinish.finish}. The async
  * reducer is optionally able to combine pairs of accumulators using
- * {@link RawAsyncReducerWithFinish.combine}.
+ * {@link RawAsyncReducerWithoutFinish.combine}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -235,10 +235,12 @@ export type RawAsyncReducerWithFinish<
 
 /**
  * An async reducer that reduces by creating an initial accumulator using
- * {@link AsyncReducer.create}, then adding values to the accumulator values
- * using {@link AsyncReducer.add}, and then tranforming the final accumulator
- * using {@link AsyncReducer.finish}. The async reducer is optionally able to
- * combine pairs of accumulators using {@link AsyncReducer.combine}.
+ * {@link RawAsyncReducerWithoutFinish.create}, then adding values to the
+ * accumulator values using {@link RawAsyncReducerWithoutFinish.add}, and then
+ * transforming the final accumulator using
+ * {@link RawAsyncReducerWithFinish.finish}. The async reducer is optionally
+ * able to combine pairs of accumulators using
+ * {@link RawAsyncReducerWithoutFinish.combine}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -251,11 +253,11 @@ export type AsyncReducer<
 
 /**
  * An async keyed reducer that reduces by creating an initial accumulator using
- * {@link RawAsyncKeyedReducer.create} and then adding key-value pairs to the
- * accumulator values using {@link RawAsyncKeyedReducer.add}. The async keyed
- * reducer is optionally able to combine pairs of accumulators using
- * {@link RawAsyncKeyedReducer.combine}. The accumulator can be queried for
- * values by key using {@link RawAsyncKeyedReducer.get}.
+ * {@link RawAsyncReducerWithoutFinish.create} and then adding key-value pairs
+ * to the accumulator values using {@link RawAsyncReducerWithoutFinish.add}. The
+ * async keyed reducer is optionally able to combine pairs of accumulators using
+ * {@link RawAsyncReducerWithoutFinish.combine}. The accumulator can be queried
+ * for values by key using {@link RawAsyncKeyedReducer.get}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -275,11 +277,11 @@ export type RawAsyncKeyedReducer<
 
 /**
  * An async keyed reducer that reduces by creating an initial accumulator using
- * {@link AsyncKeyedReducer.create} and then adding key-value pairs to the
- * accumulator values using {@link AsyncKeyedReducer.add}. The async keyed
- * reducer is optionally able to combine pairs of accumulators using
- * {@link AsyncKeyedReducer.combine}. The accumulator can be queried for values
- * by key using {@link AsyncKeyedReducer.get}.
+ * {@link RawAsyncReducerWithoutFinish.create} and then adding key-value pairs
+ * to the accumulator values using {@link RawAsyncReducerWithoutFinish.add}. The
+ * async keyed reducer is optionally able to combine pairs of accumulators using
+ * {@link RawAsyncReducerWithoutFinish.combine}. The accumulator can be queried
+ * for values by key using {@link RawAsyncKeyedReducer.get}.
  *
  * @category Reducers
  * @since v2.0.0
@@ -467,15 +469,17 @@ export const normalizeReducer: {
 /**
  * Returns the result of reducing `iterable` using `reducer`.
  *
- * An initial accumulator is created using {@link Reducer.create}. Then each
- * value in `iterable` is added to the accumulator and the current accumulator
- * is updated using {@link Reducer.add}. Finally, the resulting accumulator is
- * transformed using {@link Reducer.finish} if specified.
+ * An initial accumulator is created using
+ * {@link RawReducerWithoutFinish.create}. Then each value in `iterable` is
+ * added to the accumulator and the current accumulator is updated using
+ * {@link RawReducerWithoutFinish.add}. Finally, the resulting accumulator is
+ * transformed using {@link RawReducerWithFinish.finish} if specified.
  *
- * If `reducer` is an optional reducer (no {@link Reducer.create} method), then
- * an empty iterable is returned if `iterable` is empty. Otherwise, an iterable
- * containing the result of reducing using the first value of the iterable as
- * the initial accumulator is returned.
+ * If `reducer` is an optional reducer (no
+ * {@link RawReducerWithoutFinish.create} method), then an empty iterable is
+ * returned if `iterable` is empty. Otherwise, an iterable containing the result
+ * of reducing using the first value of the iterable as the initial accumulator
+ * is returned.
  *
  * Like `Array.prototype.reduce`, but for iterables.
  *
@@ -548,19 +552,21 @@ export const reduce: {
  * Returns the result of reducing the `asyncIterable` using `asyncReducer`.
  *
  * Informally, an initial accumulator is created using
- * {@link AsyncReducer.create}. Then each value in `asyncIterable` is added to
- * the accumulator and the current accumulator is updated using
- * {@link AsyncReducer.add}. Finally, the resulting accumulator is transformed
- * using {@link AsyncReducer.finish} if specified. Multiple accumulators may be
- * created, added to, and then combined if supported via
- * {@link AsyncReducer.combine} and the next value of `asyncIterable` is ready
- * before promises from {@link AsyncReducer.add} resolve.
+ * {@link RawAsyncReducerWithoutFinish.create}. Then each value in
+ * `asyncIterable` is added to the accumulator and the current accumulator is
+ * updated using {@link RawAsyncReducerWithoutFinish.add}. Finally, the
+ * resulting accumulator is transformed using
+ * {@link RawAsyncReducerWithFinish.finish} if specified. Multiple accumulators
+ * may be created, added to, and then combined if supported via
+ * {@link RawAsyncReducerWithoutFinish.combine} and the next value of
+ * `asyncIterable` is ready before promises from
+ * {@link RawAsyncReducerWithoutFinish.add} resolve.
  *
  * If `asyncReducer` is an async optional reducer (no
- * {@link AsyncReducer.create} method), then an empty async iterable is returned
- * if `asyncIterable` is empty. Otherwise, an async iterable containing the
- * result of reducing using the first value of the async iterable as the initial
- * accumulator is returned.
+ * {@link RawAsyncReducerWithoutFinish.create} method), then an empty async
+ * iterable is returned if `asyncIterable` is empty. Otherwise, an async
+ * iterable containing the result of reducing using the first value of the async
+ * iterable as the initial accumulator is returned.
  *
  * Like `Array.prototype.reduce`, but for async iterables.
  *
@@ -649,19 +655,21 @@ export const reduceAsync: {
  * Returns the result of reducing the `concurIterable` using `asyncReducer`.
  *
  * Informally, an initial accumulator is created using
- * {@link AsyncReducer.create}. Then each value in `concurIterable` is added to
- * the accumulator and the current accumulator is updated using
- * {@link AsyncReducer.add}. Finally, the resulting accumulator is transformed
- * using {@link AsyncReducer.finish} if specified. Multiple accumulators may be
- * created, added to, and then combined if supported via
- * {@link AsyncReducer.combine} and the next value of `concurIterable` is ready
- * before promises from {@link AsyncReducer.add} resolve.
+ * {@link RawAsyncReducerWithoutFinish.create}. Then each value in
+ * `concurIterable` is added to the accumulator and the current accumulator is
+ * updated using {@link RawAsyncReducerWithoutFinish.add}. Finally, the
+ * resulting accumulator is transformed using
+ * {@link RawAsyncReducerWithFinish.finish} if specified. Multiple accumulators
+ * may be created, added to, and then combined if supported via
+ * {@link RawAsyncReducerWithoutFinish.combine} and the next value of
+ * `concurIterable` is ready before promises from
+ * {@link RawAsyncReducerWithoutFinish.add} resolve.
  *
  * If `asyncReducer` is an async optional reducer (no
- * {@link AsyncReducer.create} method), then an empty concur iterable is
- * returned if `concurIterable` is empty. Otherwise, an concur iterable
- * containing the result of reducing using the first value of the concur
- * iterable as the initial accumulator is returned.
+ * {@link RawAsyncReducerWithoutFinish.create} method), then an empty concur
+ * iterable is returned if `concurIterable` is empty. Otherwise, an concur
+ * iterable containing the result of reducing using the first value of the
+ * concur iterable as the initial accumulator is returned.
  *
  * Like `Array.prototype.reduce`, but for concur iterables.
  *

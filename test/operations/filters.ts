@@ -22,6 +22,7 @@ import withElapsed from 'test/helpers/with-elapsed.js'
 import {
   asAsync,
   asConcur,
+  consumeAsync,
   consumeConcur,
   exclude,
   excludeAsync,
@@ -165,6 +166,33 @@ test.prop([asyncIterableArb])(
   },
 )
 
+test.prop([nonEmptyAsyncIterableArb])(
+  `filterAsync rejects for a sync throwing function and non-empty async iterable`,
+  async ({ iterable }) => {
+    const filteredIterable = filterAsync(() => {
+      throw new Error(`BOOM!`)
+    }, iterable)
+
+    await expect(consumeAsync(filteredIterable)).rejects.toStrictEqual(
+      new Error(`BOOM!`),
+    )
+  },
+)
+
+test.prop([nonEmptyAsyncIterableArb])(
+  `filterAsync rejects for an async throwing function and non-empty async iterable`,
+  async ({ iterable }) => {
+    const filteredIterable = filterAsync(
+      () => Promise.reject(new Error(`BOOM!`)),
+      iterable,
+    )
+
+    await expect(consumeAsync(filteredIterable)).rejects.toStrictEqual(
+      new Error(`BOOM!`),
+    )
+  },
+)
+
 test.skip(`filterConcur types are correct`, () => {
   expectTypeOf(
     pipe(
@@ -230,6 +258,33 @@ test.prop([asyncPredicateArb, uniqueConcurIterableArb])(
         maxConcur,
         orConcur(() => 0),
       ),
+    )
+  },
+)
+
+test.prop([nonEmptyConcurIterableArb])(
+  `filterConcur rejects for a sync throwing function and non-empty concur iterable`,
+  async ({ iterable }) => {
+    const filteredIterable = filterConcur(() => {
+      throw new Error(`BOOM!`)
+    }, iterable)
+
+    await expect(consumeConcur(filteredIterable)).rejects.toStrictEqual(
+      new Error(`BOOM!`),
+    )
+  },
+)
+
+test.prop([nonEmptyConcurIterableArb])(
+  `filterConcur rejects for an async throwing function and non-empty concur iterable`,
+  async ({ iterable }) => {
+    const filteredIterable = filterConcur(
+      () => Promise.reject(new Error(`BOOM!`)),
+      iterable,
+    )
+
+    await expect(consumeConcur(filteredIterable)).rejects.toStrictEqual(
+      new Error(`BOOM!`),
     )
   },
 )
@@ -964,6 +1019,26 @@ test.prop([asyncPredicateArb, concurIterableArb])(
     const foundArray = await reduceConcur(toArray(), found)
     expect(Math.sign(foundArray.length)).toBe(Math.sign(expected.length))
     expect(expected).toIncludeAllMembers(foundArray)
+  },
+)
+
+test.prop([nonEmptyConcurIterableArb])(
+  `findConcur rejects for a sync throwing function and non-empty concur iterable`,
+  async ({ iterable }) => {
+    await expect(
+      findConcur(() => {
+        throw new Error(`BOOM!`)
+      }, iterable),
+    ).rejects.toStrictEqual(new Error(`BOOM!`))
+  },
+)
+
+test.prop([nonEmptyConcurIterableArb])(
+  `findConcur rejects for an async throwing function and non-empty concur iterable`,
+  async ({ iterable }) => {
+    await expect(
+      findConcur(() => Promise.reject(new Error(`BOOM!`)), iterable),
+    ).rejects.toStrictEqual(new Error(`BOOM!`))
   },
 )
 

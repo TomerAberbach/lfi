@@ -9,7 +9,7 @@ const editUrl = `${gitHubUrl}/tree/main/website/`
 
 const config: Config = {
   title: `lfi`,
-  tagline: `A lazy functional sync, async, and concurrent iteration library `,
+  tagline: `A lazy functional sync, async, and concurrent iteration library`,
   favicon: `img/logo.svg`,
 
   url: `https://lfi.dev`,

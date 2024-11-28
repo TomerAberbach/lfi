@@ -23,10 +23,12 @@ type TupleOfSameLength<Tuple extends readonly any[]> = Extract<
 >
 
 /**
- * Returns a curried version of `fn`.
+ * Returns a [curried](https://lfi.dev/docs/concepts/currying) version of `fn`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { curry } from 'lfi'
+ *
  * function slothLog(a, b, c) {
  *   console.log(`${a} Sloth ${b} Sloth ${c}`)
  * }
@@ -60,16 +62,19 @@ export const curry: <Parameters extends readonly any[], Return>(
  * Returns the result of piping `value` through the given functions.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     `sloth`,
- *     name => `${name.toUpperCase()}!`,
- *     text => [text, text, text],
- *     array => array.join(` `),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     map(string => string.toUpperCase()),
+ *     reduce(toArray()),
+ *     // Also works with non-`lfi` functions!
+ *     array => array.sort(),
  *   ),
  * )
- * // => SLOTH! SLOTH! SLOTH!
+ * //=> [ 'SLOTH', 'LAZY', 'SLEEP' ]
  * ```
  *
  * @category Core
@@ -149,15 +154,18 @@ export const pipe: {
  * given functions.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { compose, map, reduce, toArray } from 'lfi'
+ *
  * const screamify = compose(
- *   name => `${name.toUpperCase()}!`,
- *   text => [text, text, text],
- *   array => array.join(` `),
+ *   map(string => string.toUpperCase()),
+ *   reduce(toArray()),
+ *   // Also works with non-`lfi` functions!
+ *   array => array.sort(),
  * )
  *
- * console.log(screamify(`sloth`))
- * // => SLOTH! SLOTH! SLOTH!
+ * console.log(screamify([`sloth`, `lazy`, `sleep`]))
+ * //=> [ 'SLOTH', 'LAZY', 'SLEEP' ]
  * ```
  *
  * @category Core
@@ -228,15 +236,18 @@ export const compose: {
 /**
  * Returns an async iterable wrapper around `iterable`.
  *
- * Note that when passing a concur iterable the returned async iterable may have
- * to buffer the values produced by the concur iterable because values may not
- * be read from the async iterable as quickly as they are produced by the concur
- * iterable. This is a fundamental problem because concur iterables are "push"
- * based while async iterables are "pull" based, which creates backpressure.
+ * WARNING: When passing a concur iterable the returned async iterable will
+ * buffer the values yielded by the concur iterable if they are not read from
+ * the async iterable as quickly as they are yielded by the concur iterable.
+ * This happens because
+ * [concur iterables are push-based while async iterables are pull-based](https://lfi.dev/docs/concepts/concurrent-iterable#how-is-it-different-from-an-asynciterable),
+ * which creates backpressure.
  *
  * @example
- * ```js
- * const asyncIterable = asAsync([`sloth`, `more sloth`, `even more sloth`])
+ * ```js playground
+ * import { asAsync } from 'lfi'
+ *
+ * const asyncIterable = asAsync([`sloth`, `lazy`, `sleep`])
  *
  * console.log(typeof asyncIterable[Symbol.asyncIterator])
  * //=> function
@@ -245,8 +256,8 @@ export const compose: {
  *   console.log(value)
  * }
  * //=> sloth
- * //=> more sloth
- * //=> even more sloth
+ * //=> lazy
+ * //=> sleep
  * ```
  *
  * @category Core
@@ -257,8 +268,8 @@ export const asAsync: <Value>(
 ) => AsyncIterable<Value>
 
 /**
- * Represents a potentially lazy collection of values, each of type `Value`,
- * that can be iterated over concurrently.
+ * Represents a lazy collection of values, each of type `Value`, that can be
+ * iterated concurrently.
  *
  * The collection can be iterated by invoking the concur iterable with an
  * `apply` callback. The callback is applied to each value in the collection,
@@ -268,8 +279,9 @@ export const asAsync: <Value>(
  * has been applied to each value in the concur iterable and each result
  * returned by `apply` is awaited.
  *
- * It is like an event emitter that accepts only one event handler and returns a
- * promise that resolves when all events have been emitted and handled.
+ * A [concur iterable](https://lfi.dev/docs/concepts/concurrent-iterable) is
+ * effectively a cold push-based observable backed by some asynchronous
+ * operations.
  *
  * @example
  * ```js
@@ -301,13 +313,15 @@ export type ConcurIterableApply<Value> = (
  * Returns a concur iterable wrapper around `iterable`.
  *
  * @example
- * ```js
- * const concurIterable = asConcur([`sloth`, `more sloth`, `even more sloth`])
+ * ```js playground
+ * import { asConcur, forEachConcur } from 'lfi'
+ *
+ * const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
  *
  * await forEachConcur(console.log, concurIterable)
  * //=> sloth
- * //=> more sloth
- * //=> even more sloth
+ * //=> lazy
+ * //=> sleep
  * ```
  *
  * @category Core
@@ -325,7 +339,9 @@ export const asConcur: <Value>(
  * Like `[]`, but opaque.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { empty } from 'lfi'
+ *
  * console.log([...empty])
  * //=> []
  * ```
@@ -343,8 +359,15 @@ export const empty: Iterable<any>
  * Like `[]`, but for async iterables.
  *
  * @example
- * ```js
- * console.log(await pipe(emptyAsync, reduceAsync(toArray())))
+ * ```js playground
+ * import { emptyAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * console.log(
+ *   await pipe(
+ *     emptyAsync,
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
  * //=> []
  * ```
  *
@@ -361,8 +384,15 @@ export const emptyAsync: AsyncIterable<any>
  * Like `[]`, but for concur iterables.
  *
  * @example
- * ```js
- * console.log(await pipe(emptyConcur, reduceConcur(toArray())))
+ * ```js playground
+ * import { emptyConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * console.log(
+ *   await pipe(
+ *     emptyConcur,
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
  * //=> []
  * ```
  *
@@ -374,6 +404,20 @@ export const emptyConcur: ConcurIterable<any>
 /**
  * Returns an iterable equivalent, but not referentially equal, to `iterable`.
  *
+ * @example
+ * ```js playground
+ * import { opaque } from 'lfi'
+ *
+ * const array = [`sloth`, `lazy`, `sleep`]
+ * const iterable = opaque(array)
+ *
+ * console.log(array === iterable)
+ * //=> false
+ *
+ * console.log([...iterable])
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
+ * ```
+ *
  * @category Core
  * @since v2.0.0
  */
@@ -382,6 +426,29 @@ export const opaque: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 /**
  * Returns an async iterable equivalent, but not referentially equal, to
  * `asyncIterable`.
+ *
+ * @example
+ * ```js playground
+ * import { asAsync, opaqueAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const asyncIterable = asAsync([`sloth`, `lazy`, `sleep`])
+ * asyncIterable.property = 42
+ * const opaqueAsyncIterable = opaqueAsync(asyncIterable)
+ *
+ * console.log(asyncIterable === opaqueAsyncIterable)
+ * //=> false
+ *
+ * console.log(opaqueAsyncIterable.property)
+ * //=> undefined
+ *
+ * console.log(
+ *   await pipe(
+ *     opaqueAsyncIterable,
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
+ * ```
  *
  * @category Core
  * @since v2.0.0
@@ -393,6 +460,29 @@ export const opaqueAsync: <Value>(
 /**
  * Returns an concur iterable equivalent, but not referentially equal, to
  * `concurIterable`.
+ *
+ * @example
+ * ```js playground
+ * import { asConcur, opaqueConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
+ * concurIterable.property = 42
+ * const opaqueConcurIterable = opaqueConcur(concurIterable)
+ *
+ * console.log(concurIterable === opaqueConcurIterable)
+ * //=> false
+ *
+ * console.log(opaqueConcurIterable.property)
+ * //=> undefined
+ *
+ * console.log(
+ *   await pipe(
+ *     opaqueConcurIterable,
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
+ * ```
  *
  * @category Core
  * @since v2.0.0

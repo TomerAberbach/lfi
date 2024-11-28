@@ -1,6 +1,8 @@
 import { themes as prismThemes } from 'prism-react-renderer'
 import type { Config, Plugin } from '@docusaurus/types'
 import type * as Preset from '@docusaurus/preset-classic'
+import type { TypeDocOptions as TypedocOptions } from 'typedoc'
+import type { PluginOptions as TypedocMarkdownPluginOptions } from 'docusaurus-plugin-typedoc'
 
 const githubOrganizationName = `TomerAberbach`
 const githubProjectName = `lfi`
@@ -74,7 +76,24 @@ const config: Config = {
         return postcssOptions
       },
     }),
-    `docusaurus-plugin-typedoc`,
+    [
+      `docusaurus-plugin-typedoc`,
+      {
+        name: `API`,
+        entryPoints: [`../src/index.d.ts`],
+        tsconfig: `../tsconfig.json`,
+        readme: `none`,
+        excludeInternal: true,
+        intentionallyNotExported: [
+          `Integer`,
+          `MaybePromiseLike`,
+          `NonNegativeInteger`,
+          `PositiveInteger`,
+        ],
+        indexFormat: `htmlTable`,
+        watch: Boolean(process.env.TYPEDOC_WATCH),
+      } satisfies Partial<TypedocOptions | TypedocMarkdownPluginOptions>,
+    ],
   ],
 
   themeConfig: {

@@ -14,15 +14,17 @@ import type {
  * Returns a {@link Reducer} that collects values to an `Array`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { cycle, pipe, reduce, take, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     cycle([`sloth`, `more sloth`]),
+ *     cycle([`sloth`, `lazy`, `sleep`]),
  *     take(4),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'more sloth', 'sloth', 'more sloth' ]
+ * //=> [ 'sloth', 'lazy', 'sleep', 'sloth' ]
  * ```
  *
  * @category Collections
@@ -34,15 +36,21 @@ export const toArray: <Value>() => Reducer<Value, Value[]>
  * Returns a {@link Reducer} that collects values to a `Set`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { cycle, pipe, reduce, take, toSet } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     cycle([`sloth`, `more sloth`]),
+ *     cycle([`sloth`, `lazy`, `sleep`]),
  *     take(4),
- *     reduce(toArray()),
+ *     reduce(toSet()),
  *   ),
  * )
- * //=> Set(2) { 'sloth', 'more sloth' }
+ * //=> Set(3) {
+ * //=>   'sloth',
+ * //=>   'lazy',
+ * //=>   'sleep'
+ * //=> }
  * ```
  *
  * @category Collections
@@ -54,10 +62,12 @@ export const toSet: <Value>() => Reducer<Value, Set<Value>>
  * Returns a {@link Reducer} that collects objects to a `WeakSet`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { cycle, map, pipe, reduce, take, toWeakSet } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     cycle([`sloth`, `more sloth`]),
+ *     cycle([`sloth`, `lazy`, `sleep`]),
  *     take(4),
  *     map(string => ({ sloth: string })),
  *     reduce(toWeakSet()),
@@ -80,15 +90,21 @@ export const toWeakSet: <Value extends object>() => Reducer<
  * In the case of pairs with duplicate keys, the value of the last one wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toObject } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => [string, string.length]),
  *     reduce(toObject()),
  *   ),
  * )
- * //=> { sloth: 5, 'more sloth': 10, 'even more sloth': 15 }
+ * //=> {
+ * //=>   sloth: 5,
+ * //=>   lazy: 4,
+ * //=>   sleep: 5
+ * //=> }
  * ```
  *
  * @category Collections
@@ -106,15 +122,21 @@ export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
  * In the case of pairs with duplicate keys, the value of the last one wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toMap } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => [string, string.length]),
  *     reduce(toMap()),
  *   ),
  * )
- * //=> Map(3) { 'sloth' => 5, 'more sloth' => 10, 'even more sloth' => 15 }
+ * //=> Map(3) {
+ * //=>   'sloth' => 5,
+ * //=>   'lazy' => 4,
+ * //=>   'sleep' => 5
+ * //=> }
  * ```
  *
  * @category Collections
@@ -132,10 +154,12 @@ export const toMap: <Key, Value>() => RawKeyedReducer<
  * In the case of pairs with duplicate keys, the value of the last one wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toWeakMap } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => [{ sloth: string }, string.length]),
  *     reduce(toWeakMap()),
  *   ),
@@ -157,18 +181,19 @@ export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
  * and reduces values with the same key using `innerReducer`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toArray, toGrouped, toMap } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => [string.length, string]),
  *     reduce(toGrouped(toArray(), toMap())),
  *   ),
  * )
- * //=> Map(3) {
+ * //=> Map(2) {
  * //=>   5 => [ 'sloth', 'sleep' ],
- * //=>   10 => [ 'some sloth', 'more sloth' ],
- * //=>   15 => [ 'even more sloth' ]
+ * //=>   4 => [ 'lazy' ]
  * //=> }
  * ```
  *
@@ -252,19 +277,25 @@ export const toGrouped: {
  * an {@link OptionalReducer}. Otherwise, returns a {@link Reducer}.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toCount, toJoin, toMultiple, toSet } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => string.length),
  *     reduce(toMultiple([toSet(), toCount(), toJoin(`,`)])),
  *   ),
  * )
- * //=> [ Set(3) { 5, 10, 15 }, 5, '5,10,5,10,15' ]
+ * //=> [
+ * //=>   Set(2) { 5, 4 },
+ * //=>   3,
+ * //=>   '5,4,5'
+ * //=> ]
  *
  * console.log(
  *   pipe(
- *     [`sloth`, `some sloth`, `sleep`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => string.length),
  *     reduce(
  *       toMultiple({
@@ -275,7 +306,11 @@ export const toGrouped: {
  *     ),
  *   ),
  * )
- * //=> { set: Set(3) { 5, 10, 15 }, count: 5, string: '5,10,5,10,15' }
+ * //=> {
+ * //=>   set: Set(2) { 5, 4 },
+ * //=>   count: 3,
+ * //=>   string: '5,4,5'
+ * //=> }
  * ```
  *
  * @category Collections
@@ -366,15 +401,20 @@ export const toMultiple: {
  * {@link joinConcur} for direct use on iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toGrouped, toJoin, toMap } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `sleep`, `some sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     map(string => [string.length, string]),
  *     reduce(toGrouped(toJoin(`,`), toMap())),
  *   ),
  * )
- * //=> Map(2) { 5 => 'sloth,sleep', 10 => 'more sloth,some sloth' }
+ * //=> Map(2) {
+ * //=>   5 => 'sloth,sleep',
+ * //=>   4 => 'lazy'
+ * //=> }
  * ```
  *
  * @category Collections
@@ -383,21 +423,24 @@ export const toMultiple: {
 export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
 
 /**
- * Returns the result of concatenating the values of `iterable` to a string
- * where values are separated by `separator`.
+ * Returns the string concatenation of the values of `iterable`, separated by
+ * `separator`.
  *
- * Like `Array.prototype.join`, but for iterables, but does not treat `null`,
- * `undefined`, or `[]` specially.
+ * Like `Array.prototype.join`, but for iterables, except it does not treat
+ * `null`, `undefined`, or `[]` specially.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { join, map, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
+ *     map(string => string.toUpperCase()),
  *     join(`, `),
  *   ),
  * )
- * //=> sloth, more sloth, even more sloth
+ * //=> SLOTH, LAZY, SLEEP
  * ```
  *
  * @category Collections
@@ -409,21 +452,29 @@ export const join: {
 }
 
 /**
- * Returns a promise that resolves to the result of concatenating the values of
- * `asyncIterable` to a string where values are separated by `separator`.
+ * Returns a promise that resolves to the string concatenation of the values of
+ * `asyncIterable`, separated by `separator`.
  *
- * Like `Array.prototype.join`, but for async iterables, but does not treat
- * `null`, `undefined`, or `[]` specially.
+ * Like `Array.prototype.join`, but for async iterables, except it does not
+ * treat `null`, `undefined`, or `[]` specially.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, joinAsync, mapAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     joinAsync(`, `),
  *   ),
  * )
- * //=> sloth, more sloth, even more sloth
+ * //=> /slɑθ/, /ˈleɪzi/, /sliːp/
  * ```
  *
  * @category Collections
@@ -437,21 +488,33 @@ export const joinAsync: {
 }
 
 /**
- * Returns a promise that resolves to the result of concatenating the values of
- * `concurIterable` to a string where values are separated by `separator`.
+ * Returns a promise that resolves to the string concatenation of the values of
+ * `concurIterable`, separated by `separator`.
  *
- * Like `Array.prototype.join`, but for concur iterables, but does not treat
- * `null`, `undefined`, or `[]` specially.
+ * Like `Array.prototype.join`, but for concur iterables, except it does not
+ * treat `null`, `undefined`, or `[]` specially.
+ *
+ * WARNING: The iteration order of concur iterables is not deterministic, so the
+ * values will be concatenated in an arbitrary order.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, joinConcur, mapConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     joinConcur(`, `),
  *   ),
  * )
- * //=> sloth, more sloth, even more sloth
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/, /ˈleɪzi/, /sliːp/
  * ```
  *
  * @category Collections

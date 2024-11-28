@@ -189,12 +189,12 @@ We can iterate over concur iterables:
 ```js playground
 import { asConcur } from 'lfi'
 
-const concurIterable = asConcur([`sleep`, `climb`, `eat`])
+const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
 
 await concurIterable(console.log)
+//=> sloth
+//=> lazy
 //=> sleep
-//=> climb
-//=> eat
 ```
 
 We can manually filter and map them:
@@ -202,13 +202,13 @@ We can manually filter and map them:
 ```js playground
 import { asConcur } from 'lfi'
 
-const concurIterable = asConcur([`sleep`, `climb`, `eat`])
+const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
+
+const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
 
 const transformedConcurIterable = apply =>
   concurIterable(async verb => {
-    const [adjective] = await (
-      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
-    ).json()
+    const [adjective] = await (await fetch(API_URL)).json()
     if (adjective.length <= 5) {
       // Too short!
       return
@@ -218,6 +218,9 @@ const transformedConcurIterable = apply =>
   })
 
 await transformedConcurIterable(console.log)
+// NOTE: This order may change between runs
+//=> educated sloth
+//=> favorite sleep
 ```
 
 Or we can use `lfi`'s functions to filter and map them!
@@ -225,14 +228,17 @@ Or we can use `lfi`'s functions to filter and map them!
 ```js playground
 import { asConcur, filterMapConcur, forEachConcur, pipe } from 'lfi'
 
+const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
+
 await pipe(
-  asConcur([`sleep`, `climb`, `eat`]),
+  asConcur([`sloth`, `lazy`, `sleep`]),
   filterMapConcur(async verb => {
-    const [adjective] = await (
-      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
-    ).json()
+    const [adjective] = await (await fetch(API_URL)).json()
     return adjective.length <= 5 ? null : `${adjective} ${verb}`
   }),
   forEachConcur(console.log),
 )
+// NOTE: This order may change between runs
+//=> educated sloth
+//=> favorite sleep
 ```

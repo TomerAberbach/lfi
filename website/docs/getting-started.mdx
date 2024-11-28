@@ -134,20 +134,19 @@ import {
 } from 'lfi'
 
 // The file has one sloth name per line
-const filename = `every-sloth-name.txt`
+const FILENAME = `every-sloth-name.txt`
+const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
 
 const slothSquadStatementsPromise = pipe(
   // Create an async iterable over the file lines, in this case sloth names
-  (await fetch(new URL(`https://lfi.dev/${filename}`))).body,
+  (await fetch(new URL(`https://lfi.dev/${FILENAME}`))).body,
   flatMapAsync(chunk => new TextDecoder().decode(chunk).split(`\n`)),
   // Chunk the sloth names into array groups of 4, also known as a sloth squad
   chunkAsync(4),
   // Transform each sloth squad into a statement by asynchronously querying an
   // API for an adjective to describe the squad
   mapAsync(async slothSquad => {
-    const [adjective] = await (
-      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
-    ).json()
+    const [adjective] = await (await fetch(API_URL)).json()
     const leadingSloths = slothSquad.slice(0, 3)
     const trailingSloth = slothSquad.at(-1)
     return `${leadingSloths.join(`, `)}, and ${trailingSloth} are ${adjective}!`
@@ -195,11 +194,12 @@ import {
 } from 'lfi'
 
 // The file has one sloth name per line
-const filename = `every-sloth-name.txt`
+const FILENAME = `every-sloth-name.txt`
+const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
 
 const slothSquadStatementsPromise = pipe(
   // Create an async iterable over the file lines, in this case sloth names
-  (await fetch(new URL(`https://lfi.dev/${filename}`))).body,
+  (await fetch(new URL(`https://lfi.dev/${FILENAME}`))).body,
   flatMapAsync(chunk => new TextDecoder().decode(chunk).split(`\n`)),
   // Chunk the sloth names into array groups of 4, also known as a sloth squad
   chunkAsync(4),
@@ -211,9 +211,7 @@ const slothSquadStatementsPromise = pipe(
   // API for an adjective to describe the squad, all concurrently with other
   // squads
   mapConcur(async slothSquad => {
-    const [adjective] = await (
-      await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
-    ).json()
+    const [adjective] = await (await fetch(API_URL)).json()
     const leadingSloths = slothSquad.slice(0, 3)
     const trailingSloth = slothSquad.at(-1)
     return `${leadingSloths.join(`, `)}, and ${trailingSloth} are ${adjective}`
@@ -225,6 +223,7 @@ const slothSquadStatementsPromise = pipe(
 )
 
 console.log(await slothSquadStatementsPromise)
+// NOTE: This order may change between runs
 //=> [
 //=>   'strawberry, max, bitsy, and tommy jolly!',
 //=>   'ava, brooke, lottie, and jeremiah are beloved!',

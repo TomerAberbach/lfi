@@ -68,7 +68,7 @@ export const curry: <Parameters extends readonly any[], Return>(
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => string.toUpperCase()),
+ *     map(word => word.toUpperCase()),
  *     reduce(toArray()),
  *     // Also works with non-`lfi` functions!
  *     array => array.sort(),
@@ -158,7 +158,7 @@ export const pipe: {
  * import { compose, map, reduce, toArray } from 'lfi'
  *
  * const screamify = compose(
- *   map(string => string.toUpperCase()),
+ *   map(word => word.toUpperCase()),
  *   reduce(toArray()),
  *   // Also works with non-`lfi` functions!
  *   array => array.sort(),

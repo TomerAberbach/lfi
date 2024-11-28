@@ -29,16 +29,17 @@ import { map, pipe, reduce, toMap } from 'lfi'
 
 console.log(
   pipe(
-    [`sloth`, `dog`],
+    [`sloth`, `lazy`, `sleep`],
     // Create an iterable of key-value pairs
-    map(animal => [animal.length, animal]),
+    map(word => [word, word.length]),
     // Collect the key-value pairs into a map
     reduce(toMap()),
   ),
 )
-//=> Map(2) {
-//=>   5 => 'sloth',
-//=>   3 => 'dog'
+//=> Map(3) {
+//=>   'sloth' => 5,
+//=>   'lazy' => 4,
+//=>   'sleep' => 5
 //=> }
 ```
 
@@ -48,18 +49,25 @@ console.log(
 ```js playground
 import { asAsync, mapAsync, pipe, reduceAsync, toMap } from 'lfi'
 
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
 console.log(
   await pipe(
-    asAsync([`sloth`, `dog`]),
+    asAsync([`sloth`, `lazy`, `sleep`]),
     // Create an async iterable of key-value pairs
-    mapAsync(animal => [animal.length, animal]),
+    mapAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ phonetic }] = await response.json()
+      return [word, phonetic]
+    }),
     // Collect the key-value pairs into a map
     reduceAsync(toMap()),
   ),
 )
-//=> Map(2) {
-//=>   5 => 'sloth',
-//=>   3 => 'dog'
+//=> Map(3) {
+//=>   'sloth' => '/slɑθ/',
+//=>   'lazy' => '/ˈleɪzi/',
+//=>   'sleep' => '/sliːp/'
 //=> }
 ```
 
@@ -69,18 +77,26 @@ console.log(
 ```js playground
 import { asConcur, mapConcur, pipe, reduceConcur, toMap } from 'lfi'
 
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
 console.log(
   await pipe(
-    asConcur([`sloth`, `dog`]),
+    asConcur([`sloth`, `lazy`, `sleep`]),
     // Create a concur iterable of key-value pairs
-    mapConcur(animal => [animal.length, animal]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ phonetic }] = await response.json()
+      return [word, phonetic]
+    }),
     // Collect the key-value pairs into a map
     reduceConcur(toMap()),
   ),
 )
-//=> Map(2) {
-//=>   5 => 'sloth',
-//=>   3 => 'dog'
+// NOTE: This order may change between runs
+//=> Map(3) {
+//=>   'sloth' => '/slɑθ/',
+//=>   'lazy' => '/ˈleɪzi/',
+//=>   'sleep' => '/sliːp/'
 //=> }
 ```
 
@@ -105,16 +121,16 @@ import { map, pipe, reduce, toArray, toGrouped, toMap } from 'lfi'
 
 console.log(
   pipe(
-    [`sloth`, `cat`, `dog`, `bunny`],
+    [`sloth`, `lazy`, `sleep`],
     // Create an iterable of key-value pairs
-    map(animal => [animal.length, animal]),
+    map(word => [word.length, word]),
     // Collect the values by key into a map where each group is an array
     reduce(toGrouped(toArray(), toMap())),
   ),
 )
 //=> Map(2) {
-//=>   5 => [ 'sloth', 'bunny' ],
-//=>   3 => [ 'cat', 'dog' ]
+//=>  5 => [ 'sloth', 'sleep' ],
+//=>  4 => [ 'lazy' ]
 //=> }
 ```
 
@@ -132,18 +148,24 @@ import {
   toMap,
 } from 'lfi'
 
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
 console.log(
   await pipe(
-    asAsync([`sloth`, `cat`, `dog`, `bunny`]),
+    asAsync([`sloth`, `lazy`, `sleep`]),
     // Create an async iterable of key-value pairs
-    mapAsync(animal => [animal.length, animal]),
+    mapAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return [meanings[0].partOfSpeech, word]
+    }),
     // Collect the values by key into a map where each group is an array
     reduceAsync(toGrouped(toArray(), toMap())),
   ),
 )
 //=> Map(2) {
-//=>   5 => [ 'sloth', 'bunny' ],
-//=>   3 => [ 'cat', 'dog' ]
+//=>  'noun' => [ 'sloth', 'lazy' ],
+//=>  'verb' => [ 'sleep' ]
 //=> }
 ```
 
@@ -161,18 +183,25 @@ import {
   toMap,
 } from 'lfi'
 
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
 console.log(
   await pipe(
-    asConcur([`sloth`, `cat`, `dog`, `bunny`]),
-    // Create a concur iterable of key-value pairs
-    mapConcur(animal => [animal.length, animal]),
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    // Create an async iterable of key-value pairs
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return [meanings[0].partOfSpeech, word]
+    }),
     // Collect the values by key into a map where each group is an array
     reduceConcur(toGrouped(toArray(), toMap())),
   ),
 )
+// NOTE: This order may change between runs
 //=> Map(2) {
-//=>   5 => [ 'sloth', 'bunny' ],
-//=>   3 => [ 'cat', 'dog' ]
+//=>  'noun' => [ 'sloth', 'lazy' ],
+//=>  'verb' => [ 'sleep' ]
 //=> }
 ```
 
@@ -191,6 +220,8 @@ You can wrap the async callback you want to limit the concurrency of with
 import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
 import limitConcur from 'limit-concur'
 
+const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
+
 let pendingRequests = 0
 console.log(
   await pipe(
@@ -199,9 +230,7 @@ console.log(
       // At most 2 requests at a time
       limitConcur(2, async sloth => {
         console.log(++pendingRequests)
-        const [adjective] = await (
-          await fetch(`https://random-word-form.herokuapp.com/random/adjective`)
-        ).json()
+        const [adjective] = await (await fetch(API_URL)).json()
         console.log(--pendingRequests)
         return `${adjective} ${sloth}`
       }),
@@ -217,6 +246,7 @@ console.log(
 //=> 2
 //=> 1
 //=> 0
+// NOTE: This order may change between runs
 //=> [ 'kind strawberry', 'humble max', 'great bitsy', 'beautiful tommy' ]
 ```
 
@@ -228,31 +258,38 @@ You can use [`toMultiple`](/docs/concepts/reducer#tomultiple):
 <TabItem value='sync' label='Sync'>
 
 ```js playground
-import { pipe, reduce, toCount, toJoin, toMultiple, toSum } from 'lfi'
-
-const numbers = [1, 2, 3, 4, 5]
-
-console.log(
-  pipe(numbers, reduce(toMultiple([toCount(), toSum(), toJoin(` -> `)]))),
-)
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+import { map, pipe, reduce, toCount, toJoin, toMultiple, toSet } from 'lfi'
 
 console.log(
   pipe(
-    numbers,
+    [`sloth`, `lazy`, `sleep`],
+    map(word => word.length),
+    reduce(toMultiple([toSet(), toCount(), toJoin(`,`)])),
+  ),
+)
+//=> [
+//=>   Set(2) { 5, 4 },
+//=>   3,
+//=>   '5,4,5'
+//=> ]
+
+console.log(
+  pipe(
+    [`sloth`, `lazy`, `sleep`],
+    map(word => word.length),
     reduce(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 5, 4 },
+//=>   count: 3,
+//=>   string: '5,4,5'
 //=> }
 ```
 
@@ -262,40 +299,55 @@ console.log(
 ```js playground
 import {
   asAsync,
+  mapAsync,
   pipe,
   reduceAsync,
   toCount,
   toJoin,
   toMultiple,
-  toSum,
+  toSet,
 } from 'lfi'
 
-const numbers = asAsync([1, 2, 3, 4, 5])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
 
 console.log(
   await pipe(
-    numbers,
-    reduceAsync(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings[0].partOfSpeech
+    }),
+    reduceAsync(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+//=> [
+//=>   Set(2) { 'noun', 'verb' },
+//=>   3,
+//=>   'noun,noun,verb'
+//=> ]
 
 console.log(
   await pipe(
-    numbers,
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings[0].partOfSpeech
+    }),
     reduceAsync(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 'noun', 'verb' },
+//=>   count: 3,
+//=>   string: 'noun,noun,verb'
 //=> }
 ```
 
@@ -305,40 +357,57 @@ console.log(
 ```js playground
 import {
   asConcur,
+  mapConcur,
   pipe,
   reduceConcur,
   toCount,
   toJoin,
   toMultiple,
-  toSum,
+  toSet,
 } from 'lfi'
 
-const numbers = asConcur([1, 2, 3, 4, 5])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
 
 console.log(
   await pipe(
-    numbers,
-    reduceConcur(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings[0].partOfSpeech
+    }),
+    reduceConcur(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+// NOTE: This order may change between runs
+//=> [
+//=>   Set(2) { 'noun', 'verb' },
+//=>   3,
+//=>   'noun,noun,verb'
+//=> ]
 
 console.log(
   await pipe(
-    numbers,
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings[0].partOfSpeech
+    }),
     reduceConcur(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
+// NOTE: This order may change between runs
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 'noun', 'verb' },
+//=>   count: 3,
+//=>   string: 'noun,noun,verb'
 //=> }
 ```
 

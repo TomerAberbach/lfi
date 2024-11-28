@@ -69,7 +69,7 @@ export const toSet: <Value>() => Reducer<Value, Set<Value>>
  *   pipe(
  *     cycle([`sloth`, `lazy`, `sleep`]),
  *     take(4),
- *     map(string => ({ sloth: string })),
+ *     map(word => ({ sloth: word })),
  *     reduce(toWeakSet()),
  *   ),
  * )
@@ -96,7 +96,7 @@ export const toWeakSet: <Value extends object>() => Reducer<
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => [string, string.length]),
+ *     map(word => [word, word.length]),
  *     reduce(toObject()),
  *   ),
  * )
@@ -128,7 +128,7 @@ export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => [string, string.length]),
+ *     map(word => [word, word.length]),
  *     reduce(toMap()),
  *   ),
  * )
@@ -160,7 +160,7 @@ export const toMap: <Key, Value>() => RawKeyedReducer<
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => [{ sloth: string }, string.length]),
+ *     map(word => [{ sloth: word }, word.length]),
  *     reduce(toWeakMap()),
  *   ),
  * )
@@ -187,7 +187,7 @@ export const toWeakMap: <Key extends object, Value>() => RawKeyedReducer<
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => [string.length, string]),
+ *     map(word => [word.length, word]),
  *     reduce(toGrouped(toArray(), toMap())),
  *   ),
  * )
@@ -283,7 +283,7 @@ export const toGrouped: {
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => string.length),
+ *     map(word => word.length),
  *     reduce(toMultiple([toSet(), toCount(), toJoin(`,`)])),
  *   ),
  * )
@@ -296,7 +296,7 @@ export const toGrouped: {
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => string.length),
+ *     map(word => word.length),
  *     reduce(
  *       toMultiple({
  *         set: toSet(),
@@ -407,7 +407,7 @@ export const toMultiple: {
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => [string.length, string]),
+ *     map(word => [word.length, word]),
  *     reduce(toGrouped(toJoin(`,`), toMap())),
  *   ),
  * )
@@ -436,7 +436,7 @@ export const toJoin: (separator: string) => Reducer<unknown, unknown, string>
  * console.log(
  *   pipe(
  *     [`sloth`, `lazy`, `sleep`],
- *     map(string => string.toUpperCase()),
+ *     map(word => word.toUpperCase()),
  *     join(`, `),
  *   ),
  * )

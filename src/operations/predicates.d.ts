@@ -238,7 +238,7 @@ export const noneConcur: PredicateConcur
  * console.log(
  *   pipe(
  *     [`sloth`, `more sloth`, `even more sloth`],
- *     includes(3),
+ *     includes(`more sloth`),
  *   ),
  * )
  * //=> true
@@ -264,7 +264,7 @@ export const includes: {
  * console.log(
  *   await pipe(
  *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     includesAsync(3),
+ *     includesAsync(`more sloth`),
  *   ),
  * )
  * //=> true
@@ -295,7 +295,7 @@ export const includesAsync: {
  * console.log(
  *   await pipe(
  *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     includesConcur(3),
+ *     includesConcur(`more sloth`),
  *   ),
  * )
  * //=> true

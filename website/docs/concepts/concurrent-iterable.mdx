@@ -46,6 +46,12 @@ const createConcurIterable = () =>
 console.time(`concur iterable iteration`)
 await forEachConcur(unused => console.log(`Iterated!`), createConcurIterable())
 console.timeEnd(`concur iterable iteration`)
+//=> Iterated!
+//=> Iterated!
+//=> Iterated!
+//=> Iterated!
+// NOTE: This duration may vary slightly between runs
+//=> concur iterable iteration: 100 ms
 
 async function* createAsyncIterable() {
   yield delay(100)
@@ -58,6 +64,12 @@ for await (const unused of createAsyncIterable()) {
   console.log(`Iterated!`)
 }
 console.timeEnd(`async iterable iteration`)
+//=> Iterated!
+//=> Iterated!
+//=> Iterated!
+//=> Iterated!
+// NOTE: This duration may vary slightly between runs
+//=> async iterable iteration: 300 ms
 ```
 
 Iterating over the concur iterable takes just 100 milliseconds while iterating
@@ -156,11 +168,15 @@ const withLfi = await pipe(
   reduceConcur(toArray()),
 )
 console.timeEnd(`with lfi`)
+// NOTE: This duration may vary slightly between runs
+//=> with lfi: 6011 ms
 
 // Takes 10 seconds! The first item is a bottleneck because `p-map` waits for all callbacks
 console.time(`without lfi`)
 const withoutLfi = await pFilter(await pMap([0, 1, 2], mapFn), filterFn)
 console.timeEnd(`without lfi`)
+// NOTE: This duration may vary slightly between runs
+//=> without lfi: 10000 ms
 ```
 
 :::note

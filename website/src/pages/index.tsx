@@ -140,7 +140,7 @@ const FEATURES: readonly FeatureItem[] = [
         </p>
         <CodeBlock language='js' metastring='playground'>{dedent`
           import { filter, flatMap, map, pipe, reduce, toSet } from 'lfi'
-          import zoo from 'zoo'
+          import zoo from 'lfi:zoo'
 
           const getSlothNamesWithLfi = () =>
             pipe(
@@ -213,7 +213,7 @@ const FEATURES: readonly FeatureItem[] = [
         </p>
         <CodeBlock language='js' metastring='playground'>{dedent`
           import { filter, flatMap, map, pipe, reduce, toGrouped, toMap, toSet } from 'lfi'
-          import zoo from 'zoo'
+          import zoo from 'lfi:zoo'
 
           const getSlothNamesByAge = () =>
             pipe(

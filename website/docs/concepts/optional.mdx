@@ -43,23 +43,23 @@ For example, consider the following code:
 ```js playground
 import { find, or, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const findWordContaining = string =>
   pipe(
-    [`dog`, `cat`, `bunny`],
-    // Return an optional potentially containing the found animal
-    find(animal => animal === targetAnimal),
+    [`sloth`, `lazy`, `sleep`],
+    // Return an optional potentially containing the found word
+    find(word => word.includes(string)),
     // Return the optional's value if it exists, or the result of the callback otherwise
-    or(() => `no ${targetAnimal}???`),
+    or(() => `no ${string}???`),
   )
 
-console.log(getAnimal(`dog`))
-//=> dog
-console.log(getAnimal(`cat`))
-//=> cat
-console.log(getAnimal(`bunny`))
-//=> bunny
-console.log(getAnimal(`sloth`))
-//=> no sloth???
+console.log(findWordContaining(`lot`))
+//=> sloth
+console.log(findWordContaining(`la`))
+//=> lazy
+console.log(findWordContaining(`ep`))
+//=> sleep
+console.log(findWordContaining(`lfi`))
+//=> no lfi???
 ```
 
 </TabItem>
@@ -68,24 +68,30 @@ console.log(getAnimal(`sloth`))
 ```js playground
 import { asAsync, findAsync, orAsync, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+const findWordWithPartOfSpeech = partOfSpeech =>
   pipe(
-    asAsync([`dog`, `cat`, `bunny`]),
-    // Return an async optional potentially containing the found animal
-    findAsync(animal => animal === targetAnimal),
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    // Return an async optional potentially containing the found word
+    findAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+    }),
     // Return a promise that resolves to the async optional's value if it
     // exists, or the result of the callback otherwise
-    orAsync(() => `no ${targetAnimal}???`),
+    orAsync(() => `no ${partOfSpeech}???`),
   )
 
-console.log(await getAnimal(`dog`))
-//=> dog
-console.log(await getAnimal(`cat`))
-//=> cat
-console.log(await getAnimal(`bunny`))
-//=> bunny
-console.log(await getAnimal(`sloth`))
-//=> no sloth???
+console.log(await findWordWithPartOfSpeech(`noun`))
+//=> sloth
+console.log(await findWordWithPartOfSpeech(`verb`))
+//=> sloth
+console.log(await findWordWithPartOfSpeech(`adjective`))
+//=> lazy
+console.log(await findWordWithPartOfSpeech(`adverb`))
+//=> no adverb???
 ```
 
 </TabItem>
@@ -94,24 +100,32 @@ console.log(await getAnimal(`sloth`))
 ```js playground
 import { asConcur, findConcur, orConcur, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+const findWordWithPartOfSpeech = partOfSpeech =>
   pipe(
-    asConcur([`dog`, `cat`, `bunny`]),
-    // Return a concur optional potentially containing the found animal
-    findConcur(animal => animal === targetAnimal),
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    // Return an concur optional potentially containing the found word
+    findConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+    }),
     // Return a promise that resolves to the concur optional's value if it
     // exists, or the result of the callback otherwise
-    orConcur(() => `no ${targetAnimal}???`),
+    orConcur(() => `no ${partOfSpeech}???`),
   )
 
-console.log(await getAnimal(`dog`))
-//=> dog
-console.log(await getAnimal(`cat`))
-//=> cat
-console.log(await getAnimal(`bunny`))
-//=> bunny
-console.log(await getAnimal(`sloth`))
-//=> no sloth???
+console.log(await findWordWithPartOfSpeech(`noun`))
+// NOTE: This word may change between runs
+//=> sloth
+console.log(await findWordWithPartOfSpeech(`verb`))
+// NOTE: This word may change between runs
+//=> sloth
+console.log(await findWordWithPartOfSpeech(`adjective`))
+//=> lazy
+console.log(await findWordWithPartOfSpeech(`adverb`))
+//=> no adverb???
 ```
 
 </TabItem>
@@ -134,19 +148,23 @@ For example, consider the following code:
 ```js playground
 import { find, map, or, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const findWordContaining = string =>
   pipe(
-    [`dog`, `cat`, `bunny`],
-    find(animal => animal === targetAnimal),
+    [`sloth`, `lazy`, `sleep`],
+    find(word => word.includes(string)),
     // This works on the optional because it's just an iterable
-    map(animal => animal.toUpperCase()),
-    or(() => `no ${targetAnimal}???`),
+    map(word => word.toUpperCase()),
+    or(() => `no ${string}???`),
   )
 
-console.log(getAnimal(`dog`))
-console.log(getAnimal(`cat`))
-console.log(getAnimal(`bunny`))
-console.log(getAnimal(`sloth`))
+console.log(findWordContaining(`lot`))
+//=> SLOTH
+console.log(findWordContaining(`la`))
+//=> LAZY
+console.log(findWordContaining(`ep`))
+//=> SLEEP
+console.log(findWordContaining(`lfi`))
+//=> no lfi???
 ```
 
 We were trivially able to use our existing `map` logic on the optional value!
@@ -157,19 +175,29 @@ We were trivially able to use our existing `map` logic on the optional value!
 ```js playground
 import { asAsync, findAsync, mapAsync, orAsync, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+const findWordWithPartOfSpeech = partOfSpeech =>
   pipe(
-    asAsync([`dog`, `cat`, `bunny`]),
-    findAsync(animal => animal === targetAnimal),
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    findAsync(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+    }),
     // This works on the async optional because it's just an async iterable
-    mapAsync(animal => animal.toUpperCase()),
-    orAsync(() => `no ${targetAnimal}???`),
+    mapAsync(word => word.toUpperCase()),
+    orAsync(() => `no ${partOfSpeech}???`),
   )
 
-console.log(await getAnimal(`dog`))
-console.log(await getAnimal(`cat`))
-console.log(await getAnimal(`bunny`))
-console.log(await getAnimal(`sloth`))
+console.log(await findWordWithPartOfSpeech(`noun`))
+//=> SLOTH
+console.log(await findWordWithPartOfSpeech(`verb`))
+//=> SLOTH
+console.log(await findWordWithPartOfSpeech(`adjective`))
+//=> LAZY
+console.log(await findWordWithPartOfSpeech(`adverb`))
+//=> no adverb???
 ```
 
 We were trivially able to use our existing `mapAsync` logic on the async
@@ -181,19 +209,31 @@ optional value!
 ```js playground
 import { asConcur, findConcur, mapConcur, orConcur, pipe } from 'lfi'
 
-const getAnimal = targetAnimal =>
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+const findWordWithPartOfSpeech = partOfSpeech =>
   pipe(
-    asConcur([`dog`, `cat`, `bunny`]),
-    findConcur(animal => animal === targetAnimal),
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    findConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+    }),
     // This works on the concur optional because it's just an concur iterable
-    mapConcur(animal => animal.toUpperCase()),
-    orConcur(() => `no ${targetAnimal}???`),
+    mapConcur(word => word.toUpperCase()),
+    orConcur(() => `no ${partOfSpeech}???`),
   )
 
-console.log(await getAnimal(`dog`))
-console.log(await getAnimal(`cat`))
-console.log(await getAnimal(`bunny`))
-console.log(await getAnimal(`sloth`))
+console.log(await findWordWithPartOfSpeech(`noun`))
+// NOTE: This word may change between runs
+//=> SLOTH
+console.log(await findWordWithPartOfSpeech(`verb`))
+// NOTE: This word may change between runs
+//=> SLOTH
+console.log(await findWordWithPartOfSpeech(`adjective`))
+//=> LAZY
+console.log(await findWordWithPartOfSpeech(`adverb`))
+//=> no adverb???
 ```
 
 We were trivially able to use our existing `mapConcur` logic on the concur

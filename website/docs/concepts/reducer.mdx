@@ -72,6 +72,8 @@ const sumSquares = numbers =>
   )
 
 console.log(sumSquares([1, 2, 3]))
+//=> add(1, 4)
+//=> add(5, 9)
 //=> 14
 console.log(sumSquares([]))
 //=> 0
@@ -91,8 +93,9 @@ import { asAsync, mapAsync, orAsync, pipe, reduceAsync } from 'lfi'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-const sumSquares = numbers =>
-  pipe(
+const sumSquares = async numbers => {
+  console.time(`sumSquares`)
+  const sum = await pipe(
     // This is an async iterable, but async reducers also work with concur iterables
     asAsync(numbers),
     mapAsync(number => number * number),
@@ -109,10 +112,19 @@ const sumSquares = numbers =>
     // what to do for zero values
     orAsync(() => 0),
   )
+  console.timeEnd(`sumSquares`)
+  return sum
+}
 
 console.log(await sumSquares([1, 2, 3]))
+//=> add(4, 1)
+//=> add(5, 9)
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 200 ms
 //=> 14
 console.log(await sumSquares([]))
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 0 ms
 //=> 0
 ```
 
@@ -149,6 +161,8 @@ const sumSquares = numbers =>
   )
 
 console.log(sumSquares([1, 2, 3]))
+//=> add(1, 4)
+//=> add(5, 9)
 //=> 14
 console.log(sumSquares([]))
 //=> 0
@@ -173,6 +187,9 @@ const sumSquaresMessage = numbers =>
   )
 
 console.log(sumSquaresMessage([1, 2, 3]))
+//=> add(1, 4)
+//=> add(5, 9)
+//=> finish(14)
 //=> The sum of the squares is 14
 console.log(sumSquaresMessage([]))
 //=> There were no numbers!
@@ -194,8 +211,9 @@ import { asAsync, mapAsync, orAsync, pipe, reduceAsync } from 'lfi'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-const sumSquares = numbers =>
-  pipe(
+const sumSquares = async numbers => {
+  console.time(`sumSquares`)
+  const sum = await pipe(
     // This is an async iterable, but async reducers also work with concur iterables
     asAsync(numbers),
     mapAsync(number => number * number),
@@ -209,14 +227,24 @@ const sumSquares = numbers =>
     }),
     orAsync(() => 0),
   )
+  console.timeEnd(`sumSquares`)
+  return sum
+}
 
 console.log(await sumSquares([1, 2, 3]))
+//=> add(4, 1)
+//=> add(5, 9)
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 200 ms
 //=> 14
 console.log(await sumSquares([]))
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 0 ms
 //=> 0
 
-const sumSquaresMessage = numbers =>
-  pipe(
+const sumSquaresMessage = async numbers => {
+  console.time(`sumSquaresMessage`)
+  const message = await pipe(
     // This is an async iterable, but async reducers also work with concur iterables
     asAsync(numbers),
     mapAsync(number => number * number),
@@ -236,10 +264,20 @@ const sumSquaresMessage = numbers =>
     }),
     orAsync(() => `There were no numbers!`),
   )
+  console.timeEnd(`sumSquaresMessage`)
+  return message
+}
 
 console.log(await sumSquaresMessage([1, 2, 3]))
+//=> add(4, 1)
+//=> add(5, 9)
+//=> finish(14)
+// NOTE: This duration may vary slightly between runs
+//=> sumSquaresMessage: 1200 ms
 //=> The sum of the squares is 14
 console.log(await sumSquaresMessage([]))
+// NOTE: This duration may vary slightly between runs
+//=> sumSquaresMessage: 0 ms
 //=> There were no numbers!
 ```
 
@@ -291,8 +329,13 @@ const sumSquares = numbers =>
   )
 
 console.log(sumSquares([1, 2, 3]))
+//=> create()
+//=> add(0, 1)
+//=> add(1, 4)
+//=> add(5, 9)
 //=> 14
 console.log(sumSquares([]))
+//=> create()
 //=> 0
 
 const meanSquares = numbers =>
@@ -323,8 +366,15 @@ const meanSquares = numbers =>
   )
 
 console.log(meanSquares([1, 2, 3]))
+//=> create()
+//=> add({ sum: 0, count: 0 }, 1)
+//=> add({ sum: 1, count: 1 }, 4)
+//=> add({ sum: 5, count: 2 }, 9)
+//=> finish({ sum: 14, count: 3 })
 //=> 4.666666666666667
 console.log(meanSquares([]))
+//=> create()
+//=> finish({ sum: 0, count: 0 })
 //=> NaN
 ```
 
@@ -351,8 +401,9 @@ import { asAsync, mapAsync, orAsync, pipe, reduceAsync } from 'lfi'
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-const sumSquares = numbers =>
-  pipe(
+const sumSquares = async numbers => {
+  console.time(`sumSquares`)
+  const sum = await pipe(
     // This is an async iterable, but async reducers also work with concur iterables
     asAsync(numbers),
     mapAsync(number => number * number),
@@ -380,14 +431,31 @@ const sumSquares = numbers =>
     // No `or` needed here! `reduceAsync` doesn't return an async optional for a
     // full async reducer because it defines what to do for zero values using `create`
   )
+  console.timeEnd(`sumSquares`)
+  return sum
+}
 
 console.log(await sumSquares([1, 2, 3]))
+//=> create()
+//=> create()
+//=> create()
+//=> add(0, 1)
+//=> add(0, 4)
+//=> add(0, 9)
+//=> combine(4, 1)
+//=> combine(5, 9)
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 125 ms
 //=> 14
 console.log(await sumSquares([]))
+//=> create()
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 5 ms
 //=> 0
 
-const meanSquares = numbers =>
-  pipe(
+const meanSquares = async numbers => {
+  console.time(`meanSquares`)
+  const mean = await pipe(
     // This is an async iterable, but async reducers also work with concur iterables
     asAsync(numbers),
     mapAsync(number => number * number),
@@ -421,10 +489,28 @@ const meanSquares = numbers =>
       },
     }),
   )
+  console.timeEnd(`meanSquares`)
+  return mean
+}
 
 console.log(await meanSquares([1, 2, 3]))
+//=> create()
+//=> create()
+//=> create()
+//=> add({ sum: 0, count: 0 }, 1)
+//=> add({ sum: 0, count: 0 }, 4)
+//=> add({ sum: 0, count: 0 }, 9)
+//=> combine({ sum: 4, count: 1 }, { sum: 1, count: 1 })
+//=> combine({ sum: 5, count: 2 }, { sum: 9, count: 1 })
+//=> finish({ sum: 14, count: 3 })
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 1125 ms
 //=> 4.666666666666667
 console.log(await meanSquares([]))
+//=> create()
+//=> finish({ sum: 0, count: 0 })
+// NOTE: This duration may vary slightly between runs
+//=> sumSquares: 1005 ms
 //=> NaN
 ```
 
@@ -492,7 +578,9 @@ const toSlothMap = () => ({
     return acc.set(key, value)
   },
   get: (acc, key) => {
-    console.log(`get(${acc}, ${JSON.stringify(key)})`)
+    console.log(
+      `get(${JSON.stringify(Object.fromEntries(acc))}, ${JSON.stringify(key)})`,
+    )
     return acc.has(key) ? acc.get(key) : NO_ENTRY
   },
 })
@@ -583,40 +671,56 @@ For example, consider the following code:
 <TabItem value='sync' label='Sync'>
 
 ```js playground
-import { pipe, reduce, toArray, toGrouped, toJoin, toMap, toSet } from 'lfi'
+import {
+  map,
+  pipe,
+  reduce,
+  toArray,
+  toGrouped,
+  toJoin,
+  toMap,
+  toMinBy,
+} from 'lfi'
 
-const animalSounds = [
-  [`dog`, `bark`],
-  [`cat`, `meow`],
-  [`dog`, `woof`],
-  [`bunny`, `purr`],
-  [`sloth`, `zzz`],
-  [`cat`, `purr`],
-  [`sloth`, `zzz`],
-]
-
-console.log(pipe(animalSounds, reduce(toGrouped(toArray(), toMap()))))
-//=> Map(4) {
-//=>   'dog' => [ 'bark', 'woof' ],
-//=>   'cat' => [ 'meow', 'purr' ],
-//=>   'bunny' => [ 'purr' ],
-//=>   'sloth' => [ 'zzz', 'zzz' ]
+console.log(
+  pipe(
+    [`sloth`, `lazy`, `sleep`],
+    map(word => [word.length, word]),
+    reduce(toGrouped(toArray(), toMap())),
+  ),
+)
+//=> Map(2) {
+//=>  5 => [ 'sloth', 'sleep' ],
+//=>  4 => [ 'lazy' ]
 //=> }
 
-console.log(pipe(animalSounds, reduce(toGrouped(toSet(), toMap()))))
-//=> Map(4) {
-//=>   'dog' => Set(2) { 'bark', 'woof' },
-//=>   'cat' => Set(2) { 'meow', 'purr' },
-//=>   'bunny' => Set(1) { 'purr' },
-//=>   'sloth' => Set(1) { 'zzz' }
+console.log(
+  pipe(
+    [`sloth`, `lazy`, `sleep`],
+    map(word => [word.length, word]),
+    reduce(toGrouped(toJoin(` and `), toMap())),
+  ),
+)
+//=> Map(2) {
+//=>  5 => 'sloth and sleep',
+//=>  4 => 'lazy'
 //=> }
 
-console.log(pipe(animalSounds, reduce(toGrouped(toJoin(`and`), toMap()))))
-//=> Map(4) {
-//=>   'dog' => 'bark and woof',
-//=>   'cat' => 'meow and purr',
-//=>   'bunny' => 'purr',
-//=>   'sloth' => 'zzz and zzz'
+console.log(
+  pipe(
+    [`sloth`, `lazy`, `sleep`],
+    map(word => [word.length, word]),
+    reduce(
+      toGrouped(
+        toMinBy((word1, word2) => word1.localeCompare(word2)),
+        toMap(),
+      ),
+    ),
+  ),
+)
+//=> Map(2) {
+//=>  5 => 'sleep',
+//=>  4 => 'lazy'
 //=> }
 ```
 
@@ -626,51 +730,62 @@ console.log(pipe(animalSounds, reduce(toGrouped(toJoin(`and`), toMap()))))
 ```js playground
 import {
   asAsync,
+  mapAsync,
   pipe,
   reduceAsync,
   toArray,
   toGrouped,
   toJoin,
   toMap,
-  toSet,
+  toMinBy,
 } from 'lfi'
 
-const animalSounds = asAsync([
-  [`dog`, `bark`],
-  [`cat`, `meow`],
-  [`dog`, `woof`],
-  [`bunny`, `purr`],
-  [`sloth`, `zzz`],
-  [`cat`, `purr`],
-  [`sloth`, `zzz`],
-])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
-  await pipe(animalSounds, reduceAsync(toGrouped(toArray(), toMap()))),
+  await pipe(
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(async word => [await getPartOfSpeech(word), word]),
+    reduceAsync(toGrouped(toArray(), toMap())),
+  ),
 )
-//=> Map(4) {
-//=>   'dog' => [ 'bark', 'woof' ],
-//=>   'cat' => [ 'meow', 'purr' ],
-//=>   'bunny' => [ 'purr' ],
-//=>   'sloth' => [ 'zzz', 'zzz' ]
-//=> }
-
-console.log(await pipe(animalSounds, reduceAsync(toGrouped(toSet(), toMap()))))
-//=> Map(4) {
-//=>   'dog' => Set(2) { 'bark', 'woof' },
-//=>   'cat' => Set(2) { 'meow', 'purr' },
-//=>   'bunny' => Set(1) { 'purr' },
-//=>   'sloth' => Set(1) { 'zzz' }
+//=> Map(2) {
+//=>  'noun' => [ 'sloth', 'lazy' ],
+//=>  'verb' => [ 'sleep' ]
 //=> }
 
 console.log(
-  await pipe(animalSounds, reduceAsync(toGrouped(toJoin(`and`), toMap()))),
+  await pipe(
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(async word => [await getPartOfSpeech(word), word]),
+    reduceAsync(toGrouped(toJoin(` and `), toMap())),
+  ),
 )
-//=> Map(4) {
-//=>   'dog' => 'bark and woof',
-//=>   'cat' => 'meow and purr',
-//=>   'bunny' => 'purr',
-//=>   'sloth' => 'zzz and zzz'
+//=> Map(2) {
+//=>  'noun' => 'sloth and lazy',
+//=>  'verb' => 'sleep'
+//=> }
+
+console.log(
+  await pipe(
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(async word => [await getPartOfSpeech(word), word]),
+    reduceAsync(
+      toGrouped(
+        toMinBy((word1, word2) => word1.localeCompare(word2)),
+        toMap(),
+      ),
+    ),
+  ),
+)
+//=> Map(2) {
+//=>  'noun' => 'lazy',
+//=>  'verb' => 'sleep'
 //=> }
 ```
 
@@ -680,51 +795,65 @@ console.log(
 ```js playground
 import {
   asConcur,
+  mapConcur,
   pipe,
   reduceConcur,
   toArray,
   toGrouped,
   toJoin,
   toMap,
-  toSet,
+  toMinBy,
 } from 'lfi'
 
-const animalSounds = asConcur([
-  [`dog`, `bark`],
-  [`cat`, `meow`],
-  [`dog`, `woof`],
-  [`bunny`, `purr`],
-  [`sloth`, `zzz`],
-  [`cat`, `purr`],
-  [`sloth`, `zzz`],
-])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
-  await pipe(animalSounds, reduceConcur(toGrouped(toArray(), toMap()))),
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => [await getPartOfSpeech(word), word]),
+    reduceConcur(toGrouped(toArray(), toMap())),
+  ),
 )
-//=> Map(4) {
-//=>   'dog' => [ 'bark', 'woof' ],
-//=>   'cat' => [ 'meow', 'purr' ],
-//=>   'bunny' => [ 'purr' ],
-//=>   'sloth' => [ 'zzz', 'zzz' ]
-//=> }
-
-console.log(await pipe(animalSounds, reduceConcur(toGrouped(toSet(), toMap()))))
-//=> Map(4) {
-//=>   'dog' => Set(2) { 'bark', 'woof' },
-//=>   'cat' => Set(2) { 'meow', 'purr' },
-//=>   'bunny' => Set(1) { 'purr' },
-//=>   'sloth' => Set(1) { 'zzz' }
+// NOTE: This order may change between runs
+//=> Map(2) {
+//=>  'noun' => [ 'sloth', 'lazy' ],
+//=>  'verb' => [ 'sleep' ]
 //=> }
 
 console.log(
-  await pipe(animalSounds, reduceConcur(toGrouped(toJoin(`and`), toMap()))),
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => [await getPartOfSpeech(word), word]),
+    reduceConcur(toGrouped(toJoin(` and `), toMap())),
+  ),
 )
-//=> Map(4) {
-//=>   'dog' => 'bark and woof',
-//=>   'cat' => 'meow and purr',
-//=>   'bunny' => 'purr',
-//=>   'sloth' => 'zzz and zzz'
+// NOTE: This order may change between runs
+//=> Map(2) {
+//=>  'noun' => 'sloth and lazy',
+//=>  'verb' => 'sleep'
+//=> }
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => [await getPartOfSpeech(word), word]),
+    reduceConcur(
+      toGrouped(
+        toMinBy((word1, word2) => word1.localeCompare(word2)),
+        toMap(),
+      ),
+    ),
+  ),
+)
+// NOTE: This order may change between runs
+//=> Map(2) {
+//=>  'noun' => 'lazy',
+//=>  'verb' => 'sleep'
 //=> }
 ```
 
@@ -740,31 +869,38 @@ to create a reducer that reduces using all of the given reducers in parallel.
 <TabItem value='sync' label='Sync'>
 
 ```js playground
-import { pipe, reduce, toCount, toJoin, toMultiple, toSum } from 'lfi'
-
-const numbers = [1, 2, 3, 4, 5]
-
-console.log(
-  pipe(numbers, reduce(toMultiple([toCount(), toSum(), toJoin(` -> `)]))),
-)
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+import { map, pipe, reduce, toCount, toJoin, toMultiple, toSet } from 'lfi'
 
 console.log(
   pipe(
-    numbers,
+    [`sloth`, `lazy`, `sleep`],
+    map(word => word.length),
+    reduce(toMultiple([toSet(), toCount(), toJoin(`,`)])),
+  ),
+)
+//=> [
+//=>   Set(2) { 5, 4 },
+//=>   3,
+//=>   '5,4,5'
+//=> ]
+
+console.log(
+  pipe(
+    [`sloth`, `lazy`, `sleep`],
+    map(word => word.length),
     reduce(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 5, 4 },
+//=>   count: 3,
+//=>   string: '5,4,5'
 //=> }
 ```
 
@@ -774,40 +910,52 @@ console.log(
 ```js playground
 import {
   asAsync,
+  mapAsync,
   pipe,
   reduceAsync,
   toCount,
   toJoin,
   toMultiple,
-  toSum,
+  toSet,
 } from 'lfi'
 
-const numbers = asAsync([1, 2, 3, 4, 5])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
   await pipe(
-    numbers,
-    reduceAsync(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(getPartOfSpeech),
+    reduceAsync(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+//=> [
+//=>   Set(2) { 'noun', 'verb' },
+//=>   3,
+//=>   'noun,noun,verb'
+//=> ]
 
 console.log(
   await pipe(
-    numbers,
+    asAsync([`sloth`, `lazy`, `sleep`]),
+    mapAsync(getPartOfSpeech),
     reduceAsync(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 'noun', 'verb' },
+//=>   count: 3,
+//=>   string: 'noun,noun,verb'
 //=> }
 ```
 
@@ -817,40 +965,54 @@ console.log(
 ```js playground
 import {
   asConcur,
+  mapConcur,
   pipe,
   reduceConcur,
   toCount,
   toJoin,
   toMultiple,
-  toSum,
+  toSet,
 } from 'lfi'
 
-const numbers = asConcur([1, 2, 3, 4, 5])
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
   await pipe(
-    numbers,
-    reduceConcur(toMultiple([toCount(), toSum(), toJoin(` -> `)])),
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(getPartOfSpeech),
+    reduceConcur(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
-//=> [ 5, 15, '1 -> 2 -> 3 -> 4 -> 5' ]
+// NOTE: This order may change between runs
+//=> [
+//=>   Set(2) { 'noun', 'verb' },
+//=>   3,
+//=>   'noun,noun,verb'
+//=> ]
 
 console.log(
   await pipe(
-    numbers,
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(getPartOfSpeech),
     reduceConcur(
       toMultiple({
+        set: toSet(),
         count: toCount(),
-        sum: toSum(),
-        string: toJoin(` -> `),
+        string: toJoin(`,`),
       }),
     ),
   ),
 )
+// NOTE: This order may change between runs
 //=> {
-//=>   count: 5,
-//=>   sum: 15,
-//=>   string: '1 -> 2 -> 3 -> 4 -> 5'
+//=>   set: Set(2) { 'noun', 'verb' },
+//=>   count: 3,
+//=>   string: 'noun,noun,verb'
 //=> }
 ```
 

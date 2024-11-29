@@ -108,8 +108,8 @@ const configureMonaco = (monaco: Monaco) => {
     `lfi`,
   )
   monaco.languages.typescript.javascriptDefaults.addExtraLib(
-    `declare module 'zoo' { ${zooTypeDeclarations} }`,
-    `zoo`,
+    `declare module 'lfi:zoo' { ${zooTypeDeclarations} }`,
+    `lfi:zoo`,
   )
 }
 

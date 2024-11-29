@@ -9,7 +9,7 @@ const bundleCode = async (code: string): Promise<string> => {
   const input = `index.ts`
   const modules = new Map([
     [input, code],
-    [`zoo`, zooSource],
+    [`lfi:zoo`, zooSource],
     [`lfi`, lfiSource],
     [`limit-concur`, limitConcurSource],
     [`p-filter`, pFilterSource],

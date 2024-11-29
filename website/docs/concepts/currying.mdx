@@ -53,7 +53,7 @@ import {
   toMap,
   toSet,
 } from 'lfi'
-import zoo from 'zoo'
+import zoo from 'lfi:zoo'
 
 const getSlothNamesByAgeWithCurrying = () =>
   pipe(
@@ -64,6 +64,11 @@ const getSlothNamesByAgeWithCurrying = () =>
     reduce(toGrouped(toSet(), toMap())),
   )
 console.log(getSlothNamesByAgeWithCurrying())
+//=> Map(3) {
+//=>   7 => Set(2) { 'strawberry', 'bitsy' },
+//=>   19 => Set(1) { 'max' },
+//=>   24 => Set(1) { 'tommy' }
+//=> }
 
 const getSlothNamesByAgeWithoutCurrying = () =>
   reduce(
@@ -77,6 +82,11 @@ const getSlothNamesByAgeWithoutCurrying = () =>
     ),
   )
 console.log(getSlothNamesByAgeWithoutCurrying())
+//=> Map(3) {
+//=>   7 => Set(2) { 'strawberry', 'bitsy' },
+//=>   19 => Set(1) { 'max' },
+//=>   24 => Set(1) { 'tommy' }
+//=> }
 ```
 
 `getSlothNamesByAgeWithCurrying` is easier to read because the operation order

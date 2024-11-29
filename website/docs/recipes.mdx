@@ -309,15 +309,16 @@ import {
 } from 'lfi'
 
 const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
   await pipe(
     asAsync([`sloth`, `lazy`, `sleep`]),
-    mapAsync(async word => {
-      const response = await fetch(`${API_URL}/${word}`)
-      const [{ meanings }] = await response.json()
-      return meanings[0].partOfSpeech
-    }),
+    mapAsync(getPartOfSpeech),
     reduceAsync(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
@@ -330,11 +331,7 @@ console.log(
 console.log(
   await pipe(
     asAsync([`sloth`, `lazy`, `sleep`]),
-    mapAsync(async word => {
-      const response = await fetch(`${API_URL}/${word}`)
-      const [{ meanings }] = await response.json()
-      return meanings[0].partOfSpeech
-    }),
+    mapAsync(getPartOfSpeech),
     reduceAsync(
       toMultiple({
         set: toSet(),
@@ -367,15 +364,16 @@ import {
 } from 'lfi'
 
 const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings[0].partOfSpeech
+}
 
 console.log(
   await pipe(
     asConcur([`sloth`, `lazy`, `sleep`]),
-    mapConcur(async word => {
-      const response = await fetch(`${API_URL}/${word}`)
-      const [{ meanings }] = await response.json()
-      return meanings[0].partOfSpeech
-    }),
+    mapConcur(getPartOfSpeech),
     reduceConcur(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
@@ -389,11 +387,7 @@ console.log(
 console.log(
   await pipe(
     asConcur([`sloth`, `lazy`, `sleep`]),
-    mapConcur(async word => {
-      const response = await fetch(`${API_URL}/${word}`)
-      const [{ meanings }] = await response.json()
-      return meanings[0].partOfSpeech
-    }),
+    mapConcur(getPartOfSpeech),
     reduceConcur(
       toMultiple({
         set: toSet(),

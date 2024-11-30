@@ -284,12 +284,24 @@ export const asAsync: <Value>(
  * operations.
  *
  * @example
- * ```js
- * const slothNamesConcurIterable = pipe(
- *   asConcur(['sloth-names1.txt', 'sloth-names2.txt']),
- *   mapConcur(filename => fs.promises.readFile(filename, `utf8`)),
- *   flatMapConcur(content => content.split(`\n`)),
+ * ```js playground
+ * import { asConcur, mapConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const concurIterable = pipe(
+ *   asConcur([`sloth`, `lazy`, `sleep`]),
+ *   mapConcur(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
  * )
+ *
+ * await concurIterable(console.log)
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
  * ```
  *
  * @category Core

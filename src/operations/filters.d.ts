@@ -9,15 +9,17 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * Like `Array.prototype.filter`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { filter, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth party`, `building`, `sloths in trees`, `city`],
- *     filter(string => string.includes(`sloth`)),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     filter(word => word.startsWith(`s`)),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * //=> [ 'sloth', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -49,15 +51,23 @@ export const filter: {
  * Like `Array.prototype.filter`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, filterAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth party`, `building`, `sloths in trees`, `city`]),
- *     filterAsync(string => string.includes(`sloth`)),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     filterAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings[0].partOfSpeech === `verb`
+ *     }),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * //=> [ 'sleep' ]
  * ```
  *
  * @category Filters
@@ -89,15 +99,23 @@ export const filterAsync: {
  * Like `Array.prototype.filter`, but for concur iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, filterConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth party`, `building`, `sloths in trees`, `city`]),
- *     filterConcur(string => string.includes(`sloth`)),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     filterConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings[0].partOfSpeech === `verb`
+ *     }),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * //=> [ 'sleep' ]
  * ```
  *
  * @category Filters
@@ -127,20 +145,23 @@ export const filterConcur: {
  * `undefined`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { filterMap, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
  *     [
- *       { sloth: `sloth party` },
- *       { notSloth: `building` },
- *       { sloth: `sloths in trees` },
- *       { notSloth: `city` },
+ *       { sloth: `sloth` },
+ *       { sloth: `lazy` },
+ *       { notSloth: `active` },
+ *       { sloth: `sleep` },
+ *       { notSloth: `awake` },
  *     ],
  *     filterMap(object => object.sloth),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -171,20 +192,32 @@ export const filterMap: {
  * returns a value awaitable to null or undefined.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, filterMapAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
  *     asAsync([
- *       { sloth: `sloth party` },
- *       { notSloth: `building` },
- *       { sloth: `sloths in trees` },
- *       { notSloth: `city` },
+ *       { sloth: `sloth` },
+ *       { sloth: `lazy` },
+ *       { notSloth: `active` },
+ *       { sloth: `sleep` },
+ *       { notSloth: `awake` },
  *     ]),
- *     filterMapAsync(object => object.sloth),
+ *     filterMapAsync(async object => {
+ *       if (!object.sloth) {
+ *         return null
+ *       }
+ *
+ *       const response = await fetch(`${API_URL}/${object.sloth}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Filters
@@ -215,20 +248,33 @@ export const filterMapAsync: {
  * awaitable to `null` or `undefined`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, filterMapConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
  *     asConcur([
- *       { sloth: `sloth party` },
- *       { notSloth: `building` },
- *       { sloth: `sloths in trees` },
- *       { notSloth: `city` },
+ *       { sloth: `sloth` },
+ *       { sloth: `lazy` },
+ *       { notSloth: `active` },
+ *       { sloth: `sleep` },
+ *       { notSloth: `awake` },
  *     ]),
- *     filterMapConcur(object => object.sloth),
+ *     filterMapConcur(async object => {
+ *       if (!object.sloth) {
+ *         return null
+ *       }
+ *
+ *       const response = await fetch(`${API_URL}/${object.sloth}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth party', 'sloths in trees' ]
+ * // NOTE: This order may change between runs
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Filters
@@ -258,15 +304,17 @@ export const filterMapConcur: {
  * excluding the values of `excluded`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { exclude, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `sleep`, `fast`, `slow`, `mean`],
- *     exclude([`mean`, `fast`]),
+ *     [`sloth`, `lazy`, `active`, `sleep`, `awake`],
+ *     exclude([`awake`, `active`]),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'sleep', 'slow' ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -287,15 +335,24 @@ export const exclude: {
  * iteration order excluding the values of `excluded`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, excludeAsync, flatMapAsync, map, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
- *     excludeAsync([`mean`, `fast`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     excludeAsync([`adjective`, `verb`]),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'sleep', 'slow' ]
+ * //=> [ 'noun', 'noun' ]
  * ```
  *
  * @category Filters
@@ -315,16 +372,26 @@ export const excludeAsync: {
  * Returns a concur iterable containing the values of `concurIterable` in
  * iteration order excluding the values of `excluded`.
  *
+ *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, excludeConcur, flatMapConcur, map, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
- *     excludeConcur([`mean`, `fast`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     excludeConcur([`adjective`, `verb`]),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'sleep', 'slow' ]
+ * //=> [ 'noun', 'noun' ]
  * ```
  *
  * @category Filters
@@ -347,15 +414,17 @@ export const excludeConcur: {
  * When values are deduplicated, the value earlier in iteration order wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { pipe, reduce, toArray, uniqueBy } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `sleep`, `fast`, `slow`, `mean`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     uniqueBy(word => word.length),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'fast' ]
+ * //=> [ 'sloth', 'lazy' ]
  * ```
  *
  * @category Filters
@@ -379,15 +448,23 @@ export const uniqueBy: {
  * When values are deduplicated, the value earlier in iteration order wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, pipe, reduceAsync, toArray, uniqueByAsync } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
- *     uniqueByAsync(word => word.length),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     uniqueByAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings[0].partOfSpeech
+ *     }),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'fast' ]
+ * //=> [ 'sloth', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -411,15 +488,24 @@ export const uniqueByAsync: {
  * When values are deduplicated, the value earlier in iteration order wins.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, pipe, reduceConcur, toArray, uniqueByConcur } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `sleep`, `fast`, `slow`, `mean`]),
- *     uniqueByConcur(word => word.length),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     uniqueByConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings[0].partOfSpeech
+ *     }),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'fast' ]
+ * // NOTE: These words may change between runs
+ * //=> [ 'sloth', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -440,15 +526,17 @@ export const uniqueByConcur: {
  * except values are deduplicated if they are equal using `Object.is`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { pipe, reduce, toArray, unique } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `not sloth`, `sloth`],
+ *     [`sloth`, `lazy`, `lazy`, `sleep`, `sloth`],
  *     unique,
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'not sloth' ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Filters
@@ -462,15 +550,24 @@ export const unique: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * `Object.is`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, flatMapAsync, map, pipe, reduceAsync, toArray, uniqueAsync } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `not sloth`, `sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     uniqueAsync,
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'not sloth' ]
+ * //=> [ 'noun', 'verb', 'adjective' ]
  * ```
  *
  * @category Filters
@@ -486,15 +583,25 @@ export const uniqueAsync: <Value>(
  * `Object.is`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, flatMapConcur, map, pipe, reduceConcur, toArray, uniqueConcur } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `not sloth`, `sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     uniqueConcur,
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'not sloth' ]
+ * // NOTE: This order may change between runs
+ * //=> [ 'noun', 'verb', 'adjective' ]
  * ```
  *
  * @category Filters

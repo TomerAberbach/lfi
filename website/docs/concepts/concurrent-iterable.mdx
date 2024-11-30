@@ -169,7 +169,7 @@ const withLfi = await pipe(
 )
 console.timeEnd(`with lfi`)
 // NOTE: This duration may vary slightly between runs
-//=> with lfi: 6011 ms
+//=> with lfi: 6000 ms
 
 // Takes 10 seconds! The first item is a bottleneck because `p-map` waits for all callbacks
 console.time(`without lfi`)

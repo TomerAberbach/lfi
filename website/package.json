@@ -47,7 +47,7 @@
     "lfi": "link:..",
     "limit-concur": "^3.0.0",
     "monaco-editor": "^0.52.0",
-    "object-inspect": "^1.13.3",
+    "node-inspect-extracted": "^3.0.2",
     "p-filter": "^4.1.0",
     "p-map": "^7.0.2",
     "prettier": "^3.4.1",

@@ -89,9 +89,9 @@ importers:
       monaco-editor:
         specifier: ^0.52.0
         version: 0.52.0
-      object-inspect:
-        specifier: ^1.13.3
-        version: 1.13.3
+      node-inspect-extracted:
+        specifier: ^3.0.2
+        version: 3.0.2
       p-filter:
         specifier: ^4.1.0
         version: 4.1.0
@@ -5060,6 +5060,10 @@ packages:
   node-forge@1.3.1:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
     engines: {node: '>= 6.13.0'}
+
+  node-inspect-extracted@3.0.2:
+    resolution: {integrity: sha512-lOBe4RMfICoYRKZaCXLVoBt6t8wM93QLEIp2WuvPJ5yDTEzrp+LhquGp4RV283Vd5RJ+vUvBmRrGtRu2HCgWHw==}
+    engines: {node: '>=18'}
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
@@ -13841,6 +13845,8 @@ snapshots:
       skin-tone: 2.0.0
 
   node-forge@1.3.1: {}
+
+  node-inspect-extracted@3.0.2: {}
 
   node-releases@2.0.18: {}
 

@@ -1,6 +1,6 @@
 import { join, map, pipe } from 'lfi'
 import type { ReactElement } from 'react'
-import inspect from 'object-inspect'
+import { inspect } from 'node-inspect-extracted'
 import type { Log } from './use-sandbox.ts'
 
 const Console = ({ logs }: { logs: Log[] }) => {
@@ -144,7 +144,11 @@ const extractLabel = (args: unknown[]): string => {
 const formatArgs = (args: unknown[]): string =>
   pipe(
     args,
-    map(arg => (typeof arg === `string` ? arg : inspect(arg, { indent: 2 }))),
+    map(arg =>
+      typeof arg === `string`
+        ? arg
+        : inspect(arg, { breakLength: 50, depth: 5 }),
+    ),
     join(` `),
   )
 

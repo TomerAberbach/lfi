@@ -6,14 +6,20 @@ import type { ConcurIterable } from './core.js'
  * of `iterable` as it is iterated.
  *
  * @example
- * ```js
- * const sloths = [`carl`, `frank`, `phil`]
+ * ```js playground
+ * import { each, pipe, reduce, toArray } from 'lfi'
  *
- * console.log([...each(console.log, sloths)])
- * //=> carl
- * //=> frank
- * //=> phil
- * //=> [ 'carl', 'frank', 'phil' ]
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     each(console.log),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> sloth
+ * //=> lazy
+ * //=> sleep
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Side effects
@@ -45,18 +51,26 @@ export const each: {
  * moving on to the next value.
  *
  * @example
- * ```js
- * const eachedSloths = await pipe(
- *   asAsync([`carl`, `frank`, `phil`]),
- *   eachAsync(console.log),
- *   reduceAsync(toArray()),
- * )
- * //=> carl
- * //=> frank
- * //=> phil
+ * ```js playground
+ * import { asAsync, eachAsync, mapAsync, pipe, reduceAsync, toArray } from 'lfi'
  *
- * console.log(eachedSloths)
- * //=> [ 'carl', 'frank', 'phil' ]
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     eachAsync(console.log),
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Side effects
@@ -87,18 +101,27 @@ export const eachAsync: {
  * The result of applying `fn` to a value is awaited before yielding.
  *
  * @example
- * ```js
- * const eachedSloths = await pipe(
- *   asConcur([`carl`, `frank`, `phil`]),
- *   eachConcur(console.log),
- *   reduceConcur(toArray()),
- * )
- * //=> carl
- * //=> frank
- * //=> phil
+ * ```js playground
+ * import { asConcur, eachConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
  *
- * console.log(eachedSloths)
- * //=> [ 'carl', 'frank', 'phil' ]
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     eachConcur(console.log),
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Side effects
@@ -128,13 +151,18 @@ export const eachConcur: {
  * Like `Array.prototype.forEach`, but for iterables.
  *
  * @example
- * ```js
- * const sloths = [`carl`, `frank`, `phil`]
+ * ```js playground
+ * import { forEach, pipe } from 'lfi'
  *
- * forEach(console.log, sloths)
- * //=> carl
- * //=> frank
- * //=> phil
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     forEach(console.log),
+ *   ),
+ * )
+ * //=> sloth
+ * //=> lazy
+ * //=> sleep
  * ```
  *
  * @category Side effects
@@ -155,13 +183,24 @@ export const forEach: {
  * Like `Array.prototype.forEach`, but for async iterables.
  *
  * @example
- * ```js
- * const sloths = asAsync([`carl`, `frank`, `phil`])
+ * ```js playground
+ * import { asAsync, forEachAsync, mapAsync, pipe } from 'lfi'
  *
- * await forEachAsync(console.log, sloths)
- * //=> carl
- * //=> frank
- * //=> phil
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     forEachAsync(console.log),
+ *   ),
+ * )
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
  * ```
  *
  * @category Side effects
@@ -184,14 +223,25 @@ export const forEachAsync: {
  * Like `Array.prototype.forEach`, but for concur iterables.
  *
  * @example
- * ```js
- * const sloths = asConcur([`carl`, `frank`, `phil`])
+ * ```js playground
+ * import { asConcur, forEachConcur, mapConcur, pipe } from 'lfi'
  *
- * await forEachConcur(console.log, sloths)
- * //=> carl
- * //=> frank
- * //=> phil
- * //
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     forEachConcur(console.log),
+ *   ),
+ * )
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
  * ```
  *
  * @category Side effects
@@ -211,17 +261,19 @@ export const forEachConcur: {
  * Iterates through `iterable` causing lazy operations to run.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { consume, each, pipe } from 'lfi'
+ *
  * const iterable = pipe(
- *   [`sloth`, 2, 3],
+ *   [`sloth`, `lazy`, `sleep`],
  *   each(console.log),
  * )
  * // No output
  *
  * consume(iterable)
  * //=> sloth
- * //=> 2
- * //=> 3
+ * //=> lazy
+ * //=> sleep
  * ```
  *
  * @category Side effects
@@ -233,17 +285,25 @@ export const consume: (iterable: Iterable<unknown>) => void
  * Iterates through `asyncIterable` causing lazy operations to run.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, consumeAsync, eachAsync, mapAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * const asyncIterable = pipe(
- *   asAsync([`sloth`, 2, 3]),
+ *   asAsync([`sloth`, `lazy`, `sleep`]),
+ *   mapAsync(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
  *   eachAsync(console.log),
  * )
  * // No output
  *
  * await consumeAsync(asyncIterable)
- * //=> sloth
- * //=> 2
- * //=> 3
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
  * ```
  *
  * @category Side effects
@@ -257,17 +317,26 @@ export const consumeAsync: (
  * Iterates through the `concurIterable` causing lazy operations to run.
  *
  * @example
- * ```js
- * const concurIterable = pipe(
- *   asConcur([`sloth`, 2, 3]),
+ * ```js playground
+ * import { asConcur, consumeConcur, eachConcur, mapConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const asyncIterable = pipe(
+ *   asConcur([`sloth`, `lazy`, `sleep`]),
+ *   mapConcur(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
  *   eachConcur(console.log),
  * )
  * // No output
  *
  * await consumeConcur(asyncIterable)
- * //=> sloth
- * //=> 2
- * //=> 3
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
  * ```
  *
  * @category Side effects
@@ -279,23 +348,27 @@ export const consumeConcur: (
 
 /**
  * Returns an iterable equivalent to `iterable` that iterates over `iterable` at
- * most once.
+ * most once by lazily caching the values from the first iteration.
  *
  * @example
- * ```js
- * const iterable = [`sloth`, `more sloth`, `even more sloth`]
- * const iterableWithEffects = each(console.log, iterable)
+ * ```js playground
+ * import { each, cache, pipe } from 'lfi'
  *
- * const cachedIterable = cache(iterableWithEffects)
+ * const iterable = pipe(
+ *   [`sloth`, `lazy`, `sleep`],
+ *   each(console.log),
+ *   cache,
+ * )
+ * // No output
  *
- * console.log([...cachedIterable])
+ * console.log([...iterable])
  * //=> sloth
- * //=> more sloth
- * //=> even more sloth
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * //=> lazy
+ * //=> sleep
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  *
- * console.log([...cachedIterable])
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * console.log([...iterable])
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Side effects
@@ -305,23 +378,44 @@ export const cache: <Value>(iterable: Iterable<Value>) => Iterable<Value>
 
 /**
  * Returns an async iterable equivalent to `asyncIterable` that iterates over
- * `asyncIterable` at most once.
+ * `asyncIterable` at most once by lazily caching the values from the first
+ * iteration.
  *
  * @example
- * ```js
- * const asyncIterable = asAsync([`sloth`, `more sloth`, `even more sloth`])
- * const asyncIterableWithEffects = eachAsync(console.log, asyncIterable)
+ * ```js playground
+ * import { asAsync, eachAsync, cacheAsync, mapAsync, pipe, reduceAsync, toArray } from 'lfi'
  *
- * const cachedAsyncIterable = cacheAsync(asyncIterableWithEffects)
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
- * console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
- * //=> sloth
- * //=> more sloth
- * //=> even more sloth
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * const asyncIterable = pipe(
+ *   asAsync([`sloth`, `lazy`, `sleep`]),
+ *   mapAsync(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
+ *   eachAsync(console.log),
+ *   cacheAsync,
+ * )
+ * // No output
  *
- * console.log(await pipe(cachedAsyncIterable, reduceAsync(toArray())))
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Side effects
@@ -333,23 +427,46 @@ export const cacheAsync: <Value>(
 
 /**
  * Returns a concur iterable equivalent to `concurIterable` that iterates over
- * `concurIterable` at most once.
+ * `concurIterable` at most once by lazily caching the values from the first
+ * iteration.
  *
  * @example
- * ```js
- * const concurIterable = asConcur([`sloth`, `more sloth`, `even more sloth`])
- * const concurIterableWithEffects = eachConcur(console.log, concurIterable)
+ * ```js playground
+ * import { asConcur, eachConcur, cacheConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
  *
- * const cachedConcurIterable = cacheConcur(concurIterableWithEffects)
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
- * console.log(await pipe(cachedConcurIterable, reduceConcur(toArray())))
- * //=> sloth
- * //=> more sloth
- * //=> even more sloth
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * const asyncIterable = pipe(
+ *   asConcur([`sloth`, `lazy`, `sleep`]),
+ *   mapConcur(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
+ *   eachConcur(console.log),
+ *   cacheConcur,
+ * )
+ * // No output
  *
- * console.log(await pipe(cachedConcurIterable, reduceConcur(toArray())))
- * //=> [ 'sloth', 'more sloth', 'even more sloth' ]
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * // NOTE: This order may change between runs
+ * //=> /slɑθ/
+ * //=> /ˈleɪzi/
+ * //=> /sliːp/
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
+ *
+ * console.log(
+ *   await pipe(
+ *     asyncIterable,
+ *     reduceConcur(toArray()),
+ *   ),
+ * )
+ * // NOTE: This order may change between runs
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Side effects

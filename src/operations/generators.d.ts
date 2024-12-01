@@ -55,7 +55,7 @@ import type {
  */
 export const keys: {
   <Key>(object: ReadonlyMap<Key, unknown>): Iterable<Key>
-  <Key extends keyof never>(
+  <Key extends PropertyKey>(
     object: Readonly<Record<Key, unknown>>,
   ): Iterable<Key>
 }
@@ -121,7 +121,7 @@ export const values: <Value>(
   object:
     | ReadonlyMap<unknown, Value>
     | ReadonlySet<Value>
-    | Readonly<Record<keyof never, Value>>,
+    | Readonly<Record<PropertyKey, Value>>,
 ) => Iterable<Value>
 
 /**
@@ -189,7 +189,7 @@ export const entries: {
   <Key, Value>(object: {
     entries: () => Iterable<[Key, Value]>
   }): Iterable<[Key, Value]>
-  <Key extends keyof never, Value>(
+  <Key extends PropertyKey, Value>(
     object: Readonly<Record<Key, Value>>,
   ): Iterable<[Key, Value]>
 }

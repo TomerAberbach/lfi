@@ -30,15 +30,32 @@ export type ConcurOptional<Value> = ConcurIterable<Value>
  * Otherwise, returns the result of invoking `fn`.
  *
  * @example
- * ```js
- * console.log(pipe([`sloth`], or(() => `Never called`)))
+ * ```js playground
+ * import { or, pipe } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [`sloth`],
+ *     or(() => `never called`),
+ *   ),
+ * )
  * //=> sloth
  *
- * console.log(pipe([], or(() => `I get called!`)))
- * //=> I get called!
+ * console.log(
+ *   pipe(
+ *     [],
+ *     or(() => `called!`),
+ *   ),
+ * )
+ * //=> called!
  *
- * console.log(pipe([1, `sloth`, 3], or(() => `I also get called!`)))
- * //=> I also get called!
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     or(() => `called!`),
+ *   ),
+ * )
+ * //=> called!
  * ```
  *
  * @category Optionals
@@ -55,20 +72,30 @@ export const or: {
  * the awaited result of invoking `fn`.
  *
  * @example
- * ```js
- * console.log(await pipe(asAsync([`sloth`]), orAsync(() => `Never called`)))
+ * ```js playground
+ * import { asAsync, findAsync, orAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const findWordWithPartOfSpeech = partOfSpeech =>
+ *   pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+ *     }),
+ *     orAsync(() => `no ${partOfSpeech}???`),
+ *   )
+ *
+ * console.log(await findWordWithPartOfSpeech(`noun`))
  * //=> sloth
- *
- * console.log(await pipe(emptyAsync, orAsync(() => `I get called!`)))
- * //=> I get called!
- *
- * console.log(
- *   await pipe(
- *     asAsync([1, `sloth`, 3]),
- *     orAsync(() => `I also get called!`),
- *   ),
- * )
- * //=> I also get called!
+ * console.log(await findWordWithPartOfSpeech(`verb`))
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`adjective`))
+ * //=> lazy
+ * console.log(await findWordWithPartOfSpeech(`adverb`))
+ * //=> no adverb???
  * ```
  *
  * @category Optionals
@@ -90,20 +117,32 @@ export const orAsync: {
  * the awaited result of invoking `fn`.
  *
  * @example
- * ```js
- * console.log(await pipe(asConcur([`sloth`]), orConcur(() => `Never called`)))
+ * ```js playground
+ * import { asConcur, findConcur, orConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const findWordWithPartOfSpeech = partOfSpeech =>
+ *   pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+ *     }),
+ *     orConcur(() => `no ${partOfSpeech}???`),
+ *   )
+ *
+ * console.log(await findWordWithPartOfSpeech(`noun`))
+ * // NOTE: This word may change between runs
  * //=> sloth
- *
- * console.log(await pipe(emptyConcur, orConcur(() => `I get called!`)))
- * //=> I get called!
- *
- * console.log(
- *   await pipe(
- *     asConcur([1, `sloth`, 3]),
- *     orConcur(() => `I also get called!`),
- *   ),
- * )
- * //=> I also get called!
+ * console.log(await findWordWithPartOfSpeech(`verb`))
+ * // NOTE: This word may change between runs
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`adjective`))
+ * //=> lazy
+ * console.log(await findWordWithPartOfSpeech(`adverb`))
+ * //=> no adverb???
  * ```
  *
  * @category Optionals
@@ -124,7 +163,9 @@ export const orConcur: {
  * Otherwise, throws an error.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { get } from 'lfi'
+ *
  * console.log(get([`sloth`]))
  * //=> sloth
  *
@@ -136,7 +177,7 @@ export const orConcur: {
  * //=> Oh no! It was empty...
  *
  * try {
- *   console.log(get([1, `sloth`, 3]))
+ *   console.log(get([`sloth`, `lazy`, `sleep`]))
  * } catch {
  *   console.log(`Oh no! It had more than one value...`)
  * }
@@ -153,23 +194,34 @@ export const get: <Value>(iterable: Iterable<Value>) => Value
  * contains exactly one value. Otherwise, returns a promise that rejects.
  *
  * @example
- * ```js
- * console.log(await getAsync(asAsync([`sloth`])))
- * //=> sloth
+ * ```js playground
+ * import { asAsync, findAsync, getAsync, pipe } from 'lfi'
  *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const findWordWithPartOfSpeech = partOfSpeech =>
+ *   pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+ *     }),
+ *     getAsync,
+ *   )
+ *
+ * console.log(await findWordWithPartOfSpeech(`noun`))
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`verb`))
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`adjective`))
+ * //=> lazy
  * try {
- *   console.log(await getAsync(emptyAsync))
+ *   console.log(await findWordWithPartOfSpeech(`adverb`))
  * } catch {
  *   console.log(`Oh no! It was empty...`)
  * }
  * //=> Oh no! It was empty...
- *
- * try {
- *   console.log(await getAsync(asAsync([1, `sloth`, 3])))
- * } catch {
- *   console.log(`Oh no! It had more than one value...`)
- * }
- * //=> Oh no! It had more than one value...
  * ```
  *
  * @category Optionals
@@ -184,23 +236,36 @@ export const getAsync: <Value>(
  * contains exactly one value. Otherwise, returns a promise that rejects.
  *
  * @example
- * ```js
- * console.log(await getConcur(asConcur([`sloth`])))
- * //=> sloth
+ * ```js playground
+ * import { asConcur, findConcur, getConcur, pipe } from 'lfi'
  *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const findWordWithPartOfSpeech = partOfSpeech =>
+ *   pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings.some(meaning => meaning.partOfSpeech === partOfSpeech)
+ *     }),
+ *     getConcur,
+ *   )
+ *
+ * console.log(await findWordWithPartOfSpeech(`noun`))
+ * // NOTE: This word may change between runs
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`verb`))
+ * // NOTE: This word may change between runs
+ * //=> sloth
+ * console.log(await findWordWithPartOfSpeech(`adjective`))
+ * //=> lazy
  * try {
- *   console.log(await getConcur(emptyConcur))
+ *   console.log(await findWordWithPartOfSpeech(`adverb`))
  * } catch {
  *   console.log(`Oh no! It was empty...`)
  * }
  * //=> Oh no! It was empty...
- *
- * try {
- *   console.log(await getConcur(asConcur([1, `sloth`, 3])))
- * } catch {
- *   console.log(`Oh no! It had more than one value...`)
- * }
- * //=> Oh no! It had more than one value...
  * ```
  *
  * @category Optionals
@@ -217,18 +282,18 @@ export const getConcur: <Value>(
  * values of `iterable`. The second iterable can only be iterated once.
  *
  * @example
- * ```js
- * const slothActivities = [`sleeping`, `yawning`, `eating`]
- * const [first, rest] = next(slothActivities)
+ * ```js playground
+ * import { count, get, next } from 'lfi'
+ *
+ * const [first, rest] = next([`sloth`, `lazy`, `sleep`])
  *
  * console.log(get(first))
- * //=> sleeping
+ * //=> sloth
  *
  * console.log([...rest])
- * //=> [ 'yawning', 'eating' ]
+ * //=> [ 'lazy', 'sleep' ]
  *
- * const badThingsAboutSloths = []
- * const [first2, rest2] = next(badThingsAboutSloths)
+ * const [first2, rest2] = next([])
  *
  * console.log(count(first2))
  * //=> 0
@@ -252,18 +317,32 @@ export const next: <Value>(
  * of `asyncIterable`. The second async iterable can only be iterated once.
  *
  * @example
- * ```js
- * const slothActivities = asAsync([`sleeping`, `yawning`, `eating`])
- * const [first, rest] = await nextAsync(slothActivities)
+ * ```js playground
+ * import { asAsync, countAsync, emptyAsync, getAsync, mapAsync, nextAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
+ * const [first, rest] = await pipe(
+ *   asAsync([`sloth`, `lazy`, `sleep`]),
+ *   mapAsync(async word => {
+ *     const response = await fetch(`${API_URL}/${word}`)
+ *     return (await response.json())[0].phonetic
+ *   }),
+ *   nextAsync,
+ * )
  *
  * console.log(await getAsync(first))
- * //=> sleeping
+ * //=> /slɑθ/
  *
- * console.log(await reduceAsync(toArray(), rest))
- * //=> [ 'yawning', 'eating' ]
+ * console.log(
+ *   await pipe(
+ *     rest,
+ *     reduceAsync(toArray()),
+ *   ),
+ * )
+ * //=> [ '/ˈleɪzi/', '/sliːp/' ]
  *
- * const badThingsAboutSloths = emptyAsync
- * const [first2, rest2] = await nextAsync(badThingsAboutSloths)
+ * const [first2, rest2] = await nextAsync(emptyAsync)
  *
  * console.log(await countAsync(first2))
  * //=> 0

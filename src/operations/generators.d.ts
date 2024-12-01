@@ -11,6 +11,45 @@ import type {
  * iterated multiple times and differs from `Object.keys` in that the returned
  * iterable is opaque.
  *
+ * @example
+ * ```js playground
+ * import { keys, pipe, reduce, toArray } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     keys([`sloth`, `lazy`, `sleep`]),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 0, 1, 2 ]
+ *
+ * console.log(
+ *   pipe(
+ *     keys({
+ *       sloth: 1,
+ *       lazy: 2,
+ *       sleep: 3,
+ *     }),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
+ *
+ * console.log(
+ *   pipe(
+ *     keys(
+ *       new Map([
+ *         [`sloth`, 1],
+ *         [`lazy`, 2],
+ *         [`sleep`, 3],
+ *       ]),
+ *     ),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
+ * ```
+ *
  * @category Generators
  * @since v0.1.0
  */
@@ -28,6 +67,53 @@ export const keys: {
  * the returned iterable can be iterated multiple times and differs from
  * `Object.values` in that the returned iterable is opaque.
  *
+ * @example
+ * ```js playground
+ * import { pipe, reduce, toArray, values } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     values([`sloth`, `lazy`, `sleep`]),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy, 'sleep' ]
+ *
+ * console.log(
+ *   pipe(
+ *     values({
+ *       sloth: 1,
+ *       lazy: 2,
+ *       sleep: 3,
+ *     }),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 1, 2, 3 ]
+ *
+ * console.log(
+ *   pipe(
+ *     values(new Set([`sloth`, `lazy`, `sleep`])),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 'sloth', 'lazy, 'sleep' ]
+ *
+ * console.log(
+ *   pipe(
+ *     values(
+ *       new Map([
+ *         [`sloth`, 1],
+ *         [`lazy`, 2],
+ *         [`sleep`, 3],
+ *       ]),
+ *     ),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [ 1, 2, 3 ]
+ * ```
+ *
  * @category Generators
  * @since v0.1.0
  */
@@ -44,6 +130,57 @@ export const values: <Value>(
  * This differs from `Map.prototype.entries` in that the returned iterable can
  * be iterated multiple times and differs from `Object.entries` in that the
  * returned iterable is opaque.
+ *
+ * @example
+ * ```js playground
+ * import { entries, pipe, reduce, toArray } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     entries([`sloth`, `lazy`, `sleep`]),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [
+ * //=>   [ 0, 'sloth' ],
+ * //=>   [ 1, 'lazy' ],
+ * //=>   [ 2, 'sleep' ]
+ * //=> ]
+ *
+ * console.log(
+ *   pipe(
+ *     entries({
+ *       sloth: 1,
+ *       lazy: 2,
+ *       sleep: 3,
+ *     }),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [
+ * //=>   [ 'sloth', 1 ],
+ * //=>   [ 'lazy', 2 ],
+ * //=>   [ 'sleep', 3 ]
+ * //=> ]
+ *
+ * console.log(
+ *   pipe(
+ *     entries(
+ *       new Map([
+ *         [`sloth`, 1],
+ *         [`lazy`, 2],
+ *         [`sleep`, 3],
+ *       ]),
+ *     ),
+ *     reduce(toArray()),
+ *   ),
+ * )
+ * //=> [
+ * //=>   [ 'sloth', 1 ],
+ * //=>   [ 'lazy', 2 ],
+ * //=>   [ 'sleep', 3 ]
+ * //=> ]
+ * ```
  *
  * @category Generators
  * @since v0.1.0
@@ -63,15 +200,23 @@ export const entries: {
  * subsequent value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { generate, pipe, reduce, take, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     generate(previousValue => previousValue + previousValue, `sloth`),
- *     take(3),
+ *     `sloth`,
+ *     generate(previousValue => `${previousValue} ${previousValue}`),
+ *     take(4),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+ * //=> [
+ * //=>   'sloth',
+ * //=>   'sloth sloth',
+ * //=>   'sloth sloth sloth sloth',
+ * //=>   'sloth sloth sloth sloth sloth sloth sloth sloth'
+ * //=> ]
  * ```
  *
  * @category Generators
@@ -88,15 +233,24 @@ export const generate: {
  * value for every subsequent value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { generateAsync, pipe, reduceAsync, takeAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     generateAsync(previousValue => previousValue + previousValue, `sloth`),
- *     takeAsync(3),
+ *     `sleep`,
+ *     generateAsync(async previousWord => {
+ *       const response = await fetch(`${API_URL}/${previousWord}`)
+ *       const [{ meanings }] = await response.json()
+ *       return meanings[0].partOfSpeech
+ *     }),
+ *     takeAsync(4),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 'slothsloth', 'slothslothslothsloth' ]
+ * //=> [ 'sleep', 'verb', 'noun', 'noun' ]
  * ```
  *
  * @category Generators
@@ -116,15 +270,17 @@ export const generateAsync: {
  * Returns an infinite iterable that repeatedly yields `value`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { join, pipe, repeat, take } from 'lfi'
+ *
  * console.log(
  *   pipe(
  *     repeat(`sloth`),
- *     take(3),
+ *     take(4),
  *     join(`, `),
  *   ),
  * )
- * //=> sloth, sloth, sloth
+ * //=> sloth, sloth, sloth, sloth
  * ```
  *
  * @category Generators
@@ -136,16 +292,21 @@ export const repeat: <Value>(value: Value) => Iterable<Value>
  * Returns an infinite iterable that repeatedly yields the values of `iterable`
  * in iteration order.
  *
+ * WARNING: This function does not buffer the values of `iterable` for future
+ * cycles. It reiterates `iterable` each cycle.
+ *
  * @example
- * ```js
+ * ```js playground
+ * import { cycle, join, pipe, take } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     cycle([`sloth`, `more sloth`]),
+ *     cycle([`sloth`, `lazy`]),
  *     take(6),
  *     join(`, `),
  *   ),
  * )
- * //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
+ * //=> sloth, lazy, sloth, lazy, sloth, lazy
  * ```
  *
  * @category Generators
@@ -157,16 +318,28 @@ export const cycle: <Value>(iterable: Iterable<Value>) => Iterable<Value>
  * Returns an infinite async iterable that repeatedly yields the values of
  * `asyncIterable`.
  *
+ * WARNING: This function does not buffer the values of `asyncIterable` for
+ * future cycles. It reiterates `asyncIterable` each cycle.
+ *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, cycleAsync, joinAsync, mapAsync, pipe, takeAsync } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     cycleAsync(asAsync([`sloth`, `more sloth`])),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     cycleAsync,
  *     takeAsync(6),
  *     joinAsync(`, `),
  *   ),
  * )
- * //=> sloth, more sloth, sloth, more sloth, sloth, more sloth
+ * //=> /slɑθ/, /ˈleɪzi/, /sliːp/, /slɑθ/, /ˈleɪzi/, /sliːp/
  * ```
  *
  * @category Generators
@@ -177,8 +350,10 @@ export const cycleAsync: <Value>(
 ) => AsyncIterable<Value>
 
 /**
- * An iterable that yields integers in a range. Has a method for obtaining a new
- * iterable that skips numbers in steps.
+ * An iterable that yields integers in a range.
+ *
+ * See {@link RangeIterable.step} for obtaining a new iterable that skips
+ * integers in steps.
  *
  * @category Generators
  * @since v2.0.0
@@ -190,6 +365,19 @@ export type RangeIterable = Iterable<number> & {
    * instead of 1.
    *
    * @throws if `step` is not a positive integer.
+   *
+   * @example
+   * ```js playground
+   * import { join, pipe, rangeTo } from 'lfi'
+   *
+   * console.log(
+   *   pipe(
+   *     rangeTo(0, 6).step(2),
+   *     join(`, `),
+   *   ),
+   * )
+   * //=> 0, 2, 4, 6
+   * ```
    */
   step: <Step extends number>(step: PositiveInteger<Step>) => Iterable<number>
 }
@@ -207,17 +395,29 @@ type Range = {
 
 /**
  * Returns a {@link RangeIterable} that yields the integers between `start` and
- * `end` including `start` and `end`.
+ * `end`, including `start` and `end`.
  *
  * @throws if either `start` or `end` is not an integer.
  *
  * @example
- * ```js
- * console.log([...rangeTo(0, 6)])
- * //=> [ 0, 1, 2, 3, 4, 5, 6 ]
+ * ```js playground
+ * import { join, pipe, rangeTo } from 'lfi'
  *
- * console.log([...rangeTo(0, 6).step(2)])
- * //=> [ 0, 2, 4, 6 ]
+ * console.log(
+ *   pipe(
+ *     rangeTo(0, 6),
+ *     join(`, `),
+ *   ),
+ * )
+ * //=> 0, 1, 2, 3, 4, 5, 6
+ *
+ * console.log(
+ *   pipe(
+ *     rangeTo(0, 6).step(2),
+ *     join(`, `),
+ *   ),
+ * )
+ * //=> 0, 2, 4, 6
  * ```
  *
  * @category Generators
@@ -232,12 +432,24 @@ export const rangeTo: Range
  * @throws if either `start` or `end` is not an integer.
  *
  * @example
- * ```js
- * console.log([...rangeUntil(0, 6)])
- * //=> [ 0, 1, 2, 3, 4, 5 ]
+ * ```js playground
+ * import { join, pipe, rangeUntil } from 'lfi'
  *
- * console.log([...rangeUntil(0, 6).step(2)])
- * //=> [ 0, 2, 4 ]
+ * console.log(
+ *   pipe(
+ *     rangeUntil(0, 6),
+ *     join(`, `),
+ *   ),
+ * )
+ * //=> 0, 1, 2, 3, 4, 5
+ *
+ * console.log(
+ *   pipe(
+ *     rangeUntil(0, 6).step(2),
+ *     join(`, `),
+ *   ),
+ * )
+ * //=> 0, 2, 4
  * ```
  *
  * @category Generators

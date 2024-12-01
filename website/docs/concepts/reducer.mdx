@@ -910,7 +910,7 @@ console.log(
 ```js playground
 import {
   asAsync,
-  mapAsync,
+  flatMapAsync,
   pipe,
   reduceAsync,
   toCount,
@@ -920,29 +920,29 @@ import {
 } from 'lfi'
 
 const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
-const getPartOfSpeech = async word => {
+const getPartsOfSpeech = async word => {
   const response = await fetch(`${API_URL}/${word}`)
   const [{ meanings }] = await response.json()
-  return meanings[0].partOfSpeech
+  return meanings.map(meaning => meaning.partOfSpeech)
 }
 
 console.log(
   await pipe(
     asAsync([`sloth`, `lazy`, `sleep`]),
-    mapAsync(getPartOfSpeech),
+    flatMapAsync(getPartsOfSpeech),
     reduceAsync(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
 //=> [
-//=>   Set(2) { 'noun', 'verb' },
-//=>   3,
-//=>   'noun,noun,verb'
+//=>   Set(3) { 'noun', 'verb', 'adjective' },
+//=>   6,
+//=>   'noun,verb,noun,verb,adjective,verb'
 //=> ]
 
 console.log(
   await pipe(
     asAsync([`sloth`, `lazy`, `sleep`]),
-    mapAsync(getPartOfSpeech),
+    flatMapAsync(getPartsOfSpeech),
     reduceAsync(
       toMultiple({
         set: toSet(),
@@ -953,9 +953,9 @@ console.log(
   ),
 )
 //=> {
-//=>   set: Set(2) { 'noun', 'verb' },
-//=>   count: 3,
-//=>   string: 'noun,noun,verb'
+//=>   set: Set(3) { 'noun', 'verb', 'adjective' },
+//=>   count: 6,
+//=>   string: 'noun,verb,noun,verb,adjective,verb'
 //=> }
 ```
 
@@ -975,30 +975,30 @@ import {
 } from 'lfi'
 
 const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
-const getPartOfSpeech = async word => {
+const getPartsOfSpeech = async word => {
   const response = await fetch(`${API_URL}/${word}`)
   const [{ meanings }] = await response.json()
-  return meanings[0].partOfSpeech
+  return meanings.map(meaning => meaning.partOfSpeech)
 }
 
 console.log(
   await pipe(
     asConcur([`sloth`, `lazy`, `sleep`]),
-    mapConcur(getPartOfSpeech),
+    mapConcur(getPartsOfSpeech),
     reduceConcur(toMultiple([toSet(), toCount(), toJoin(`,`)])),
   ),
 )
 // NOTE: This order may change between runs
 //=> [
-//=>   Set(2) { 'noun', 'verb' },
-//=>   3,
-//=>   'noun,noun,verb'
+//=>   Set(3) { 'noun', 'verb', 'adjective' },
+//=>   6,
+//=>   'noun,verb,noun,verb,adjective,verb'
 //=> ]
 
 console.log(
   await pipe(
     asConcur([`sloth`, `lazy`, `sleep`]),
-    mapConcur(getPartOfSpeech),
+    mapConcur(getPartsOfSpeech),
     reduceConcur(
       toMultiple({
         set: toSet(),
@@ -1010,9 +1010,9 @@ console.log(
 )
 // NOTE: This order may change between runs
 //=> {
-//=>   set: Set(2) { 'noun', 'verb' },
-//=>   count: 3,
-//=>   string: 'noun,noun,verb'
+//=>   set: Set(3) { 'noun', 'verb', 'adjective' },
+//=>   count: 6,
+//=>   string: 'noun,verb,noun,verb,adjective,verb'
 //=> }
 ```
 

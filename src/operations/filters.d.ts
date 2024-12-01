@@ -62,12 +62,12 @@ export const filter: {
  *     filterAsync(async word => {
  *       const response = await fetch(`${API_URL}/${word}`)
  *       const [{ meanings }] = await response.json()
- *       return meanings[0].partOfSpeech === `verb`
+ *       return meanings.some(meaning => meaning.partOfSpeech === `adjective`)
  *     }),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sleep' ]
+ * //=> [ 'lazy' ]
  * ```
  *
  * @category Filters
@@ -110,12 +110,12 @@ export const filterAsync: {
  *     filterConcur(async word => {
  *       const response = await fetch(`${API_URL}/${word}`)
  *       const [{ meanings }] = await response.json()
- *       return meanings[0].partOfSpeech === `verb`
+ *       return meanings.some(meaning => meaning.partOfSpeech === `adjective`)
  *     }),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sleep' ]
+ * //=> [ 'lazy' ]
  * ```
  *
  * @category Filters
@@ -651,26 +651,26 @@ type FindConcur = {
  * Like `Array.prototype.find`, but for iterables.
  *
  * @example
- * ```js
- * const iterable = [1, 2, `sloth`, 4, `other string`]
+ * ```js playground
+ * import { find, or, pipe } from 'lfi'
  *
  * console.log(
  *   pipe(
- *     iterable,
- *     find(value => typeof value === `string`),
- *     or(() => `yawn!`),
- *   )
+ *     [`sloth`, `lazy`, `sleep`],
+ *     find(word => word.includes(`s`)),
+ *     or(() => `not found!`),
+ *   ),
  * )
  * //=> sloth
  *
  * console.log(
  *   pipe(
- *     iterable,
- *     find(value => Array.isArray(value)),
- *     or(() => `yawn!`),
- *   )
+ *     [`sloth`, `lazy`, `sleep`],
+ *     find(word => word.includes(`x`)),
+ *     or(() => `not found!`),
+ *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters
@@ -686,26 +686,33 @@ export const find: Find
  * Like `Array.prototype.find`, but for async iterables.
  *
  * @example
- * ```js
- * const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
+ * ```js playground
+ * import { asAsync, findAsync, orAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
  *
  * console.log(
  *   await pipe(
- *     asyncIterable,
- *     findAsync(value => typeof value === `string`),
- *     orAsync(() => `yawn!`),
- *   )
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findAsync(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *     orAsync(() => `not found!`),
+ *   ),
  * )
  * //=> sloth
  *
  * console.log(
  *   await pipe(
- *     asyncIterable,
- *     findAsync(value => Array.isArray(value)),
- *     orAsync(() => `yawn!`),
- *   )
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findAsync(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *     orAsync(() => `not found!`),
+ *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters
@@ -721,26 +728,34 @@ export const findAsync: FindAsync
  * Like `Array.prototype.find`, but for concur iterables.
  *
  * @example
- * ```js
- * const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
+ * ```js playground
+ * import { asConcur, findConcur, orConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
  *
  * console.log(
  *   await pipe(
- *     concurIterable,
- *     findConcur(value => typeof value === `string`),
- *     orConcur(() => `yawn`),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findConcur(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *     orConcur(() => `not found!`),
  *   ),
  * )
+ * // NOTE: This word may change between runs
  * //=> sloth
  *
  * console.log(
  *   await pipe(
- *     concurIterable,
- *     findConcur(value => Array.isArray(value)),
- *     orConcur(() => `yawn`),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findConcur(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *     orConcur(() => `not found!`),
  *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters
@@ -753,26 +768,26 @@ export const findConcur: FindConcur
  * returns a truthy value. Otherwise, returns an empty iterable.
  *
  * @example
- * ```js
- * const iterable = [1, 2, `sloth`, 4, `other string`]
+ * ```js playground
+ * import { findLast, or, pipe } from 'lfi'
  *
  * console.log(
  *   pipe(
- *     iterable,
- *     findLast(value => typeof value === `string`),
- *     or(() => `yawn!`),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     findLast(word => word.includes(`s`)),
+ *     or(() => `not found!`),
  *   ),
  * )
- * //=> other string
+ * //=> sleep
  *
  * console.log(
  *   pipe(
- *     iterable,
- *     findLast(value => Array.isArray(value)),
- *     or(() => `yawn!`),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     findLast(word => word.includes(`x`)),
+ *     or(() => `not found!`),
  *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters
@@ -786,26 +801,33 @@ export const findLast: Find
  * empty async iterable.
  *
  * @example
- * ```js
- * const asyncIterable = asAsync([1, 2, `sloth`, 4, `other string`])
+ * ```js playground
+ * import { asAsync, findLastAsync, orAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
  *
  * console.log(
  *   await pipe(
- *     asyncIterable,
- *     findLastAsync(value => typeof value === `string`),
- *     orAsync(() => `yawn!`),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findLastAsync(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *     orAsync(() => `not found!`),
  *   ),
  * )
- * //=> other string
+ * //=> sleep
  *
  * console.log(
  *   await pipe(
- *     asyncIterable,
- *     findLastAsync(value => Array.isArray(value)),
- *     orAsync(() => `yawn!`),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     findLastAsync(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *     orAsync(() => `not found!`),
  *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters
@@ -819,26 +841,34 @@ export const findLastAsync: FindAsync
  * empty concur iterable.
  *
  * @example
- * ```js
- * const concurIterable = asConcur([1, 2, `sloth`, 4, `other string`])
+ * ```js playground
+ * import { asConcur, findLastConcur, orConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
  *
  * console.log(
  *   await pipe(
- *     concurIterable,
- *     findLastConcur(value => typeof value === `string`),
- *     orConcur(() => `yawn!`),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findLastConcur(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *     orConcur(() => `not found!`),
  *   ),
  * )
- * //=> other string
+ * // NOTE: This word may change between runs
+ * //=> sleep
  *
  * console.log(
  *   await pipe(
- *     concurIterable,
- *     findLastConcur(value => Array.isArray(value)),
- *     orConcur(() => `yawn!`),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     findLastConcur(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *     orConcur(() => `not found!`),
  *   ),
  * )
- * //=> yawn!
+ * //=> not found!
  * ```
  *
  * @category Filters

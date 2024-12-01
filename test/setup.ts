@@ -11,7 +11,7 @@ expect.extend({
     let pass =
       typeof received === `object` &&
       received != null &&
-      typeof (received as Record<keyof never, unknown>)[Symbol.iterator] ===
+      typeof (received as Record<PropertyKey, unknown>)[Symbol.iterator] ===
         `function`
 
     let values1
@@ -49,7 +49,7 @@ expect.extend({
     let pass =
       typeof received === `object` &&
       received != null &&
-      typeof (received as Record<keyof never, unknown>)[
+      typeof (received as Record<PropertyKey, unknown>)[
         Symbol.asyncIterator
       ] === `function`
 
@@ -141,10 +141,10 @@ expect.extend({
       received != null &&
       [`add`, `finish`].every(
         methodName =>
-          typeof (received as Record<keyof never, unknown>)[methodName] ===
+          typeof (received as Record<PropertyKey, unknown>)[methodName] ===
           `function`,
       ) &&
-      !(received as Record<keyof never, unknown>).create
+      !(received as Record<PropertyKey, unknown>).create
 
     return {
       pass,
@@ -160,7 +160,7 @@ expect.extend({
       [`create`, `add`, `finish`, keyed && `get`].filter(Boolean).every(
         methodName =>
           // eslint-disable-next-line typescript/no-unsafe-member-access
-          typeof (received as Record<keyof never, unknown>)[methodName] ===
+          typeof (received as Record<PropertyKey, unknown>)[methodName] ===
           `function`,
       )
 

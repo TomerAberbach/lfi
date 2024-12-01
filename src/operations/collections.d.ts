@@ -110,7 +110,7 @@ export const toWeakSet: <Value extends object>() => Reducer<
  * @category Collections
  * @since v0.0.1
  */
-export const toObject: <Key extends keyof never, Value>() => RawKeyedReducer<
+export const toObject: <Key extends PropertyKey, Value>() => RawKeyedReducer<
   Key,
   Value,
   Record<Key, Value>
@@ -322,7 +322,7 @@ export const toMultiple: {
     Reducers extends
       | readonly [RawReducerWithoutFinish<Value, any>]
       | readonly RawReducerWithoutFinish<Value, any>[]
-      | Readonly<Record<keyof never, RawReducerWithoutFinish<Value, any>>>,
+      | Readonly<Record<PropertyKey, RawReducerWithoutFinish<Value, any>>>,
   >(
     reducers: Reducers,
   ): Reducer<
@@ -363,7 +363,7 @@ export const toMultiple: {
         )[]
       | Readonly<
           Record<
-            keyof never,
+            PropertyKey,
             | RawReducerWithoutFinish<Value, any>
             | RawOptionalReducerWithoutFinish<Value>
             | FunctionReducer<Value>

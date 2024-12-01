@@ -36,11 +36,21 @@ type PredicateConcur = {
  * Like `Array.prototype.every`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { all, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     all(string => string.length > 8),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     all(word => word.includes(`l`)),
+ *   ),
+ * )
+ * //=> true
+ *
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     all(word => word.includes(`s`)),
  *   ),
  * )
  * //=> false
@@ -59,11 +69,28 @@ export const all: Predicate
  * Like `Array.prototype.every`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { allAsync, asAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     allAsync(string => string.length > 8),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     allAsync(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *   ),
+ * )
+ * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     allAsync(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
  *   ),
  * )
  * //=> false
@@ -82,11 +109,28 @@ export const allAsync: PredicateAsync
  * Like `Array.prototype.every`, but for concur iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { allConcur, asConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     allConcur(string => string.length > 8),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     allConcur(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+ *   ),
+ * )
+ * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     allConcur(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
  *   ),
  * )
  * //=> false
@@ -104,14 +148,24 @@ export const allConcur: PredicateConcur
  * Like `Array.prototype.some`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { any, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     any(string => string.length > 8),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     any(word => word.includes(`s`)),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     any(word => word.includes(`x`)),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates
@@ -127,14 +181,31 @@ export const any: Predicate
  * Like `Array.prototype.some`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { anyAsync, asAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     anyAsync(string => string.length > 8),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     anyAsync(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     anyAsync(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates
@@ -150,14 +221,31 @@ export const anyAsync: PredicateAsync
  * Like `Array.prototype.some`, but for concur iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { anyConcur, asConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     anyConcur(string => string.length > 8),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     anyConcur(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     anyConcur(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates
@@ -170,14 +258,24 @@ export const anyConcur: PredicateConcur
  * Otherwise returns `false`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { none, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     none(string => string.length > 8),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     none(word => word.includes(`s`)),
  *   ),
  * )
  * //=> false
+ *
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     none(word => word.includes(`x`)),
+ *   ),
+ * )
+ * //=> true
  * ```
  *
  * @category Predicates
@@ -191,14 +289,31 @@ export const none: Predicate
  * Otherwise returns a promise that resolves to `false`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { noneAsync, asAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     noneAsync(string => string.length > 8),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     noneAsync(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
  *   ),
  * )
  * //=> false
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     noneAsync(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+ *   ),
+ * )
+ * //=> true
  * ```
  *
  * @category Predicates
@@ -212,11 +327,28 @@ export const noneAsync: PredicateAsync
  * Otherwise returns a promise that resolves to `false`.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { noneConcur, asConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     noneConcur(string => string.length > 8),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     noneConcur(async word => (await getPartsOfSpeech(word)).includes(`noun`)),
+ *   ),
+ * )
+ * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     noneConcur(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
  *   ),
  * )
  * //=> false
@@ -234,14 +366,24 @@ export const noneConcur: PredicateConcur
  * Like `Array.prototype.includes`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { includes, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     includes(`more sloth`),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     includes(`lazy`),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   pipe(
+ *     [`sloth`, `lazy`, `sleep`],
+ *     includes(`awake`),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates
@@ -260,14 +402,33 @@ export const includes: {
  * Like `Array.prototype.includes`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, flatMapAsync, includesAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     includesAsync(`more sloth`),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(getPartsOfSpeech),
+ *     includesAsync(`noun`),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(getPartsOfSpeech),
+ *     includesAsync(`adverb`),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates
@@ -291,14 +452,33 @@ export const includesAsync: {
  * Like `Array.prototype.includes`, but for concur iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, flatMapConcur, includesConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ * const getPartsOfSpeech = async word => {
+ *   const response = await fetch(`${API_URL}/${word}`)
+ *   const [{ meanings }] = await response.json()
+ *   return meanings.map(meaning => meaning.partOfSpeech)
+ * }
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     includesConcur(`more sloth`),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(getPartsOfSpeech),
+ *     includesConcur(`noun`),
  *   ),
  * )
  * //=> true
+ *
+ * console.log(
+ *   await pipe(
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(getPartsOfSpeech),
+ *     includesConcur(`adverb`),
+ *   ),
+ * )
+ * //=> false
  * ```
  *
  * @category Predicates

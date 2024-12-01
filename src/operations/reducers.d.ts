@@ -6,6 +6,23 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * A reducer that reduces by combining pairs of values using function
  * application.
  *
+ * @example
+ * ```js playground
+ * import { or, pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This is a `FunctionReducer`
+ *       (number1, number2) => number1 + number2,
+ *     ),
+ *     or(() => 0),
+ *   ),
+ * )
+ * //=> 10
+ * ```
+ *
  * @category Reducers
  * @since v2.0.0
  */
@@ -18,6 +35,25 @@ export type FunctionReducer<Value = unknown> = (
  * A reducer that reduces by combining pairs of values using
  * {@link RawOptionalReducerWithoutFinish.add}.
  *
+ * @example
+ * ```js playground
+ * import { or, pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This is a `RawOptionalReducerWithoutFinish`
+ *       {
+ *         add: (number1, number2) => number1 + number2,
+ *       },
+ *     ),
+ *     or(() => 0),
+ *   ),
+ * )
+ * //=> 10
+ * ```
+ *
  * @category Reducers
  * @since v2.0.0
  */
@@ -29,6 +65,26 @@ export type RawOptionalReducerWithoutFinish<Value = unknown, This = unknown> = {
  * A reducer that reduces by combining pairs of values using
  * {@link RawOptionalReducerWithoutFinish.add} and then transforming the final
  * value using {@link RawOptionalReducerWithFinish.finish}.
+ *
+ * @example
+ * ```js playground
+ * import { or, pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This is a `RawOptionalReducerWithFinish`
+ *       {
+ *         add: (number1, number2) => number1 + number2,
+ *         finish: sum => `The sum is ${sum}`,
+ *       },
+ *     ),
+ *     or(() => `There are no numbers`),
+ *   ),
+ * )
+ * //=> The sum is 10
+ * ```
  *
  * @category Reducers
  * @since v2.0.0
@@ -46,6 +102,29 @@ export type RawOptionalReducerWithFinish<
  * {@link RawOptionalReducerWithoutFinish.add} and then transforming the final
  * value using {@link RawOptionalReducerWithFinish.finish}.
  *
+ * It's identical to {@link RawOptionalReducerWithFinish} except its `this` is
+ * bound by {@link normalizeReducer}.
+ *
+ * @example
+ * ```js playground
+ * import { or, pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This will be an `OptionalReducer` once it's normalized by `reduce`
+ *       {
+ *         add: (number1, number2) => number1 + number2,
+ *         finish: sum => `The sum is ${sum}`,
+ *       },
+ *     ),
+ *     or(() => `There are no numbers`),
+ *   ),
+ * )
+ * //=> The sum is 10
+ * ```
+ *
  * @category Reducers
  * @since v2.0.0
  */
@@ -58,6 +137,25 @@ export type OptionalReducer<
  * A reducer that reduces by creating an initial accumulator using
  * {@link RawReducerWithoutFinish.create} and then adding values to the
  * accumulator values using {@link RawReducerWithoutFinish.add}.
+ *
+ * @example
+ * ```js playground
+ * import { pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This is a `RawReducerWithoutFinish`
+ *       {
+ *         create: () => 0,
+ *         add: (number1, number2) => number1 + number2,
+ *       },
+ *     ),
+ *   ),
+ * )
+ * //=> 10
+ * ```
  *
  * @category Reducers
  * @since v2.0.0
@@ -77,6 +175,26 @@ export type RawReducerWithoutFinish<
  * values using {@link RawReducerWithoutFinish.add}, and then transforming the
  * final accumulator using {@link RawReducerWithFinish.finish}.
  *
+ * @example
+ * ```js playground
+ * import { pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This is a `RawReducerWithFinish`
+ *       {
+ *         create: () => 0,
+ *         add: (number1, number2) => number1 + number2,
+ *         finish: sum => `The sum is ${sum}`,
+ *       },
+ *     ),
+ *   ),
+ * )
+ * //=> The sum is 10
+ * ```
+ *
  * @category Reducers
  * @since v2.0.0
  */
@@ -94,6 +212,29 @@ export type RawReducerWithFinish<
  * {@link RawReducerWithoutFinish.create}, then adding values to the accumulator
  * values using {@link RawReducerWithoutFinish.add}, and then transforming the
  * final accumulator using {@link RawReducerWithFinish.finish}.
+ *
+ * It's identical to {@link RawReducerWithFinish} except its `this` is bound by
+ * {@link normalizeReducer}.
+ *
+ * @example
+ * ```js playground
+ * import { pipe, reduce } from 'lfi'
+ *
+ * console.log(
+ *   pipe(
+ *     [1, 2, 3, 4],
+ *     reduce(
+ *       // This will be a `Reducer` once it's normalized by `reduce`
+ *       {
+ *         create: () => 0,
+ *         add: (number1, number2) => number1 + number2,
+ *         finish: sum => `The sum is ${sum}`,
+ *       },
+ *     ),
+ *   ),
+ * )
+ * //=> The sum is 10
+ * ```
  *
  * @category Reducers
  * @since v2.0.0

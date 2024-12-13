@@ -35,7 +35,8 @@ const Header = () => {
             <CodeInline>{siteConfig.title}</CodeInline>
           </strong>
           {` `}
-          is a lazy functional sync, async, and concurrent iteration library
+          is a lazy functional sync, async, and concurrent iteration library for
+          JavaScript and TypeScript
         </Heading>
         <Link
           href='/docs/getting-started'

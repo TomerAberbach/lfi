@@ -25,8 +25,8 @@ const Header = () => {
   const { siteConfig } = useDocusaurusContext()
   return (
     <header className='text-center flex flex-col items-center gap-6 bg-smores-200 dark:bg-mud-700 py-14 sm:py-16 px-8'>
-      <Logo className='w-80 sm:w-96 max-w-full' />
-      <div className='flex flex-col items-center gap-0.5'>
+      <Logo className='w-60 sm:w-80 max-w-full' />
+      <div className='flex flex-col items-center gap-0.5 max-w-full'>
         <Heading
           as='h1'
           className='text-balance font-normal w-[40ch] max-w-full text-2xl sm:text-3xl'

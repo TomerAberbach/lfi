@@ -1,5 +1,5 @@
 import { vitest } from 'vitest'
-import { getScheduler } from './fast-check/test-prop.js'
+import { getScheduler } from './fast-check/test-prop.ts'
 
 const autoAdvance =
   <Args extends unknown[], Return>(

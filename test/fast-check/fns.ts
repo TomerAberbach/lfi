@@ -1,5 +1,5 @@
 import { fc } from '@fast-check/vitest'
-import { getScheduler } from './test-prop.js'
+import { getScheduler } from './test-prop.ts'
 
 export const fnArb = fc.func(fc.anything())
 export const predicateArb = fc.func(fc.oneof(fc.boolean(), fc.anything()))

@@ -1,9 +1,6 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import {
-  asyncCompareFnArb,
-  getAsyncFnArb,
-} from 'test/helpers/fast-check/fns.js'
+import { asyncCompareFnArb, getAsyncFnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -14,9 +11,9 @@ import {
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
-import withElapsed from 'test/helpers/with-elapsed.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
+import withElapsed from '../../test/with-elapsed.ts'
 import {
   asAsync,
   asConcur,
@@ -66,10 +63,10 @@ import {
   sumAsync,
   sumConcur,
   toArray,
-} from '~/index.js'
+} from '../index.js'
 
 test.skip(`count types are correct`, () => {
-  expectTypeOf(count([1, 2, 3])).toMatchTypeOf<number>()
+  expectTypeOf(count([1, 2, 3])).toExtend<number>()
 })
 
 test.prop([iterableArb])(
@@ -82,7 +79,7 @@ test.prop([iterableArb])(
 )
 
 test.skip(`countAsync types are correct`, () => {
-  expectTypeOf(countAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+  expectTypeOf(countAsync(asAsync([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test.prop([asyncIterableArb])(
@@ -95,9 +92,7 @@ test.prop([asyncIterableArb])(
 )
 
 test.skip(`countConcur types are correct`, () => {
-  expectTypeOf(countConcur(asConcur([1, 2, 3]))).toMatchTypeOf<
-    Promise<number>
-  >()
+  expectTypeOf(countConcur(asConcur([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test.prop([concurIterableArb])(
@@ -125,7 +120,7 @@ test.skip(`minBy types are correct`, () => {
       minBy((a, b) => a.localeCompare(b)),
       get,
     ),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.compareFunc(), iterableArb])(
@@ -165,14 +160,14 @@ test.skip(`minByAsync types are correct`, () => {
       minByAsync((a, b) => a.localeCompare(b)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       minByAsync((a, b) => Promise.resolve(a.localeCompare(b))),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([asyncCompareFnArb, asyncIterableArb])(
@@ -212,14 +207,14 @@ test.skip(`minByConcur types are correct`, () => {
       minByConcur((a, b) => a.localeCompare(b)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       minByConcur((a, b) => Promise.resolve(a.localeCompare(b))),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([asyncCompareFnArb, concurIterableArb])(
@@ -261,7 +256,7 @@ test.skip(`maxBy types are correct`, () => {
       maxBy((a, b) => a.localeCompare(b)),
       get,
     ),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.compareFunc(), iterableArb])(
@@ -301,14 +296,14 @@ test.skip(`maxByAsync types are correct`, () => {
       maxByAsync((a, b) => a.localeCompare(b)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       maxByAsync((a, b) => Promise.resolve(a.localeCompare(b))),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([asyncCompareFnArb, asyncIterableArb])(
@@ -353,14 +348,14 @@ test.skip(`maxByConcur types are correct`, () => {
       maxByConcur((a, b) => a.localeCompare(b)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       maxByConcur((a, b) => Promise.resolve(a.localeCompare(b))),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([asyncCompareFnArb, concurIterableArb])(
@@ -405,7 +400,7 @@ test.skip(`minMaxBy types are correct`, () => {
       minMaxBy((a, b) => a.localeCompare(b)),
       get,
     ),
-  ).toMatchTypeOf<{ min: string; max: string }>()
+  ).toExtend<{ min: string; max: string }>()
 })
 
 test.prop([fc.compareFunc(), iterableArb])(
@@ -448,14 +443,14 @@ test.skip(`minMaxByAsync types are correct`, () => {
       minMaxByAsync((a, b) => a.localeCompare(b)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       minMaxByAsync((a, b) => Promise.resolve(a.localeCompare(b))),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
 })
 
 test.prop([asyncCompareFnArb, asyncIterableArb])(
@@ -500,14 +495,14 @@ test.skip(`minMaxByConcur types are correct`, () => {
       minMaxByConcur((a, b) => a.localeCompare(b)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       minMaxByConcur((a, b) => Promise.resolve(a.localeCompare(b))),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
 })
 
 test.prop([asyncCompareFnArb, concurIterableArb])(
@@ -558,7 +553,7 @@ test.skip(`minWith types are correct`, () => {
       minWith(s => s.length),
       get,
     ),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.func(fc.integer()), iterableArb])(
@@ -600,14 +595,14 @@ test.skip(`minWithAsync types are correct`, () => {
       minWithAsync(s => s.length),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       minWithAsync(s => Promise.resolve(s.length)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
@@ -649,14 +644,14 @@ test.skip(`minWithConcur types are correct`, () => {
       minWithConcur(s => s.length),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       minWithConcur(s => Promise.resolve(s.length)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
@@ -698,7 +693,7 @@ test.skip(`maxWith types are correct`, () => {
       maxWith(s => s.length),
       get,
     ),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.func(fc.integer()), iterableArb])(
@@ -740,14 +735,14 @@ test.skip(`maxWithAsync types are correct`, () => {
       maxWithAsync(s => s.length),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       maxWithAsync(s => Promise.resolve(s.length)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
@@ -789,14 +784,14 @@ test.skip(`maxWithConcur types are correct`, () => {
       maxWithConcur(s => s.length),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       maxWithConcur(s => Promise.resolve(s.length)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<string>>()
+  ).toExtend<Promise<string>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
@@ -838,7 +833,7 @@ test.skip(`minMaxWith types are correct`, () => {
       minMaxWith(s => s.length),
       get,
     ),
-  ).toMatchTypeOf<{ min: string; max: string }>()
+  ).toExtend<{ min: string; max: string }>()
 })
 
 test.prop([fc.func(fc.integer()), iterableArb])(
@@ -881,14 +876,14 @@ test.skip(`minMaxWithAsync types are correct`, () => {
       minMaxWithAsync(s => s.length),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
   expectTypeOf(
     pipe(
       asAsync([`a`, `b`, `c`]),
       minMaxWithAsync(s => Promise.resolve(s.length)),
       getAsync,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
@@ -933,14 +928,14 @@ test.skip(`minMaxWithConcur types are correct`, () => {
       minMaxWithConcur(s => s.length),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
   expectTypeOf(
     pipe(
       asConcur([`a`, `b`, `c`]),
       minMaxWithConcur(s => Promise.resolve(s.length)),
       getConcur,
     ),
-  ).toMatchTypeOf<Promise<{ min: string; max: string }>>()
+  ).toExtend<Promise<{ min: string; max: string }>>()
 })
 
 test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
@@ -979,7 +974,7 @@ test.prop([
 )
 
 test.skip(`min types are correct`, () => {
-  expectTypeOf(get(min([1, 2, 3]))).toMatchTypeOf<number>()
+  expectTypeOf(get(min([1, 2, 3]))).toExtend<number>()
 })
 
 test.prop([getIterableArb(fc.integer())])(
@@ -1007,7 +1002,7 @@ test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`minAsync types are correct`, () => {
-  expectTypeOf(getAsync(minAsync(asAsync([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getAsync(minAsync(asAsync([1, 2, 3])))).toExtend<
     Promise<number>
   >()
 })
@@ -1038,7 +1033,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`minConcur types are correct`, () => {
-  expectTypeOf(getConcur(minConcur(asConcur([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getConcur(minConcur(asConcur([1, 2, 3])))).toExtend<
     Promise<number>
   >()
 })
@@ -1068,7 +1063,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`max types are correct`, () => {
-  expectTypeOf(get(max([1, 2, 3]))).toMatchTypeOf<number>()
+  expectTypeOf(get(max([1, 2, 3]))).toExtend<number>()
 })
 
 test.prop([getIterableArb(fc.integer())])(
@@ -1096,7 +1091,7 @@ test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`maxAsync types are correct`, () => {
-  expectTypeOf(getAsync(maxAsync(asAsync([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getAsync(maxAsync(asAsync([1, 2, 3])))).toExtend<
     Promise<number>
   >()
 })
@@ -1127,7 +1122,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`maxConcur types are correct`, () => {
-  expectTypeOf(getConcur(maxConcur(asConcur([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getConcur(maxConcur(asConcur([1, 2, 3])))).toExtend<
     Promise<number>
   >()
 })
@@ -1157,7 +1152,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`minMax types are correct`, () => {
-  expectTypeOf(get(minMax([1, 2, 3]))).toMatchTypeOf<{
+  expectTypeOf(get(minMax([1, 2, 3]))).toExtend<{
     min: number
     max: number
   }>()
@@ -1191,7 +1186,7 @@ test.prop([getIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`minMaxAsync types are correct`, () => {
-  expectTypeOf(getAsync(minMaxAsync(asAsync([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getAsync(minMaxAsync(asAsync([1, 2, 3])))).toExtend<
     Promise<{
       min: number
       max: number
@@ -1228,7 +1223,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`minMaxConcur types are correct`, () => {
-  expectTypeOf(getConcur(minMaxConcur(asConcur([1, 2, 3])))).toMatchTypeOf<
+  expectTypeOf(getConcur(minMaxConcur(asConcur([1, 2, 3])))).toExtend<
     Promise<{
       min: number
       max: number
@@ -1264,7 +1259,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
 )
 
 test.skip(`sum types are correct`, () => {
-  expectTypeOf(sum([1, 2, 3])).toMatchTypeOf<number>()
+  expectTypeOf(sum([1, 2, 3])).toExtend<number>()
 })
 
 test.prop([getIterableArb(fc.double())])(
@@ -1277,7 +1272,7 @@ test.prop([getIterableArb(fc.double())])(
 )
 
 test.skip(`sumAsync types are correct`, () => {
-  expectTypeOf(sumAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+  expectTypeOf(sumAsync(asAsync([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test.prop([getAsyncIterableArb(fc.double())])(
@@ -1290,7 +1285,7 @@ test.prop([getAsyncIterableArb(fc.double())])(
 )
 
 test.skip(`sumConcur types are correct`, () => {
-  expectTypeOf(sumConcur(asConcur([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+  expectTypeOf(sumConcur(asConcur([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test.prop([getConcurIterableArb(fc.double())])(
@@ -1307,7 +1302,7 @@ test.prop([getConcurIterableArb(fc.double())])(
 )
 
 test.skip(`mean types are correct`, () => {
-  expectTypeOf(mean([1, 2, 3])).toMatchTypeOf<number>()
+  expectTypeOf(mean([1, 2, 3])).toExtend<number>()
 })
 
 test(`mean returns NaN for an empty iterable`, () => {
@@ -1327,7 +1322,7 @@ test.prop([getIterableArb(fc.double(), { minLength: 1 })])(
 )
 
 test.skip(`meanAsync types are correct`, () => {
-  expectTypeOf(meanAsync(asAsync([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+  expectTypeOf(meanAsync(asAsync([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test(`meanAsync returns NaN for an empty async iterable`, async () => {
@@ -1347,7 +1342,7 @@ test.prop([getAsyncIterableArb(fc.double(), { minLength: 1 })])(
 )
 
 test.skip(`meanConcur types are correct`, () => {
-  expectTypeOf(meanConcur(asConcur([1, 2, 3]))).toMatchTypeOf<Promise<number>>()
+  expectTypeOf(meanConcur(asConcur([1, 2, 3]))).toExtend<Promise<number>>()
 })
 
 test(`meanConcur returns NaN for an empty concur iterable`, async () => {

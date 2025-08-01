@@ -13,7 +13,7 @@ const Home = () => {
     <Layout title='Home' description={siteConfig.tagline}>
       <div className='space-y-8 sm:space-y-10'>
         <Header />
-        <main className='px-6 sm:px-12 2xl:px-24 py-10'>
+        <main className='px-6 py-10 sm:px-12 2xl:px-24'>
           <Features />
         </main>
       </div>
@@ -24,12 +24,12 @@ const Home = () => {
 const Header = () => {
   const { siteConfig } = useDocusaurusContext()
   return (
-    <header className='text-center flex flex-col items-center gap-6 bg-smores-200 dark:bg-mud-700 py-14 sm:py-16 px-8'>
-      <Logo className='w-60 sm:w-80 max-w-full' />
-      <div className='flex flex-col items-center gap-0.5 max-w-full'>
+    <header className='bg-smores-200 dark:bg-mud-700 flex flex-col items-center gap-6 px-8 py-14 text-center sm:py-16'>
+      <Logo className='w-60 max-w-full sm:w-80' />
+      <div className='flex max-w-full flex-col items-center gap-0.5'>
         <Heading
           as='h1'
-          className='text-balance font-normal w-[40ch] max-w-full text-2xl sm:text-3xl'
+          className='w-[40ch] max-w-full text-balance text-2xl font-normal sm:text-3xl'
         >
           <strong>
             <CodeInline>{siteConfig.title}</CodeInline>
@@ -40,7 +40,7 @@ const Header = () => {
         </Heading>
         <Link
           href='/docs/getting-started'
-          className='text-lg sm:text-xl bg-smores-700 dark:bg-mud-950 text-smores-50 dark:text-mud-50 hover:text-smores-50 dark:hover:text-smores-50 hover:no-underline hover:bg-smores-800 dark:hover:bg-mud-900 transition-colors duration-200 rounded-full px-5 sm:px-6 py-2 sm:py-3'
+          className='bg-smores-700 dark:bg-mud-950 text-smores-50 dark:text-mud-50 hover:text-smores-50 dark:hover:text-smores-50 hover:bg-smores-800 dark:hover:bg-mud-900 rounded-full px-5 py-2 text-lg transition-colors duration-200 hover:no-underline sm:px-6 sm:py-3 sm:text-xl'
         >
           Get started
         </Link>
@@ -50,11 +50,11 @@ const Header = () => {
 }
 
 const Features = () => (
-  <section className='flex gap-8 sm:gap-10 flex-wrap'>
+  <section className='flex flex-wrap gap-8 sm:gap-10'>
     {FEATURES.map(({ title, content }, index) => (
       <div
         key={index}
-        className='flex-grow basis-[calc((60rem-100%)*999)] min-w-0'
+        className='min-w-0 flex-grow basis-[calc((60rem-100%)*999)]'
       >
         <Heading as='h3'>{title}</Heading>
         {content}

@@ -1,7 +1,7 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import autoAdvance from 'test/helpers/auto-advance.js'
-import { asyncFnArb, fnArb } from 'test/helpers/fast-check/fns.js'
+import autoAdvance from '../../test/auto-advance.ts'
+import { asyncFnArb, fnArb } from '../../test/fast-check/fns.ts'
 import {
   getIntervalArb,
   negativeIntegerArb,
@@ -9,7 +9,7 @@ import {
   nonNegativeIntegerArb,
   nonPositiveIntegerArb,
   positiveIntegerArb,
-} from 'test/helpers/fast-check/numbers.js'
+} from '../../test/fast-check/numbers.ts'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -17,9 +17,9 @@ import {
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
-import withElapsed from 'test/helpers/with-elapsed.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
+import withElapsed from '../../test/with-elapsed.ts'
 import {
   asAsync,
   asConcur,
@@ -81,14 +81,14 @@ import {
   zip,
   zipAsync,
   zipConcur,
-} from '~/index.js'
+} from '../index.js'
 import type {
   AsyncOptional,
   ConcurIterable,
   ConcurOptional,
   Optional,
   WindowOptions,
-} from '~/index.js'
+} from '../index.js'
 
 test.skip(`dropWhile types are correct`, () => {
   expectTypeOf(
@@ -96,7 +96,7 @@ test.skip(`dropWhile types are correct`, () => {
       [1, 2, 3],
       dropWhile(x => x < 3),
     ),
-  ).toMatchTypeOf<Iterable<number>>()
+  ).toExtend<Iterable<number>>()
 })
 
 test.prop([fnArb, iterableArb])(
@@ -149,13 +149,13 @@ test.skip(`dropWhileAsync types are correct`, () => {
       asAsync([1, 2, 3]),
       dropWhileAsync(x => x < 3),
     ),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  ).toExtend<AsyncIterable<number>>()
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       dropWhileAsync(x => Promise.resolve(x < 3)),
     ),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  ).toExtend<AsyncIterable<number>>()
 })
 
 test.prop([asyncFnArb, asyncIterableArb])(
@@ -215,13 +215,13 @@ test.skip(`dropWhileConcur types are correct`, () => {
       asConcur([1, 2, 3]),
       dropWhileConcur(x => x < 3),
     ),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       dropWhileConcur(x => Promise.resolve(x < 3)),
     ),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
 })
 
 test.prop([asyncFnArb, concurIterableArb])(
@@ -281,7 +281,7 @@ test.skip(`takeWhile types are correct`, () => {
       [1, 2, 3],
       takeWhile(x => x < 3),
     ),
-  ).toMatchTypeOf<Iterable<number>>()
+  ).toExtend<Iterable<number>>()
 })
 
 test.prop([fnArb, iterableArb])(
@@ -334,13 +334,13 @@ test.skip(`takeWhileAsync types are correct`, () => {
       asAsync([1, 2, 3]),
       takeWhileAsync(x => x < 3),
     ),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  ).toExtend<AsyncIterable<number>>()
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       takeWhileAsync(x => Promise.resolve(x < 3)),
     ),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  ).toExtend<AsyncIterable<number>>()
 })
 
 test.prop([asyncFnArb, asyncIterableArb])(
@@ -400,13 +400,13 @@ test.skip(`takeWhileConcur types are correct`, () => {
       asConcur([1, 2, 3]),
       takeWhileConcur(x => x < 3),
     ),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       takeWhileConcur(x => Promise.resolve(x < 3)),
     ),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
 })
 
 test.prop([asyncFnArb, concurIterableArb])(
@@ -461,7 +461,7 @@ test.prop([
 )
 
 test.skip(`drop types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], drop(2))).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(pipe([1, 2, 3], drop(2))).toExtend<Iterable<number>>()
 
   // @ts-expect-error Not an integer literal.
   drop(2.4)
@@ -541,7 +541,7 @@ test.prop([
 )
 
 test.skip(`dropAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), dropAsync(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), dropAsync(2))).toExtend<
     AsyncIterable<number>
   >()
 
@@ -627,7 +627,7 @@ test.prop([
 )
 
 test.skip(`dropConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), dropConcur(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), dropConcur(2))).toExtend<
     ConcurIterable<number>
   >()
 
@@ -713,7 +713,7 @@ test.prop([
 )
 
 test.skip(`take types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], take(2))).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(pipe([1, 2, 3], take(2))).toExtend<Iterable<number>>()
 
   // @ts-expect-error Not an integer literal.
   take(2.4)
@@ -793,7 +793,7 @@ test.prop([
 )
 
 test.skip(`takeAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), takeAsync(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), takeAsync(2))).toExtend<
     AsyncIterable<number>
   >()
 
@@ -879,7 +879,7 @@ test.prop([
 )
 
 test.skip(`takeConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), takeConcur(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), takeConcur(2))).toExtend<
     ConcurIterable<number>
   >()
 
@@ -965,7 +965,7 @@ test.prop([
 )
 
 test.skip(`first types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], first, get)).toMatchTypeOf<number>()
+  expectTypeOf(pipe([1, 2, 3], first, get)).toExtend<number>()
 })
 
 test.prop([iterableArb])(`first returns a pure iterable`, ({ iterable }) => {
@@ -990,7 +990,7 @@ test.prop([nonEmptyIterableArb])(
 )
 
 test.skip(`firstAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), firstAsync, getAsync)).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), firstAsync, getAsync)).toExtend<
     Promise<number>
   >()
 })
@@ -1025,7 +1025,7 @@ test.prop([nonEmptyAsyncIterableArb])(
 )
 
 test.skip(`firstConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), firstConcur, getConcur)).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), firstConcur, getConcur)).toExtend<
     Promise<number>
   >()
 })
@@ -1057,7 +1057,7 @@ test.prop([nonEmptyConcurIterableArb])(
 )
 
 test.skip(`last types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], last, get)).toMatchTypeOf<number>()
+  expectTypeOf(pipe([1, 2, 3], last, get)).toExtend<number>()
 })
 
 test.prop([iterableArb])(`last returns a pure iterable`, ({ iterable }) => {
@@ -1082,7 +1082,7 @@ test.prop([nonEmptyIterableArb])(
 )
 
 test.skip(`lastAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), lastAsync, getAsync)).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), lastAsync, getAsync)).toExtend<
     Promise<number>
   >()
 })
@@ -1117,7 +1117,7 @@ test.prop([nonEmptyAsyncIterableArb])(
 )
 
 test.skip(`lastConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), lastConcur, getConcur)).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), lastConcur, getConcur)).toExtend<
     Promise<number>
   >()
 })
@@ -1158,10 +1158,10 @@ const invertedIntervalArb = intervalArb
   .map(([start, end]): [number, number] => [end, start])
 
 test.skip(`slice types are correct`, () => {
-  expectTypeOf(slice(1)(2, [1, 2, 3])).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(slice(1)(2)([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(slice(1, 2)([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(slice(1, 2, [1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(slice(1)(2, [1, 2, 3])).toExtend<Iterable<number>>()
+  expectTypeOf(slice(1)(2)([1, 2, 3])).toExtend<Iterable<number>>()
+  expectTypeOf(slice(1, 2)([1, 2, 3])).toExtend<Iterable<number>>()
+  expectTypeOf(slice(1, 2, [1, 2, 3])).toExtend<Iterable<number>>()
 
   // @ts-expect-error Not an integer literal.
   slice(1.2)
@@ -1248,16 +1248,16 @@ test.prop([intervalArb, iterableArb])(
 )
 
 test.skip(`sliceAsync types are correct`, () => {
-  expectTypeOf(sliceAsync(1)(2, asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceAsync(1)(2, asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<number>
   >()
-  expectTypeOf(sliceAsync(1)(2)(asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceAsync(1)(2)(asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<number>
   >()
-  expectTypeOf(sliceAsync(1, 2)(asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceAsync(1, 2)(asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<number>
   >()
-  expectTypeOf(sliceAsync(1, 2, asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceAsync(1, 2, asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<number>
   >()
 
@@ -1347,16 +1347,16 @@ test.prop([intervalArb, asyncIterableArb])(
 )
 
 test.skip(`sliceConcur types are correct`, () => {
-  expectTypeOf(sliceConcur(1)(2, asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceConcur(1)(2, asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<number>
   >()
-  expectTypeOf(sliceConcur(1)(2)(asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceConcur(1)(2)(asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<number>
   >()
-  expectTypeOf(sliceConcur(1, 2)(asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceConcur(1, 2)(asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<number>
   >()
-  expectTypeOf(sliceConcur(1, 2, asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(sliceConcur(1, 2, asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<number>
   >()
 
@@ -1448,8 +1448,8 @@ test.prop([intervalArb, concurIterableArb])(
 )
 
 test.skip(`at types are correct`, () => {
-  expectTypeOf(at(1)([1, 2, 3])).toMatchTypeOf<Optional<number>>()
-  expectTypeOf(at(1, [1, 2, 3])).toMatchTypeOf<Optional<number>>()
+  expectTypeOf(at(1)([1, 2, 3])).toExtend<Optional<number>>()
+  expectTypeOf(at(1, [1, 2, 3])).toExtend<Optional<number>>()
 
   // @ts-expect-error Not an integer literal.
   at(1.2)
@@ -1496,12 +1496,8 @@ test.prop([reasonableNonNegativeIntegerArb, iterableArb])(
 )
 
 test.skip(`atAsync types are correct`, () => {
-  expectTypeOf(atAsync(1)(asAsync([1, 2, 3]))).toMatchTypeOf<
-    AsyncOptional<number>
-  >()
-  expectTypeOf(atAsync(1, asAsync([1, 2, 3]))).toMatchTypeOf<
-    AsyncIterable<number>
-  >()
+  expectTypeOf(atAsync(1)(asAsync([1, 2, 3]))).toExtend<AsyncOptional<number>>()
+  expectTypeOf(atAsync(1, asAsync([1, 2, 3]))).toExtend<AsyncIterable<number>>()
 
   // @ts-expect-error Not an integer literal.
   atAsync(1.2)
@@ -1550,10 +1546,10 @@ test.prop([reasonableNonNegativeIntegerArb, asyncIterableArb])(
 )
 
 test.skip(`atConcur types are correct`, () => {
-  expectTypeOf(atConcur(1)(asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(atConcur(1)(asConcur([1, 2, 3]))).toExtend<
     ConcurOptional<number>
   >()
-  expectTypeOf(atConcur(1, asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(atConcur(1, asConcur([1, 2, 3]))).toExtend<
     ConcurOptional<number>
   >()
 
@@ -1604,7 +1600,7 @@ test.prop([reasonableNonNegativeIntegerArb, concurIterableArb])(
 )
 
 test.skip(`chunk types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], chunk(2))).toMatchTypeOf<Iterable<number[]>>()
+  expectTypeOf(pipe([1, 2, 3], chunk(2))).toExtend<Iterable<number[]>>()
 
   // @ts-expect-error Not an integer literal.
   chunk(2.4)
@@ -1704,7 +1700,7 @@ test.prop([
 )
 
 test.skip(`chunkAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), chunkAsync(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), chunkAsync(2))).toExtend<
     AsyncIterable<number[]>
   >()
 
@@ -1808,7 +1804,7 @@ test.prop([
 )
 
 test.skip(`chunkConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), chunkConcur(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), chunkConcur(2))).toExtend<
     ConcurIterable<number[]>
   >()
 
@@ -1925,24 +1921,22 @@ test.prop([fc.tuple(positiveIntegerArb, nonEmptyConcurIterableArb)])(
 const smallPositiveIntegerArb = fc.integer({ min: 1, max: 100 })
 
 test.skip(`window types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3, 4, 5], window(2))).toMatchTypeOf<
-    Iterable<number[]>
-  >()
-  expectTypeOf(pipe([1, 2, 3, 4, 5], window({ size: 2 }))).toMatchTypeOf<
+  expectTypeOf(pipe([1, 2, 3, 4, 5], window(2))).toExtend<Iterable<number[]>>()
+  expectTypeOf(pipe([1, 2, 3, 4, 5], window({ size: 2 }))).toExtend<
     Iterable<number[]>
   >()
   expectTypeOf(
     pipe([1, 2, 3, 4, 5], window({ size: 2, partialEnd: true })),
-  ).toMatchTypeOf<Iterable<number[]>>()
+  ).toExtend<Iterable<number[]>>()
   expectTypeOf(
     pipe([1, 2, 3, 4, 5], window({ size: 2, partialStart: true })),
-  ).toMatchTypeOf<Iterable<number[]>>()
+  ).toExtend<Iterable<number[]>>()
   expectTypeOf(
     pipe(
       [1, 2, 3, 4, 5],
       window({ size: 2, partialStart: true, partialEnd: true }),
     ),
-  ).toMatchTypeOf<Iterable<number[]>>()
+  ).toExtend<Iterable<number[]>>()
 
   // @ts-expect-error Not an integer literal.
   window(2.4)
@@ -2108,27 +2102,27 @@ test.prop([
 )
 
 test.skip(`windowAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3, 4, 5]), windowAsync(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3, 4, 5]), windowAsync(2))).toExtend<
     AsyncIterable<number[]>
   >()
   expectTypeOf(
     pipe(asAsync([1, 2, 3, 4, 5]), windowAsync({ size: 2 })),
-  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  ).toExtend<AsyncIterable<number[]>>()
   expectTypeOf(
     pipe(asAsync([1, 2, 3, 4, 5]), windowAsync({ size: 2, partialEnd: true })),
-  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  ).toExtend<AsyncIterable<number[]>>()
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3, 4, 5]),
       windowAsync({ size: 2, partialStart: true }),
     ),
-  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  ).toExtend<AsyncIterable<number[]>>()
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3, 4, 5]),
       windowAsync({ size: 2, partialStart: true, partialEnd: true }),
     ),
-  ).toMatchTypeOf<AsyncIterable<number[]>>()
+  ).toExtend<AsyncIterable<number[]>>()
 
   // @ts-expect-error Not an integer literal.
   windowAsync(2.4)
@@ -2257,30 +2251,30 @@ test.prop([
 )
 
 test.skip(`windowConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3, 4, 5]), windowConcur(2))).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3, 4, 5]), windowConcur(2))).toExtend<
     ConcurIterable<number[]>
   >()
   expectTypeOf(
     pipe(asConcur([1, 2, 3, 4, 5]), windowConcur({ size: 2 })),
-  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  ).toExtend<ConcurIterable<number[]>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3, 4, 5]),
       windowConcur({ size: 2, partialEnd: true }),
     ),
-  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  ).toExtend<ConcurIterable<number[]>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3, 4, 5]),
       windowConcur({ size: 2, partialStart: true }),
     ),
-  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  ).toExtend<ConcurIterable<number[]>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3, 4, 5]),
       windowConcur({ size: 2, partialStart: true, partialEnd: true }),
     ),
-  ).toMatchTypeOf<ConcurIterable<number[]>>()
+  ).toExtend<ConcurIterable<number[]>>()
 
   // @ts-expect-error Not an integer literal.
   windowConcur(2.4)
@@ -2403,7 +2397,7 @@ test.prop([
 )
 
 test.skip(`concat types are correct`, () => {
-  expectTypeOf(concat([1, 2, 3], [1, 2, 3], [1, 2, 3])).toMatchTypeOf<
+  expectTypeOf(concat([1, 2, 3], [1, 2, 3], [1, 2, 3])).toExtend<
     Iterable<number>
   >()
 })
@@ -2439,9 +2433,9 @@ test(`concat returns an empty iterable for zero arguments`, () => {
 })
 
 test.skip(`concatAsync types are correct`, () => {
-  expectTypeOf(
-    concatAsync([1, 2, 3], asAsync([1, 2, 3]), [1, 2, 3]),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  expectTypeOf(concatAsync([1, 2, 3], asAsync([1, 2, 3]), [1, 2, 3])).toExtend<
+    AsyncIterable<number>
+  >()
 })
 
 test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
@@ -2480,7 +2474,7 @@ test(
 test.skip(`concatConcur types are correct`, () => {
   expectTypeOf(
     concatConcur([1, 2, 3], asAsync([1, 2, 3]), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
 })
 
 test.prop([
@@ -2531,7 +2525,7 @@ test.prop([
 )
 
 test.skip(`zip types are correct`, () => {
-  expectTypeOf(zip([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+  expectTypeOf(zip([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toExtend<
     Iterable<[number, string, number]>
   >()
 })
@@ -2580,18 +2574,18 @@ test.prop([fc.array(iterableArb)])(`zip is lazy`, iterables => {
 })
 
 test.skip(`zipAsync types are correct`, () => {
-  expectTypeOf(zipAsync([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+  expectTypeOf(zipAsync([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toExtend<
     AsyncIterable<[number, string, number]>
   >()
   expectTypeOf(
     zipAsync(asAsync([1, 2, 3]), [`a`, `b`, `c`], [1, 2, 3]),
-  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+  ).toExtend<AsyncIterable<[number, string, number]>>()
   expectTypeOf(
     zipAsync(asAsync([1, 2, 3]), asAsync([`a`, `b`, `c`]), [1, 2, 3]),
-  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+  ).toExtend<AsyncIterable<[number, string, number]>>()
   expectTypeOf(
     zipAsync(asAsync([1, 2, 3]), asAsync([`a`, `b`, `c`]), asAsync([1, 2, 3])),
-  ).toMatchTypeOf<AsyncIterable<[number, string, number]>>()
+  ).toExtend<AsyncIterable<[number, string, number]>>()
 })
 
 test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
@@ -2650,25 +2644,25 @@ test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
 )
 
 test.skip(`zipConcur types are correct`, () => {
-  expectTypeOf(zipConcur([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toMatchTypeOf<
+  expectTypeOf(zipConcur([1, 2, 3], [`a`, `b`, `c`], [1, 2, 3])).toExtend<
     ConcurIterable<[number, string, number]>
   >()
   expectTypeOf(
     zipConcur([1, 2, 3], asAsync([`a`, `b`, `c`]), [1, 2, 3]),
-  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  ).toExtend<ConcurIterable<[number, string, number]>>()
   expectTypeOf(
     zipConcur([1, 2, 3], asAsync([`a`, `b`, `c`]), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  ).toExtend<ConcurIterable<[number, string, number]>>()
   expectTypeOf(
     zipConcur([1, 2, 3], asConcur([`a`, `b`, `c`]), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  ).toExtend<ConcurIterable<[number, string, number]>>()
   expectTypeOf(
     zipConcur(
       asAsync([1, 2, 3]),
       asConcur([`a`, `b`, `c`]),
       asConcur([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, string, number]>>()
+  ).toExtend<ConcurIterable<[number, string, number]>>()
 })
 
 test.prop([

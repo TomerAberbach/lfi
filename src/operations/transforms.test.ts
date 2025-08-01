@@ -1,11 +1,7 @@
 import { AsyncBetterator, Betterator } from 'betterator'
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import {
-  asyncFnArb,
-  fnArb,
-  getAsyncFnArb,
-} from 'test/helpers/fast-check/fns.js'
+import { asyncFnArb, fnArb, getAsyncFnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -13,8 +9,8 @@ import {
   getConcurIterableArb,
   getIterableArb,
   iterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
 import {
   asAsync,
   asConcur,
@@ -34,20 +30,20 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '~/index.js'
-import type { ConcurIterable } from '~/index.js'
+} from '../index.js'
+import type { ConcurIterable } from '../index.js'
 
 test.skip(`map types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], map(String))).toMatchTypeOf<Iterable<string>>()
-  expectTypeOf(map(String, [1, 2, 3])).toMatchTypeOf<Iterable<string>>()
+  expectTypeOf(pipe([1, 2, 3], map(String))).toExtend<Iterable<string>>()
+  expectTypeOf(map(String, [1, 2, 3])).toExtend<Iterable<string>>()
 
   expectTypeOf(
     pipe(
       [1, 2, 3],
       map(x => [x, x]),
     ),
-  ).toMatchTypeOf<Iterable<[number, number]>>()
-  expectTypeOf(map(x => [x, x], [1, 2, 3])).toMatchTypeOf<
+  ).toExtend<Iterable<[number, number]>>()
+  expectTypeOf(map(x => [x, x], [1, 2, 3])).toExtend<
     Iterable<[number, number]>
   >()
 })
@@ -85,7 +81,7 @@ test.prop([fnArb, iterableArb])(`map is lazy`, (fn, { iterable, values }) => {
 })
 
 test.skip(`mapAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), mapAsync(String))).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([1, 2, 3]), mapAsync(String))).toExtend<
     AsyncIterable<string>
   >()
   expectTypeOf(
@@ -93,21 +89,21 @@ test.skip(`mapAsync types are correct`, () => {
       asAsync([1, 2, 3]),
       mapAsync(n => Promise.resolve(String(n))),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
-  expectTypeOf(mapAsync(String, asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(mapAsync(String, asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<string>
   >()
   expectTypeOf(
     mapAsync(n => Promise.resolve(String(n)), asAsync([1, 2, 3])),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
-  expectTypeOf(mapAsync(x => [x, x], asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(mapAsync(x => [x, x], asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<[number, number]>
   >()
   expectTypeOf(
     mapAsync(n => Promise.resolve([n, n]), asAsync([1, 2, 3])),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
 })
 
 test.prop([asyncFnArb, asyncIterableArb])(
@@ -148,7 +144,7 @@ test.prop([asyncFnArb, asyncIterableArb])(
 )
 
 test.skip(`mapConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), mapConcur(String))).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([1, 2, 3]), mapConcur(String))).toExtend<
     ConcurIterable<string>
   >()
   expectTypeOf(
@@ -156,21 +152,21 @@ test.skip(`mapConcur types are correct`, () => {
       asConcur([1, 2, 3]),
       mapConcur(n => Promise.resolve(String(n))),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
-  expectTypeOf(mapConcur(String, asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(mapConcur(String, asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<string>
   >()
   expectTypeOf(
     mapConcur(n => Promise.resolve(String(n)), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
-  expectTypeOf(
-    mapConcur(x => [x, x], asConcur<number>([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  expectTypeOf(mapConcur(x => [x, x], asConcur<number>([1, 2, 3]))).toExtend<
+    ConcurIterable<[number, number]>
+  >()
   expectTypeOf(
     mapConcur(n => Promise.resolve([n, n]), asConcur<number>([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 })
 
 test.prop([asyncFnArb, concurIterableArb])(
@@ -199,8 +195,8 @@ test.skip(`flatMap types are correct`, () => {
       [1, 2, 3],
       flatMap(n => [String(n), String(n)]),
     ),
-  ).toMatchTypeOf<Iterable<string>>()
-  expectTypeOf(flatMap(n => [String(n), String(n)], [1, 2, 3])).toMatchTypeOf<
+  ).toExtend<Iterable<string>>()
+  expectTypeOf(flatMap(n => [String(n), String(n)], [1, 2, 3])).toExtend<
     Iterable<string>
   >()
 
@@ -212,7 +208,7 @@ test.skip(`flatMap types are correct`, () => {
         [n, n],
       ]),
     ),
-  ).toMatchTypeOf<Iterable<[number, number]>>()
+  ).toExtend<Iterable<[number, number]>>()
   expectTypeOf(
     flatMap(
       n => [
@@ -221,7 +217,7 @@ test.skip(`flatMap types are correct`, () => {
       ],
       [1, 2, 3],
     ),
-  ).toMatchTypeOf<Iterable<[number, number]>>()
+  ).toExtend<Iterable<[number, number]>>()
 })
 
 test.prop([fc.func(iterableArb), iterableArb])(
@@ -278,10 +274,10 @@ test.skip(`flatMapAsync types are correct`, () => {
       asAsync([1, 2, 3]),
       flatMapAsync(n => [String(n), String(n)]),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
   expectTypeOf(
     flatMapAsync(n => [String(n), String(n)], asAsync([1, 2, 3])),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -291,7 +287,7 @@ test.skip(`flatMapAsync types are correct`, () => {
         [n, n],
       ]),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
   expectTypeOf(
     flatMapAsync(
       n => [
@@ -300,20 +296,20 @@ test.skip(`flatMapAsync types are correct`, () => {
       ],
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       flatMapAsync(n => Promise.resolve([String(n), String(n)])),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
   expectTypeOf(
     flatMapAsync(
       n => Promise.resolve([String(n), String(n)]),
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -325,7 +321,7 @@ test.skip(`flatMapAsync types are correct`, () => {
         ]),
       ),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
   expectTypeOf(
     flatMapAsync(
       n =>
@@ -335,17 +331,17 @@ test.skip(`flatMapAsync types are correct`, () => {
         ]),
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       flatMapAsync(n => asAsync([String(n), String(n)])),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
   expectTypeOf(
     flatMapAsync(n => asAsync([String(n), String(n)]), asAsync([1, 2, 3])),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -357,7 +353,7 @@ test.skip(`flatMapAsync types are correct`, () => {
         ]),
       ),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
   expectTypeOf(
     flatMapAsync(
       n =>
@@ -367,20 +363,20 @@ test.skip(`flatMapAsync types are correct`, () => {
         ]),
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       flatMapAsync(n => Promise.resolve(asAsync([String(n), String(n)]))),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
   expectTypeOf(
     flatMapAsync(
       n => Promise.resolve(asAsync([String(n), String(n)])),
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<string>>()
+  ).toExtend<AsyncIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -394,7 +390,7 @@ test.skip(`flatMapAsync types are correct`, () => {
         ),
       ),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
   expectTypeOf(
     flatMapAsync(
       n =>
@@ -406,7 +402,7 @@ test.skip(`flatMapAsync types are correct`, () => {
         ),
       asAsync([1, 2, 3]),
     ),
-  ).toMatchTypeOf<AsyncIterable<[number, number]>>()
+  ).toExtend<AsyncIterable<[number, number]>>()
 })
 
 test.prop([
@@ -478,10 +474,10 @@ test.skip(`flatMapConcur types are correct`, () => {
       asConcur([1, 2, 3]),
       flatMapConcur(n => [String(n), String(n)]),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(n => [String(n), String(n)], asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -491,7 +487,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         [n, n],
       ]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n => [
@@ -500,20 +496,20 @@ test.skip(`flatMapConcur types are correct`, () => {
       ],
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       flatMapConcur(n => Promise.resolve([String(n), String(n)])),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(
       n => Promise.resolve([String(n), String(n)]),
       asConcur([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -525,7 +521,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       ),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n =>
@@ -535,17 +531,17 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       flatMapConcur(n => asAsync([String(n), String(n)])),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(n => asAsync([String(n), String(n)]), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -557,7 +553,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       ),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n =>
@@ -567,20 +563,20 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       flatMapConcur(n => Promise.resolve(asAsync([String(n), String(n)]))),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(
       n => Promise.resolve(asAsync([String(n), String(n)])),
       asConcur([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -594,7 +590,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ),
       ),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n =>
@@ -606,17 +602,17 @@ test.skip(`flatMapConcur types are correct`, () => {
         ),
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       flatMapConcur(n => asConcur([String(n), String(n)])),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(n => asConcur([String(n), String(n)]), asConcur([1, 2, 3])),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -628,7 +624,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       ),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n =>
@@ -638,20 +634,20 @@ test.skip(`flatMapConcur types are correct`, () => {
         ]),
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       flatMapConcur(n => Promise.resolve(asConcur([String(n), String(n)]))),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
   expectTypeOf(
     flatMapConcur(
       n => Promise.resolve(asConcur([String(n), String(n)])),
       asConcur([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<string>>()
+  ).toExtend<ConcurIterable<string>>()
 
   expectTypeOf(
     pipe(
@@ -665,7 +661,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ),
       ),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
   expectTypeOf(
     flatMapConcur(
       n =>
@@ -677,7 +673,7 @@ test.skip(`flatMapConcur types are correct`, () => {
         ),
       asConcur<number>([1, 2, 3]),
     ),
-  ).toMatchTypeOf<ConcurIterable<[number, number]>>()
+  ).toExtend<ConcurIterable<[number, number]>>()
 })
 
 test.prop([
@@ -721,7 +717,7 @@ test.skip(`flatten types are correct`, () => {
       [1, 2],
       [4, 5],
     ] as Iterable<number>[]),
-  ).toMatchTypeOf<Iterable<number>>()
+  ).toExtend<Iterable<number>>()
 })
 
 test.prop([getIterableArb(iterableArb)])(
@@ -747,7 +743,7 @@ test.prop([getIterableArb(iterableArb)])(
 test.skip(`flattenAsync types are correct`, () => {
   expectTypeOf(
     flattenAsync(asAsync([asAsync([1, 2, 3]), [1, 2], [4, 5]])),
-  ).toMatchTypeOf<AsyncIterable<number>>()
+  ).toExtend<AsyncIterable<number>>()
 })
 
 test.prop([getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))])(
@@ -777,7 +773,7 @@ test.prop([getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))])(
 test.skip(`flattenConcur types are correct`, () => {
   expectTypeOf(
     flattenConcur(asConcur([asAsync([1, 2, 3]), asConcur([1, 2]), [4, 5]])),
-  ).toMatchTypeOf<ConcurIterable<number>>()
+  ).toExtend<ConcurIterable<number>>()
 })
 
 test.prop([
@@ -810,7 +806,7 @@ test.prop([
 )
 
 test.skip(`index types are correct`, () => {
-  expectTypeOf(pipe([`a`, `b`, `c`], index)).toMatchTypeOf<
+  expectTypeOf(pipe([`a`, `b`, `c`], index)).toExtend<
     Iterable<[number, string]>
   >()
 })
@@ -833,7 +829,7 @@ test.prop([iterableArb])(
 )
 
 test.skip(`indexAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([`a`, `b`, `c`]), indexAsync)).toMatchTypeOf<
+  expectTypeOf(pipe(asAsync([`a`, `b`, `c`]), indexAsync)).toExtend<
     AsyncIterable<[number, string]>
   >()
 })
@@ -859,7 +855,7 @@ test.prop([asyncIterableArb])(
 )
 
 test.skip(`indexConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([`a`, `b`, `c`]), indexConcur)).toMatchTypeOf<
+  expectTypeOf(pipe(asConcur([`a`, `b`, `c`]), indexConcur)).toExtend<
     ConcurIterable<[number, string]>
   >()
 })

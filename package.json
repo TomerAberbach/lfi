@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/TomerAberbach/lfi/issues"
   },
+  "funding": {
+    "url": "https://github.com/sponsors/TomerAberbach"
+  },
   "license": "Apache-2.0 AND MIT",
   "files": [
     "dist",
@@ -34,51 +37,43 @@
   "type": "module",
   "sideEffects": false,
   "engines": {
-    "node": ">= 18"
+    "node": ">= 22"
   },
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.min.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.min.cjs"
-      }
-    }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
-  "types": "./dist/index.d.ts",
-  "main": "./dist/index.min.cjs",
-  "module": "./dist/index.min.js",
   "scripts": {
-    "format": "tomer format",
-    "lint": "tomer lint",
-    "typecheck": "tomer typecheck",
-    "test": "tomer test",
-    "build": "tomer build",
-    "clean": "tomer clean dist",
-    "prepublishOnly": "tomer build"
+    "format": "prettier --cache --write .",
+    "lint": "eslint --cache --cache-location node_modules/.cache/eslint/ --fix .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "bench": "vitest bench",
+    "build": "tsdown",
+    "prepublishOnly": "pnpm build"
   },
-  "prettier": "tomer/prettier",
-  "terser": {
-    "mangle": {
-      "properties": {
-        "regex": "^_[^_]+"
-      }
-    }
-  },
+  "prettier": "@tomer/prettier-config",
   "devDependencies": {
-    "@fast-check/vitest": "^0.1.4",
-    "@vitest/coverage-v8": "^2.1.6",
+    "@fast-check/vitest": "^0.2.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@tomer/eslint-config": "^4.1.1",
+    "@tomer/prettier-config": "^2.1.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "betterator": "^2.0.2",
-    "eslint": "~9.15.0",
-    "prettier": "^3.4.1",
-    "prettier-plugin-tailwindcss": "^0.6.9",
+    "eslint": "~9.32.0",
+    "jest-extended": "^6.0.0",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.6.2",
+    "publint": "^0.3.12",
+    "rollup-plugin-tree-shakeable": "^1.0.3",
     "svkc": "^1.0.0",
-    "tomer": "^6.1.0",
-    "typedoc": "^0.27.1",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.6"
+    "tsdown": "^0.13.2",
+    "typedoc": "^0.28.8",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   }
 }

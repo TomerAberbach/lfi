@@ -1,11 +1,5 @@
 {
-  "extends": "tomer/tsconfig",
+  "extends": ["./shared-tsconfig.json"],
   "include": ["**/*"],
-  "exclude": ["website"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["src/*"]
-    }
-  }
+  "exclude": ["website"]
 }

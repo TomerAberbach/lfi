@@ -4,12 +4,12 @@ import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
-import withElapsed from 'test/helpers/with-elapsed.js'
-import delay from 'test/helpers/delay.js'
-import { fnArb } from 'test/helpers/fast-check/fns.js'
-import autoAdvance from 'test/helpers/auto-advance.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
+import withElapsed from '../../test/with-elapsed.ts'
+import delay from '../../test/delay.ts'
+import { fnArb } from '../../test/fast-check/fns.ts'
+import autoAdvance from '../../test/auto-advance.ts'
 import {
   asAsync,
   asConcur,
@@ -26,8 +26,8 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '~/index.js'
-import type { ConcurIterable } from '~/index.js'
+} from '../index.js'
+import type { ConcurIterable } from '../index.js'
 
 const fnAndArgsArb = fc
   .tuple(
@@ -50,10 +50,10 @@ test.skip(`curry types are correct`, () => {
   const fn = (a: number, b: string, c: boolean): string => `${a}${b}${c}`
   const curriedFn = curry(fn)
 
-  expectTypeOf(curriedFn(1)(``)(true)).toMatchTypeOf<string>()
-  expectTypeOf(curriedFn(1, ``)(true)).toMatchTypeOf<string>()
-  expectTypeOf(curriedFn(1, ``, true)).toMatchTypeOf<string>()
-  expectTypeOf(curriedFn(1)(``, true)).toMatchTypeOf<string>()
+  expectTypeOf(curriedFn(1)(``)(true)).toExtend<string>()
+  expectTypeOf(curriedFn(1, ``)(true)).toExtend<string>()
+  expectTypeOf(curriedFn(1, ``, true)).toExtend<string>()
+  expectTypeOf(curriedFn(1)(``, true)).toExtend<string>()
 })
 
 test.prop([fnAndArgsArb])(
@@ -149,9 +149,9 @@ test.prop([
 )
 
 test.skip(`pipe types are correct`, () => {
-  expectTypeOf(pipe(2)).toMatchTypeOf<number>()
-  expectTypeOf(pipe(2, String)).toMatchTypeOf<string>()
-  expectTypeOf(pipe(2, String, Boolean)).toMatchTypeOf<boolean>()
+  expectTypeOf(pipe(2)).toExtend<number>()
+  expectTypeOf(pipe(2, String)).toExtend<string>()
+  expectTypeOf(pipe(2, String, Boolean)).toExtend<boolean>()
 })
 
 test.prop([fc.anything()])(
@@ -175,8 +175,8 @@ test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
 )
 
 test.skip(`compose types are correct`, () => {
-  expectTypeOf(compose(String)).toMatchTypeOf<(a: any) => string>()
-  expectTypeOf(compose(String, Boolean)).toMatchTypeOf<(a: any) => boolean>()
+  expectTypeOf(compose(String)).toExtend<(a: any) => string>()
+  expectTypeOf(compose(String, Boolean)).toExtend<(a: any) => boolean>()
 })
 
 test.prop([fc.anything()])(
@@ -205,14 +205,14 @@ test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
 )
 
 test.skip(`asAsync types are correct`, () => {
-  expectTypeOf(asAsync([1, 2, 3])).toMatchTypeOf<AsyncIterable<number>>()
-  expectTypeOf(asAsync([1, 2, 3] as Iterable<number>)).toMatchTypeOf<
+  expectTypeOf(asAsync([1, 2, 3])).toExtend<AsyncIterable<number>>()
+  expectTypeOf(asAsync([1, 2, 3] as Iterable<number>)).toExtend<
     AsyncIterable<number>
   >()
-  expectTypeOf(asAsync(asAsync([`a`, `b`, `c`]))).toMatchTypeOf<
+  expectTypeOf(asAsync(asAsync([`a`, `b`, `c`]))).toExtend<
     AsyncIterable<string>
   >()
-  expectTypeOf(asAsync(asConcur([`a`, `b`, `c`]))).toMatchTypeOf<
+  expectTypeOf(asAsync(asConcur([`a`, `b`, `c`]))).toExtend<
     AsyncIterable<string>
   >()
 })
@@ -277,14 +277,14 @@ test(
 )
 
 test.skip(`asConcur types are correct`, () => {
-  expectTypeOf(asConcur([1, 2, 3])).toMatchTypeOf<ConcurIterable<number>>()
-  expectTypeOf(asConcur([1, 2, 3] as Iterable<number>)).toMatchTypeOf<
+  expectTypeOf(asConcur([1, 2, 3])).toExtend<ConcurIterable<number>>()
+  expectTypeOf(asConcur([1, 2, 3] as Iterable<number>)).toExtend<
     ConcurIterable<number>
   >()
-  expectTypeOf(asConcur(asAsync([`a`, `b`, `c`]))).toMatchTypeOf<
+  expectTypeOf(asConcur(asAsync([`a`, `b`, `c`]))).toExtend<
     ConcurIterable<string>
   >()
-  expectTypeOf(asConcur(asConcur([`a`, `b`, `c`]))).toMatchTypeOf<
+  expectTypeOf(asConcur(asConcur([`a`, `b`, `c`]))).toExtend<
     ConcurIterable<string>
   >()
 })
@@ -321,9 +321,9 @@ test.prop([fc.oneof(asyncIterableArb, concurIterableArb)])(
 )
 
 test.skip(`empty types are correct`, () => {
-  expectTypeOf(empty).toMatchTypeOf<Iterable<any>>()
-  expectTypeOf(empty).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(empty).toMatchTypeOf<Iterable<unknown>>()
+  expectTypeOf(empty).toExtend<Iterable<any>>()
+  expectTypeOf(empty).toExtend<Iterable<number>>()
+  expectTypeOf(empty).toExtend<Iterable<unknown>>()
 })
 
 test(`the empty iterable is empty`, () => {
@@ -331,9 +331,9 @@ test(`the empty iterable is empty`, () => {
 })
 
 test.skip(`emptyAsync types are correct`, () => {
-  expectTypeOf(emptyAsync).toMatchTypeOf<AsyncIterable<any>>()
-  expectTypeOf(emptyAsync).toMatchTypeOf<AsyncIterable<number>>()
-  expectTypeOf(emptyAsync).toMatchTypeOf<AsyncIterable<unknown>>()
+  expectTypeOf(emptyAsync).toExtend<AsyncIterable<any>>()
+  expectTypeOf(emptyAsync).toExtend<AsyncIterable<number>>()
+  expectTypeOf(emptyAsync).toExtend<AsyncIterable<unknown>>()
 })
 
 test(
@@ -344,9 +344,9 @@ test(
 )
 
 test.skip(`emptyConcur types are correct`, () => {
-  expectTypeOf(emptyConcur).toMatchTypeOf<ConcurIterable<any>>()
-  expectTypeOf(emptyConcur).toMatchTypeOf<ConcurIterable<number>>()
-  expectTypeOf(emptyConcur).toMatchTypeOf<ConcurIterable<unknown>>()
+  expectTypeOf(emptyConcur).toExtend<ConcurIterable<any>>()
+  expectTypeOf(emptyConcur).toExtend<ConcurIterable<number>>()
+  expectTypeOf(emptyConcur).toExtend<ConcurIterable<unknown>>()
 })
 
 test(
@@ -357,7 +357,7 @@ test(
 )
 
 test.skip(`opaque types are correct`, () => {
-  expectTypeOf(opaque([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(opaque([1, 2, 3])).toExtend<Iterable<number>>()
 })
 
 test.prop([iterableArb])(`opaque returns a pure iterable`, ({ iterable }) => {
@@ -377,7 +377,7 @@ test.prop([iterableArb])(
 )
 
 test.skip(`opaqueAsync types are correct`, () => {
-  expectTypeOf(opaqueAsync(asAsync([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(opaqueAsync(asAsync([1, 2, 3]))).toExtend<
     AsyncIterable<number>
   >()
 })
@@ -404,7 +404,7 @@ test.prop([asyncIterableArb])(
 )
 
 test.skip(`opaqueConcur types are correct`, () => {
-  expectTypeOf(opaqueConcur(asConcur([1, 2, 3]))).toMatchTypeOf<
+  expectTypeOf(opaqueConcur(asConcur([1, 2, 3]))).toExtend<
     ConcurIterable<number>
   >()
 })

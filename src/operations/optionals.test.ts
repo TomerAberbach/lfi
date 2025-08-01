@@ -1,6 +1,6 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { asyncFnArb, fnArb } from 'test/helpers/fast-check/fns.js'
+import { asyncFnArb, fnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,
   getAsyncIterableArb,
@@ -9,8 +9,8 @@ import {
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
 import {
   asAsync,
   asConcur,
@@ -26,7 +26,7 @@ import {
   pipe,
   reduceAsync,
   toArray,
-} from '~/index.js'
+} from '../index.js'
 
 test.skip(`or types are correct`, () => {
   expectTypeOf(
@@ -34,7 +34,7 @@ test.skip(`or types are correct`, () => {
       [1, 2, 3],
       or(() => 2),
     ),
-  ).toMatchTypeOf<number>()
+  ).toExtend<number>()
 })
 
 test.prop([
@@ -67,13 +67,13 @@ test.skip(`orAsync types are correct`, () => {
       asAsync([1, 2, 3]),
       orAsync(() => 2),
     ),
-  ).toMatchTypeOf<Promise<number>>()
+  ).toExtend<Promise<number>>()
   expectTypeOf(
     pipe(
       asAsync([1, 2, 3]),
       orAsync(() => Promise.resolve(2)),
     ),
-  ).toMatchTypeOf<Promise<number>>()
+  ).toExtend<Promise<number>>()
 })
 
 test.prop([
@@ -108,13 +108,13 @@ test.skip(`orConcur types are correct`, () => {
       asConcur([1, 2, 3]),
       orConcur(() => 2),
     ),
-  ).toMatchTypeOf<Promise<number>>()
+  ).toExtend<Promise<number>>()
   expectTypeOf(
     pipe(
       asConcur([1, 2, 3]),
       orConcur(() => Promise.resolve(2)),
     ),
-  ).toMatchTypeOf<Promise<number>>()
+  ).toExtend<Promise<number>>()
 })
 
 test.prop([
@@ -156,7 +156,7 @@ test.prop([
 )
 
 test.skip(`get types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], get)).toMatchTypeOf<number>()
+  expectTypeOf(pipe([1, 2, 3], get)).toExtend<number>()
 })
 
 test.prop([getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })])(
@@ -169,9 +169,7 @@ test.prop([getIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })])(
 )
 
 test.skip(`getAsync types are correct`, () => {
-  expectTypeOf(pipe(asAsync([1, 2, 3]), getAsync)).toMatchTypeOf<
-    Promise<number>
-  >()
+  expectTypeOf(pipe(asAsync([1, 2, 3]), getAsync)).toExtend<Promise<number>>()
 })
 
 test.prop([
@@ -198,9 +196,7 @@ test.prop([getAsyncIterableArb(fc.anything(), { minLength: 1, maxLength: 1 })])(
 )
 
 test.skip(`getConcur types are correct`, () => {
-  expectTypeOf(pipe(asConcur([1, 2, 3]), getConcur)).toMatchTypeOf<
-    Promise<number>
-  >()
+  expectTypeOf(pipe(asConcur([1, 2, 3]), getConcur)).toExtend<Promise<number>>()
 })
 
 test.prop([
@@ -230,8 +226,8 @@ test.prop([
 
 test.skip(`next types are correct`, () => {
   const array = next([1, 2])
-  expectTypeOf(array[0]).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(array[1]).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(array[0]).toExtend<Iterable<number>>()
+  expectTypeOf(array[1]).toExtend<Iterable<number>>()
 })
 
 test.prop([iterableArb])(
@@ -267,8 +263,8 @@ test.prop([nonEmptyIterableArb])(
 
 test.skip(`nextAsync types are correct`, async () => {
   const array = await nextAsync(asAsync([1, 2]))
-  expectTypeOf(array[0]).toMatchTypeOf<AsyncIterable<number>>()
-  expectTypeOf(array[1]).toMatchTypeOf<AsyncIterable<number>>()
+  expectTypeOf(array[0]).toExtend<AsyncIterable<number>>()
+  expectTypeOf(array[1]).toExtend<AsyncIterable<number>>()
 })
 
 test.prop([asyncIterableArb])(

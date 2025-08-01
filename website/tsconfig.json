@@ -1,5 +1,5 @@
 {
-  "extends": ["tomer/tsconfig", "@docusaurus/tsconfig"],
+  "extends": ["../shared-tsconfig.json", "@docusaurus/tsconfig"],
   "include": ["**/*"],
   "compilerOptions": {
     "baseUrl": "."

@@ -1,19 +1,19 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import autoAdvance from 'test/helpers/auto-advance.js'
-import delay from 'test/helpers/delay.js'
-import { fnArb } from 'test/helpers/fast-check/fns.js'
+import autoAdvance from '../../test/auto-advance.ts'
+import delay from '../../test/delay.ts'
+import { fnArb } from '../../test/fast-check/fns.ts'
 import {
   nonIntegerDoubleArb,
   nonPositiveIntegerArb,
-} from 'test/helpers/fast-check/numbers.js'
+} from '../../test/fast-check/numbers.ts'
 import {
   asyncIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
+} from '../../test/fast-check/iterables.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
 import {
   asAsync,
   cycle,
@@ -31,7 +31,7 @@ import {
   takeAsync,
   toArray,
   values,
-} from '~/index.js'
+} from '../index.js'
 
 const objectArb = fc.dictionary(fc.string(), fc.anything())
 const mapArb = fc
@@ -41,10 +41,10 @@ const setArb = fc.array(fc.anything()).map(values => new Set(values))
 
 test.skip(`keys types are correct`, () => {
   const numberKeyObject: Record<number, number> = { 1: 2, 2: 3 }
-  expectTypeOf([...keys(numberKeyObject)]).toMatchTypeOf<number[]>()
+  expectTypeOf([...keys(numberKeyObject)]).toExtend<number[]>()
 
   const stringKeyObject: Record<string, number> = { a: 2, b: 3 }
-  expectTypeOf([...keys(stringKeyObject)]).toMatchTypeOf<string[]>()
+  expectTypeOf([...keys(stringKeyObject)]).toExtend<string[]>()
 
   expectTypeOf([
     ...keys(
@@ -53,7 +53,7 @@ test.skip(`keys types are correct`, () => {
         [3, 4],
       ]),
     ),
-  ]).toMatchTypeOf<number[]>()
+  ]).toExtend<number[]>()
 })
 
 test.prop([objectArb])(`keys returns a pure iterable for an object`, object => {
@@ -88,7 +88,7 @@ test.prop([mapArb])(
 
 test.skip(`values types are correct`, () => {
   const object: Record<string, number> = { a: 2, b: 3 }
-  expectTypeOf([...values(object)]).toMatchTypeOf<number[]>()
+  expectTypeOf([...values(object)]).toExtend<number[]>()
 
   expectTypeOf([
     ...values(
@@ -97,8 +97,8 @@ test.skip(`values types are correct`, () => {
         [`b`, 4],
       ]),
     ),
-  ]).toMatchTypeOf<number[]>()
-  expectTypeOf([...values(new Set([1, 2]))]).toMatchTypeOf<number[]>()
+  ]).toExtend<number[]>()
+  expectTypeOf([...values(new Set([1, 2]))]).toExtend<number[]>()
 })
 
 test.prop([objectArb])(
@@ -139,14 +139,10 @@ test.prop([fc.oneof(mapArb, setArb)])(
 
 test.skip(`entries types are correct`, () => {
   const numberKeyObject: Record<number, number> = { 1: 2, 2: 3 }
-  expectTypeOf([...entries(numberKeyObject)]).toMatchTypeOf<
-    [number, number][]
-  >()
+  expectTypeOf([...entries(numberKeyObject)]).toExtend<[number, number][]>()
 
   const stringKeyObject: Record<string, number> = { a: 2, b: 3 }
-  expectTypeOf([...entries(stringKeyObject)]).toMatchTypeOf<
-    [string, number][]
-  >()
+  expectTypeOf([...entries(stringKeyObject)]).toExtend<[string, number][]>()
 
   expectTypeOf([
     ...entries(
@@ -155,7 +151,7 @@ test.skip(`entries types are correct`, () => {
         [3, 4],
       ]),
     ),
-  ]).toMatchTypeOf<[number, number][]>()
+  ]).toExtend<[number, number][]>()
 })
 
 test.prop([objectArb])(
@@ -192,7 +188,7 @@ test.prop([mapArb])(
 )
 
 test.skip(`generate types are correct`, () => {
-  expectTypeOf(generate(a => a + 1, 0)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(generate(a => a + 1, 0)).toExtend<Iterable<number>>()
 })
 
 test.prop([fnArb, fc.anything()])(
@@ -211,10 +207,8 @@ test(`generate concrete example`, () => {
 })
 
 test.skip(`generateAsync types are correct`, () => {
-  expectTypeOf(generateAsync(a => a + 1, 0)).toMatchTypeOf<
-    AsyncIterable<number>
-  >()
-  expectTypeOf(generateAsync(a => Promise.resolve(a + 1), 0)).toMatchTypeOf<
+  expectTypeOf(generateAsync(a => a + 1, 0)).toExtend<AsyncIterable<number>>()
+  expectTypeOf(generateAsync(a => Promise.resolve(a + 1), 0)).toExtend<
     AsyncIterable<number>
   >()
 })
@@ -243,7 +237,7 @@ test(
 )
 
 test.skip(`repeat types are correct`, () => {
-  expectTypeOf(repeat(2)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(repeat(2)).toExtend<Iterable<number>>()
 })
 
 test.prop([fc.anything()])(`repeat returns a pure iterable`, value => {
@@ -270,7 +264,7 @@ test(`repeat concrete example`, () => {
 })
 
 test.skip(`cycle types are correct`, () => {
-  expectTypeOf(cycle([1, 2, 3])).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(cycle([1, 2, 3])).toExtend<Iterable<number>>()
 })
 
 test.prop([iterableArb])(`cycle returns an iterable`, ({ iterable }) => {
@@ -321,9 +315,7 @@ test(`cycle concrete example`, () => {
 })
 
 test.skip(`cycleAsync types are correct`, () => {
-  expectTypeOf(cycleAsync(asAsync([1, 2, 3]))).toMatchTypeOf<
-    AsyncIterable<number>
-  >()
+  expectTypeOf(cycleAsync(asAsync([1, 2, 3]))).toExtend<AsyncIterable<number>>()
 })
 
 test.prop([asyncIterableArb])(
@@ -392,8 +384,8 @@ const descendingIntervalArb = fc
   .map(([a, b]): [number, number] => (a > b ? [a, b] : [b, a]))
 
 test.skip(`rangeUntil types are correct`, () => {
-  expectTypeOf(rangeUntil(0, 5)).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(rangeUntil(0, 5).step(2)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(rangeUntil(0, 5)).toExtend<Iterable<number>>()
+  expectTypeOf(rangeUntil(0, 5).step(2)).toExtend<Iterable<number>>()
 
   // @ts-expect-error Non-integer literals.
   rangeUntil(0.2, 5)
@@ -406,8 +398,8 @@ test.skip(`rangeUntil types are correct`, () => {
 
   const decimal = 2.4 as number
 
-  expectTypeOf(rangeUntil(0, decimal)).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(rangeUntil(decimal, 5)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(rangeUntil(0, decimal)).toExtend<Iterable<number>>()
+  expectTypeOf(rangeUntil(decimal, 5)).toExtend<Iterable<number>>()
 })
 
 test.prop([reasonableIntegerArb, reasonableIntegerArb])(
@@ -523,8 +515,8 @@ test.prop([descendingIntervalArb, stepIntegerArb])(
 )
 
 test.skip(`rangeTo types are correct`, () => {
-  expectTypeOf(rangeTo(0, 5)).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(rangeTo(0, 5).step(2)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(rangeTo(0, 5)).toExtend<Iterable<number>>()
+  expectTypeOf(rangeTo(0, 5).step(2)).toExtend<Iterable<number>>()
 
   // @ts-expect-error Non-integer literals.
   rangeTo(0.2, 5)
@@ -537,8 +529,8 @@ test.skip(`rangeTo types are correct`, () => {
 
   const decimal = 2.4 as number
 
-  expectTypeOf(rangeTo(0, decimal)).toMatchTypeOf<Iterable<number>>()
-  expectTypeOf(rangeTo(decimal, 5)).toMatchTypeOf<Iterable<number>>()
+  expectTypeOf(rangeTo(0, decimal)).toExtend<Iterable<number>>()
+  expectTypeOf(rangeTo(decimal, 5)).toExtend<Iterable<number>>()
 })
 
 test.prop([reasonableIntegerArb, reasonableIntegerArb])(

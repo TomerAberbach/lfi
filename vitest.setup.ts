@@ -1,9 +1,15 @@
-import { fc } from '@fast-check/vitest'
-import { expect, vitest } from 'vitest'
-import delay from './helpers/delay.js'
+import { afterEach, beforeEach, expect, vi } from 'vitest'
+import * as matchers from 'jest-extended'
+import delay from './test/delay.ts'
 
-vitest.useFakeTimers()
-fc.configureGlobal({ numRuns: 250 })
+expect.extend(matchers)
+
+beforeEach(() => {
+  vi.useFakeTimers()
+})
+afterEach(() => {
+  vi.useFakeTimers()
+})
 
 expect.extend({
   toBeIterable(received: unknown, { pure = true } = {}) {

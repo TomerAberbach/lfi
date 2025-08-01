@@ -32,11 +32,11 @@ const Playground = () => {
 
   return (
     <>
-      <Heading as='h1' className='text-2xl m-4'>
+      <Heading as='h1' className='m-4 text-2xl'>
         Playground
       </Heading>
-      <div className='flex flex-col lg:flex-row w-full'>
-        <div className='flex flex-col flex-1 lg:w-[60%] h-[700px]'>
+      <div className='flex w-full flex-col lg:flex-row'>
+        <div className='flex h-[700px] flex-1 flex-col lg:w-[60%]'>
           {editorRef.current ? (
             <EditorToolbar
               editor={editorRef.current}
@@ -123,7 +123,7 @@ const EditorToolbar = ({
   const [copiedLink, setCopiedLink] = useState(false)
 
   return (
-    <div className='bg-smores-200 dark:bg-mud-950 w-[calc(100%-1px)] flex px-2 gap-2'>
+    <div className='bg-smores-200 dark:bg-mud-950 flex w-[calc(100%-1px)] gap-2 px-2'>
       <EditorToolbarButton
         onClick={() =>
           sandbox.isRunning ? sandbox.cancel() : sandbox.run?.(editor.code)
@@ -165,7 +165,7 @@ const EditorToolbarButton = (
   <button
     type='button'
     {...props}
-    className='bg-transparent border-none text-[0.9375rem] font-semibold cursor-pointer dark:hover:bg-mud-900 hover:bg-smores-300 py-2.5 h-10'
+    className='dark:hover:bg-mud-900 hover:bg-smores-300 h-10 cursor-pointer border-none bg-transparent py-2.5 text-[0.9375rem] font-semibold'
   />
 )
 
@@ -176,17 +176,17 @@ const EditorConsole = ({
   sandbox: Sandbox
   isRunning: boolean
 }) => (
-  <div className='flex flex-col w-[calc(100%+1.5px)] h-full bg-[#fbf0c6] dark:bg-[#292828] border-l-[1.5px] -translate-x-[1.5px] dark:border-mud-900 border-smores-300 border-r-0 border-y-0 border-solid'>
+  <div className='dark:border-mud-900 border-smores-300 flex h-full w-[calc(100%+1.5px)] -translate-x-[1.5px] flex-col border-y-0 border-l-[1.5px] border-r-0 border-solid bg-[#fbf0c6] dark:bg-[#292828]'>
     <Heading
       as='h2'
-      className='py-2.5 text-[0.9375rem] px-2 dark:bg-mud-950 bg-smores-200 h-10 mb-2 flex items-center gap-2'
+      className='dark:bg-mud-950 bg-smores-200 mb-2 flex h-10 items-center gap-2 px-2 py-2.5 text-[0.9375rem]'
     >
       Output
       {isRunning ? (
         <ClipLoader color='currentColor' size={14} aria-label='Running...' />
       ) : null}
     </Heading>
-    <div className='overflow-y-auto h-[calc(100%-3rem)] flex-grow-0 max-w-full'>
+    <div className='h-[calc(100%-3rem)] max-w-full flex-grow-0 overflow-y-auto'>
       <Console logs={sandbox.logs} />
     </div>
   </div>

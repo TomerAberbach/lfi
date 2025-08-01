@@ -1,19 +1,19 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { sameValueZero } from 'test/helpers/same-value-zero.js'
-import { stringifiableArb } from 'test/helpers/fast-check/anything.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
+import { sameValueZero } from '../../test/same-value-zero.ts'
+import { stringifiableArb } from '../../test/fast-check/anything.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
 import {
   getAsyncIterableArb,
   getConcurIterableArb,
   getIterableArb,
   iterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
+} from '../../test/fast-check/iterables.ts'
 import {
   rawOptionalReducerArb,
   rawReducerArb,
-} from 'test/helpers/fast-check/reducers.js'
+} from '../../test/fast-check/reducers.ts'
 import {
   asAsync,
   asConcur,
@@ -38,26 +38,26 @@ import {
   toSet,
   toWeakMap,
   toWeakSet,
-} from '~/index.js'
+} from '../index.js'
 import type {
   KeyedReducer,
   OptionalReducer,
   RawKeyedReducer,
   Reducer,
-} from '~/index.js'
+} from '../index.js'
 
 test.skip(`toArray types are correct`, () => {
-  expectTypeOf(toArray<string>()).toMatchTypeOf<Reducer<string, string[]>>()
-  expectTypeOf(pipe([1, 2, 3], reduce(toArray()))).toMatchTypeOf<number[]>()
+  expectTypeOf(toArray<string>()).toExtend<Reducer<string, string[]>>()
+  expectTypeOf(pipe([1, 2, 3], reduce(toArray()))).toExtend<number[]>()
 })
 
 test.skip(`toSet types are correct`, () => {
-  expectTypeOf(toSet<string>()).toMatchTypeOf<Reducer<string, Set<string>>>()
-  expectTypeOf(pipe([1, 2, 3], reduce(toSet()))).toMatchTypeOf<Set<number>>()
+  expectTypeOf(toSet<string>()).toExtend<Reducer<string, Set<string>>>()
+  expectTypeOf(pipe([1, 2, 3], reduce(toSet()))).toExtend<Set<number>>()
 })
 
 test.skip(`toWeakSet types are correct`, () => {
-  expectTypeOf(toWeakSet<{ a: string }>()).toMatchTypeOf<
+  expectTypeOf(toWeakSet<{ a: string }>()).toExtend<
     Reducer<{ a: string }, WeakSet<{ a: string }>>
   >()
   expectTypeOf(
@@ -66,7 +66,7 @@ test.skip(`toWeakSet types are correct`, () => {
       map(n => ({ n })),
       reduce(toWeakSet()),
     ),
-  ).toMatchTypeOf<WeakSet<{ n: number }>>()
+  ).toExtend<WeakSet<{ n: number }>>()
 
   // @ts-expect-error WeakSets can't contain primitives.
   toWeakSet<string>()
@@ -89,10 +89,10 @@ test.each(reducerTestCases)(`%s returns a reducer`, (_, getReducer) => {
 })
 
 test.skip(`toObject types are correct`, () => {
-  expectTypeOf(toObject<string, string>()).toMatchTypeOf<
+  expectTypeOf(toObject<string, string>()).toExtend<
     KeyedReducer<string, string, Record<string, string>>
   >()
-  expectTypeOf(toObject<number, string>()).toMatchTypeOf<
+  expectTypeOf(toObject<number, string>()).toExtend<
     KeyedReducer<number, string, Record<number, string>>
   >()
   expectTypeOf(
@@ -101,14 +101,14 @@ test.skip(`toObject types are correct`, () => {
       map(n => [String(n), n] as const),
       reduce(toObject()),
     ),
-  ).toMatchTypeOf<Record<string, number>>()
+  ).toExtend<Record<string, number>>()
 
   // @ts-expect-error Objects can only have string, symbol, and number keys.
   toObject<object, string>()
 })
 
 test.skip(`toMap types are correct`, () => {
-  expectTypeOf(toMap<{ a: string }, string>()).toMatchTypeOf<
+  expectTypeOf(toMap<{ a: string }, string>()).toExtend<
     KeyedReducer<{ a: string }, string, Map<{ a: string }, string>>
   >()
   expectTypeOf(
@@ -117,11 +117,11 @@ test.skip(`toMap types are correct`, () => {
       map(n => [String(n), n] as const),
       reduce(toMap()),
     ),
-  ).toMatchTypeOf<Map<string, number>>()
+  ).toExtend<Map<string, number>>()
 })
 
 test.skip(`toWeakMap types are correct`, () => {
-  expectTypeOf(toWeakMap<{ a: string }, string>()).toMatchTypeOf<
+  expectTypeOf(toWeakMap<{ a: string }, string>()).toExtend<
     KeyedReducer<{ a: string }, string, WeakMap<{ a: string }, string>>
   >()
   expectTypeOf(
@@ -130,7 +130,7 @@ test.skip(`toWeakMap types are correct`, () => {
       map(n => [{ n }, n] as const),
       reduce(toWeakMap()),
     ),
-  ).toMatchTypeOf<WeakMap<{ n: number }, number>>()
+  ).toExtend<WeakMap<{ n: number }, number>>()
 
   // @ts-expect-error WeakMaps can't have primitive keys.
   toWeakMap<string, string>()
@@ -188,10 +188,10 @@ test.each(groupedReducerTestCases)(
 )
 
 test.skip(`toGrouped types are correct`, () => {
-  expectTypeOf(toGrouped(toArray(), toMap())).toMatchTypeOf<
+  expectTypeOf(toGrouped(toArray(), toMap())).toExtend<
     Reducer<readonly [unknown, unknown], never, Map<unknown, unknown[]>>
   >()
-  expectTypeOf(toGrouped(toArray())(toMap())).toMatchTypeOf<
+  expectTypeOf(toGrouped(toArray())(toMap())).toExtend<
     Reducer<readonly [unknown, unknown], never, Map<unknown, unknown[]>>
   >()
   expectTypeOf(
@@ -200,30 +200,30 @@ test.skip(`toGrouped types are correct`, () => {
       map(n => [n, n] as const),
       reduce(toGrouped(toArray(), toMap())),
     ),
-  ).toMatchTypeOf<Map<number, number[]>>()
+  ).toExtend<Map<number, number[]>>()
   expectTypeOf(
     pipe(
       [1, 2, 3, 4, 5],
       map(n => [String(n), n] as const),
       reduce(toGrouped(toArray(), toObject())),
     ),
-  ).toMatchTypeOf<Record<string, number[]>>()
+  ).toExtend<Record<string, number[]>>()
   expectTypeOf(
     pipe(
       [1, 2, 3, 4, 5],
       map(n => [{ n }, n] as const),
       reduce(toGrouped(toSet(), toWeakMap())),
     ),
-  ).toMatchTypeOf<WeakMap<{ n: number }, Set<number>>>()
+  ).toExtend<WeakMap<{ n: number }, Set<number>>>()
 
   expectTypeOf(
     toGrouped({ create: () => ``, add: (a, b) => `${a}${String(b)}` }, toMap()),
-  ).toMatchTypeOf<
+  ).toExtend<
     Reducer<readonly [unknown, unknown], never, Map<unknown, string>>
   >()
   expectTypeOf(
     toGrouped({ create: () => ``, add: (a, b) => `${a}${String(b)}` })(toMap()),
-  ).toMatchTypeOf<
+  ).toExtend<
     Reducer<readonly [unknown, unknown], never, Map<unknown, string>>
   >()
   expectTypeOf(
@@ -234,12 +234,12 @@ test.skip(`toGrouped types are correct`, () => {
         toGrouped({ create: () => ``, add: (a, b) => `${a}${b}` }, toMap()),
       ),
     ),
-  ).toMatchTypeOf<Map<number, string>>()
+  ).toExtend<Map<number, string>>()
 
-  expectTypeOf(toGrouped(toMax(), toMap())).toMatchTypeOf<
+  expectTypeOf(toGrouped(toMax(), toMap())).toExtend<
     Reducer<readonly [unknown, number], never, Map<unknown, number>>
   >()
-  expectTypeOf(toGrouped(toMax())(toMap())).toMatchTypeOf<
+  expectTypeOf(toGrouped(toMax())(toMap())).toExtend<
     Reducer<readonly [unknown, number], never, Map<unknown, number>>
   >()
   expectTypeOf(
@@ -248,32 +248,26 @@ test.skip(`toGrouped types are correct`, () => {
       map(n => [n, n] as const),
       reduce(toGrouped(toMax(), toMap())),
     ),
-  ).toMatchTypeOf<Map<number, number>>()
+  ).toExtend<Map<number, number>>()
 
   expectTypeOf(
     toGrouped({ add: (a: number, b: number) => a + b }, toMap()),
-  ).toMatchTypeOf<
-    Reducer<readonly [unknown, number], never, Map<unknown, number>>
-  >()
+  ).toExtend<Reducer<readonly [unknown, number], never, Map<unknown, number>>>()
   expectTypeOf(
     toGrouped({ add: (a: number, b: number) => a + b })(toMap()),
-  ).toMatchTypeOf<
-    Reducer<readonly [unknown, number], never, Map<unknown, number>>
-  >()
+  ).toExtend<Reducer<readonly [unknown, number], never, Map<unknown, number>>>()
   expectTypeOf(
     pipe(
       [1, 2, 3, 4, 5],
       map(n => [n, n] as const),
       reduce(toGrouped({ add: (a: number, b: number) => a + b }, toMap())),
     ),
-  ).toMatchTypeOf<Map<number, number>>()
+  ).toExtend<Map<number, number>>()
 
   // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toGrouped((a: number, b: number) => a + b, toMap())
 
-  expectTypeOf(
-    toGrouped((a: number, b: number) => a + b)(toMap()),
-  ).toMatchTypeOf<
+  expectTypeOf(toGrouped((a: number, b: number) => a + b)(toMap())).toExtend<
     Reducer<readonly [unknown, number], never, Map<unknown, number>>
   >()
 })
@@ -343,37 +337,37 @@ test.prop([getIterableArb(fc.tuple(fc.anything(), stringifiableArb))])(
 )
 
 test.skip(`toMultiple types are correct`, () => {
-  expectTypeOf(toMultiple([toSet(), toArray()])).toMatchTypeOf<
+  expectTypeOf(toMultiple([toSet(), toArray()])).toExtend<
     Reducer<unknown, [Set<unknown>, unknown[]]>
   >()
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple([toSet(), toArray()]))),
-  ).toMatchTypeOf<[Set<number>, number[]]>()
+  ).toExtend<[Set<number>, number[]]>()
 
-  expectTypeOf(toMultiple({ set: toSet(), array: toArray() })).toMatchTypeOf<
+  expectTypeOf(toMultiple({ set: toSet(), array: toArray() })).toExtend<
     Reducer<unknown, { set: Set<unknown>; array: unknown[] }>
   >()
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple({ set: toSet(), array: toArray() }))),
-  ).toMatchTypeOf<{ set: Set<number>; array: number[] }>()
+  ).toExtend<{ set: Set<number>; array: number[] }>()
 
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple([toMax(), toSet()])), get),
-  ).toMatchTypeOf<[number, Set<number>]>()
+  ).toExtend<[number, Set<number>]>()
 
   // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toMultiple([toMax(), toSet()])
 
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple({ max: toMax(), set: toSet() })), get),
-  ).toMatchTypeOf<{ max: number; set: Set<number> }>()
+  ).toExtend<{ max: number; set: Set<number> }>()
 
   // @ts-expect-error TODO: Make this typecheck without generic type arguments.
   toMultiple({ max: toMax(), set: toSet() })
 
   expectTypeOf(
     pipe([1, 2, 3], reduce(toMultiple([toSet(), (a, b) => a + b])), get),
-  ).toMatchTypeOf<[Set<number>, number]>()
+  ).toExtend<[Set<number>, number]>()
 
   expectTypeOf(
     pipe(
@@ -381,7 +375,7 @@ test.skip(`toMultiple types are correct`, () => {
       reduce(toMultiple({ set: toSet(), sum: (a, b) => a + b })),
       get,
     ),
-  ).toMatchTypeOf<{ set: Set<number>; sum: number }>()
+  ).toExtend<{ set: Set<number>; sum: number }>()
 })
 
 test.prop([fc.array(rawReducerArb)])(
@@ -562,8 +556,8 @@ test.prop([getIterableArb(fc.tuple(fc.object(), fc.anything()))])(
 )
 
 test.skip(`toJoin types are correct`, () => {
-  expectTypeOf(toJoin(`,`)).toMatchTypeOf<Reducer<unknown, unknown, string>>()
-  expectTypeOf(pipe([1, 2, 3], reduce(toJoin(`,`)))).toMatchTypeOf<string>()
+  expectTypeOf(toJoin(`,`)).toExtend<Reducer<unknown, unknown, string>>()
+  expectTypeOf(pipe([1, 2, 3], reduce(toJoin(`,`)))).toExtend<string>()
 })
 
 test.prop([fc.string()])(`toJoin returns a reducer`, separator => {
@@ -582,7 +576,7 @@ test.prop([fc.string(), getIterableArb(stringifiableArb)])(
 )
 
 test.skip(`join types are correct`, () => {
-  expectTypeOf(pipe([1, 2, 3], join(`,`))).toMatchTypeOf<string>()
+  expectTypeOf(pipe([1, 2, 3], join(`,`))).toExtend<string>()
 })
 
 test.prop([fc.string(), getIterableArb(stringifiableArb)])(
@@ -597,7 +591,7 @@ test.prop([fc.string(), getIterableArb(stringifiableArb)])(
 test.skip(`joinAsync types are correct`, async () => {
   expectTypeOf(
     await pipe(asAsync([1, 2, 3]), joinAsync(`,`)),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.string(), getAsyncIterableArb(stringifiableArb)])(
@@ -612,7 +606,7 @@ test.prop([fc.string(), getAsyncIterableArb(stringifiableArb)])(
 test.skip(`joinConcur types are correct`, async () => {
   expectTypeOf(
     await pipe(asConcur([1, 2, 3]), joinConcur(`,`)),
-  ).toMatchTypeOf<string>()
+  ).toExtend<string>()
 })
 
 test.prop([fc.string(), getConcurIterableArb(stringifiableArb)])(

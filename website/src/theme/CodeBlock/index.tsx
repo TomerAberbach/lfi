@@ -26,13 +26,13 @@ const CodeBlockWrapper = ({
   }
 
   return (
-    <div className='relative group'>
+    <div className='group relative'>
       <CodeBlock {...otherProps}>{children}</CodeBlock>
       {code !== null && (
         <Link
           target='_blank'
           href={`/playground#${toBase64(code)}`}
-          className='dark:bg-mud-800 bg-opacity-40 hover:bg-opacity-100 bg-smores-300 text-smores-950 hover:text-smores-950 dark:text-mud-200 dark:hover:text-mud-200 dark:bg-opacity-20 dark:hover:bg-opacity-100 rounded-lg py-1.5 px-2.5 opacity-0 group-hover:opacity-100 transition ease-in-out duration-500 absolute bottom-3 right-3 text-sm flex flex-row items-center gap-1.5'
+          className='dark:bg-mud-800 bg-smores-300 text-smores-950 hover:text-smores-950 dark:text-mud-200 dark:hover:text-mud-200 absolute bottom-3 right-3 flex flex-row items-center gap-1.5 rounded-lg bg-opacity-40 px-2.5 py-1.5 text-sm opacity-0 transition duration-500 ease-in-out hover:bg-opacity-100 group-hover:opacity-100 dark:bg-opacity-20 dark:hover:bg-opacity-100'
         >
           Playground <ExternalLinkIcon />
         </Link>

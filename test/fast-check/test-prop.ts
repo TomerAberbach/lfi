@@ -2,9 +2,9 @@
 import { SameValueMap } from 'svkc'
 import type { test as testInternal } from 'vitest'
 import { fc, test as fcTestInternal } from '@fast-check/vitest'
-import autoAdvance from '../auto-advance.js'
-import delay from '../delay.js'
-import withElapsed from '../with-elapsed.js'
+import autoAdvance from '../auto-advance.ts'
+import delay from '../delay.ts'
+import withElapsed from '../with-elapsed.ts'
 
 const wrapTestProp =
   (testProp: typeof fcTestInternal.prop) =>

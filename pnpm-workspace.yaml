@@ -1,3 +1,7 @@
 packages:
-  - 'website'
-  - '.'
+  - website
+  - .
+
+onlyBuiltDependencies:
+  - esbuild
+  - unrs-resolver

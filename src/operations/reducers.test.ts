@@ -4,7 +4,7 @@ import {
   asyncAbelianGroupFnArb,
   asyncFnArb,
   fnArb,
-} from 'test/helpers/fast-check/fns.js'
+} from '../../test/fast-check/fns.ts'
 import {
   asyncFunctionReducerArb,
   functionReducerArb,
@@ -20,8 +20,8 @@ import {
   rawOptionalReducerWithoutFinishArb,
   rawReducerWithFinishArb,
   rawReducerWithoutFinishArb,
-} from 'test/helpers/fast-check/reducers.js'
-import { test } from 'test/helpers/fast-check/test-prop.js'
+} from '../../test/fast-check/reducers.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -29,7 +29,7 @@ import {
   getConcurIterableArb,
   iterableArb,
   nonEmptyIterableArb,
-} from 'test/helpers/fast-check/iterables.js'
+} from '../../test/fast-check/iterables.ts'
 import {
   emptyAsync,
   emptyConcur,
@@ -40,7 +40,7 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '~/index.js'
+} from '../index.js'
 
 test.prop([functionReducerArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a function reducer`,

@@ -68,11 +68,7 @@ const config: Config = {
     (): Plugin => ({
       name: `docusaurus-plugin-tailwind`,
       configurePostCss: postcssOptions => {
-        postcssOptions.plugins = [
-          require(`postcss-import`),
-          require(`tailwindcss`),
-          require(`autoprefixer`),
-        ]
+        postcssOptions.plugins = [require(`@tailwindcss/postcss`)]
         return postcssOptions
       },
     }),

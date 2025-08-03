@@ -40,7 +40,7 @@ const Header = () => {
         </Heading>
         <Link
           href='/docs/getting-started'
-          className='bg-smores-700 dark:bg-mud-950 text-smores-50 dark:text-mud-50 hover:text-smores-50 dark:hover:text-smores-50 hover:bg-smores-800 dark:hover:bg-mud-900 rounded-full px-5 py-2 text-lg transition-colors duration-200 hover:no-underline sm:px-6 sm:py-3 sm:text-xl'
+          className='bg-smores-700 dark:bg-mud-950 !text-smores-50 dark:text-mud-50 hover:!text-smores-50 dark:hover:text-smores-50 hover:bg-smores-800 dark:hover:bg-mud-900 rounded-full px-5 py-2 text-lg !transition-colors duration-200 hover:!no-underline sm:px-6 sm:py-3 sm:text-xl'
         >
           Get started
         </Link>
@@ -52,10 +52,7 @@ const Header = () => {
 const Features = () => (
   <section className='flex flex-wrap gap-8 sm:gap-10'>
     {FEATURES.map(({ title, content }, index) => (
-      <div
-        key={index}
-        className='min-w-0 flex-grow basis-[calc((60rem-100%)*999)]'
-      >
+      <div key={index} className='min-w-0 grow basis-[calc((60rem-100%)*999)]'>
         <Heading as='h3'>{title}</Heading>
         {content}
       </div>

@@ -7,11 +7,11 @@ import AutoImport from '@kareemkermad/monaco-auto-import'
 import type { Monaco } from '@monaco-editor/react'
 // @ts-expect-error TypeScript is mad that we're importing a declaration file
 // without `import type`
-import lfiTypeDeclarations from '!!raw-loader!../../../../../dist/index.d.ts'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import gruvboxMaterialLight from './gruvbox-material-light.json'
 import gruvboxMaterialDark from './gruvbox-material-dark.json'
 import formatCode from './format-code.ts'
+import lfiTypeDeclarations from '!!raw-loader!../../../../../dist/index.d.ts'
 import zooTypeDeclarations from '!!raw-loader!./zoo.d.ts'
 
 const Editor = forwardRef<EditorRef, EditorProps>(

@@ -1,40 +1,69 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --color-smores-50: hsl(41, 89%, 96%);
+  --color-smores-100: hsl(42, 86%, 92%);
+  --color-smores-200: hsl(39, 84%, 83%);
+  --color-smores-300: hsl(37, 84%, 72%);
+  --color-smores-400: hsl(33, 83%, 61%);
+  --color-smores-500: hsl(31, 82%, 52%);
+  --color-smores-600: hsl(27, 78%, 48%);
+  --color-smores-700: hsl(24, 77%, 40%);
+  --color-smores-800: hsl(22, 69%, 34%);
+  --color-smores-900: hsl(22, 65%, 28%);
+  --color-smores-950: hsl(20, 70%, 15%);
+
+  --color-mud-50: #f5f5f1;
+  --color-mud-100: #e6e4db;
+  --color-mud-200: #cfcbb9;
+  --color-mud-300: #b4ab90;
+  --color-mud-400: #9e9271;
+  --color-mud-500: #8f8163;
+  --color-mud-600: #7a6b54;
+  --color-mud-700: #665747;
+  --color-mud-800: #55483e;
+  --color-mud-900: #4b4038;
+  --color-mud-950: #2a221e;
+}
 
 :root {
-  --ifm-color-primary-lightest: theme('colors.smores.400');
-  --ifm-color-primary-lighter: theme('colors.smores.500');
-  --ifm-color-primary-light: theme('colors.smores.600');
-  --ifm-color-primary: theme('colors.smores.700');
-  --ifm-color-primary-dark: theme('colors.smores.800');
-  --ifm-color-primary-darker: theme('colors.smores.900');
-  --ifm-color-primary-darkest: theme('colors.smores.950');
+  --ifm-color-primary-lightest: var(--color-smores-400);
+  --ifm-color-primary-lighter: var(--color-smores-500);
+  --ifm-color-primary-light: var(--color-smores-600);
+  --ifm-color-primary: var(--color-smores-700);
+  --ifm-color-primary-dark: var(--color-smores-800);
+  --ifm-color-primary-darker: var(--color-smores-900);
+  --ifm-color-primary-darkest: var(--color-smores-950);
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary-lightest: theme('colors.mud.100');
-  --ifm-color-primary-lighter: theme('colors.mud.200');
-  --ifm-color-primary-light: theme('colors.mud.300');
-  --ifm-color-primary: theme('colors.mud.400');
-  --ifm-color-primary-dark: theme('colors.mud.500');
-  --ifm-color-primary-darker: theme('colors.mud.600');
-  --ifm-color-primary-darkest: theme('colors.mud.700');
+  --ifm-color-primary-lightest: var(--color-mud-100);
+  --ifm-color-primary-lighter: var(--color-mud-200);
+  --ifm-color-primary-light: var(--color-mud-300);
+  --ifm-color-primary: var(--color-mud-400);
+  --ifm-color-primary-dark: var(--color-mud-500);
+  --ifm-color-primary-darker: var(--color-mud-600);
+  --ifm-color-primary-darkest: var(--color-mud-700);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 .footer--dark {
-  --ifm-footer-background-color: theme('colors.smores.200');
+  --ifm-footer-background-color: var(--color-smores-200);
   --ifm-footer-title-color: var(--ifm-heading-color);
   --ifm-footer-color: var(--ifm-font-color-base);
   --ifm-footer-link-color: var(--ifm-color-primary-dark);
 }
 
 [data-theme='dark'] .footer--dark {
-  --ifm-footer-background-color: theme('colors.mud.800');
-  --ifm-footer-link-color: theme('colors.mud.100');
+  --ifm-footer-background-color: var(--color-mud-800);
+  --ifm-footer-link-color: var(--color-mud-100);
 }
 
 .footer__links {

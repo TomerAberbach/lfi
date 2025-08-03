@@ -186,7 +186,7 @@ const EditorConsole = ({
         <ClipLoader color='currentColor' size={14} aria-label='Running...' />
       ) : null}
     </Heading>
-    <div className='h-[calc(100%-3rem)] max-w-full flex-grow-0 overflow-y-auto'>
+    <div className='h-[calc(100%-3rem)] max-w-full grow-0 overflow-y-auto'>
       <Console logs={sandbox.logs} />
     </div>
   </div>

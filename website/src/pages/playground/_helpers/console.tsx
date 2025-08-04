@@ -155,7 +155,7 @@ const formatArgs = (args: unknown[]): string =>
 const LogMessage = ({ message }: { message: Message }) => (
   <div className='flex w-full gap-3 p-2 px-4'>
     {ICONS.get(message.type)}
-    <pre className='m-0 w-full overflow-x-auto bg-transparent p-0 text-sm'>
+    <pre className='!m-0 !w-full !overflow-x-auto !bg-transparent !p-0 !text-sm'>
       {message.text}
     </pre>
   </div>

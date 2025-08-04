@@ -32,7 +32,7 @@ const Playground = () => {
 
   return (
     <>
-      <Heading as='h1' className='m-4 text-2xl'>
+      <Heading as='h1' className='!m-4 !text-2xl'>
         Playground
       </Heading>
       <div className='flex w-full flex-col lg:flex-row'>
@@ -179,7 +179,7 @@ const EditorConsole = ({
   <div className='dark:border-mud-900 border-smores-300 flex h-full w-[calc(100%+1.5px)] -translate-x-[1.5px] flex-col border-y-0 border-l-[1.5px] border-r-0 border-solid bg-[#fbf0c6] dark:bg-[#292828]'>
     <Heading
       as='h2'
-      className='dark:bg-mud-950 bg-smores-200 mb-2 flex h-10 items-center gap-2 px-2 py-2.5 text-[0.9375rem]'
+      className='dark:bg-mud-950 bg-smores-200 mb-2 flex h-10 items-center gap-2 px-2 py-2.5 !text-[0.9375rem]'
     >
       Output
       {isRunning ? (

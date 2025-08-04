@@ -32,7 +32,7 @@ const CodeBlockWrapper = ({
         <Link
           target='_blank'
           href={`/playground#${toBase64(code)}`}
-          className='dark:bg-mud-800 bg-smores-300 text-smores-950 hover:text-smores-950 dark:text-mud-200 dark:hover:text-mud-200 absolute bottom-3 right-3 flex flex-row items-center gap-1.5 rounded-lg bg-opacity-40 px-2.5 py-1.5 text-sm opacity-0 transition duration-500 ease-in-out hover:bg-opacity-100 group-hover:opacity-100 dark:bg-opacity-20 dark:hover:bg-opacity-100'
+          className='dark:!bg-mud-800/20 !bg-smores-300/40 !text-smores-950 hover:!text-smores-950 dark:!text-mud-200 dark:hover:!text-mud-200 hover:!bg-smores-300/100 dark:hover:!bg-mud-800/100 !absolute !bottom-3 !right-3 !flex !flex-row !items-center !gap-1.5 !rounded-lg !px-2.5 !py-1.5 !text-sm !opacity-0 !transition !duration-500 !ease-in-out group-hover:!opacity-100'
         >
           Playground <ExternalLinkIcon />
         </Link>

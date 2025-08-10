@@ -149,9 +149,9 @@ const createSlice = (empty, drop, take) =>
       ? empty
       : pipe(iterable, drop(start), take(end - start))
   })
-export const slice = createSlice(empty, drop, take)
-export const sliceAsync = createSlice(emptyAsync, dropAsync, takeAsync)
-export const sliceConcur = createSlice(emptyConcur, dropConcur, takeConcur)
+export const slice = createSlice(empty(), drop, take)
+export const sliceAsync = createSlice(emptyAsync(), dropAsync, takeAsync)
+export const sliceConcur = createSlice(emptyConcur(), dropConcur, takeConcur)
 
 const createAt = slice =>
   curry((index, iterable) => {

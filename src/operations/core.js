@@ -3,6 +3,7 @@ import {
   createIterable,
   deferred,
   isPromise,
+  thunk,
 } from '../internal/helpers.js'
 import { map } from './transforms.js'
 
@@ -96,9 +97,9 @@ const result = { done: true }
 const iterator = { next: () => result }
 const asyncIterator = { next: () => Promise.resolve(result) }
 
-export const empty = createIterable(() => iterator)
-export const emptyAsync = createAsyncIterable(() => asyncIterator)
-export const emptyConcur = () => Promise.resolve()
+export const empty = thunk(createIterable(() => iterator))
+export const emptyAsync = thunk(createAsyncIterable(() => asyncIterator))
+export const emptyConcur = thunk(() => Promise.resolve())
 
 export const opaque = iterable =>
   createIterable(() => iterable[Symbol.iterator]())

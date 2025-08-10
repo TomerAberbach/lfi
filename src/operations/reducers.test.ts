@@ -257,7 +257,7 @@ test.prop([asyncFunctionReducerArb, asyncIterableArb])(
 test.prop([asyncFunctionReducerArb])(
   `reduceAsync returns an empty async iterable for an async function reducer and empty async iterable`,
   async ({ asyncFunctionReducer }) => {
-    const reduced = reduceAsync(asyncFunctionReducer, emptyAsync)
+    const reduced = reduceAsync(asyncFunctionReducer, emptyAsync())
 
     await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
@@ -292,7 +292,7 @@ test.prop([rawAsyncOptionalReducerWithoutFinishArb, asyncIterableArb])(
 test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   `reduceAsync returns an empty async iterable for an async optional reducer without finish and empty async iterable`,
   async ({ asyncReducer }) => {
-    const reduced = reduceAsync(asyncReducer, emptyAsync)
+    const reduced = reduceAsync(asyncReducer, emptyAsync())
 
     await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
@@ -324,7 +324,7 @@ test.prop([rawAsyncOptionalReducerWithFinishArb, asyncIterableArb])(
 test.prop([rawAsyncOptionalReducerWithFinishArb])(
   `reduceAsync returns an empty async iterable for an async optional reducer with finish and empty async iterable`,
   async ({ asyncReducer }) => {
-    const reduced = reduceAsync(asyncReducer, emptyAsync)
+    const reduced = reduceAsync(asyncReducer, emptyAsync())
 
     await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
   },
@@ -462,7 +462,7 @@ test.prop([asyncFunctionReducerArb, concurIterableArb])(
 test.prop([asyncFunctionReducerArb])(
   `reduceConcur returns an empty concur iterable for an async function reducer and empty concur iterable`,
   async ({ asyncFunctionReducer }) => {
-    const reduced = reduceConcur(asyncFunctionReducer, emptyConcur)
+    const reduced = reduceConcur(asyncFunctionReducer, emptyConcur())
 
     await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },
@@ -497,7 +497,7 @@ test.prop([rawAsyncOptionalReducerWithoutFinishArb, concurIterableArb])(
 test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   `reduceConcur returns an empty concur iterable for an async optional reducer without finish and empty concur iterable`,
   async ({ asyncReducer }) => {
-    const reduced = reduceConcur(asyncReducer, emptyConcur)
+    const reduced = reduceConcur(asyncReducer, emptyConcur())
 
     await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },
@@ -529,7 +529,7 @@ test.prop([rawAsyncOptionalReducerWithFinishArb, concurIterableArb])(
 test.prop([rawAsyncOptionalReducerWithFinishArb])(
   `reduceConcur returns an empty concur iterable for an async optional reducer with finish and empty concur iterable`,
   async ({ asyncReducer }) => {
-    const reduced = reduceConcur(asyncReducer, emptyConcur)
+    const reduced = reduceConcur(asyncReducer, emptyConcur())
 
     await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
   },

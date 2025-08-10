@@ -282,7 +282,7 @@ test.prop([asyncIterableArb])(
 )
 
 test(`nextAsync returns a pair containing two empty async iterables for an empty async iterable`, async () => {
-  const [asyncIterable1, asyncIterable2] = await nextAsync(emptyAsync)
+  const [asyncIterable1, asyncIterable2] = await nextAsync(emptyAsync())
 
   await expect(reduceAsync(toArray(), asyncIterable1)).resolves.toBeEmpty()
   await expect(reduceAsync(toArray(), asyncIterable2)).resolves.toBeEmpty()

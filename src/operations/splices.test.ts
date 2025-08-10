@@ -1007,7 +1007,7 @@ test.prop([asyncIterableArb])(
 test(
   `firstAsync returns an empty async iterable for an empty async iterable`,
   autoAdvance(async () => {
-    const subIterable = firstAsync(emptyAsync)
+    const subIterable = firstAsync(emptyAsync())
 
     await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
   }),
@@ -1040,7 +1040,7 @@ test.prop([concurIterableArb])(
 )
 
 test(`firstConcur returns an empty concur iterable for an empty concur iterable`, async () => {
-  const subIterable = firstConcur(emptyConcur)
+  const subIterable = firstConcur(emptyConcur())
 
   await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
 })
@@ -1099,7 +1099,7 @@ test.prop([asyncIterableArb])(
 test(
   `lastAsync returns an empty async iterable for an empty async iterable`,
   autoAdvance(async () => {
-    const subIterable = lastAsync(emptyAsync)
+    const subIterable = lastAsync(emptyAsync())
 
     await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
   }),
@@ -1134,7 +1134,7 @@ test.prop([concurIterableArb])(
 test(
   `lastConcur returns an empty concur iterable for an empty concur iterable`,
   autoAdvance(async () => {
-    const subIterable = lastConcur(emptyConcur)
+    const subIterable = lastConcur(emptyConcur())
 
     await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
   }),
@@ -1754,7 +1754,7 @@ test.prop([positiveIntegerArb, asyncIterableArb])(
 test.prop([positiveIntegerArb])(
   `chunkAsync returns an empty async iterable for an empty async iterable`,
   async size => {
-    const chunkedIterable = chunkAsync(size, emptyAsync)
+    const chunkedIterable = chunkAsync(size, emptyAsync())
 
     await expect(reduceAsync(toArray(), chunkedIterable)).resolves.toBeEmpty()
   },
@@ -1858,7 +1858,7 @@ test.prop([positiveIntegerArb, concurIterableArb])(
 test.prop([positiveIntegerArb])(
   `chunkConcur returns an empty concur iterable for an empty concur iterable`,
   async size => {
-    const chunkedIterable = chunkConcur(size, emptyConcur)
+    const chunkedIterable = chunkConcur(size, emptyConcur())
 
     await expect(reduceConcur(toArray(), chunkedIterable)).resolves.toBeEmpty()
   },

@@ -182,7 +182,7 @@ test.prop([asyncCompareFnArb, asyncIterableArb])(
 test.prop([asyncCompareFnArb])(
   `minByAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const minimum = minByAsync(asyncFn, emptyAsync)
+    const minimum = minByAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
   },
@@ -229,7 +229,7 @@ test.prop([asyncCompareFnArb, concurIterableArb])(
 test.prop([asyncCompareFnArb])(
   `minByConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const minimum = minByConcur(asyncFn, emptyConcur)
+    const minimum = minByConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
   },
@@ -318,7 +318,7 @@ test.prop([asyncCompareFnArb, asyncIterableArb])(
 test.prop([asyncCompareFnArb])(
   `maxByAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const maximum = maxByAsync(asyncFn, emptyAsync)
+    const maximum = maxByAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
   },
@@ -370,7 +370,7 @@ test.prop([asyncCompareFnArb, concurIterableArb])(
 test.prop([asyncCompareFnArb])(
   `maxByConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const maximum = maxByConcur(asyncFn, emptyConcur)
+    const maximum = maxByConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
   },
@@ -465,7 +465,7 @@ test.prop([asyncCompareFnArb, asyncIterableArb])(
 test.prop([asyncCompareFnArb])(
   `minMaxByAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const minimumMaximum = minMaxByAsync(asyncFn, emptyAsync)
+    const minimumMaximum = minMaxByAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
@@ -517,7 +517,7 @@ test.prop([asyncCompareFnArb, concurIterableArb])(
 test.prop([asyncCompareFnArb])(
   `minMaxByConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const minimumMaximum = minMaxByConcur(asyncFn, emptyConcur)
+    const minimumMaximum = minMaxByConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
@@ -617,7 +617,7 @@ test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `minWithAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const minimum = minWithAsync(asyncFn, emptyAsync)
+    const minimum = minWithAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
   },
@@ -666,7 +666,7 @@ test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `minWithConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const minimum = minWithConcur(asyncFn, emptyConcur)
+    const minimum = minWithConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
   },
@@ -757,7 +757,7 @@ test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `maxWithAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const maximum = maxWithAsync(asyncFn, emptyAsync)
+    const maximum = maxWithAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
   },
@@ -806,7 +806,7 @@ test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `maxWithConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const maximum = maxWithConcur(asyncFn, emptyConcur)
+    const maximum = maxWithConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
   },
@@ -898,7 +898,7 @@ test.prop([getAsyncFnArb(fc.integer()), asyncIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `minMaxWithAsync returns an empty async iterable for an empty async iterable`,
   async ({ asyncFn }) => {
-    const minimumMaximum = minMaxWithAsync(asyncFn, emptyAsync)
+    const minimumMaximum = minMaxWithAsync(asyncFn, emptyAsync())
 
     await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
@@ -950,7 +950,7 @@ test.prop([getAsyncFnArb(fc.integer()), concurIterableArb])(
 test.prop([getAsyncFnArb(fc.integer())])(
   `minMaxWithConcur returns an empty concur iterable for an empty concur iterable`,
   async ({ asyncFn }) => {
-    const minimumMaximum = minMaxWithConcur(asyncFn, emptyConcur)
+    const minimumMaximum = minMaxWithConcur(asyncFn, emptyConcur())
 
     await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
   },
@@ -1017,8 +1017,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 )
 
 test(`minAsync returns an empty async iterable for an empty async iterable`, async () => {
-  // eslint-disable-next-line typescript/no-unsafe-argument
-  const minimum = minAsync(emptyAsync)
+  const minimum = minAsync(emptyAsync())
 
   await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
 })
@@ -1048,7 +1047,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 )
 
 test(`minConcur returns an empty concur iterable for an empty concur iterable`, async () => {
-  const minimum = minConcur(emptyConcur)
+  const minimum = minConcur(emptyConcur())
 
   await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
 })
@@ -1106,8 +1105,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 )
 
 test(`maxAsync returns an empty async iterable for an empty async iterable`, async () => {
-  // eslint-disable-next-line typescript/no-unsafe-argument
-  const maximum = maxAsync(emptyAsync)
+  const maximum = maxAsync(emptyAsync())
 
   await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
 })
@@ -1137,7 +1135,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 )
 
 test(`maxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
-  const maximum = maxConcur(emptyConcur)
+  const maximum = maxConcur(emptyConcur())
 
   await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
 })
@@ -1204,8 +1202,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 )
 
 test(`minMaxAsync returns an empty async iterable for an empty async iterable`, async () => {
-  // eslint-disable-next-line typescript/no-unsafe-argument
-  const minimumMaximum = minMaxAsync(emptyAsync)
+  const minimumMaximum = minMaxAsync(emptyAsync())
 
   await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
 })
@@ -1241,7 +1238,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 )
 
 test(`minMaxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
-  const minimumMaximum = minMaxConcur(emptyConcur)
+  const minimumMaximum = minMaxConcur(emptyConcur())
 
   await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
 })
@@ -1306,8 +1303,7 @@ test.skip(`mean types are correct`, () => {
 })
 
 test(`mean returns NaN for an empty iterable`, () => {
-  // eslint-disable-next-line typescript/no-unsafe-argument
-  const iterableMean = mean(empty)
+  const iterableMean = mean(empty())
 
   expect(iterableMean).toBeNaN()
 })
@@ -1326,8 +1322,7 @@ test.skip(`meanAsync types are correct`, () => {
 })
 
 test(`meanAsync returns NaN for an empty async iterable`, async () => {
-  // eslint-disable-next-line typescript/no-unsafe-argument
-  const mean = await meanAsync(emptyAsync)
+  const mean = await meanAsync(emptyAsync())
 
   expect(mean).toBeNaN()
 })
@@ -1346,7 +1341,7 @@ test.skip(`meanConcur types are correct`, () => {
 })
 
 test(`meanConcur returns NaN for an empty concur iterable`, async () => {
-  const mean = await meanConcur(emptyConcur)
+  const mean = await meanConcur(emptyConcur())
 
   expect(mean).toBeNaN()
 })

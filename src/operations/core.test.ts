@@ -321,38 +321,35 @@ test.prop([fc.oneof(asyncIterableArb, concurIterableArb)])(
 )
 
 test.skip(`empty types are correct`, () => {
-  expectTypeOf(empty).toExtend<Iterable<any>>()
-  expectTypeOf(empty).toExtend<Iterable<number>>()
-  expectTypeOf(empty).toExtend<Iterable<unknown>>()
+  expectTypeOf(empty()).toExtend<Iterable<unknown>>()
+  expectTypeOf(empty<number>()).toExtend<Iterable<number>>()
 })
 
 test(`the empty iterable is empty`, () => {
-  expect([...empty]).toBeEmpty()
+  expect([...empty()]).toBeEmpty()
 })
 
 test.skip(`emptyAsync types are correct`, () => {
-  expectTypeOf(emptyAsync).toExtend<AsyncIterable<any>>()
-  expectTypeOf(emptyAsync).toExtend<AsyncIterable<number>>()
-  expectTypeOf(emptyAsync).toExtend<AsyncIterable<unknown>>()
+  expectTypeOf(emptyAsync()).toExtend<AsyncIterable<unknown>>()
+  expectTypeOf(emptyAsync<number>()).toExtend<AsyncIterable<number>>()
 })
 
 test(
   `the emptyAsync iterable is empty`,
   autoAdvance(async () => {
-    await expect(reduceAsync(toArray(), emptyAsync)).resolves.toBeEmpty()
+    await expect(reduceAsync(toArray(), emptyAsync())).resolves.toBeEmpty()
   }),
 )
 
 test.skip(`emptyConcur types are correct`, () => {
-  expectTypeOf(emptyConcur).toExtend<ConcurIterable<any>>()
-  expectTypeOf(emptyConcur).toExtend<ConcurIterable<number>>()
-  expectTypeOf(emptyConcur).toExtend<ConcurIterable<unknown>>()
+  expectTypeOf(emptyConcur()).toExtend<ConcurIterable<unknown>>()
+  expectTypeOf(emptyConcur<number>()).toExtend<ConcurIterable<number>>()
 })
 
 test(
   `the emptyConcur iterable is empty`,
   autoAdvance(async () => {
-    await expect(reduceConcur(toArray(), emptyConcur)).resolves.toBeEmpty()
+    await expect(reduceConcur(toArray(), emptyConcur())).resolves.toBeEmpty()
   }),
 )
 

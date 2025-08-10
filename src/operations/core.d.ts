@@ -354,14 +354,14 @@ export const asConcur: <Value>(
  * ```js playground
  * import { empty } from 'lfi'
  *
- * console.log([...empty])
+ * console.log([...empty()])
  * //=> []
  * ```
  *
  * @category Core
  * @since v0.0.1
  */
-export const empty: Iterable<any>
+export const empty: <Value = unknown>() => Iterable<Value>
 
 /**
  * An async iterable that contains zero values.
@@ -376,7 +376,7 @@ export const empty: Iterable<any>
  *
  * console.log(
  *   await pipe(
- *     emptyAsync,
+ *     emptyAsync(),
  *     reduceAsync(toArray()),
  *   ),
  * )
@@ -386,7 +386,7 @@ export const empty: Iterable<any>
  * @category Core
  * @since v0.0.1
  */
-export const emptyAsync: AsyncIterable<any>
+export const emptyAsync: <Value = unknown>() => AsyncIterable<Value>
 
 /**
  * A concur iterable that contains zero values.
@@ -401,7 +401,7 @@ export const emptyAsync: AsyncIterable<any>
  *
  * console.log(
  *   await pipe(
- *     emptyConcur,
+ *     emptyConcur(),
  *     reduceConcur(toArray()),
  *   ),
  * )
@@ -411,7 +411,7 @@ export const emptyAsync: AsyncIterable<any>
  * @category Core
  * @since v0.0.2
  */
-export const emptyConcur: ConcurIterable<any>
+export const emptyConcur: <Value = unknown>() => ConcurIterable<Value>
 
 /**
  * Returns an iterable equivalent, but not referentially equal, to `iterable`.

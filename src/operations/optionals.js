@@ -52,7 +52,7 @@ export const next = curry(iterable => {
   const { done, value } = iterator.next()
 
   return done
-    ? [empty, empty]
+    ? [empty(), empty()]
     : [opaque([value]), createIterable(() => iterator)]
 })
 
@@ -61,6 +61,6 @@ export const nextAsync = curry(async asyncIterable => {
   const { done, value } = await asyncIterator.next()
 
   return done
-    ? [emptyAsync, emptyAsync]
+    ? [emptyAsync(), emptyAsync()]
     : [asAsync([value]), createAsyncIterable(() => asyncIterator)]
 })

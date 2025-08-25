@@ -21,9 +21,6 @@ export const deferred = () => {
   }
 }
 
-export const isPromise = value =>
-  Boolean(value && typeof value.then === `function`)
-
 export const curry = fn => {
   if (fn.length <= 1 || curriedFunctions.has(fn)) {
     return fn

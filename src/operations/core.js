@@ -2,10 +2,9 @@ import {
   createAsyncIterable,
   createIterable,
   deferred,
-  isPromise,
   thunk,
 } from '../internal/helpers.js'
-import { map } from './transforms.js'
+import { map, mapAsync } from './transforms.js'
 
 export { curry } from '../internal/helpers.js'
 
@@ -78,19 +77,7 @@ export const asConcur = iterable => {
     }
   }
 
-  return async apply => {
-    const promises = []
-
-    // TODO: Switch to fromAsync once we only support Node v22
-    for await (const value of iterable) {
-      const result = apply(value)
-      if (isPromise(result)) {
-        promises.push(result)
-      }
-    }
-
-    await Promise.all(promises)
-  }
+  return async apply => Array.fromAsync(mapAsync(apply, iterable))
 }
 
 const result = { done: true }

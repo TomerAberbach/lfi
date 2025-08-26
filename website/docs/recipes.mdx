@@ -426,9 +426,10 @@ limiting is needed.
 
 :::
 
-### [`p-map`](https://github.com/sindresorhus/p-map)
+### [`p-map`](https://github.com/sindresorhus/p-map) and [`p-all`](https://github.com/sindresorhus/p-all)
 
-Use [`mapConcur`](/docs/api/variables/mapConcur) instead. For example:
+Use [`mapConcur`](/docs/api/variables/mapConcur) and
+[`reduceConcur`](/docs/api/variables/reduceConcur) instead. For example:
 
 ```js playground
 import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
@@ -508,30 +509,7 @@ console.log(
 //=> not found!
 ```
 
-### [`p-all`](https://github.com/sindresorhus/p-all)
-
-Use [`reduceConcur`](/docs/api/variables/reduceConcur) instead. For example:
-
-```js playground
-import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
-
-const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
-
-console.log(
-  await pipe(
-    asConcur([`sloth`, `lazy`, `sleep`]),
-    mapConcur(async word => {
-      const response = await fetch(`${API_URL}/${word}`)
-      return (await response.json())[0].phonetic
-    }),
-    reduceConcur(toArray()),
-  ),
-)
-// NOTE: This order may change between runs
-//=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
-```
-
-### [`p-race`](https://github.com/sindresorhus/p-race)
+### [`p-race`](https://github.com/sindresorhus/p-race) and [`p-any`](https://github.com/sindresorhus/p-any)
 
 Use [`firstConcur`](/docs/api/variables/firstConcur) instead. For example:
 
@@ -553,4 +531,143 @@ console.log(
 )
 // NOTE: This word may change between runs
 //=> /ˈleɪzi/
+```
+
+To ignore errors like `p-any`, filter them out using
+[`filterMapConcur`](/docs/api/variables/filterMapConcur). For example:
+
+```js playground
+import { asConcur, filterMapConcur, firstConcur, orConcur, pipe } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    filterMapConcur(async word => {
+      try {
+        const response = await fetch(`${API_URL}/${word}`)
+        return (await response.json())[0].phonetic
+      } catch {
+        return null
+      }
+    }),
+    firstConcur,
+    orConcur(() => `not found!`),
+  ),
+)
+// NOTE: This word may change between runs
+//=> /ˈleɪzi/
+```
+
+### [`p-some`](https://github.com/sindresorhus/p-some)
+
+Use [`takeConcur`](/docs/api/variables/firstConcur) instead. For example:
+
+```js playground
+import {
+  asConcur,
+  mapConcur,
+  orConcur,
+  pipe,
+  reduceConcur,
+  takeConcur,
+  toArray,
+} from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    takeConcur(2),
+    reduceConcur(toArray()),
+  ),
+)
+// NOTE: This word may change between runs
+//=> [ '/ˈleɪzi/', '/slɑθ/' ]
+```
+
+To ignore errors like `p-some`, filter them out using
+[`filterMapConcur`](/docs/api/variables/filterMapConcur). For example:
+
+```js playground
+import {
+  asConcur,
+  filterMapConcur,
+  orConcur,
+  pipe,
+  reduceConcur,
+  takeConcur,
+  toArray,
+} from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    filterMapConcur(async word => {
+      try {
+        const response = await fetch(`${API_URL}/${word}`)
+        return (await response.json())[0].phonetic
+      } catch {
+        return null
+      }
+    }),
+    takeConcur(2),
+    reduceConcur(toArray()),
+  ),
+)
+// NOTE: This word may change between runs
+//=> [ '/ˈleɪzi/', '/slɑθ/' ]
+```
+
+### [`p-reduce`](https://github.com/sindresorhus/p-reduce)
+
+Use [`reduceConcur`](/docs/api/variables/reduceConcur) instead. For example:
+
+```js playground
+import { asConcur, mapConcur, orConcur, pipe, reduceConcur } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    // Without an initial value
+    reduceConcur((sentence, word) => `${sentence} and ${word}`),
+    orConcur(() => ``),
+  ),
+)
+// NOTE: This order may change between runs
+//=> /sliːp/ and /ˈleɪzi/ and /slɑθ/
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    // With an initial value
+    reduceConcur({
+      create: () => `words:`,
+      add: (content, word) => `${content}\n- ${word}`,
+    }),
+  ),
+)
+// NOTE: This order may change between runs
+//=> words:
+//=> - /ˈleɪzi/
+//=> - /sliːp/
+//=> - /slɑθ/
 ```

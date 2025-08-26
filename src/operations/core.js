@@ -77,7 +77,9 @@ export const asConcur = iterable => {
     }
   }
 
-  return async apply => Array.fromAsync(mapAsync(apply, iterable))
+  return async apply => {
+    await Array.fromAsync(mapAsync(apply, iterable))
+  }
 }
 
 const result = { done: true }

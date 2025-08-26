@@ -11,15 +11,17 @@ import type { AsyncOptional, ConcurOptional, Optional } from './optionals.js'
  * starting with the first value for which `fn` returns a falsy value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { dropWhile, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
- *     dropWhile(value => value < 5),
+ *     [`sloth`, `lazy`, `active`, `sleep`, `awake`],
+ *     dropWhile(word => word.includes(`l`)),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 5, 6, 7, 8, 'sloth' ]
+ * //=> [ 'active', 'sleep', 'awake' ]
  * ```
  *
  * @category Splices
@@ -33,15 +35,24 @@ export const dropWhile: SubWhile
  * awaitable to a falsy value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, dropWhileAsync, flatMapAsync, map, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
- *     dropWhileAsync(value => value < 5),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     dropWhileAsync(partOfSpeech => partOfSpeech.length === 4),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 5, 6, 7, 8, 'sloth' ]
+ * //=> [ 'adjective', 'verb' ]
  * ```
  *
  * @category Splices
@@ -55,15 +66,25 @@ export const dropWhileAsync: SubWhileAsync
  * awaitable to a falsy value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, dropWhileConcur, flatMapConcur, map, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
- *     dropWhileConcur(value => value < 5),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     dropWhileConcur(partOfSpeech => partOfSpeech.length === 4),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 5, 6, 7, 8, 'sloth' ]
+ * // NOTE: This may change between runs
+ * //=> [ 'adjective', 'verb' ]
  * ```
  *
  * @category Splices
@@ -408,15 +429,24 @@ export const firstAsync: <Value>(
  * an empty concur iterable if `concurIterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, firstConcur, mapConcur, orConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     firstConcur,
- *     reduceConcur(toArray()),
+ *     orConcur(() => `not found!`),
  *   ),
  * )
- * //=> [ 'sloth' ]
+ * // NOTE: This word may change between runs
+ * //=> /ˈleɪzi/
  * ```
  *
  * @category Splices

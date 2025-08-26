@@ -412,3 +412,145 @@ console.log(
 
 </TabItem>
 </Tabs>
+
+## Replacing common packages
+
+:::note
+
+These async replacements are most useful
+[when the async operations are chained](/docs/concepts/concurrent-iterable#how-is-it-different-from-chaining-p-map-p-filter-and-others).
+
+Also, most of these examples can be augmented with
+[`limitConcur`](https://www.npmjs.com/package/limit-concur) if concurrency
+limiting is needed.
+
+:::
+
+### [`p-map`](https://github.com/sindresorhus/p-map)
+
+Use [`mapConcur`](/docs/api/variables/mapConcur) instead. For example:
+
+```js playground
+import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    reduceConcur(toArray()),
+  ),
+)
+// NOTE: This order may change between runs
+//=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
+```
+
+### [`p-filter`](https://github.com/sindresorhus/p-filter)
+
+Use [`filterConcur`](/docs/api/variables/mapConcur) instead. For example:
+
+```js playground
+import { asConcur, filterConcur, pipe, reduceConcur, toArray } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    filterConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      const [{ meanings }] = await response.json()
+      return meanings.some(meaning => meaning.partOfSpeech === `adjective`)
+    }),
+    reduceConcur(toArray()),
+  ),
+)
+//=> [ 'lazy' ]
+```
+
+### [`p-locate`](https://github.com/sindresorhus/p-locate)
+
+Use [`findConcur`](/docs/api/variables/findConcur) instead (or
+[`findAsync`](/docs/api/variables/findAsync) for `preserveOrder: true`). For
+example:
+
+```js playground
+import { asConcur, findConcur, orConcur, pipe } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+const getPartsOfSpeech = async word => {
+  const response = await fetch(`${API_URL}/${word}`)
+  const [{ meanings }] = await response.json()
+  return meanings.map(meaning => meaning.partOfSpeech)
+}
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    findConcur(async word => (await getPartsOfSpeech(word)).includes(`verb`)),
+    orConcur(() => `not found!`),
+  ),
+)
+// NOTE: This word may change between runs
+//=> sloth
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    findConcur(async word => (await getPartsOfSpeech(word)).includes(`adverb`)),
+    orConcur(() => `not found!`),
+  ),
+)
+//=> not found!
+```
+
+### [`p-all`](https://github.com/sindresorhus/p-all)
+
+Use [`reduceConcur`](/docs/api/variables/reduceConcur) instead. For example:
+
+```js playground
+import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    reduceConcur(toArray()),
+  ),
+)
+// NOTE: This order may change between runs
+//=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
+```
+
+### [`p-race`](https://github.com/sindresorhus/p-race)
+
+Use [`firstConcur`](/docs/api/variables/firstConcur) instead. For example:
+
+```js playground
+import { asConcur, firstConcur, mapConcur, orConcur, pipe } from 'lfi'
+
+const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+
+console.log(
+  await pipe(
+    asConcur([`sloth`, `lazy`, `sleep`]),
+    mapConcur(async word => {
+      const response = await fetch(`${API_URL}/${word}`)
+      return (await response.json())[0].phonetic
+    }),
+    firstConcur,
+    orConcur(() => `not found!`),
+  ),
+)
+// NOTE: This word may change between runs
+//=> /ˈleɪzi/
+```

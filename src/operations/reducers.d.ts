@@ -625,23 +625,15 @@ export const normalizeReducer: {
  * Like `Array.prototype.reduce`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
  * console.log(
  *   pipe(
- *     [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
- *     reduce((a, b) => `${a} ${b}`),
- *     get,
+ *     [`sloth`, `more sloth`, `even more sloth`],
+ *     map(string => string.length),
+ *     reduce(toArray()),
  *   ),
  * )
- * //=> Hello Sloth! What an interesting program!
- *
- * console.log(
- *   pipe(
- *     [`Hello`, `Sloth!`, `What`, `an`, `interesting`, `program!`],
- *     reduce({ create: () => ``, add: (a, b) => `${a} ${b}` }),
- *   ),
- * )
- * //=> Hello Sloth! What an interesting program!
+ * //=> [ 5, 10, 15 ]
  * ```
  *
  * @category Reducers
@@ -712,23 +704,22 @@ export const reduce: {
  * Like `Array.prototype.reduce`, but for async iterables.
  *
  * @example
- * ```js
- * console.log(
- *   await pipe(
- *     asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
- *     reduceAsync((a, b) => `${a} ${b}`),
- *     getAsync,
- *   ),
- * )
- * //=> Hello World! What an interesting program!
+ * ```js playground
+ * import { asAsync, mapAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
  * console.log(
- *   await pipe(
- *     asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
- *     reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
+ * await pipe(
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> Hello World! What an interesting program!
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Reducers
@@ -815,23 +806,23 @@ export const reduceAsync: {
  * Like `Array.prototype.reduce`, but for concur iterables.
  *
  * @example
- * ```js
- * console.log(
- *   await pipe(
- *     asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
- *     reduceAsync((a, b) => `${a} ${b}`),
- *     getAsync,
- *   ),
- * )
- * //=> Hello World! What an interesting program!
+ * ```js playground
+ * import { asConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
  * console.log(
  *   await pipe(
- *     asAsync([`Hello`, `World!`, `What`, `an`, `interesting`, `program!`]),
- *     reduceAsync({ create: () => ``, add: (a, b) => `${a} ${b}` }),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> Hello World! What an interesting program!
+ * // NOTE: This order may change between runs
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Reducers

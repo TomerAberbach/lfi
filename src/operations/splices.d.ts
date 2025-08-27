@@ -98,15 +98,17 @@ export const dropWhileConcur: SubWhileConcur
  * value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { pipe, reduce, takeWhile, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [1, 2, 3, 4, 5, 6, 7, 8, `sloth`],
- *     takeWhile(value => value < 5),
+ *     [`sloth`, `lazy`, `active`, `sleep`, `awake`],
+ *     takeWhile(word => word.includes(`l`)),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 4 ]
+ * //=> [ 'sloth', 'lazy' ]
  * ```
  *
  * @category Splices
@@ -120,15 +122,24 @@ export const takeWhile: SubWhile
  * returns a value awaitable to a falsy value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, flatMapAsync, map, pipe, reduceAsync, takeWhileAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
- *     takeWhileAsync(value => value < 5),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     takeWhileAsync(partOfSpeech => partOfSpeech.length === 4),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 4 ]
+ * //=> [ 'noun', 'verb', 'noun', 'verb' ]
  * ```
  *
  * @category Splices
@@ -142,15 +153,25 @@ export const takeWhileAsync: SubWhileAsync
  * returns a value awaitable to a falsy value.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, flatMapConcur, map, pipe, reduceConcur, takeWhileConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([1, 2, 3, 4, 5, 6, 7, 8, `sloth`]),
- *     takeWhileConcur(value => value < 5),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
+ *     takeWhileConcur(partOfSpeech => partOfSpeech.length === 4),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 4 ]
+ * // NOTE: This may change between runs
+ * //=> [ 'noun', 'verb', 'noun', 'verb' ]
  * ```
  *
  * @category Splices
@@ -201,15 +222,17 @@ type SubWhileConcur = {
  * @throws if `count` isn't a non-negative integer.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { drop, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [1, 2, 3, 4, 5, `sloth`],
- *     drop(3),
+ *     [`active`, `awake`, `sloth`, `lazy`, `sleep`],
+ *     drop(2),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 4, 5, 'sloth' ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Splices
@@ -227,15 +250,23 @@ export const drop: Sub
  * @throws if `count` isn't a non-negative integer.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, dropAsync, mapAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([1, 2, 3, 4, 5, `sloth`]),
- *     dropAsync(3),
+ *     asAsync([`active`, `awake`, `sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     dropAsync(2),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 4, 5, 'sloth' ]
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Splices
@@ -253,15 +284,24 @@ export const dropAsync: SubAsync
  * @throws if `count` isn't a non-negative integer.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, dropConcur, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([1, 2, 3, 4, 5, `sloth`]),
- *     dropConcur(3),
+ *     asConcur([`active`, `awake`, `sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
+ *     dropConcur(2),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 4, 5, 'sloth' ]
+ * // NOTE: This may change between runs
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Splices
@@ -279,15 +319,17 @@ export const dropConcur: SubConcur
  * @throws if `count` isn't a non-negative integer.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { pipe, reduce, take, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [1, 2, 3, 4, 5, `sloth`],
+ *     [`sloth`, `lazy`, `sleep`, `active`, `awake`],
  *     take(3),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3 ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Splices
@@ -304,16 +346,23 @@ export const take: Sub
  *
  * @throws if `count` isn't a non-negative integer.
  *
- * @example
- * ```js
+ * ```js playground
+ * import { asAsync, mapAsync, pipe, reduceAsync, takeAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([1, 2, 3, 4, 5, `sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`, `active`, `awake`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     takeAsync(3),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3 ]
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Splices
@@ -330,16 +379,23 @@ export const takeAsync: SubAsync
  *
  * @throws if `count` isn't a non-negative integer.
  *
- * @example
- * ```js
+ * ```js playground
+ * import { asConcur, mapConcur, pipe, reduceConcur, takeConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([1, 2, 3, 4, 5, `sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`, `active`, `awake`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     takeConcur(3),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3 ]
+ * //=> [ '/slɑθ/', '/ˈleɪzi/', '/sliːp/' ]
  * ```
  *
  * @category Splices
@@ -385,15 +441,26 @@ type SubConcur = {
  * iterable if `iterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { first, or, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     first,
- *     reduce(toArray()),
+ *     or(() => `empty`),
  *   ),
  * )
- * //=> [ 'sloth' ]
+ * //=> sloth
+ *
+ * console.log(
+ *   pipe(
+ *     [],
+ *     first,
+ *     or(() => `empty`),
+ *   ),
+ * )
+ * //=> empty
  * ```
  *
  * @category Splices
@@ -406,15 +473,23 @@ export const first: <Value>(iterable: Iterable<Value>) => Optional<Value>
  * an empty async iterable if `asyncIterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, firstAsync, mapAsync, orAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     firstAsync,
- *     reduceAsync(toArray()),
+ *     orAsync(() => `empty`),
  *   ),
  * )
- * //=> [ 'sloth' ]
+ * //=> /slɑθ/
  * ```
  *
  * @category Splices
@@ -442,11 +517,11 @@ export const firstAsync: <Value>(
  *       return (await response.json())[0].phonetic
  *     }),
  *     firstConcur,
- *     orConcur(() => `not found!`),
+ *     orConcur(() => `empty`),
  *   ),
  * )
- * // NOTE: This word may change between runs
- * //=> /ˈleɪzi/
+ * // NOTE: This may change between runs
+ * //=> /slɑθ/
  * ```
  *
  * @category Splices
@@ -461,15 +536,26 @@ export const firstConcur: <Value>(
  * iterable if `iterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { last, or, pipe } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     last,
- *     reduce(toArray()),
+ *     or(() => `empty`),
  *   ),
  * )
- * //=> [ 'even more sloth' ]
+ * //=> sleep
+ *
+ * console.log(
+ *   pipe(
+ *     [],
+ *     last,
+ *     or(() => `empty`),
+ *   ),
+ * )
+ * //=> empty
  * ```
  *
  * @category Splices
@@ -482,15 +568,23 @@ export const last: <Value>(iterable: Iterable<Value>) => Optional<Value>
  * an empty async iterable if `asyncIterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, lastAsync, mapAsync, orAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     lastAsync,
- *     reduceAsync(toArray()),
+ *     orAsync(() => `empty`),
  *   ),
  * )
- * //=> [ 'even more sloth' ]
+ * //=> /sliːp/
  * ```
  *
  * @category Splices
@@ -505,15 +599,24 @@ export const lastAsync: <Value>(
  * an empty concur iterable if `concurIterable` is empty.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, lastConcur, mapConcur, orConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     lastConcur,
- *     reduceConcur(toArray()),
+ *     orConcur(() => `empty`),
  *   ),
  * )
- * //=> [ 'even more sloth' ]
+ * // NOTE: This may change between runs
+ * //=> /sliːp/
  * ```
  *
  * @category Splices

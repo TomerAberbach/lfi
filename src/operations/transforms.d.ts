@@ -8,15 +8,17 @@ import type { ConcurIterable } from './core.js'
  * Like `Array.prototype.map`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { map, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     map(string => string.length),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     map(word => word.length),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 5, 10, 15 ]
+ * //=> [ 5, 4, 5 ]
  * ```
  *
  * @category Transforms
@@ -51,7 +53,7 @@ export const map: {
  * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
  * console.log(
- * await pipe(
+ *   await pipe(
  *     asAsync([`sloth`, `lazy`, `sleep`]),
  *     mapAsync(async word => {
  *       const response = await fetch(`${API_URL}/${word}`)
@@ -140,15 +142,24 @@ export const mapConcur: {
  * Like `Array.prototype.flatMap`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { flatMap, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
- *     flatMap(string => [string, string.length]),
+ *     [`sloth`, `lazy`, `sleep`],
+ *     flatMap(word => [word, `much ${word}`]),
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+ * //=> [
+ * //=>   'sloth',
+ * //=>   'much sloth',
+ * //=>   'lazy',
+ * //=>   'much lazy',
+ * //=>   'sleep',
+ * //=>   'much sleep'
+ * //=> ]
  * ```
  *
  * @category Transforms
@@ -181,15 +192,30 @@ export const flatMap: {
  * Like `Array.prototype.flatMap`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, flatMapAsync, map, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
- *     flatMapAsync(string => [string, string.length]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     flatMapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+ * //=> [
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'adjective',
+ * //=>   'verb'
+ * //=> ]
  * ```
  *
  * @category Transforms
@@ -222,15 +248,31 @@ export const flatMapAsync: {
  * Like `Array.prototype.flatMap`, but for concur iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, flatMapConcur, map, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
- *     flatMapConcur(string => [string, string.length]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     flatMapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 'sloth', 5, 'more sloth', 10, 'even more sloth', 15 ]
+ * // NOTE: This order may change between runs
+ * //=> [
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'adjective',
+ * //=>   'verb'
+ * //=> ]
  * ```
  *
  * @category Transforms
@@ -278,15 +320,17 @@ export const flatMapConcur: {
  * Like `Array.prototype.flat`, but for iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { flatten, pipe, reduce, toArray } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [[1, 2], [3, `sloth`, 5], [6, 7]],
+ *     [[`sloth`, `lazy`], [`sleep`]],
  *     flatten,
  *     reduce(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
+ * //=> [ 'sloth', 'lazy', 'sleep' ]
  * ```
  *
  * @category Transforms
@@ -303,15 +347,31 @@ export const flatten: <Value>(
  * Like `Array.prototype.flat`, but for async iterables.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, flattenAsync, map, mapAsync, pipe, reduceAsync, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([asAsync([1, 2]), [3, `sloth`, 5], asAsync([6, 7])]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     flattenAsync,
  *     reduceAsync(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
+ * //=> [
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'adjective',
+ * //=>   'verb'
+ * //=> ]
  * ```
  *
  * @category Transforms
@@ -327,19 +387,36 @@ export const flattenAsync: <Value>(
  *
  * Like `Array.prototype.flat`, but for concur iterables.
  *
- * Unlike {@link concat} and {@link concatAsync}, this function does not
+ * Unlike {@link flatten} and {@link flattenAsync}, this function does not
  * necessarily iterate over each iterable in sequence.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, flattenConcur, map, mapConcur, pipe, reduceConcur, toArray } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([asConcur([1, 2]), [3, `sloth`, 5], asAsync([6, 7])]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       const [{ meanings }] = await response.json()
+ *       return map(meaning => meaning.partOfSpeech, meanings)
+ *     }),
  *     flattenConcur,
  *     reduceConcur(toArray()),
  *   ),
  * )
- * //=> [ 1, 2, 3, 'sloth', 5, 6, 7 ]
+ * // NOTE: This order may change between runs
+ * //=> [
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'noun',
+ * //=>   'verb',
+ * //=>   'adjective',
+ * //=>   'verb'
+ * //=> ]
  * ```
  *
  * @category Transforms
@@ -357,15 +434,20 @@ export const flattenConcur: <Value>(
  * order followed by the value itself.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { index, join, map, pipe, reduce } from 'lfi'
+ *
  * console.log(
  *   pipe(
- *     [`sloth`, `more sloth`, `even more sloth`],
+ *     [`sloth`, `lazy`, `sleep`],
  *     index,
- *     reduce(toArray()),
+ *     map(([index, word]) => `${index + 1}. ${word}`),
+ *     join(`\n`),
  *   ),
  * )
- * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
+ * //=> 1. sloth
+ * //=> 2. lazy
+ * //=> 3. sleep
  * ```
  *
  * @category Transforms
@@ -381,15 +463,26 @@ export const index: <Value>(
  * the iteration order followed by the value itself.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asAsync, indexAsync, joinAsync, mapAsync, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asAsync([`sloth`, `more sloth`, `even more sloth`]),
+ *     asAsync([`sloth`, `lazy`, `sleep`]),
+ *     mapAsync(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     indexAsync,
- *     reduceAsync(toArray()),
+ *     mapAsync(([index, word]) => `${index + 1}. ${word}`),
+ *     joinAsync(`\n`),
  *   ),
  * )
- * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
+ * //=> 1. /slɑθ/
+ * //=> 2. /ˈleɪzi/
+ * //=> 3. /sliːp/
  * ```
  *
  * @category Transforms
@@ -405,15 +498,27 @@ export const indexAsync: <Value>(
  * in the iteration order followed by the value itself.
  *
  * @example
- * ```js
+ * ```js playground
+ * import { asConcur, indexConcur, joinConcur, mapConcur, pipe } from 'lfi'
+ *
+ * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
+ *
  * console.log(
  *   await pipe(
- *     asConcur([`sloth`, `more sloth`, `even more sloth`]),
+ *     asConcur([`sloth`, `lazy`, `sleep`]),
+ *     mapConcur(async word => {
+ *       const response = await fetch(`${API_URL}/${word}`)
+ *       return (await response.json())[0].phonetic
+ *     }),
  *     indexConcur,
- *     reduceConcur(toArray()),
+ *     mapConcur(([index, word]) => `${index + 1}. ${word}`),
+ *     joinConcur(`\n`),
  *   ),
  * )
- * //=> [ [ 0, 'sloth' ], [ 1, 'more sloth' ], [ 2, 'even more sloth' ] ]
+ * // NOTE: This order may change between runs
+ * //=> 1. /slɑθ/
+ * //=> 2. /ˈleɪzi/
+ * //=> 3. /sliːp/
  * ```
  *
  * @category Transforms

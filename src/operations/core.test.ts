@@ -14,6 +14,7 @@ import {
   asAsync,
   asConcur,
   compose,
+  concurIteratorSymbol,
   consumeConcur,
   curry,
   empty,
@@ -251,15 +252,17 @@ test.prop([concurIterableArb])(
 test(
   `asAsync handles throwing concur iterable`,
   autoAdvance(async () => {
-    const concurIterable: ConcurIterable<number> = async apply => {
-      await delay(1)
-      await apply(1)
+    const concurIterable: ConcurIterable<number> = {
+      [concurIteratorSymbol]: async apply => {
+        await delay(1)
+        await apply(1)
 
-      await delay(1)
-      await apply(2)
+        await delay(1)
+        await apply(2)
 
-      await delay(1)
-      throw new Error(`BOOM!`)
+        await delay(1)
+        throw new Error(`BOOM!`)
+      },
     }
 
     const asyncIterable = asAsync(concurIterable)

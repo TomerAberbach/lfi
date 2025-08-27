@@ -1,4 +1,8 @@
-import { curry, promiseWithEarlyResolve } from '../internal/helpers.js'
+import {
+  concurIteratorSymbol,
+  curry,
+  promiseWithEarlyResolve,
+} from '../internal/helpers.js'
 
 export const all = curry((fn, iterable) => {
   for (const value of iterable) {
@@ -23,7 +27,7 @@ export const allAsync = curry(async (fn, asyncIterable) => {
 export const allConcur = curry((fn, concurIterable) =>
   promiseWithEarlyResolve(async resolve => {
     let resolved = false
-    await concurIterable(async value => {
+    await concurIterable[concurIteratorSymbol](async value => {
       if (!resolved && !(await fn(value)) && !resolved) {
         resolved = true
         resolve(false)
@@ -56,7 +60,7 @@ export const anyAsync = curry(async (fn, asyncIterable) => {
 export const anyConcur = curry((fn, concurIterable) =>
   promiseWithEarlyResolve(async resolve => {
     let resolved = false
-    await concurIterable(async value => {
+    await concurIterable[concurIteratorSymbol](async value => {
       if (!resolved && (await fn(value)) && !resolved) {
         resolved = true
         resolve(true)

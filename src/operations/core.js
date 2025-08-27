@@ -1,12 +1,14 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   deferred,
   thunk,
 } from '../internal/helpers.js'
 import { map, mapAsync } from './transforms.js'
 
-export { curry } from '../internal/helpers.js'
+export { concurIteratorSymbol, curry } from '../internal/helpers.js'
 
 export const pipe = (value, ...fns) => fns.reduce((acc, fn) => fn(acc), value)
 
@@ -29,7 +31,7 @@ export const asAsync = iterable => {
           let nonEmptyBufferDeferred = deferred()
           let deferredError
 
-          iterable(value => {
+          iterable[concurIteratorSymbol](value => {
             buffer.push(value)
             if (nonEmptyBufferDeferred) {
               const currentDeferred = nonEmptyBufferDeferred
@@ -67,19 +69,19 @@ export const asAsync = iterable => {
 }
 
 export const asConcur = iterable => {
-  if (typeof iterable === `function`) {
+  if (iterable[concurIteratorSymbol]) {
     return iterable
   }
 
-  if (iterable[Symbol.iterator]) {
-    return async apply => {
-      await Promise.all(map(apply, iterable))
-    }
-  }
-
-  return async apply => {
-    await Array.fromAsync(mapAsync(apply, iterable))
-  }
+  return createConcurIterable(
+    iterable[Symbol.iterator]
+      ? async apply => {
+          await Promise.all(map(apply, iterable))
+        }
+      : async apply => {
+          await Array.fromAsync(mapAsync(apply, iterable))
+        },
+  )
 }
 
 const result = { done: true }
@@ -88,10 +90,11 @@ const asyncIterator = { next: () => Promise.resolve(result) }
 
 export const empty = thunk(createIterable(() => iterator))
 export const emptyAsync = thunk(createAsyncIterable(() => asyncIterator))
-export const emptyConcur = thunk(() => Promise.resolve())
+export const emptyConcur = thunk(createConcurIterable(() => {}))
 
 export const opaque = iterable =>
   createIterable(() => iterable[Symbol.iterator]())
 export const opaqueAsync = asyncIterable =>
   createAsyncIterable(() => asyncIterable[Symbol.asyncIterator]())
-export const opaqueConcur = concurIterable => apply => concurIterable(apply)
+export const opaqueConcur = concurIterable =>
+  createConcurIterable(apply => concurIterable[concurIteratorSymbol](apply))

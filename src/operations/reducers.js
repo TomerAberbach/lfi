@@ -1,5 +1,7 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   identity,
@@ -87,12 +89,12 @@ export const reduceAsync = curry((asyncReducer, asyncIterable) => {
 export const reduceConcur = curry((asyncReducer, concurIterable) => {
   const { create, add, combine, finish } = normalizeReducer(asyncReducer)
   if (!create) {
-    return async apply => {
+    return createConcurIterable(async apply => {
       const accs = await reduceConcurWithoutCreate(add, finish, concurIterable)
       if (accs.length) {
         await apply(accs[0])
       }
-    }
+    })
   }
   if (!combine) {
     return reduceConcurWithCreateWithoutCombine(
@@ -114,7 +116,7 @@ export const reduceConcur = curry((asyncReducer, concurIterable) => {
 const reduceConcurWithoutCreate = async (add, finish, concurIterable) => {
   const accs = []
 
-  await concurIterable(async acc => {
+  await concurIterable[concurIteratorSymbol](async acc => {
     while (accs.length) {
       acc = await add(acc, accs.pop())
     }
@@ -134,7 +136,7 @@ const reduceConcurWithCreateWithCombine = async (
 ) => {
   const accs = [create()]
 
-  await concurIterable(async value => {
+  await concurIterable[concurIteratorSymbol](async value => {
     let acc = await add(await (accs.length ? accs.pop() : create()), value)
 
     while (accs.length) {
@@ -154,7 +156,7 @@ const reduceConcurWithCreateWithoutCombine = async (
   concurIterable,
 ) => {
   let accPromise = Promise.resolve(create())
-  await concurIterable(value => {
+  await concurIterable[concurIteratorSymbol](value => {
     accPromise = accPromise.then(acc => add(acc, value))
   })
   return finish(await accPromise)

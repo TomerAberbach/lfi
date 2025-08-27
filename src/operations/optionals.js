@@ -1,4 +1,5 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
   createIterable,
   curry,
@@ -24,7 +25,7 @@ export const orConcur = curry((fn, concurIterable) =>
     let resolved
     let result
 
-    await concurIterable(async value => {
+    await concurIterable[concurIteratorSymbol](async value => {
       if (!result) {
         result = { value }
       } else if (!resolved) {

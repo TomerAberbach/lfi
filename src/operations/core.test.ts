@@ -4,6 +4,9 @@ import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
+  nonEmptyAsyncIterableArb,
+  nonEmptyConcurIterableArb,
+  nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
 import withElapsed from '../../test/with-elapsed.ts'
@@ -317,6 +320,32 @@ test.prop([fc.oneof(asyncIterableArb, concurIterableArb)])(
     )
 
     expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+  },
+)
+
+test.prop([
+  fc.oneof(
+    nonEmptyIterableArb,
+    nonEmptyAsyncIterableArb,
+    nonEmptyConcurIterableArb,
+  ),
+  fc.infiniteStream(fc.boolean()),
+])(
+  `asConcur returns a concur iterable resilient to synchronous throwing`,
+  async ({ iterable, values }, shouldThrowStream) => {
+    const concurIterable = asConcur(iterable)
+
+    const appliedValues: unknown[] = []
+    await expect(
+      concurIterable(value => {
+        appliedValues.push(value)
+        if (appliedValues.length === 1 || shouldThrowStream.next().value) {
+          throw new Error(`BOOM!`)
+        }
+      }),
+    ).toReject()
+
+    expect(appliedValues).toIncludeSameMembers(values)
   },
 )
 

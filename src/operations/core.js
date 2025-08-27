@@ -4,7 +4,7 @@ import {
   deferred,
   thunk,
 } from '../internal/helpers.js'
-import { map, mapAsync } from './transforms.js'
+import { map } from './transforms.js'
 
 export { curry } from '../internal/helpers.js'
 
@@ -73,12 +73,27 @@ export const asConcur = iterable => {
 
   if (iterable[Symbol.iterator]) {
     return async apply => {
-      await Promise.all(map(apply, iterable))
+      await Promise.all(map(value => safeApply(apply, value), iterable))
     }
   }
 
   return async apply => {
-    await Array.fromAsync(mapAsync(apply, iterable))
+    const promises = []
+    for await (const value of iterable) {
+      promises.push(safeApply(apply, value))
+    }
+    await Promise.all(promises)
+  }
+}
+
+const safeApply = (apply, value) => {
+  // We transform synchronous errors into async ones so that every available
+  // value makes it into an `apply` call. This way downstream functions can
+  // decide whether to ignore the final concurrent iterable value.
+  try {
+    return apply(value)
+  } catch (error) {
+    return Promise.reject(error)
   }
 }
 

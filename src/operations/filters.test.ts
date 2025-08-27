@@ -1024,9 +1024,11 @@ test.prop([nonEmptyConcurIterableArb])(
   `findConcur rejects for a sync throwing function and non-empty concur iterable`,
   async ({ iterable }) => {
     await expect(
-      findConcur(() => {
-        throw new Error(`BOOM!`)
-      }, iterable),
+      getConcur(
+        findConcur(() => {
+          throw new Error(`BOOM!`)
+        }, iterable),
+      ),
     ).rejects.toStrictEqual(new Error(`BOOM!`))
   },
 )
@@ -1035,7 +1037,7 @@ test.prop([nonEmptyConcurIterableArb])(
   `findConcur rejects for an async throwing function and non-empty concur iterable`,
   async ({ iterable }) => {
     await expect(
-      findConcur(() => Promise.reject(new Error(`BOOM!`)), iterable),
+      getConcur(findConcur(() => Promise.reject(new Error(`BOOM!`)), iterable)),
     ).rejects.toStrictEqual(new Error(`BOOM!`))
   },
 )

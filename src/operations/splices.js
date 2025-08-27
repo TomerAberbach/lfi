@@ -1,5 +1,7 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   promiseWithEarlyResolve,
@@ -55,16 +57,18 @@ export const dropWhileAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const dropWhileConcur = curry((fn, concurIterable) => apply => {
-  let dropping = true
-  return concurIterable(async value => {
-    if (!dropping || !(await fn(value)) || !dropping) {
-      // eslint-disable-next-line require-atomic-updates
-      dropping = false
-      await apply(value)
-    }
-  })
-})
+export const dropWhileConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply => {
+    let dropping = true
+    return concurIterable[concurIteratorSymbol](async value => {
+      if (!dropping || !(await fn(value)) || !dropping) {
+        // eslint-disable-next-line require-atomic-updates
+        dropping = false
+        await apply(value)
+      }
+    })
+  }),
+)
 
 export const takeWhile = curry((fn, iterable) =>
   createIterable(function* () {
@@ -90,11 +94,11 @@ export const takeWhileAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const takeWhileConcur = curry(
-  (fn, concurIterable) => apply =>
+export const takeWhileConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply =>
     promiseWithEarlyResolve(resolve => {
       let taking = true
-      return concurIterable(async value => {
+      return concurIterable[concurIteratorSymbol](async value => {
         if (taking && (await fn(value)) && taking) {
           await apply(value)
         } else {
@@ -104,6 +108,7 @@ export const takeWhileConcur = curry(
         }
       })
     }),
+  ),
 )
 
 const createTakeOrDrop = (dropOrTakeWhile, map, index) =>
@@ -207,9 +212,9 @@ export const chunkAsync = curry((size, asyncIterable) => {
 export const chunkConcur = curry((size, concurIterable) => {
   assertPositiveInteger({ size })
 
-  return async apply => {
+  return createConcurIterable(async apply => {
     let chunk = []
-    await concurIterable(async value => {
+    await concurIterable[concurIteratorSymbol](async value => {
       chunk.push(value)
       if (chunk.length < size) {
         return
@@ -223,7 +228,7 @@ export const chunkConcur = curry((size, concurIterable) => {
     if (chunk.length) {
       await apply(chunk)
     }
-  }
+  })
 })
 
 export const window = curry((options, iterable) => {
@@ -280,10 +285,10 @@ export const windowConcur = curry((options, concurIterable) => {
   } = normalizeWindowOptions(options)
   assertPositiveInteger({ size })
 
-  return async apply => {
+  return createConcurIterable(async apply => {
     const window = createWindow(size)
 
-    await concurIterable(async value => {
+    await concurIterable[concurIteratorSymbol](async value => {
       if (window._push(value) === size || partialStart) {
         await apply(window._get())
       }
@@ -292,7 +297,7 @@ export const windowConcur = curry((options, concurIterable) => {
     if (partialEnd) {
       await Promise.all(map(apply, window._partialEnd(partialStart)))
     }
-  }
+  })
 })
 
 const normalizeWindowOptions = options => {
@@ -380,9 +385,8 @@ export const zipAsync = (...iterables) =>
     }
   })
 
-export const zipConcur =
-  (...iterables) =>
-  apply =>
+export const zipConcur = (...iterables) =>
+  createConcurIterable(apply =>
     promiseWithEarlyResolve(async resolve => {
       if (iterables.length === 0) {
         return
@@ -397,7 +401,7 @@ export const zipConcur =
         map(async ([index, iterable]) => {
           const values = valuesPerIterable[index]
 
-          await asConcur(iterable)(async value => {
+          await asConcur(iterable)[concurIteratorSymbol](async value => {
             if (resolved) {
               return
             }
@@ -450,4 +454,5 @@ export const zipConcur =
           }
         }, iterables.entries()),
       )
-    })
+    }),
+  )

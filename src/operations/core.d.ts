@@ -267,6 +267,8 @@ export const asAsync: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
 ) => AsyncIterable<Value>
 
+export const concurIteratorSymbol: unique symbol
+
 /**
  * Represents a lazy collection of values, each of type `Value`, that can be
  * iterated concurrently.
@@ -307,9 +309,9 @@ export const asAsync: <Value>(
  * @category Core
  * @since v0.0.2
  */
-export type ConcurIterable<Value> = (
-  apply: ConcurIterableApply<Value>,
-) => Promise<void>
+export type ConcurIterable<Value> = {
+  [concurIteratorSymbol]: (apply: ConcurIterableApply<Value>) => Promise<void>
+}
 
 /**
  * The callback invoked for each value of a {@link ConcurIterable}.

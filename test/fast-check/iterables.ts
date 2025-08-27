@@ -1,4 +1,5 @@
 import { fc } from '@fast-check/vitest'
+import { concurIteratorSymbol } from '../../src/index.js'
 import type { ConcurIterable } from '../../src/index.js'
 import type { MaybePromiseLike } from '../../src/internal/types.js'
 import { getIterableIndex, getScheduler } from './test-prop.ts'
@@ -108,8 +109,10 @@ export const getConcurIterableArb = <Value>(
     const index = getIterableIndex()
     const iterationOrder: Value[] = []
     return {
-      iterable: Object.assign(
-        async (apply: (value: Value) => MaybePromiseLike<void>) => {
+      iterable: {
+        [concurIteratorSymbol]: async (
+          apply: (value: Value) => MaybePromiseLike<void>,
+        ) => {
           await Promise.all(
             values.map(async value => {
               const scheduledValue = await getScheduler()!.schedule(value)
@@ -118,8 +121,8 @@ export const getConcurIterableArb = <Value>(
             }),
           )
         },
-        { [fc.toStringMethod]: () => `ConcurIterable$${index}` },
-      ),
+        [fc.toStringMethod]: () => `ConcurIterable$${index}`,
+      },
       values,
       get iterationOrder() {
         return iterationOrder

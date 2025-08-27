@@ -1,5 +1,7 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
 } from '../internal/helpers.js'
@@ -36,7 +38,9 @@ export const forEachAsync = curry(async (fn, asyncIterable) => {
   }
 })
 
-export const forEachConcur = curry((fn, concurIterable) => concurIterable(fn))
+export const forEachConcur = curry((fn, concurIterable) =>
+  concurIterable[concurIteratorSymbol](fn),
+)
 
 const createConsume = forEach => iterable => forEach(() => {}, iterable)
 
@@ -100,18 +104,18 @@ export const cacheConcur = concurIterable => {
   const applys = []
   let isResolved = false
 
-  return async apply => {
+  return createConcurIterable(async apply => {
     if (!isResolved) {
       applys.push(apply)
 
       if (!promise) {
-        promise = concurIterable(async value => {
+        promise = concurIterable[concurIteratorSymbol](async value => {
           cache.push(value)
-          await asConcur(applys)(apply => apply(value))
+          await asConcur(applys)[concurIteratorSymbol](apply => apply(value))
         }).then(() => (isResolved = true))
       }
     }
 
-    await Promise.all([asConcur(cache)(apply), promise])
-  }
+    await Promise.all([asConcur(cache)[concurIteratorSymbol](apply), promise])
+  })
 }

@@ -1,5 +1,7 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   identity,
@@ -75,19 +77,21 @@ export const uniqueByAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const uniqueByConcur = curry((fn, concurIterable) => apply => {
-  const set = new Set()
+export const uniqueByConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply => {
+    const set = new Set()
 
-  return concurIterable(async value => {
-    const by = await fn(value)
-    if (set.has(by)) {
-      return
-    }
+    return concurIterable[concurIteratorSymbol](async value => {
+      const by = await fn(value)
+      if (set.has(by)) {
+        return
+      }
 
-    set.add(by)
-    await apply(value)
-  })
-})
+      set.add(by)
+      await apply(value)
+    })
+  }),
+)
 
 export const unique = uniqueBy(identity)
 export const uniqueAsync = uniqueByAsync(identity)
@@ -115,11 +119,11 @@ export const findAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const findConcur = curry(
-  (fn, concurIterable) => apply =>
+export const findConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply =>
     promiseWithEarlyResolve(async resolve => {
       let found = false
-      await concurIterable(async value => {
+      await concurIterable[concurIteratorSymbol](async value => {
         if (found || !(await fn(value)) || found) {
           return
         }
@@ -129,6 +133,7 @@ export const findConcur = curry(
         resolve()
       })
     }),
+  ),
 )
 
 export const findLast = curry((fn, iterable) =>
@@ -163,16 +168,18 @@ export const findLastAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const findLastConcur = curry((fn, concurIterable) => async apply => {
-  let last
+export const findLastConcur = curry((fn, concurIterable) =>
+  createConcurIterable(async apply => {
+    let last
 
-  await concurIterable(async value => {
-    if (await fn(value)) {
-      last = { value }
+    await concurIterable[concurIteratorSymbol](async value => {
+      if (await fn(value)) {
+        last = { value }
+      }
+    })
+
+    if (last) {
+      await apply(last.value)
     }
-  })
-
-  if (last) {
-    await apply(last.value)
-  }
-})
+  }),
+)

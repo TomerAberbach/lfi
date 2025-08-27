@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, expect, vi } from 'vitest'
 import * as matchers from 'jest-extended'
 import delay from './test/delay.ts'
+import { concurIteratorSymbol } from './src/index'
 
 expect.extend(matchers)
 
@@ -96,7 +97,12 @@ expect.extend({
 
   async toBeConcurIterable(received: unknown, { pure = true } = {}) {
     // Does it look like a concur iterable?
-    let pass = typeof received === `function`
+    let pass =
+      typeof received === `object` &&
+      received != null &&
+      typeof (received as Record<PropertyKey, unknown>)[
+        concurIteratorSymbol
+      ] === `function`
 
     const values1: unknown[] = []
     const values2: unknown[] = []
@@ -104,12 +110,14 @@ expect.extend({
     if (pass) {
       try {
         // Can it be concur iterated?
-        await (received as (...args: unknown[]) => unknown)(
-          async (value: unknown) => {
-            await delay(2)
-            values1.push(value)
-          },
-        )
+        await (
+          received as {
+            [concurIteratorSymbol]: (...args: unknown[]) => unknown
+          }
+        )[concurIteratorSymbol](async (value: unknown) => {
+          await delay(2)
+          values1.push(value)
+        })
       } catch {
         // eslint-disable-next-line require-atomic-updates
         pass = false
@@ -120,9 +128,11 @@ expect.extend({
       try {
         // Can it be concur iterated again to produce the same values, but not
         // necessarily in the same order?
-        await (received as (...args: unknown[]) => unknown)((value: unknown) =>
-          values2.push(value),
-        )
+        await (
+          received as {
+            [concurIteratorSymbol]: (...args: unknown[]) => unknown
+          }
+        )[concurIteratorSymbol]((value: unknown) => values2.push(value))
         expect(values1).toIncludeSameMembers(values2)
         // eslint-disable-next-line require-atomic-updates
         pass = true

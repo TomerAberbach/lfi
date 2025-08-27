@@ -6,6 +6,10 @@ export const createIterable = fn => ({ [Symbol.iterator]: fn })
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })
 
+export const concurIteratorSymbol = Symbol(`concurIterator`)
+
+export const createConcurIterable = fn => ({ [concurIteratorSymbol]: fn })
+
 export const promiseWithEarlyResolve = fn => {
   const { _promise: promise, _resolve: resolve } = deferred()
   return Promise.race([promise, fn(resolve)])

@@ -15,7 +15,7 @@ const autoAdvance =
 
     // eslint-disable-next-line typescript/no-unnecessary-condition
     while (!done) {
-      await getScheduler()?.waitAll()
+      await getScheduler()?.waitIdle()
       vitest.advanceTimersToNextTimer()
       await Promise.resolve()
     }

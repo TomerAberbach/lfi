@@ -179,9 +179,9 @@ export class Scheduler {
     }
   }
 
-  public async waitAll(): Promise<void> {
+  public async waitIdle(): Promise<void> {
     if (this.scheduler.count() > 0) {
-      await this.scheduler.waitAll()
+      await this.scheduler.waitIdle()
     }
   }
 }

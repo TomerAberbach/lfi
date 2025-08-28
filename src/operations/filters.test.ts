@@ -22,6 +22,7 @@ import withElapsed from '../../test/with-elapsed.ts'
 import {
   asAsync,
   asConcur,
+  concatConcur,
   consumeAsync,
   consumeConcur,
   exclude,
@@ -262,11 +263,20 @@ test.prop([asyncPredicateArb, uniqueConcurIterableArb])(
   },
 )
 
-test.prop([nonEmptyConcurIterableArb])(
+test.prop([
+  fc
+    .tuple(nonEmptyConcurIterableArb, predicateArb)
+    .filter(
+      ([{ values }, fn]) => values.filter(value => fn(value)).length === 1,
+    ),
+])(
   `filterConcur rejects for a sync throwing function and non-empty concur iterable`,
-  async ({ iterable }) => {
-    const filteredIterable = filterConcur(() => {
-      throw new Error(`BOOM!`)
+  async ([{ iterable }, fn]) => {
+    const filteredIterable = filterConcur(value => {
+      if (fn(value)) {
+        throw new Error(`BOOM!`)
+      }
+      return value
     }, iterable)
 
     await expect(consumeConcur(filteredIterable)).rejects.toStrictEqual(
@@ -275,11 +285,19 @@ test.prop([nonEmptyConcurIterableArb])(
   },
 )
 
-test.prop([nonEmptyConcurIterableArb])(
+test.prop([
+  fc
+    .tuple(nonEmptyConcurIterableArb, asyncPredicateArb)
+    .filter(
+      ([{ values }, { syncFn }]) =>
+        values.filter(value => syncFn(value)).length === 1,
+    ),
+])(
   `filterConcur rejects for an async throwing function and non-empty concur iterable`,
-  async ({ iterable }) => {
+  async ([{ iterable }, { asyncFn }]) => {
     const filteredIterable = filterConcur(
-      () => Promise.reject(new Error(`BOOM!`)),
+      async value =>
+        (await asyncFn(value)) ? Promise.reject(new Error(`BOOM!`)) : true,
       iterable,
     )
 
@@ -1020,23 +1038,116 @@ test.prop([asyncPredicateArb, concurIterableArb])(
   },
 )
 
-test.prop([nonEmptyConcurIterableArb])(
+test.prop([
+  fc
+    .tuple(nonEmptyConcurIterableArb, predicateArb)
+    .filter(
+      ([{ values }, fn]) => values.filter(value => fn(value)).length === 1,
+    ),
+])(
   `findConcur rejects for a sync throwing function and non-empty concur iterable`,
-  async ({ iterable }) => {
-    await expect(
-      findConcur(() => {
+  async ([{ iterable }, fn]) => {
+    const found = findConcur(value => {
+      if (fn(value)) {
         throw new Error(`BOOM!`)
-      }, iterable),
-    ).rejects.toStrictEqual(new Error(`BOOM!`))
+      }
+      return false
+    }, iterable)
+
+    await expect(consumeConcur(found)).rejects.toStrictEqual(new Error(`BOOM!`))
   },
 )
 
-test.prop([nonEmptyConcurIterableArb])(
+test.prop([
+  fc
+    .tuple(nonEmptyConcurIterableArb, asyncPredicateArb)
+    .filter(
+      ([{ values }, { syncFn }]) =>
+        values.filter(value => syncFn(value)).length === 1,
+    ),
+])(
   `findConcur rejects for an async throwing function and non-empty concur iterable`,
-  async ({ iterable }) => {
-    await expect(
-      findConcur(() => Promise.reject(new Error(`BOOM!`)), iterable),
-    ).rejects.toStrictEqual(new Error(`BOOM!`))
+  async ([{ iterable }, { asyncFn }]) => {
+    const found = findConcur(
+      async value =>
+        (await asyncFn(value)) ? Promise.reject(new Error(`BOOM!`)) : false,
+      iterable,
+    )
+
+    await expect(consumeConcur(found)).rejects.toStrictEqual(new Error(`BOOM!`))
+  },
+)
+
+test.prop([
+  fc
+    .tuple(asyncPredicateArb, nonEmptyConcurIterableArb)
+    .filter(([{ syncFn }, { values }]) => values.some(value => syncFn(value))),
+])(
+  `findConcur ignores errors if predicate returns a truthy value for some value`,
+  async ([{ asyncFn }, { iterable }], scheduler) => {
+    const throwingIterable = concatConcur(iterable, async () => {
+      await scheduler.schedule()
+      throw new Error(`BOOM!`)
+    })
+
+    const found = findConcur(asyncFn, throwingIterable)
+
+    const foundArray = await reduceConcur(toArray(), found)
+    expect(foundArray).toHaveLength(1)
+  },
+)
+
+test.prop([
+  fc
+    .tuple(asyncPredicateArb, nonEmptyConcurIterableArb)
+    .filter(([{ syncFn }, { values }]) =>
+      values.every(value => !syncFn(value)),
+    ),
+])(
+  `findConcur rejects with the singular error if the predicate returns a falsy value for every value`,
+  async ([{ asyncFn }, { iterable }], scheduler) => {
+    const throwingIterable = concatConcur(iterable, async () => {
+      await scheduler.schedule()
+      throw new Error(`BOOM!`)
+    })
+
+    const found = findConcur(asyncFn, throwingIterable)
+
+    await expect(consumeConcur(found)).rejects.toStrictEqual(new Error(`BOOM!`))
+  },
+)
+
+test.prop([
+  fc
+    .tuple(asyncPredicateArb, asyncPredicateArb, nonEmptyConcurIterableArb)
+    .filter(
+      ([{ syncFn: predicateFn }, { syncFn: shouldThrow }, { values }]) =>
+        values.every(value => !predicateFn(value)) &&
+        values.filter(value => shouldThrow(value)).length >= 2,
+    ),
+])(
+  `findConcur rejects with an aggregate error containing all errors if the predicate returns a falsy value for every value`,
+  async (
+    [{ asyncFn }, { syncFn, asyncFn: shouldThrow }, { iterable, values }],
+    scheduler,
+  ) => {
+    const throwingIterable = mapConcur(async value => {
+      await scheduler.schedule()
+      if (await shouldThrow(value)) {
+        throw new Error(`BOOM!`)
+      } else {
+        return value
+      }
+    }, iterable)
+
+    const found = findConcur(asyncFn, throwingIterable)
+
+    await expect(consumeConcur(found)).rejects.toStrictEqual(
+      new AggregateError(
+        values.filter(value => syncFn(value)).map(() => new Error(`BOOM!`)),
+        `Concur iterable rejected`,
+      ),
+    )
   },
 )
 

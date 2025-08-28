@@ -170,7 +170,7 @@ test.skip(`mapConcur types are correct`, () => {
 })
 
 test.prop([asyncFnArb, concurIterableArb])(
-  `mapConcur returns a concur iterable containing the same values in the same order as the given concur iterable, but transformed using the given callback`,
+  `mapConcur returns a pure concur iterable`,
   async ({ asyncFn }, { iterable }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 
@@ -179,7 +179,7 @@ test.prop([asyncFnArb, concurIterableArb])(
 )
 
 test.prop([asyncFnArb, concurIterableArb])(
-  `mapConcur maps concurrently`,
+  `mapConcur returns a concur iterable containing the same values in the same order as the given concur iterable, but transformed using the given callback`,
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 

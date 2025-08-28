@@ -3,7 +3,6 @@ import {
   createIterable,
   curry,
   identity,
-  promiseWithEarlyResolve,
 } from '../internal/helpers.js'
 import { flatMap, flatMapAsync, flatMapConcur } from './transforms.js'
 
@@ -117,9 +116,9 @@ export const findAsync = curry((fn, asyncIterable) =>
 
 export const findConcur = curry(
   (fn, concurIterable) => apply =>
-    promiseWithEarlyResolve(async resolve => {
+    new Promise((resolve, reject) => {
       let found = false
-      await concurIterable(async value => {
+      concurIterable(async value => {
         if (found || !(await fn(value)) || found) {
           return
         }
@@ -127,7 +126,7 @@ export const findConcur = curry(
         found = true
         await apply(value)
         resolve()
-      })
+      }).then(resolve, reject)
     }),
 )
 
@@ -166,11 +165,17 @@ export const findLastAsync = curry((fn, asyncIterable) =>
 export const findLastConcur = curry((fn, concurIterable) => async apply => {
   let last
 
-  await concurIterable(async value => {
-    if (await fn(value)) {
-      last = { value }
+  try {
+    await concurIterable(async value => {
+      if (await fn(value)) {
+        last = { value }
+      }
+    })
+  } catch (error) {
+    if (!last) {
+      throw error
     }
-  })
+  }
 
   if (last) {
     await apply(last.value)

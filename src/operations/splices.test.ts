@@ -269,7 +269,7 @@ test.prop([
       iterable,
     )
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(stopDroppingIndex),
     )
   },
@@ -454,7 +454,7 @@ test.prop([
       iterable,
     )
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(0, stopTakingIndex),
     )
   },
@@ -706,7 +706,7 @@ test.prop([
   async ([count, { iterable }], scheduler) => {
     const subIterable = dropConcur(count, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(count),
     )
   },
@@ -958,7 +958,7 @@ test.prop([
   async ([count, { iterable }], scheduler) => {
     const subIterable = takeConcur(count, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(0, count),
     )
   },
@@ -1439,9 +1439,7 @@ test.prop([intervalArb, concurIterableArb])(
   async ([start, end], { iterable }, scheduler) => {
     const slicedIterable = sliceConcur(start, end, iterable)
 
-    await expect(
-      reduceConcur(toArray(), slicedIterable),
-    ).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), slicedIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(start, end),
     )
   },
@@ -1593,7 +1591,7 @@ test.prop([reasonableNonNegativeIntegerArb, concurIterableArb])(
   async (index, { iterable }, scheduler) => {
     const atIterable = atConcur(index, iterable)
 
-    await expect(reduceConcur(toArray(), atIterable)).resolves.toStrictEqual(
+    expect(await reduceConcur(toArray(), atIterable)).toStrictEqual(
       (await scheduler.report()).values().slice(index, index + 1),
     )
   },

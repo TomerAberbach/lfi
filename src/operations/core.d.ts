@@ -265,7 +265,7 @@ export const compose: {
  */
 export const asAsync: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
-) => AsyncIterable<Value>
+) => AsyncIterable<Awaited<Value>>
 
 /**
  * Represents a lazy collection of values, each of type `Value`, that can be
@@ -341,7 +341,7 @@ export type ConcurIterableApply<Value> = (
  */
 export const asConcur: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
-) => ConcurIterable<Value>
+) => ConcurIterable<Awaited<Value>>
 
 /**
  * An iterable that contains zero values.

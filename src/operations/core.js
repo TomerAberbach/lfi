@@ -22,7 +22,12 @@ export const asAsync = iterable => {
 
   return createAsyncIterable(
     iterable[Symbol.iterator]
-      ? () => iterable[Symbol.iterator]()
+      ? // We write this instead of `() => iterable[Symbol.iterator]()` so that
+        // we handle the case of the iterable containing promises, each of which
+        // should be awaited.
+        async function* () {
+          yield* iterable
+        }
       : async function* () {
           let buffer = []
           let done = false
@@ -92,16 +97,10 @@ export const asConcur = iterable => {
   }
 }
 
-const safeApply = (apply, value) => {
-  // We transform synchronous errors into async ones so that every available
-  // value makes it into an `apply` call. This way downstream functions can
-  // decide whether to ignore a concurrent iterable failure.
-  try {
-    return apply(value)
-  } catch (error) {
-    return Promise.reject(error)
-  }
-}
+// We transform synchronous errors into async ones so that every available value
+// makes it into an `apply` call. This way downstream functions can decide
+// whether to ignore a concurrent iterable failure.
+const safeApply = async (apply, value) => apply(await value)
 
 const handlePromiseResults = results => {
   const errors = results.flatMap(result =>

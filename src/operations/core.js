@@ -72,28 +72,48 @@ export const asConcur = iterable => {
   }
 
   if (iterable[Symbol.iterator]) {
-    return async apply => {
-      await Promise.all(map(value => safeApply(apply, value), iterable))
-    }
+    return async apply =>
+      handlePromiseResults(
+        await Promise.allSettled(
+          map(value => safeApply(apply, value), iterable),
+        ),
+      )
   }
 
   return async apply => {
+    // NOTE: We can't use `Array.fromAsync(iterable, mapper)` here because we
+    // don't want to await the result of `mapper` before moving onto the next
+    // value in the iterable.
     const promises = []
     for await (const value of iterable) {
       promises.push(safeApply(apply, value))
     }
-    await Promise.all(promises)
+    handlePromiseResults(await Promise.allSettled(promises))
   }
 }
 
 const safeApply = (apply, value) => {
   // We transform synchronous errors into async ones so that every available
   // value makes it into an `apply` call. This way downstream functions can
-  // decide whether to ignore the final concurrent iterable value.
+  // decide whether to ignore a concurrent iterable failure.
   try {
     return apply(value)
   } catch (error) {
     return Promise.reject(error)
+  }
+}
+
+const handlePromiseResults = results => {
+  const errors = results.flatMap(result =>
+    result.status === `rejected` ? [result.reason] : [],
+  )
+  switch (errors.length) {
+    case 0:
+      return
+    case 1:
+      throw errors[0]
+    default:
+      throw new AggregateError(errors, `Concur iterable rejected`)
   }
 }
 

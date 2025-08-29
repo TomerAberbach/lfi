@@ -13,7 +13,7 @@ import {
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import withElapsed from '../../test/with-elapsed.ts'
+import { timed } from '../../test/timings.ts'
 import {
   asAsync,
   asConcur,
@@ -106,10 +106,10 @@ test.prop([concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `countConcur is as concurrent as the given concur iterable`,
-  async ({ iterable }, scheduler) => {
-    const { elapsed } = await withElapsed(() => countConcur(iterable))
+  async ({ iterable }) => {
+    const { elapsed } = await timed(() => countConcur(iterable))
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 
@@ -1287,14 +1287,10 @@ test.skip(`sumConcur types are correct`, () => {
 
 test.prop([getConcurIterableArb(fc.double())])(
   `sumConcur returns the sum of all numbers in the given concur iterable`,
-  async ({ iterable }, scheduler) => {
+  async ({ iterable, getIterationOrder }) => {
     const sum = await sumConcur(iterable)
 
-    expect(sum).toBe(
-      (await scheduler.report())
-        .values()
-        .reduce((a, b) => Number(a) + Number(b), 0),
-    )
+    expect(sum).toBe(getIterationOrder().reduce((a, b) => a + b, 0))
   },
 )
 
@@ -1348,13 +1344,12 @@ test(`meanConcur returns NaN for an empty concur iterable`, async () => {
 
 test.prop([getConcurIterableArb(fc.double(), { minLength: 1 })])(
   `meanConcur returns the mean of all numbers in the given concur iterable`,
-  async ({ iterable, values }, scheduler) => {
+  async ({ iterable, getIterationOrder }) => {
     const mean = await meanConcur(iterable)
 
+    const iterationOrder = getIterationOrder()
     expect(mean).toBe(
-      (await scheduler.report())
-        .values()
-        .reduce<number>((a, b) => Number(a) + Number(b), 0) / values.length,
+      iterationOrder.reduce((a, b) => a + b, 0) / iterationOrder.length,
     )
   },
 )

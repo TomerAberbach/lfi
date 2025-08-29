@@ -19,7 +19,7 @@ import {
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import withElapsed from '../../test/with-elapsed.ts'
+import { concatTimings, timed } from '../../test/timings.ts'
 import {
   asAsync,
   asConcur,
@@ -257,12 +257,12 @@ test.prop([
   fc
     .tuple(concurIterableArb, nonNegativeIntegerArb)
     .map(
-      ([{ iterable, values }, index]) =>
-        [{ iterable, values }, index % values.length] as const,
+      ([concurIterable, index]) =>
+        [concurIterable, index % concurIterable.values.length] as const,
     ),
 ])(
   `dropWhileConcur returns the given concur iterable's elements starting from the first element for which the given function does not return true`,
-  async ([{ iterable }, stopDroppingIndex], scheduler) => {
+  async ([{ iterable, getIterationOrder }, stopDroppingIndex]) => {
     let index = 0
     const subIterable = dropWhileConcur(
       () => index++ !== stopDroppingIndex,
@@ -270,7 +270,7 @@ test.prop([
     )
 
     expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(stopDroppingIndex),
+      getIterationOrder().slice(stopDroppingIndex),
     )
   },
 )
@@ -442,12 +442,12 @@ test.prop([
   fc
     .tuple(concurIterableArb, nonNegativeIntegerArb)
     .map(
-      ([{ iterable, values }, index]) =>
-        [{ iterable, values }, index % values.length] as const,
+      ([concurIterable, index]) =>
+        [concurIterable, index % concurIterable.values.length] as const,
     ),
 ])(
   `takeWhileConcur returns the given concur iterable's elements up to the first element for which the given function does not return true`,
-  async ([{ iterable }, stopTakingIndex], scheduler) => {
+  async ([{ iterable, getIterationOrder }, stopTakingIndex]) => {
     let index = 0
     const subIterable = takeWhileConcur(
       () => index++ !== stopTakingIndex,
@@ -455,7 +455,7 @@ test.prop([
     )
 
     expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(0, stopTakingIndex),
+      getIterationOrder().slice(0, stopTakingIndex),
     )
   },
 )
@@ -698,16 +698,16 @@ test.prop([
   fc
     .tuple(nonNegativeIntegerArb, nonEmptyConcurIterableArb)
     .map(
-      ([count, { iterable, values }]) =>
-        [count % values.length, { iterable, values }] as const,
+      ([count, concurIterable]) =>
+        [count % concurIterable.values.length, concurIterable] as const,
     ),
 ])(
   `dropConcur drops the given number of elements from the start of the given concur iterable`,
-  async ([count, { iterable }], scheduler) => {
+  async ([count, { iterable, getIterationOrder }]) => {
     const subIterable = dropConcur(count, iterable)
 
     expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(count),
+      getIterationOrder().slice(count),
     )
   },
 )
@@ -950,16 +950,16 @@ test.prop([
   fc
     .tuple(nonNegativeIntegerArb, nonEmptyConcurIterableArb)
     .map(
-      ([count, { iterable, values }]) =>
-        [count % values.length, { iterable, values }] as const,
+      ([count, concurIterable]) =>
+        [count % concurIterable.values.length, concurIterable] as const,
     ),
 ])(
   `takeConcur takes the given number of elements from the start of the given concur iterable`,
-  async ([count, { iterable }], scheduler) => {
+  async ([count, { iterable, getIterationOrder }]) => {
     const subIterable = takeConcur(count, iterable)
 
     expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(0, count),
+      getIterationOrder().slice(0, count),
     )
   },
 )
@@ -1047,12 +1047,12 @@ test(`firstConcur returns an empty concur iterable for an empty concur iterable`
 
 test.prop([nonEmptyConcurIterableArb])(
   `firstConcur returns a concur iterable containing the first element of the given concur iterable for a non-empty concur iterable`,
-  async ({ iterable }, scheduler) => {
+  async ({ iterable, getIterationOrder }) => {
     const subIterable = firstConcur(iterable)
 
-    const array = await reduceConcur(toArray(), subIterable)
-    expect(array).toBeArrayOfSize(1)
-    expect(array).toIncludeAnyMembers((await scheduler.report()).min().values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder().slice(0, 1),
+    )
   },
 )
 
@@ -1142,12 +1142,12 @@ test(
 
 test.prop([nonEmptyConcurIterableArb])(
   `lastConcur returns a concur iterable containing the last element of the given concur iterable for a non-empty concur iterable`,
-  async ({ iterable }, scheduler) => {
+  async ({ iterable, getIterationOrder }) => {
     const subIterable = lastConcur(iterable)
 
-    const array = await reduceConcur(toArray(), subIterable)
-    expect(array).toBeArrayOfSize(1)
-    expect(array).toIncludeAnyMembers((await scheduler.report()).max().values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder().slice(-1),
+    )
   },
 )
 
@@ -1436,11 +1436,11 @@ test.prop([invertedIntervalArb, concurIterableArb])(
 
 test.prop([intervalArb, concurIterableArb])(
   `sliceConcur returns a concur iterable containing the values between start and end in iteration order`,
-  async ([start, end], { iterable }, scheduler) => {
+  async ([start, end], { iterable, getIterationOrder }) => {
     const slicedIterable = sliceConcur(start, end, iterable)
 
     expect(await reduceConcur(toArray(), slicedIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(start, end),
+      getIterationOrder().slice(start, end),
     )
   },
 )
@@ -1588,11 +1588,11 @@ test.prop([negativeIntegerArb, concurIterableArb])(
 
 test.prop([reasonableNonNegativeIntegerArb, concurIterableArb])(
   `atConcur returns a concur iterable containing the value at index in iteration order`,
-  async (index, { iterable }, scheduler) => {
+  async (index, { iterable, getIterationOrder }) => {
     const atIterable = atConcur(index, iterable)
 
     expect(await reduceConcur(toArray(), atIterable)).toStrictEqual(
-      (await scheduler.report()).values().slice(index, index + 1),
+      getIterationOrder().slice(index, index + 1),
     )
   },
 )
@@ -1907,12 +1907,12 @@ test.prop([
 
 test.prop([fc.tuple(positiveIntegerArb, nonEmptyConcurIterableArb)])(
   `chunkConcur returns a concur iterable as concurrent as the given concur iterable`,
-  async ([size, { iterable }], scheduler) => {
-    const { elapsed } = await withElapsed(() =>
+  async ([size, { iterable }]) => {
+    const { elapsed } = await timed(() =>
       consumeConcur(chunkConcur(size, iterable)),
     )
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 
@@ -2336,17 +2336,18 @@ test.prop([
   fc
     .tuple(smallPositiveIntegerArb, concurIterableArb)
     .map(
-      ([size, { iterable, values }]) =>
-        [size + values.length, iterable] as const,
+      ([size, concurIterable]) =>
+        [size + concurIterable.values.length, concurIterable] as const,
     ),
 ])(
   `windowConcur returns a concur iterable containing only partial windows when the given size is greater than the given concur iterable's length and partial is true`,
-  async ([size, iterable], scheduler) => {
+  async ([size, { iterable, getIterationOrder }]) => {
     const windowedIterable = windowConcur({ size, partialEnd: true }, iterable)
 
-    const windows = await reduceConcur(toArray(), windowedIterable)
-    const values = (await scheduler.report()).values()
-    expect(windows).toStrictEqual(values.map((_, index) => values.slice(index)))
+    const iterationOrder = getIterationOrder()
+    expect(await reduceConcur(toArray(), windowedIterable)).toStrictEqual(
+      iterationOrder.map((_, index) => iterationOrder.slice(index)),
+    )
   },
 )
 
@@ -2354,19 +2355,21 @@ test.prop([
   fc
     .tuple(smallPositiveIntegerArb, nonEmptyConcurIterableArb)
     .map(
-      ([size, { iterable, values }]) =>
-        [Math.max(1, size % (values.length + 1)), iterable] as const,
+      ([size, concurIterable]) =>
+        [
+          Math.max(1, size % (concurIterable.values.length + 1)),
+          concurIterable,
+        ] as const,
     ),
 ])(
   `windowConcur returns a concur iterable containing windows of the given size for the given concur iterable`,
-  async ([size, iterable], scheduler) => {
+  async ([size, { iterable, getIterationOrder }]) => {
     const windowedIterable = windowConcur(size, iterable)
 
-    const windows = await reduceConcur(toArray(), windowedIterable)
-    const values = (await scheduler.report()).values()
-    expect(windows).toStrictEqual(
-      Array.from({ length: values.length - size + 1 }, (_, index) =>
-        values.slice(index, index + size),
+    const iterationOrder = getIterationOrder()
+    expect(await reduceConcur(toArray(), windowedIterable)).toStrictEqual(
+      Array.from({ length: iterationOrder.length - size + 1 }, (_, index) =>
+        iterationOrder.slice(index, index + size),
       ),
     )
   },
@@ -2376,19 +2379,24 @@ test.prop([
   fc
     .tuple(smallPositiveIntegerArb, nonEmptyConcurIterableArb)
     .map(
-      ([size, { iterable, values }]) =>
-        [Math.max(1, size % (values.length + 1)), iterable] as const,
+      ([size, concurIterable]) =>
+        [
+          Math.max(1, size % (concurIterable.values.length + 1)),
+          concurIterable,
+        ] as const,
     ),
 ])(
   `windowConcur returns a concur iterable containing windows of the given size and partial windows for the given concur iterable when partial is true`,
-  async ([size, iterable], scheduler) => {
+  async ([size, { iterable, getIterationOrder }]) => {
     const windowedIterable = windowConcur({ size, partialEnd: true }, iterable)
 
-    const windows = await reduceConcur(toArray(), windowedIterable)
-    const values = (await scheduler.report()).values()
-    expect(windows).toStrictEqual(
-      values.map((_, index) =>
-        values.slice(index, Math.min(index + size, values.length)),
+    const iterationOrder = getIterationOrder()
+    expect(await reduceConcur(toArray(), windowedIterable)).toStrictEqual(
+      iterationOrder.map((_, index) =>
+        iterationOrder.slice(
+          index,
+          Math.min(index + size, iterationOrder.length),
+        ),
       ),
     )
   },
@@ -2513,12 +2521,15 @@ test.prop([
   fc.array(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
 ])(
   `concatConcur returns a concur iterable as concurrent as the given iterables`,
-  async (iterables, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
+  async iterables => {
+    const { elapsed } = await timed(() =>
       consumeConcur(concatConcur(...iterables.map(({ iterable }) => iterable))),
     )
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    const timings = concatTimings(
+      iterables.map(({ iterable }) => iterable.yieldTimings),
+    )
+    expect(elapsed).toBe(timings.max())
   },
 )
 
@@ -2682,12 +2693,11 @@ test.prop([
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    const array = await reduceConcur(toArray(), zippedIterable)
-    expect(array).toStrictEqual(
+    expect(await reduceConcur(toArray(), zippedIterable)).toStrictEqual(
       Array.from(
         { length: Math.min(...iterables.map(({ values }) => values.length)) },
         (_, index) =>
-          iterables.map(({ iterationOrder }) => iterationOrder[index]),
+          iterables.map(({ getIterationOrder }) => getIterationOrder()[index]),
       ),
     )
   },

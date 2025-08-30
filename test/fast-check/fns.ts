@@ -1,4 +1,6 @@
 import { fc } from '@fast-check/vitest'
+import { createTimings } from '../timings.ts'
+import type { Timings } from '../timings.ts'
 import { getScheduler } from './test-prop.ts'
 
 export const fnArb = fc.func(fc.anything())
@@ -7,16 +9,22 @@ export const predicateArb = fc.func(fc.oneof(fc.boolean(), fc.anything()))
 const getAsyncFn = <Args extends unknown[], Value>(
   fn: (...args: Args) => readonly [Value, boolean],
 ): GeneratedAsyncFn<Value, Args> => {
+  const timings = createTimings()
   const asyncFn = Object.assign(
     (...args: Args) => {
+      const now = Date.now()
+
       const [value, shouldReturnPromise] = fn(...args)
       if (!shouldReturnPromise) {
         return value
       }
 
       return getScheduler()!
-        .schedule(args[0])
-        .then(() => value)
+        .schedule(Promise.resolve(), fc.stringify(args[0]))
+        .then(() => {
+          timings.values.push(Date.now() - now)
+          return value
+        })
     },
     { [fc.toStringMethod]: () => fc.stringify(fn) },
   )
@@ -24,6 +32,7 @@ const getAsyncFn = <Args extends unknown[], Value>(
   return {
     asyncFn,
     syncFn: (...args: Args) => fn(...args)[0],
+    fnTimings: timings,
   }
 }
 
@@ -33,6 +42,7 @@ export type GeneratedAsyncFn<
 > = {
   asyncFn: (...args: Args) => Value | Promise<Value>
   syncFn: (...args: Args) => Value
+  fnTimings: Timings
 }
 
 export const getAsyncFnArb = <Value>(

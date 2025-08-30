@@ -9,7 +9,7 @@ import {
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import withElapsed from '../../test/with-elapsed.ts'
+import { timed } from '../../test/timings.ts'
 import delay from '../../test/delay.ts'
 import { fnArb } from '../../test/fast-check/fns.ts'
 import autoAdvance from '../../test/auto-advance.ts'
@@ -278,7 +278,10 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
 test.prop([iterableArb])(
   `asAsync returns an async iterable containing the awaited same values in the same order as the given iterable of promises`,
   async ({ iterable, values }, scheduler) => {
-    const promiseIterable = map(value => scheduler.schedule(value), iterable)
+    const promiseIterable = map(
+      value => scheduler.schedule(Promise.resolve(value), fc.stringify(value)),
+      iterable,
+    )
 
     const asyncIterable = asAsync(promiseIterable)
 
@@ -396,7 +399,10 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
 test.prop([iterableArb])(
   `asConcur returns a concur iterable containing the awaited same values in the same order as the given iterable of promises`,
   async ({ iterable, values }, scheduler) => {
-    const promiseIterable = map(value => scheduler.schedule(value), iterable)
+    const promiseIterable = map(
+      value => scheduler.schedule(Promise.resolve(value), fc.stringify(value)),
+      iterable,
+    )
 
     const concurIterable = asConcur(promiseIterable)
 
@@ -418,7 +424,13 @@ test.prop([asyncIterableArb])(
           if (result.done) {
             return result
           }
-          return { ...result, value: scheduler.schedule(result.value) }
+          return {
+            ...result,
+            value: scheduler.schedule(
+              Promise.resolve(result.value),
+              fc.stringify(result.value),
+            ),
+          }
         },
       }
     })
@@ -431,14 +443,14 @@ test.prop([asyncIterableArb])(
   },
 )
 
-test.prop([fc.oneof(asyncIterableArb, concurIterableArb)])(
+test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
   `asConcur returns a concur iterable as concurrent as the given iterable`,
-  async ({ iterable }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
-      consumeConcur(asConcur(iterable)),
-    )
+  async ({ iterable }) => {
+    const concurIterable = asConcur(iterable)
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    const { elapsed } = await timed(() => consumeConcur(concurIterable))
+
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 

@@ -18,7 +18,7 @@ import {
   uniqueConcurIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import withElapsed from '../../test/with-elapsed.ts'
+import { addTimings, timed } from '../../test/timings.ts'
 import {
   asAsync,
   asConcur,
@@ -44,8 +44,6 @@ import {
   getAsync,
   getConcur,
   mapConcur,
-  maxConcur,
-  orConcur,
   pipe,
   reduceAsync,
   reduceConcur,
@@ -247,19 +245,12 @@ test.prop([concurIterableArb])(`filterConcur is lazy`, ({ iterable }) => {
 
 test.prop([asyncPredicateArb, uniqueConcurIterableArb])(
   `filterConcur returns a concur iterable as concurrent as the given predicate and concur iterable`,
-  async ({ asyncFn }, { iterable, values }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const { elapsed } = await timed(() =>
       consumeConcur(filterConcur(asyncFn, iterable)),
     )
 
-    expect(elapsed).toBe(
-      await pipe(
-        asConcur(values),
-        mapConcur(async value => (await scheduler.report(value)).sum()),
-        maxConcur,
-        orConcur(() => 0),
-      ),
-    )
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
   },
 )
 
@@ -675,12 +666,12 @@ test.prop([iterableArb, concurIterableArb])(
 
 test.prop([iterableArb, concurIterableArb])(
   `excludeConcur returns a concur iterable as concurrent as the given concur iterable`,
-  async ({ iterable: excludedIterable }, { iterable }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
+  async ({ iterable: excludedIterable }, { iterable }) => {
+    const { elapsed } = await timed(() =>
       consumeConcur(excludeConcur(excludedIterable, iterable)),
     )
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 
@@ -1086,7 +1077,7 @@ test.prop([
   `findConcur ignores errors if predicate returns a truthy value for some value`,
   async ([{ asyncFn }, { iterable }], scheduler) => {
     const throwingIterable = concatConcur(iterable, async () => {
-      await scheduler.schedule()
+      await scheduler.schedule(Promise.resolve())
       throw new Error(`BOOM!`)
     })
 
@@ -1107,7 +1098,7 @@ test.prop([
   `findConcur rejects with the singular error if the predicate returns a falsy value for every value`,
   async ([{ asyncFn }, { iterable }], scheduler) => {
     const throwingIterable = concatConcur(iterable, async () => {
-      await scheduler.schedule()
+      await scheduler.schedule(Promise.resolve())
       throw new Error(`BOOM!`)
     })
 
@@ -1132,7 +1123,7 @@ test.prop([
     scheduler,
   ) => {
     const throwingIterable = mapConcur(async value => {
-      await scheduler.schedule()
+      await scheduler.schedule(Promise.resolve())
       if (await shouldThrow(value)) {
         throw new Error(`BOOM!`)
       } else {

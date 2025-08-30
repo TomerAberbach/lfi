@@ -377,11 +377,18 @@ test.prop([asyncIterableArb])(
 
     const reduced = await reduceAsync(
       {
-        create: () => scheduler.schedule().then(() => syncReducer.create()),
+        create: () =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.create()),
         add: (acc, value) =>
-          scheduler.schedule().then(() => syncReducer.add(acc, value)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.add(acc, value)),
         combine: (acc1, acc2) =>
-          scheduler.schedule().then(() => syncReducer.combine(acc1, acc2)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.combine(acc1, acc2)),
       },
       iterable,
     )
@@ -429,12 +436,22 @@ test.prop([asyncIterableArb])(
 
     const reduced = await reduceAsync(
       {
-        create: () => scheduler.schedule().then(() => syncReducer.create()),
+        create: () =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.create()),
         add: (acc, value) =>
-          scheduler.schedule().then(() => syncReducer.add(acc, value)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.add(acc, value)),
         combine: (acc1, acc2) =>
-          scheduler.schedule().then(() => syncReducer.combine(acc1, acc2)),
-        finish: acc => scheduler.schedule().then(() => syncReducer.finish(acc)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.combine(acc1, acc2)),
+        finish: acc =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.finish(acc)),
       },
       iterable,
     )
@@ -582,11 +599,18 @@ test.prop([concurIterableArb])(
 
     const reduced = await reduceConcur(
       {
-        create: () => scheduler.schedule().then(() => syncReducer.create()),
+        create: () =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.create()),
         add: (acc, value) =>
-          scheduler.schedule().then(() => syncReducer.add(acc, value)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.add(acc, value)),
         combine: (acc1, acc2) =>
-          scheduler.schedule().then(() => syncReducer.combine(acc1, acc2)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.combine(acc1, acc2)),
       },
       iterable,
     )
@@ -634,12 +658,22 @@ test.prop([concurIterableArb])(
 
     const reduced = await reduceConcur(
       {
-        create: () => scheduler.schedule().then(() => syncReducer.create()),
+        create: () =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.create()),
         add: (acc, value) =>
-          scheduler.schedule().then(() => syncReducer.add(acc, value)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.add(acc, value)),
         combine: (acc1, acc2) =>
-          scheduler.schedule().then(() => syncReducer.combine(acc1, acc2)),
-        finish: acc => scheduler.schedule().then(() => syncReducer.finish(acc)),
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.combine(acc1, acc2)),
+        finish: acc =>
+          scheduler
+            .schedule(Promise.resolve())
+            .then(() => syncReducer.finish(acc)),
       },
       iterable,
     )

@@ -1,6 +1,12 @@
 import { fc } from '@fast-check/vitest'
 import { asConcur, mapConcur, pipe } from '../../src/index.js'
-import type { ConcurIterable } from '../../src/index.js'
+import type { ConcurIterableApply } from '../../src/index.js'
+import { time, timeAsync, timeConcur } from '../timings.ts'
+import type {
+  TimedAsyncIterable,
+  TimedConcurIterable,
+  TimedIterable,
+} from '../timings.ts'
 import { getIterableIndex, getScheduler } from './test-prop.ts'
 
 const getArrayArb = <Value>(
@@ -9,28 +15,25 @@ const getArrayArb = <Value>(
     unique = false,
     ...constraints
   }: fc.ArrayConstraints & { unique?: boolean } = {},
-): fc.Arbitrary<Value[]> => {
-  if (!unique) {
-    return fc.array(arb, constraints)
-  }
-
-  return fc.uniqueArray(arb, { ...constraints, comparator: `SameValue` })
-}
+): fc.Arbitrary<Value[]> =>
+  unique
+    ? fc.uniqueArray(arb, { ...constraints, comparator: `SameValue` })
+    : fc.array(arb, constraints)
 
 export const getIterableArb = <Value>(
   arb: fc.Arbitrary<Value>,
   constraints?: fc.ArrayConstraints & { unique?: boolean },
 ): fc.Arbitrary<GeneratedIterable<Value>> =>
   getArrayArb(arb, constraints).map(values => ({
-    iterable: new IterableWithPrivateFields(values),
+    iterable: time(new IterableWithPrivateFields(values)),
     values,
-    iterationOrder: values,
+    getIterationOrder: () => values,
   }))
 
 export type GeneratedIterable<Value> = {
-  iterable: Iterable<Value>
+  iterable: TimedIterable<Value>
   values: Value[]
-  iterationOrder: Value[]
+  getIterationOrder: () => Value[]
 }
 
 // Used to ensure we call `Symbol.iterator` with the right `this`.
@@ -53,6 +56,7 @@ class IterableWithPrivateFields<Value> {
 }
 
 export const iterableArb = getIterableArb(fc.anything())
+export const uniqueIterableArb = getIterableArb(fc.anything(), { unique: true })
 export const nonEmptyIterableArb = getIterableArb(fc.anything(), {
   minLength: 1,
 })
@@ -62,15 +66,15 @@ export const getAsyncIterableArb = <Value>(
   constraints?: fc.ArrayConstraints & { unique?: boolean },
 ): fc.Arbitrary<GeneratedAsyncIterable<Value>> =>
   getArrayArb(arb, constraints).map(values => ({
-    iterable: new AsyncIterableWithPrivateFields(values),
+    iterable: timeAsync(new AsyncIterableWithPrivateFields(values)),
     values,
-    iterationOrder: values,
+    getIterationOrder: () => values,
   }))
 
 export type GeneratedAsyncIterable<Value> = {
-  iterable: AsyncIterable<Value>
+  iterable: TimedAsyncIterable<Value>
   values: Value[]
-  iterationOrder: Value[]
+  getIterationOrder: () => Value[]
 }
 
 // Used to ensure we call `Symbol.asyncIterator` with the right `this`.
@@ -84,7 +88,9 @@ class AsyncIterableWithPrivateFields<Value> {
   }
 
   public async *[Symbol.asyncIterator](): AsyncIterator<Value> {
-    yield* this.#values.map(value => getScheduler()!.schedule(value))
+    yield* this.#values.map(value =>
+      getScheduler()!.schedule(Promise.resolve(value), fc.stringify(value)),
+    )
   }
 
   public [fc.toStringMethod](): string {
@@ -106,30 +112,39 @@ export const getConcurIterableArb = <Value>(
 ): fc.Arbitrary<GeneratedConcurIterable<Value>> =>
   getArrayArb(arb, constraints).map(values => {
     const index = getIterableIndex()
+
     const iterationOrder: Value[] = []
-    return {
-      iterable: Object.assign(
-        pipe(
-          asConcur(values),
-          mapConcur(async value => {
-            const scheduledValue = await getScheduler()!.schedule(value)
-            iterationOrder.push(value)
-            return scheduledValue
-          }),
-        ),
-        { [fc.toStringMethod]: () => `ConcurIterable$${index}` },
-      ),
-      values,
-      get iterationOrder() {
-        return iterationOrder
+    const concurIterable = pipe(
+      asConcur(values),
+      mapConcur(async value => {
+        const scheduledValue = await getScheduler()!.schedule(
+          Promise.resolve(value),
+          fc.stringify(value),
+        )
+        iterationOrder.push(value)
+        return scheduledValue
+      }),
+    )
+    const timedConcurIterable = timeConcur(
+      (apply: ConcurIterableApply<Value>) => {
+        iterationOrder.length = 0
+        return concurIterable(apply)
       },
+    )
+
+    return {
+      iterable: Object.assign(timedConcurIterable, {
+        [fc.toStringMethod]: () => `ConcurIterable$${index}`,
+      }),
+      values,
+      getIterationOrder: () => iterationOrder,
     }
   })
 
 export type GeneratedConcurIterable<Value> = {
-  iterable: ConcurIterable<Value>
+  iterable: TimedConcurIterable<Value>
   values: Value[]
-  iterationOrder: Value[]
+  getIterationOrder: () => Value[]
 }
 
 export const concurIterableArb = getConcurIterableArb(fc.anything())

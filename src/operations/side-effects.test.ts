@@ -12,7 +12,7 @@ import {
   uniqueConcurIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import withElapsed from '../../test/with-elapsed.ts'
+import { addTimings, timed } from '../../test/timings.ts'
 import {
   asAsync,
   asConcur,
@@ -31,9 +31,6 @@ import {
   index,
   indexAsync,
   map,
-  mapConcur,
-  maxConcur,
-  orConcur,
   pipe,
   reduce,
   reduceAsync,
@@ -243,19 +240,12 @@ test.prop([concurIterableArb])(`eachConcur is lazy`, ({ iterable }) => {
 
 test.prop([asyncFnArb, uniqueConcurIterableArb])(
   `eachConcur returns a concur iterable as concurrent as the given function and concur iterable`,
-  async ({ asyncFn }, { iterable, values }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const { elapsed } = await timed(() =>
       consumeConcur(eachConcur(asyncFn, iterable)),
     )
 
-    expect(elapsed).toBe(
-      await pipe(
-        asConcur(values),
-        mapConcur(async value => (await scheduler.report(value)).sum()),
-        maxConcur,
-        orConcur(() => 0),
-      ),
-    )
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
   },
 )
 
@@ -362,19 +352,10 @@ test.prop([concurIterableArb])(
 
 test.prop([asyncFnArb, uniqueConcurIterableArb])(
   `forEachConcur is as concurrent as the given function and concur iterable`,
-  async ({ asyncFn }, { iterable, values }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
-      forEachConcur(asyncFn, iterable),
-    )
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const { elapsed } = await timed(() => forEachConcur(asyncFn, iterable))
 
-    expect(elapsed).toBe(
-      await pipe(
-        asConcur(values),
-        mapConcur(async value => (await scheduler.report(value)).sum()),
-        maxConcur,
-        orConcur(() => 0),
-      ),
-    )
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
   },
 )
 
@@ -526,7 +507,7 @@ test.prop([nonEmptyConcurIterableArb])(
 
     await Promise.all(
       values.map(async () => {
-        await scheduler.schedule()
+        await scheduler.schedule(Promise.resolve())
         await consumeConcur(cachedIterable)
       }),
     )
@@ -535,11 +516,9 @@ test.prop([nonEmptyConcurIterableArb])(
 
 test.prop([concurIterableArb])(
   `cacheConcur returns a concur iterable as concurrent as the given concur iterable`,
-  async ({ iterable }, scheduler) => {
-    const { elapsed } = await withElapsed(() =>
-      consumeConcur(cacheConcur(iterable)),
-    )
+  async ({ iterable }) => {
+    const { elapsed } = await timed(() => consumeConcur(cacheConcur(iterable)))
 
-    expect(elapsed).toBe((await scheduler.report()).max().elapsed)
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )

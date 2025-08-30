@@ -142,9 +142,7 @@ test.prop([asyncFnArb, asyncIterableArb])(
   async ({ asyncFn }, { iterable, values }) => {
     const iteratedIterable = eachAsync(asyncFn, iterable)
 
-    await expect(
-      reduceAsync(toArray(), iteratedIterable),
-    ).resolves.toStrictEqual(values)
+    expect(await reduceAsync(toArray(), iteratedIterable)).toStrictEqual(values)
   },
 )
 
@@ -213,9 +211,9 @@ test.prop([asyncFnArb, concurIterableArb])(
   async ({ asyncFn }, { iterable, values }) => {
     const iteratedIterable = eachConcur(asyncFn, iterable)
 
-    await expect(
-      reduceConcur(toArray(), iteratedIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(
+      await reduceConcur(toArray(), iteratedIterable),
+    ).toIncludeSameMembers(values)
   },
 )
 
@@ -424,11 +422,11 @@ test.prop([asyncIterableArb])(
 
 test.prop([asyncIterableArb])(
   `cacheAsync returns an async iterable containing the same values in the same order as the given async iterable`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const cachedIterable = cacheAsync(iterable)
 
-    await expect(reduceAsync(toArray(), cachedIterable)).resolves.toStrictEqual(
-      values,
+    expect(await reduceAsync(toArray(), cachedIterable)).toStrictEqual(
+      getIterationOrder(),
     )
   },
 )
@@ -481,12 +479,12 @@ test.prop([concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `cacheConcur returns a concur iterable containing the same values as the given concur iterable`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const cachedIterable = cacheConcur(iterable)
 
-    await expect(
-      reduceConcur(toArray(), cachedIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), cachedIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 

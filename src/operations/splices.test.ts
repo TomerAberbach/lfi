@@ -172,9 +172,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable, values }) => {
     const subIterable = dropWhileAsync(() => false, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(values)
   },
 )
 
@@ -183,7 +181,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable }) => {
     const subIterable = dropWhileAsync(() => true, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -203,7 +201,7 @@ test.prop([
       iterable,
     )
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(
       values.slice(stopDroppingIndex),
     )
   },
@@ -235,12 +233,12 @@ test.prop([asyncFnArb, concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `dropWhileConcur returns the given concur iterable when the given predicate never returns a truthy value`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const subIterable = dropWhileConcur(() => false, iterable)
 
-    await expect(
-      reduceConcur(toArray(), subIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -249,7 +247,7 @@ test.prop([concurIterableArb])(
   async ({ iterable }) => {
     const subIterable = dropWhileConcur(() => true, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -357,9 +355,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable, values }) => {
     const subIterable = takeWhileAsync(() => true, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(values)
   },
 )
 
@@ -368,7 +364,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable }) => {
     const subIterable = takeWhileAsync(() => false, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -388,7 +384,7 @@ test.prop([
       iterable,
     )
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(
       values.slice(0, stopTakingIndex),
     )
   },
@@ -420,12 +416,12 @@ test.prop([asyncFnArb, concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `takeWhileConcur returns the given concur iterable when the given predicate always returns a truthy value`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const subIterable = takeWhileConcur(() => true, iterable)
 
-    await expect(
-      reduceConcur(toArray(), subIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -434,7 +430,7 @@ test.prop([concurIterableArb])(
   async ({ iterable }) => {
     const subIterable = takeWhileConcur(() => false, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -586,9 +582,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable, values }) => {
     const subIterable = dropAsync(0, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(values)
   },
 )
 
@@ -604,7 +598,7 @@ test.prop([
   async ([count, iterable]) => {
     const subIterable = dropAsync(count, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -620,7 +614,7 @@ test.prop([
   async ([count, { iterable, values }]) => {
     const subIterable = dropAsync(count, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(
       values.slice(count),
     )
   },
@@ -669,12 +663,12 @@ test.prop([negativeIntegerArb, concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `dropConcur returns the given concur iterable for zero`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const subIterable = dropConcur(0, iterable)
 
-    await expect(
-      reduceConcur(toArray(), subIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -690,7 +684,7 @@ test.prop([
   async ([count, iterable]) => {
     const subIterable = dropConcur(count, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -845,9 +839,7 @@ test.prop([
   async ([count, { iterable, values }]) => {
     const subIterable = takeAsync(count, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(values)
   },
 )
 
@@ -856,7 +848,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable }) => {
     const subIterable = takeAsync(0, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -872,7 +864,7 @@ test.prop([
   async ([count, { iterable, values }]) => {
     const subIterable = takeAsync(count, iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual(
       values.slice(0, count),
     )
   },
@@ -923,17 +915,17 @@ test.prop([
   fc
     .tuple(nonNegativeIntegerArb, concurIterableArb)
     .map(
-      ([count, { iterable, values }]) =>
-        [count + values.length, { iterable, values }] as const,
+      ([count, concurIterable]) =>
+        [count + concurIterable.values.length, concurIterable] as const,
     ),
 ])(
   `takeConcur returns the given concur iterable for greater than or equal to the given concur iterable's length`,
-  async ([count, { iterable, values }]) => {
+  async ([count, { iterable, getIterationOrder }]) => {
     const subIterable = takeConcur(count, iterable)
 
-    await expect(
-      reduceConcur(toArray(), subIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), subIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -942,7 +934,7 @@ test.prop([concurIterableArb])(
   async ({ iterable }) => {
     const subIterable = takeConcur(0, iterable)
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
   },
 )
 
@@ -1009,7 +1001,7 @@ test(
   autoAdvance(async () => {
     const subIterable = firstAsync(emptyAsync())
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   }),
 )
 
@@ -1018,9 +1010,7 @@ test.prop([nonEmptyAsyncIterableArb])(
   async ({ iterable, values }) => {
     const subIterable = firstAsync(iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual([
-      values[0],
-    ])
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual([values[0]])
   },
 )
 
@@ -1042,7 +1032,7 @@ test.prop([concurIterableArb])(
 test(`firstConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const subIterable = firstConcur(emptyConcur())
 
-  await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+  expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
 })
 
 test.prop([nonEmptyConcurIterableArb])(
@@ -1101,7 +1091,7 @@ test(
   autoAdvance(async () => {
     const subIterable = lastAsync(emptyAsync())
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), subIterable)).toBeEmpty()
   }),
 )
 
@@ -1110,7 +1100,7 @@ test.prop([nonEmptyAsyncIterableArb])(
   async ({ iterable, values }) => {
     const subIterable = lastAsync(iterable)
 
-    await expect(reduceAsync(toArray(), subIterable)).resolves.toStrictEqual([
+    expect(await reduceAsync(toArray(), subIterable)).toStrictEqual([
       values.at(-1),
     ])
   },
@@ -1136,7 +1126,7 @@ test(
   autoAdvance(async () => {
     const subIterable = lastConcur(emptyConcur())
 
-    await expect(reduceConcur(toArray(), subIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), subIterable)).toBeEmpty()
   }),
 )
 
@@ -1340,7 +1330,7 @@ test.prop([intervalArb, asyncIterableArb])(
   async ([start, end], { iterable, values }) => {
     const slicedIterable = sliceAsync(start, end, iterable)
 
-    await expect(reduceAsync(toArray(), slicedIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), slicedIterable)).toStrictEqual(
       values.slice(start, end),
     )
   },
@@ -1537,7 +1527,7 @@ test.prop([reasonableNonNegativeIntegerArb, asyncIterableArb])(
   async (index, { iterable, values }) => {
     const atIterable = atAsync(index, iterable)
 
-    await expect(reduceAsync(toArray(), atIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), atIterable)).toStrictEqual(
       values.slice(index, index + 1),
     )
   },
@@ -1743,9 +1733,9 @@ test.prop([positiveIntegerArb, asyncIterableArb])(
   async (size, { iterable, values }) => {
     const chunkedIterable = chunkAsync(size, iterable)
 
-    await expect(
-      pipe(chunkedIterable, flattenAsync, reduceAsync(toArray())),
-    ).resolves.toStrictEqual(values)
+    expect(
+      await pipe(chunkedIterable, flattenAsync, reduceAsync(toArray())),
+    ).toStrictEqual(values)
   },
 )
 
@@ -1754,7 +1744,7 @@ test.prop([positiveIntegerArb])(
   async size => {
     const chunkedIterable = chunkAsync(size, emptyAsync())
 
-    await expect(reduceAsync(toArray(), chunkedIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), chunkedIterable)).toBeEmpty()
   },
 )
 
@@ -1767,13 +1757,13 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const chunkedIterable = chunkAsync(size, iterable)
 
-    await expect(
-      pipe(
+    expect(
+      await pipe(
         chunkedIterable,
         mapAsync(({ length }) => length),
         reduceAsync(toArray()),
       ),
-    ).resolves.toStrictEqual(
+    ).toStrictEqual(
       pipe(repeat(size), take(values.length / size), reduce(toArray())),
     )
   },
@@ -1788,13 +1778,13 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const chunkedIterable = chunkAsync(size, iterable)
 
-    await expect(
-      pipe(
+    expect(
+      await pipe(
         chunkedIterable,
         mapAsync(({ length }) => length),
         reduceAsync(toArray()),
       ),
-    ).resolves.toStrictEqual([
+    ).toStrictEqual([
       ...pipe(repeat(size), take(Math.trunc(values.length / size))),
       values.length % size,
     ])
@@ -1844,12 +1834,16 @@ test.prop([nonPositiveIntegerArb, concurIterableArb])(
 
 test.prop([positiveIntegerArb, concurIterableArb])(
   `chunkConcur returns a concur iterable that flattens to contain the same values as the given concur iterable`,
-  async (size, { iterable, values }) => {
+  async (size, { iterable, getIterationOrder }) => {
     const chunkedIterable = chunkConcur(size, iterable)
 
-    await expect(
-      pipe(chunkedIterable, flatMapConcur(asConcur), reduceConcur(toArray())),
-    ).resolves.toIncludeSameMembers(values)
+    expect(
+      await pipe(
+        chunkedIterable,
+        flatMapConcur(asConcur),
+        reduceConcur(toArray()),
+      ),
+    ).toStrictEqual(getIterationOrder())
   },
 )
 
@@ -1858,7 +1852,7 @@ test.prop([positiveIntegerArb])(
   async size => {
     const chunkedIterable = chunkConcur(size, emptyConcur())
 
-    await expect(reduceConcur(toArray(), chunkedIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), chunkedIterable)).toBeEmpty()
   },
 )
 
@@ -1871,13 +1865,13 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const chunkedIterable = chunkConcur(size, iterable)
 
-    await expect(
-      pipe(
+    expect(
+      await pipe(
         chunkedIterable,
         mapConcur(({ length }) => length),
         reduceConcur(toArray()),
       ),
-    ).resolves.toStrictEqual(
+    ).toStrictEqual(
       pipe(repeat(size), take(values.length / size), reduce(toArray())),
     )
   },
@@ -1892,13 +1886,13 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const chunkedIterable = chunkConcur(size, iterable)
 
-    await expect(
-      pipe(
+    expect(
+      await pipe(
         chunkedIterable,
         mapConcur(({ length }) => length),
         reduceConcur(toArray()),
       ),
-    ).resolves.toStrictEqual([
+    ).toStrictEqual([
       ...pipe(repeat(size), take(Math.trunc(values.length / size))),
       values.length % size,
     ])
@@ -2176,7 +2170,7 @@ test.prop([
   async ([size, asyncIterable]) => {
     const windowedIterable = windowAsync(size, asyncIterable)
 
-    await expect(reduceAsync(toArray(), windowedIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), windowedIterable)).toBeEmpty()
   },
 )
 
@@ -2192,9 +2186,9 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const windowedIterable = windowAsync({ size, partialEnd: true }, iterable)
 
-    await expect(
-      reduceAsync(toArray(), windowedIterable),
-    ).resolves.toStrictEqual(values.map((_, index) => values.slice(index)))
+    expect(await reduceAsync(toArray(), windowedIterable)).toStrictEqual(
+      values.map((_, index) => values.slice(index)),
+    )
   },
 )
 
@@ -2213,9 +2207,7 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const windowedIterable = windowAsync(size, iterable)
 
-    await expect(
-      reduceAsync(toArray(), windowedIterable),
-    ).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), windowedIterable)).toStrictEqual(
       Array.from({ length: values.length - size + 1 }, (_, index) =>
         values.slice(index, index + size),
       ),
@@ -2238,9 +2230,7 @@ test.prop([
   async ([size, { iterable, values }]) => {
     const windowedIterable = windowAsync({ size, partialEnd: true }, iterable)
 
-    await expect(
-      reduceAsync(toArray(), windowedIterable),
-    ).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), windowedIterable)).toStrictEqual(
       values.map((_, index) =>
         values.slice(index, Math.min(index + size, values.length)),
       ),
@@ -2328,7 +2318,7 @@ test.prop([
   async ([size, iterable]) => {
     const windowedIterable = windowConcur(size, iterable)
 
-    await expect(reduceConcur(toArray(), windowedIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), windowedIterable)).toBeEmpty()
   },
 )
 
@@ -2462,9 +2452,9 @@ test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    await expect(
-      reduceAsync(toArray(), concatenatedIterable),
-    ).resolves.toStrictEqual(iterables.flatMap(({ values }) => values))
+    expect(await reduceAsync(toArray(), concatenatedIterable)).toStrictEqual(
+      iterables.flatMap(({ values }) => values),
+    )
   },
 )
 
@@ -2473,7 +2463,7 @@ test(
   autoAdvance(async () => {
     const asyncIterable = concatAsync()
 
-    await expect(reduceAsync(toArray(), asyncIterable)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), asyncIterable)).toBeEmpty()
   }),
 )
 
@@ -2502,9 +2492,9 @@ test.prop([
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    await expect(
-      reduceConcur(toArray(), concatenatedIterable),
-    ).resolves.toIncludeSameMembers(iterables.flatMap(({ values }) => values))
+    expect(
+      await reduceConcur(toArray(), concatenatedIterable),
+    ).toIncludeSameMembers(iterables.flatMap(({ values }) => values))
   },
 )
 
@@ -2513,7 +2503,7 @@ test(
   autoAdvance(async () => {
     const concurIterable = concatConcur()
 
-    await expect(reduceConcur(toArray(), concurIterable)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), concurIterable)).toBeEmpty()
   }),
 )
 
@@ -2617,7 +2607,7 @@ test.prop([
       ...iterables.map(({ iterable }) => iterable),
     )
 
-    await expect(reduceAsync(toArray(), zippedIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), zippedIterable)).toStrictEqual(
       Array.from(
         { length: Math.min(...iterables.map(({ values }) => values.length)) },
         (_, index) => iterables.map(({ values }) => values[index]),
@@ -2629,7 +2619,7 @@ test.prop([
 test(`zipAsync returns an empty async iterable for zero arguments`, async () => {
   const asyncIterable = zipAsync()
 
-  await expect(reduceAsync(toArray(), asyncIterable)).resolves.toBeEmpty()
+  expect(await reduceAsync(toArray(), asyncIterable)).toBeEmpty()
 })
 
 test.prop([fc.array(fc.oneof(iterableArb, asyncIterableArb))])(
@@ -2706,5 +2696,5 @@ test.prop([
 test(`zipConcur returns an empty async iterable for zero arguments`, async () => {
   const concurIterable = zipConcur()
 
-  await expect(reduceConcur(toArray(), concurIterable)).resolves.toBeEmpty()
+  expect(await reduceConcur(toArray(), concurIterable)).toBeEmpty()
 })

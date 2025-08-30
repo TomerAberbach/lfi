@@ -142,9 +142,9 @@ test.prop([asyncPredicateArb, asyncIterableArb])(
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filteredIterable = filterAsync(asyncFn, iterable)
 
-    await expect(
-      reduceAsync(toArray(), filteredIterable),
-    ).resolves.toStrictEqual(values.filter(value => syncFn(value)))
+    expect(await reduceAsync(toArray(), filteredIterable)).toStrictEqual(
+      values.filter(value => syncFn(value)),
+    )
   },
 )
 
@@ -227,9 +227,9 @@ test.prop([asyncPredicateArb, getConcurIterableArb(fc.integer())])(
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filteredIterable = filterConcur(asyncFn, iterable)
 
-    await expect(
-      reduceConcur(toArray(), filteredIterable),
-    ).resolves.toIncludeSameMembers(values.filter(value => syncFn(value)))
+    expect(
+      await reduceConcur(toArray(), filteredIterable),
+    ).toIncludeSameMembers(values.filter(value => syncFn(value)))
   },
 )
 
@@ -449,9 +449,7 @@ test.prop([
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filterMappedIterable = filterMapAsync(asyncFn, iterable)
 
-    await expect(
-      reduceAsync(toArray(), filterMappedIterable),
-    ).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), filterMappedIterable)).toStrictEqual(
       values.map(value => syncFn(value)).filter(value => value != null),
     )
   },
@@ -554,13 +552,13 @@ test.prop([
   getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
   concurIterableArb,
 ])(
-  `filterMapConcur returns a concur iterable containing the same values as the given conru iterable, but transformed using the given callback and excluding the values transformed to null or undefined`,
+  `filterMapConcur returns a concur iterable containing the same values as the given concur iterable, but transformed using the given callback and excluding the values transformed to null or undefined`,
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filterMappedIterable = filterMapConcur(asyncFn, iterable)
 
-    await expect(
-      reduceConcur(toArray(), filterMappedIterable),
-    ).resolves.toIncludeSameMembers(
+    expect(
+      await reduceConcur(toArray(), filterMappedIterable),
+    ).toIncludeSameMembers(
       values.map(value => syncFn(value)).filter(value => value != null),
     )
   },
@@ -622,9 +620,7 @@ test.prop([iterableArb, asyncIterableArb])(
   ) => {
     const filteredIterable = excludeAsync(excludedIterable, iterable)
 
-    await expect(
-      reduceAsync(toArray(), filteredIterable),
-    ).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), filteredIterable)).toStrictEqual(
       values.filter(value => !excludedValues.includes(value)),
     )
   },
@@ -652,14 +648,12 @@ test.prop([iterableArb, concurIterableArb])(
   `excludeConcur returns an concur iterable containing the same values in the same order as the given concur iterable, but excluding the given iterable`,
   async (
     { iterable: excludedIterable, values: excludedValues },
-    { iterable, values },
+    { iterable, getIterationOrder },
   ) => {
     const filteredIterable = excludeConcur(excludedIterable, iterable)
 
-    await expect(
-      reduceConcur(toArray(), filteredIterable),
-    ).resolves.toIncludeSameMembers(
-      values.filter(value => !excludedValues.includes(value)),
+    expect(await reduceConcur(toArray(), filteredIterable)).toStrictEqual(
+      getIterationOrder().filter(value => !excludedValues.includes(value)),
     )
   },
 )
@@ -769,7 +763,7 @@ test.prop([asyncFnArb, asyncIterableArb])(
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
       .map(({ value }) => value)
-    await expect(reduceAsync(toArray(), uniqueIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), uniqueIterable)).toStrictEqual(
       expectedValues,
     )
   },
@@ -889,7 +883,7 @@ test.prop([asyncIterableArb])(
     const expectedValues = [...map.values()]
       .sort((a, b) => a.index - b.index)
       .map(({ value }) => value)
-    await expect(reduceAsync(toArray(), uniqueIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), uniqueIterable)).toStrictEqual(
       expectedValues,
     )
   },
@@ -986,7 +980,7 @@ test.prop([asyncPredicateArb, asyncIterableArb])(
 
     const found = findAsync(asyncFn, iterable)
 
-    await expect(reduceAsync(toArray(), found)).resolves.toStrictEqual(expected)
+    expect(await reduceAsync(toArray(), found)).toStrictEqual(expected)
   },
 )
 
@@ -1209,7 +1203,7 @@ test.prop([asyncPredicateArb, asyncIterableArb])(
 
     const found = findLastAsync(asyncFn, iterable)
 
-    await expect(reduceAsync(toArray(), found)).resolves.toStrictEqual(expected)
+    expect(await reduceAsync(toArray(), found)).toStrictEqual(expected)
   },
 )
 

@@ -256,15 +256,17 @@ test.prop([asyncPredicateArb, uniqueConcurIterableArb])(
 
 test.prop([
   fc
-    .tuple(nonEmptyConcurIterableArb, predicateArb)
-    .filter(
-      ([{ values }, fn]) => values.filter(value => fn(value)).length === 1,
+    .tuple(nonEmptyConcurIterableArb, fc.nat())
+    .map(
+      ([concurIterable, throwIndex]) =>
+        [concurIterable, throwIndex % concurIterable.values.length] as const,
     ),
 ])(
   `filterConcur rejects for a sync throwing function and non-empty concur iterable`,
-  async ([{ iterable }, fn]) => {
+  async ([{ iterable }, throwIndex]) => {
+    let index = 0
     const filteredIterable = filterConcur(value => {
-      if (fn(value)) {
+      if (index++ === throwIndex) {
         throw new Error(`BOOM!`)
       }
       return value
@@ -278,23 +280,40 @@ test.prop([
 
 test.prop([
   fc
-    .tuple(nonEmptyConcurIterableArb, asyncPredicateArb)
-    .filter(
-      ([{ values }, { syncFn }]) =>
-        values.filter(value => syncFn(value)).length === 1,
+    .tuple(nonEmptyConcurIterableArb, asyncPredicateArb, fc.nat())
+    .map(
+      ([concurIterable, predicate, throwIndex]) =>
+        [
+          concurIterable,
+          predicate,
+          throwIndex % concurIterable.values.length,
+        ] as const,
     ),
 ])(
   `filterConcur rejects for an async throwing function and non-empty concur iterable`,
-  async ([{ iterable }, { asyncFn }]) => {
-    const filteredIterable = filterConcur(
-      async value =>
-        (await asyncFn(value)) ? Promise.reject(new Error(`BOOM!`)) : true,
-      iterable,
-    )
+  async ([{ iterable }, { asyncFn }, throwIndex]) => {
+    let index = 0
+    const filteredIterable = filterConcur(async value => {
+      const result = await asyncFn(value)
+      return index++ === throwIndex
+        ? Promise.reject(new Error(`BOOM!`))
+        : result
+    }, iterable)
 
     await expect(consumeConcur(filteredIterable)).rejects.toStrictEqual(
       new Error(`BOOM!`),
     )
+  },
+)
+
+test.prop([concurIterableArb, asyncPredicateArb])(
+  `filterConcur returns a concur iterable as concurrent as the given async predicate and concur iterable`,
+  async ({ iterable }, { asyncFn, fnTimings }) => {
+    const filteredIterable = filterConcur(asyncFn, iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(filteredIterable))
+
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
   },
 )
 
@@ -564,6 +583,20 @@ test.prop([
   },
 )
 
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  concurIterableArb,
+])(
+  `filterMapConcur returns a concur iterable as concurrent as the given async function and concur iterable`,
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const filterMappedIterable = filterMapConcur(asyncFn, iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(filterMappedIterable))
+
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
+  },
+)
+
 test.skip(`exclude types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], exclude([1, 2]))).toExtend<Iterable<number>>()
   expectTypeOf(pipe([1, 2, 3], exclude([`a`, `b`]))).toExtend<
@@ -806,6 +839,17 @@ test.prop([asyncFnArb, nonEmptyConcurIterableArb])(
   },
 )
 
+test.prop([asyncFnArb, nonEmptyConcurIterableArb])(
+  `uniqueByConcur returns a concur iterable as concurrent as the the given async function and concur iterable`,
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const uniqueIterable = uniqueByConcur(asyncFn, iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(uniqueIterable))
+
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
+  },
+)
+
 test.skip(`unique types are correct`, () => {
   expectTypeOf(pipe([1, 1, 2, 3], unique)).toExtend<Iterable<number>>()
 })
@@ -912,6 +956,17 @@ test.prop([nonEmptyConcurIterableArb])(
     const array = await reduceConcur(toArray(), uniqueIterable)
     expect(values).toIncludeAllMembers(array)
     expect(array).toBeArrayOfSize(new Set(array).size)
+  },
+)
+
+test.prop([nonEmptyConcurIterableArb])(
+  `uniqueConcur returns a concur iterable as concurrent as the given concur iterable`,
+  async ({ iterable }) => {
+    const uniqueIterable = uniqueConcur(iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(uniqueIterable))
+
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 
@@ -1136,6 +1191,17 @@ test.prop([
   },
 )
 
+test.prop([asyncPredicateArb, concurIterableArb])(
+  `findConcur returns a concur iterable as current as the given async function and concur iterable`,
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const found = findConcur(asyncFn, iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(found))
+
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
+  },
+)
+
 test.skip(`findLast types are correct`, () => {
   expectTypeOf(
     pipe(
@@ -1243,5 +1309,16 @@ test.prop([asyncPredicateArb, concurIterableArb])(
     const foundArray = await reduceConcur(toArray(), found)
     expect(Math.sign(foundArray.length)).toBe(Math.sign(expected.length))
     expect(expected).toIncludeAllMembers(foundArray)
+  },
+)
+
+test.prop([asyncPredicateArb, concurIterableArb])(
+  `findLastConcur returns a concur iterable as concurrent as the given async function and concur iterable`,
+  async ({ asyncFn, fnTimings }, { iterable }) => {
+    const found = findLastConcur(asyncFn, iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(found))
+
+    expect(elapsed).toBe(addTimings(iterable.yieldTimings, fnTimings).max())
   },
 )

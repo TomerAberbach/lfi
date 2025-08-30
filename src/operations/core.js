@@ -31,14 +31,14 @@ export const asAsync = iterable => {
       : async function* () {
           let buffer = []
           let done = false
-          let nonEmptyBufferDeferred = deferred()
+          let nonEmptyBufferDeferred
           let deferredError
 
           iterable(value => {
             buffer.push(value)
             if (nonEmptyBufferDeferred) {
               const currentDeferred = nonEmptyBufferDeferred
-              nonEmptyBufferDeferred = null
+              nonEmptyBufferDeferred = undefined
               currentDeferred._resolve()
             }
           })
@@ -52,20 +52,18 @@ export const asAsync = iterable => {
             })
 
           while (!done) {
-            if (deferredError) {
-              yield* buffer
-              throw deferredError
-            }
-
             if (!buffer.length) {
+              nonEmptyBufferDeferred = deferred()
               await nonEmptyBufferDeferred._promise
-              continue
             }
 
             const currentBuffer = buffer
             buffer = []
-            nonEmptyBufferDeferred = deferred()
             yield* currentBuffer
+
+            if (deferredError) {
+              throw deferredError
+            }
           }
         },
   )

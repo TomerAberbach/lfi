@@ -3,26 +3,28 @@ import { expect, expectTypeOf } from 'vitest'
 import {
   asyncIterableArb,
   concurIterableArb,
+  getConcurIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import { timed } from '../../test/timings.ts'
-import delay from '../../test/delay.ts'
+import { timeConcur, timed } from '../../test/timings.ts'
 import { fnArb } from '../../test/fast-check/fns.ts'
 import autoAdvance from '../../test/auto-advance.ts'
 import {
   asAsync,
   asConcur,
   compose,
+  consumeAsync,
   consumeConcur,
   curry,
   empty,
   emptyAsync,
   emptyConcur,
   map,
+  mapConcur,
   opaque,
   opaqueAsync,
   opaqueConcur,
@@ -264,12 +266,23 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
   },
 )
 
-test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
-  `asAsync returns an async iterable containing the same values in the same order as the given iterable or async iterable`,
-  async ({ iterable, values }) => {
+test.prop([concurIterableArb])(
+  `asAsync returns an async iterable for concur iterables`,
+  async ({ iterable }) => {
     const asyncIterable = asAsync(iterable)
 
-    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(values)
+    await expect(asyncIterable).toBeAsyncIterable({ pure: false })
+  },
+)
+
+test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
+  `asAsync returns an async iterable containing the same values in the same order as the given iterable`,
+  async ({ iterable, getIterationOrder }) => {
+    const asyncIterable = asAsync(iterable)
+
+    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -287,43 +300,60 @@ test.prop([iterableArb])(
   },
 )
 
-test.prop([concurIterableArb])(
-  `asAsync returns an async iterable containing the same values in the same order as the given concur iterable`,
-  async ({ iterable, getIterationOrder }) => {
-    const asyncIterable = asAsync(iterable)
-
-    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(
-      getIterationOrder(),
+test.prop([iterableArb])(
+  `asAsync returns an async iterable as concurrent as the given iterable of promises`,
+  async ({ iterable }, scheduler) => {
+    const promiseIterable = map(
+      value => scheduler.schedule(Promise.resolve(value), fc.stringify(value)),
+      iterable,
     )
+    const asyncIterable = asAsync(promiseIterable)
+
+    const [{ elapsed: elapsed1 }, { elapsed: elapsed2 }] = await Promise.all([
+      timed(() => consumeAsync(asyncIterable)),
+      timed(() => Promise.all(promiseIterable)),
+    ])
+
+    expect(elapsed1).toBe(elapsed2)
   },
 )
 
-test(
-  `asAsync handles throwing concur iterable`,
-  autoAdvance(async () => {
-    const concurIterable: ConcurIterable<number> = async apply => {
-      await delay(1)
-      await apply(1)
+test.prop([
+  fc
+    .tuple(
+      getConcurIterableArb(fc.anything(), { unique: true, minLength: 1 }),
+      fc.nat(),
+    )
+    .map(
+      ([concurIterable, throwIndex]) =>
+        [concurIterable, throwIndex % concurIterable.values.length] as const,
+    ),
+])(
+  `asAsync rejects for a throwing concur iterable`,
+  async ([{ iterable, values, getIterationOrder }, throwIndex]) => {
+    const thrownValue = values[throwIndex]
+    const throwingIterable = pipe(
+      iterable,
+      mapConcur(value =>
+        value === thrownValue ? Promise.reject(new Error(`BOOM!`)) : value,
+      ),
+      timeConcur,
+    )
 
-      await delay(1)
-      await apply(2)
+    const asyncIterable = asAsync(throwingIterable)
 
-      await delay(1)
-      throw new Error(`BOOM!`)
-    }
-
-    const asyncIterable = asAsync(concurIterable)
-
-    const values: number[] = []
+    const iteratedValues: unknown[] = []
     await expect(
       (async () => {
         for await (const value of asyncIterable) {
-          values.push(value)
+          iteratedValues.push(value)
         }
       })(),
     ).rejects.toStrictEqual(new Error(`BOOM!`))
-    expect(values).toStrictEqual([1, 2])
-  }),
+    expect(iteratedValues).toStrictEqual(
+      getIterationOrder().filter(value => value !== thrownValue),
+    )
+  },
 )
 
 test.skip(`asConcur types are correct`, () => {
@@ -382,7 +412,7 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
 )
 
 test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
-  `asConcur returns a concur iterable containing the same values as the given iterable`,
+  `asConcur returns a concur iterable containing the same values in the same order as the given iterable`,
   async ({ iterable, getIterationOrder }) => {
     const concurIterable = asConcur(iterable)
 
@@ -409,7 +439,7 @@ test.prop([iterableArb])(
 )
 
 test.prop([asyncIterableArb])(
-  `asConcur returns a concur iterable containing the awaited same values in the same order as the given async iterable of promises`,
+  `asConcur returns a concur iterable containing the awaited same values as the given async iterable of promises`,
   async ({ iterable, values }, scheduler) => {
     // NOTE: We can't use `mapAsync` because that unwraps promises.
     const promiseIterable = createAsyncIterable(() => {
@@ -578,5 +608,16 @@ test.prop([concurIterableArb])(
       getIterationOrder(),
     )
     expect(opaqueIterable).not.toBe(iterable)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `opaqueConcur returns a concur iterable as concurrent as the given concur iterable`,
+  async ({ iterable }) => {
+    const opaqueIterable = opaqueConcur(iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(opaqueIterable))
+
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )

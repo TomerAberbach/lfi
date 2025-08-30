@@ -75,16 +75,16 @@ test.prop([fnAndArgsArb])(
 
 test.prop([fnAndArgsArb])(
   `curry returns a curried version of the given function if its length is greater than zero`,
-  ([fn, inputs]) => {
+  ([fn, args]) => {
     const curried = curry(fn)
 
-    for (const partition of partitions(inputs)) {
+    for (const partition of partitions(args)) {
       const returned = partition.reduce<(...args: unknown[]) => unknown>(
-        (acc, inputs) => acc(...inputs) as (...args: unknown[]) => unknown,
+        (acc, args) => acc(...args) as (...args: unknown[]) => unknown,
         curried,
       )
 
-      expect(returned).toStrictEqual(fn(...inputs))
+      expect(returned).toStrictEqual(fn(...args))
     }
   },
 )
@@ -129,11 +129,11 @@ test.prop([
   },
 )
 
-test.prop([fnAndArgsArb])(`curry is idempotent`, ([fn, inputs]) => {
+test.prop([fnAndArgsArb])(`curry is idempotent`, ([fn, args]) => {
   const curried = curry(fn)
   const doubleCurried = curry(curried)
 
-  expect(curried(...inputs)).toStrictEqual(doubleCurried(...inputs))
+  expect(curried(...args)).toStrictEqual(doubleCurried(...args))
 })
 
 test.prop([
@@ -172,7 +172,7 @@ test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `pipe pipes`,
   (value, [firstFn, ...otherFns]) => {
     expect(
-      (pipe as (...args: unknown[]) => unknown)(value, firstFn, ...otherFns),
+      (pipe as (...args: unknown[]) => unknown)(value, firstFn!, ...otherFns),
     ).toBe(
       (pipe as (...args: unknown[]) => unknown)(firstFn!(value), ...otherFns),
     )
@@ -269,9 +269,7 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
   async ({ iterable, values }) => {
     const asyncIterable = asAsync(iterable)
 
-    await expect(reduceAsync(toArray(), asyncIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(values)
   },
 )
 
@@ -285,20 +283,18 @@ test.prop([iterableArb])(
 
     const asyncIterable = asAsync(promiseIterable)
 
-    await expect(reduceAsync(toArray(), asyncIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(values)
   },
 )
 
 test.prop([concurIterableArb])(
-  `asAsync returns an async iterable containing the same values as the given concur iterable`,
-  async ({ iterable, values }) => {
+  `asAsync returns an async iterable containing the same values in the same order as the given concur iterable`,
+  async ({ iterable, getIterationOrder }) => {
     const asyncIterable = asAsync(iterable)
 
-    await expect(
-      reduceAsync(toArray(), asyncIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceAsync(toArray(), asyncIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -387,12 +383,12 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
 
 test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
   `asConcur returns a concur iterable containing the same values as the given iterable`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const concurIterable = asConcur(iterable)
 
-    await expect(
-      reduceConcur(toArray(), concurIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), concurIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
   },
 )
 
@@ -406,9 +402,9 @@ test.prop([iterableArb])(
 
     const concurIterable = asConcur(promiseIterable)
 
-    await expect(
-      reduceConcur(toArray(), concurIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), concurIterable)).toIncludeSameMembers(
+      values,
+    )
   },
 )
 
@@ -437,9 +433,9 @@ test.prop([asyncIterableArb])(
 
     const concurIterable = asConcur(promiseIterable)
 
-    await expect(
-      reduceConcur(toArray(), concurIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), concurIterable)).toIncludeSameMembers(
+      values,
+    )
   },
 )
 
@@ -497,7 +493,7 @@ test.skip(`emptyAsync types are correct`, () => {
 test(
   `the emptyAsync iterable is empty`,
   autoAdvance(async () => {
-    await expect(reduceAsync(toArray(), emptyAsync())).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), emptyAsync())).toBeEmpty()
   }),
 )
 
@@ -509,7 +505,7 @@ test.skip(`emptyConcur types are correct`, () => {
 test(
   `the emptyConcur iterable is empty`,
   autoAdvance(async () => {
-    await expect(reduceConcur(toArray(), emptyConcur())).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), emptyConcur())).toBeEmpty()
   }),
 )
 
@@ -553,9 +549,7 @@ test.prop([asyncIterableArb])(
   async ({ iterable, values }) => {
     const opaqueIterable = opaqueAsync(iterable)
 
-    await expect(reduceAsync(toArray(), opaqueIterable)).resolves.toStrictEqual(
-      values,
-    )
+    expect(await reduceAsync(toArray(), opaqueIterable)).toStrictEqual(values)
     expect(opaqueIterable).not.toBe(iterable)
   },
 )
@@ -577,12 +571,12 @@ test.prop([concurIterableArb])(
 
 test.prop([concurIterableArb])(
   `opaqueConcur returns a concur iterable deeply equal, but not referentially equal, to the given concur iterable`,
-  async ({ iterable, values }) => {
+  async ({ iterable, getIterationOrder }) => {
     const opaqueIterable = opaqueConcur(iterable)
 
-    await expect(
-      reduceConcur(toArray(), opaqueIterable),
-    ).resolves.toIncludeSameMembers(values)
+    expect(await reduceConcur(toArray(), opaqueIterable)).toStrictEqual(
+      getIterationOrder(),
+    )
     expect(opaqueIterable).not.toBe(iterable)
   },
 )

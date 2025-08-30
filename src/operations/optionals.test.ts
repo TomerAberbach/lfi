@@ -179,9 +179,8 @@ test.prop([
 ])(
   `getAsync throws an error for an async iterable not containing exactly one value`,
   async ({ iterable }) => {
-    await expect(() => getAsync(iterable)).rejects.toThrowWithMessage(
-      Error,
-      `Did not contain exactly one value`,
+    await expect(getAsync(iterable)).rejects.toStrictEqual(
+      new Error(`Did not contain exactly one value`),
     )
   },
 )
@@ -206,9 +205,8 @@ test.prop([
 ])(
   `getConcur throws an error for a concur iterable not containing exactly one value`,
   async ({ iterable }) => {
-    await expect(() => getConcur(iterable)).rejects.toThrowWithMessage(
-      Error,
-      `Did not contain exactly one value`,
+    await expect(getConcur(iterable)).rejects.toStrictEqual(
+      new Error(`Did not contain exactly one value`),
     )
   },
 )
@@ -284,8 +282,8 @@ test.prop([asyncIterableArb])(
 test(`nextAsync returns a pair containing two empty async iterables for an empty async iterable`, async () => {
   const [asyncIterable1, asyncIterable2] = await nextAsync(emptyAsync())
 
-  await expect(reduceAsync(toArray(), asyncIterable1)).resolves.toBeEmpty()
-  await expect(reduceAsync(toArray(), asyncIterable2)).resolves.toBeEmpty()
+  expect(await reduceAsync(toArray(), asyncIterable1)).toBeEmpty()
+  expect(await reduceAsync(toArray(), asyncIterable2)).toBeEmpty()
 })
 
 test.prop([nonEmptyAsyncIterableArb])(
@@ -293,10 +291,10 @@ test.prop([nonEmptyAsyncIterableArb])(
   async ({ iterable, values }) => {
     const [asyncIterable1, asyncIterable2] = await nextAsync(iterable)
 
-    await expect(reduceAsync(toArray(), asyncIterable1)).resolves.toStrictEqual(
-      [values[0]],
-    )
-    await expect(reduceAsync(toArray(), asyncIterable2)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), asyncIterable1)).toStrictEqual([
+      values[0],
+    ])
+    expect(await reduceAsync(toArray(), asyncIterable2)).toStrictEqual(
       values.slice(1),
     )
   },

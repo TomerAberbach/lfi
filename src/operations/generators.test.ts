@@ -230,9 +230,9 @@ test(
       return value + 1
     }, 0)
 
-    await expect(
-      pipe(asyncIterable, takeAsync(10), reduceAsync(toArray())),
-    ).resolves.toStrictEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    expect(
+      await pipe(asyncIterable, takeAsync(10), reduceAsync(toArray())),
+    ).toStrictEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
   }),
 )
 
@@ -348,9 +348,9 @@ test.prop([nonEmptyAsyncIterableArb])(
   async ({ iterable, values }) => {
     const cyclingIterable = cycleAsync(iterable)
 
-    await expect(
-      pipe(cyclingIterable, takeAsync(100), reduceAsync(toArray())),
-    ).resolves.toStrictEqual([
+    expect(
+      await pipe(cyclingIterable, takeAsync(100), reduceAsync(toArray())),
+    ).toStrictEqual([
       ...Array.from(
         { length: Math.trunc(100 / values.length) },
         () => values,
@@ -367,9 +367,9 @@ test(
 
     const cyclingIterable = cycleAsync(asyncIterable)
 
-    await expect(
-      pipe(cyclingIterable, takeAsync(10), reduceAsync(toArray())),
-    ).resolves.toStrictEqual([1, 2, 3, 1, 2, 3, 1, 2, 3, 1])
+    expect(
+      await pipe(cyclingIterable, takeAsync(10), reduceAsync(toArray())),
+    ).toStrictEqual([1, 2, 3, 1, 2, 3, 1, 2, 3, 1])
   }),
 )
 

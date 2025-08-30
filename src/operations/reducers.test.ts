@@ -121,7 +121,7 @@ test.prop([asyncFnArb, asyncFunctionReducerArb, fc.anything()])(
   async ({ asyncFn, syncFn }, { asyncFunctionReducer }, value) => {
     const { finish } = mapAsyncReducer(asyncFn, asyncFunctionReducer)
 
-    await expect(finish(value)).resolves.toBe(syncFn(value))
+    expect(await finish(value)).toBe(syncFn(value))
   },
 )
 
@@ -130,7 +130,7 @@ test.prop([asyncFnArb, rawAsyncReducerWithFinishArb, fc.anything()])(
   async ({ asyncFn, syncFn }, { asyncReducer, syncReducer }, value) => {
     const mappedReducer = mapAsyncReducer(asyncFn, asyncReducer)
 
-    await expect(mappedReducer.finish(value)).resolves.toBe(
+    expect(await mappedReducer.finish(value)).toBe(
       syncFn(syncReducer.finish(value)),
     )
   },
@@ -259,7 +259,7 @@ test.prop([asyncFunctionReducerArb])(
   async ({ asyncFunctionReducer }) => {
     const reduced = reduceAsync(asyncFunctionReducer, emptyAsync())
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -274,7 +274,7 @@ test.prop([
   ) => {
     const reduced = reduceAsync(asyncFunctionReducer, iterable)
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
       values.reduce(syncFunctionReducer),
     ])
   },
@@ -294,7 +294,7 @@ test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   async ({ asyncReducer }) => {
     const reduced = reduceAsync(asyncReducer, emptyAsync())
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -306,7 +306,7 @@ test.prop([
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
       values.reduce((a, b) => Number(syncReducer.add(a, b))),
     ])
   },
@@ -326,7 +326,7 @@ test.prop([rawAsyncOptionalReducerWithFinishArb])(
   async ({ asyncReducer }) => {
     const reduced = reduceAsync(asyncReducer, emptyAsync())
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -338,7 +338,7 @@ test.prop([
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceAsync(asyncReducer, iterable)
 
-    await expect(reduceAsync(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceAsync(toArray(), reduced)).toStrictEqual([
       syncReducer.finish(
         values.reduce((a, b) => Number(syncReducer.add(a, b))),
       ),
@@ -481,7 +481,7 @@ test.prop([asyncFunctionReducerArb])(
   async ({ asyncFunctionReducer }) => {
     const reduced = reduceConcur(asyncFunctionReducer, emptyConcur())
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -496,7 +496,7 @@ test.prop([
   ) => {
     const reduced = reduceConcur(asyncFunctionReducer, iterable)
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
       values.reduce(syncFunctionReducer),
     ])
   },
@@ -516,7 +516,7 @@ test.prop([rawAsyncOptionalReducerWithoutFinishArb])(
   async ({ asyncReducer }) => {
     const reduced = reduceConcur(asyncReducer, emptyConcur())
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -528,7 +528,7 @@ test.prop([
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
       values.reduce((a, b) => Number(syncReducer.add(a, b))),
     ])
   },
@@ -548,7 +548,7 @@ test.prop([rawAsyncOptionalReducerWithFinishArb])(
   async ({ asyncReducer }) => {
     const reduced = reduceConcur(asyncReducer, emptyConcur())
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([])
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([])
   },
 )
 
@@ -560,7 +560,7 @@ test.prop([
   async ({ asyncReducer, syncReducer }, { iterable, values }) => {
     const reduced = reduceConcur(asyncReducer, iterable)
 
-    await expect(reduceConcur(toArray(), reduced)).resolves.toStrictEqual([
+    expect(await reduceConcur(toArray(), reduced)).toStrictEqual([
       syncReducer.finish(
         values.reduce((a, b) => Number(syncReducer.add(a, b))),
       ),

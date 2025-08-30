@@ -184,7 +184,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const minimum = minByAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
   },
 )
 
@@ -231,7 +231,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const minimum = minByConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
   },
 )
 
@@ -320,7 +320,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const maximum = maxByAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
   },
 )
 
@@ -372,7 +372,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const maximum = maxByConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
   },
 )
 
@@ -467,7 +467,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxByAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
   },
 )
 
@@ -519,7 +519,7 @@ test.prop([asyncCompareFnArb])(
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxByConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
   },
 )
 
@@ -619,7 +619,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const minimum = minWithAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
   },
 )
 
@@ -668,7 +668,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const minimum = minWithConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
   },
 )
 
@@ -759,7 +759,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const maximum = maxWithAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
   },
 )
 
@@ -808,7 +808,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const maximum = maxWithConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
   },
 )
 
@@ -900,7 +900,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxWithAsync(asyncFn, emptyAsync())
 
-    await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
+    expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
   },
 )
 
@@ -952,7 +952,7 @@ test.prop([getAsyncFnArb(fc.integer())])(
   async ({ asyncFn }) => {
     const minimumMaximum = minMaxWithConcur(asyncFn, emptyConcur())
 
-    await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
+    expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
   },
 )
 
@@ -1019,7 +1019,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 test(`minAsync returns an empty async iterable for an empty async iterable`, async () => {
   const minimum = minAsync(emptyAsync())
 
-  await expect(reduceAsync(toArray(), minimum)).resolves.toBeEmpty()
+  expect(await reduceAsync(toArray(), minimum)).toBeEmpty()
 })
 
 test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1027,7 +1027,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable, values }) => {
     const minimum = minAsync(iterable)
 
-    await expect(getAsync(minimum)).resolves.toBe(Math.min(...values))
+    expect(await getAsync(minimum)).toBe(Math.min(...values))
   },
 )
 
@@ -1049,7 +1049,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 test(`minConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const minimum = minConcur(emptyConcur())
 
-  await expect(reduceConcur(toArray(), minimum)).resolves.toBeEmpty()
+  expect(await reduceConcur(toArray(), minimum)).toBeEmpty()
 })
 
 test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1057,7 +1057,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable, values }) => {
     const minimum = minConcur(iterable)
 
-    await expect(getConcur(minimum)).resolves.toBe(Math.min(...values))
+    expect(await getConcur(minimum)).toBe(Math.min(...values))
   },
 )
 
@@ -1107,7 +1107,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 test(`maxAsync returns an empty async iterable for an empty async iterable`, async () => {
   const maximum = maxAsync(emptyAsync())
 
-  await expect(reduceAsync(toArray(), maximum)).resolves.toBeEmpty()
+  expect(await reduceAsync(toArray(), maximum)).toBeEmpty()
 })
 
 test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1115,7 +1115,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable, values }) => {
     const maximum = maxAsync(iterable)
 
-    await expect(getAsync(maximum)).resolves.toBe(Math.max(...values))
+    expect(await getAsync(maximum)).toBe(Math.max(...values))
   },
 )
 
@@ -1137,7 +1137,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 test(`maxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const maximum = maxConcur(emptyConcur())
 
-  await expect(reduceConcur(toArray(), maximum)).resolves.toBeEmpty()
+  expect(await reduceConcur(toArray(), maximum)).toBeEmpty()
 })
 
 test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1145,7 +1145,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable, values }) => {
     const maximum = maxConcur(iterable)
 
-    await expect(getConcur(maximum)).resolves.toBe(Math.max(...values))
+    expect(await getConcur(maximum)).toBe(Math.max(...values))
   },
 )
 
@@ -1204,7 +1204,7 @@ test.prop([getAsyncIterableArb(fc.integer())])(
 test(`minMaxAsync returns an empty async iterable for an empty async iterable`, async () => {
   const minimumMaximum = minMaxAsync(emptyAsync())
 
-  await expect(reduceAsync(toArray(), minimumMaximum)).resolves.toBeEmpty()
+  expect(await reduceAsync(toArray(), minimumMaximum)).toBeEmpty()
 })
 
 test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1212,7 +1212,7 @@ test.prop([getAsyncIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable }) => {
     const minimumMaximum = minMaxAsync(iterable)
 
-    await expect(getAsync(minimumMaximum)).resolves.toStrictEqual({
+    expect(await getAsync(minimumMaximum)).toStrictEqual({
       min: await getAsync(minAsync(iterable)),
       max: await getAsync(maxAsync(iterable)),
     })
@@ -1240,7 +1240,7 @@ test.prop([getConcurIterableArb(fc.integer())])(
 test(`minMaxConcur returns an empty concur iterable for an empty concur iterable`, async () => {
   const minimumMaximum = minMaxConcur(emptyConcur())
 
-  await expect(reduceConcur(toArray(), minimumMaximum)).resolves.toBeEmpty()
+  expect(await reduceConcur(toArray(), minimumMaximum)).toBeEmpty()
 })
 
 test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
@@ -1248,7 +1248,7 @@ test.prop([getConcurIterableArb(fc.integer(), { minLength: 1 })])(
   async ({ iterable }) => {
     const minimumMaximum = minMaxConcur(iterable)
 
-    await expect(getConcur(minimumMaximum)).resolves.toStrictEqual({
+    expect(await getConcur(minimumMaximum)).toStrictEqual({
       min: await getConcur(minConcur(iterable)),
       max: await getConcur(maxConcur(iterable)),
     })

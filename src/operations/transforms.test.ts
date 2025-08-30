@@ -120,7 +120,7 @@ test.prop([asyncFnArb, asyncIterableArb])(
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapAsync(asyncFn, iterable)
 
-    await expect(reduceAsync(toArray(), mappedIterable)).resolves.toStrictEqual(
+    expect(await reduceAsync(toArray(), mappedIterable)).toStrictEqual(
       values.map(value => syncFn(value)),
     )
   },
@@ -183,9 +183,9 @@ test.prop([asyncFnArb, concurIterableArb])(
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 
-    await expect(
-      reduceConcur(toArray(), mappedIterable),
-    ).resolves.toIncludeSameMembers(values.map(value => syncFn(value)))
+    expect(await reduceConcur(toArray(), mappedIterable)).toIncludeSameMembers(
+      values.map(value => syncFn(value)),
+    )
   },
 )
 
@@ -431,9 +431,9 @@ test.prop([
       iterable,
     )
 
-    await expect(
-      reduceAsync(toArray(), flatMappedIterable),
-    ).resolves.toStrictEqual(values.flatMap(value => syncFn(value).values))
+    expect(await reduceAsync(toArray(), flatMappedIterable)).toStrictEqual(
+      values.flatMap(value => syncFn(value).values),
+    )
   },
 )
 
@@ -702,11 +702,9 @@ test.prop([
       iterable,
     )
 
-    await expect(
-      reduceConcur(toArray(), flatMappedIterable),
-    ).resolves.toIncludeSameMembers(
-      values.flatMap(value => syncFn(value).values),
-    )
+    expect(
+      await reduceConcur(toArray(), flatMappedIterable),
+    ).toIncludeSameMembers(values.flatMap(value => syncFn(value).values))
   },
 )
 
@@ -764,9 +762,9 @@ test.prop([getAsyncIterableArb(fc.oneof(iterableArb, asyncIterableArb))])(
       mapAsync(({ iterable }) => iterable, iterable),
     )
 
-    await expect(
-      reduceAsync(toArray(), flattenedIterable),
-    ).resolves.toStrictEqual(values.flatMap(({ values }) => values))
+    expect(await reduceAsync(toArray(), flattenedIterable)).toStrictEqual(
+      values.flatMap(({ values }) => values),
+    )
   },
 )
 
@@ -799,9 +797,9 @@ test.prop([
       mapConcur(({ iterable }) => iterable, iterable),
     )
 
-    await expect(
-      reduceConcur(toArray(), flattenedIterable),
-    ).resolves.toIncludeSameMembers(values.flatMap(({ values }) => values))
+    expect(
+      await reduceConcur(toArray(), flattenedIterable),
+    ).toIncludeSameMembers(values.flatMap(({ values }) => values))
   },
 )
 
@@ -848,9 +846,9 @@ test.prop([asyncIterableArb])(
   async ({ iterable, values }) => {
     const indexedIterable = indexAsync(iterable)
 
-    await expect(
-      reduceAsync(toArray(), indexedIterable),
-    ).resolves.toStrictEqual(values.map((value, index) => [index, value]))
+    expect(await reduceAsync(toArray(), indexedIterable)).toStrictEqual(
+      values.map((value, index) => [index, value]),
+    )
   },
 )
 

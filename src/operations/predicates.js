@@ -1,4 +1,4 @@
-import { curry, promiseWithEarlyResolve } from '../internal/helpers.js'
+import { curry } from '../internal/helpers.js'
 
 export const all = curry((fn, iterable) => {
   for (const value of iterable) {
@@ -20,17 +20,17 @@ export const allAsync = curry(async (fn, asyncIterable) => {
   return true
 })
 
-export const allConcur = curry((fn, concurIterable) =>
-  promiseWithEarlyResolve(async resolve => {
-    let resolved = false
-    await concurIterable(async value => {
-      if (!resolved && !(await fn(value)) && !resolved) {
-        resolved = true
-        resolve(false)
-      }
-    })
-    return true
-  }),
+export const allConcur = curry(
+  (fn, concurIterable) =>
+    new Promise((resolve, reject) => {
+      let resolved = false
+      concurIterable(async value => {
+        if (!resolved && !(await fn(value)) && !resolved) {
+          resolved = true
+          resolve(false)
+        }
+      }).then(() => resolve(true), reject)
+    }),
 )
 
 export const any = curry((fn, iterable) => {
@@ -53,17 +53,17 @@ export const anyAsync = curry(async (fn, asyncIterable) => {
   return false
 })
 
-export const anyConcur = curry((fn, concurIterable) =>
-  promiseWithEarlyResolve(async resolve => {
-    let resolved = false
-    await concurIterable(async value => {
-      if (!resolved && (await fn(value)) && !resolved) {
-        resolved = true
-        resolve(true)
-      }
-    })
-    return false
-  }),
+export const anyConcur = curry(
+  (fn, concurIterable) =>
+    new Promise((resolve, reject) => {
+      let resolved = false
+      concurIterable(async value => {
+        if (!resolved && (await fn(value)) && !resolved) {
+          resolved = true
+          resolve(true)
+        }
+      }).then(() => resolve(false), reject)
+    }),
 )
 
 export const none = curry((fn, iterable) => !any(fn, iterable))

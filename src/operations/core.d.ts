@@ -147,6 +147,7 @@ export const pipe: {
     fn8: (h: H) => I,
     fn9: (i: I) => J,
   ): J
+  (value: unknown, ...fns: ((value: unknown) => unknown)[]): unknown
 }
 
 /**
@@ -231,6 +232,7 @@ export const compose: {
     fn8: (h: H) => I,
     fn9: (i: I) => J,
   ): (value: A) => J
+  (...fns: ((value: unknown) => unknown)[]): (value: unknown) => unknown
 }
 
 /**

@@ -1,18 +1,57 @@
 import {
+  canEval,
   createAsyncIterable,
   createIterable,
+  identity,
   isPromise,
   thunk,
 } from '../internal/helpers.js'
 
 export { curry } from '../internal/helpers.js'
 
-export const pipe = (value, ...fns) => fns.reduce((acc, fn) => fn(acc), value)
+export const pipe = (value, ...fns) => {
+  for (const fn of fns) {
+    value = fn(value)
+  }
+  return value
+}
 
-export const compose =
-  (...fns) =>
-  value =>
-    pipe(value, ...fns)
+export const compose = (...fns) => {
+  switch (fns.length) {
+    case 0:
+      return identity
+    case 1:
+      return fns[0]
+    case 2: {
+      const [fn0, fn1] = fns
+      return value => fn1(fn0(value))
+    }
+    case 3: {
+      const [fn0, fn1, fn2] = fns
+      return value => fn2(fn1(fn0(value)))
+    }
+    case 4: {
+      const [fn0, fn1, fn2, fn3] = fns
+      return value => fn3(fn2(fn1(fn0(value))))
+    }
+    case 5: {
+      const [fn0, fn1, fn2, fn3, fn4] = fns
+      return value => fn4(fn3(fn2(fn1(fn0(value)))))
+    }
+    case 6: {
+      const [fn0, fn1, fn2, fn3, fn4, fn5] = fns
+      return value => fn5(fn4(fn3(fn2(fn1(fn0(value))))))
+    }
+    default:
+      return canEval
+        ? // eslint-disable-next-line no-new-func
+          new Function(
+            ...fns.map((_, index) => `f${index}`),
+            `return v=>${fns.reduce((acc, _, index) => `f${index}(${acc})`, `v`)}`,
+          )(...fns)
+        : value => pipe(value, ...fns)
+  }
+}
 
 export const asAsync = iterable => {
   if (iterable[Symbol.asyncIterator]) {

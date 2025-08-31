@@ -1,4 +1,5 @@
 import { curry, identity, thunk } from '../internal/helpers.js'
+import { toMultiple } from './collections.js'
 import {
   mapAsyncReducer,
   mapReducer,
@@ -7,7 +8,6 @@ import {
   reduceAsync,
   reduceConcur,
 } from './reducers.js'
-import { toMultiple } from './collections.js'
 
 export const toCount = thunk({ create: () => 0, add: acc => acc + 1 })
 export const count = reduce(toCount())
@@ -24,7 +24,7 @@ export const sumConcur = reduceConcur(toSum())
 
 export const toMean = thunk(
   mapReducer(
-    ([sum, count]) => (count === 0 ? NaN : sum / count),
+    ([sum, count]) => (count === 0 ? Number.NaN : sum / count),
     toMultiple([toSum(), toCount()]),
   ),
 )

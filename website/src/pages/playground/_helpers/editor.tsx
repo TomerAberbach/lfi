@@ -1,18 +1,18 @@
 import { useColorMode } from '@docusaurus/theme-common'
+import AutoImport from '@kareemkermad/monaco-auto-import'
 import MonacoEditor from '@monaco-editor/react'
-import type { editor } from 'monaco-editor'
+import type { Monaco } from '@monaco-editor/react'
 import * as lfi from 'lfi'
 import { map, pipe, reduce, toArray } from 'lfi'
-import AutoImport from '@kareemkermad/monaco-auto-import'
-import type { Monaco } from '@monaco-editor/react'
+import type { editor } from 'monaco-editor'
 // @ts-expect-error TypeScript is mad that we're importing a declaration file
 // without `import type`
 import { forwardRef, useImperativeHandle, useRef } from 'react'
-import gruvboxMaterialLight from './gruvbox-material-light.json'
-import gruvboxMaterialDark from './gruvbox-material-dark.json'
 import formatCode from './format-code.ts'
-import lfiTypeDeclarations from '!!raw-loader!../../../../../dist/index.d.ts'
+import gruvboxMaterialDark from './gruvbox-material-dark.json'
+import gruvboxMaterialLight from './gruvbox-material-light.json'
 import zooTypeDeclarations from '!!raw-loader!./zoo.d.ts'
+import lfiTypeDeclarations from '!!raw-loader!../../../../../dist/index.d.ts'
 
 const Editor = forwardRef<EditorRef, EditorProps>(
   ({ defaultCode, className }: EditorProps, ref) => {

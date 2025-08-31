@@ -1,8 +1,6 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
-import { sameValueZero } from '../../test/same-value-zero.ts'
 import { stringifiableArb } from '../../test/fast-check/anything.ts'
-import { test } from '../../test/fast-check/test-prop.ts'
 import {
   getAsyncIterableArb,
   getConcurIterableArb,
@@ -15,6 +13,8 @@ import {
   rawOptionalReducerArb,
   rawReducerArb,
 } from '../../test/fast-check/reducers.ts'
+import { test } from '../../test/fast-check/test-prop.ts'
+import { sameValueZero } from '../../test/same-value-zero.ts'
 import {
   asAsync,
   asConcur,

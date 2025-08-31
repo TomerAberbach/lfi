@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, expect, vi } from 'vitest'
 import * as matchers from 'jest-extended'
+import { afterEach, beforeEach, expect, vi } from 'vitest'
 import delay from './test/delay.ts'
 
 expect.extend(matchers)
@@ -36,6 +36,25 @@ expect.extend({
       try {
         values2 = [...(received as Iterable<unknown>)]
         pass = this.equals(values1, values2)
+      } catch {
+        pass = false
+      }
+    }
+
+    if (pass) {
+      try {
+        const iterator = (received as Iterable<unknown>)[Symbol.iterator]()
+        let result = iterator.next()
+        while (!result.done) {
+          result = iterator.next()
+        }
+        // Once the iterator is done, it should return that it's done if it's
+        // asked again, no matter how many times.
+        pass =
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true)
       } catch {
         pass = false
       }

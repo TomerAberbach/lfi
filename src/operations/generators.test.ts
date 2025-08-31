@@ -4,15 +4,15 @@ import autoAdvance from '../../test/auto-advance.ts'
 import delay from '../../test/delay.ts'
 import { fnArb } from '../../test/fast-check/fns.ts'
 import {
-  nonIntegerDoubleArb,
-  nonPositiveIntegerArb,
-} from '../../test/fast-check/numbers.ts'
-import {
   asyncIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
+import {
+  nonIntegerDoubleArb,
+  nonPositiveIntegerArb,
+} from '../../test/fast-check/numbers.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
 import {
   asAsync,

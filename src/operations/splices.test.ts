@@ -3,14 +3,6 @@ import { expect, expectTypeOf } from 'vitest'
 import autoAdvance from '../../test/auto-advance.ts'
 import { asyncFnArb, fnArb } from '../../test/fast-check/fns.ts'
 import {
-  getIntervalArb,
-  negativeIntegerArb,
-  nonIntegerDoubleArb,
-  nonNegativeIntegerArb,
-  nonPositiveIntegerArb,
-  positiveIntegerArb,
-} from '../../test/fast-check/numbers.ts'
-import {
   asyncIterableArb,
   concurIterableArb,
   iterableArb,
@@ -18,6 +10,14 @@ import {
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
+import {
+  getIntervalArb,
+  negativeIntegerArb,
+  nonIntegerDoubleArb,
+  nonNegativeIntegerArb,
+  nonPositiveIntegerArb,
+  positiveIntegerArb,
+} from '../../test/fast-check/numbers.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
 import { concatTimings, timed } from '../../test/timings.ts'
 import {

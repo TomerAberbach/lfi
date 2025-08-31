@@ -63,7 +63,7 @@ import {
   sumAsync,
   sumConcur,
   toArray,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.skip(`count types are correct`, () => {
   expectTypeOf(count([1, 2, 3])).toExtend<number>()

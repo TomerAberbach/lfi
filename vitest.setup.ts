@@ -41,6 +41,25 @@ expect.extend({
       }
     }
 
+    if (pass) {
+      try {
+        const iterator = (received as Iterable<unknown>)[Symbol.iterator]()
+        let result = iterator.next()
+        while (!result.done) {
+          result = iterator.next()
+        }
+        // Once the iterator is done, it should return that it's done if it's
+        // asked again, no matter how many times.
+        pass =
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true) &&
+          this.equals(iterator.next().done, true)
+      } catch {
+        pass = false
+      }
+    }
+
     return {
       pass,
       message: (): string =>

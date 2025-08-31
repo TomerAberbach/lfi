@@ -42,7 +42,7 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.prop([functionReducerArb, fc.anything(), fc.anything()])(
   `normalizeReducer normalizes a function reducer`,

@@ -31,7 +31,7 @@ import {
   takeAsync,
   toArray,
   values,
-} from '../index.js'
+} from '../../dist/index.js'
 
 const objectArb = fc.dictionary(fc.string(), fc.anything())
 const mapArb = fc

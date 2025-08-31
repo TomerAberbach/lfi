@@ -81,14 +81,14 @@ import {
   zip,
   zipAsync,
   zipConcur,
-} from '../index.js'
+} from '../../dist/index.js'
 import type {
   AsyncOptional,
   ConcurIterable,
   ConcurOptional,
   Optional,
   WindowOptions,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.skip(`dropWhile types are correct`, () => {
   expectTypeOf(

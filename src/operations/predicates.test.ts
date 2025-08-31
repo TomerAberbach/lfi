@@ -23,7 +23,7 @@ import {
   noneAsync,
   noneConcur,
   pipe,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.skip(`all types are correct`, () => {
   expectTypeOf(

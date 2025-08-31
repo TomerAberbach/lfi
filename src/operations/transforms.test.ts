@@ -29,8 +29,8 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../index.js'
-import type { ConcurIterable } from '../index.js'
+} from '../../dist/index.js'
+import type { ConcurIterable } from '../../dist/index.js'
 
 test.skip(`map types are correct`, () => {
   expectTypeOf(pipe([1, 2, 3], map(String))).toExtend<Iterable<string>>()

@@ -28,7 +28,7 @@ import {
   pipe,
   reduceAsync,
   toArray,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.skip(`or types are correct`, () => {
   expectTypeOf(

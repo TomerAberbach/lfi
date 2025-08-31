@@ -3,14 +3,14 @@ import {
   createIterable,
   curry,
   identity,
+  mapIterable,
 } from '../internal/helpers.js'
 import { asConcur } from './core.js'
 
 export const map = curry((fn, iterable) =>
-  createIterable(function* () {
-    for (const value of iterable) {
-      yield fn(value)
-    }
+  mapIterable(iterable, iterator => () => {
+    const result = iterator.next()
+    return result.done ? result : { value: fn(result.value) }
   }),
 )
 
@@ -28,9 +28,24 @@ export const mapConcur = curry(
 )
 
 export const flatMap = curry((fn, iterable) =>
-  createIterable(function* () {
-    for (const value of iterable) {
-      yield* fn(value)
+  mapIterable(iterable, iterator => {
+    let subIterator
+    return () => {
+      while (true) {
+        if (!subIterator) {
+          const result = iterator.next()
+          if (result.done) {
+            return result
+          }
+          subIterator = fn(result.value)[Symbol.iterator]()
+        }
+        const result = subIterator.next()
+        if (result.done) {
+          subIterator = undefined
+        } else {
+          return result
+        }
+      }
     }
   }),
 )

@@ -31,8 +31,8 @@ import {
   reduceAsync,
   reduceConcur,
   toArray,
-} from '../index.js'
-import type { ConcurIterable } from '../index.js'
+} from '../../dist/index.js'
+import type { ConcurIterable } from '../../dist/index.js'
 import { createAsyncIterable } from '../internal/helpers.js'
 
 const fnAndArgsArb = fc
@@ -172,10 +172,8 @@ test.prop([fc.anything()])(
 test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `pipe pipes`,
   (value, [firstFn, ...otherFns]) => {
-    expect(
-      (pipe as (...args: unknown[]) => unknown)(value, firstFn!, ...otherFns),
-    ).toBe(
-      (pipe as (...args: unknown[]) => unknown)(firstFn!(value), ...otherFns),
+    expect(pipe(value, firstFn!, ...otherFns)).toBe(
+      pipe(firstFn!(value), ...otherFns),
     )
   },
 )
@@ -197,15 +195,8 @@ test.prop([fc.anything()])(
 test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `compose composes`,
   (value, [firstFn, ...otherFns]) => {
-    expect(
-      (compose as (...args: unknown[]) => (arg: unknown) => unknown)(
-        firstFn,
-        ...otherFns,
-      )(value),
-    ).toBe(
-      (compose as (...args: unknown[]) => (arg: unknown) => unknown)(
-        ...otherFns,
-      )(firstFn!(value)),
+    expect(compose(firstFn!, ...otherFns)(value)).toBe(
+      compose(...otherFns)(firstFn!(value)),
     )
   },
 )

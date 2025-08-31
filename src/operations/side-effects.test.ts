@@ -39,8 +39,8 @@ import {
   toCount,
   toGrouped,
   toMap,
-} from '../index.js'
-import type { ConcurIterable } from '../index.js'
+} from '../../dist/index.js'
+import type { ConcurIterable } from '../../dist/index.js'
 
 test.skip(`each types are correct`, () => {
   expectTypeOf(

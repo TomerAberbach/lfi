@@ -37,13 +37,13 @@ import {
   toSet,
   toWeakMap,
   toWeakSet,
-} from '../index.js'
+} from '../../dist/index.js'
 import type {
   KeyedReducer,
   OptionalReducer,
   RawKeyedReducer,
   Reducer,
-} from '../index.js'
+} from '../../dist/index.js'
 
 test.skip(`toArray types are correct`, () => {
   expectTypeOf(toArray<string>()).toExtend<Reducer<string, string[]>>()

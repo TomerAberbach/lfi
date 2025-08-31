@@ -116,6 +116,10 @@ export const orAsync: {
  * contains exactly one value. Otherwise, returns a promise that resolves to
  * the awaited result of invoking `fn`.
  *
+ * The promise only rejects if `fn` throws or rejects. It does not reject if the
+ * given `concurIterable` rejects. Instead this function excludes erroring
+ * values when counting the number of values in `concurIterable`.
+ *
  * @example
  * ```js playground
  * import { asConcur, findConcur, orConcur, pipe } from 'lfi'
@@ -234,6 +238,10 @@ export const getAsync: <Value>(
 /**
  * Returns a promise that resolves to the only value in `concurIterable` if it
  * contains exactly one value. Otherwise, returns a promise that rejects.
+ *
+ * The promise does not necessarily reject if the given `concurIterable`
+ * rejects. Instead this function excludes erroring values when counting the
+ * number of values in `concurIterable`.
  *
  * @example
  * ```js playground

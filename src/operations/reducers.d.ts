@@ -786,6 +786,8 @@ export const reduceAsync: {
 /**
  * Returns the result of reducing the `concurIterable` using `asyncReducer`.
  *
+ * The resulting promise or concur iterable rejects if `concurIterable` rejects.
+ *
  * Informally, an initial accumulator is created using
  * {@link RawAsyncReducerWithoutFinish.create}. Then each value in
  * `concurIterable` is added to the accumulator and the current accumulator is

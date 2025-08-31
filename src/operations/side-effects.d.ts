@@ -220,6 +220,10 @@ export const forEachAsync: {
  * Returns a promise that resolves when `fn` has been applied to each value of
  * `concurIterable` and the result of each application has been awaited.
  *
+ * The promise rejects if `concurIterable` rejects. However, `fn` will be called
+ * with every non-erroring value before the promise rejects, even if
+ * non-erroring values arrives after erroring ones.
+ *
  * Like `Array.prototype.forEach`, but for concur iterables.
  *
  * @example
@@ -314,7 +318,10 @@ export const consumeAsync: (
 ) => Promise<void>
 
 /**
- * Iterates through the `concurIterable` causing lazy operations to run.
+ * Returns a promise that resolves after iterating through the `concurIterable`
+ * and causing lazy operations to run.
+ *
+ * The promise rejects if `concurIterable` rejects.
  *
  * @example
  * ```js playground

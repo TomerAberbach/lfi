@@ -18,6 +18,7 @@ import {
   rawAsyncReducerWithFinishArb,
   rawOptionalReducerWithFinishArb,
   rawOptionalReducerWithoutFinishArb,
+  rawReducerArb,
   rawReducerWithFinishArb,
   rawReducerWithoutFinishArb,
 } from '../../test/fast-check/reducers.ts'
@@ -27,6 +28,7 @@ import {
   concurIterableArb,
   getAsyncIterableArb,
   getConcurIterableArb,
+  getThrowingConcurIterableArb,
   iterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
@@ -686,5 +688,14 @@ test.prop([concurIterableArb])(
         ),
       ),
     )
+  },
+)
+
+test.prop([rawReducerArb, getThrowingConcurIterableArb(concurIterableArb)])(
+  `reduceConcur rejects if the given concur iterable rejects`,
+  async (reducer, { iterable }) => {
+    const reduced = reduceConcur(reducer, iterable)
+
+    await expect(reduced).rejects.toStrictEqual(new Error(`BOOM!`))
   },
 )

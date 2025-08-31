@@ -154,3 +154,42 @@ export const uniqueConcurIterableArb = getConcurIterableArb(fc.anything(), {
 export const nonEmptyConcurIterableArb = getConcurIterableArb(fc.anything(), {
   minLength: 1,
 })
+
+export const getThrowingConcurIterableArb = <Value>(
+  concurIterableArb: fc.Arbitrary<GeneratedConcurIterable<Value>>,
+  { errorCount = 1 }: { errorCount?: number } = {},
+): fc.Arbitrary<GeneratedConcurIterable<Value>> =>
+  fc
+    .tuple(
+      concurIterableArb.filter(({ values }) => values.length >= errorCount),
+      fc.uniqueArray(fc.nat(), {
+        minLength: errorCount,
+        maxLength: errorCount,
+      }),
+    )
+    .map(
+      ([concurIterable, throwIndices]) =>
+        [
+          concurIterable,
+          new Set(
+            throwIndices.map(
+              throwIndex => throwIndex % concurIterable.values.length,
+            ),
+          ),
+        ] as const,
+    )
+    .filter(([, throwIndices]) => throwIndices.size === errorCount)
+    .map(([{ iterable, values, getIterationOrder }, throwIndices]) => {
+      const throwingIterable = timeConcur(
+        async (apply: ConcurIterableApply<Value>) => {
+          let index = 0
+          await iterable(async value => {
+            await apply(value)
+            if (throwIndices.has(index++)) {
+              throw new Error(`BOOM!`)
+            }
+          })
+        },
+      )
+      return { iterable: throwingIterable, values, getIterationOrder }
+    })

@@ -3,14 +3,14 @@ import { expect, expectTypeOf } from 'vitest'
 import {
   asyncIterableArb,
   concurIterableArb,
-  getConcurIterableArb,
+  getThrowingConcurIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyConcurIterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import { timeConcur, timed } from '../../test/timings.ts'
+import { timed } from '../../test/timings.ts'
 import { fnArb } from '../../test/fast-check/fns.ts'
 import autoAdvance from '../../test/auto-advance.ts'
 import {
@@ -24,7 +24,6 @@ import {
   emptyAsync,
   emptyConcur,
   map,
-  mapConcur,
   opaque,
   opaqueAsync,
   opaqueConcur,
@@ -318,29 +317,10 @@ test.prop([iterableArb])(
   },
 )
 
-test.prop([
-  fc
-    .tuple(
-      getConcurIterableArb(fc.anything(), { unique: true, minLength: 1 }),
-      fc.nat(),
-    )
-    .map(
-      ([concurIterable, throwIndex]) =>
-        [concurIterable, throwIndex % concurIterable.values.length] as const,
-    ),
-])(
+test.prop([getThrowingConcurIterableArb(concurIterableArb)])(
   `asAsync rejects for a throwing concur iterable`,
-  async ([{ iterable, values, getIterationOrder }, throwIndex]) => {
-    const thrownValue = values[throwIndex]
-    const throwingIterable = pipe(
-      iterable,
-      mapConcur(value =>
-        value === thrownValue ? Promise.reject(new Error(`BOOM!`)) : value,
-      ),
-      timeConcur,
-    )
-
-    const asyncIterable = asAsync(throwingIterable)
+  async ({ iterable, getIterationOrder }) => {
+    const asyncIterable = asAsync(iterable)
 
     const iteratedValues: unknown[] = []
     await expect(
@@ -350,9 +330,7 @@ test.prop([
         }
       })(),
     ).rejects.toStrictEqual(new Error(`BOOM!`))
-    expect(iteratedValues).toStrictEqual(
-      getIterationOrder().filter(value => value !== thrownValue),
-    )
+    expect(iteratedValues).toStrictEqual(getIterationOrder())
   },
 )
 
@@ -608,6 +586,17 @@ test.prop([concurIterableArb])(
       getIterationOrder(),
     )
     expect(opaqueIterable).not.toBe(iterable)
+  },
+)
+
+test.prop([getThrowingConcurIterableArb(concurIterableArb)])(
+  `opaqueConcur returns a concur iterable that rejects if the given concur iterable rejects`,
+  async ({ iterable }) => {
+    const opaqueIterable = opaqueConcur(iterable)
+
+    await expect(() => consumeConcur(opaqueIterable)).rejects.toStrictEqual(
+      new Error(`BOOM!`),
+    )
   },
 )
 

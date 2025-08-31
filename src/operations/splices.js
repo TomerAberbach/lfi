@@ -2,7 +2,6 @@ import {
   createAsyncIterable,
   createIterable,
   curry,
-  promiseWithEarlyResolve,
 } from '../internal/helpers.js'
 import {
   assertNonNegativeInteger,
@@ -92,9 +91,9 @@ export const takeWhileAsync = curry((fn, asyncIterable) =>
 
 export const takeWhileConcur = curry(
   (fn, concurIterable) => apply =>
-    promiseWithEarlyResolve(resolve => {
+    new Promise((resolve, reject) => {
       let taking = true
-      return concurIterable(async value => {
+      concurIterable(async value => {
         if (taking && (await fn(value)) && taking) {
           await apply(value)
         } else {
@@ -102,7 +101,7 @@ export const takeWhileConcur = curry(
           taking = false
           resolve()
         }
-      })
+      }).then(resolve, reject)
     }),
 )
 
@@ -383,8 +382,9 @@ export const zipAsync = (...iterables) =>
 export const zipConcur =
   (...iterables) =>
   apply =>
-    promiseWithEarlyResolve(async resolve => {
+    new Promise((resolve, reject) => {
       if (iterables.length === 0) {
+        resolve()
         return
       }
 
@@ -393,7 +393,7 @@ export const zipConcur =
       let remainingBatches = Infinity
       let resolved = false
 
-      await Promise.all(
+      Promise.all(
         map(async ([index, iterable]) => {
           const values = valuesPerIterable[index]
 
@@ -449,5 +449,5 @@ export const zipConcur =
             resolve()
           }
         }, iterables.entries()),
-      )
+      ).then(() => resolve(), reject)
     })

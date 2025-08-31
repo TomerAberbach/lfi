@@ -1,7 +1,6 @@
 import {
   createAsyncIterable,
   createIterable,
-  deferred,
   makeAsync,
   thunk,
 } from '../internal/helpers.js'
@@ -32,30 +31,30 @@ export const asAsync = iterable => {
       : async function* () {
           let buffer = []
           let done = false
-          let nonEmptyBufferDeferred
+          let nonEmptyBufferResolvers
           let deferredError
 
           iterable(value => {
             buffer.push(value)
-            if (nonEmptyBufferDeferred) {
-              const currentDeferred = nonEmptyBufferDeferred
-              nonEmptyBufferDeferred = undefined
-              currentDeferred._resolve()
+            if (nonEmptyBufferResolvers) {
+              const currentDeferred = nonEmptyBufferResolvers
+              nonEmptyBufferResolvers = undefined
+              currentDeferred.resolve()
             }
           })
             .then(() => {
               done = true
-              nonEmptyBufferDeferred?._resolve()
+              nonEmptyBufferResolvers?.resolve()
             })
             .catch(error => {
               deferredError = error
-              nonEmptyBufferDeferred?._resolve()
+              nonEmptyBufferResolvers?.resolve()
             })
 
           while (!done) {
             if (!buffer.length) {
-              nonEmptyBufferDeferred = deferred()
-              await nonEmptyBufferDeferred._promise
+              nonEmptyBufferResolvers = Promise.withResolvers()
+              await nonEmptyBufferResolvers.promise
             }
 
             const currentBuffer = buffer

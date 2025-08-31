@@ -11,21 +11,6 @@ export const createIterable = fn => ({ [Symbol.iterator]: fn })
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })
 
-export const promiseWithEarlyResolve = fn => {
-  const { _promise: promise, _resolve: resolve } = deferred()
-  return Promise.race([promise, fn(resolve)])
-}
-
-export const deferred = () => {
-  let resolve
-  return {
-    _promise: new Promise(r => {
-      resolve = r
-    }),
-    _resolve: resolve,
-  }
-}
-
 export const curry = fn => {
   if (fn.length <= 1 || curriedFunctions.has(fn)) {
     return fn

@@ -3,9 +3,11 @@ import { expect, expectTypeOf } from 'vitest'
 import { asyncFnArb, fnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,
+  concurIterableArb,
   getAsyncIterableArb,
   getConcurIterableArb,
   getIterableArb,
+  getThrowingConcurIterableArb,
   iterableArb,
   nonEmptyAsyncIterableArb,
   nonEmptyIterableArb,
@@ -143,6 +145,13 @@ test.prop([
   },
 )
 
+test.prop([asyncFnArb, getThrowingConcurIterableArb(concurIterableArb)])(
+  `orConcur ignores errors in the concur iterable`,
+  async ({ asyncFn }, { iterable }) => {
+    await orConcur(asyncFn, iterable)
+  },
+)
+
 test.prop([
   getIterableArb(fc.anything()).filter(({ values }) => values.length !== 1),
 ])(
@@ -215,6 +224,19 @@ test.prop([
   getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
 ])(
   `getConcur returns the concur iterable's only value for a concur iterable containing one value`,
+  async ({ iterable, values }) => {
+    const value = await getConcur(iterable)
+
+    expect(value).toBe(values[0])
+  },
+)
+
+test.prop([
+  getThrowingConcurIterableArb(
+    getConcurIterableArb(fc.anything(), { minLength: 1, maxLength: 1 }),
+  ),
+])(
+  `getConcur ignores errors in the concur iterable`,
   async ({ iterable, values }) => {
     const value = await getConcur(iterable)
 

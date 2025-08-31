@@ -2,6 +2,11 @@ export const identity = value => value
 
 export const thunk = value => () => value
 
+export const makeAsync =
+  fn =>
+  async (...args) =>
+    fn(...(await Promise.all(args)))
+
 export const createIterable = fn => ({ [Symbol.iterator]: fn })
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })

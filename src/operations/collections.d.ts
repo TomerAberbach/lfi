@@ -491,6 +491,8 @@ export const joinAsync: {
  * Returns a promise that resolves to the string concatenation of the values of
  * `concurIterable`, separated by `separator`.
  *
+ * The promise rejects if the given `concurIterable` rejects.
+ *
  * Like `Array.prototype.join`, but for concur iterables, except it does not
  * treat `null`, `undefined`, or `[]` specially.
  *

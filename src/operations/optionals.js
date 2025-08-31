@@ -2,7 +2,7 @@ import {
   createAsyncIterable,
   createIterable,
   curry,
-  promiseWithEarlyResolve,
+  makeAsync,
 } from '../internal/helpers.js'
 import { asAsync, empty, emptyAsync, opaque } from './core.js'
 
@@ -19,25 +19,28 @@ export const orAsync = curry(async (fn, asyncIterable) => {
   return done || !(await asyncIterator.next()).done ? fn() : value
 })
 
-export const orConcur = curry((fn, concurIterable) =>
-  promiseWithEarlyResolve(async resolve => {
+export const orConcur = curry((fn, concurIterable) => {
+  fn = makeAsync(fn)
+  return new Promise(resolve => {
     let resolved
     let result
 
-    await concurIterable(async value => {
+    concurIterable(async value => {
       if (!result) {
         result = { value }
       } else if (!resolved) {
         resolved = true
-        resolve(await fn())
+        resolve(fn())
       }
     })
-
-    if (!resolved) {
-      resolve(result ? result.value : await fn())
-    }
-  }),
-)
+      .catch(() => {})
+      .then(() => {
+        if (!resolved) {
+          resolve(result ? result.value : fn())
+        }
+      })
+  })
+})
 
 const error = () => {
   throw new Error(`Did not contain exactly one value`)

@@ -725,7 +725,15 @@ export const findAsync: FindAsync
  * which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
  * empty concur iterable.
  *
- * Like `Array.prototype.find`, but for concur iterables.
+ * If a non-empty concur iterable is returned, then the returned concur iterable
+ * does not reject, even if the input `concurIterable` does and even if the
+ * found value was emitted after an erroring value.
+ *
+ * If an empty concur iterable is returned, then it will reject if the input
+ * `concurIterable` does.
+ *
+ * Like `Array.prototype.find`, but for concur iterables. The error semantics
+ * are similar to `Promise.any`.
  *
  * @example
  * ```js playground
@@ -839,6 +847,19 @@ export const findLastAsync: FindAsync
  * Returns a concur iterable containing the last value of `concurIterable` for
  * which `fn` returns a value awaitable to a truthy value. Otherwise, returns an
  * empty concur iterable.
+ *
+ * If a non-empty concur iterable is returned, then the returned concur iterable
+ * does not reject, even if the input `concurIterable` does and even if the
+ * found value was emitted after an erroring value.
+ *
+ * If an empty concur iterable is returned, then it will reject if the input
+ * `concurIterable` does.
+ *
+ * Like `Array.prototype.findLast`, but for concur iterables. The error
+ * semantics are similar to `Promise.any`.
+ *
+ * WARNING: This function always waits for `concurIterable` to finish iterating
+ * because that's the only way to ensure the found value is the last one.
  *
  * @example
  * ```js playground

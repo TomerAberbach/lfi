@@ -7,6 +7,7 @@ import {
   getAsyncIterableArb,
   getConcurIterableArb,
   getIterableArb,
+  getThrowingConcurIterableArb,
   iterableArb,
   nonEmptyIterableArb,
 } from '../../test/fast-check/iterables.ts'
@@ -17,7 +18,6 @@ import {
 import {
   asAsync,
   asConcur,
-  count,
   entries,
   get,
   join,
@@ -27,7 +27,6 @@ import {
   normalizeReducer,
   pipe,
   reduce,
-  sum,
   toArray,
   toGrouped,
   toJoin,
@@ -611,43 +610,23 @@ test.skip(`joinConcur types are correct`, async () => {
 
 test.prop([fc.string(), getConcurIterableArb(stringifiableArb)])(
   `joinConcur returns a string containing the string representations of same values as the given concur iterable separated by the given separator`,
-  async (separator, { iterable, values }) => {
+  async (separator, { iterable, getIterationOrder }) => {
     const joined = await joinConcur(separator, iterable)
 
-    for (const value of values) {
-      expect(joined).toContain(String(value))
-    }
-    // Max.max is needed in case the iterable is empty.
-    const expectedSeparatorCount =
-      separator === `` ? 0 : Math.max(values.length - 1, 0)
-    // The number of occurrences of the separator exceeds the "expected" count
-    // when a string representation of a value in the iterable contains the
-    // separator.
-    expect(count(indicesOf(joined, separator))).toBeGreaterThanOrEqual(
-      expectedSeparatorCount,
-    )
-    expect(joined).toHaveLength(
-      pipe(
-        values,
-        map(value => String(value).length),
-        sum,
-      ) +
-        expectedSeparatorCount * separator.length,
+    expect(joined).toStrictEqual(
+      getIterationOrder().map(String).join(separator),
     )
   },
 )
 
-const indicesOf = (string: string, substring: string): Iterable<number> => {
-  if (substring === ``) {
-    return []
-  }
+test.prop([
+  fc.string(),
+  getThrowingConcurIterableArb(getConcurIterableArb(stringifiableArb)),
+])(
+  `joinConcur rejects for a throwing concur iterable`,
+  async (separator, { iterable }) => {
+    const joined = joinConcur(separator, iterable)
 
-  return {
-    *[Symbol.iterator](): Iterator<number> {
-      let index = 0
-      while ((index = string.indexOf(substring, index)) !== -1) {
-        yield index++
-      }
-    },
-  }
-}
+    await expect(joined).rejects.toStrictEqual(new Error(`BOOM!`))
+  },
+)

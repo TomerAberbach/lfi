@@ -2,6 +2,7 @@ import {
   createAsyncIterable,
   createIterable,
   deferred,
+  makeAsync,
   thunk,
 } from '../internal/helpers.js'
 import { map } from './transforms.js'
@@ -75,30 +76,26 @@ export const asConcur = iterable => {
   }
 
   if (iterable[Symbol.iterator]) {
-    return async apply =>
-      handlePromiseResults(
-        await Promise.allSettled(
-          map(value => safeApply(apply, value), iterable),
-        ),
+    return async apply => {
+      apply = makeAsync(apply)
+      return handlePromiseResults(
+        await Promise.allSettled(map(value => apply(value), iterable)),
       )
+    }
   }
 
   return async apply => {
+    apply = makeAsync(apply)
     // NOTE: We can't use `Array.fromAsync(iterable, mapper)` here because we
     // don't want to await the result of `mapper` before moving onto the next
     // value in the iterable.
     const promises = []
     for await (const value of iterable) {
-      promises.push(safeApply(apply, value))
+      promises.push(apply(value))
     }
     handlePromiseResults(await Promise.allSettled(promises))
   }
 }
-
-// We transform synchronous errors into async ones so that every available value
-// makes it into an `apply` call. This way downstream functions can decide
-// whether to ignore a concurrent iterable failure.
-const safeApply = async (apply, value) => apply(await value)
 
 const handlePromiseResults = results => {
   const errors = results.flatMap(result =>

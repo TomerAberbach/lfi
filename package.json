@@ -63,7 +63,6 @@
     "@tomer/eslint-config": "^4.1.1",
     "@tomer/prettier-config": "^4.0.0",
     "@vitest/coverage-v8": "^3.2.4",
-    "betterator": "^2.0.2",
     "eslint": "^9.34.0",
     "jest-extended": "^6.0.0",
     "jsdom": "^26.1.0",

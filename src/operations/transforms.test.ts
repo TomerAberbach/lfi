@@ -1,4 +1,3 @@
-import { AsyncBetterator, Betterator } from 'betterator'
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
 import { asyncFnArb, fnArb, getAsyncFnArb } from '../../test/fast-check/fns.ts'
@@ -245,24 +244,22 @@ test.prop([fc.func(iterableArb), iterableArb])(
   (fn, { iterable }) => {
     let count = 0
 
-    const iterator = Betterator.fromIterable(
-      flatMap(
-        value =>
-          map(innerValue => {
-            count++
-            return innerValue
-          }, fn(value).iterable),
-        iterable,
-      ),
-    )
+    const iterator = flatMap(
+      value =>
+        map(innerValue => {
+          count++
+          return innerValue
+        }, fn(value).iterable),
+      iterable,
+    )[Symbol.iterator]()
 
     expect(count).toBe(0)
     let i = 0
-    while (iterator.hasNext()) {
-      iterator.getNext()
-
+    let result = iterator.next()
+    while (!result.done) {
       expect(count).toBe(i + 1)
 
+      result = iterator.next()
       i++
     }
   },
@@ -443,27 +440,25 @@ test.prop([
 ])(`flatMapAsync is lazy`, async ({ asyncFn }, { iterable }) => {
   let count = 0
 
-  const asyncIterator = AsyncBetterator.fromAsyncIterable(
-    flatMapAsync(
-      async value =>
-        mapAsync(
-          innerValue => {
-            count++
-            return innerValue
-          },
-          asAsync((await asyncFn(value)).iterable),
-        ),
-      iterable,
-    ),
-  )
+  const asyncIterator = flatMapAsync(
+    async value =>
+      mapAsync(
+        innerValue => {
+          count++
+          return innerValue
+        },
+        asAsync((await asyncFn(value)).iterable),
+      ),
+    iterable,
+  )[Symbol.asyncIterator]()
 
   expect(count).toBe(0)
   let i = 0
-  while (await asyncIterator.hasNext()) {
-    await asyncIterator.getNext()
-
+  let result = await asyncIterator.next()
+  while (!result.done) {
     expect(count).toBe(i + 1)
 
+    result = await asyncIterator.next()
     i++
   }
 })

@@ -2,7 +2,6 @@ import {
   createAsyncIterable,
   createIterable,
   curry,
-  makeAsync,
 } from '../internal/helpers.js'
 import { asAsync, empty, emptyAsync, opaque } from './core.js'
 
@@ -20,7 +19,7 @@ export const orAsync = curry(async (fn, asyncIterable) => {
 })
 
 export const orConcur = curry((fn, concurIterable) => {
-  fn = makeAsync(fn)
+  const asyncFn = async () => fn()
   return new Promise(resolve => {
     let resolved
     let result
@@ -30,13 +29,13 @@ export const orConcur = curry((fn, concurIterable) => {
         result = { value }
       } else if (!resolved) {
         resolved = true
-        resolve(fn())
+        resolve(asyncFn())
       }
     })
       .catch(() => {})
       .then(() => {
         if (!resolved) {
-          resolve(result ? result.value : fn())
+          resolve(result ? result.value : asyncFn())
         }
       })
   })

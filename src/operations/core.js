@@ -1,10 +1,9 @@
 import {
   createAsyncIterable,
   createIterable,
-  makeAsync,
+  isPromise,
   thunk,
 } from '../internal/helpers.js'
-import { map } from './transforms.js'
 
 export { curry } from '../internal/helpers.js'
 
@@ -76,23 +75,41 @@ export const asConcur = iterable => {
 
   if (iterable[Symbol.iterator]) {
     return async apply => {
-      apply = makeAsync(apply)
-      return handlePromiseResults(
-        await Promise.allSettled(map(value => apply(value), iterable)),
-      )
+      const promises = []
+      for (const value of iterable) {
+        const result = safeApply(apply, value)
+        if (isPromise(result)) {
+          promises.push(result)
+        }
+      }
+      return handlePromiseResults(await Promise.allSettled(promises))
     }
   }
 
   return async apply => {
-    apply = makeAsync(apply)
     // NOTE: We can't use `Array.fromAsync(iterable, mapper)` here because we
     // don't want to await the result of `mapper` before moving onto the next
     // value in the iterable.
     const promises = []
     for await (const value of iterable) {
-      promises.push(apply(value))
+      const result = safeApply(apply, value)
+      if (isPromise(result)) {
+        promises.push(result)
+      }
     }
     handlePromiseResults(await Promise.allSettled(promises))
+  }
+}
+
+const safeApply = (apply, value) => {
+  if (isPromise(value)) {
+    return value.then(apply)
+  }
+
+  try {
+    return apply(value)
+  } catch (error) {
+    return Promise.reject(error)
   }
 }
 

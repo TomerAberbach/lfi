@@ -7,6 +7,7 @@ export default defineConfig([
     entry: `src/index.js`,
     platform: `neutral`,
     sourcemap: `inline`,
+    dts: false,
     publint: true,
     plugins: [
       terser({

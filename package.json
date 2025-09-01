@@ -70,7 +70,6 @@
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
     "rollup-plugin-tree-shakeable": "^1.0.3",
-    "svkc": "^1.0.0",
     "tsdown": "^0.14.2",
     "typedoc": "^0.28.9",
     "typescript": "^5.9.2",

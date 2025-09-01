@@ -44,9 +44,6 @@ importers:
       rollup-plugin-tree-shakeable:
         specifier: ^1.0.3
         version: 1.0.3
-      svkc:
-        specifier: ^1.0.0
-        version: 1.0.0
       tsdown:
         specifier: ^0.14.2
         version: 0.14.2(publint@0.3.12)(typescript@5.9.2)
@@ -6659,10 +6656,6 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  svkc@1.0.0:
-    resolution: {integrity: sha512-i9/L0NJSg6BLqMTaR4NQki1ZzqBzvqil5MSdvuGNdbp655XoXmgl5Ha8pumIXJKBfNX3dC4CuhPjducqoLSpDg==}
-    engines: {node: '>= 18'}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -15358,8 +15351,6 @@ snapshots:
       css-what: 6.2.2
       csso: 5.0.5
       picocolors: 1.1.1
-
-  svkc@1.0.0: {}
 
   symbol-tree@3.2.4: {}
 

@@ -64,16 +64,16 @@
     "@tomer/prettier-config": "^4.0.0",
     "@vitest/coverage-v8": "^3.2.4",
     "betterator": "^2.0.2",
-    "eslint": "~9.32.0",
+    "eslint": "^9.34.0",
     "jest-extended": "^6.0.0",
     "jsdom": "^26.1.0",
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
     "rollup-plugin-tree-shakeable": "^1.0.3",
     "svkc": "^1.0.0",
-    "tsdown": "^0.13.2",
-    "typedoc": "^0.28.9",
-    "typescript": "^5.8.3",
+    "tsdown": "^0.14.2",
+    "typedoc": "^0.28.12",
+    "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   }
 }

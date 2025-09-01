@@ -1,7 +1,7 @@
+shellEmulator: true
 packages:
   - website
   - .
-
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - core-js

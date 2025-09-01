@@ -53,7 +53,7 @@ For bugs and feature requests,
 
 ## License
 
-[MIT](https://github.com/TomerAberbach/lfi/blob/main/license) ©
+[MIT](https://github.com/TomerAberbach/lfi/blob/main/license-mit) ©
 [Tomer Aberbach](https://github.com/TomerAberbach) \
 [Apache 2.0](https://github.com/TomerAberbach/lfi/blob/main/license-apache) ©
 [Google](https://github.com/TomerAberbach/lfi/blob/main/notice-apache)

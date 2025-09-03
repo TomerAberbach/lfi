@@ -1,8 +1,21 @@
+export const canEval = (() => {
+  try {
+    // eslint-disable-next-line no-eval, stylistic/quotes
+    eval('')
+    return true
+  } catch {
+    return false
+  }
+})()
+
 export const identity = value => value
 
 export const thunk = value => () => value
 
 export const createIterable = fn => ({ [Symbol.iterator]: fn })
+
+export const mapIterable = (iterable, fn) =>
+  createIterable(() => ({ next: fn(iterable[Symbol.iterator]()) }))
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })
 

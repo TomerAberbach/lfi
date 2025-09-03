@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  terser: ^5.43.1
+
 importers:
 
   .:
@@ -32,6 +35,9 @@ importers:
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
+      magic-string:
+        specifier: ^0.30.18
+        version: 0.30.18
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -817,10 +823,6 @@ packages:
 
   '@babel/runtime-corejs3@7.28.2':
     resolution: {integrity: sha512-FVFaVs2/dZgD3Y9ZD+AKNKjyGKzwu0C54laAXWUXgLcVXcCX6YZ6GhK2cp7FogSN2OA0Fu+QT8dP3FUdo9ShSQ==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/runtime@7.28.2':
-    resolution: {integrity: sha512-KHp2IflsnGywDjBWDkR9iEqiWSpc8GIi0lgTT3mOElT0PP1tG26P4tmFI2YvAdzgq9RGyoHZQEIEdZy6Ec5xCA==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.3':
@@ -7010,7 +7012,7 @@ packages:
       sass-embedded: ^1.70.0
       stylus: '>=0.54.8'
       sugarss: ^5.0.0
-      terser: ^5.16.0
+      terser: ^5.43.1
       tsx: ^4.8.1
       yaml: ^2.4.2
     peerDependenciesMeta:
@@ -8146,8 +8148,6 @@ snapshots:
     dependencies:
       core-js-pure: 3.44.0
 
-  '@babel/runtime@7.28.2': {}
-
   '@babel/runtime@7.28.3': {}
 
   '@babel/template@7.27.2':
@@ -8468,7 +8468,7 @@ snapshots:
       '@babel/preset-env': 7.28.0(@babel/core@7.28.0)
       '@babel/preset-react': 7.27.1(@babel/core@7.28.0)
       '@babel/preset-typescript': 7.27.1(@babel/core@7.28.0)
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       '@babel/runtime-corejs3': 7.28.2
       '@babel/traverse': 7.28.0
       '@docusaurus/logger': 3.8.1
@@ -14528,19 +14528,19 @@ snapshots:
 
   react-loadable-ssr-addon-v5-slorber@1.0.1(@docusaurus/react-loadable@6.0.0(react@18.3.1))(webpack@5.101.0):
     dependencies:
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       react-loadable: '@docusaurus/react-loadable@6.0.0(react@18.3.1)'
       webpack: 5.101.0
 
   react-router-config@5.1.1(react-router@5.3.4(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       react: 18.3.1
       react-router: 5.3.4(react@18.3.1)
 
   react-router-dom@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -14551,7 +14551,7 @@ snapshots:
 
   react-router@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.28.2
+      '@babel/runtime': 7.28.3
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0

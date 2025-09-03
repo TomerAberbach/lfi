@@ -3,11 +3,18 @@ import {
   createIterable,
   curry,
   identity,
+  mapIterable,
 } from '../internal/helpers.js'
 import { flatMap, flatMapAsync, flatMapConcur } from './transforms.js'
 
 export const filter = curry((fn, iterable) =>
-  flatMap(value => (fn(value) ? [value] : []), iterable),
+  mapIterable(iterable, iterator => () => {
+    let result = iterator.next()
+    while (!result.done && !fn(result.value)) {
+      result = iterator.next()
+    }
+    return result
+  }),
 )
 
 const createAsyncFilter = flatMap =>

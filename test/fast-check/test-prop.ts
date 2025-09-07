@@ -1,5 +1,5 @@
-import type { test as testInternal } from 'vitest'
 import { fc, test as fcTestInternal } from '@fast-check/vitest'
+import type { test as testInternal } from 'vitest'
 import autoAdvance from '../auto-advance.ts'
 
 const wrapTestProp =

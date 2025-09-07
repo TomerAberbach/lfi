@@ -1,6 +1,6 @@
 import { join, map, pipe } from 'lfi'
-import type { ReactElement } from 'react'
 import { inspect } from 'node-inspect-extracted'
+import type { ReactElement } from 'react'
 import type { Log } from './use-sandbox.ts'
 
 const Console = ({ logs }: { logs: Log[] }) => {

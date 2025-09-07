@@ -1,18 +1,18 @@
 /* eslint-disable typescript/no-misused-promises */
+import { useHistory } from '@docusaurus/router'
+import { fromBase64, toBase64 } from '@site/src/helpers/base64.ts'
+import Heading from '@theme/Heading'
 import Layout from '@theme/Layout'
+import dedent from 'dedent'
 import { useRef, useState } from 'react'
 import type { ButtonHTMLAttributes } from 'react'
-import Heading from '@theme/Heading'
-import { useHistory } from '@docusaurus/router'
-import { useSpinDelay } from 'spin-delay'
-import { fromBase64, toBase64 } from '@site/src/helpers/base64.ts'
 import { ClipLoader } from 'react-spinners'
-import dedent from 'dedent'
-import useSandbox from './_helpers/use-sandbox.ts'
-import type { Sandbox } from './_helpers/use-sandbox.ts'
+import { useSpinDelay } from 'spin-delay'
+import Console from './_helpers/console.tsx'
 import type { EditorRef } from './_helpers/editor.tsx'
 import Editor from './_helpers/editor.tsx'
-import Console from './_helpers/console.tsx'
+import useSandbox from './_helpers/use-sandbox.ts'
+import type { Sandbox } from './_helpers/use-sandbox.ts'
 
 const PlaygroundPage = () => (
   <Layout title='Playground' wrapperClassName='flex flex-col'>
@@ -138,13 +138,13 @@ const EditorToolbar = ({
         onClick={async () => {
           const playgroundUrl = createPlaygroundUrl(editor.code)
           await navigator.clipboard.writeText(String(playgroundUrl))
-          window.location.hash = playgroundUrl.hash
+          globalThis.location.hash = playgroundUrl.hash
 
           setCopiedLink(true)
           if (timeoutHandleRef.current) {
-            window.clearTimeout(timeoutHandleRef.current)
+            globalThis.clearTimeout(timeoutHandleRef.current)
           }
-          timeoutHandleRef.current = window.setTimeout(
+          timeoutHandleRef.current = globalThis.setTimeout(
             () => setCopiedLink(false),
             3000,
           )
@@ -157,7 +157,7 @@ const EditorToolbar = ({
 }
 
 const createPlaygroundUrl = (code: string): URL =>
-  new URL(`/playground#${toBase64(code)}`, window.location.href)
+  new URL(`/playground#${toBase64(code)}`, globalThis.location.href)
 
 const EditorToolbarButton = (
   props: ButtonHTMLAttributes<HTMLButtonElement>,

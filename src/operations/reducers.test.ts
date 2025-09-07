@@ -6,6 +6,15 @@ import {
   fnArb,
 } from '../../test/fast-check/fns.ts'
 import {
+  asyncIterableArb,
+  concurIterableArb,
+  getAsyncIterableArb,
+  getConcurIterableArb,
+  getThrowingConcurIterableArb,
+  iterableArb,
+  nonEmptyIterableArb,
+} from '../../test/fast-check/iterables.ts'
+import {
   asyncFunctionReducerArb,
   functionReducerArb,
   getAsyncFunctionReducerArb,
@@ -23,15 +32,6 @@ import {
   rawReducerWithoutFinishArb,
 } from '../../test/fast-check/reducers.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
-import {
-  asyncIterableArb,
-  concurIterableArb,
-  getAsyncIterableArb,
-  getConcurIterableArb,
-  getThrowingConcurIterableArb,
-  iterableArb,
-  nonEmptyIterableArb,
-} from '../../test/fast-check/iterables.ts'
 import {
   emptyAsync,
   emptyConcur,

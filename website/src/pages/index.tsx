@@ -1,10 +1,10 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import Layout from '@theme/Layout'
-import Heading from '@theme/Heading'
-import CodeInline from '@theme/CodeInline'
 import Link from '@docusaurus/Link'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import Logo from '@site/static/img/logo.svg'
 import CodeBlock from '@theme/CodeBlock'
+import CodeInline from '@theme/CodeInline'
+import Heading from '@theme/Heading'
+import Layout from '@theme/Layout'
 import dedent from 'dedent'
 
 const Home = () => {

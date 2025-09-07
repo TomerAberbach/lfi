@@ -1,6 +1,6 @@
-import { format as prettierFormat } from 'prettier/standalone'
-import typescriptPrettierPlugin from 'prettier/plugins/typescript'
 import estreePrettierPlugin from 'prettier/plugins/estree'
+import typescriptPrettierPlugin from 'prettier/plugins/typescript'
+import { format as prettierFormat } from 'prettier/standalone'
 
 const formatCode = async (code: string): Promise<string> =>
   await prettierFormat(code, {

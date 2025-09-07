@@ -1,7 +1,7 @@
+import { map, pipe, reduce, toObject } from 'lfi'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { WorkerBox } from 'workerboxjs'
 import createWorkerBox from 'workerboxjs'
-import { map, pipe, reduce, toObject } from 'lfi'
 import bundleCode from './bundle-code.ts'
 
 const useSandbox = (): Sandbox => {

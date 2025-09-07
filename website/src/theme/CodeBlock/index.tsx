@@ -1,8 +1,8 @@
-import CodeBlock from '@theme-original/CodeBlock'
-import type CodeBlockType from '@theme/CodeBlock'
-import type { WrapperProps } from '@docusaurus/types'
 import Link from '@docusaurus/Link'
+import type { WrapperProps } from '@docusaurus/types'
 import { toBase64 } from '@site/src/helpers/base64.ts'
+import type CodeBlockType from '@theme/CodeBlock'
+import CodeBlock from '@theme-original/CodeBlock'
 
 const CodeBlockWrapper = ({
   metastring,

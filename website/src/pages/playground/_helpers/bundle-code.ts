@@ -1,9 +1,9 @@
 import { rollup } from '@rollup/browser'
+import zooSource from '!!raw-loader!./zoo.js'
 import lfiSource from '!!raw-loader!lfi'
 import limitConcurSource from '!!raw-loader!limit-concur'
 import pFilterSource from '!!raw-loader!p-filter'
 import pMapSource from '!!raw-loader!p-map'
-import zooSource from '!!raw-loader!./zoo.js'
 
 const bundleCode = async (code: string): Promise<string> => {
   const input = `index.ts`

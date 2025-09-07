@@ -1,6 +1,6 @@
 /* eslint-disable typescript/no-confusing-void-expression */
-import { expect, expectTypeOf } from 'vitest'
 import { fc } from '@fast-check/vitest'
+import { expect, expectTypeOf } from 'vitest'
 import { asyncFnArb, fnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,

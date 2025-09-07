@@ -60,12 +60,13 @@
   "devDependencies": {
     "@fast-check/vitest": "^0.2.2",
     "@rollup/plugin-terser": "^0.4.4",
-    "@tomer/eslint-config": "^4.1.1",
+    "@tomer/eslint-config": "^4.2.0",
     "@tomer/prettier-config": "^4.0.0",
     "@vitest/coverage-v8": "^3.2.4",
     "eslint": "^9.34.0",
     "jest-extended": "^6.0.0",
     "jsdom": "^26.1.0",
+    "magic-string": "^0.30.18",
     "prettier": "^3.6.2",
     "publint": "^0.3.12",
     "rollup-plugin-tree-shakeable": "^1.0.3",
@@ -73,5 +74,10 @@
     "typedoc": "^0.28.9",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "terser": "^5.43.1"
+    }
   }
 }

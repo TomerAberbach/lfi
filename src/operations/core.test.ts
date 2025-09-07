@@ -1,5 +1,8 @@
 import { fc } from '@fast-check/vitest'
 import { expect, expectTypeOf } from 'vitest'
+import autoAdvance from '../../test/auto-advance.ts'
+import describeWithAndWithoutEval from '../../test/eval.ts'
+import { fnArb } from '../../test/fast-check/fns.ts'
 import {
   asyncIterableArb,
   concurIterableArb,
@@ -11,8 +14,6 @@ import {
 } from '../../test/fast-check/iterables.ts'
 import { test } from '../../test/fast-check/test-prop.ts'
 import { timed } from '../../test/timings.ts'
-import { fnArb } from '../../test/fast-check/fns.ts'
-import autoAdvance from '../../test/auto-advance.ts'
 import {
   asAsync,
   asConcur,
@@ -172,10 +173,8 @@ test.prop([fc.anything()])(
 test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
   `pipe pipes`,
   (value, [firstFn, ...otherFns]) => {
-    expect(
-      (pipe as (...args: unknown[]) => unknown)(value, firstFn!, ...otherFns),
-    ).toBe(
-      (pipe as (...args: unknown[]) => unknown)(firstFn!(value), ...otherFns),
+    expect(pipe(value, firstFn!, ...otherFns)).toBe(
+      pipe(firstFn!(value), ...otherFns),
     )
   },
 )
@@ -185,30 +184,25 @@ test.skip(`compose types are correct`, () => {
   expectTypeOf(compose(String, Boolean)).toExtend<(a: any) => boolean>()
 })
 
-test.prop([fc.anything()])(
-  `compose returns the identity function for no arguments`,
-  value => {
-    const fn = compose()
+describeWithAndWithoutEval(() => {
+  test.prop([fc.anything()])(
+    `compose returns the identity function for no arguments`,
+    value => {
+      const fn = compose()
 
-    expect(fn(value)).toBe(value)
-  },
-)
+      expect(fn(value)).toBe(value)
+    },
+  )
 
-test.prop([fc.anything(), fc.array(fc.func(fc.anything()), { minLength: 1 })])(
-  `compose composes`,
-  (value, [firstFn, ...otherFns]) => {
-    expect(
-      (compose as (...args: unknown[]) => (arg: unknown) => unknown)(
-        firstFn,
-        ...otherFns,
-      )(value),
-    ).toBe(
-      (compose as (...args: unknown[]) => (arg: unknown) => unknown)(
-        ...otherFns,
-      )(firstFn!(value)),
+  test.prop([
+    fc.anything(),
+    fc.array(fc.func(fc.anything()), { minLength: 1 }),
+  ])(`compose composes`, (value, [firstFn, ...otherFns]) => {
+    expect(compose(firstFn!, ...otherFns)(value)).toBe(
+      compose(...otherFns)(firstFn!(value)),
     )
-  },
-)
+  })
+})
 
 test.skip(`asAsync types are correct`, () => {
   expectTypeOf(asAsync([1, 2, 3])).toExtend<AsyncIterable<number>>()

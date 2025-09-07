@@ -21,8 +21,15 @@ export const mapIterable = (iterable, fn) =>
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })
 
-export const isPromise = value =>
+export const isThenable = value =>
   Boolean(value && typeof value.then === `function`)
+
+/**
+ * A faster version of `Promise.resolve(value).then(then)`, which is much slower
+ * in benchmarks because it performs native promise normalization.
+ */
+export const thenableThen = (value, then) =>
+  isThenable(value) ? value.then(then) : Promise.resolve(then(value))
 
 export const curry = fn => {
   if (fn.length <= 1 || curriedFunctions.has(fn)) {

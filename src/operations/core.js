@@ -3,7 +3,8 @@ import {
   createAsyncIterable,
   createIterable,
   identity,
-  isPromise,
+  isThenable,
+  thenableThen,
   thunk,
 } from '../internal/helpers.js'
 
@@ -62,9 +63,20 @@ export const asAsync = iterable => {
     iterable[Symbol.iterator]
       ? // We write this instead of `() => iterable[Symbol.iterator]()` so that
         // we handle the case of the iterable containing promises, each of which
-        // should be awaited.
-        async function* () {
-          yield* iterable
+        // should be awaited, and so that we are compliant with the async
+        // iteration protocol, which requires returning a promise.
+        () => {
+          const iterator = iterable[Symbol.iterator]()
+          return {
+            // This logic could be written more simply, but minimizing how often
+            // we use `await` results in more performant iteration.
+            next: () => {
+              const result = iterator.next()
+              return result.done
+                ? Promise.resolve(result)
+                : thenableThen(result.value, value => ({ value }))
+            },
+          }
         }
       : async function* () {
           let buffer = []
@@ -117,7 +129,7 @@ export const asConcur = iterable => {
       const promises = []
       for (const value of iterable) {
         const result = safeApply(apply, value)
-        if (isPromise(result)) {
+        if (isThenable(result)) {
           promises.push(result)
         }
       }
@@ -132,7 +144,7 @@ export const asConcur = iterable => {
     const promises = []
     for await (const value of iterable) {
       const result = safeApply(apply, value)
-      if (isPromise(result)) {
+      if (isThenable(result)) {
         promises.push(result)
       }
     }
@@ -141,7 +153,7 @@ export const asConcur = iterable => {
 }
 
 const safeApply = (apply, value) => {
-  if (isPromise(value)) {
+  if (isThenable(value)) {
     return value.then(apply)
   }
 

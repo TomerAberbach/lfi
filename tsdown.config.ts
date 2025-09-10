@@ -35,6 +35,7 @@ export default defineConfig([
           unsafe_math: true,
         },
         mangle: {
+          eval: true,
           properties: {
             builtins: true,
             regex: `^_[^_]+`,

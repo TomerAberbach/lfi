@@ -1,5 +1,6 @@
 import * as matchers from 'jest-extended'
 import { afterEach, beforeEach, expect, vi } from 'vitest'
+import { isThenable } from './src/internal/helpers.js'
 import delay from './test/delay.ts'
 
 expect.extend(matchers)
@@ -100,6 +101,34 @@ expect.extend({
         }
         pass = this.equals(values1, values2)
       } catch {
+        pass = false
+      }
+    }
+
+    if (pass) {
+      try {
+        const iterator = (received as AsyncIterable<unknown>)[
+          Symbol.asyncIterator
+        ]()
+
+        let result
+        do {
+          result = iterator.next()
+          pass = isThenable(result)
+        } while (pass && !(await result).done)
+
+        if (pass) {
+          // Once the async iterator is done, it should return that it's done
+          // if it's asked again, no matter how many times.
+          // eslint-disable-next-line require-atomic-updates
+          pass =
+            this.equals((await iterator.next()).done, true) &&
+            this.equals((await iterator.next()).done, true) &&
+            this.equals((await iterator.next()).done, true) &&
+            this.equals((await iterator.next()).done, true)
+        }
+      } catch {
+        // eslint-disable-next-line require-atomic-updates
         pass = false
       }
     }

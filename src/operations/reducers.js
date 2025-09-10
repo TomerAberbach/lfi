@@ -8,7 +8,6 @@ import {
 } from '../internal/helpers.js'
 import { asConcur } from './core.js'
 import { next } from './optionals.js'
-import { forEachConcur } from './side-effects.js'
 import { map } from './transforms.js'
 
 export const mapReducer = curry((fn, reducer) => {
@@ -93,7 +92,7 @@ export const reduceConcur = curry((asyncReducer, concurIterable) => {
     return createConcurIterable(async apply => {
       const accs = await reduceConcurWithoutCreate(add, finish, concurIterable)
       if (accs.length) {
-        await apply(accs[0])
+        await apply(accs[0], [0])
       }
     })
   }
@@ -117,13 +116,13 @@ export const reduceConcur = curry((asyncReducer, concurIterable) => {
 const reduceConcurWithoutCreate = async (add, finish, concurIterable) => {
   const accs = []
 
-  await forEachConcur(async acc => {
+  await concurIterable[concurIteratorSymbol](async acc => {
     while (accs.length) {
       acc = await add(acc, accs.pop())
     }
 
     accs.push(acc)
-  }, concurIterable)
+  })
 
   return accs.length ? [await finish(accs[0])] : accs
 }
@@ -137,7 +136,7 @@ const reduceConcurWithCreateWithCombine = async (
 ) => {
   const accs = [create()]
 
-  await forEachConcur(async value => {
+  await concurIterable[concurIteratorSymbol](async value => {
     let acc = await add(await (accs.length ? accs.pop() : create()), value)
 
     while (accs.length) {
@@ -145,7 +144,7 @@ const reduceConcurWithCreateWithCombine = async (
     }
 
     accs.push(acc)
-  }, concurIterable)
+  })
 
   return finish(await accs[0])
 }

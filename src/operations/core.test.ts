@@ -36,6 +36,7 @@ import {
 } from '../index.js'
 import type { ConcurIterable } from '../index.js'
 import { createAsyncIterable } from '../internal/helpers.js'
+import { orderConcur } from './core.js'
 
 const fnAndArgsArb = fc
   .tuple(
@@ -575,7 +576,7 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
 )
 
 test.prop([iterableArb])(
-  `asConcur returns a concur iterable containing the awaited same values in the same order as the given iterable of promises`,
+  `asConcur returns a concur iterable containing the awaited same values as the given iterable of promises`,
   async ({ iterable, values }, scheduler) => {
     const promiseIterable = map(
       value => scheduler.schedule(Promise.resolve(value), fc.stringify(value)),
@@ -655,6 +656,41 @@ test.prop([
     ).toReject()
 
     expect(appliedValues).toIncludeSameMembers(values)
+  },
+)
+
+test.skip(`orderConcur types are correct`, () => {
+  expectTypeOf(orderConcur(asConcur([1, 2, 3]))).toExtend<
+    ConcurIterable<number>
+  >()
+})
+
+test.prop([concurIterableArb])(
+  `orderConcur returns a pure concur iterable`,
+  async ({ iterable }) => {
+    const orderedIterable = orderConcur(iterable)
+
+    await expect(orderedIterable).toBeConcurIterable()
+  },
+)
+
+test.prop([concurIterableArb])(
+  `orderConcur returns a concur iterable containing the same values in the same order as the original unordered concur iterable`,
+  async ({ iterable, values }) => {
+    const orderedIterable = orderConcur(iterable)
+
+    expect(await reduceConcur(toArray(), orderedIterable)).toStrictEqual(values)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `orderConcur returns a concur iterable as concurrent as the given iterable`,
+  async ({ iterable }) => {
+    const orderedIterable = orderConcur(iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(orderedIterable))
+
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 
@@ -760,6 +796,17 @@ test.prop([concurIterableArb])(
       getIterationOrder(),
     )
     expect(opaqueIterable).not.toBe(iterable)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `opaqueConcur correctly forwards indices`,
+  async ({ iterable, values }) => {
+    const opaqueIterable = opaqueConcur(iterable)
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(opaqueIterable)),
+    ).toStrictEqual(values)
   },
 )
 

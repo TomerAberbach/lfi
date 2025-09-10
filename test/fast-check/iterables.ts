@@ -188,8 +188,8 @@ export const getThrowingConcurIterableArb = <Value>(
       const throwingIterable = timeConcur({
         [concurIteratorSymbol]: async (apply: ConcurIterableApply<Value>) => {
           let index = 0
-          await iterable[concurIteratorSymbol](async value => {
-            await apply(value)
+          await iterable[concurIteratorSymbol](async (value, indices) => {
+            await apply(value, indices)
             if (throwIndices.has(index++)) {
               throw new Error(`BOOM!`)
             }

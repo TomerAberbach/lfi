@@ -43,6 +43,7 @@ import {
   get,
   getAsync,
   getConcur,
+  orderConcur,
   pipe,
   reduceAsync,
   reduceConcur,
@@ -82,7 +83,7 @@ test.prop([predicateArb, iterableArb])(
 )
 
 test.prop([predicateArb, iterableArb])(
-  `filter returns an iterable containing the same values in the same order as the given iterable for which the given predicate returns a truthy value`,
+  `filter returns an iterable containing the same values as the given iterable for which the given predicate returns a truthy value`,
   (fn, { iterable, values }) => {
     const filteredIterable = filter(fn, iterable)
 
@@ -222,13 +223,24 @@ test.prop([asyncPredicateArb, concurIterableArb])(
 )
 
 test.prop([asyncPredicateArb, getConcurIterableArb(fc.integer())])(
-  `filterConcur returns an concur iterable containing the same values in the same order as the given concur iterable for which the given predicate returns a truthy value`,
+  `filterConcur returns an concur iterable containing the same values as the given concur iterable for which the given predicate returns a truthy value`,
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const filteredIterable = filterConcur(asyncFn, iterable)
 
     expect(
       await reduceConcur(toArray(), filteredIterable),
     ).toIncludeSameMembers(values.filter(value => syncFn(value)))
+  },
+)
+
+test.prop([asyncPredicateArb, getConcurIterableArb(fc.integer())])(
+  `filterConcur correctly forwards indices`,
+  async ({ asyncFn, syncFn }, { iterable, values }) => {
+    const filteredIterable = filterConcur(asyncFn, iterable)
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(filteredIterable)),
+    ).toStrictEqual(values.filter(value => syncFn(value)))
   },
 )
 
@@ -586,6 +598,22 @@ test.prop([
   getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
   concurIterableArb,
 ])(
+  `filterMapConcur correctly forwards indices`,
+  async ({ asyncFn, syncFn }, { iterable, values }) => {
+    const filterMappedIterable = filterMapConcur(asyncFn, iterable)
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(filterMappedIterable)),
+    ).toStrictEqual(
+      values.map(value => syncFn(value)).filter(value => value != null),
+    )
+  },
+)
+
+test.prop([
+  getAsyncFnArb(fc.oneof(fc.anything(), fc.constantFrom(undefined, null))),
+  concurIterableArb,
+])(
   `filterMapConcur returns a concur iterable as concurrent as the given async function and concur iterable`,
   async ({ asyncFn, fnTimings }, { iterable }) => {
     const filterMappedIterable = filterMapConcur(asyncFn, iterable)
@@ -677,7 +705,7 @@ test.prop([iterableArb, concurIterableArb])(
 )
 
 test.prop([iterableArb, concurIterableArb])(
-  `excludeConcur returns an concur iterable containing the same values in the same order as the given concur iterable, but excluding the given iterable`,
+  `excludeConcur returns an concur iterable containing the same values as the given concur iterable, but excluding the given iterable`,
   async (
     { iterable: excludedIterable, values: excludedValues },
     { iterable, getIterationOrder },
@@ -687,6 +715,20 @@ test.prop([iterableArb, concurIterableArb])(
     expect(await reduceConcur(toArray(), filteredIterable)).toStrictEqual(
       getIterationOrder().filter(value => !excludedValues.includes(value)),
     )
+  },
+)
+
+test.prop([iterableArb, concurIterableArb])(
+  `excludeConcur correctly forwards indices`,
+  async (
+    { iterable: excludedIterable, values: excludedValues },
+    { iterable, values },
+  ) => {
+    const filteredIterable = excludeConcur(excludedIterable, iterable)
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(filteredIterable)),
+    ).toStrictEqual(values.filter(value => !excludedValues.includes(value)))
   },
 )
 

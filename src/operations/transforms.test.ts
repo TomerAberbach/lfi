@@ -25,6 +25,7 @@ import {
   map,
   mapAsync,
   mapConcur,
+  orderConcur,
   pipe,
   reduceAsync,
   reduceConcur,
@@ -178,13 +179,24 @@ test.prop([asyncFnArb, concurIterableArb])(
 )
 
 test.prop([asyncFnArb, concurIterableArb])(
-  `mapConcur returns a concur iterable containing the same values in the same order as the given concur iterable, but transformed using the given callback`,
+  `mapConcur returns a concur iterable containing the same values as the given concur iterable, but transformed using the given callback`,
   async ({ asyncFn, syncFn }, { iterable, values }) => {
     const mappedIterable = mapConcur(asyncFn, iterable)
 
     expect(await reduceConcur(toArray(), mappedIterable)).toIncludeSameMembers(
       values.map(value => syncFn(value)),
     )
+  },
+)
+
+test.prop([asyncFnArb, concurIterableArb])(
+  `mapConcur correctly forwards indices`,
+  async ({ asyncFn, syncFn }, { iterable, values }) => {
+    const mappedIterable = mapConcur(asyncFn, iterable)
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(mappedIterable)),
+    ).toStrictEqual(values.map(value => syncFn(value)))
   },
 )
 
@@ -703,6 +715,23 @@ test.prop([
   },
 )
 
+test.prop([
+  getAsyncFnArb(fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)),
+  concurIterableArb,
+])(
+  `flatMapConcur correctly forwards indices`,
+  async ({ asyncFn, syncFn }, { iterable, values }) => {
+    const flatMappedIterable = flatMapConcur(
+      async value => (await asyncFn(value)).iterable,
+      iterable,
+    )
+
+    expect(
+      await reduceConcur(toArray(), orderConcur(flatMappedIterable)),
+    ).toStrictEqual(values.flatMap(value => syncFn(value).values))
+  },
+)
+
 test.skip(`flatten types are correct`, () => {
   expectTypeOf(
     flatten([
@@ -798,6 +827,20 @@ test.prop([
   },
 )
 
+test.prop([
+  getConcurIterableArb(
+    fc.oneof(iterableArb, asyncIterableArb, concurIterableArb),
+  ),
+])(`flattenConcur correctly forwards indices`, async ({ iterable, values }) => {
+  const flattenedIterable = flattenConcur(
+    mapConcur(({ iterable }) => iterable, iterable),
+  )
+
+  expect(
+    await reduceConcur(toArray(), orderConcur(flattenedIterable)),
+  ).toStrictEqual(values.flatMap(({ values }) => values))
+})
+
 test.skip(`index types are correct`, () => {
   expectTypeOf(pipe([`a`, `b`, `c`], index)).toExtend<
     Iterable<[number, string]>
@@ -875,5 +918,16 @@ test.prop([concurIterableArb])(
       values.map((_, index) => index),
     )
     expect(pairs.map(([, value]) => value)).toIncludeSameMembers(values)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `indexConcur correctly forwards indices`,
+  async ({ iterable, values }) => {
+    const indexedIterable = indexConcur(orderConcur(iterable))
+
+    expect(
+      await reduceConcur(toArray<[number, unknown]>(), indexedIterable),
+    ).toStrictEqual([...values.entries()])
   },
 )

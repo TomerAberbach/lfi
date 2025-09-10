@@ -65,9 +65,9 @@ export const timeConcur = <Value>(
   const timedConcurIterable: ConcurIterable<Value> = {
     [concurIteratorSymbol]: async apply => {
       const now = Date.now()
-      await concurIterable[concurIteratorSymbol](async value => {
+      await concurIterable[concurIteratorSymbol](async (value, indices) => {
         yieldTimings.values.push(Date.now() - now)
-        await apply(value)
+        await apply(value, indices)
       })
     },
   }

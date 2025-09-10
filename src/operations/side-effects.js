@@ -110,13 +110,22 @@ export const cacheConcur = concurIterable => {
       applys.push(apply)
 
       if (!promise) {
-        promise = forEachConcur(async value => {
-          cache.push(value)
-          await forEachConcur(apply => apply(value), asConcur(applys))
-        }, concurIterable).then(() => (isResolved = true))
+        promise = concurIterable[concurIteratorSymbol](
+          async (value, indices) => {
+            cache.push([value, indices])
+            await asConcur(applys)[concurIteratorSymbol](apply =>
+              apply(value, indices),
+            )
+          },
+        ).then(() => (isResolved = true))
       }
     }
 
-    await Promise.all([forEachConcur(apply, asConcur(cache)), promise])
+    await Promise.all([
+      asConcur(cache)[concurIteratorSymbol](([value, indices]) =>
+        apply(value, indices),
+      ),
+      promise,
+    ])
   })
 }

@@ -1,5 +1,5 @@
 import { bench, describe } from 'vitest'
-import { asAsync, compose, pipe } from './core.js'
+import { asAsync, asConcur, compose, pipe } from './core.js'
 
 const increment = (value: unknown) => Number(value) + 1
 
@@ -22,6 +22,7 @@ describe.each([0, 1, 2, 3, 4, 5, 6, 7, 8])(`%s function(s)`, count => {
 
 describe(`iteration`, () => {
   const array = Array.from({ length: 10_000 }, () => Math.random())
+  const concurIterable = asConcur(array)
 
   bench(`native`, () => {
     // eslint-disable-next-line no-empty
@@ -29,9 +30,15 @@ describe(`iteration`, () => {
     }
   })
 
-  bench(`asAsync`, async () => {
+  bench(`asAsync of iterable`, async () => {
     // eslint-disable-next-line no-empty
     for await (const _ of asAsync(array)) {
+    }
+  })
+
+  bench(`asAsync of concur iterable`, async () => {
+    // eslint-disable-next-line no-empty
+    for await (const _ of asAsync(concurIterable)) {
     }
   })
 })

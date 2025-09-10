@@ -54,69 +54,129 @@ export const compose = (...fns) => {
   }
 }
 
-export const asAsync = iterable => {
+export const asAsync = (iterable, options) => {
   if (iterable[Symbol.asyncIterator]) {
     return iterable
   }
 
-  return createAsyncIterable(
-    iterable[Symbol.iterator]
-      ? // We write this instead of `() => iterable[Symbol.iterator]()` so that
-        // we handle the case of the iterable containing promises, each of which
-        // should be awaited, and so that we are compliant with the async
-        // iteration protocol, which requires returning a promise.
-        () => {
-          const iterator = iterable[Symbol.iterator]()
-          return {
-            // This logic could be written more simply, but minimizing how often
-            // we use `await` results in more performant iteration.
-            next: () => {
-              const result = iterator.next()
-              return result.done
-                ? Promise.resolve(result)
-                : thenableThen(result.value, value => ({ value }))
-            },
-          }
+  if (iterable[Symbol.iterator]) {
+    return asAsyncFromSync(iterable)
+  }
+
+  return asAsyncFromConcur(iterable, options)
+}
+
+const asAsyncFromSync = iterable =>
+  // We write this instead of `() => iterable[Symbol.iterator]()` so that we
+  // handle the case of the iterable containing promises, each of which should
+  // be awaited, and so that we are compliant with the async iteration protocol,
+  // which requires returning a promise.
+  createAsyncIterable(() => {
+    const iterator = iterable[Symbol.iterator]()
+    return {
+      // This logic could be written more simply, but minimizing how often
+      // we use `await` results in more performant iteration.
+      next: () => {
+        const result = iterator.next()
+        return result.done
+          ? Promise.resolve(result)
+          : thenableThen(result.value, value => ({ value }))
+      },
+    }
+  })
+
+const asAsyncFromConcur = (concurIterable, { backpressureStrategy } = {}) =>
+  createAsyncIterable(() => {
+    // TODO: Use a queue here.
+    const buffer = []
+    let done = false
+    let bufferResolvers
+    let deferredError
+
+    const { bufferLimit, handleOverflow } =
+      normalizeBackpressureStrategy(backpressureStrategy)
+    concurIterable(value => {
+      if (deferredError) {
+        return
+      }
+
+      if (buffer.length < bufferLimit) {
+        buffer.push(value)
+      } else {
+        try {
+          handleOverflow(buffer, value)
+        } catch (error) {
+          deferredError = error
         }
-      : async function* () {
-          let buffer = []
-          let done = false
-          let nonEmptyBufferResolvers
-          let deferredError
+      }
 
-          iterable(value => {
-            buffer.push(value)
-            if (nonEmptyBufferResolvers) {
-              const currentDeferred = nonEmptyBufferResolvers
-              nonEmptyBufferResolvers = undefined
-              currentDeferred.resolve()
-            }
-          })
-            .then(() => {
-              done = true
-              nonEmptyBufferResolvers?.resolve()
-            })
-            .catch(error => {
-              deferredError = error
-              nonEmptyBufferResolvers?.resolve()
-            })
+      if (bufferResolvers) {
+        const resolvers = bufferResolvers
+        bufferResolvers = undefined
+        resolvers.resolve()
+      }
+    })
+      .then(() => {
+        done = true
+        bufferResolvers?.resolve()
+      })
+      .catch(error => {
+        deferredError = error
+        bufferResolvers?.resolve()
+      })
 
-          while (!done) {
-            if (!buffer.length) {
-              nonEmptyBufferResolvers = Promise.withResolvers()
-              await nonEmptyBufferResolvers.promise
-            }
+    const nextResult = () => {
+      if (buffer.length) {
+        return { value: buffer.shift() }
+      }
 
-            const currentBuffer = buffer
-            buffer = []
-            yield* currentBuffer
+      if (deferredError) {
+        throw deferredError
+      }
 
-            if (deferredError) {
-              throw deferredError
-            }
-          }
-        },
-  )
+      if (done) {
+        return { done }
+      }
+
+      return null
+    }
+
+    return {
+      next: async () => {
+        const result = nextResult()
+        if (result) {
+          return result
+        }
+
+        bufferResolvers = Promise.withResolvers()
+        await bufferResolvers.promise
+
+        return nextResult()
+      },
+    }
+  })
+
+const normalizeBackpressureStrategy = (strategy = {}) => {
+  const { bufferLimit = Infinity, overflowStrategy = `error` } = strategy
+  let handleOverflow
+  switch (overflowStrategy) {
+    case `drop-first`:
+      handleOverflow = (buffer, value) => {
+        buffer.shift()
+        buffer.push(value)
+      }
+      break
+    case `drop-last`:
+      handleOverflow = () => {}
+      break
+    case `error`:
+      handleOverflow = () => {
+        throw new Error(`Buffer limit exceeded`)
+      }
+      break
+  }
+
+  return { bufferLimit, handleOverflow }
 }
 
 export const asConcur = iterable => {

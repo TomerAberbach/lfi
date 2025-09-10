@@ -1,4 +1,4 @@
-import type { MaybePromiseLike } from '../internal/types.js'
+import type { MaybePromiseLike, PositiveInteger } from '../internal/types.js'
 
 /** @internal */
 type Curried<Parameters extends readonly any[], Return> = <
@@ -238,12 +238,13 @@ export const compose: {
 /**
  * Returns an async iterable wrapper around `iterable`.
  *
- * WARNING: When passing a concur iterable the returned async iterable will
- * buffer the values yielded by the concur iterable if they are not read from
- * the async iterable as quickly as they are yielded by the concur iterable.
- * This happens because
+ * WARNING: When passing a concur iterable the default behavior of the returned
+ * async iterable is to buffer the values yielded by the concur iterable if they
+ * are not read from the async iterable as quickly as they are yielded by the
+ * concur iterable. This happens because
  * [concur iterables are push-based while async iterables are pull-based](https://lfi.dev/docs/concepts/concurrent-iterable#how-is-it-different-from-an-asynciterable),
- * which creates backpressure.
+ * which creates backpressure. To customize how backpressure is applied, pass a
+ * {@link BackpressureStrategy}.
  *
  * @example
  * ```js playground
@@ -265,9 +266,71 @@ export const compose: {
  * @category Core
  * @since v0.0.2
  */
-export const asAsync: <Value>(
-  iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
-) => AsyncIterable<Awaited<Value>>
+export const asAsync: {
+  <Value>(
+    iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
+  ): AsyncIterable<Awaited<Value>>
+
+  <Value, Size extends number = number>(
+    concurIterable:
+      | Iterable<Value>
+      | AsyncIterable<Value>
+      | ConcurIterable<Value>,
+    options?: AsAsyncOptions<Size>,
+  ): AsyncIterable<Awaited<Value>>
+}
+
+/**
+ * Options for {@link asAsync}.
+ *
+ * @category Core
+ * @since v4.2.0
+ */
+export type AsAsyncOptions<Size extends number = number> = Readonly<{
+  /**
+   * The strategy to use for applying backpressure when the input concur
+   * iterable is yielding values faster than the returned async iterable can
+   * process them.
+   *
+   * Does nothing if the input is not a concur iterable.
+   *
+   * @since v2.0.0
+   */
+  backpressureStrategy?: BackpressureStrategy<Size>
+}>
+
+/**
+ * A strategy to use for applying backpressure adapting a concur iterable from
+ * push-based iteration to pull-based iteration.
+ *
+ * @category Core
+ * @since v4.2.0
+ */
+export type BackpressureStrategy<Size extends number = number> = Readonly<{
+  /**
+   * The maximum number of values to buffer when the concur iterable yields
+   * values faster than the downstream consumer can process them.
+   *
+   * Defaults to `Infinity`.
+   */
+  bufferLimit?: PositiveInteger<Size>
+
+  /**
+   * The strategy to apply when the {@link BackpressureStrategy.bufferLimit}
+   * would be exceeded.
+   *
+   * The strategies behave as follows:
+   * - `drop-first`: When the buffer is full, earlier buffered values are
+   *   evicted to make room for new ones.
+   * - `drop-last`: When the buffer is full, new values are ignored.
+   * - `error`: When the buffer is full and a new value comes in, an error is
+   *   thrown.
+   *
+   * Defaults to `error`. Note that `overflowStrategy` does nothing when
+   * {@link BackpressureStrategy.bufferLimit} is `Infinity`.
+   */
+  overflowStrategy?: `drop-first` | `drop-last` | `error`
+}>
 
 /**
  * Represents a lazy collection of values, each of type `Value`, that can be

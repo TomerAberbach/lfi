@@ -248,6 +248,60 @@ test.skip(`asAsync types are correct`, () => {
       ]),
     ),
   ).toExtend<AsyncIterable<string>>()
+
+  expectTypeOf(asAsync(asConcur([`a`, `b`, `c`]), {})).toExtend<
+    AsyncIterable<string>
+  >()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), { backpressureStrategy: undefined }),
+  ).toExtend<AsyncIterable<string>>()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), {
+      backpressureStrategy: {},
+    }),
+  ).toExtend<AsyncIterable<string>>()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), {
+      backpressureStrategy: {
+        bufferLimit: 42,
+      },
+    }),
+  ).toExtend<AsyncIterable<string>>()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), {
+      backpressureStrategy: {
+        bufferLimit: Infinity,
+      },
+    }),
+  ).toExtend<AsyncIterable<string>>()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), {
+      backpressureStrategy: {
+        overflowStrategy: `drop-last`,
+      },
+    }),
+  ).toExtend<AsyncIterable<string>>()
+  expectTypeOf(
+    asAsync(asConcur([`a`, `b`, `c`]), {
+      backpressureStrategy: {
+        bufferLimit: 42,
+        overflowStrategy: `drop-last`,
+      },
+    }),
+  ).toExtend<AsyncIterable<string>>()
+
+  asAsync(asConcur([`a`, `b`, `c`]), {
+    backpressureStrategy: {
+      // @ts-expect-error Not an integer literal.
+      bufferLimit: 2.1,
+    },
+  })
+  asAsync(asConcur([`a`, `b`, `c`]), {
+    backpressureStrategy: {
+      // @ts-expect-error Not a non-negative integer
+      bufferLimit: -2,
+    },
+  })
 })
 
 test.prop([fc.oneof(iterableArb, asyncIterableArb)])(
@@ -308,6 +362,131 @@ test.prop([iterableArb])(
     ])
 
     expect(elapsed1).toBe(elapsed2)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `asAsync returns an async iterable that infinitely buffers the given concur iterable by default`,
+  async ({ iterable, getIterationOrder }, scheduler) => {
+    const asyncIterable = asAsync(iterable)
+
+    // Start the concur iterable and wait for it to finish.
+    const asyncIterator = asyncIterable[Symbol.asyncIterator]()
+    await scheduler.waitIdle()
+
+    expect(
+      await reduceAsync(
+        toArray(),
+        createAsyncIterable(() => asyncIterator),
+      ),
+    ).toStrictEqual(getIterationOrder())
+  },
+)
+
+test.prop([concurIterableArb, fc.integer({ min: 1 })])(
+  `asAsync returns an async iterable that drops early buffered values when the buffer limit is exceeded for the given concur iterable`,
+  async ({ iterable, getIterationOrder }, bufferLimit, scheduler) => {
+    const asyncIterable = asAsync(iterable, {
+      backpressureStrategy: { bufferLimit, overflowStrategy: `drop-first` },
+    })
+
+    // Start the concur iterable and wait for it to finish.
+    const asyncIterator = asyncIterable[Symbol.asyncIterator]()
+    await scheduler.waitIdle()
+
+    expect(
+      await reduceAsync(
+        toArray(),
+        createAsyncIterable(() => asyncIterator),
+      ),
+    ).toStrictEqual(getIterationOrder().slice(-bufferLimit))
+  },
+)
+
+test.prop([concurIterableArb, fc.integer({ min: 1 })])(
+  `asAsync returns an async iterable that drops new values when the buffer limit is exceeded for the given concur iterable`,
+  async ({ iterable, getIterationOrder }, bufferLimit, scheduler) => {
+    const asyncIterable = asAsync(iterable, {
+      backpressureStrategy: { bufferLimit, overflowStrategy: `drop-last` },
+    })
+
+    // Start the concur iterable and wait for it to finish.
+    const asyncIterator = asyncIterable[Symbol.asyncIterator]()
+    await scheduler.waitIdle()
+
+    expect(
+      await reduceAsync(
+        toArray(),
+        createAsyncIterable(() => asyncIterator),
+      ),
+    ).toStrictEqual(getIterationOrder().slice(0, bufferLimit))
+  },
+)
+
+test.prop([
+  fc
+    .tuple(concurIterableArb, fc.integer({ min: 1 }))
+    .filter(([{ values }, bufferLimit]) => values.length <= bufferLimit),
+])(
+  `asAsync returns an async iterable that does not error if the buffer limit is not exceeded for the given concur iterable`,
+  async ([{ iterable, getIterationOrder }, bufferLimit], scheduler) => {
+    const asyncIterable = asAsync(iterable, {
+      backpressureStrategy: { bufferLimit, overflowStrategy: `error` },
+    })
+
+    // Start the concur iterable and wait for it to finish.
+    const asyncIterator = asyncIterable[Symbol.asyncIterator]()
+    await scheduler.waitIdle()
+
+    expect(
+      await reduceAsync(
+        toArray(),
+        createAsyncIterable(() => asyncIterator),
+      ),
+    ).toStrictEqual(getIterationOrder())
+  },
+)
+
+test.prop([
+  fc
+    .tuple(concurIterableArb, fc.integer({ min: 1 }))
+    .filter(([{ values }, bufferLimit]) => values.length > bufferLimit),
+])(
+  `asAsync returns an async iterable that errors if the buffer limit is exceeded for the given concur iterable`,
+  async ([{ iterable }, bufferLimit], scheduler) => {
+    const asyncIterable = asAsync(iterable, {
+      backpressureStrategy: { bufferLimit, overflowStrategy: `error` },
+    })
+
+    // Start the concur iterable and wait for it to finish.
+    const asyncIterator = asyncIterable[Symbol.asyncIterator]()
+    await scheduler.waitIdle()
+
+    await expect(
+      reduceAsync(
+        toArray(),
+        createAsyncIterable(() => asyncIterator),
+      ),
+    ).rejects.toStrictEqual(new Error(`Buffer limit exceeded`))
+  },
+)
+
+test.prop([
+  concurIterableArb,
+  fc.integer({ min: 1 }),
+  fc.constantFrom(`drop-first`, `drop-last`, `error`),
+])(
+  `asAsync returns an async iterable that can synchronously keep up with the given concur iterable`,
+  async ({ iterable, getIterationOrder }, bufferLimit, overflowStrategy) => {
+    const asyncIterable = asAsync(iterable, {
+      backpressureStrategy: { bufferLimit, overflowStrategy },
+    })
+
+    const values: unknown[] = []
+    for await (const value of asyncIterable) {
+      values.push(value)
+    }
+    expect(values).toStrictEqual(getIterationOrder())
   },
 )
 

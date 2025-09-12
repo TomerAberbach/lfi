@@ -1,4 +1,4 @@
-import { curry, thunk } from '../internal/helpers.js'
+import { curry, noop, thunk } from '../internal/helpers.js'
 import {
   NO_ENTRY,
   normalizeReducer,
@@ -145,7 +145,7 @@ const asMultiple = (value, mapReducers) => {
 }
 
 export const toJoin = separator => ({
-  create: () => {},
+  create: noop,
   add: (acc, value) =>
     acc === undefined ? String(value) : String(acc) + separator + String(value),
   finish: acc => acc ?? ``,

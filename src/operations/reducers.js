@@ -1,11 +1,14 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   identity,
 } from '../internal/helpers.js'
 import { asConcur } from './core.js'
 import { next } from './optionals.js'
+import { forEachConcur } from './side-effects.js'
 import { map } from './transforms.js'
 
 export const mapReducer = curry((fn, reducer) => {
@@ -87,12 +90,12 @@ export const reduceAsync = curry((asyncReducer, asyncIterable) => {
 export const reduceConcur = curry((asyncReducer, concurIterable) => {
   const { create, add, combine, finish } = normalizeReducer(asyncReducer)
   if (!create) {
-    return async apply => {
+    return createConcurIterable(async apply => {
       const accs = await reduceConcurWithoutCreate(add, finish, concurIterable)
       if (accs.length) {
         await apply(accs[0])
       }
-    }
+    })
   }
   if (!combine) {
     return reduceConcurWithCreateWithoutCombine(
@@ -114,13 +117,13 @@ export const reduceConcur = curry((asyncReducer, concurIterable) => {
 const reduceConcurWithoutCreate = async (add, finish, concurIterable) => {
   const accs = []
 
-  await concurIterable(async acc => {
+  await forEachConcur(async acc => {
     while (accs.length) {
       acc = await add(acc, accs.pop())
     }
 
     accs.push(acc)
-  })
+  }, concurIterable)
 
   return accs.length ? [await finish(accs[0])] : accs
 }
@@ -134,7 +137,7 @@ const reduceConcurWithCreateWithCombine = async (
 ) => {
   const accs = [create()]
 
-  await concurIterable(async value => {
+  await forEachConcur(async value => {
     let acc = await add(await (accs.length ? accs.pop() : create()), value)
 
     while (accs.length) {
@@ -142,7 +145,7 @@ const reduceConcurWithCreateWithCombine = async (
     }
 
     accs.push(acc)
-  })
+  }, concurIterable)
 
   return finish(await accs[0])
 }
@@ -154,7 +157,7 @@ const reduceConcurWithCreateWithoutCombine = async (
   concurIterable,
 ) => {
   let accPromise = Promise.resolve(create())
-  await concurIterable(value => {
+  await concurIterable[concurIteratorSymbol](value => {
     accPromise = accPromise.then(acc => add(acc, value))
   })
   return finish(await accPromise)

@@ -1,5 +1,10 @@
 import { fc } from '@fast-check/vitest'
-import { asConcur, mapConcur, pipe } from '../../src/index.js'
+import {
+  asConcur,
+  concurIteratorSymbol,
+  mapConcur,
+  pipe,
+} from '../../src/index.js'
 import type { ConcurIterableApply } from '../../src/index.js'
 import { time, timeAsync, timeConcur } from '../timings.ts'
 import type {
@@ -125,12 +130,12 @@ export const getConcurIterableArb = <Value>(
         return scheduledValue
       }),
     )
-    const timedConcurIterable = timeConcur(
-      (apply: ConcurIterableApply<Value>) => {
+    const timedConcurIterable = timeConcur({
+      [concurIteratorSymbol]: (apply: ConcurIterableApply<Value>) => {
         iterationOrder.length = 0
-        return concurIterable(apply)
+        return concurIterable[concurIteratorSymbol](apply)
       },
-    )
+    })
 
     return {
       iterable: Object.assign(timedConcurIterable, {
@@ -180,16 +185,16 @@ export const getThrowingConcurIterableArb = <Value>(
     )
     .filter(([, throwIndices]) => throwIndices.size === errorCount)
     .map(([{ iterable, values, getIterationOrder }, throwIndices]) => {
-      const throwingIterable = timeConcur(
-        async (apply: ConcurIterableApply<Value>) => {
+      const throwingIterable = timeConcur({
+        [concurIteratorSymbol]: async (apply: ConcurIterableApply<Value>) => {
           let index = 0
-          await iterable(async value => {
+          await iterable[concurIteratorSymbol](async value => {
             await apply(value)
             if (throwIndices.has(index++)) {
               throw new Error(`BOOM!`)
             }
           })
         },
-      )
+      })
       return { iterable: throwingIterable, values, getIterationOrder }
     })

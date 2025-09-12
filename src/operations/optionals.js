@@ -2,8 +2,10 @@ import {
   createAsyncIterable,
   createIterable,
   curry,
+  noop,
 } from '../internal/helpers.js'
 import { asAsync, empty, emptyAsync, opaque } from './core.js'
+import { forEachConcur } from './side-effects.js'
 
 export const or = curry((fn, iterable) => {
   const iterator = iterable[Symbol.iterator]()
@@ -24,15 +26,15 @@ export const orConcur = curry((fn, concurIterable) => {
     let resolved
     let result
 
-    concurIterable(async value => {
+    forEachConcur(async value => {
       if (!result) {
         result = { value }
       } else if (!resolved) {
         resolved = true
         resolve(asyncFn())
       }
-    })
-      .catch(() => {})
+    }, concurIterable)
+      .catch(noop)
       .then(() => {
         if (!resolved) {
           resolve(result ? result.value : asyncFn())

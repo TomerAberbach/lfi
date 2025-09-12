@@ -1,14 +1,17 @@
 import {
   canEval,
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   identity,
   isThenable,
+  noop,
   thenableThen,
   thunk,
 } from '../internal/helpers.js'
 
-export { curry } from '../internal/helpers.js'
+export { concurIteratorSymbol, curry } from '../internal/helpers.js'
 
 export const pipe = (value, ...fns) => {
   for (const fn of fns) {
@@ -95,7 +98,7 @@ const asAsyncFromConcur = (concurIterable, { backpressureStrategy } = {}) =>
 
     const { bufferLimit, handleOverflow } =
       normalizeBackpressureStrategy(backpressureStrategy)
-    concurIterable(value => {
+    concurIterable[concurIteratorSymbol](value => {
       if (deferredError) {
         return
       }
@@ -167,7 +170,7 @@ const normalizeBackpressureStrategy = (strategy = {}) => {
       }
       break
     case `drop-last`:
-      handleOverflow = () => {}
+      handleOverflow = noop
       break
     case `error`:
       handleOverflow = () => {
@@ -180,12 +183,12 @@ const normalizeBackpressureStrategy = (strategy = {}) => {
 }
 
 export const asConcur = iterable => {
-  if (typeof iterable === `function`) {
+  if (iterable[concurIteratorSymbol]) {
     return iterable
   }
 
   if (iterable[Symbol.iterator]) {
-    return async apply => {
+    return createConcurIterable(async apply => {
       const promises = []
       for (const value of iterable) {
         const result = safeApply(apply, value)
@@ -194,10 +197,10 @@ export const asConcur = iterable => {
         }
       }
       return handlePromiseResults(await Promise.allSettled(promises))
-    }
+    })
   }
 
-  return async apply => {
+  return createConcurIterable(async apply => {
     // NOTE: We can't use `Array.fromAsync(iterable, mapper)` here because we
     // don't want to await the result of `mapper` before moving onto the next
     // value in the iterable.
@@ -209,7 +212,7 @@ export const asConcur = iterable => {
       }
     }
     handlePromiseResults(await Promise.allSettled(promises))
-  }
+  })
 }
 
 const safeApply = (apply, value) => {
@@ -244,10 +247,11 @@ const asyncIterator = { next: () => Promise.resolve(result) }
 
 export const empty = thunk(createIterable(() => iterator))
 export const emptyAsync = thunk(createAsyncIterable(() => asyncIterator))
-export const emptyConcur = thunk(() => Promise.resolve())
+export const emptyConcur = thunk(createConcurIterable(noop))
 
 export const opaque = iterable =>
   createIterable(() => iterable[Symbol.iterator]())
 export const opaqueAsync = asyncIterable =>
   createAsyncIterable(() => asyncIterable[Symbol.asyncIterator]())
-export const opaqueConcur = concurIterable => apply => concurIterable(apply)
+export const opaqueConcur = concurIterable =>
+  createConcurIterable(apply => concurIterable[concurIteratorSymbol](apply))

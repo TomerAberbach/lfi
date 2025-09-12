@@ -1,5 +1,7 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   identity,
@@ -22,9 +24,10 @@ export const mapAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const mapConcur = curry(
-  (fn, concurIterable) => apply =>
-    concurIterable(async value => apply(await fn(value))),
+export const mapConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply =>
+    concurIterable[concurIteratorSymbol](async value => apply(await fn(value))),
+  ),
 )
 
 export const flatMap = curry((fn, iterable) =>
@@ -58,9 +61,12 @@ export const flatMapAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const flatMapConcur = curry(
-  (fn, concurIterable) => apply =>
-    concurIterable(async value => asConcur(await fn(value))(apply)),
+export const flatMapConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply =>
+    concurIterable[concurIteratorSymbol](async value =>
+      asConcur(await fn(value))[concurIteratorSymbol](apply),
+    ),
+  ),
 )
 
 export const flatten = flatMap(identity)
@@ -85,7 +91,9 @@ export const indexAsync = curry(asyncIterable =>
   }),
 )
 
-export const indexConcur = curry(concurIterable => async apply => {
-  let index = 0
-  await concurIterable(value => apply([index++, value]))
-})
+export const indexConcur = curry(concurIterable =>
+  createConcurIterable(async apply => {
+    let index = 0
+    await concurIterable[concurIteratorSymbol](value => apply([index++, value]))
+  }),
+)

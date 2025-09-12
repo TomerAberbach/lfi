@@ -24,6 +24,7 @@ import {
   empty,
   emptyAsync,
   emptyConcur,
+  forEachConcur,
   map,
   opaque,
   opaqueAsync,
@@ -645,12 +646,12 @@ test.prop([
 
     const appliedValues: unknown[] = []
     await expect(
-      concurIterable(value => {
+      forEachConcur(value => {
         appliedValues.push(value)
         if (appliedValues.length === 1 || shouldThrowStream.next().value) {
           throw new Error(`BOOM!`)
         }
-      }),
+      }, concurIterable),
     ).toReject()
 
     expect(appliedValues).toIncludeSameMembers(values)

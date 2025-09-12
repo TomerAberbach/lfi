@@ -10,6 +10,8 @@ export const canEval = (() => {
   /* c8 ignore end */
 })()
 
+export const noop = () => {}
+
 export const identity = value => value
 
 export const thunk = value => () => value
@@ -20,6 +22,10 @@ export const mapIterable = (iterable, fn) =>
   createIterable(() => ({ next: fn(iterable[Symbol.iterator]()) }))
 
 export const createAsyncIterable = fn => ({ [Symbol.asyncIterator]: fn })
+
+export const concurIteratorSymbol = Symbol(`concurIterator`)
+
+export const createConcurIterable = fn => ({ [concurIteratorSymbol]: fn })
 
 export const isThenable = value =>
   Boolean(value && typeof value.then === `function`)

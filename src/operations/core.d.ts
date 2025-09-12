@@ -284,7 +284,7 @@ export const asAsync: {
  * Options for {@link asAsync}.
  *
  * @category Core
- * @since v4.2.0
+ * @since v5.0.0
  */
 export type AsAsyncOptions<Size extends number = number> = Readonly<{
   /**
@@ -304,7 +304,7 @@ export type AsAsyncOptions<Size extends number = number> = Readonly<{
  * push-based iteration to pull-based iteration.
  *
  * @category Core
- * @since v4.2.0
+ * @since v5.0.0
  */
 export type BackpressureStrategy<Size extends number = number> = Readonly<{
   /**
@@ -333,16 +333,26 @@ export type BackpressureStrategy<Size extends number = number> = Readonly<{
 }>
 
 /**
+ * A symbol used as the key when storing a {@link ConcurIterable}'s iteration
+ * function.
+ *
+ * @category Core
+ * @since v5.0.0
+ */
+export const concurIteratorSymbol: unique symbol
+
+/**
  * Represents a lazy collection of values, each of type `Value`, that can be
  * iterated concurrently.
  *
- * The collection can be iterated by invoking the concur iterable with an
- * `apply` callback. The callback is applied to each value in the collection,
- * potentially asynchronously, in some order.
+ * The collection can be iterated by invoking the concur iterable's
+ * {@link concurIteratorSymbol} function with an `apply` callback. The callback
+ * is applied to each value in the collection, potentially asynchronously, in
+ * some order.
  *
- * Invoking the concur iterable returns a promise that resolves when `apply`
- * has been applied to each value in the concur iterable and each result
- * returned by `apply` is awaited.
+ * Invoking the concur iterable's {@link concurIteratorSymbol} function returns
+ * a promise that resolves when `apply` has been applied to each value in the
+ * concur iterable and each result returned by `apply` is awaited.
  *
  * A [concur iterable](https://lfi.dev/docs/concepts/concurrent-iterable) is
  * effectively a cold push-based observable backed by some asynchronous
@@ -350,7 +360,7 @@ export type BackpressureStrategy<Size extends number = number> = Readonly<{
  *
  * @example
  * ```js playground
- * import { asConcur, mapConcur, pipe } from 'lfi'
+ * import { asConcur, concurIteratorSymbol, mapConcur, pipe } from 'lfi'
  *
  * const API_URL = `https://api.dictionaryapi.dev/api/v2/entries/en`
  *
@@ -362,7 +372,7 @@ export type BackpressureStrategy<Size extends number = number> = Readonly<{
  *   }),
  * )
  *
- * await concurIterable(console.log)
+ * await concurIterable[concurIteratorSymbol](console.log)
  * // NOTE: This order may change between runs
  * //=> /slɑθ/
  * //=> /ˈleɪzi/
@@ -372,9 +382,9 @@ export type BackpressureStrategy<Size extends number = number> = Readonly<{
  * @category Core
  * @since v0.0.2
  */
-export type ConcurIterable<Value> = (
-  apply: ConcurIterableApply<Value>,
-) => Promise<void>
+export type ConcurIterable<Value> = {
+  [concurIteratorSymbol]: (apply: ConcurIterableApply<Value>) => Promise<void>
+}
 
 /**
  * The callback invoked for each value of a {@link ConcurIterable}.

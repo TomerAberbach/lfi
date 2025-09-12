@@ -1,10 +1,12 @@
 import {
   createAsyncIterable,
+  createConcurIterable,
   createIterable,
   curry,
   identity,
   mapIterable,
 } from '../internal/helpers.js'
+import { forEachConcur } from './side-effects.js'
 import { flatMap, flatMapAsync, flatMapConcur } from './transforms.js'
 
 export const filter = curry((fn, iterable) =>
@@ -81,19 +83,21 @@ export const uniqueByAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const uniqueByConcur = curry((fn, concurIterable) => apply => {
-  const set = new Set()
+export const uniqueByConcur = curry((fn, concurIterable) =>
+  createConcurIterable(apply => {
+    const set = new Set()
 
-  return concurIterable(async value => {
-    const by = await fn(value)
-    if (set.has(by)) {
-      return
-    }
+    return forEachConcur(async value => {
+      const by = await fn(value)
+      if (set.has(by)) {
+        return
+      }
 
-    set.add(by)
-    await apply(value)
-  })
-})
+      set.add(by)
+      await apply(value)
+    }, concurIterable)
+  }),
+)
 
 export const unique = uniqueBy(identity)
 export const uniqueAsync = uniqueByAsync(identity)
@@ -121,20 +125,22 @@ export const findAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const findConcur = curry(
-  (fn, concurIterable) => apply =>
-    new Promise((resolve, reject) => {
-      let found = false
-      concurIterable(async value => {
-        if (found || !(await fn(value)) || found) {
-          return
-        }
+export const findConcur = curry((fn, concurIterable) =>
+  createConcurIterable(
+    apply =>
+      new Promise((resolve, reject) => {
+        let found = false
+        forEachConcur(async value => {
+          if (found || !(await fn(value)) || found) {
+            return
+          }
 
-        found = true
-        await apply(value)
-        resolve()
-      }).then(resolve, reject)
-    }),
+          found = true
+          await apply(value)
+          resolve()
+        }, concurIterable).then(resolve, reject)
+      }),
+  ),
 )
 
 export const findLast = curry((fn, iterable) =>
@@ -169,22 +175,24 @@ export const findLastAsync = curry((fn, asyncIterable) =>
   }),
 )
 
-export const findLastConcur = curry((fn, concurIterable) => async apply => {
-  let last
+export const findLastConcur = curry((fn, concurIterable) =>
+  createConcurIterable(async apply => {
+    let last
 
-  try {
-    await concurIterable(async value => {
-      if (await fn(value)) {
-        last = { value }
+    try {
+      await forEachConcur(async value => {
+        if (await fn(value)) {
+          last = { value }
+        }
+      }, concurIterable)
+    } catch (error) {
+      if (!last) {
+        throw error
       }
-    })
-  } catch (error) {
-    if (!last) {
-      throw error
     }
-  }
 
-  if (last) {
-    await apply(last.value)
-  }
-})
+    if (last) {
+      await apply(last.value)
+    }
+  }),
+)

@@ -1,4 +1,5 @@
 import type { ConcurIterable } from '../src/index'
+import { concurIteratorSymbol } from '../src/index.js'
 import { createAsyncIterable, createIterable } from '../src/internal/helpers.js'
 import type { MaybePromiseLike } from '../src/internal/types.js'
 
@@ -61,12 +62,14 @@ export const timeConcur = <Value>(
 ): TimedConcurIterable<Value> => {
   const yieldTimings = createTimings()
 
-  const timedConcurIterable: ConcurIterable<Value> = async apply => {
-    const now = Date.now()
-    await concurIterable(async value => {
-      yieldTimings.values.push(Date.now() - now)
-      await apply(value)
-    })
+  const timedConcurIterable: ConcurIterable<Value> = {
+    [concurIteratorSymbol]: async apply => {
+      const now = Date.now()
+      await concurIterable[concurIteratorSymbol](async value => {
+        yieldTimings.values.push(Date.now() - now)
+        await apply(value)
+      })
+    },
   }
 
   return Object.assign(timedConcurIterable, { yieldTimings })

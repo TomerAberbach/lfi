@@ -12,7 +12,8 @@ examples, check out the ["Getting started" page](/docs/getting-started).
 A concurrent iterable, also known as a "concur iterable", is a lazy collection
 of values that can be iterated concurrently.
 
-It is implemented as a function, represented by the `ConcurIterable` type, that:
+It is implemented as an object, represented by the `ConcurIterable` type, with a
+function that:
 
 - Does nothing until it is called
 - Takes a callback that processes each emitted value
@@ -192,22 +193,27 @@ The `asConcur` function constructs a concur iterable from a sync iterable. Here
 is a simplified implementation:
 
 ```js
-const asConcur = iterable => apply =>
-  Promise.all(Array.from(iterable, value => apply(value)))
+const concurIteratorSymbol = Symbol(`concurIterator`)
+
+const asConcur = iterable => ({
+  [concurIteratorSymbol]: apply =>
+    Promise.all(Array.from(iterable, value => apply(value))),
+})
 ```
 
-The implementation returns a function that calls the `apply` callback for each
-value in the iterable and returns a promise that resolves once all values have
-been processed, all while accounting for any async processing in `apply`.
+The implementation returns an object with a function that calls the `apply`
+callback for each value in the iterable and returns a promise that resolves once
+all values have been processed, all while accounting for any async processing in
+`apply`.
 
 We can iterate over concur iterables:
 
 ```js playground
-import { asConcur } from 'lfi'
+import { asConcur, concurIteratorSymbol } from 'lfi'
 
 const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
 
-await concurIterable(console.log)
+await concurIterable[concurIteratorSymbol](console.log)
 //=> sloth
 //=> lazy
 //=> sleep
@@ -216,24 +222,26 @@ await concurIterable(console.log)
 We can manually filter and map them:
 
 ```js playground
-import { asConcur } from 'lfi'
+import { asConcur, concurIteratorSymbol } from 'lfi'
 
 const API_URL = `https://random-word-form.herokuapp.com/random/adjective`
 
 const concurIterable = asConcur([`sloth`, `lazy`, `sleep`])
 
-const transformedConcurIterable = apply =>
-  concurIterable(async verb => {
-    const [adjective] = await (await fetch(API_URL)).json()
-    if (adjective.length <= 5) {
-      // Too short!
-      return
-    }
+const transformedConcurIterable = {
+  [concurIteratorSymbol]: apply =>
+    concurIterable[concurIteratorSymbol](async verb => {
+      const [adjective] = await (await fetch(API_URL)).json()
+      if (adjective.length <= 5) {
+        // Too short!
+        return
+      }
 
-    await apply(`${adjective} ${verb}`)
-  })
+      await apply(`${adjective} ${verb}`)
+    }),
+}
 
-await transformedConcurIterable(console.log)
+await transformedConcurIterable[concurIteratorSymbol](console.log)
 // NOTE: This order may change between runs
 //=> educated sloth
 //=> favorite sleep

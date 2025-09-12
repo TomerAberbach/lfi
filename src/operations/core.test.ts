@@ -36,6 +36,7 @@ import {
 } from '../index.js'
 import type { ConcurIterable } from '../index.js'
 import { createAsyncIterable } from '../internal/helpers.js'
+import { orderedConcur } from './core.js'
 
 const fnAndArgsArb = fc
   .tuple(
@@ -575,7 +576,7 @@ test.prop([fc.oneof(iterableArb, asyncIterableArb, concurIterableArb)])(
 )
 
 test.prop([iterableArb])(
-  `asConcur returns a concur iterable containing the awaited same values in the same order as the given iterable of promises`,
+  `asConcur returns a concur iterable containing the awaited same values as the given iterable of promises`,
   async ({ iterable, values }, scheduler) => {
     const promiseIterable = map(
       value => scheduler.schedule(Promise.resolve(value), fc.stringify(value)),
@@ -655,6 +656,41 @@ test.prop([
     ).toReject()
 
     expect(appliedValues).toIncludeSameMembers(values)
+  },
+)
+
+test.skip(`orderedConcur types are correct`, () => {
+  expectTypeOf(orderedConcur(asConcur([1, 2, 3]))).toExtend<
+    ConcurIterable<number>
+  >()
+})
+
+test.prop([concurIterableArb])(
+  `orderedConcur returns a pure concur iterable`,
+  async ({ iterable }) => {
+    const orderedIterable = orderedConcur(iterable)
+
+    await expect(orderedIterable).toBeConcurIterable()
+  },
+)
+
+test.prop([concurIterableArb])(
+  `orderedConcur returns a concur iterable containing the same values in the same order as the original non-concur iterable`,
+  async ({ iterable, values }) => {
+    const orderedIterable = orderedConcur(iterable)
+
+    expect(await reduceConcur(toArray(), orderedIterable)).toStrictEqual(values)
+  },
+)
+
+test.prop([concurIterableArb])(
+  `asConcur returns a concur iterable as concurrent as the given iterable`,
+  async ({ iterable }) => {
+    const orderedIterable = orderedConcur(iterable)
+
+    const { elapsed } = await timed(() => consumeConcur(orderedIterable))
+
+    expect(elapsed).toBe(iterable.yieldTimings.max())
   },
 )
 

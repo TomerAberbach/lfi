@@ -26,7 +26,9 @@ export const mapAsync = curry((fn, asyncIterable) =>
 
 export const mapConcur = curry((fn, concurIterable) =>
   createConcurIterable(apply =>
-    concurIterable[concurIteratorSymbol](async value => apply(await fn(value))),
+    concurIterable[concurIteratorSymbol](async (value, indices) =>
+      apply(await fn(value), indices),
+    ),
   ),
 )
 
@@ -63,8 +65,11 @@ export const flatMapAsync = curry((fn, asyncIterable) =>
 
 export const flatMapConcur = curry((fn, concurIterable) =>
   createConcurIterable(apply =>
-    concurIterable[concurIteratorSymbol](async value =>
-      asConcur(await fn(value))[concurIteratorSymbol](apply),
+    concurIterable[concurIteratorSymbol](async (value, indices) =>
+      asConcur(await fn(value))[concurIteratorSymbol](
+        (innerValue, innerIndices) =>
+          apply(innerValue, [...indices, ...innerIndices]),
+      ),
     ),
   ),
 )
@@ -94,6 +99,8 @@ export const indexAsync = curry(asyncIterable =>
 export const indexConcur = curry(concurIterable =>
   createConcurIterable(async apply => {
     let index = 0
-    await concurIterable[concurIteratorSymbol](value => apply([index++, value]))
+    await concurIterable[concurIteratorSymbol]((value, indices) =>
+      apply([index++, value], indices),
+    )
   }),
 )

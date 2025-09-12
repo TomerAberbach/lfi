@@ -394,6 +394,7 @@ export type ConcurIterable<Value> = {
  */
 export type ConcurIterableApply<Value> = (
   value: Value,
+  indices: number[],
 ) => MaybePromiseLike<void>
 
 /**
@@ -417,6 +418,14 @@ export type ConcurIterableApply<Value> = (
 export const asConcur: <Value>(
   iterable: Iterable<Value> | AsyncIterable<Value> | ConcurIterable<Value>,
 ) => ConcurIterable<Awaited<Value>>
+
+/**
+ * @category Core
+ * @since v4.2.0
+ */
+export const orderedConcur: <Value>(
+  concurIterable: ConcurIterable<Value>,
+) => ConcurIterable<Value>
 
 /**
  * An iterable that contains zero values.

@@ -1,4 +1,6 @@
 import {
+  compareIndices,
+  concurIteratorSymbol,
   createAsyncIterable,
   createConcurIterable,
   createIterable,
@@ -19,7 +21,6 @@ import {
 } from './core.js'
 import { findLast, findLastAsync, findLastConcur } from './filters.js'
 import { allConcur } from './predicates.js'
-import { forEachConcur } from './side-effects.js'
 import {
   flatten,
   flattenAsync,
@@ -59,13 +60,13 @@ export const dropWhileAsync = curry((fn, asyncIterable) =>
 export const dropWhileConcur = curry((fn, concurIterable) =>
   createConcurIterable(apply => {
     let dropping = true
-    return forEachConcur(async value => {
+    return concurIterable[concurIteratorSymbol](async (value, indices) => {
       if (!dropping || !(await fn(value)) || !dropping) {
         // eslint-disable-next-line require-atomic-updates
         dropping = false
-        await apply(value)
+        await apply(value, indices)
       }
-    }, concurIterable)
+    })
   }),
 )
 
@@ -98,15 +99,15 @@ export const takeWhileConcur = curry((fn, concurIterable) =>
     apply =>
       new Promise((resolve, reject) => {
         let taking = true
-        forEachConcur(async value => {
+        concurIterable[concurIteratorSymbol](async (value, indices) => {
           if (taking && (await fn(value)) && taking) {
-            await apply(value)
+            await apply(value, indices)
           } else {
             // eslint-disable-next-line require-atomic-updates
             taking = false
             resolve()
           }
-        }, concurIterable).then(resolve, reject)
+        }).then(resolve, reject)
       }),
   ),
 )
@@ -214,19 +215,26 @@ export const chunkConcur = curry((size, concurIterable) => {
 
   return createConcurIterable(async apply => {
     let chunk = []
-    await forEachConcur(async value => {
+    let chunkIndices
+    await concurIterable[concurIteratorSymbol](async (value, indices) => {
+      if (!chunk.length) {
+        chunkIndices = indices
+      }
+
       chunk.push(value)
       if (chunk.length < size) {
         return
       }
 
       const previousChunk = chunk
+      const previousChunkIndices = chunkIndices
       chunk = []
-      await apply(previousChunk)
-    }, concurIterable)
+      chunkIndices = undefined
+      await apply(previousChunk, previousChunkIndices)
+    })
 
     if (chunk.length) {
-      await apply(chunk)
+      await apply(chunk, chunkIndices)
     }
   })
 })
@@ -287,15 +295,28 @@ export const windowConcur = curry((options, concurIterable) => {
 
   return createConcurIterable(async apply => {
     const window = createWindow(size)
+    let windowIndices
 
-    await forEachConcur(async value => {
-      if (window._push(value) === size || partialStart) {
-        await apply(window._get())
+    await concurIterable[concurIteratorSymbol](async (value, indices) => {
+      if (!window._count) {
+        windowIndices = indices
       }
-    }, concurIterable)
+
+      if (window._push(value) === size || partialStart) {
+        await apply(window._get(), windowIndices)
+      }
+    })
 
     if (partialEnd) {
-      await Promise.all(map(apply, window._partialEnd(partialStart)))
+      await Promise.all(
+        pipe(
+          window._partialEnd(partialStart),
+          index,
+          map(([index, value]) =>
+            apply(value, [...(windowIndices ?? []), index]),
+          ),
+        ),
+      )
     }
   })
 })
@@ -315,6 +336,7 @@ const createWindow = size => {
   const window = Array.from({ length: size })
 
   return {
+    _count: () => count,
     _push: value => {
       window[nextValueIndex] = value
       nextValueIndex = (nextValueIndex + 1) % size
@@ -403,43 +425,53 @@ export const zipConcur = (...iterables) =>
           map(async ([index, iterable]) => {
             const values = valuesPerIterable[index]
 
-            await forEachConcur(async value => {
-              if (resolved) {
-                return
-              }
+            await asConcur(iterable)[concurIteratorSymbol](
+              async (value, indices) => {
+                if (resolved) {
+                  return
+                }
 
-              const valueIndex = values.length
-              if (valueIndex >= remainingBatches) {
-                // There's no point in processing this value because the length of
-                // the shortest known iterable, so it's not going to be part of
-                // any yielded batch.
-                return
-              }
+                const valueIndex = values.length
+                if (valueIndex >= remainingBatches) {
+                  // There's no point in processing this value because the length of
+                  // the shortest known iterable, so it's not going to be part of
+                  // any yielded batch.
+                  return
+                }
 
-              // Queue this value for a future batch and track the remaining
-              // number of values we're waiting on to be able to yield that batch.
-              values.push(value)
-              if (valueIndex >= remainingValues.length) {
-                remainingValues.push(iterables.length)
-              }
-              remainingValues[valueIndex]--
+                // Queue this value for a future batch and track the remaining
+                // number of values we're waiting on to be able to yield that batch.
+                values.push([value, indices])
+                if (valueIndex >= remainingValues.length) {
+                  remainingValues.push(iterables.length)
+                }
+                remainingValues[valueIndex]--
 
-              const canYieldBatch = valueIndex === 0 && remainingValues[0] === 0
-              if (!canYieldBatch) {
-                return
-              }
+                const canYieldBatch =
+                  valueIndex === 0 && remainingValues[0] === 0
+                if (!canYieldBatch) {
+                  return
+                }
 
-              // Dequeue and yield the next batch.
-              remainingValues.shift()
-              const batch = valuesPerIterable.map(values => values.shift())
-              remainingBatches--
-              await apply(batch)
+                // Dequeue and yield the next batch.
+                remainingValues.shift()
+                let batchIndices = Infinity
+                const batch = valuesPerIterable.map(values => {
+                  const [value, indices] = values.shift()
+                  if (compareIndices(indices, batchIndices) < 0) {
+                    batchIndices = indices
+                  }
+                  return value
+                })
+                remainingBatches--
+                await apply(batch, batchIndices)
 
-              if (!resolved && remainingBatches === 0) {
-                resolved = true
-                resolve()
-              }
-            }, asConcur(iterable))
+                if (!resolved && remainingBatches === 0) {
+                  resolved = true
+                  resolve()
+                }
+              },
+            )
 
             if (values.length > 0) {
               // The remaining number of batches can be no more than the remaining

@@ -1,5 +1,6 @@
 import {
   canEval,
+  compareIndices,
   concurIteratorSymbol,
   createAsyncIterable,
   createConcurIterable,
@@ -190,8 +191,9 @@ export const asConcur = iterable => {
   if (iterable[Symbol.iterator]) {
     return createConcurIterable(async apply => {
       const promises = []
+      let index = 0
       for (const value of iterable) {
-        const result = safeApply(apply, value)
+        const result = safeApply(apply, value, [index++])
         if (isThenable(result)) {
           promises.push(result)
         }
@@ -205,8 +207,9 @@ export const asConcur = iterable => {
     // don't want to await the result of `mapper` before moving onto the next
     // value in the iterable.
     const promises = []
+    let index = 0
     for await (const value of iterable) {
-      const result = safeApply(apply, value)
+      const result = safeApply(apply, value, [index++])
       if (isThenable(result)) {
         promises.push(result)
       }
@@ -215,13 +218,13 @@ export const asConcur = iterable => {
   })
 }
 
-const safeApply = (apply, value) => {
+const safeApply = (apply, value, indices) => {
   if (isThenable(value)) {
-    return value.then(apply)
+    return value.then(value => apply(value, indices))
   }
 
   try {
-    return apply(value)
+    return apply(value, indices)
   } catch (error) {
     return Promise.reject(error)
   }
@@ -240,6 +243,19 @@ const handlePromiseResults = results => {
       throw new AggregateError(errors, `Concur iterable rejected`)
   }
 }
+
+export const orderedConcur = concurIterable =>
+  createConcurIterable(async apply => {
+    const values = []
+    await concurIterable[concurIteratorSymbol]((value, indices) => {
+      values.push([value, indices])
+    })
+    await asConcur(
+      values.sort(([, indices1], [, indices2]) =>
+        compareIndices(indices1, indices2),
+      ),
+    )[concurIteratorSymbol](([value, indices]) => apply(value, indices))
+  })
 
 const result = { done: true }
 const iterator = { next: () => result }

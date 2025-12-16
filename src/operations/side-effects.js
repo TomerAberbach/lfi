@@ -54,45 +54,43 @@ export const cache = iterable => {
   const iterator = iterable[Symbol.iterator]()
 
   return createIterable(() => {
-    let index = 0;
+    let index = 0
     return {
       next: () => {
         if (index < cache.length) {
-          return {value: cache[index++]};
+          return { value: cache[index++] }
         }
-        const result = iterator.next();
+        const result = iterator.next()
         if (result.done) {
-          return result;
+          return result
         }
-        cache.push(result.value);
-        index++;
-        return result;
-      }
+        cache.push(result.value)
+        index++
+        return result
+      },
     }
-  });
+  })
 }
 
 export const cacheAsync = asyncIterable => {
   const cache = []
   const asyncIterator = asyncIterable[Symbol.asyncIterator]()
 
-  return createAsyncIterable(async function* () {
+  return createAsyncIterable(() => {
     let index = 0
-
-    while (true) {
-      if (index < cache.length) {
-        yield cache[index++]
-        continue
-      }
-
-      const { value, done } = await asyncIterator.next()
-      if (done) {
-        break
-      }
-
-      cache.push(value)
-      index++
-      yield value
+    return {
+      next: async () => {
+        if (index < cache.length) {
+          return { value: cache[index++] }
+        }
+        const result = await asyncIterator.next()
+        if (result.done) {
+          return result
+        }
+        cache.push(result.value)
+        index++
+        return result
+      },
     }
   })
 }

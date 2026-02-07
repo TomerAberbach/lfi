@@ -1,5 +1,4 @@
-import { curry } from '../internal/helpers.js'
-import { forEachConcur } from './side-effects.js'
+import { concurIteratorSymbol, curry } from '../internal/helpers.js'
 
 export const all = curry((fn, iterable) => {
   for (const value of iterable) {
@@ -25,12 +24,12 @@ export const allConcur = curry(
   (fn, concurIterable) =>
     new Promise((resolve, reject) => {
       let resolved = false
-      forEachConcur(async value => {
+      concurIterable[concurIteratorSymbol](async value => {
         if (!resolved && !(await fn(value)) && !resolved) {
           resolved = true
           resolve(false)
         }
-      }, concurIterable).then(() => resolve(true), reject)
+      }).then(() => resolve(true), reject)
     }),
 )
 
@@ -58,12 +57,12 @@ export const anyConcur = curry(
   (fn, concurIterable) =>
     new Promise((resolve, reject) => {
       let resolved = false
-      forEachConcur(async value => {
+      concurIterable[concurIteratorSymbol](async value => {
         if (!resolved && (await fn(value)) && !resolved) {
           resolved = true
           resolve(true)
         }
-      }, concurIterable).then(() => resolve(false), reject)
+      }).then(() => resolve(false), reject)
     }),
 )
 

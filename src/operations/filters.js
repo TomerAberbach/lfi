@@ -1,4 +1,5 @@
 import {
+  concurIteratorSymbol,
   createAsyncIterable,
   createConcurIterable,
   createIterable,
@@ -6,7 +7,6 @@ import {
   identity,
   mapIterable,
 } from '../internal/helpers.js'
-import { forEachConcur } from './side-effects.js'
 import { flatMap, flatMapAsync, flatMapConcur } from './transforms.js'
 
 export const filter = curry((fn, iterable) =>
@@ -87,15 +87,15 @@ export const uniqueByConcur = curry((fn, concurIterable) =>
   createConcurIterable(apply => {
     const set = new Set()
 
-    return forEachConcur(async value => {
+    return concurIterable[concurIteratorSymbol](async (value, indices) => {
       const by = await fn(value)
       if (set.has(by)) {
         return
       }
 
       set.add(by)
-      await apply(value)
-    }, concurIterable)
+      await apply(value, indices)
+    })
   }),
 )
 
@@ -130,15 +130,15 @@ export const findConcur = curry((fn, concurIterable) =>
     apply =>
       new Promise((resolve, reject) => {
         let found = false
-        forEachConcur(async value => {
+        concurIterable[concurIteratorSymbol](async (value, indices) => {
           if (found || !(await fn(value)) || found) {
             return
           }
 
           found = true
-          await apply(value)
+          await apply(value, indices)
           resolve()
-        }, concurIterable).then(resolve, reject)
+        }).then(resolve, reject)
       }),
   ),
 )
@@ -180,11 +180,11 @@ export const findLastConcur = curry((fn, concurIterable) =>
     let last
 
     try {
-      await forEachConcur(async value => {
+      await concurIterable[concurIteratorSymbol](async (value, indices) => {
         if (await fn(value)) {
-          last = { value }
+          last = [value, indices]
         }
-      }, concurIterable)
+      })
     } catch (error) {
       if (!last) {
         throw error
@@ -192,7 +192,7 @@ export const findLastConcur = curry((fn, concurIterable) =>
     }
 
     if (last) {
-      await apply(last.value)
+      await apply(...last)
     }
   }),
 )

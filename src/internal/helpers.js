@@ -30,6 +30,17 @@ export const createConcurIterable = fn => ({ [concurIteratorSymbol]: fn })
 export const isThenable = value =>
   Boolean(value && typeof value.then === `function`)
 
+export const compareIndices = (indices1, indices2) => {
+  const minLength = Math.min(indices1.length, indices2.length)
+  for (let i = 0; i < minLength; i++) {
+    const diff = indices1[i] - indices2[i]
+    if (diff) {
+      return diff
+    }
+  }
+  return indices1.length - indices2.length
+}
+
 /**
  * A faster version of `Promise.resolve(value).then(then)`, which is much slower
  * in benchmarks because it performs native promise normalization.

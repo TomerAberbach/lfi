@@ -491,6 +491,22 @@ test.prop([
   },
 )
 
+test.prop([concurIterableArb])(
+  `asAsync returns an async iterable that supports concurrent next calls for the given concur iterable`,
+  async ({ iterable, getIterationOrder, values }) => {
+    const asyncIterator = asAsync(iterable)[Symbol.asyncIterator]()
+
+    const results = await Promise.all(
+      Array.from({ length: values.length + 1 }, () => asyncIterator.next()),
+    )
+
+    expect(results).toStrictEqual([
+      ...getIterationOrder().map(value => ({ value })),
+      { done: true },
+    ])
+  },
+)
+
 test.prop([getThrowingConcurIterableArb(concurIterableArb)])(
   `asAsync rejects for a throwing concur iterable`,
   async ({ iterable, getIterationOrder }) => {

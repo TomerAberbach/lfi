@@ -146,15 +146,14 @@ const asAsyncFromConcur = (concurIterable, { backpressureStrategy } = {}) =>
 
     return {
       next: async () => {
-        const result = nextResult()
-        if (result) {
-          return result
+        let result
+        while (!(result = nextResult())) {
+          // Share the pending promise so that concurrent `next` calls all wake
+          // up instead of only the most recent one.
+          bufferResolvers ??= Promise.withResolvers()
+          await bufferResolvers.promise
         }
-
-        bufferResolvers = Promise.withResolvers()
-        await bufferResolvers.promise
-
-        return nextResult()
+        return result
       },
     }
   })
